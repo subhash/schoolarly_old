@@ -10,6 +10,13 @@ class SchoolTest < ActiveSupport::TestCase
   
   test "school-user association" do    
     @school.user = @user
-    assert @user.save    
+    assert @user.save
+    assert_equal @user.person, @school
+  end
+  
+  test "user-school association" do    
+    @user.person = @school
+    assert @school.save
+    assert_equal @user.person, @school
   end
 end
