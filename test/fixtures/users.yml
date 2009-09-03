@@ -1,22 +1,19 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  first_name: MyString
-  middle_name: MyString
-  last_name: MyString
-  address_line1: MyString
-  address_line2: MyString
-  city: MyString
-  state: MyString
-  country: MyString
-  pincode: MyString
-  phone_landline: MyString
-  phone_mobile: MyString
-  email: MyString
-  hashed_password: MyString
-  salt: MyString
-  person_id: 1
-  person_type: MyString
+admin_st_teresas:
+  first_name: St.Teresas
+  middle_name: 
+  last_name: Admin
+  address_line1: Convent Jn.
+  address_line2: 
+  city: Kochi
+  state: Kerala
+  country: India
+  pincode: 682011
+  phone_landline: 0484-1234567
+  phone_mobile: 
+  email: admin@st_teresas.com
+
 
 two:
   first_name: MyString

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+st_teresas:
+  name: St. Teresa's Convent GHS
+  board: State
+  fax: 
+  website: http://www.stteresas.com
+
+two:
+  name: MyString
+  board: 
+  fax: MyString
+  website: MyString

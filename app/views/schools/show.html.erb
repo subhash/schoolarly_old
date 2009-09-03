@@ -1,0 +1,23 @@
+<p>
+  <b>Name:</b>
+  <%=h @school.name %>
+</p>
+
+<p>
+  <b>Board:</b>
+  <%=h @school.board %>
+</p>
+
+<p>
+  <b>Fax:</b>
+  <%=h @school.fax %>
+</p>
+
+<p>
+  <b>Website:</b>
+  <%=h @school.website %>
+</p>
+
+
+<%= link_to 'Edit', edit_school_path(@school) %> |
+<%= link_to 'Back', schools_path %>

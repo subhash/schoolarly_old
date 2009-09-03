@@ -1,4 +1,5 @@
-class User < ActiveRecord::Base
+class User < ActiveRecord::Base  
+  belongs_to :person, :polymorphic => true
   composed_of :name, :class_name => "Name", :mapping => [ %w[ first_name first_name ],%w[ middle_name middle_name ],%w[ last_name last_name ]]
   composed_of :address, :class_name => "Address", :mapping => [
   %w[address_line1 address_line1],
@@ -9,7 +10,7 @@ class User < ActiveRecord::Base
 %w[pincode pincode  ],
 %w[phone_landline phone_landline]  ,
 %w[phone_mobile    phone_mobile]
-
+  
   ]
   validates_presence_of :email, :person_type
   validates_uniqueness_of :email
