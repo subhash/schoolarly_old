@@ -2,8 +2,11 @@
 
 one:
   admission_number: MyString
-  enrollment_id: 1
+  current_enrollment_id: 1
 
 two:
   admission_number: MyString
-  enrollment_id: 2
+  current_enrollment_id: 2
+
+shenu:
+  admission_number: 111

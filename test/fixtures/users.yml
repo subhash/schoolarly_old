@@ -44,3 +44,18 @@ teacher_sunil:
   email: mary.kutty@gmail.com
   person: sunil (Teacher)
 
+
+parent_shenu:
+  first_name: Sheroob
+  middle_name: 
+  last_name: K
+  address_line1: 
+  address_line2: 
+  city: Thrissur
+  state: Kerala
+  country: India
+  pincode: 
+  phone_landline: 
+  phone_mobile: 
+  email: sheroob@gmail.com
+  person: father_shenu (Parent)

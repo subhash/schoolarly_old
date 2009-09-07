@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090907091903) do
+ActiveRecord::Schema.define(:version => 20090907174932) do
 
   create_table "klasses", :force => true do |t|
     t.enum     "level",      :limit => [:"Pre-school", :"L.K.G", :"U.K.G", :Mont1, :Mont2, :Mont3, :"1", :"2", :"3", :"4", :"5", :"6", :"7", :"8", :"9", :"10", :"11", :"12"]
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(:version => 20090907091903) do
 
   add_index "klasses", ["school_id"], :name => "school_id"
   add_index "klasses", ["teacher_id"], :name => "teacher_id"
+
+  create_table "parents", :force => true do |t|
+    t.integer  "student_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "parents", ["student_id"], :name => "student_id"
 
   create_table "qualifications", :force => true do |t|
     t.string   "degree"
@@ -100,6 +108,8 @@ ActiveRecord::Schema.define(:version => 20090907091903) do
 
   add_foreign_key "klasses", ["school_id"], "schools", ["id"], :name => "klasses_ibfk_1"
   add_foreign_key "klasses", ["teacher_id"], "teachers", ["id"], :name => "klasses_ibfk_2"
+
+  add_foreign_key "parents", ["student_id"], "students", ["id"], :name => "parents_ibfk_1"
 
   add_foreign_key "qualifications", ["teacher_id"], "teachers", ["id"], :name => "qualifications_ibfk_1"
 
