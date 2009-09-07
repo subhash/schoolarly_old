@@ -2,7 +2,7 @@
 
 one:
   admission_number: MyString
-  current_enrollment_id: 1
+  current_enrollment: enrollment_one
 
 two:
   admission_number: MyString
@@ -10,3 +10,4 @@ two:
 
 shenu:
   admission_number: 111
+  current_enrollment: shenu_one

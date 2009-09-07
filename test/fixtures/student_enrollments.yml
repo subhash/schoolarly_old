@@ -1,15 +1,15 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  student_id: 1
-  klass_id: 1
-  admission_number: MyString
-  roll_number: MyString
+shenu_one:
+  student: shenu
+  klass: one_A
+  admission_number: 111
+  roll_number: 52
   enrollment_date: 2009-09-07
 
-two:
-  student_id: 1
-  klass_id: 1
-  admission_number: MyString
-  roll_number: MyString
+enrollment_one:
+  student: one
+  klass: one_A
+  admission_number: 222
+  roll_number: 10
   enrollment_date: 2009-09-07

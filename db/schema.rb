@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090907174932) do
+ActiveRecord::Schema.define(:version => 20090907184806) do
 
   create_table "klasses", :force => true do |t|
     t.enum     "level",      :limit => [:"Pre-school", :"L.K.G", :"U.K.G", :Mont1, :Mont2, :Mont3, :"1", :"2", :"3", :"4", :"5", :"6", :"7", :"8", :"9", :"10", :"11", :"12"]
@@ -76,6 +76,12 @@ ActiveRecord::Schema.define(:version => 20090907174932) do
 
   add_index "students", ["school_id"], :name => "school_id"
   add_index "students", ["current_enrollment_id"], :name => "current_enrollment_id"
+
+  create_table "subjects", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "teachers", :force => true do |t|
     t.integer  "school_id"
