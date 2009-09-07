@@ -12,9 +12,12 @@ class CreateStudentEnrollments < ActiveRecord::Migration
       t.foreign_key :student_id, :students, :id
       t.foreign_key :klass_id, :klasses, :id
     end
+    
+    add_foreign_key :students, :current_enrollment_id,:student_enrollments, :id
   end
   
   def self.down
     drop_table :student_enrollments
+    remove_foreign_key :students, :current_enrollment_id
   end
 end

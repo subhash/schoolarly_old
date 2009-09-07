@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090907093145) do
+ActiveRecord::Schema.define(:version => 20090907091903) do
 
   create_table "klasses", :force => true do |t|
     t.enum     "level",      :limit => [:"Pre-school", :"L.K.G", :"U.K.G", :Mont1, :Mont2, :Mont3, :"1", :"2", :"3", :"4", :"5", :"6", :"7", :"8", :"9", :"10", :"11", :"12"]
@@ -61,13 +61,13 @@ ActiveRecord::Schema.define(:version => 20090907093145) do
   create_table "students", :force => true do |t|
     t.integer  "school_id"
     t.string   "admission_number"
-    t.integer  "enrollment_id"
+    t.integer  "current_enrollment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "students", ["school_id"], :name => "school_id"
-  add_index "students", ["enrollment_id"], :name => "enrollment_id"
+  add_index "students", ["current_enrollment_id"], :name => "current_enrollment_id"
 
   create_table "teachers", :force => true do |t|
     t.integer  "school_id"
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(:version => 20090907093145) do
   add_foreign_key "student_enrollments", ["student_id"], "students", ["id"], :name => "student_enrollments_ibfk_1"
   add_foreign_key "student_enrollments", ["klass_id"], "klasses", ["id"], :name => "student_enrollments_ibfk_2"
 
-  add_foreign_key "students", ["enrollment_id"], "student_enrollments", ["id"], :name => "students_ibfk_2"
+  add_foreign_key "students", ["current_enrollment_id"], "student_enrollments", ["id"], :name => "students_ibfk_2"
   add_foreign_key "students", ["school_id"], "schools", ["id"], :name => "students_ibfk_1"
 
   add_foreign_key "teachers", ["school_id"], "schools", ["id"], :name => "teachers_ibfk_1"
