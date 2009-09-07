@@ -3,4 +3,6 @@ class Student < ActiveRecord::Base
   belongs_to :school
   has_many :enrollments, :class_name => 'StudentEnrollment'
   belongs_to :current_enrollment, :class_name => 'StudentEnrollment', :foreign_key => 'current_enrollment_id'
+  has_one :parent
+  
 end
