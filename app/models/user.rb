@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 %w[phone_mobile    phone_mobile]
   
   ]
+
   validates_presence_of :email, :person_type
   validates_uniqueness_of :email
   #  validates_confirmation_of :password

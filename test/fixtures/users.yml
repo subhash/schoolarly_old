@@ -15,20 +15,32 @@ admin_st_teresas:
   email: admin@st_teresas.com
 
 
-two:
-  first_name: MyString
-  middle_name: MyString
-  last_name: MyString
-  address_line1: MyString
-  address_line2: MyString
-  city: MyString
-  state: MyString
-  country: MyString
-  pincode: MyString
-  phone_landline: MyString
-  phone_mobile: MyString
-  email: MyString
-  hashed_password: MyString
-  salt: MyString
-  person_id: 1
-  person_type: MyString
+mary:
+  first_name: Mary
+  middle_name: 
+  last_name: Kutty
+  address_line1: 
+  address_line2: 
+  city: Thrissur
+  state: Kerala
+  country: India
+  pincode: 
+  phone_landline: 
+  phone_mobile: 
+  email: mary.kutty@gmail.com
+  
+teacher_sunil:
+  first_name: Mary
+  middle_name: 
+  last_name: Kutty
+  address_line1: 
+  address_line2: 
+  city: Thrissur
+  state: Kerala
+  country: India
+  pincode: 
+  phone_landline: 
+  phone_mobile: 
+  email: mary.kutty@gmail.com
+  person: sunil (Teacher)
+

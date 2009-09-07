@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  degree: MyString
+  subject: MyString
+  university: MyString
+  date: 2009-09-07
+
+two:
+  degree: MyString
+  subject: MyString
+  university: MyString
+  date: 2009-09-07

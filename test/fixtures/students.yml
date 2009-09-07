@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  admission_number: MyString
+  enrollment_id: 1
+
+two:
+  admission_number: MyString
+  enrollment_id: 2
