@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090907184806) do
+ActiveRecord::Schema.define(:version => 20090907201342) do
 
   create_table "klasses", :force => true do |t|
     t.enum     "level",      :limit => [:"Pre-school", :"L.K.G", :"U.K.G", :Mont1, :Mont2, :Mont3, :"1", :"2", :"3", :"4", :"5", :"6", :"7", :"8", :"9", :"10", :"11", :"12"]
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(:version => 20090907184806) do
 
   add_index "klasses", ["school_id"], :name => "school_id"
   add_index "klasses", ["teacher_id"], :name => "teacher_id"
+
+  create_table "klasses_subjects", :id => false, :force => true do |t|
+    t.integer "klass_id",   :null => false
+    t.integer "subject_id", :null => false
+  end
+
+  add_index "klasses_subjects", ["klass_id", "subject_id"], :name => "index_klasses_subjects_on_klass_id_and_subject_id", :unique => true
+  add_index "klasses_subjects", ["subject_id"], :name => "subject_id"
 
   create_table "parents", :force => true do |t|
     t.integer  "student_id", :null => false
@@ -52,6 +60,14 @@ ActiveRecord::Schema.define(:version => 20090907184806) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "schools_subjects", :id => false, :force => true do |t|
+    t.integer "school_id",  :null => false
+    t.integer "subject_id", :null => false
+  end
+
+  add_index "schools_subjects", ["school_id", "subject_id"], :name => "index_schools_subjects_on_school_id_and_subject_id", :unique => true
+  add_index "schools_subjects", ["subject_id"], :name => "subject_id"
 
   create_table "student_enrollments", :force => true do |t|
     t.integer  "student_id",       :null => false
@@ -115,9 +131,15 @@ ActiveRecord::Schema.define(:version => 20090907184806) do
   add_foreign_key "klasses", ["school_id"], "schools", ["id"], :name => "klasses_ibfk_1"
   add_foreign_key "klasses", ["teacher_id"], "teachers", ["id"], :name => "klasses_ibfk_2"
 
+  add_foreign_key "klasses_subjects", ["klass_id"], "klasses", ["id"], :name => "klasses_subjects_ibfk_1"
+  add_foreign_key "klasses_subjects", ["subject_id"], "subjects", ["id"], :name => "klasses_subjects_ibfk_2"
+
   add_foreign_key "parents", ["student_id"], "students", ["id"], :name => "parents_ibfk_1"
 
   add_foreign_key "qualifications", ["teacher_id"], "teachers", ["id"], :name => "qualifications_ibfk_1"
+
+  add_foreign_key "schools_subjects", ["school_id"], "schools", ["id"], :name => "schools_subjects_ibfk_1"
+  add_foreign_key "schools_subjects", ["subject_id"], "subjects", ["id"], :name => "schools_subjects_ibfk_2"
 
   add_foreign_key "student_enrollments", ["student_id"], "students", ["id"], :name => "student_enrollments_ibfk_1"
   add_foreign_key "student_enrollments", ["klass_id"], "klasses", ["id"], :name => "student_enrollments_ibfk_2"
