@@ -1,12 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  admission_number: MyString
-  current_enrollment: enrollment_one
+paru:
+  admission_number: 123
+  current_enrollment: enrollment_paru_current
 
-two:
-  admission_number: MyString
-  current_enrollment_id: 2
 
 shenu:
   admission_number: 111

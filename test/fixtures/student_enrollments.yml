@@ -7,9 +7,17 @@ shenu_one:
   roll_number: 52
   enrollment_date: 2009-09-07
 
-enrollment_one:
-  student: one
+enrollment_paru_current:
+  student: paru
   klass: one_A
-  admission_number: 222
+  admission_number: 123
+  roll_number: 10
+  enrollment_date: 2009-09-07
+  
+  
+enrollment_paru:
+  student: paru
+  klass: two_B
+  admission_number: 123
   roll_number: 10
   enrollment_date: 2009-09-07
