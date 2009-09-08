@@ -23,6 +23,6 @@ class KlassTest < ActiveSupport::TestCase
   
   test "historical klass membership" do    
     assert_equal 1, @twoB.students.size
-    #assert_equal 0, @twoB.current_students.size
+    assert_equal 0, @twoB.current_students.size
   end
 end
