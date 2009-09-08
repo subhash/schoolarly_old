@@ -9,7 +9,40 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090908072727) do
+ActiveRecord::Schema.define(:version => 20090908073022) do
+
+  create_table "exam_groups", :force => true do |t|
+    t.string   "description"
+    t.integer  "exam_type_id", :null => false
+    t.integer  "klass_id",     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "exam_groups", ["exam_type_id"], :name => "exam_type_id"
+  add_index "exam_groups", ["klass_id"], :name => "klass_id"
+
+  create_table "exam_types", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "exams", :force => true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "venue"
+    t.integer  "max_score"
+    t.integer  "pass_score"
+    t.integer  "exam_group_id", :null => false
+    t.integer  "subject_id",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "exams", ["exam_group_id"], :name => "exam_group_id"
+  add_index "exams", ["subject_id"], :name => "subject_id"
 
   create_table "klasses", :force => true do |t|
     t.enum     "level",      :limit => [:"Pre-school", :"L.K.G", :"U.K.G", :Mont1, :Mont2, :Mont3, :"1", :"2", :"3", :"4", :"5", :"6", :"7", :"8", :"9", :"10", :"11", :"12"]
@@ -142,6 +175,12 @@ ActiveRecord::Schema.define(:version => 20090908072727) do
     t.datetime "updated_at"
   end
 
+  add_foreign_key "exam_groups", ["exam_type_id"], "exam_types", ["id"], :name => "exam_groups_ibfk_1"
+  add_foreign_key "exam_groups", ["klass_id"], "klasses", ["id"], :name => "exam_groups_ibfk_2"
+
+  add_foreign_key "exams", ["exam_group_id"], "exam_groups", ["id"], :name => "exams_ibfk_1"
+  add_foreign_key "exams", ["subject_id"], "subjects", ["id"], :name => "exams_ibfk_2"
+
   add_foreign_key "klasses", ["school_id"], "schools", ["id"], :name => "klasses_ibfk_1"
   add_foreign_key "klasses", ["teacher_id"], "teachers", ["id"], :name => "klasses_ibfk_2"
 
@@ -158,8 +197,8 @@ ActiveRecord::Schema.define(:version => 20090908072727) do
   add_foreign_key "student_enrollments", ["student_id"], "students", ["id"], :name => "student_enrollments_ibfk_1"
   add_foreign_key "student_enrollments", ["klass_id"], "klasses", ["id"], :name => "student_enrollments_ibfk_2"
 
-  add_foreign_key "students", ["school_id"], "schools", ["id"], :name => "students_ibfk_1"
   add_foreign_key "students", ["current_enrollment_id"], "student_enrollments", ["id"], :name => "students_ibfk_2"
+  add_foreign_key "students", ["school_id"], "schools", ["id"], :name => "students_ibfk_1"
 
   add_foreign_key "teacher_allotments", ["teacher_id"], "teachers", ["id"], :name => "teacher_allotments_ibfk_1"
   add_foreign_key "teacher_allotments", ["subject_id"], "subjects", ["id"], :name => "teacher_allotments_ibfk_2"
