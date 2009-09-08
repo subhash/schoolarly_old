@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :exams
+
   map.resources :teachers
 
   map.resources :students
