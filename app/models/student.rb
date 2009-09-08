@@ -7,4 +7,8 @@ class Student < ActiveRecord::Base
   has_one :current_klass ,:through => :current_enrollment, :source =>:klass
   has_one :parent
   
+  def current_subjects
+    self.current_enrollment.subjects
+  end
+  
 end
