@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090908160152) do
+ActiveRecord::Schema.define(:version => 20090908161622) do
 
   create_table "exam_groups", :force => true do |t|
     t.string   "description"
@@ -64,6 +64,18 @@ ActiveRecord::Schema.define(:version => 20090908160152) do
 
   add_index "klasses_subjects", ["klass_id", "subject_id"], :name => "index_klasses_subjects_on_klass_id_and_subject_id", :unique => true
   add_index "klasses_subjects", ["subject_id"], :name => "subject_id"
+
+  create_table "leave_requests", :force => true do |t|
+    t.integer  "parent_id",                                                           :null => false
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "reason"
+    t.enum     "status",     :limit => [:requested, :confirmed, :rejected, :pending]
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "leave_requests", ["parent_id"], :name => "parent_id"
 
   create_table "messages", :force => true do |t|
     t.integer  "sender_id",                                      :null => false
@@ -221,6 +233,8 @@ ActiveRecord::Schema.define(:version => 20090908160152) do
 
   add_foreign_key "klasses_subjects", ["klass_id"], "klasses", ["id"], :name => "klasses_subjects_ibfk_1"
   add_foreign_key "klasses_subjects", ["subject_id"], "subjects", ["id"], :name => "klasses_subjects_ibfk_2"
+
+  add_foreign_key "leave_requests", ["parent_id"], "users", ["id"], :name => "leave_requests_ibfk_1"
 
   add_foreign_key "messages", ["sender_id"], "users", ["id"], :name => "messages_ibfk_1"
 
