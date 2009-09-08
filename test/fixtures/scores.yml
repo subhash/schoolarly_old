@@ -1,0 +1,16 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+shenu_score1:
+  student: shenu
+  exam: maths_half_yearly
+  score: 94.5
+
+paru_score1:
+  student: paru
+  exam: maths_half_yearly
+  score: 99.9
+
+shenu_score2:
+  student: shenu
+  exam: english_class_test_1
+  score: 94.5

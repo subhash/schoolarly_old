@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090908100232) do
+ActiveRecord::Schema.define(:version => 20090908113844) do
 
   create_table "exam_groups", :force => true do |t|
     t.string   "description"
@@ -101,6 +101,17 @@ ActiveRecord::Schema.define(:version => 20090908100232) do
 
   add_index "schools_subjects", ["school_id", "subject_id"], :name => "index_schools_subjects_on_school_id_and_subject_id", :unique => true
   add_index "schools_subjects", ["subject_id"], :name => "subject_id"
+
+  create_table "scores", :force => true do |t|
+    t.integer  "student_id",                                              :null => false
+    t.integer  "exam_id",                                                 :null => false
+    t.integer  "score",      :limit => 10, :precision => 10, :scale => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "scores", ["exam_id"], :name => "exam_id"
+  add_index "scores", ["student_id"], :name => "student_id"
 
   create_table "student_enrollments", :force => true do |t|
     t.integer  "student_id",       :null => false
@@ -203,6 +214,9 @@ ActiveRecord::Schema.define(:version => 20090908100232) do
 
   add_foreign_key "schools_subjects", ["school_id"], "schools", ["id"], :name => "schools_subjects_ibfk_1"
   add_foreign_key "schools_subjects", ["subject_id"], "subjects", ["id"], :name => "schools_subjects_ibfk_2"
+
+  add_foreign_key "scores", ["exam_id"], "exams", ["id"], :name => "scores_ibfk_1"
+  add_foreign_key "scores", ["student_id"], "students", ["id"], :name => "scores_ibfk_2"
 
   add_foreign_key "student_enrollments", ["student_id"], "students", ["id"], :name => "student_enrollments_ibfk_1"
   add_foreign_key "student_enrollments", ["klass_id"], "klasses", ["id"], :name => "student_enrollments_ibfk_2"
