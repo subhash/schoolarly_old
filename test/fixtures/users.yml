@@ -29,6 +29,21 @@ mary:
   phone_mobile: 
   email: mary.kutty@gmail.com
   
+teacher_treasa:
+  first_name: Treasa
+  middle_name: 
+  last_name: Jose
+  address_line1: 
+  address_line2: 
+  city: Kochi
+  state: Kerala
+  country: India
+  pincode: 
+  phone_landline: 
+  phone_mobile: 
+  email: treasa.jose@gmail.com  
+  person: treasa (Teacher)
+  
 teacher_sunil:
   first_name: Sunil
   middle_name: 

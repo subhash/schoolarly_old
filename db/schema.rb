@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090907201342) do
+ActiveRecord::Schema.define(:version => 20090908072727) do
 
   create_table "klasses", :force => true do |t|
     t.enum     "level",      :limit => [:"Pre-school", :"L.K.G", :"U.K.G", :Mont1, :Mont2, :Mont3, :"1", :"2", :"3", :"4", :"5", :"6", :"7", :"8", :"9", :"10", :"11", :"12"]
@@ -99,6 +99,20 @@ ActiveRecord::Schema.define(:version => 20090907201342) do
     t.datetime "updated_at"
   end
 
+  create_table "teacher_allotments", :force => true do |t|
+    t.integer  "teacher_id",     :null => false
+    t.integer  "subject_id",     :null => false
+    t.integer  "klass_id",       :null => false
+    t.date     "allotment_date"
+    t.boolean  "is_current"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "teacher_allotments", ["teacher_id"], :name => "teacher_id"
+  add_index "teacher_allotments", ["subject_id"], :name => "subject_id"
+  add_index "teacher_allotments", ["klass_id"], :name => "klass_id"
+
   create_table "teachers", :force => true do |t|
     t.integer  "school_id"
     t.datetime "created_at"
@@ -144,8 +158,12 @@ ActiveRecord::Schema.define(:version => 20090907201342) do
   add_foreign_key "student_enrollments", ["student_id"], "students", ["id"], :name => "student_enrollments_ibfk_1"
   add_foreign_key "student_enrollments", ["klass_id"], "klasses", ["id"], :name => "student_enrollments_ibfk_2"
 
-  add_foreign_key "students", ["current_enrollment_id"], "student_enrollments", ["id"], :name => "students_ibfk_2"
   add_foreign_key "students", ["school_id"], "schools", ["id"], :name => "students_ibfk_1"
+  add_foreign_key "students", ["current_enrollment_id"], "student_enrollments", ["id"], :name => "students_ibfk_2"
+
+  add_foreign_key "teacher_allotments", ["teacher_id"], "teachers", ["id"], :name => "teacher_allotments_ibfk_1"
+  add_foreign_key "teacher_allotments", ["subject_id"], "subjects", ["id"], :name => "teacher_allotments_ibfk_2"
+  add_foreign_key "teacher_allotments", ["klass_id"], "klasses", ["id"], :name => "teacher_allotments_ibfk_3"
 
   add_foreign_key "teachers", ["school_id"], "schools", ["id"], :name => "teachers_ibfk_1"
 

@@ -4,6 +4,8 @@ class Klass < ActiveRecord::Base
   has_many :enrollments, :class_name =>'StudentEnrollment'  
   has_many :students, :through => :enrollments
   has_and_belongs_to_many :subjects
+  has_many :teacher_allotments
+  has_many :teachers, :through => :teacher_allotments
   
   def current_students
     self.enrollments.select{|e| e.current_student}
