@@ -30,18 +30,18 @@ mary:
   email: mary.kutty@gmail.com
   
 teacher_sunil:
-  first_name: Mary
+  first_name: Sunil
   middle_name: 
-  last_name: Kutty
+  last_name: Koshy
   address_line1: 
   address_line2: 
-  city: Thrissur
+  city: Chalakudy
   state: Kerala
   country: India
   pincode: 
   phone_landline: 
   phone_mobile: 
-  email: mary.kutty@gmail.com
+  email: sunil.koshy@gmail.com
   person: sunil (Teacher)
 
 
