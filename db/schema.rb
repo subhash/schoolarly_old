@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090908113844) do
+ActiveRecord::Schema.define(:version => 20090908160152) do
 
   create_table "exam_groups", :force => true do |t|
     t.string   "description"
@@ -64,6 +64,20 @@ ActiveRecord::Schema.define(:version => 20090908113844) do
 
   add_index "klasses_subjects", ["klass_id", "subject_id"], :name => "index_klasses_subjects_on_klass_id_and_subject_id", :unique => true
   add_index "klasses_subjects", ["subject_id"], :name => "subject_id"
+
+  create_table "messages", :force => true do |t|
+    t.integer  "sender_id",                                      :null => false
+    t.integer  "receiver_id"
+    t.string   "subject"
+    t.string   "body"
+    t.datetime "time"
+    t.enum     "status",      :limit => [:read, :unread, :spam]
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "users"
+  end
+
+  add_index "messages", ["sender_id"], :name => "sender_id"
 
   create_table "parents", :force => true do |t|
     t.integer  "student_id", :null => false
@@ -207,6 +221,8 @@ ActiveRecord::Schema.define(:version => 20090908113844) do
 
   add_foreign_key "klasses_subjects", ["klass_id"], "klasses", ["id"], :name => "klasses_subjects_ibfk_1"
   add_foreign_key "klasses_subjects", ["subject_id"], "subjects", ["id"], :name => "klasses_subjects_ibfk_2"
+
+  add_foreign_key "messages", ["sender_id"], "users", ["id"], :name => "messages_ibfk_1"
 
   add_foreign_key "parents", ["student_id"], "students", ["id"], :name => "parents_ibfk_1"
 
