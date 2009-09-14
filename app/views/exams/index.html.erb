@@ -1,0 +1,28 @@
+<h1>Listing exams</h1>
+
+<table>
+  <tr>
+    <th>Start time</th>
+    <th>End time</th>
+    <th>Venue</th>
+    <th>Max score</th>
+    <th>Pass score</th>
+  </tr>
+
+<% @exams.each do |exam| %>
+  <tr>
+    <td><%=h exam.start_time %></td>
+    <td><%=h exam.end_time %></td>
+    <td><%=h exam.venue %></td>
+    <td><%=h exam.max_score %></td>
+    <td><%=h exam.pass_score %></td>
+    <td><%= link_to 'Show', exam %></td>
+    <td><%= link_to 'Edit', edit_exam_path(exam) %></td>
+    <td><%= link_to 'Destroy', exam, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New exam', new_exam_path %>

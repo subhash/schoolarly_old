@@ -1,0 +1,9 @@
+Installed plugins
+1) enum-column - script/plugin install svn://rubyforge.org/var/svn/enum-column/plugins/enum-column
+2) foreign-key migrations -  ruby script/plugin install svn://rubyforge.org/var/svn/redhillonrails/trunk/vendor/plugins/redhillonrails_core
+
+
+
+
+Installed gems
+

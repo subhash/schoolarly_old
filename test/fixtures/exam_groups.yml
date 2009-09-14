@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+half_yearly_two_B:
+  description: Half yearly exam for 2B
+  klass: two_B
+  exam_type: half_yearly
+
+class_test_1_one_A:
+  description: Class test 1 for 1A
+  klass: one_A
+  exam_type: class_test_1

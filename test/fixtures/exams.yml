@@ -1,0 +1,28 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+maths_half_yearly:
+  start_time: 2009-09-08 11:00:00
+  end_time: 2009-09-08 12:00:00
+  venue: Under the banyan tree
+  max_score: 100
+  pass_score: 40
+  subject: maths
+  exam_group: half_yearly_two_B
+
+english_half_yearly:
+  start_time: 2009-09-09 10:00:00
+  end_time: 2009-09-09 12:00:00
+  venue: River side
+  max_score: 100
+  pass_score: 60
+  subject: english
+  exam_group: half_yearly_two_B
+  
+english_class_test_1:
+  start_time: 2009-09-09 10:00:00
+  end_time: 2009-09-09 12:00:00
+  venue: Rooftop
+  max_score: 100
+  pass_score: 60
+  subject: english
+  exam_group: class_test_1_one_A

@@ -1,0 +1,10 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+malayalam:
+  name: Malayalam
+
+english:
+  name: English 
+  
+maths:
+  name: Maths

@@ -1,0 +1,23 @@
+<h1>New student</h1>
+
+<% form_for(@student) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :admission_number %><br />
+    <%= f.text_field :admission_number %>
+  </p>
+  <p>
+    <%= f.label :roll_number %><br />
+    <%= f.text_field :roll_number %>
+  </p>
+  <p>
+    <%= f.label :enrollment_id %><br />
+    <%= f.text_field :enrollment_id %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', students_path %>

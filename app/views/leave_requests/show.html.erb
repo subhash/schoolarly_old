@@ -1,0 +1,28 @@
+<p>
+  <b>Parent:</b>
+  <%=h @leave_request.parent_id %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%=h @leave_request.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%=h @leave_request.end_date %>
+</p>
+
+<p>
+  <b>Reason:</b>
+  <%=h @leave_request.reason %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @leave_request.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_leave_request_path(@leave_request) %> |
+<%= link_to 'Back', leave_requests_path %>

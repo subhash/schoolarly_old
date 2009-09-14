@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one_A:
+  level: 1
+  division: A
+  school: st_teresas
+  year: 2006
+  class_teacher: sunil
+
+two_B:
+  level: 2
+  division: B
+  school_id: 1
+  year: 
+  teacher_id: 2
