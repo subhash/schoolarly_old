@@ -1,28 +1,23 @@
 class CreateUsers < ActiveRecord::Migration
   def self.up
-    create_table :users do |t|
-      t.string :first_name
-      t.string :middle_name
-      t.string :last_name
-      t.string :address_line1
-      t.string :address_line2
-      t.string :city
-      t.string :state
-      t.string :country
-      t.string :pincode
-      t.string :phone_landline
-      t.string :phone_mobile
-      t.string :email
-      t.string :hashed_password
-      t.string :salt
+    create_table "users", :force => true do |t|
+      t.column :login,                     :string, :limit => 40
+      t.column :name,                      :string, :limit => 100, :default => '', :null => true
+      t.column :email,                     :string, :limit => 100
+      t.column :crypted_password,          :string, :limit => 40
+      t.column :salt,                      :string, :limit => 40
+      t.column :created_at,                :datetime
+      t.column :updated_at,                :datetime
+      t.column :remember_token,            :string, :limit => 40
+      t.column :remember_token_expires_at, :datetime
+
       t.integer :person_id
       t.string :person_type
-
-      t.timestamps
     end
+    add_index :users, :login, :unique => true
   end
 
   def self.down
-    drop_table :users
+    drop_table "users"
   end
 end
