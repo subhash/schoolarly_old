@@ -1,83 +1,29 @@
 <p>
-  <b>First name:</b>
-  <%=h @user.first_name %>
+    <b>Login:</b>
+    <%=h @user.email %>
 </p>
-
 <p>
-  <b>Middle name:</b>
-  <%=h @user.middle_name %>
+    <b>Login count:</b>
+    <%=h @user.login_count %>
 </p>
-
 <p>
-  <b>Last name:</b>
-  <%=h @user.last_name %>
+    <b>Last request at:</b>
+    <%=h @user.last_request_at %>
 </p>
-
 <p>
-  <b>Address line1:</b>
-  <%=h @user.address_line1 %>
+    <b>Last login at:</b>
+    <%=h @user.last_login_at %>
 </p>
-
 <p>
-  <b>Address line2:</b>
-  <%=h @user.address_line2 %>
+    <b>Current login at:</b>
+    <%=h @user.current_login_at %>
 </p>
-
 <p>
-  <b>City:</b>
-  <%=h @user.city %>
+    <b>Last login ip:</b>
+    <%=h @user.last_login_ip %>
 </p>
-
 <p>
-  <b>State:</b>
-  <%=h @user.state %>
+    <b>Current login ip:</b>
+    <%=h @user.current_login_ip %>
 </p>
-
-<p>
-  <b>Country:</b>
-  <%=h @user.country %>
-</p>
-
-<p>
-  <b>Pincode:</b>
-  <%=h @user.pincode %>
-</p>
-
-<p>
-  <b>Phone landline:</b>
-  <%=h @user.phone_landline %>
-</p>
-
-<p>
-  <b>Phone mobile:</b>
-  <%=h @user.phone_mobile %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%=h @user.email %>
-</p>
-
-<p>
-  <b>Hashed password:</b>
-  <%=h @user.hashed_password %>
-</p>
-
-<p>
-  <b>Salt:</b>
-  <%=h @user.salt %>
-</p>
-
-<p>
-  <b>Person:</b>
-  <%=h @user.person_id %>
-</p>
-
-<p>
-  <b>Person type:</b>
-  <%=h @user.person_type %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Edit', edit_account_path %>
