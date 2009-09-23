@@ -1,7 +1,4 @@
 class SchoolsController < ApplicationController
-  
-  before_filter :authorize
-  
   # GET /schools
   # GET /schools.xml
   def index

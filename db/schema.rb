@@ -202,20 +202,25 @@ ActiveRecord::Schema.define(:version => 20090908161622) do
   add_index "teachers", ["school_id"], :name => "school_id"
 
   create_table "users", :force => true do |t|
-    t.string   "login",                     :limit => 40
-    t.string   "name",                      :limit => 100, :default => ""
-    t.string   "email",                     :limit => 100
-    t.string   "crypted_password",          :limit => 40
-    t.string   "salt",                      :limit => 40
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "remember_token",            :limit => 40
-    t.datetime "remember_token_expires_at"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "address_line1"
+    t.string   "address_line2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "pincode"
+    t.string   "phone_landline"
+    t.string   "phone_mobile"
+    t.string   "email"
+    t.string   "hashed_password"
+    t.string   "salt"
     t.integer  "person_id"
     t.string   "person_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
-
-  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
 
   add_foreign_key "exam_groups", ["exam_type_id"], "exam_types", ["id"], :name => "exam_groups_ibfk_1"
   add_foreign_key "exam_groups", ["klass_id"], "klasses", ["id"], :name => "exam_groups_ibfk_2"
