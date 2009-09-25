@@ -1,4 +1,6 @@
 class SchoolsController < ApplicationController
+  skip_before_filter :require_user, :only => :index
+  
   # GET /schools
   # GET /schools.xml
   def index
