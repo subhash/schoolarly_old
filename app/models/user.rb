@@ -2,32 +2,36 @@ class User < ActiveRecord::Base
   
   acts_as_authentic
   
+  # Authorization plugin
+  acts_as_authorized_user
+  acts_as_authorizable
+  
   belongs_to :person, :polymorphic => true
-#  composed_of :name, :class_name => "Name", :mapping => [ %w[ first_name first_name ],%w[ middle_name middle_name ],%w[ last_name last_name ]]
-#  composed_of :address, :class_name => "Address", :mapping => [
-#  %w[address_line1 address_line1],
-#%w[address_line2 address_line2],
-#%w[city city],
-#%w[state state],
-#%w[country country  ],
-#%w[pincode pincode  ],
-#%w[phone_landline phone_landline]  ,
-#%w[phone_mobile    phone_mobile]
-#  
-#  ]
-#
-#  validates_presence_of :email, :person_type
-#  validates_uniqueness_of :email
-#  #  validates_confirmation_of :password
-#  #  validate :password_non_blank
-#  #  attr_accessor :password_confirmation
-#  validate :valid_name
-#  
-#  private
-#  def valid_name
-#    errors.add(:name, "Missing name") if name.nil?
-#    name.is_valid?(errors)
-#  end
+  #  composed_of :name, :class_name => "Name", :mapping => [ %w[ first_name first_name ],%w[ middle_name middle_name ],%w[ last_name last_name ]]
+  #  composed_of :address, :class_name => "Address", :mapping => [
+  #  %w[address_line1 address_line1],
+  #%w[address_line2 address_line2],
+  #%w[city city],
+  #%w[state state],
+  #%w[country country  ],
+  #%w[pincode pincode  ],
+  #%w[phone_landline phone_landline]  ,
+  #%w[phone_mobile    phone_mobile]
+  #  
+  #  ]
+  #
+  #  validates_presence_of :email, :person_type
+  #  validates_uniqueness_of :email
+  #  #  validates_confirmation_of :password
+  #  #  validate :password_non_blank
+  #  #  attr_accessor :password_confirmation
+  #  validate :valid_name
+  #  
+  #  private
+  #  def valid_name
+  #    errors.add(:name, "Missing name") if name.nil?
+  #    name.is_valid?(errors)
+  #  end
   
   #  def password_non_blank
   #    errors.add(:password, "Missing password") if hashed_password.blank?

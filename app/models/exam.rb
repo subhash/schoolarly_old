@@ -4,4 +4,6 @@ class Exam < ActiveRecord::Base
   has_many :scores
   
   has_one :klass, :through => :exam_group
+  
+  acts_as_authorizable
 end
