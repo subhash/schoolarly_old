@@ -8,6 +8,8 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
+    person_class = Object.const_get(params[:user_type])
+    @user.person = person_class.new
     if @user.save
       flash[:notice] = "Account registered!"
       redirect_back_or_default account_url
@@ -32,5 +34,9 @@ class UsersController < ApplicationController
     else
       render :action => :edit
     end
+  end
+  
+  def index
+    @users = User.find(:all)
   end
 end

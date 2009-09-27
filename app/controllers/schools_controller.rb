@@ -1,6 +1,8 @@
 class SchoolsController < ApplicationController
   skip_before_filter :require_user, :only => :index
   
+  permit "creator of Student", :except => :index
+  
   # GET /schools
   # GET /schools.xml
   def index

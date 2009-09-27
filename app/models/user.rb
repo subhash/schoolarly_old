@@ -7,6 +7,14 @@ class User < ActiveRecord::Base
   acts_as_authorizable
   
   belongs_to :person, :polymorphic => true
+  
+  after_create :add_roles
+  
+  def add_roles
+    puts 'user add roles'
+    self.person.add_roles
+  end
+  
   #  composed_of :name, :class_name => "Name", :mapping => [ %w[ first_name first_name ],%w[ middle_name middle_name ],%w[ last_name last_name ]]
   #  composed_of :address, :class_name => "Address", :mapping => [
   #  %w[address_line1 address_line1],

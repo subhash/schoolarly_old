@@ -12,4 +12,11 @@ class Student < ActiveRecord::Base
     self.current_enrollment.subjects
   end
   
+  def add_roles
+    puts 'student add roles'
+    self.user.has_role 'reader', Teacher
+    self.user.has_role 'reader', Student
+    self.user.has_role 'editor', Student
+  end
+  
 end
