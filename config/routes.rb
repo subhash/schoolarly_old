@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :students
 
-  map.resources :schools
+  map.resources :schools, :member => {:profile => :get}
 
   map.resources :users
   

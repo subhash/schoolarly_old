@@ -1,11 +1,12 @@
 class SchoolsController < ApplicationController
-  skip_before_filter :require_user, :only => :index
+  #skip_before_filter :require_user, :only => :index
   
-  permit "creator of Student", :except => :index
+  #permit "creator of Student", :except => :index
   
   # GET /schools
   # GET /schools.xml
   def index
+    @active_tab = :Home
     @schools = School.all
 
     respond_to do |format|
@@ -85,5 +86,9 @@ class SchoolsController < ApplicationController
       format.html { redirect_to(schools_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def profile
+    @active_tab = :Profile
   end
 end

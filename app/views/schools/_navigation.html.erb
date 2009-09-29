@@ -1,0 +1,23 @@
+<% tabs = {:Home => schools_path,
+:Classes => '#',
+:Teachers => teachers_path,
+:Students => '#',
+:Profile =>  {:action => 'profile', :id=>1}} %>
+<div id="nav">
+    <a id="navigation" name="navigation"></a>
+    <div class="hlist">
+        <!-- main navigation: horizontal list -->
+        <ul>
+            <%tabs.each {|key,value| %>
+            <%if key == @active_tab %>
+            <li class="active">
+            <%= link_to key,value %>
+            <%else %>
+            <li>
+                <%= link_to key,value %>
+                <%end %>
+            </li>
+            <%} %>
+        </ul>
+    </div>
+</div>

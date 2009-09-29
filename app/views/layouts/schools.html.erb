@@ -29,29 +29,9 @@
                         | <a href="#">Imprint</a>
                     </div>
                 </div>
-                <div id="nav">
-                    <a id="navigation" name="navigation"></a>
-                    <div class="hlist">
-                        <!-- main navigation: horizontal list -->
-                        <ul>
-                            <li class="active">
-                                <strong>Home</strong>
-                            </li>
-                            <li>
-                                <a href="#">Classes</a>
-                            </li>
-                            <li>
-                                <%=link_to 'Teachers', teachers_path %>
-                            </li>
-                            <li>
-                                <a href="#">Students</a>
-                            </li>
-                            <li>
-                                <a href="#">Button 5</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+				
+                <%= render :partial => 'navigation' %>
+				
                 <div id="main">
                     <div id="col1">
                         <div id="col1_content" class="clearfix">
