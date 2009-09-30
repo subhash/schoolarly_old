@@ -11,11 +11,10 @@
             <%tabs.each {|key,value| %>
             <%if key == @active_tab %>
             <li class="active">
-            <%= link_to key,value %>
             <%else %>
             <li>
-                <%= link_to key,value %>
                 <%end %>
+                <%= link_to key,value %>
             </li>
             <%} %>
         </ul>

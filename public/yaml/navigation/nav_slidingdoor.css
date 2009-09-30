@@ -105,7 +105,7 @@
     border: 0 none;
   }
 
-  .hlist li.active strong {
+  .hlist li.active a {
     /* (en) This image is mainly transparent */
     /* (de) Dieses Bild ist größtenteils transparent */
     background: transparent url("images/sliding_door/round/right_on.png") no-repeat top right;
