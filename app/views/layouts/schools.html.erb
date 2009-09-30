@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <title>Untitled Document</title>
-        <%= stylesheet_link_tag 'my_layout', 'patch_my_layout' %>
+        <%= stylesheet_link_tag 'my_layout', 'patch_my_layout', 'schoolarly' %>
     </head>
     <body>
         <div class="page_margins">
@@ -20,13 +20,14 @@
                         <span class="hideme">.</span>
                         <a class="skip" title="skip link" href="#content">Skip to the content</a>
                         <span class="hideme">.</span>
-                        <% if current_user %>
-                        <%= link_to 'Logout', user_session_path, :method => :delete, :confirm => 'Are you sure you want to logout?' %>
+						<a href="#">Home</a> | 
+                        <% if current_user 
+						s = School.find(1)%>	<!-- TODO Will change this !-->
+                        <%= link_to s.name + '(Logout)', user_session_path, :method => :delete, :confirm => 'Are you sure you want to logout?' %>
                         <% else %>
                         <%= link_to 'Login', new_user_session_path %>
                         <% end %>
-                        | <a href="#">Contact</a>
-                        | <a href="#">Imprint</a>
+
                     </div>
                 </div>
 				
@@ -36,6 +37,7 @@
                     <div id="col1">
                         <div id="col1_content" class="clearfix">
                             <!-- add your content here -->
+							I'm the Left Sidebar
                         </div>
                     </div>
                     <div id="col2">
@@ -49,6 +51,7 @@
                     <div id="col3">
                         <div id="col3_content" class="clearfix">
                             <!-- add your content here -->
+							I'm the Right Sidebar
                         </div>
                         <div id="ie_clearing">
                             &#160; 
@@ -56,7 +59,7 @@
                     </div>
                 </div>
                 <div id="footer">
-                    Layout based on <a href="http://www.yaml.de/">YAML</a>
+                    <a href="#">About Schoolarly</a> | <a href="#">Contact Us</a> 
                 </div>
             </div>
             <div id="border-bottom">
