@@ -2,40 +2,18 @@
 
 <table>
   <tr>
-    <th>First name</th>
-    <th>Middle name</th>
-    <th>Last name</th>
-    <th>Address line1</th>
-    <th>Address line2</th>
-    <th>City</th>
-    <th>State</th>
-    <th>Country</th>
-    <th>Pincode</th>
-    <th>Phone landline</th>
-    <th>Phone mobile</th>
+    <th>id</th>
     <th>Email</th>
-    <th>Hashed password</th>
-    <th>Salt</th>
     <th>Person</th>
     <th>Person type</th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
-    <td><%=h user.first_name %></td>
-    <td><%=h user.middle_name %></td>
-    <td><%=h user.last_name %></td>
-    <td><%=h user.address_line1 %></td>
-    <td><%=h user.address_line2 %></td>
-    <td><%=h user.city %></td>
-    <td><%=h user.state %></td>
-    <td><%=h user.country %></td>
-    <td><%=h user.pincode %></td>
-    <td><%=h user.phone_landline %></td>
-    <td><%=h user.phone_mobile %></td>
+  	<!--<%s= 'profile_' + user.person_type + '_path(' + user.person.to_s + ')'%>!-->
+    <td><%=link_to user.id, url_for({:controller => user.person_type.pluralize , :id => user.person_id, :action => :profile, :user_id => user.id})%>
+	<!--url_for(:controller => user.person_type.pluralize , :id => user.id, :action => :profile)%> !--> 
     <td><%=h user.email %></td>
-    <td><%=h user.hashed_password %></td>
-    <td><%=h user.salt %></td>
     <td><%=h user.person_id %></td>
     <td><%=h user.person_type %></td>
     <td><%= link_to 'Show', user %></td>
