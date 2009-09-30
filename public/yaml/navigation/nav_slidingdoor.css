@@ -105,6 +105,16 @@
     border: 0 none;
   }
 
+  .hlist li.active strong {
+    /* (en) This image is mainly transparent */
+    /* (de) Dieses Bild ist größtenteils transparent */
+    background: transparent url("images/sliding_door/round/right_on.png") no-repeat top right;
+    color: #334;
+    font-weight: bold;
+    padding-bottom: 4px;
+    padding-top: 5px;
+  }
+  
   .hlist li.active a {
     /* (en) This image is mainly transparent */
     /* (de) Dieses Bild ist größtenteils transparent */
@@ -114,5 +124,4 @@
     padding-bottom: 4px;
     padding-top: 5px;
   }
-
 }
