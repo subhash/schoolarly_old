@@ -1,28 +1,100 @@
-<h1>Editing school</h1>
-
 <% form_for(@school) do |f| %>
   <%= f.error_messages %>
+<div class="c38l">
+    <table>
+        <tr>
+            <td>
+                <b><%= f.label :name %>:</b>
+            </td>
+            <td>
+                <%= f.text_field :name %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Address:</b>
+            </td>
+            <td>
+                St Teresa's 
+                <br/>
+                Convent Jn.
+                <br/>
+                Kochi 
+                <br/>
+                Kerala 
+                <br/>
+                India 
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Pincode:</b>
+            </td>
+            <td>
+                123 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Phone landline:</b>
+            </td>
+            <td>
+                234
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Phone mobile:</b>
+            </td>
+            <td>
+                345 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Email:</b>
+            </td>
+            <td>
+                <%=h @user.email %>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="c38r">
+    <table>
+        <tr>
+            <td>
+                <b><%= f.label :board %>:</b>
+            </td>
+            <td>
+                <%= f.text_field :board %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b><%= f.label :fax %>:</b>
+            </td>
+            <td>
+                <%= f.text_field :fax %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b><%= f.label :website %>:</b>
+            </td>
+            <td>
+                <%= f.text_field :website %>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="c38r">
+    <p class="icaption_right">
+        <br/>
+		<%= f.submit 'Update' %>|
+        	<%= link_to 'Back', schools_path %>
+	<% end %>
+    </p>
+</div>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :board %><br />
-    <%= f.text_field :board %>
-  </p>
-  <p>
-    <%= f.label :fax %><br />
-    <%= f.text_field :fax %>
-  </p>
-  <p>
-    <%= f.label :website %><br />
-    <%= f.text_field :website %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', @school %> |
-<%= link_to 'Back', schools_path %>
