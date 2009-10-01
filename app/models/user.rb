@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   
   belongs_to :person, :polymorphic => true
   
-  after_create :add_roles
+  #after_create :add_roles
   
   def add_roles
     puts 'user add roles'

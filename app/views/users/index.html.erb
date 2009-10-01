@@ -10,9 +10,7 @@
 
 <% @users.each do |user| %>
   <tr>
-  	<!--<%s= 'profile_' + user.person_type + '_path(' + user.person.to_s + ')'%>!-->
-    <td><%=link_to user.id, url_for({:controller => user.person_type.pluralize , :id => user.person_id, :action => :profile, :user_id => user.id})%>
-	<!--url_for(:controller => user.person_type.pluralize , :id => user.id, :action => :profile)%> !--> 
+    <td><%=link_to user.id, send("#{user.person_type.downcase}_path" , user)%></td>
     <td><%=h user.email %></td>
     <td><%=h user.person_id %></td>
     <td><%=h user.person_type %></td>
