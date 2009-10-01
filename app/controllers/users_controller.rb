@@ -37,15 +37,31 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.find(:all)
+    user_type = params[:user_type]   
+    
+    if user_type == School.name.downcase
+      @users = User.find :all, :conditions => ['person_type = ?', :School]
+      @active_tab = :Schools
+    elsif user_type == Teacher.name.downcase
+      puts "in teacher"
+      @users = User.find :all, :conditions => ['person_type = ?', :Teacher]
+      @active_tab = :Teachers
+    elsif user_type == Student.name.downcase
+      @users = User.find :all, :conditions => ['person_type = ?', :Student]
+      @active_tab = :Students
+    else
+      @users = User.find(:all)
+      @active_tab = :Users
+    end
+    
   end
+    
   
   def navigation_tabs
-    tabs = [:Home => schools_path,
-    :Classes => school_klasses_path(@school),
-    :Teachers => teachers_path,
-    :Students => '#',
-    :Profile =>  {:action => 'profile', :id=>1}]
+    tabs = [:Users => users_path(:user_type => :user),
+    :Schools => users_path(:user_type => :school),
+    :Teachers => users_path(:user_type => :teacher),
+    :Students => users_path(:user_type => :student)]
     
     return tabs
   end
