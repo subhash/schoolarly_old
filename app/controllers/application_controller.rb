@@ -2,6 +2,8 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  
+  layout 'schoolarly'
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   
@@ -9,10 +11,20 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
   
   #before_filter :require_user
-    
+  
+  
   def current_user
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.user
+  end
+  
+  def render_navigation_tabs
+    @tabs = [:Home => schools_path,
+    :Classes => school_klasses_path(@school),
+    :Teachers => teachers_path,
+    :Students => '#',
+    :Profile =>  {:action => 'profile', :id=>1}]
+    render :partial => "/layouts/navigation", :collection => @tabs , :as => :tabs
   end
   
   private
@@ -47,4 +59,6 @@ class ApplicationController < ActionController::Base
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
+  
+  
 end

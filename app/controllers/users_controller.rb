@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
   
   def show
-
+    
   end
   
   def edit
@@ -38,5 +38,14 @@ class UsersController < ApplicationController
   
   def index
     @users = User.find(:all)
+  end
+  
+  def render_navigation_tabs
+    @tabs = [:Home => schools_path,
+      :Classes => school_klasses_path(@school),
+      :Teachers => teachers_path,
+      :Students => '#',
+      :Profile =>  {:action => 'profile', :id=>1}]
+      render :partial => "/layouts/navigation", :collection => @tabs , :as => :tabs
   end
 end
