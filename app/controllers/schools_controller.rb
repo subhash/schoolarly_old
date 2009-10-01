@@ -8,45 +8,45 @@ class SchoolsController < ApplicationController
   def index
     @active_tab = :Home
     @schools = School.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @schools }
     end
   end
-
+  
   # GET /schools/1
   # GET /schools/1.xml
   def show
     @school = School.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @school }
     end
   end
-
+  
   # GET /schools/new
   # GET /schools/new.xml
   def new
     @school = School.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @school }
     end
   end
-
+  
   # GET /schools/1/edit
   def edit
     @school = School.find(params[:id])
   end
-
+  
   # POST /schools
   # POST /schools.xml
   def create
     @school = School.new(params[:school])
-
+    
     respond_to do |format|
       if @school.save
         flash[:notice] = 'School was successfully created.'
@@ -58,12 +58,12 @@ class SchoolsController < ApplicationController
       end
     end
   end
-
+  
   # PUT /schools/1
   # PUT /schools/1.xml
   def update
     @school = School.find(params[:id])
-
+    
     respond_to do |format|
       if @school.update_attributes(params[:school])
         flash[:notice] = 'School was successfully updated.'
@@ -75,13 +75,13 @@ class SchoolsController < ApplicationController
       end
     end
   end
-
+  
   # DELETE /schools/1
   # DELETE /schools/1.xml
   def destroy
     @school = School.find(params[:id])
     @school.destroy
-
+    
     respond_to do |format|
       format.html { redirect_to(schools_url) }
       format.xml  { head :ok }
@@ -90,5 +90,7 @@ class SchoolsController < ApplicationController
   
   def profile
     @active_tab = :Profile
+    @school = School.find(params[:id])
+    @user=User.find(params[:user_id])
   end
 end
