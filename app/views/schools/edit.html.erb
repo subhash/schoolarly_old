@@ -92,8 +92,8 @@
 <div class="c38r">
     <p class="icaption_right">
         <br/>
-		<%= f.submit 'Update' %>|
-        	<%= link_to 'Back', schools_path %>
+		<%= link_to_function "Update", "$(this).up('f').submit()" %>|
+        <%= link_to 'Back', schools_path %>
 	<% end %>
     </p>
 </div>
