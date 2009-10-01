@@ -91,8 +91,6 @@ class SchoolsController < ApplicationController
   
   def profile
     @active_tab = :Profile
-    @school = School.find(params[:id])
-    @user=User.find(params[:user_id])
   end
 
   def navigation_tabs
