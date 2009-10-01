@@ -18,6 +18,7 @@ class SchoolsController < ApplicationController
   # GET /schools/1
   # GET /schools/1.xml
   def show
+    @active_tab = :Home
     @school = School.find(params[:id])
     
     respond_to do |format|
@@ -93,4 +94,15 @@ class SchoolsController < ApplicationController
     @school = School.find(params[:id])
     @user=User.find(params[:user_id])
   end
+
+  def navigation_tabs
+    tabs = [:Home => schools_path,
+    :Classes => school_klasses_path(@school),
+    :Teachers => teachers_path,
+    :Students => '#',
+    :Profile =>  {:action => 'profile', :id=>1}]    
+    
+    return tabs
+  end
+  
 end
