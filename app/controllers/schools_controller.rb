@@ -29,17 +29,17 @@ class SchoolsController < ApplicationController
     end
   end
   
-#  def show_school_klasses
-#    @active_tab = :Classes
-#    @user=User.find(params[:id])
-#    @school=@user.person
-#    @klasses=@school.klasses
-#    #@teachers=@school.teachers
-#    respond_to do |format|
-#      format.html # show.html.erb
-#      format.xml  { render :xml => @klasses }
-#    end
-#  end
+  #  def show_school_klasses
+  #    @active_tab = :Classes
+  #    @user=User.find(params[:id])
+  #    @school=@user.person
+  #    @klasses=@school.klasses
+  #    #@teachers=@school.teachers
+  #    respond_to do |format|
+  #      format.html # show.html.erb
+  #      format.xml  { render :xml => @klasses }
+  #    end
+  #  end
   
   # GET /schools/new
   # GET /schools/new.xml
@@ -109,10 +109,18 @@ class SchoolsController < ApplicationController
     @user=User.find(params[:id])
     @school=@user.person
   end
-
+  
+  def klasses
+    @active_tab = :Classes
+    @user=User.find(params[:id])
+    @school=@user.person
+    @year = Klass.current_academic_year(@school)
+    @klasses = Klass.current_klasses(@school, @year)
+  end
+  
   def navigation_tabs
     tabs = [:Home => {:controller => :schools, :action => 'show', :id=>@user},#schools_path,
-    :Classes => '#',#school_klasses_path(@school),
+    :Classes => {:controller => :schools, :action => 'klasses', :id=>@user},
     :Teachers => '#',#'teachers_path',
     :Students => '#',
     :Profile =>  {:controller => :schools, :action => 'profile', :id=>@user} ]

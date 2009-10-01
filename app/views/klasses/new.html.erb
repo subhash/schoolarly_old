@@ -1,0 +1,19 @@
+<h3>New class for <%=@school.name%></h3>
+
+<% form_for [@school,@klass] do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :level %><br />
+    <%= input 'klass', 'level' %>
+  </p>
+  <p>
+    <%= f.label :division %><br />
+    <%= f.text_field :division %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', school_klasses_path(@school) %>

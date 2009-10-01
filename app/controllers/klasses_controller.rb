@@ -1,7 +1,7 @@
 class KlassesController < ApplicationController
   
-  before_filter :set_active_tab, :find_school
-  layout 'schools'
+  before_filter :set_active_tab
+  before_filter :find_school 
   
   def index
     @klasses=@school.klasses
@@ -20,14 +20,10 @@ class KlassesController < ApplicationController
     end    
   end
   
-  def edit
-    @klass = @school.klasses.find(params[:id])
-  end
-  
   def destroy
-    klass = @school.klasses.find(params[:id])
+    klass = Klass.find(params[:id])
     @school.klasses.delete(klass)
-    redirect_to school_url(@school)
+    redirect_to school_klasses_path(@school)
   end
   
   def update
@@ -47,11 +43,11 @@ class KlassesController < ApplicationController
     end
   end  
   
-  def find_school
-    @school_id = params[:school_id]
-    return(redirect_to(schools_url)) unless @school_id
-    @school = School.find(@school_id)
-  end
+  def find_school    
+    if(params[:school_id])
+      @school = School.find(params[:school_id])
+    end
+  end   
   
   def set_active_tab
     @active_tab = :Classes

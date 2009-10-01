@@ -40,14 +40,14 @@ class UsersController < ApplicationController
     user_type = params[:user_type]   
     
     if user_type == School.name.downcase
-      @users = User.find :all, :conditions => ['person_type = ?', :School]
+      @users = User.find_all_by_person_type(:School)
       @active_tab = :Schools
     elsif user_type == Teacher.name.downcase
       puts "in teacher"
-      @users = User.find :all, :conditions => ['person_type = ?', :Teacher]
+      @users = User.find_all_by_person_type(:Teacher)
       @active_tab = :Teachers
     elsif user_type == Student.name.downcase
-      @users = User.find :all, :conditions => ['person_type = ?', :Student]
+      @users = User.find_all_by_person_type(:Student)
       @active_tab = :Students
     else
       @users = User.find(:all)

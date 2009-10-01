@@ -1,4 +1,8 @@
 class Klass < ActiveRecord::Base
+  named_scope :current_klasses, lambda { |school_id, year|
+    { :conditions => { :school_id => school_id , :year => year} }
+  }
+  
   belongs_to :school
   belongs_to :class_teacher, :class_name => 'Teacher', :foreign_key => 'teacher_id'
   has_many :enrollments, :class_name =>'StudentEnrollment'  
@@ -8,7 +12,14 @@ class Klass < ActiveRecord::Base
   has_many :teachers, :through => :teacher_allotments
   has_many :exam_groups
   
+  
+  
   def current_students
     self.enrollments.select{|e| e.current_student}
   end
+  
+  def self.current_academic_year(school_id)
+    return Klass.maximum :year, :conditions => {:school_id => school_id}
+  end
+  
 end

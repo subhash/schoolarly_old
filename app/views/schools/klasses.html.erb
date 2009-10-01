@@ -1,0 +1,27 @@
+<h3>Listing classes in <%=@school.name %>for the year - <%=@year %></h3>
+<table>
+    <tr>
+        <th>
+            Level
+        </th>
+        <th>
+            Division
+        </th>
+    </tr>
+    <% @klasses.each do |klass| %>
+    <tr>
+        <td>
+            <%=h klass.level %>
+        </td>
+        <td>
+            <%=link_to klass.division,school_klass_path(:id=>klass,:school_id => klass.school) %>
+        </td>
+        <td>
+            <%= link_to 'Delete', school_klass_path(:id => klass,
+            :school_id => klass.school, :method => :delete) %>
+        </td>
+    </tr>
+    <% end %>
+</table>
+<br/>
+<%= link_to 'New class', new_school_klass_path(@school) %>
