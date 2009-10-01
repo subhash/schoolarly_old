@@ -28,10 +28,10 @@
                         <% end %>
 
                     </div>
-                </div>
+                </div>								               
 				
-                
-				<%= controller.render_navigation_tabs%>
+				<%= render :partial => "/layouts/navigation", :collection => controller.navigation_tabs , :as => :tabs %>
+				
                 <div id="main">
                     <div id="col1">
                         <div id="col1_content" class="clearfix">

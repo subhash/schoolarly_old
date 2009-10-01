@@ -40,12 +40,13 @@ class UsersController < ApplicationController
     @users = User.find(:all)
   end
   
-  def render_navigation_tabs
-    @tabs = [:Home => schools_path,
-      :Classes => school_klasses_path(@school),
-      :Teachers => teachers_path,
-      :Students => '#',
-      :Profile =>  {:action => 'profile', :id=>1}]
-      render :partial => "/layouts/navigation", :collection => @tabs , :as => :tabs
+  def navigation_tabs
+    tabs = [:Home => schools_path,
+    :Classes => school_klasses_path(@school),
+    :Teachers => teachers_path,
+    :Students => '#',
+    :Profile =>  {:action => 'profile', :id=>1}]
+    
+    return tabs
   end
 end

@@ -18,13 +18,14 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session && current_user_session.user
   end
   
-  def render_navigation_tabs
-    @tabs = [:Home => schools_path,
+  def navigation_tabs
+    tabs = [:Home => schools_path,
     :Classes => school_klasses_path(@school),
     :Teachers => teachers_path,
     :Students => '#',
-    :Profile =>  {:action => 'profile', :id=>1}]
-    render :partial => "/layouts/navigation", :collection => @tabs , :as => :tabs
+    :Profile =>  {:action => 'profile', :id=>1}]    
+    
+    return tabs
   end
   
   private
