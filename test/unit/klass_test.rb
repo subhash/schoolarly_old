@@ -8,7 +8,17 @@ class KlassTest < ActiveSupport::TestCase
     @stTheresas = schools :st_teresas
   end
   
-  test "klass-teacher relationship" do
+  test "klass-crud" do
+    three_c = Klass.new(:level => '3', :division =>'C', :year =>2009)
+    three_c.school = @stTheresas
+    @stTheresas.reload
+    assert_equal(3, @stTheresas.klasses.size)
+    three_c.destroy
+    @stTheresas.reload
+    assert_equal(2, @stTheresas.klasses.size)
+  end
+  
+  test "klass-school-teacher relationship" do
     assert_equal @oneA.school, @stTheresas
     assert_equal @oneA.class_teacher, @sunil
   end

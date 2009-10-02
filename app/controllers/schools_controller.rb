@@ -112,8 +112,7 @@ class SchoolsController < ApplicationController
   
   def klasses
     @active_tab = :Classes
-    @user=User.find(params[:id])
-    @school=@user.person
+    @school=School.find(params[:id])
     @year = Klass.current_academic_year(@school)
     @klasses = Klass.current_klasses(@school, @year)
   end
