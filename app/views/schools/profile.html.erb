@@ -21,7 +21,7 @@
                 <b>Address:</b>
             </td>
             <td>
-                St Teresa's 
+            	<%=h @user_profile.address_line_1 %>
                 <br/>
                 Convent Jn.
                 <br/>
@@ -38,7 +38,7 @@
                 <b>Pincode:</b>
             </td>
             <td>
-                123 
+                <%=h @user_profile.pincode %> 
             </td>
         </tr>
         <tr>
@@ -46,7 +46,7 @@
                 <b>Phone landline:</b>
             </td>
             <td>
-                234
+                <%=h @user_profile.phone_landline %>
             </td>
         </tr>
         <tr>
@@ -54,7 +54,7 @@
                 <b>Phone mobile:</b>
             </td>
             <td>
-                345 
+                <%=h @user_profile.phone_mobile %> 
             </td>
         </tr>
     </table>
