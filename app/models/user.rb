@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   acts_as_authorizable
   
   belongs_to :person, :polymorphic => true
-  
+  has_one :user_profile
   #after_create :add_roles
   
   def add_roles
