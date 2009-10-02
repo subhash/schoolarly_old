@@ -29,18 +29,7 @@ class SchoolsController < ApplicationController
     end
   end
   
-  #  def show_school_klasses
-  #    @active_tab = :Classes
-  #    @user=User.find(params[:id])
-  #    @school=@user.person
-  #    @klasses=@school.klasses
-  #    #@teachers=@school.teachers
-  #    respond_to do |format|
-  #      format.html # show.html.erb
-  #      format.xml  { render :xml => @klasses }
-  #    end
-  #  end
-  
+    
   # GET /schools/new
   # GET /schools/new.xml
   def new
@@ -56,6 +45,7 @@ class SchoolsController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @school = @user.person
+    @user_profile=@user.user_profile
   end
   
   # POST /schools
@@ -78,12 +68,14 @@ class SchoolsController < ApplicationController
   # PUT /schools/1
   # PUT /schools/1.xml
   def update
+    @active_tab = :Profile
     @school = School.find(params[:id])
-    
+    @user=User.find_by_person_id(params[:id])
+    @user_profile=@user.user_profile
     respond_to do |format|
-      if @school.update_attributes(params[:school])
+      if @school.update_attributes(params[:school]) && @user.update_attributes(params[:user]) && @user_profile.update_attributes(params[:user_profile])
         flash[:notice] = 'School was successfully updated.'
-        format.html { redirect_to(@school) }
+        format.html { redirect_to(url_for( :controller => :schools, :action => 'profile', :id=>@user)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -108,6 +100,7 @@ class SchoolsController < ApplicationController
     @active_tab = :Profile
     @user=User.find(params[:id])
     @school=@user.person
+    @user_profile=@user.user_profile
   end
   
   def klasses
