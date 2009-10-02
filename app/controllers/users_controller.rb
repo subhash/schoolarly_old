@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    
+    @user = @current_user
   end
   
   def edit
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
     end
     
   end
-    
+  
   
   def navigation_tabs
     tabs = [:Users => users_path(:user_type => :user),

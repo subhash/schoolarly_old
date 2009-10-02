@@ -1,19 +1,23 @@
-<h3>New class for <%=@school.name%></h3>
-
+<h3>New class for <%=@school.name %></h3>
 <% form_for [@school,@klass] do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :level %><br />
+<%= f.error_messages %>
+<p>
+    <%= f.label :level %>
+    <br/>
     <%= input 'klass', 'level' %>
-  </p>
-  <p>
-    <%= f.label :division %><br />
+</p>
+<p>
+    <%= f.label :division %>
+    <br/>
     <%= f.text_field :division %>
-  </p>
-  <p>
+</p>
+<p>
+    <%= f.label :year %>
+    <br/>
+    <%= f.select :year, (2005..2012).to_a , {:selected => Time.now.year}%>
+</p>
+<p>
     <%= f.submit 'Create' %>
-  </p>
+</p>
 <% end %>
-
 <%= link_to 'Back', school_klasses_path(@school) %>
