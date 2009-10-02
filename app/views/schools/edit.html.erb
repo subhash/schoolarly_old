@@ -19,12 +19,14 @@
                 <%= user_form.text_field :email %>
             </td>
         </tr>
+		<% end %>
+		<% fields_for @user_profile do |profile_form| %>	
         <tr>
             <td>
-                <b>Address:</b>
+                <b><%= profile_form.label :Address %>:</b>
             </td>
             <td>
-                St Teresa's 
+                <%= profile_form.text_field :address_line_1 %> 
                 <br/>
                 Convent Jn.
                 <br/>
@@ -41,7 +43,7 @@
                 <b>Pincode:</b>
             </td>
             <td>
-                123 
+                <%= profile_form.text_field :pincode %> 
             </td>
         </tr>
         <tr>
@@ -49,7 +51,7 @@
                 <b>Phone landline:</b>
             </td>
             <td>
-                234
+                <%= profile_form.text_field :phone_landline %>
             </td>
         </tr>
         <tr>
@@ -57,12 +59,12 @@
                 <b>Phone mobile:</b>
             </td>
             <td>
-                345 
+                <%= profile_form.text_field :phone_mobile %> 
             </td>
         </tr>
     </table>
 </div>
- <% end %>
+	<% end %>
 <div class="c38r">
     <table>
 
