@@ -1,0 +1,23 @@
+<table>
+    <tr>
+        <th>
+            Level
+        </th>
+        <th>
+            Division
+        </th>
+    </tr>
+    <% @klasses.each do |klass| %>
+    <tr>
+        <td>
+            <%=h klass.level %>
+        </td>
+        <td>
+            <%=link_to klass.division,school_klass_path(klass) %>
+        </td>
+        <td>
+            <%= link_to "Delete", school_klass_path(klass.school,klass), :method => :delete %>
+        </td>
+    </tr>
+    <% end %>
+</table>

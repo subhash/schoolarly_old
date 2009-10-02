@@ -1,7 +1,7 @@
 class KlassesController < ApplicationController
   
   before_filter :set_active_tab
-  before_filter :find_school 
+  before_filter :find_school , :only => [:new, :create]
   
   def index
     @klasses=@school.klasses
@@ -14,16 +14,17 @@ class KlassesController < ApplicationController
   def create
     @klass = Klass.new(params[:klass])
     if (@school.klasses << @klass)
-      redirect_to school_url(@school)
+      redirect_to school_klasses_path(@school)
     else
       render :action => :new
     end    
   end
   
   def destroy
-    klass = Klass.find(params[:id])
-    @school.klasses.delete(klass)
-    redirect_to school_klasses_path(@school)
+    puts "in destroy"
+    @klass = Klass.find(params[:id])
+    @klass.destroy
+    redirect_to school_klasses_path(@klass.school)
   end
   
   def update
