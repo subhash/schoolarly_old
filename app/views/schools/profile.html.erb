@@ -1,11 +1,19 @@
 <div class="c38l">
     <table>
-        <tr>
+    	<tr>
             <td>
                 <b>Name:</b>
             </td>
             <td>
                 <%=h @school.name %>
+            </td>
+        </tr>
+    	<tr>
+            <td>
+                <b>Email:</b>
+            </td>
+            <td>
+                <%=h @user.email %>
             </td>
         </tr>
         <tr>
@@ -49,14 +57,6 @@
                 345 
             </td>
         </tr>
-        <tr>
-            <td>
-                <b>Email:</b>
-            </td>
-            <td>
-                <%=h @user.email %>
-            </td>
-        </tr>
     </table>
 </div>
 <div class="c38r">
@@ -93,6 +93,6 @@
 		<% current_user = @user %>
         <% if current_user == @user %>
         <%= link_to 'Edit', edit_school_path %>|<% end %>
-        <%= link_to 'Back', schools_path %>
+		<%= link_to 'Back', {:controller => :schools, :action => 'show', :id=>@user} %>
     </p>
 </div>
