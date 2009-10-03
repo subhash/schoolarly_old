@@ -26,6 +26,12 @@ class UsersController < ApplicationController
     @user = @current_user
   end
   
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to users_path(:user_type => :user)
+  end
+  
   def update
     @user = @current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(params[:user])
