@@ -19,8 +19,7 @@ class SchoolsController < ApplicationController
   # GET /schools/1.xml
   def show
     @active_tab = :Home
-    @user=User.find(params[:id])
-    @school=@user.person
+    @school=School.find(params[:id])
     #@klasses=@school.klasses
     #@teachers=@school.teachers
     respond_to do |format|
@@ -29,7 +28,7 @@ class SchoolsController < ApplicationController
     end
   end
   
-    
+  
   # GET /schools/new
   # GET /schools/new.xml
   def new
@@ -42,9 +41,9 @@ class SchoolsController < ApplicationController
   end
   
   # GET /schools/1/edit
-  def edit
-    @user = User.find(params[:id])
-    @school = @user.person
+  def edit    
+    @school = School.find(params[:id])
+    @user = @school.user
     @user_profile=@user.user_profile
   end
   
@@ -97,9 +96,9 @@ class SchoolsController < ApplicationController
   end
   
   def profile
-    @active_tab = :Profile
-    @user=User.find(params[:id])
-    @school=@user.person
+    @active_tab = :Profile    
+    @school=School.find(params[:id])
+    @user = @school.user
     @user_profile=@user.user_profile
   end
   
@@ -111,11 +110,12 @@ class SchoolsController < ApplicationController
   end
   
   def navigation_tabs
-    tabs = [:Home => {:controller => :schools, :action => 'show', :id=>@user},#schools_path,
-    :Classes => {:controller => :schools, :action => 'klasses', :id=>@user},
+    id = params[:id]
+    tabs = [:Home => {:controller => :schools, :action => 'show', :id=>id},#schools_path,
+    :Classes => {:controller => :schools, :action => 'klasses', :id=>id},
     :Teachers => '#',#'teachers_path',
     :Students => '#',
-    :Profile =>  {:controller => :schools, :action => 'profile', :id=>@user} ]
+    :Profile =>  {:controller => :schools, :action => 'profile', :id=>id} ]
     return tabs
   end
   

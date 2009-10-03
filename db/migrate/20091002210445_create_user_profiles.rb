@@ -2,15 +2,15 @@ class CreateUserProfiles < ActiveRecord::Migration
   def self.up
     create_table :user_profiles do |t|
       t.integer :user_id, :null=>false
-      t.string :first_name, :null=>false
+      t.string :first_name
       t.string :middle_name
-      t.string :last_name, :null=>false
-      t.string :address_line_1, :null=>false
+      t.string :last_name
+      t.string :address_line_1
       t.string :address_line_2
-      t.string :city, :null=>false
-      t.string :state, :null=>false
-      t.string :country, :null=>false
-      t.string :pincode, :null=>false
+      t.string :city
+      t.string :state
+      t.string :country
+      t.string :pincode
       t.string :phone_landline
       t.string :phone_mobile
 
