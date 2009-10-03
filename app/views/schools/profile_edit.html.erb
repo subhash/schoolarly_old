@@ -1,4 +1,4 @@
-<% form_for @school, :url => {:controller => :schools, :action => 'profile_update', :id=>@user } do |school_form| %>
+<% form_for @school, :url => {:controller => :schools, :action => 'profile_update', :id=>@school } do |school_form| %>
   <%= school_form.error_messages %>
 <div class="c38l">
     <table>
@@ -99,7 +99,7 @@
         <br/>
 		<!--<%= link_to_function "submit", "$(this).up('user_form').submit()" %> |!-->
 		<%= school_form.submit %> | 
-        <%= link_to 'Back', {:controller => :schools, :action => 'profile_show', :id=>@user} %>
+        <%= link_to 'Back', {:controller => :schools, :action => 'profile_show', :id=>@school} %>
 	<% end %>
     </p>
 </div>

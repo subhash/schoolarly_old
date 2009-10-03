@@ -92,7 +92,7 @@
         <br/>
 		<% current_user = @user %>
         <% if current_user == @user %>
-        <%= link_to 'Edit', {:controller => :schools, :action => 'profile_edit', :id=>@user} %>|<% end %>
-		<%= link_to 'Back', {:controller => :schools, :action => 'show', :id=>@user} %>
+        <%= link_to 'Edit', {:controller => :schools, :action => 'profile_edit', :id=>@school} %>|<% end %>
+		<%= link_to 'Back', {:controller => :schools, :action => 'show', :id=>@school} %>
     </p>
 </div>
