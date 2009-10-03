@@ -20,14 +20,14 @@ class SchoolsController < ApplicationController
   def show
     @active_tab = :Home
     @school=School.find(params[:id])
-    set_active_user(@school.user)
+  	set_active_user(@school.user)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @school }
     end
   end
   
-  
+    
   # GET /schools/new
   # GET /schools/new.xml
   def new
@@ -105,31 +105,28 @@ class SchoolsController < ApplicationController
       format.xml  { render :xml => @user_profile }
     end
   end
-  
+
   def profile_create
     #@user = User.find(params[:id])
     #@school = @user.person
     @school=School.find(params[:id])
     @user=@school.user
-    @user_profile = UserProfile.new(params[:user_profile])
-    #@user.user_profile=@user_profile
-    @user_profile.user=@user
-    respond_to do |format|
-      if @user_profile.save!
+   @user_profile = UserProfile.new(params[:user_profile])
+   @user_profile.user=@user
+   respond_to do |format|
+      if @user_profile.save! && @user.update_attributes(params[:user]) && @school.update_attributes(params[:school])
         flash[:notice] = 'Profile was successfully created.'
         format.html { redirect_to(url_for( :controller => :schools, :action => 'profile_show', :id=>@school)) }
-        # format.xml  { render :xml => @user_profile, :status => :created, :location => @school }
+       # format.xml  { render :xml => @user_profile, :status => :created, :location => @school }
       else
         format.html { render :action => "profile_new" }
-        #  format.xml  { render :xml => @user_profile.errors, :status => :unprocessable_entity }
+      #  format.xml  { render :xml => @user_profile.errors, :status => :unprocessable_entity }
       end
     end
   end
   
   def profile_show
     @active_tab = :Profile
-    #@user = User.find(params[:id])
-    #@school = @user.person
     @school=School.find(params[:id])
     @user=@school.user
     if @user.user_profile.nil?
@@ -141,8 +138,6 @@ class SchoolsController < ApplicationController
   # GET /schools/1/edit
   def profile_edit
     @active_tab = :Profile    
-    #@user = User.find(params[:id])
-    #@school = @user.person
     @school=School.find(params[:id])
     @user=@school.user
     @user_profile=@user.user_profile
@@ -150,14 +145,9 @@ class SchoolsController < ApplicationController
   
   def profile_update
     @active_tab = :Profile
-    #@user = User.find(params[:id])
-    #@school = @user.person
     @school=School.find(params[:id])
     @user=@school.user
     @user_profile=@user.user_profile
-    #@school = School.find(params[:id])
-    #@user=User.find_by_person_id(params[:id])
-    # @user=@school.user
     respond_to do |format|
       if @school.update_attributes(params[:school]) && @user.update_attributes(params[:user]) && @user_profile.update_attributes(params[:user_profile])
         @user.user_profile = @user_profile
@@ -177,7 +167,6 @@ class SchoolsController < ApplicationController
     @year = Klass.current_academic_year(@school)
     @klasses = Klass.current_klasses(@school, @year)
   end
-  
   
   def self.tabs(school_id)
     tabs = [:Home => {:controller => :schools, :action => 'show', :id=>school_id},#schools_path,
