@@ -21,21 +21,26 @@
         </tr>
 		<% end %>
 		<% fields_for @user_profile do |profile_form| %>	
+		<tr>
+            <td>
+                <b>User Name:</b>
+            </td>
+            <td>
+            	<%= profile_form.text_field :first_name%>
+				<%= profile_form.text_field :middle_name%>
+				<%= profile_form.text_field :last_name%>
+            </td>
+        </tr>
         <tr>
             <td>
                 <b><%= profile_form.label :Address %>:</b>
             </td>
             <td>
                 <%= profile_form.text_field :address_line_1 %> 
-                <br/>
-                Convent Jn.
-                <br/>
-                Kochi 
-                <br/>
-                Kerala 
-                <br/>
-                India 
-                <br/>
+				<%= profile_form.text_field :address_line_2 %>
+				<%= profile_form.text_field :city %>
+				<%= profile_form.text_field :state %>
+				<%= profile_form.text_field :country %>
             </td>
         </tr>
         <tr>
