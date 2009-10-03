@@ -28,7 +28,7 @@ class SchoolsController < ApplicationController
     end
   end
   
-  
+    
   # GET /schools/new
   # GET /schools/new.xml
   def new
@@ -41,7 +41,7 @@ class SchoolsController < ApplicationController
   end
   
   # GET /schools/1/edit
-  def edit    
+  def edit
     @school = School.find(params[:id])
     @user = @school.user
     @user_profile=@user.user_profile
@@ -69,7 +69,7 @@ class SchoolsController < ApplicationController
   def update
     @active_tab = :Profile
     @school = School.find(params[:id])
-    @user=User.find_by_person_id(params[:id])
+    @user=@school.user#User.find_by_person_id(params[:id])
     @user_profile=@user.user_profile
     respond_to do |format|
       if @school.update_attributes(params[:school]) && @user.update_attributes(params[:user]) && @user_profile.update_attributes(params[:user_profile])
@@ -95,11 +95,81 @@ class SchoolsController < ApplicationController
     end
   end
   
-  def profile
-    @active_tab = :Profile    
+  def profile_new
+    #@user = User.find(params[:id])
+    #@school = @user.person
     @school=School.find(params[:id])
-    @user = @school.user
+    @user=@school.user
+    @user_profile = UserProfile.new
+    respond_to do |format|
+      format.html # profile_new.html.erb
+      format.xml  { render :xml => @user_profile }
+    end
+  end
+
+  def profile_create
+    #@user = User.find(params[:id])
+    #@school = @user.person
+    @school=School.find(params[:id])
+    @user=@school.user
+   @user_profile = UserProfile.new(params[:user_profile])
+   #@user.user_profile=@user_profile
+   @user_profile.user=@user
+   respond_to do |format|
+      if @user_profile.save!
+        flash[:notice] = 'Profile was successfully created.'
+        format.html { redirect_to(url_for( :controller => :schools, :action => 'profile_show', :id=>@school)) }
+       # format.xml  { render :xml => @user_profile, :status => :created, :location => @school }
+      else
+        format.html { render :action => "profile_new" }
+      #  format.xml  { render :xml => @user_profile.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
+  def profile_show
+    @active_tab = :Profile
+    #@user = User.find(params[:id])
+    #@school = @user.person
+    @school=School.find(params[:id])
+    @user=@school.user
+    if @user.user_profile.nil?
+      redirect_to(url_for( :controller => :schools, :action => 'profile_new', :id=>@school))
+    end
     @user_profile=@user.user_profile
+  end
+  
+  # GET /schools/1/edit
+  def profile_edit
+    @active_tab = :Profile    
+    #@user = User.find(params[:id])
+    #@school = @user.person
+    @school=School.find(params[:id])
+    @user=@school.user
+    @user_profile=@user.user_profile
+  end
+  
+  def profile_update
+    @active_tab = :Profile
+    #@user = User.find(params[:id])
+    #@school = @user.person
+    @school=School.find(params[:id])
+    @user=@school.user
+    @user_profile=@user.user_profile
+    #@school = School.find(params[:id])
+    #@user=User.find_by_person_id(params[:id])
+   # @user=@school.user
+    respond_to do |format|
+      if @school.update_attributes(params[:school]) && @user.update_attributes(params[:user]) && @user_profile.update_attributes(params[:user_profile])
+        @user.user_profile = @user_profile
+        flash[:notice] = 'Profile was successfully updated.'
+        format.html { redirect_to(url_for( :controller => :schools, :action => 'profile_show', :id=>@school)) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "profile_edit" }
+        format.xml  { render :xml => @school.errors, :status => :unprocessable_entity }
+      end
+    end
   end
   
   def klasses
@@ -110,12 +180,11 @@ class SchoolsController < ApplicationController
   end
   
   def navigation_tabs
-    id = params[:id]
-    tabs = [:Home => {:controller => :schools, :action => 'show', :id=>id},#schools_path,
-    :Classes => {:controller => :schools, :action => 'klasses', :id=>id},
+    tabs = [:Home => {:controller => :schools, :action => 'show', :id=>@school},#schools_path,
+    :Classes => {:controller => :schools, :action => 'klasses', :id=>@school},
     :Teachers => '#',#'teachers_path',
     :Students => '#',
-    :Profile =>  {:controller => :schools, :action => 'profile', :id=>id} ]
+    :Profile =>  {:controller => :schools, :action => 'profile_show', :id=>@school} ]
     return tabs
   end
   
