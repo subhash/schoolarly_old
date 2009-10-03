@@ -12,7 +12,7 @@ class UserProfile < ActiveRecord::Base
   %w[phone_mobile phone_mobile]
   ]
   
- # TODO validate :valid_name
+  # TODO validate :valid_name
   
   private
   def valid_name
@@ -37,6 +37,9 @@ class Address
     @phone_landline=phone_landline  
     @phone_mobile =  phone_mobile
   end
+  def to_s
+    [ @address_line_1, @address_line_2, @city, @state, @country ].join(', ')
+  end
   #TODO validates_presence_of :address_line_1,   :city,    :state,    :country
   #TODO validates_format_of pincode,landline,mobile  
 end
@@ -52,6 +55,9 @@ class Name
   def is_valid?(errors)
     errors.add("first name should not be blank") if first_name.blank? 
     errors.add("last name should not be blank") if last_name.blank?
+  end
+  def to_s
+    [ @first_name, @middle_name, @last_name ].compact.join(" " )
   end
   #TODO validates_presence_of :first_name, :last_name
 end
