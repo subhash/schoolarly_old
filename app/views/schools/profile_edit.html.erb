@@ -2,14 +2,6 @@
   <%= school_form.error_messages %>
 <div class="c38l">
     <table>
-		<tr>
-            <td>
-                <b><%= school_form.label :name %>:</b>
-            </td>
-            <td>
-                <%= school_form.text_field :name %>
-            </td>
-        </tr>
   		<% fields_for @user do |user_form| %>		
 		<tr>
             <td>
@@ -72,7 +64,14 @@
 	<% end %>
 <div class="c38r">
     <table>
-
+		<tr>
+            <td>
+                <b><%= school_form.label :name %>:</b>
+            </td>
+            <td>
+                <%= school_form.text_field :name %>
+            </td>
+        </tr>
         <tr>
             <td>
                 <b><%= school_form.label :board %>:</b>

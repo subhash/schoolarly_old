@@ -2,22 +2,16 @@
   <%= profile_form.error_messages %>
 <div class="c38l">
     <table>
+		<% fields_for @user do |user_form| %>
 		<tr>
             <td>
-                <b>Name:</b>
+                <b><%= user_form.label :email %>:</b>
             </td>
             <td>
-                <%= @school.name %>
-            </td>
-        </tr>
-		<tr>
-            <td>
-                <b>email:</b>
-            </td>
-            <td>
-                <%= @user.email %>
+            	<%= user_form.text_field :email%>
             </td>
         </tr>		
+		<%end%>
 		<tr>
             <td>
                 <b>User Name:</b>
@@ -68,31 +62,40 @@
 </div>
 <div class="c38r">
     <table>
-
-        <tr>
+    	<% fields_for @school do |school_form| %>
+		<tr>
             <td>
-            	<b>Board:</b>
+                <b><%= school_form.label :name %>:</b>
             </td>
             <td>
-                <%= @school.board %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <b>Fax:</b>
-            </td>
-            <td>
-                <%= @school.fax %>
+				<%= school_form.text_field :name%>
             </td>
         </tr>
         <tr>
             <td>
-                <b>Website:</b>
+            	<b><%= school_form.label :board %>:</b>
             </td>
             <td>
-                <%= @school.website %>
+				<%= school_form.text_field :board%>				
             </td>
         </tr>
+        <tr>
+            <td>
+                <b><%= school_form.label :fax %>:</b>
+            </td>
+            <td>
+                <%= school_form.text_field :fax%>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b><%= school_form.label :website %>:</b>
+            </td>
+            <td>
+                <%= school_form.text_field :website%>
+            </td>
+        </tr>
+		<%end%>
     </table>
 </div>
 <div class="c38r">
