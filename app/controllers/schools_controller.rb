@@ -20,15 +20,14 @@ class SchoolsController < ApplicationController
   def show
     @active_tab = :Home
     @school=School.find(params[:id])
-    #@klasses=@school.klasses
-    #@teachers=@school.teachers
+    set_active_user(@school.user)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @school }
     end
   end
   
-    
+  
   # GET /schools/new
   # GET /schools/new.xml
   def new
@@ -106,23 +105,23 @@ class SchoolsController < ApplicationController
       format.xml  { render :xml => @user_profile }
     end
   end
-
+  
   def profile_create
     #@user = User.find(params[:id])
     #@school = @user.person
     @school=School.find(params[:id])
     @user=@school.user
-   @user_profile = UserProfile.new(params[:user_profile])
-   #@user.user_profile=@user_profile
-   @user_profile.user=@user
-   respond_to do |format|
+    @user_profile = UserProfile.new(params[:user_profile])
+    #@user.user_profile=@user_profile
+    @user_profile.user=@user
+    respond_to do |format|
       if @user_profile.save!
         flash[:notice] = 'Profile was successfully created.'
         format.html { redirect_to(url_for( :controller => :schools, :action => 'profile_show', :id=>@school)) }
-       # format.xml  { render :xml => @user_profile, :status => :created, :location => @school }
+        # format.xml  { render :xml => @user_profile, :status => :created, :location => @school }
       else
         format.html { render :action => "profile_new" }
-      #  format.xml  { render :xml => @user_profile.errors, :status => :unprocessable_entity }
+        #  format.xml  { render :xml => @user_profile.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -158,7 +157,7 @@ class SchoolsController < ApplicationController
     @user_profile=@user.user_profile
     #@school = School.find(params[:id])
     #@user=User.find_by_person_id(params[:id])
-   # @user=@school.user
+    # @user=@school.user
     respond_to do |format|
       if @school.update_attributes(params[:school]) && @user.update_attributes(params[:user]) && @user_profile.update_attributes(params[:user_profile])
         @user.user_profile = @user_profile
@@ -179,12 +178,13 @@ class SchoolsController < ApplicationController
     @klasses = Klass.current_klasses(@school, @year)
   end
   
-  def navigation_tabs
-    tabs = [:Home => {:controller => :schools, :action => 'show', :id=>@school},#schools_path,
-    :Classes => {:controller => :schools, :action => 'klasses', :id=>@school},
+  
+  def self.tabs(school_id)
+    tabs = [:Home => {:controller => :schools, :action => 'show', :id=>school_id},#schools_path,
+    :Classes => {:controller => :schools, :action => 'klasses', :id=>school_id},
     :Teachers => '#',#'teachers_path',
     :Students => '#',
-    :Profile =>  {:controller => :schools, :action => 'profile_show', :id=>@school} ]
+    :Profile =>  {:controller => :schools, :action => 'profile_show', :id=>school_id} ]
     return tabs
   end
   

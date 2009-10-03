@@ -13,10 +13,10 @@
             <%=h klass.level %>
         </td>
         <td>
-            <%=link_to klass.division,school_klass_path(klass) %>
+            <%=link_to klass.division,klass_path(klass) %>
         </td>
         <td>
-            <%= link_to "Delete", school_klass_path(klass.school,klass), :method => :delete %>
+            <%= link_to "Delete", klass_path(klass), :method => :delete %>
         </td>
     </tr>
     <% end %>

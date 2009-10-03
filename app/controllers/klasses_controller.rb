@@ -53,5 +53,5 @@ class KlassesController < ApplicationController
   def set_active_tab
     @active_tab = :Classes
   end
-  
+    
 end

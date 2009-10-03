@@ -12,12 +12,24 @@ class ApplicationController < ActionController::Base
   
   #before_filter :require_user
   
+  def set_active_user(user)
+    session[:active_user] = user
+  end
+  
+  def active_user
+    return session[:active_user]
+  end
   
   def current_user
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.user
   end
   
+  def navigation_tabs
+    if(active_user)
+      return eval("#{active_user.person_type.pluralize}Controller").send(:tabs , active_user.person_id)
+    end
+  end
   
   private
   def current_user_session
@@ -51,6 +63,5 @@ class ApplicationController < ActionController::Base
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
-  
   
 end
