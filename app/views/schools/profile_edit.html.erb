@@ -2,66 +2,13 @@
   <%= school_form.error_messages %>
 <div class="c38l">
     <table>
-  		<% fields_for @user do |user_form| %>		
-		<tr>
-            <td>
-                <b><%= user_form.label :email %>:</b>
-            </td>
-            <td>
-                <%= user_form.text_field :email %>
-            </td>
-        </tr>
-		<% end %>
-		<% fields_for @user_profile do |profile_form| %>	
-		<tr>
-            <td>
-                <b>User Name:</b>
-            </td>
-            <td>
-            	<%= profile_form.text_field :first_name%>
-				<%= profile_form.text_field :middle_name%>
-				<%= profile_form.text_field :last_name%>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <b><%= profile_form.label :Address %>:</b>
-            </td>
-            <td>
-                <%= profile_form.text_field :address_line_1 %> 
-				<%= profile_form.text_field :address_line_2 %>
-				<%= profile_form.text_field :city %>
-				<%= profile_form.text_field :state %>
-				<%= profile_form.text_field :country %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <b>Pincode:</b>
-            </td>
-            <td>
-                <%= profile_form.text_field :pincode %> 
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <b>Phone landline:</b>
-            </td>
-            <td>
-                <%= profile_form.text_field :phone_landline %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <b>Phone mobile:</b>
-            </td>
-            <td>
-                <%= profile_form.text_field :phone_mobile %> 
-            </td>
-        </tr>
+	<%= render :partial => "/user" %>
+	<% fields_for @user_profile do |profile_form| %>	
+		<%= render :partial => "/profile", :object => profile_form %>
     </table>
-</div>
 	<% end %>
+</div>
+
 <div class="c38r">
     <table>
 		<tr>

@@ -1,0 +1,46 @@
+		<tr>
+            <td>
+                <b>User Name:</b>
+            </td>
+            <td>
+            	<%= profile.text_field :first_name%>
+				<%= profile.text_field :middle_name%>
+				<%= profile.text_field :last_name%>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b><%= profile.label :Address %>:</b>
+            </td>
+            <td>
+                <%= profile.text_field :address_line_1 %> 
+				<%= profile.text_field :address_line_2 %>
+				<%= profile.text_field :city %>
+				<%= profile.text_field :state %>
+				<%= profile.text_field :country %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b><%= profile.label :pincode %>:</b>
+            </td>
+            <td>
+                <%= profile.text_field :pincode %> 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b><%= profile.label :phone_landline %>:</b>
+            </td>
+            <td>
+                <%= profile.text_field :phone_landline %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b><%= profile.label :phone_mobile %>:</b>
+            </td>
+            <td>
+                <%= profile.text_field :phone_mobile %> 
+            </td>
+        </tr>

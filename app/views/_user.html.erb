@@ -1,0 +1,10 @@
+		<% fields_for @user do |user_form| %>
+		<tr>
+            <td>
+                <b><%= user_form.label :email %>:</b>
+            </td>
+            <td>
+            	<%= user_form.text_field :email %>
+            </td>
+        </tr>		
+		<%end%>
