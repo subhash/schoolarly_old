@@ -101,9 +101,8 @@
 <div class="c38r">
     <p class="icaption_right">
         <br/>
-		<!--<%= link_to_function "submit", "$(this).up('user_form').submit()" %> |!-->
-		<%= school_form.submit %> | 
-        <%= link_to 'Back', {:controller => :schools, :action => 'profile_show', :id=>@school} %>
+		<%= link_to_function( 'Submit' , "document.forms['edit_school_#{@school.id.to_s}'].submit()")%> |
+		<%= link_to 'Back', {:controller => :schools, :action => 'profile_show', :id=>@school} %>
 	<% end %>
     </p>
 </div>
