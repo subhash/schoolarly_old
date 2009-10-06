@@ -1,14 +1,22 @@
+  
 <% form_for @user_profile, :url => {:controller => :schools, :action => :profile_create, :method => :post, :id => @school} do |profile_form| %>
+<!--<%= error_messages_for 'user' %>!-->
   <%= profile_form.error_messages %>
 <div class="c38l">
-    <table>
-	<%= render :partial => "/user" %>
-		<%= render :partial => "/profile", :object => profile_form %>
-    </table>
+    	<!--TODO Check with Subhash if the partial _form can be used here... Right now using another partial.
+    	<% fields_for @user do |user_form| %>
+			<%= render :partial => "/users/form", :object => user_form  %>
+		<%end%> !-->
+		<table>
+			<%= render :partial => "/profile", :object => profile_form %>
+		</table>
+	
+    
 </div>
 <div class="c38r">
     <table>
     	<% fields_for @school do |school_form| %>
+		<%= school_form.error_messages %>
 		<tr>
             <td>
                 <b><%= school_form.label :name %>:</b>
@@ -43,6 +51,14 @@
         </tr>
 		<%end%>
     </table>
+	
+	<% fields_for @user do |user_form| %>
+		<%= user_form.error_messages %>
+		<table>
+			<%= render :partial => "/user", :object => user_form %>
+		</table>
+	<%end%>
+	
 </div>
 <div class="c38r">
     <p class="icaption_right">
