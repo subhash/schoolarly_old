@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   
   def show
     @user = @current_user
-    store_active_user(@user)
+    set_active_user(@user)
   end
   
   def edit
