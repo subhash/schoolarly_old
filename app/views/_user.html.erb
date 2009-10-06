@@ -4,7 +4,23 @@
                 <b><%= user_form.label :email %>:</b>
             </td>
             <td>
-            	<%= user_form.text_field :email %>
+            	<%= user_form.text_field :email, :readonly => true %>
             </td>
         </tr>		
+		<tr>
+            <td>
+                <b><%= user_form.label 'Change Password' %>:</b>
+            </td>
+            <td>
+            	<%= user_form.password_field :password %>
+            </td>
+        </tr>	
+		<tr>
+            <td>
+                <b><%= user_form.label 'Confirm Password' %>:</b>
+            </td>
+            <td>
+            	<%= user_form.password_field :password_confirmation %>
+            </td>
+        </tr>
 		<%end%>
