@@ -1,0 +1,11 @@
+page.call 'jQuery.noConflict'
+page << "jQuery('#dialog').dialog({
+            bgiframe: true,
+            height: 400,
+            width: 700,
+            modal: true,
+        });"
+page << "jQuery('#dialog').dialog('open');"
+page << "jQuery('#selectable').selectable({
+            filter: 'td'           
+        });"  

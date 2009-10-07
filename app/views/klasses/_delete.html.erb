@@ -1,0 +1,22 @@
+
+<table id="selectable" class="sticker">
+    <% @klasses.each do |level, level_klasses| %>
+    <tr>
+        <th>
+            <%=level %>
+        </th>
+        <%level_klasses.each do |klass| %>
+        <td id=<%=klass.id%> class="ui-state-default">
+            <%if ['Pre-school', 'L.K.G','U.K.G','Mont1','Mont2','Mont3'].include?(level.to_s) %>
+            <%=klass.division %>
+            <%else %>
+            <%="#{klass.level}#{klass.division}" %>
+            <%end %>
+        </td>
+        <%end %>
+    </tr>
+    <% end %>
+</table>
+<div class="button ui-state-default ui-corner-all">
+    <%= link_to_remote 'Delete classes',:url => {:controller => 'schools', :action => 'delete_klasses', :id=>@school} %>
+</div

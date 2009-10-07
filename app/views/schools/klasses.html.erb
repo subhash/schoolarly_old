@@ -1,4 +1,9 @@
 <h3>Listing classes in <%=@school.name %>for the year - <%=@year %></h3>
-<%= render :partial =>'klasses/list'%>
-
+<%= render :partial =>'klasses/list' %>
 <%= link_to 'New class', new_school_klass_path(@school, @klass) %>
+<div class="button ui-state-default ui-corner-all">
+    <%= link_to_remote 'Delete classes',:url => {:controller => 'schools', :action => 'list_delete_klasses', :id=>@school} %>
+</div
+<div id="dialog" title="Select classes to delete" style="display: none;">
+    <%= render :partial =>'klasses/delete' %>
+</div>

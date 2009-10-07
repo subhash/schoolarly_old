@@ -1,23 +1,19 @@
-<table>
+
+<table class="sticker">
+    <% @klasses.each do |level, level_klasses| %>
     <tr>
         <th>
-            Level
+            <%=level %>
         </th>
-        <th>
-            Division
-        </th>
-    </tr>
-    <% @klasses.each do |klass| %>
-    <tr>
-        <td>
-            <%=h klass.level %>
+        <%level_klasses.each do |klass| %>
+        <td class="ui-state-default">
+            <%if ['Pre-school', 'L.K.G','U.K.G','Mont1','Mont2','Mont3'].include?(level.to_s) %>
+            <%=link_to klass.division,klass_path(klass) %> 
+			<%else %>
+            <%=link_to "#{klass.level}#{klass.division}",klass_path(klass) %>
+            <%end %>
         </td>
-        <td>
-            <%=link_to klass.division,klass_path(klass) %>
-        </td>
-        <td>
-            <%= link_to "Delete", klass_path(klass), :method => :delete %>
-        </td>
+        <%end %>
     </tr>
     <% end %>
 </table>
