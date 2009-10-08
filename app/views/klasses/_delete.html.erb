@@ -1,22 +1,21 @@
 <p id="feedback">
     You've selected: <span id="select-result">none</span>.
 </p>
-
 <script type="text/javascript">
-    var indices = [];
+    var indices = "";
     jQuery(function(){
         jQuery("#selectable").bind('selectablestop', function(event, ui){
             var result = jQuery("#select-result").empty();
-            indices = [];
+            indices = "";
             jQuery("td.ui-selected").each(function(i){
                 id = this.id;
-                result.append("#" + id);
-                indices.push(id);
+                result.append("," + id);
+                //                indices.push(id);
+                indices += "," + id;
             });
         });
     });
 </script>
-
 <table id="selectable" class="sticker">
     <% @klasses.each do |level, level_klasses| %>
     <tr>
@@ -35,7 +34,6 @@
     </tr>
     <% end %>
 </table>
-
 <div class="button ui-state-default ui-corner-all">
-    <%= link_to_remote 'Delete classes',:url => {:controller => 'schools', :action => 'delete_klasses', :id=>@school}, :with => "'delete_klasses=' + indices.length" %>
+    <%= link_to_remote 'Delete classes',:url => {:controller => 'schools', :action => 'delete_klasses', :id=>@school}, :with => "'delete_klasses=' + indices" %>
 </div>
