@@ -11,7 +11,7 @@
             jQuery("td.ui-selected").each(function(i){
                 id = this.id;
                 result.append("#" + id);
-                indices.push(id)
+                indices.push(id);
             });
         });
     });
@@ -37,5 +37,5 @@
 </table>
 
 <div class="button ui-state-default ui-corner-all">
-    <%= link_to_remote 'Delete classes',:url => {:controller => 'schools', :action => 'delete_klasses', :id=>@school} %>
+    <%= link_to_remote 'Delete classes',:url => {:controller => 'schools', :action => 'delete_klasses', :id=>@school}, :with => "'delete_klasses=' + indices.length" %>
 </div>

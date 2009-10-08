@@ -2,6 +2,8 @@ class SchoolsController < ApplicationController
   #skip_before_filter :require_user, :only => :index
   
   #permit "creator of Student", :except => :index
+
+protect_from_forgery :only => [:create, :update, :destroy]
   
   # GET /schools
   # GET /schools.xml

@@ -1,2 +1,2 @@
-
+puts "delete-klasses = "+params[:delete_klasses]
 
