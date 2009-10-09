@@ -1,5 +1,5 @@
 #footer {
-    text-align: center;
+	text-align:center;
 }
 
 /*
@@ -54,6 +54,32 @@
  */ .button {
     float: right;
     padding: .5em 1em;
-	margin-top: 5px;
     text-decoration: none;
+}
+
+.auto_complete ul li { list-style-type: none; }
+ 
+.nested {
+ 	border:none;
+	margin:0;
+	
+ }
+.nested tbody td {
+border-bottom:none;
+}
+
+.nested td {
+ 	text-align:center;
+	vertical-align:middle;
+	padding-bottom:0;
+	padding-top:0.5em;
+ }
+.nested .list-line-main {
+background: #E0ECF8;
+}
+.nested .list-line-even {
+background: #B1EBF5;
+}
+table.nested .list-line-odd {
+background: #E0F8FC;
 }
