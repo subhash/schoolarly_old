@@ -1,0 +1,25 @@
+<h1>Listing teachers of <%=@school.name %></h1>
+<table id="teachers">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            email
+        </th>
+        <th>
+            Allotments
+        </th>
+    </tr>
+    <% @teachers.each do |teacher| %>
+    <%=render :partial => "teacher_user", :object=>teacher.user %>
+    <% end %>
+</table>
+<br/>
+<%= link_to_function "Add Teacher",toggle_div(:add_school_teacher) %>
+<div id="add_school_teacher" style="display: none;">
+    <%form_remote_tag(:url =>{:controller => 'schools', :action => 'add_school_teacher', :id=>@school})  do %>
+    <%= text_field_with_auto_complete :user, :email, :value => nil, :size => 40, :tokens => ',' %>
+    <%=submit_tag 'Add' %>
+    <%end %>
+</div>

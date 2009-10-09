@@ -1,0 +1,55 @@
+<tr>
+    <% if teacher_user.user_profile.nil? %>
+    <td>
+        Profile unavailable
+    </td>
+    <%else %>
+    <td>
+        <%=h teacher_user.user_profile.name.to_s %>
+    </td>
+    <%end %>
+    <td>
+        <%=h teacher_user.email %>
+    </td>
+    <% if teacher_user.person.current_subjects.empty? %>
+    <td>
+        -
+    </td>
+    <%else %>
+	<%p=nil%>
+    <td id="subjects">
+        <table class="nested"> <tr> 
+                <% teacher_user.person.current_allotments.each do |allotment| %>
+                <%if p!= allotment.subject.name or p.nil? %>
+					<%unless p.nil?%>
+	                	</tr>	</table> </td></tr>
+						</table></td>
+					<%end%>
+					<td>
+					<table class="nested"> <tr>
+            		<td class="list-line-main">
+            		<%=allotment.subject.name %>
+            		<% p = allotment.subject.name %>
+					</td>
+					</tr>
+					<tr><td>
+           			 <table class="nested">
+                	<tr>
+                <%end %>
+                <td class=<%= cycle('list-line-odd',  'list-line-even')  %>>
+                    <%=allotment.klass.level.to_s + allotment.klass.division.to_s %>
+                
+                <%end %>
+				</tr>	</table> </td></tr>
+            
+        </table> </td> </tr>	</table>
+        <%end %>
+
+		</td>
+        <td>
+            <%= link_to 'Add Allotment', '#' %>
+        </td>
+        <td>
+            <%= link_to 'Remove Allotment', '#', :confirm => 'Are you sure?' %>
+        </td>
+        </tr>
