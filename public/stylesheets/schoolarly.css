@@ -54,5 +54,6 @@
  */ .button {
     float: right;
     padding: .5em 1em;
+	margin-top: 5px;
     text-decoration: none;
 }
