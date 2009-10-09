@@ -1,2 +1,4 @@
-puts "delete-klasses = "+params[:delete_klasses]
+page << "jQuery('#dialog').dialog('close');"
+page.replace_html("klasses_list", :partial =>'klasses/list' )
+page.replace_html("delete_klasses_list", :partial =>'klasses/delete' )
 

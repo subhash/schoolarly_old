@@ -2,8 +2,8 @@ class SchoolsController < ApplicationController
   #skip_before_filter :require_user, :only => :index
   
   #permit "creator of Student", :except => :index
-
-protect_from_forgery :only => [:create, :update, :destroy]
+  
+  protect_from_forgery :only => [:create, :update, :destroy]
   
   # GET /schools
   # GET /schools.xml
@@ -172,11 +172,18 @@ protect_from_forgery :only => [:create, :update, :destroy]
   
   def list_delete_klasses   
     @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
-    @delete_klasses =[]
   end
   
   def delete_klasses
-    
+    delete_klasses = params[:delete_klasses].split(',')
+    delete_klasses.each {|klass_id| 
+      if (!klass_id.empty?) 
+        Klass.destroy(klass_id.to_i)
+      end
+    }  
+    @school=School.find(params[:id])
+    @year = Klass.current_academic_year(@school)
+    @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
   end
   
   def self.tabs(school_id)

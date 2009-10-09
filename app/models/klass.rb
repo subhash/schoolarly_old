@@ -1,6 +1,6 @@
 class Klass < ActiveRecord::Base
   named_scope :current_klasses, lambda { |school_id, year|
-    { :conditions => { :school_id => school_id , :year => year} }
+    { :conditions => { :school_id => school_id , :year => year} , :order => "level, division"}
   }
   
   belongs_to :school
