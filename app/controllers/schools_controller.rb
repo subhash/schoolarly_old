@@ -195,6 +195,7 @@ class SchoolsController < ApplicationController
   
   def delete_klasses
     delete_klasses = params[:delete_klasses].split(',')
+    puts " params in delete klasses = "+params.inspect
     delete_klasses.each {|klass_id| 
       if (!klass_id.empty?) 
         Klass.destroy(klass_id.to_i)

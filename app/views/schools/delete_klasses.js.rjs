@@ -1,4 +1,4 @@
-page << "jQuery('#dialog').dialog('close');"
+page << "jQuery('#dialog').dialog('destroy');"
 page.replace_html("klasses_list", :partial =>'klasses/list' )
 page.replace_html("delete_klasses_list", :partial =>'klasses/delete' )
 
