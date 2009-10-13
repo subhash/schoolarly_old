@@ -1,0 +1,4 @@
+page.replace_html "klass_subjects_edit", :partial => 'klasses/subjects_edit'
+page[:klass_subjects_edit].show
+page[:klass_subjects_edit].visual_effect :highlight,
+:startcolor => "#3B69AD" 

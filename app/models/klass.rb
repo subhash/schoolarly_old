@@ -22,4 +22,8 @@ class Klass < ActiveRecord::Base
     return Klass.maximum :year, :conditions => {:school_id => school_id}
   end
   
+  def name
+    return level.to_s+" "+division
+  end
+  
 end

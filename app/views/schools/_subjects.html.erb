@@ -1,0 +1,13 @@
+<%if subjects && !(subjects.empty?) %>
+<ol class = "sticker">
+    <%subjects.each do |subject| %>
+    <li id=<%=subject.id%>
+        class="ui-widget-content"><%= subject.name %>
+    </li>
+    <%end %>
+</ol>
+<%else %>
+<blockquote>
+    No subjects are assigned to the school. Add subjects to proceed!
+</blockquote>
+<%end %>

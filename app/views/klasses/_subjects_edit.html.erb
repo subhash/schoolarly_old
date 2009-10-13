@@ -1,0 +1,13 @@
+<h3> Subjects for <%=@klass.name%></h3>
+<div id="subjects_list" class="sticker">
+    <%=render :partial => 'klasses/subjects', :object => @klass_subjects%>
+</div>
+<div id="delete_button" class="button ui-state-default ui-corner-all">
+    <%= link_to_remote 'Delete',:url => {:controller => 'klasses', :action => 'delete_subjects', :id=>@klass} %>
+</div>
+<div class="button ui-state-default ui-corner-all"  style="float: left;">
+    <%= link_to_remote 'Add',:url => {:controller => 'klasses', :action => 'list_add_subjects', :id=>@klass} %>
+</div
+<div id="add_subjects_dialog" title="Select subjects to add" style="display: none;">
+    <%= render :partial =>'klasses/list_add_subjects'%>
+</div>

@@ -1,22 +1,24 @@
 page.call 'jQuery.noConflict'
-page << "jQuery('#dialog').dialog({
+page << "jQuery('#delete_klasses_dialog').dialog({
             bgiframe: true,
             height: 400,
             width: 700,
             modal: true,
             autoOpen: false
         });"
-page << "jQuery('#dialog').dialog('open');"
-page << "jQuery('#selectable').selectable({
+page << "jQuery('#delete_klasses_dialog').dialog('open');"
+page << "jQuery('#klasses_selectable').selectable({
             filter: 'td'           
         });"          
-page << "jQuery('#selectable').bind('selectablestop', function(event, ui){
+page << "jQuery('#klasses_selectable').bind('selectablestop', function(event, ui){
             var result = jQuery('#select-result').empty();
-            indices = \"\";
+            delete_klass_indices = \"\";
             jQuery('td.ui-selected').each(function(i){
                 id = this.id;
                 result.append(\",\" + id);
                 //                indices.push(id);
-                indices += id + \",\";
+                delete_klass_indices += id + \",\";
             });
         });"     
+
+page.replace_html("school_add_subjects_list", :partial =>'schools/subjects', :object=>@add_subjects )

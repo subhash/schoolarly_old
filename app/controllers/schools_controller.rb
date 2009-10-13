@@ -157,7 +157,7 @@ class SchoolsController < ApplicationController
     @teachers=@school.teachers
     if @teachers.empty?
       flash[:notice] = 'No teacher exists.'
-   #   redirect_to(url_for( :controller => :schools, :action => 'teacher_new', :id=>@school))
+      #   redirect_to(url_for( :controller => :schools, :action => 'teacher_new', :id=>@school))
     end
   end
   
@@ -187,6 +187,8 @@ class SchoolsController < ApplicationController
     @school=School.find(params[:id])
     @year = Klass.current_academic_year(@school)
     @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
+    @school_subjects = @school.subjects
+    @add_subjects = Subject.find(:all) -  @school_subjects
   end
   
   def list_delete_klasses   
@@ -195,7 +197,6 @@ class SchoolsController < ApplicationController
   
   def delete_klasses
     delete_klasses = params[:delete_klasses].split(',')
-    puts " params in delete klasses = "+params.inspect
     delete_klasses.each {|klass_id| 
       if (!klass_id.empty?) 
         Klass.destroy(klass_id.to_i)
@@ -204,6 +205,27 @@ class SchoolsController < ApplicationController
     @school=School.find(params[:id])
     @year = Klass.current_academic_year(@school)
     @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
+  end
+  
+  
+  def list_add_subjects
+    @school = School.find(params[:id])
+    @all_subjects = Subject.find(:all)
+    puts "in list add - schools - "+@all_subjects.inspect
+    @add_subjects = @all_subjects - @school.subjects
+  end
+  
+  def add_subjects
+    @school = School.find(params[:id])
+    add_subjects = params[:school_add_subjects].split(',')
+    add_subjects.each {|subject_id| 
+      if (!subject_id.empty?)
+        subject = Subject.find(subject_id)
+        @school.subjects << subject
+      end
+    }  
+    @school_subjects = @school.subjects
+    @add_subjects = Subject.find(:all) - @school_subjects
   end
   
   def self.tabs(school_id)

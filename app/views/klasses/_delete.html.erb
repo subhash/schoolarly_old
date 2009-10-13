@@ -1,7 +1,7 @@
 <p id="feedback">
     You've selected: <span id="select-result">none</span>.
 </p>
-<table id="selectable" class="sticker">
+<table id="klasses_selectable" class="selectable">
     <% @klasses.each do |level, level_klasses| %>
     <tr>
         <th>
@@ -20,5 +20,5 @@
     <% end %>
 </table>
 <div class="button ui-state-default ui-corner-all">
-    <%= link_to_remote 'Delete',:url => {:controller => 'schools', :action => 'delete_klasses', :id=>@school}, :with => "'delete_klasses=' + indices" %>
+    <%= link_to_remote 'Delete',:url => {:controller => 'schools', :action => 'delete_klasses', :id=>@school}, :with => "'delete_klasses=' + delete_klass_indices" %>
 </div>

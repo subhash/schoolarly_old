@@ -1,0 +1,4 @@
+page << "jQuery('#add_subjects_dialog').dialog('destroy');"
+page.replace_html("subjects_list", :partial =>'klasses/subjects' , :object=>@klass_subjects)
+page.replace_html("add_subjects_list", :partial =>'klasses/subjects', :object=>@add_subjects )
+

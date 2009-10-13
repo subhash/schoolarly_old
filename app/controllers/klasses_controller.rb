@@ -53,5 +53,34 @@ class KlassesController < ApplicationController
   def set_active_tab
     @active_tab = :Classes
   end
-    
+  
+  def subjects_edit
+    @klass = Klass.find(params[:id])
+    @school = @klass.school
+    @klass_subjects = @klass.subjects
+    @add_subjects = @school.subjects - @klass.subjects   
+  end
+  
+  def list_add_subjects
+    @klass = Klass.find(params[:id])
+    @school = @klass.school
+    @klass_subjects = @klass.subjects
+    @add_subjects = @school.subjects - @klass.subjects 
+  end
+  
+  def add_subjects
+    @klass = Klass.find(params[:id])
+    @school = @klass.school
+    add_subjects = params[:klass_add_subjects].split(',')
+    puts "IDs = "+add_subjects.inspect
+    add_subjects.each {|subject_id| 
+      if (!subject_id.empty?)        
+        subject = Subject.find(subject_id.split('_').last)
+        @klass.subjects << subject
+      end
+    }  
+    @klass_subjects = @klass.subjects
+    @add_subjects = @school.subjects - @klass.subjects 
+  end
+  
 end
