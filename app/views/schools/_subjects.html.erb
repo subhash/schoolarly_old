@@ -1,7 +1,7 @@
 <%if subjects && !(subjects.empty?) %>
 <ol class = "sticker">
     <%subjects.each do |subject| %>
-    <li id=<%=subject.id%>
+    <li id=<%="#{@school.id}_#{subject.id}"%>
         class="ui-widget-content"><%= subject.name %>
     </li>
     <%end %>

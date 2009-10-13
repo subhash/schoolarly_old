@@ -1,3 +1,6 @@
+
+page.select('#klasses_selectable td.ui-selected').pluck('results', 'id')
+page << "alert(results)"
 page << "jQuery('#delete_klasses_dialog').dialog('destroy');"
 page.replace_html("klasses_list", :partial =>'klasses/list' )
 page.replace_html("delete_klasses_list", :partial =>'klasses/delete' )

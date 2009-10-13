@@ -220,7 +220,7 @@ class SchoolsController < ApplicationController
     add_subjects = params[:school_add_subjects].split(',')
     add_subjects.each {|subject_id| 
       if (!subject_id.empty?)
-        subject = Subject.find(subject_id)
+        subject = Subject.find(subject_id.split('_').last)
         @school.subjects << subject
       end
     }  

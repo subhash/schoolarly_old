@@ -13,7 +13,7 @@ page << "jQuery('#klasses_selectable').selectable({
 page << "jQuery('#klasses_selectable').bind('selectablestop', function(event, ui){
             var result = jQuery('#select-result').empty();
             delete_klass_indices = \"\";
-            jQuery('td.ui-selected').each(function(i){
+            jQuery('#klasses_selectable td.ui-selected').each(function(i){
                 id = this.id;
                 result.append(\",\" + id);
                 //                indices.push(id);
@@ -21,4 +21,3 @@ page << "jQuery('#klasses_selectable').bind('selectablestop', function(event, ui
             });
         });"     
 
-page.replace_html("school_add_subjects_list", :partial =>'schools/subjects', :object=>@add_subjects )
