@@ -9,5 +9,5 @@
     <%= link_to_remote 'Add',:url => {:controller => 'schools', :action => 'list_add_subjects', :id=>@school}%>
 </div
 <div id="school_add_subjects_dialog" title="Select subjects to add" style="display: none;">
-    <%= render :partial =>'schools/list_add_subjects', :object => @all_subjects , :as => :subjects%>
+    <%= render :partial =>'schools/list_add_subjects'%>
 </div>
