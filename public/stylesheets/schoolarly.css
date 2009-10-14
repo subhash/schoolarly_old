@@ -24,10 +24,11 @@
     font-size: 1.5em;
 } .sticker li {
     margin: 3px;
-    padding: 0.4em;
+    padding: 1px;
     font-size: 1.2em;
-    height: 14px;
-	list-style-type: none;
+    list-style-type: none;
+}.sticker .ui-icon {
+	float: right;	
 }
 
 /*
@@ -44,13 +45,25 @@
 }.sticker td a:focus {
     background-color: #666;
     color: #ccc;
+} .sticker li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #666;
+    text-decoration: none;
+} .sticker li a:hover {
+    background-color: #EDF2F8 ;
+    color: #ccc;
+}.sticker li a:focus {
+    background-color: #EDF2F8;
+    color: #ccc;
 }
 
 /*
  * selectables
  */ #feedback {
     font-size: 1.4em;
-}  .selectable .ui-selecting {
+} .selectable .ui-selecting {
     background: #FECA40;
 } .selectable td.ui-selected {
     background: #F39814;

@@ -10,7 +10,7 @@
             <%= render :partial =>'klasses/list' %>
         </div>
         <%= link_to 'New class', new_school_klass_path(@school, @klass) %>
-        <div class="button ui-state-default ui-corner-all">
+        <div class="button ui-state-focus ui-corner-all">
             <%= link_to_remote 'Delete classes',:url => {:controller => 'schools', :action => 'list_delete_klasses', :id=>@school} %>
         </div
         <div id="delete_klasses_dialog" title="Select classes to delete" style="display: none;">

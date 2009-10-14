@@ -207,6 +207,22 @@ class SchoolsController < ApplicationController
     @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
   end
   
+  def delete_subject
+    puts "In delete subject "
+    @school = School.find(params[:id])
+    subject = @school.subjects.find(params[:subject_id])
+    if(subject)
+      @school.subjects.delete(subject)
+      @school.save
+    end
+    @all_subjects = Subject.find(:all)
+    @school_subjects = @school.subjects
+    @add_subjects = @all_subjects - @school.subjects
+    render :update do |page|
+      page.replace_html("school_subjects_list", :partial =>'schools/subjects_list' , :object=>@school_subjects)
+      page.replace_html("school_add_subjects_list", :partial =>'schools/subjects', :object=>@add_subjects )
+    end
+  end
   
   def list_add_subjects
     @school = School.find(params[:id])
