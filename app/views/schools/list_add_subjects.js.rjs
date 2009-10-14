@@ -1,4 +1,4 @@
-page.call 'jQuery.noConflict'
+#page.call 'jQuery.noConflict'
 page << "jQuery('#school_add_subjects_dialog').dialog({
             bgiframe: true,
             height: 500,
