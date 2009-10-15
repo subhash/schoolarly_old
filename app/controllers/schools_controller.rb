@@ -159,6 +159,8 @@ class SchoolsController < ApplicationController
       flash[:notice] = 'No teacher exists.'
       #   redirect_to(url_for( :controller => :schools, :action => 'teacher_new', :id=>@school))
     end
+    @year = Klass.current_academic_year(@school)
+    @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
   end
   
   def add_school_teacher
