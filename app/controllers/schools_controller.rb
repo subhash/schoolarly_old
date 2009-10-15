@@ -208,7 +208,6 @@ class SchoolsController < ApplicationController
   end
   
   def delete_subject
-    puts "In delete subject "
     @school = School.find(params[:id])
     subject = @school.subjects.find(params[:subject_id])
     if(subject)

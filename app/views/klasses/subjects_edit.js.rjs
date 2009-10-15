@@ -1,13 +1,10 @@
 page.replace_html "klass_subjects_edit", :partial => 'klasses/subjects_edit'
 page.replace_html "add_subjects_dialog_controls" , :partial => 'klasses/add_subjects_dialog'
-#page.replace_html("subjects_list", :partial =>'klasses/subjects' , :object=>@klass_subjects)
-#page.replace_html("add_subjects_list", :partial =>'klasses/subjects', :object=>@add_subjects )         
-
+       
 page[:klass_subjects_edit].show
 page[:klass_subjects_edit].visual_effect :highlight,
 :startcolor => "#3B69AD" 
 
-page.call 'jQuery.noConflict'
 page << "jQuery('#add_subjects_dialog').dialog({
             bgiframe: true,
             height: 500,

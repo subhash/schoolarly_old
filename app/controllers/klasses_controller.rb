@@ -72,7 +72,6 @@ class KlassesController < ApplicationController
     @klass = Klass.find(params[:id])
     @school = @klass.school
     add_subjects = params[:klass_add_subjects].split(',')
-    puts "IDs = "+add_subjects.inspect
     add_subjects.each {|subject_id| 
       if (!subject_id.empty?)        
         subject = Subject.find(subject_id.split('_').last)
@@ -81,6 +80,23 @@ class KlassesController < ApplicationController
     }  
     @klass_subjects = @klass.subjects
     @add_subjects = @school.subjects - @klass.subjects 
+  end
+  
+  def delete_subject
+    @klass = Klass.find(params[:id])
+    @school = @klass.school
+    subject = @klass.subjects.find(params[:subject_id])
+    if(subject)
+      @klass.subjects.delete(subject)
+      @klass.save
+    end
+    @klass_subjects = @klass.subjects
+    @school_subjects = @school.subjects
+    @add_subjects = @school_subjects - @klass_subjects
+    render :update do |page|
+      page.replace_html("subjects_list", :partial =>'klasses/subjects_list' , :object=>@klass_subjects)
+      page.replace_html("add_subjects_list", :partial =>'klasses/subjects', :object=>@add_subjects )     
+    end
   end
   
 end
