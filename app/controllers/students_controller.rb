@@ -13,6 +13,7 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.xml
   def show
+    @active_tab = :Home
     @student = Student.find(params[:id])
     set_active_user(@student.user)
     respond_to do |format|
@@ -81,5 +82,25 @@ class StudentsController < ApplicationController
       format.html { redirect_to(students_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def profile_edit
+    @active_tab = :Profile    
+    @student=Student.find(params[:id])
+    @user=@student.user
+    @user_profile=@user.user_profile
+  end
+  
+  def self.tabs(student_id)
+    tabs = [:Home => {:controller => :students, :action => 'show', :id=>student_id},
+    :Subjects => '#',
+    :Messages => '#',
+    :Calendar => '#',    
+    :Leave => '#',
+    :Exams => '#',
+    :Scores => '#',
+    :AcademicHistory => '#',
+    :Profile =>  {:controller => :students, :action => 'profile_edit', :id=>student_id} ]
+    return tabs
   end
 end
