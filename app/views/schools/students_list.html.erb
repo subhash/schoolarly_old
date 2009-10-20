@@ -1,6 +1,6 @@
 <table id="school_students_table" class="ui-state-default">
     <caption>
-        Students in school <%=@school.name %>
+        Students in <%=@school.name %>
     </caption>
     <thead>
         <tr>
@@ -19,7 +19,11 @@
         <% @students.each do |student| %>
         <tr>
             <td>
-                <%= student.name %>
+                <%if student.user.user_profile %>
+                <%= student.user.name %>
+                <%else %>
+                <%= link_to "Profile not created", :controller => 'user_profiles', :action => 'profile_new', :id => student.user %>
+                <%end %>
             </td>
             <td>
                 <%= student.user.email %>
@@ -41,5 +45,5 @@
     </tbody>
 </table>
 <div class= "button ui-state-focus float_left">
-    <%= link_to "Add Student", :url => {:action => "add_student", :id => @school} %>
+    <%= link_to "Add Student", :controller => "students",  :action => "new" , :id => @school %>
 </div>

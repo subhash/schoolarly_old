@@ -25,8 +25,8 @@ class StudentsController < ApplicationController
   # GET /students/new
   # GET /students/new.xml
   def new
-    @student = Student.new
-    
+    @user = User.new
+    @school = School.find(params[:id])
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @student }
@@ -41,18 +41,18 @@ class StudentsController < ApplicationController
   # POST /students
   # POST /students.xml
   def create
-    @student = Student.new(params[:student])
-    
-    respond_to do |format|
-      if @student.save
-        flash[:notice] = 'Student was successfully created.'
-        format.html { redirect_to(@student) }
-        format.xml  { render :xml => @student, :status => :created, :location => @student }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @student.errors, :status => :unprocessable_entity }
-      end
-    end
+    @user = User.new(params[:user])
+    @student = Student.new
+    @student.user = @user
+    @user.person = @student
+    @school = School.find(params[:school_id])
+    @student.school = @school
+    if @student.save
+      flash[:notice] = "Account registered!"
+      redirect_back_or_default @school
+    else
+      render :action => :new
+    end   
   end
   
   # PUT /students/1
@@ -100,7 +100,7 @@ class StudentsController < ApplicationController
     :Exams => '#',
     :Scores => '#',
     :AcademicHistory => '#',
-    :Profile =>  {:controller => :students, :action => 'profile_edit', :id=>student_id} ]
+    :Profile =>  {:controller => :user_profiles, :action => 'profile_edit', :id=>student_id} ]
     return tabs
   end
 end
