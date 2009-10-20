@@ -251,7 +251,7 @@ class SchoolsController < ApplicationController
     :Teachers => {:controller => :schools, :action => 'teachers_index', :id=>school_id} ,#'teachers_path',
     :Students => '#',
     :Departments => '#',
-    :Profile =>  {:controller => :schools, :action => 'profile_show', :id=>school_id} ]
+    :Profile =>  {:controller => :user_profiles, :action => 'profile_show', :id=>school_id} ]
     return tabs
   end
   
