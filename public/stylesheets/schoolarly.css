@@ -93,10 +93,13 @@
 /*
  * for button
  */ .button {
-    float: right;
-    padding: .5em 1em;
+    padding: .5em 3em;
+	margin: 10px;
     text-decoration: none;
-} .auto_complete ul li {
+	height :1.5em;	
+}
+
+.auto_complete ul li {
     list-style-type: none;
 } .nested {
     border: none;

@@ -2,7 +2,7 @@
 <div id="subjects_list" class="sticker">
     <%=render :partial => 'klasses/subjects_list', :object => @klass_subjects %>
 </div>
-<div class="button ui-state-default ui-corner-all">
+<div class="button ui-state-focus center">
     <%= link_to_remote 'Add',:url => {:controller => 'klasses', :action => 'list_add_subjects', :id=>@klass} %>
 </div
 

@@ -12,7 +12,7 @@ class Klass < ActiveRecord::Base
   has_many :teachers, :through => :teacher_allotments
   has_many :exam_groups
   
-  
+  validates_uniqueness_of :division, :scope => [:level, :year]
   
   def current_students
     self.enrollments.select{|e| e.current_student}

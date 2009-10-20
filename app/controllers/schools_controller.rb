@@ -183,6 +183,14 @@ class SchoolsController < ApplicationController
     render :inline => "<%= auto_complete_result @items, '#{:email}' %>"
   end
   
+  def students_list
+    @active_tab = :Students
+    @school = School.find(params[:id])
+    @students = @school.students
+    @year = Klass.current_academic_year(@school)
+    @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}   
+  end
+ 
   
   def klasses
     @active_tab = :Classes

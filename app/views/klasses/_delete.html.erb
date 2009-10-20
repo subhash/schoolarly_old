@@ -19,6 +19,6 @@
     </tr>
     <% end %>
 </table>
-<div class="button ui-state-default ui-corner-all">
+<div class="button ui-state-default ui-corner-all float_left">
     <%= link_to_remote 'Delete',:url => {:controller => 'schools', :action => 'delete_klasses', :id=>@school}, :with => "'delete_klasses=' + delete_klass_indices" %>
 </div>
