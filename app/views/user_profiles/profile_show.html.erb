@@ -1,0 +1,103 @@
+<div class="c38l">
+    <table>
+		<tr>
+            <td>
+                <b>User Name:</b>
+            </td>
+            <td>
+                <%=h @user_profile.name.to_s %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Address:</b>
+            </td>
+            <td>
+            	<%=h @user_profile.address.address_line_1 %><br />
+				<%=h @user_profile.address.address_line_2 %><br />
+				<%=h @user_profile.address.city %><br />
+				<%=h @user_profile.address.state %><br />
+				<%=h @user_profile.address.country %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Pincode:</b>
+            </td>
+            <td>
+                <%=h @user_profile.pincode %> 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Phone landline:</b>
+            </td>
+            <td>
+                <%=h @user_profile.phone_landline %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Phone mobile:</b>
+            </td>
+            <td>
+                <%=h @user_profile.phone_mobile %> 
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="c38r">
+    <table>
+    	<tr>
+            <td>
+                <b>Name:</b>
+            </td>
+            <td>
+                <%=h @person.name %>
+            </td>
+        </tr>    	
+        <tr>
+            <td>
+                <b>Board:</b>
+            </td>
+            <td>
+                <%=h @person.board %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Fax:</b>
+            </td>
+            <td>
+                <%=h @person.fax %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Website:</b>
+            </td>
+            <td>
+                <%=h @person.website %>
+            </td>
+        </tr>
+    </table>
+	<table>
+	    	<tr>
+            <td>
+                <b>Email:</b>
+            </td>
+            <td>
+                <%=h @user.email %>
+            </td>
+        </tr>	
+	</table>
+</div>
+<div class="c38r">
+    <p class="icaption_right">
+        <br/>
+		<% current_user = @user %>
+        <% if current_user == @user %>
+        <%= link_to 'Edit', {:controller => :user_profiles, :action => 'profile_edit', :id=>@person} %>|<% end %>
+		<!--<%= link_to 'Back', {:controller => :user_profiles, :action => 'show', :id=>@person} %>!-->
+    </p>
+</div>

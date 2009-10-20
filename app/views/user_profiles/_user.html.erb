@@ -1,0 +1,24 @@
+		<tr>
+            <td>
+                <b><%= user.label :email %>:</b>
+            </td>
+            <td>
+            	<%= user.text_field :email, :readonly => true %>
+            </td>
+        </tr>		
+		<tr>
+            <td>
+                <b><%= user.label 'Change Password' %>:</b>
+            </td>
+            <td>
+            	<%= user.password_field :password %>
+            </td>
+        </tr>	
+		<tr>
+            <td>
+                <b><%= user.label 'Confirm Password' %>:</b>
+            </td>
+            <td>
+            	<%= user.password_field :password_confirmation %>
+            </td>
+        </tr>
