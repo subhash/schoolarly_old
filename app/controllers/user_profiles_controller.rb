@@ -1,14 +1,14 @@
 class UserProfilesController < ApplicationController
   
   def profile_new
-    @user=User.find_by_person_id(params[:id])
+    @user=User.find_by_person_id(params[:id], :conditions => "person_type = '" + active_user.person_type + "'")
     @person=@user.person
     @user_profile = UserProfile.new
     @person_partial=@user.person_type.to_s.downcase
   end
   
   def profile_create
-    @user=User.find_by_person_id(params[:id])
+    @user=User.find_by_person_id(params[:id], :conditions => "person_type = '" + active_user.person_type + "'")
     @person=@user.person
     @user_profile = UserProfile.new(params[:user_profile])
     @user_profile.user=@user
@@ -27,7 +27,7 @@ class UserProfilesController < ApplicationController
   
   def profile_show
     @active_tab = :Profile
-    @user=User.find_by_person_id(params[:id])
+    @user=User.find_by_person_id(params[:id], :conditions => "person_type = '" + active_user.person_type + "'")
     @person=@user.person
     if @user.user_profile.nil?
       redirect_to(url_for( :controller => :user_profiles, :action => 'profile_new', :id=>@person))
@@ -38,7 +38,7 @@ class UserProfilesController < ApplicationController
   
   def profile_edit
     @active_tab = :Profile    
-    @user=User.find_by_person_id(params[:id])
+    @user=User.find_by_person_id(params[:id], :conditions => "person_type = '" + active_user.person_type + "'")
     @person=@user.person
     @user_profile=@user.user_profile
     @person_partial=@user.person_type.to_s.downcase    
@@ -46,7 +46,7 @@ class UserProfilesController < ApplicationController
   
   def profile_update
     @active_tab = :Profile
-    @user=User.find_by_person_id(params[:id])
+    @user=User.find_by_person_id(params[:id], :conditions => "person_type = '" + active_user.person_type + "'")
     @person=@user.person
     @user_profile=@user.user_profile
     person_type=@user.person_type.to_s.downcase
