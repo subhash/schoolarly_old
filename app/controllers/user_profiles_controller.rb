@@ -1,15 +1,26 @@
 class UserProfilesController < ApplicationController
   
-  def profile_new
-    @user=User.find_by_person_id(params[:id], :conditions => "person_type = '" + active_user.person_type + "'")
-    @person=@user.person
+  before_filter :set_active_tab
+  before_filter :find_user_and_person
+  
+  def set_active_tab
+    @active_tab = :Profile
+  end
+  
+  def find_user_and_person    
+    if(params[:id])
+      @user=User.find(params[:id])
+      @person=@user.person
+    end
+  end  
+  
+  def new
+    set_active_user(@user)
     @user_profile = UserProfile.new
     @person_partial=@user.person_type.to_s.downcase
   end
   
-  def profile_create
-    @user=User.find_by_person_id(params[:id], :conditions => "person_type = '" + active_user.person_type + "'")
-    @person=@user.person
+  def create
     @user_profile = UserProfile.new(params[:user_profile])
     @user_profile.user=@user
     person_type=@user.person_type.to_s.downcase
@@ -19,35 +30,28 @@ class UserProfilesController < ApplicationController
       @user.update_attributes!(params[:user])
     end
     flash[:notice] = 'Profile was successfully created.'
-    redirect_to(url_for( :controller => :user_profiles, :action => 'profile_show', :id=>@person))
+    redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user))
   rescue Exception => e
     flash[:notice]="Error occured in profile creation: <br /> #{e.message}"
-    redirect_to(url_for( :controller => :user_profiles, :action => 'profile_show', :id=>@person)) 
+    redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user)) 
   end
   
-  def profile_show
-    @active_tab = :Profile
-    @user=User.find_by_person_id(params[:id], :conditions => "person_type = '" + active_user.person_type + "'")
-    @person=@user.person
+  def show
+    set_active_user(@user)
     if @user.user_profile.nil?
-      redirect_to(url_for( :controller => :user_profiles, :action => 'profile_new', :id=>@person))
+      redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
     end
     @user_profile=@user.user_profile
     @person_partial=@user.person_type.to_s.downcase
   end
   
-  def profile_edit
-    @active_tab = :Profile    
-    @user=User.find_by_person_id(params[:id], :conditions => "person_type = '" + active_user.person_type + "'")
-    @person=@user.person
+  def edit
+    set_active_user(@user)
     @user_profile=@user.user_profile
     @person_partial=@user.person_type.to_s.downcase    
   end
   
-  def profile_update
-    @active_tab = :Profile
-    @user=User.find_by_person_id(params[:id], :conditions => "person_type = '" + active_user.person_type + "'")
-    @person=@user.person
+  def update
     @user_profile=@user.user_profile
     person_type=@user.person_type.to_s.downcase
     User.transaction do
@@ -56,10 +60,10 @@ class UserProfilesController < ApplicationController
       @user.update_attributes!(params[:user])
     end
     flash[:notice] = 'Profile was successfully updated.'
-    redirect_to(url_for( :controller => :user_profiles, :action => 'profile_show', :id=>@person)) 
+    redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user)) 
   rescue Exception => e
     flash[:notice]="Error occured in profile update: <br /> #{e.message}"
-    redirect_to(url_for( :controller => :user_profiles, :action => 'profile_edit', :id=>@person)) 
+    redirect_to(url_for( :controller => :user_profiles, :action => 'edit', :id=>@user)) 
   end
   
 end
