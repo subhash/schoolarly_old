@@ -33,6 +33,7 @@ class UserProfilesController < ApplicationController
       redirect_to(url_for( :controller => :user_profiles, :action => 'profile_new', :id=>@person))
     end
     @user_profile=@user.user_profile
+    @person_partial=@user.person_type.to_s.downcase
   end
   
   def profile_edit
