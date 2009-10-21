@@ -1,49 +1,9 @@
-<table id="school_students_table" class="ui-state-default">
-    <caption>
-        Students in <%=@school.name %>
-    </caption>
-    <thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Email
-            </th>
-            <th>
-                Class (Level-Division)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @students.each do |student| %>
-        <tr>
-            <td>
-                <%if student.user.user_profile %>
-                <%= student.user.name %>
-                <%else %>
-                <%= link_to "Profile not created", :controller => 'user_profiles', :action => 'profile_new', :id => student.user %>
-                <%end %>
-            </td>
-            <td>
-                <%= student.user.email %>
-            </td>
-            <% if student.current_enrollment %>
-            <td>
-                <%= student.current_enrollment.klass.name %>
-            </td>
-            <td>
-                <%= link_to 'Delete', student_path, student, :confirm => 'Are you sure?', :method => :delete %>
-            </td>
-            <%else %>
-            <td>
-                <i>Not Enrolled!</i>
-            </td>
-            <%end %>
-        </tr>
-        <%end %>
-    </tbody>
-</table>
+<div id="school_students_table">
+	<%=render :partial => "students/list"%>
+ </div>
 <div class= "button ui-state-focus float_left">
-    <%= link_to "Add Student", :controller => "students",  :action => "new" , :id => @school %>
+    <%= link_to_remote "Add Student", :url => {:controller => "students",  :action => "new" , :id => @school} %>
+</div>
+<div id="new_student_form">
+	
 </div>

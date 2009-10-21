@@ -31,10 +31,9 @@ class StudentsController < ApplicationController
     @active_tab = :Students
     @user = User.new
     @school = School.find(params[:id])
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @student }
-    end
+    render :update do |page|
+      page.replace_html ("new_student_form", :partial => "students/new")
+    end      
   end
   
   # GET /students/1/edit
@@ -54,8 +53,13 @@ class StudentsController < ApplicationController
       @user.person = @student
       @student.school = @school
       if @student.save
-        flash[:notice] = "Account registered!"
-        redirect_back_or_default @school
+        @students = @school.students
+        flash[:notice] = "Account registered!"        
+        render :update do |page|
+          page.select("form").first.reset
+          page[:add_student_form].hide
+          page.replace_html("school_students_table", :partial => "students/list")
+        end
       else
         render :action => :new
       end

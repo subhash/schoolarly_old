@@ -1,5 +1,5 @@
 <h3 class="ui-widget-header">New student</h3>
-<% form_for @user , :url => {:action => 'create', :school_id => @school},:html => {:class => "yform"} do |f| %>
+<% remote_form_for @user , :url => {:controller => 'students', :action => 'create', :school_id => @school},:html => {:class => "yform"}, :update => "school_students_table" do |f| %>
 <%= f.error_messages %>
 <%= f.label :email %>
 <%= text_field_with_auto_complete :user, :email, :value => nil, :size => 40, :tokens => ',' %>

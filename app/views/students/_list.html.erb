@@ -1,0 +1,46 @@
+<table class="ui-state-default" border="1px">
+    <caption>
+        Students in <%=@school.name %>
+    </caption>
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Class (Level-Division)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @students.each do |student| %>
+        <tr>
+            <td>
+                <%if student.user.user_profile %>
+                <%= student.user.name %>
+                <%else %>
+                <%= link_to "Profile not created", {:controller => 'user_profiles', :action => 'profile_new', :id => student.user} %>
+                <%end %>
+            </td>
+            <td>
+                <%= student.user.email %>
+            </td>
+            <% if student.current_enrollment %>
+            <td>
+                <%= student.current_enrollment.klass.name %>
+            </td>
+            <%else %>
+            <td class="ui-state-focus">
+                <%= link_to 'Enroll student',  {:controller => 'students', :action => 'enroll', :id => student} %>
+            </td>
+            <%end %>
+            <th>
+                <%= link_to 'Delete', student_path(student), :confirm => 'Are you sure?', :method => :delete %>
+            </th>
+        </tr>
+        <%end %>
+    </tbody>
+</table>

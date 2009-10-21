@@ -117,6 +117,18 @@
     background: #B1EBF5;
 }
 
+table.ui-state-default a{
+	text-decoration: underline;
+	font-weight: normal;
+	font-style: italic;
+}
+
+table.ui-state-default td:hover{
+	background-color: #F6A828;
+}
+table.ui-state-default td:focus{
+	background-color: #F6A828
+}
 table.nested .list-line-odd {
     background: #E0F8FC;
 }
