@@ -1,6 +1,9 @@
 class StudentsController < ApplicationController
   # GET /students
   # GET /students.xml
+  
+  protect_from_forgery :only => [:create, :update, :destroy]
+  
   def index
     @students = Student.all
     
@@ -25,6 +28,7 @@ class StudentsController < ApplicationController
   # GET /students/new
   # GET /students/new.xml
   def new
+    @active_tab = :Students
     @user = User.new
     @school = School.find(params[:id])
     respond_to do |format|
@@ -41,20 +45,47 @@ class StudentsController < ApplicationController
   # POST /students
   # POST /students.xml
   def create
-    @user = User.new(params[:user])
-    @student = Student.new
-    @student.user = @user
-    @user.person = @student
     @school = School.find(params[:school_id])
-    @student.school = @school
-    if @student.save
-      flash[:notice] = "Account registered!"
-      redirect_back_or_default @school
+    @user = User.new(params[:user])
+    if(@user.save)
+      puts "user save"
+      @student = Student.new
+      @student.user = @user
+      @user.person = @student
+      @student.school = @school
+      if @student.save
+        flash[:notice] = "Account registered!"
+        redirect_back_or_default @school
+      else
+        render :action => :new
+      end
     else
+      puts "user save else"
       render :action => :new
-    end   
+    end  
   end
   
+  def add_student    
+    @school = School.find(params[:school_id])
+    if(params[:email])
+      @user = User.find_by_email_and_person_type(params[:email], 'Student')
+      if @user.nil?
+        render :update do |page|
+          page[:password].show
+          page[:add_student_button].disable
+        end
+      else
+        @student = @user.person
+        @student.school = @school
+        if @student.save
+          flash[:notice] = "Account registered!"
+          render :update do |page|
+            page.redirect_to @school
+          end
+        end
+      end
+    end
+  end 
   # PUT /students/1
   # PUT /students/1.xml
   def update
@@ -84,11 +115,13 @@ class StudentsController < ApplicationController
     end
   end
   
-  def profile_edit
-    @active_tab = :Profile    
-    @student=Student.find(params[:id])
-    @user=@student.user
-    @user_profile=@user.user_profile
+  def auto_complete_for_user_email
+    find_options = { 
+      :conditions => [ "LOWER(#{:email}) LIKE ? AND person_type = ?", params[:user][:email].downcase + '%' , 'Student'], 
+      :order => "#{:email} ASC",
+      :limit => 10 }    
+    @items = User.find(:all, find_options)   
+    render :inline => "<%= auto_complete_result @items, '#{:email}' %>"
   end
   
   def self.tabs(student_id)

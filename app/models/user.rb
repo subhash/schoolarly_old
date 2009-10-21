@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   acts_as_authentic
   
   # Authorization plugin
-  acts_as_authorized_user
-  acts_as_authorizable
+   acts_as_authorized_user
+   acts_as_authorizable
   
   belongs_to :person, :polymorphic => true
   has_one :user_profile
