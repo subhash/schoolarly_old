@@ -1,0 +1,25 @@
+<div class=c38l>
+<strong>Select a subject</strong>
+<br />
+<br />
+
+<table id="subjects_selectable" class="sticker">
+    <% @allotment_subjects.each do |subject| %>
+    <tr>
+        <td id=<%=subject.id%>
+            class="ui-state-default sticker"><%= link_to_remote subject.name, :url => {:action => :allot_klasses, :id => @teacher}, :update => "klasses", :with => "'subject_id=' + #{subject.id}" %>
+			
+        </td>
+    </tr>
+    <% end %>
+</table>
+</div>
+
+<div class=c38r>
+	<strong>Select klasses</strong>
+	<br />
+	<br />
+
+<div id="klasses">
+</div>	
+</div>

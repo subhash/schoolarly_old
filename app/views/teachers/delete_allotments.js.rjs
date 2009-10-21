@@ -1,0 +1,3 @@
+page << "jQuery('#dialog_delete_allotment').dialog('close');"
+page << "allotment_indices = \"\";"
+page.replace_html("allotment_list", :partial =>'allotment_list' , :object=>@teacher_allotments)

@@ -1,0 +1,45 @@
+<script type="text/javascript">
+	
+    jQuery(function(){
+		jQuery('#klasses_selectable').selectable({
+           filter: 'td'
+        });
+        jQuery("#klasses_selectable").bind('selectablestop', function(event, ui){
+            klass_indices = "";
+			
+            jQuery('#klasses_selectable td.ui-selected').each(function(i){
+                id = this.id;
+                klass_indices += "," + id;
+            });
+        });		
+    });
+	
+</script>
+
+<table id="klasses_selectable" class="selectable">   
+   <% @allot_subject_klasses.each do |level, level_klasses| %>
+    <tr>
+        <th>
+            <%=level %>
+        </th>
+        <%level_klasses.each do |klass| %>
+		<td id=<%=klass.id%>
+            class="ui-state-default"><%if ['Pre-school', 'L.K.G','U.K.G','Mont1','Mont2','Mont3'].include?(level.to_s) %>
+            <%=klass.division %>
+            <%else %>
+            <%="#{klass.level}#{klass.division}" %>
+            <%end %>
+        </td>
+        <%end %>
+    </tr>
+    <% end %>
+	</table>
+
+<div style="clear:both">
+	<br />
+</div>
+
+<div class="button ui-state-default ui-corner-all center">
+    <%= link_to_remote 'Add',:url => {:controller => 'teachers', :action => 'add_allotments', :id=>@teacher}, :with => "'subject_id=' + #{@subject_id} + '&' + 'klasses=' + klass_indices"%>
+</div>
+

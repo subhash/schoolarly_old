@@ -1,0 +1,31 @@
+<table id=allotment_list class="sticker" style="margin:auto;">
+	<%= render :partial =>'allotment_list' %>
+</table>
+<div class="c38l"">
+<div class="button ui-state-default ui-corner-all center float_right">
+    <div id="button_subjects">
+        <%= link_to_remote 'Add Allotment', :url => {:controller => 'teachers', :action => 'list_add_allotment', :id=>@teacher} %>
+    </div>
+</div>
+</div>
+<div class="c38r"">
+<div class="button ui-state-default ui-corner-all center float_left">
+    <div id="button_subjects">
+        <%= link_to_remote 'Delete Allotment', :url => {:controller => 'teachers', :action => 'list_delete_allotment', :id=>@teacher} %>
+    </div>
+</div>
+</div>
+<div id="dialog_add_allotment" title="Select a subject & all the classes for that subject to add" style="display: none;">
+    <div id="add_allotment">
+		
+    </div>
+</div>
+
+<div id="dialog_delete_allotment" title="Select classes against the corresponding subject for deallotment" style="display: none;">
+    <div id="delete_allotment">
+		
+    </div>
+</div>
+
+
+<!--<%= link_to 'Delete Allotment', :controller => 'teachers', :action => 'allotment_delete', :id=>@teacher %>!-->
