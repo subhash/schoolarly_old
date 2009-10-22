@@ -31,8 +31,9 @@ class StudentsController < ApplicationController
     @active_tab = :Students
     @user = User.new
     @school = School.find(params[:id])
-    render :update do |page|
+    render :update do |page|      
       page.replace_html ("new_student_form", :partial => "students/new")
+      page[:new_student_form].show
     end      
   end
   
@@ -57,7 +58,7 @@ class StudentsController < ApplicationController
         flash[:notice] = "Account registered!"        
         render :update do |page|
           page.select("form").first.reset
-          page[:add_student_form].hide
+          page[:new_student_form].hide
           page.replace_html("school_students_table", :partial => "students/list")
         end
       else
@@ -82,9 +83,12 @@ class StudentsController < ApplicationController
         @student = @user.person
         @student.school = @school
         if @student.save
+          @students = @school.students
           flash[:notice] = "Account registered!"
           render :update do |page|
-            page.redirect_to @school
+            page.select("form").first.reset
+            page[:new_student_form].hide
+            page.replace_html("school_students_table", :partial => "students/list")
           end
         end
       end

@@ -1,18 +1,19 @@
+<%if student.school %>
 <table>
     <tr>
         <td>
-            <b><%= school.label :name %>:</b>
+            <b><%= student.label :school %>:</b>
         </td>
         <td>
-            <%= school.text_field :name %>
+            <%= school.text_field :school, :value => student.school.name, :disabled => :true %>
         </td>
     </tr>
     <tr>
         <td>
-            <b><%= school.label :board %>:</b>
+            <b><%= school.label :admission_number %>:</b>
         </td>
         <td>
-            <%= school.text_field :board %>
+            <%= school.text_field :admission_number, :value => student.admission_no, :disabled => :true %>
         </td>
     </tr>
     <tr>

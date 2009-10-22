@@ -1,32 +1,23 @@
 <% form_for @person, :url => {:controller => :user_profiles, :action => 'profile_update', :id=>@person } do |person_form| %>
-  <%= person_form.error_messages %>
+<%= person_form.error_messages %>
 <div class="c38l">
-	<table>
-		<% fields_for @user_profile do |profile_form| %>	
-			<%= render :partial => "user_profiles/profile", :object => profile_form %>
-		<% end %>
-	</table>
-</div>
-
-<div class="c38r">
     <table>
-    	<%= puts "@person_partial=" + @person_partial%>
-    	<%= render :partial => "user_profiles/" + @person_partial, :object => person_form %>
-	</table>
-
-	<% fields_for @user do |user_form| %>
-		<%= user_form.error_messages %>
-		<table>
-			<%= render :partial => "user_profiles/user", :object => user_form %>
-		</table>
-	<%end%>
-
-
+        <% fields_for @user_profile do |profile_form| %>
+        <%= render :partial => "user_profiles/profile", :object => profile_form %>
+        <% end %>
+    </table>
+</div>
+<div class="c38r">
+    <%= render :partial => "user_profiles/" + @person_partial, :object => person_form %>
+    <% fields_for @user do |user_form| %>
+    <%= user_form.error_messages %>
+    <table>
+        <%= render :partial => "user_profiles/user", :object => user_form %>
+    </table>
+    <%end %>
     <p class="icaption_right">
         <br/>
-		<%= link_to_function( 'Submit' , "document.forms['edit_#{@person_partial}_#{@person.id.to_s}'].submit()")%> |
-		<%= link_to 'Back', {:controller => :user_profiles, :action => 'profile_show', :id=>@person} %>
-	<% end %>
+        <%= link_to_function( 'Submit' , "document.forms['edit_#{@person_partial}_#{@person.id.to_s}'].submit()") %>|<%= link_to 'Back', {:controller => :user_profiles, :action => 'profile_show', :id=>@person} %>
+        <% end %>
     </p>
-
 </div>
