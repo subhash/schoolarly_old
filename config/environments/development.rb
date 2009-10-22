@@ -1,3 +1,5 @@
+require 'smtp_tls'
+
 # Settings specified here will take precedence over those in config/environment.rb
 
 # In the development environment your application's code is reloaded on
@@ -13,5 +15,18 @@ config.action_controller.consider_all_requests_local = true
 config.action_view.debug_rjs                         = true
 config.action_controller.perform_caching             = false
 
+config.action_mailer.delivery_method = :smtp
+
+
+config.action_mailer.smtp_settings = {
+  :tls => "true",
+  :address => "smtp.gmail.com",
+  :port => "587",
+  :domain => "localhost.localdomain",
+  :authentication => :plain,
+  :user_name => "subhashgo",
+  :password => "myword178"
+}
+config.action_mailer.perform_deliveries = true
 # Don't care if the mailer can't send
-config.action_mailer.raise_delivery_errors = false
+config.action_mailer.raise_delivery_errors = true

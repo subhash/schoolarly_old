@@ -15,6 +15,11 @@ class User < ActiveRecord::Base
     self.person.add_roles
   end
   
+  def deliver_password_reset_instructions!  
+    reset_perishable_token!  
+    Notifier.deliver_password_reset_instructions(self)  
+  end  
+  
   #  composed_of :name, :class_name => "Name", :mapping => [ %w[ first_name first_name ],%w[ middle_name middle_name ],%w[ last_name last_name ]]
   #  composed_of :address, :class_name => "Address", :mapping => [
   #  %w[address_line1 address_line1],
