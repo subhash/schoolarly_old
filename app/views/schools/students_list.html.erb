@@ -1,9 +1,13 @@
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery("#students_list_table").tablesorter({sortList: [[0,0]]} );
+    });
+</script>
 <div id="school_students_table">
-	<%=render :partial => "students/list"%>
- </div>
+    <%=render :partial => "students/list" %>
+</div>
 <div class= "button ui-state-focus float_left">
     <%= link_to_remote "Add Student", :url => {:controller => "students",  :action => "new" , :id => @school} %>
 </div>
 <div id="new_student_form">
-	
 </div>

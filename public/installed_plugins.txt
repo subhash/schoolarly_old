@@ -3,7 +3,10 @@ Installed plugins
 2) foreign-key migrations -  ruby script/plugin install svn://rubyforge.org/var/svn/redhillonrails/trunk/vendor/plugins/redhillonrails_core
 
 
-
+jquery plugins/widgets used
+1) jquery dialog (jquery-ui.com)
+2) jquery selectable (jquery-ui.com)
+3) jquery plugin - tablesorter - http://tablesorter.com/docs/
 
 Installed gems
 
