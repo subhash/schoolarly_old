@@ -1,23 +1,32 @@
 class User < ActiveRecord::Base
   
-  acts_as_authentic
+  acts_as_authentic do |c|
+    option = {:if => Proc.new {|user| user.perishable_token.nil? }}
+    c.validates_length_of_password_field_options =  validates_length_of_password_field_options.merge(option)
+    c.validates_length_of_password_confirmation_field_options = validates_length_of_password_confirmation_field_options.merge(option)
+  end
   
   # Authorization plugin
-   acts_as_authorized_user
-   acts_as_authorizable
+  acts_as_authorized_user
+  acts_as_authorizable
   
   belongs_to :person, :polymorphic => true
   has_one :user_profile
   #after_create :add_roles
   
-  def add_roles
-    puts 'user add roles'
+  def add_roles    
     self.person.add_roles
   end
   
-  def deliver_password_reset_instructions!  
-    reset_perishable_token!  
+  def invite!()
+    reset_perishable_token
+    save_without_session_maintenance(true)
     Notifier.deliver_password_reset_instructions(self)  
+  end
+  
+  def deliver_password_reset_instructions!  
+    reset_perishable_token!
+    Notifier.deliver_password_reset_instructions(self)    
   end  
   
   #  composed_of :name, :class_name => "Name", :mapping => [ %w[ first_name first_name ],%w[ middle_name middle_name ],%w[ last_name last_name ]]

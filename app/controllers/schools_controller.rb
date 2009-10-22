@@ -51,9 +51,11 @@ class SchoolsController < ApplicationController
   # POST /schools.xml
   def create
     @school = School.new(params[:school])
-    
+    user = User.new
+    user.email = params[:email]
+    user.person = @school
     respond_to do |format|
-      if @school.save
+      if @school.save and user.invite!
         flash[:notice] = 'School was successfully created.'
         format.html { redirect_to(@school) }
         format.xml  { render :xml => @school, :status => :created, :location => @school }
