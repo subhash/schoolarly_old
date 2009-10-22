@@ -136,6 +136,67 @@ class SchoolsController < ApplicationController
     @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}   
   end
   
+  def add_student    
+    @school = School.find(params[:school_id])
+    if(params[:email])
+      @user = User.find_by_email_and_person_type(params[:email], 'Student')
+      if @user.nil?
+        render :update do |page|
+          page[:password].show
+          page[:add_student_button].disable
+        end
+      else
+        @student = @user.person
+        @student.school = @school
+        if @student.save
+          @students = @school.students
+          flash[:notice] = "Account registered!"
+          render :update do |page|
+            page.select("form").first.reset
+            page[:new_student_form].hide
+            page.replace_html("school_students_table", :partial => "students/list")
+          end
+        end
+      end
+    end
+  end 
+  
+  def new_student
+    @active_tab = :Students
+    @user = User.new
+    @school = School.find(params[:id])
+    render :update do |page|      
+      page.replace_html ("new_student_form", :partial => "schools/new_student")
+      page[:new_student_form].show
+    end        
+  end
+  
+  def create_student
+    @school = School.find(params[:school_id])
+    @user = User.new(params[:user])
+    if(@user.save)
+      puts "user save"
+      @student = Student.new
+      @student.user = @user
+      @user.person = @student
+      @student.school = @school
+      if @student.save
+        @students = @school.students
+        flash[:notice] = "Account registered!"        
+        render :update do |page|
+          page.select("form").first.reset
+          page[:new_student_form].hide
+          page.replace_html("school_students_table", :partial => "students/list")
+        end
+      else
+        render :action => :new
+      end
+    else
+      puts "user save else"
+      render :action => :new
+    end  
+  end
+  
   def klasses
     @active_tab = :Classes
     @school=School.find(params[:id])
