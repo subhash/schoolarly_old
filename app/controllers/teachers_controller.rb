@@ -18,7 +18,7 @@ class TeachersController < ApplicationController
   def show
     @active_tab = :Teachers
     @teacher = Teacher.find(params[:id])
-    set_active_user(@teacher.user)
+    set_active_user(@teacher.user.id)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @teacher }

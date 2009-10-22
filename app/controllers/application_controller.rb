@@ -12,12 +12,12 @@ class ApplicationController < ActionController::Base
   
   #before_filter :require_user
   
-  def set_active_user(user)
-    session[:active_user] = user
+  def set_active_user(user_id)
+    session[:active_user] = user_id
   end
   
   def active_user
-    return session[:active_user]
+    return User.find(session[:active_user])
   end
   
   def current_user

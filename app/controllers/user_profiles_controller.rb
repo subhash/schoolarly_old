@@ -15,7 +15,7 @@ class UserProfilesController < ApplicationController
   end  
   
   def new
-    set_active_user(@user)
+    set_active_user(@user.id)
     @user_profile = UserProfile.new
     @person_partial=@user.person_type.to_s.downcase
   end
@@ -37,7 +37,7 @@ class UserProfilesController < ApplicationController
   end
   
   def show
-    set_active_user(@user)
+    set_active_user(@user.id)
     if @user.user_profile.nil?
       redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
     end
@@ -46,7 +46,7 @@ class UserProfilesController < ApplicationController
   end
   
   def edit
-    set_active_user(@user)
+    set_active_user(@user.id)
     @user_profile=@user.user_profile
     @person_partial=@user.person_type.to_s.downcase    
   end

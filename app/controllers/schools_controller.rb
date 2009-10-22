@@ -21,7 +21,7 @@ class SchoolsController < ApplicationController
   def show
     @active_tab = :Home
     @school=School.find(params[:id])
-    set_active_user(@school.user)
+    set_active_user(@school.user.id)
     
     respond_to do |format|
       format.html # show.html.erb
@@ -128,7 +128,7 @@ class SchoolsController < ApplicationController
   def students_list
     @active_tab = :Students
     @school = School.find(params[:id])
-    set_active_user(@school.user)
+    set_active_user(@school.user.id)
     @students = @school.students
     @year = Klass.current_academic_year(@school)
     @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}   
