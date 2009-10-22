@@ -33,7 +33,7 @@ class SchoolsController < ApplicationController
   # GET /schools/new.xml
   def new
     @school = School.new
-    
+    @user = User.new
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @school }
@@ -51,11 +51,10 @@ class SchoolsController < ApplicationController
   # POST /schools.xml
   def create
     @school = School.new(params[:school])
-    user = User.new
-    user.email = params[:email]
-    user.person = @school
+    @user = User.new(params[:user])
+    @user.person = @school
     respond_to do |format|
-      if @school.save and user.invite!
+      if @school.save and @user.invite!
         flash[:notice] = 'School was successfully created.'
         format.html { redirect_to(@school) }
         format.xml  { render :xml => @school, :status => :created, :location => @school }
@@ -88,6 +87,7 @@ class SchoolsController < ApplicationController
   # DELETE /schools/1.xml
   def destroy
     @school = School.find(params[:id])
+    @school.user.destroy
     @school.destroy
     
     respond_to do |format|

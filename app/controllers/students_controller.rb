@@ -64,6 +64,7 @@ class StudentsController < ApplicationController
   # DELETE /students/1.xml
   def destroy
     @student = Student.find(params[:id])
+    @student.user.destroy
     @student.destroy
     
     respond_to do |format|

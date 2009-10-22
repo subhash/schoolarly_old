@@ -2,9 +2,7 @@
 <% form_for(@school) do |f| %>
 <%= f.error_messages %>
 <p>
-    <%= label_tag 'Email of Administrator: ' %>
-    <br/>
-    <%= text_field_tag :email, params[:email] %>
+	<%= render :partial => 'users/invite_input' %>
 </p>
 <p>
     <%= f.label :name %>

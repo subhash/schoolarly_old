@@ -4,8 +4,7 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :school_id %><br />
-    <%= f.text_field :school_id %>
+    <%= render :partial => 'users/invite_input'%>
   </p>
   <p>
     <%= f.submit 'Create' %>

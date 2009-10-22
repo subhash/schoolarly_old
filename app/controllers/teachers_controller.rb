@@ -30,7 +30,7 @@ class TeachersController < ApplicationController
   def new
     @active_tab = :Teachers
     @teacher = Teacher.new
-    
+    @user = User.new
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @teacher }
@@ -47,10 +47,11 @@ class TeachersController < ApplicationController
   # POST /teachers.xml
   def create
     @teacher = Teacher.new(params[:teacher])
-    
+    @user = User.new(params[:user])
+    @user.person = @teacher
     respond_to do |format|
-      if @teacher.save
-        flash[:notice] = 'Teacher was successfully created.'
+      if @teacher.save and @user.invite!
+        flash[:notice] = 'Teacher was successfully invited.'
         format.html { redirect_to(@teacher) }
         format.xml  { render :xml => @teacher, :status => :created, :location => @teacher }
       else
@@ -82,6 +83,7 @@ class TeachersController < ApplicationController
   def destroy
     @active_tab = :Teachers
     @teacher = Teacher.find(params[:id])
+    @teacher.user.destroy
     @teacher.destroy
     
     respond_to do |format|
