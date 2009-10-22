@@ -133,6 +133,7 @@ class StudentsController < ApplicationController
   end
   
   def self.tabs(student_id)
+    user_id=Student.find(student_id).user.id
     tabs = [:Home => {:controller => :students, :action => 'show', :id=>student_id},
     :Subjects => '#',
     :Messages => '#',
@@ -141,7 +142,7 @@ class StudentsController < ApplicationController
     :Exams => '#',
     :Scores => '#',
     :AcademicHistory => '#',
-    :Profile =>  {:controller => :user_profiles, :action => 'profile_edit', :id=>student_id} ]
+    :Profile =>  {:controller => :user_profiles, :action => 'edit', :id=>user_id} ]
     return tabs
   end
 end

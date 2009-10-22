@@ -1,35 +1,30 @@
-<%if student.school %>
+<%if @person.school %>
 <table>
     <tr>
         <td>
-            <b><%= student.label :school %>:</b>
+            <b>School:</b>
         </td>
         <td>
-            <%= school.text_field :school, :value => student.school.name, :disabled => :true %>
+            <%=link_to @person.school.name, school_path(@person.school) %>
         </td>
     </tr>
     <tr>
         <td>
-            <b><%= school.label :admission_number %>:</b>
+            <b>Admission Number:</b>
         </td>
         <td>
-            <%= school.text_field :admission_number, :value => student.admission_no, :disabled => :true %>
+            <%=h @person.admission_number %>
         </td>
     </tr>
+    <%if @person.current_enrollment %>
     <tr>
         <td>
-            <b><%= school.label :fax %>:</b>
+            <b>Class:</b>
         </td>
         <td>
-            <%= school.text_field :fax %>
+            <%=h @person.current_enrollment.klass.name %>
         </td>
     </tr>
-    <tr>
-        <td>
-            <b><%= school.label :website %>:</b>
-        </td>
-        <td>
-            <%= school.text_field :website %>
-        </td>
-    </tr>
+    <%end %>
 </table>
+<%end %>

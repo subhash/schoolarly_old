@@ -20,9 +20,9 @@
         <tr>
             <td>
                 <%if student.user.user_profile %>
-                <%= student.user.name %>
+                <%= student.user.user_profile.name %>
                 <%else %>
-                <%= link_to "Profile not created", {:controller => 'user_profiles', :action => 'profile_new', :id => student.user} %>
+                <%= link_to "Profile not created", {:controller => 'user_profiles', :action => 'new', :id => student.user}, {:class => "profile"} %>
                 <%end %>
             </td>
             <td>

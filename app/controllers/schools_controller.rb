@@ -28,7 +28,7 @@ class SchoolsController < ApplicationController
       format.xml  { render :xml => @school }
     end
   end
-    
+  
   # GET /schools/new
   # GET /schools/new.xml
   def new
@@ -128,11 +128,12 @@ class SchoolsController < ApplicationController
   def students_list
     @active_tab = :Students
     @school = School.find(params[:id])
+    set_active_user(@school.user)
     @students = @school.students
     @year = Klass.current_academic_year(@school)
     @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}   
   end
- 
+  
   def klasses
     @active_tab = :Classes
     @school=School.find(params[:id])
@@ -199,7 +200,7 @@ class SchoolsController < ApplicationController
     tabs = [:Home => {:controller => :schools, :action => 'show', :id=>school_id},
     :Classes => {:controller => :schools, :action => 'klasses', :id=>school_id},
     :Teachers => {:controller => :schools, :action => 'teachers_index', :id=>school_id},
-		:Students => {:controller => :schools, :action => 'students_list', :id=>school_id},
+    :Students => {:controller => :schools, :action => 'students_list', :id=>school_id},
     :Departments => '#',
     :Profile =>  {:controller => :user_profiles, :action => 'show', :id=>user_id} ]
     return tabs

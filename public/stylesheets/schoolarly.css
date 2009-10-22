@@ -117,16 +117,18 @@
     background: #B1EBF5;
 }
 
-table.ui-state-default a{
+table.ui-state-default a.profile{
 	text-decoration: underline;
 	font-weight: normal;
 	font-style: italic;
+	color: red;
 }
 
-table.ui-state-default td:hover{
+
+table.ui-state-default td.ui-state-focus:hover{
 	background-color: #F6A828;
 }
-table.ui-state-default td:focus{
+table.ui-state-default td.ui-state-focus:focus{
 	background-color: #F6A828
 }
 table.nested .list-line-odd {
