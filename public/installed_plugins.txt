@@ -1,7 +1,7 @@
 Installed plugins
 1) enum-column - script/plugin install svn://rubyforge.org/var/svn/enum-column/plugins/enum-column
 2) foreign-key migrations -  ruby script/plugin install svn://rubyforge.org/var/svn/redhillonrails/trunk/vendor/plugins/redhillonrails_core
-
+3) auto_complete - script/plugin install git://github.com/rails/auto_complete.git
 
 jquery plugins/widgets used
 1) jquery dialog (jquery-ui.com)
