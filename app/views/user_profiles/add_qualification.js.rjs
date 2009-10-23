@@ -1,0 +1,4 @@
+page << "jQuery('#dialog_add_qualification').dialog('close');"
+page.replace_html("qualification_list_div", :partial =>'qualification_list', :object => @person)
+#page.select("div#qualification_list_div").each {|div| div.reload}
+

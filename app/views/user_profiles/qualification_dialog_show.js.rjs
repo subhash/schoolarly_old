@@ -1,0 +1,10 @@
+page.call 'jQuery.noConflict'
+#page.replace_html("add_qualification", :partial =>'add_allotment_dialog')
+page << "jQuery('#dialog_add_qualification').dialog({
+            bgiframe: true,
+            height: 306,
+            width: 360,
+            modal: true,
+            autoOpen: false
+        });"
+page << "jQuery('#dialog_add_qualification').dialog('open');"       

@@ -1,0 +1,45 @@
+<table>
+    <%teacher=@person %>
+    <tr>
+        <th>
+            University
+        </th>
+        <th>
+            Degree
+        </th>
+        <th>
+            Subject
+        </th>
+        <th>
+            Date
+        </th>
+    </tr>
+	
+    <%if !teacher.qualifications.nil? %>
+		<%@qualifications = teacher.qualifications%>
+	<fieldset>
+		<%for @qualification in @qualifications %>
+    	
+		
+			    <tr>
+			        <td>
+			            <%= text_field("qualification[]" , :university) %>
+			        </td>
+			        <td>
+			        	<%= text_field("qualification[]" , :degree) %>
+			        </td>
+			        <td>
+			        	<%= text_field("qualification[]" , :subject) %>
+			        </td>
+			        <td>
+			        	<%= text_field("qualification[]" , :date) %>
+			        </td>
+			    </tr>
+    
+			</fieldset>
+			
+    	<%end %>
+		
+    <%end %>
+	
+</table>

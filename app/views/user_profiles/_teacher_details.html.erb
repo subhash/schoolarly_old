@@ -1,0 +1,24 @@
+    <%if @person.qualifications.nil?%>
+		Qualification Details Unavailable
+	<%else%> 
+		<table>
+			<tr>
+		    	<th>University</th><th>Degree</th><th>Subject</th><th>Date</th></tr>
+		    <tr>
+			<%@person.qualifications.each do |qualification|%> 
+		            <td>
+		                <%=h qualification.university%>
+		            </td>
+		            <td>
+		                <%=h qualification.degree%>
+		            </td>
+		            <td>
+		                <%=h qualification.subject%>
+		            </td>
+		            <td>
+		                <%=h qualification.date%>
+		            </td>
+		        </tr>
+		   	<%end%>
+		 </table>
+	<%end%>
