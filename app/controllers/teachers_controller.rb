@@ -93,17 +93,17 @@ class TeachersController < ApplicationController
   end
   
   def allotment_show
-    @active_tab = :Allotment
+    @active_tab = :Allotments
     @teacher=Teacher.find(params[:id])
     @user=@teacher.user
-    #set_active_user(@user)
+    set_active_user(@user.id)
     @school=@teacher.school
     @year = Klass.current_academic_year(@school)
     @teacher_allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
   end
   
   def list_add_allotment
-    @active_tab = :Allotment
+    @active_tab = :Allotments
     @teacher=Teacher.find(params[:id])
     @school=@teacher.school
     @year = Klass.current_academic_year(@school)
@@ -128,7 +128,7 @@ class TeachersController < ApplicationController
   end
   
   def add_allotments
-    @active_tab = :Allotment
+    @active_tab = :Allotments
     @teacher=Teacher.find(params[:id])
     subject_id=params[:subject_id]
     add_klasses=params[:klasses].split(',')
@@ -146,17 +146,16 @@ class TeachersController < ApplicationController
   end
   
   def list_delete_allotment
-    @active_tab = :Allotment
+    @active_tab = :Allotments
     @teacher=Teacher.find(params[:id])
     @user=@teacher.user
-    #set_active_user(@user)
     @school=@teacher.school
     @year = Klass.current_academic_year(@school)
     @teacher_allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
   end
   
   def delete_allotments
-    @active_tab = :Allotment
+    @active_tab = :Allotments
     @teacher=Teacher.find(params[:id])
     @allotment_ids=params[:allotments]
     allotments=params[:allotments].split(',')
@@ -171,9 +170,10 @@ class TeachersController < ApplicationController
   
   def self.tabs(teacher_id)
     user_id=Teacher.find(teacher_id).user.id
-    tabs = [:Home => {:controller => :teachers, :action => 'show', :id=>teacher_id},#schools_path,
+    tabs = [:Home => {:controller => :teachers, :action => 'show', :id=>teacher_id},
     :Classes => {:controller => :teachers, :action => 'klasses', :id=>teacher_id},
-    :Teachers => {:controller => :teachers, :action => 'teacher_allotment', :id=>teacher_id} ,#'teachers_path',
+    :Allotments => {:controller => :teachers, :action => 'teacher_allotment', :id=>teacher_id},
+    :Students => "#",
     :Profile =>  {:controller => :user_profiles, :action => 'show', :id=>user_id}]
     return tabs
   end
