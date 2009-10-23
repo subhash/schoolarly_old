@@ -1,7 +1,7 @@
 class UserProfilesController < ApplicationController
   
   before_filter :set_active_tab
-  before_filter :find_user_and_person
+  before_filter :find_user_and_person, :except => :add_qualification
   
   def set_active_tab
     @active_tab = :Profile
@@ -55,7 +55,11 @@ class UserProfilesController < ApplicationController
     @user_profile=@user.user_profile
     person_type=@user.person_type.to_s.downcase
     User.transaction do
-      @person.update_attributes!(params[person_type])
+      if person_type=="teacher"
+        Qualification.update(params[:qualification].keys, params[:qualification].values)
+      else
+        @person.update_attributes!(params[person_type])
+      end
       @user_profile.update_attributes!(params[:user_profile])
       @user.update_attributes!(params[:user])
     end
@@ -66,4 +70,16 @@ class UserProfilesController < ApplicationController
     redirect_to(url_for( :controller => :user_profiles, :action => 'edit', :id=>@user)) 
   end
   
+  def add_qualification
+    @person=Teacher.find(params[:id])
+    qualification=Qualification.new()
+    qualification.university=params[:university]
+    qualification.degree=params[:degree]
+    qualification.subject=params[:subject]
+    qualification.date=params[:date]
+    @person.qualifications << qualification
+    @person.save!
+  rescue Exception => e
+    flash[:notice]="Error occured in qualification add: <br /> #{e.message}"
+  end
 end
