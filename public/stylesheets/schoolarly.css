@@ -99,6 +99,13 @@
 	height :1.5em;	
 }
 
+.small_button {
+    padding: .2em .7em;
+	margin: 10px 20px;
+    text-decoration: none;
+	height :1.1em;	
+}
+
 .auto_complete ul li {
     list-style-type: none;
 } .nested {
