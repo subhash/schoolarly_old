@@ -4,7 +4,7 @@
 </div>
 <div class="button ui-state-focus center"  style="float: right;">
     <%= link_to_remote 'Add Subjects',:url => {:controller => 'schools', :action => 'list_add_subjects', :id=>@school}%>
-</div
+</div>
 <div id="school_add_subjects_dialog" title="Select subjects to add" style="display: none;">
     <%= render :partial =>'schools/list_add_subjects'%>
 </div>
