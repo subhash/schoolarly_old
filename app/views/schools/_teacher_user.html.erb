@@ -1,7 +1,7 @@
 <tr>
     <% if teacher_user.user_profile.nil? %>
     <td>
-        Profile unavailable
+    	<%= link_to "Profile Unavailable", {:controller => 'user_profiles', :action => 'new', :id => teacher_user}, {:class => "profile"} %>
     </td>
     <%else %>
     <td>
