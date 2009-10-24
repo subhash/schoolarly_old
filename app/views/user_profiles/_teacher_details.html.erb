@@ -1,6 +1,4 @@
-    <%if @person.qualifications.nil?%>
-		Qualification Details Unavailable
-	<%else%> 
+    <%if !@person.qualifications.nil? && !@person.qualifications.empty?%>
 		<table>
 			<tr>
 		    	<th>University</th><th>Degree</th><th>Subject</th><th>Date</th></tr>
@@ -20,5 +18,8 @@
 		            </td>
 		        </tr>
 		   	<%end%>
-		 </table>
+		 </table>	
+		
+	<%else%> 
+		Qualification Details Unavailable
 	<%end%>

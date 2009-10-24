@@ -2,8 +2,6 @@
 <div id="qualification_list_div">
 	<%= render :partial => "qualification_list", :object => teacher%> 
 </div>
-<% puts "1*************1=" %>
-<% puts  @person.inspect%>
 <div class="button ui-state-default ui-corner-all center">
     <div id="button_subjects">
         <%= link_to_remote 'Add Qualification', :url => {:controller => 'user_profiles', :action => 'qualification_dialog_show', :id=>@teacher} %>
@@ -32,10 +30,7 @@
                 <td><%= text_field_tag(:date, "", :size => 36)%></td>
             </tr>
 			</table>
-			<%puts "params[subject]="%>
-            <%puts "$('subject').value"%>
                 <%=link_to_remote 'Add', :url => {:controller => 'user_profiles', :action => 'add_qualification', :id=>@person}, :with => "'university=' + $('university').value + '&degree=' + $('degree').value + '&subject=' + $('subject').value + '&date=' + $('date').value" %>
-            
         </fieldset>
 		
     </div>

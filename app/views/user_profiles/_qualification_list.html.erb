@@ -1,6 +1,15 @@
-<table>
+
+
     <%teacher=@person %>
+	
+    <%if !teacher.qualifications.nil? && !teacher.qualifications.empty?%>
+		<%@qualifications = teacher.qualifications%>
+		<table id="editlist">
     <tr>
+    	
+        <th>
+            Delete
+        </th>    	
         <th>
             University
         </th>
@@ -14,14 +23,16 @@
             Date
         </th>
     </tr>
-	
-    <%if !teacher.qualifications.nil? %>
-		<%@qualifications = teacher.qualifications%>
 	<fieldset>
+		<%@cb=[]%>
 		<%for @qualification in @qualifications %>
-    	
 		
 			    <tr>
+			    	<div id=<%=@qualification.id%>>
+			        <td>
+			            <%= check_box_tag("cb[" + @qualification.id.to_s + "]"  )%>
+			        </td>
+					</div>
 			        <td>
 			            <%= text_field("qualification[]" , :university) %>
 			        </td>
@@ -35,11 +46,11 @@
 			        	<%= text_field("qualification[]" , :date) %>
 			        </td>
 			    </tr>
-    
-			</fieldset>
-			
     	<%end %>
-		
+		</fieldset>
+		</table>
+	<%else%>
+		<blockquote>Qualification Details Unavailable</blockquote>
     <%end %>
 	
-</table>
+
