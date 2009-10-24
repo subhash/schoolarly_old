@@ -57,6 +57,10 @@ class UserProfilesController < ApplicationController
     User.transaction do
       if person_type=="teacher"
         Qualification.update(params[:qualification].keys, params[:qualification].values)
+        if !params[:cb].nil?
+          qualifications_marked_for_deletion=Qualification.find(params[:cb].keys)
+          Qualification.destroy(qualifications_marked_for_deletion)
+        end
       else
         @person.update_attributes!(params[person_type])
       end
