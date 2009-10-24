@@ -19,7 +19,7 @@
 <%= link_to_function "Add Teacher",toggle_div(:add_school_teacher) %>
 <div id="add_school_teacher" style="display: none;">
     <%form_remote_tag(:url =>{:controller => 'schools', :action => 'add_school_teacher', :id=>@school})  do %>
-    <%= text_field_with_auto_complete :user, :email, :value => nil, :size => 40, :tokens => ',' %>
+ <%= text_field_with_auto_complete :user, :email, {:value => nil, :size => 40}, {:tokens => ',', :url => {:controller => 'schools', :action => 'auto_complete_for_teacher_email'}} %>
     <%=submit_tag 'Add' %>
     <%end %>
 </div>

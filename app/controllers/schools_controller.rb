@@ -117,14 +117,21 @@ class SchoolsController < ApplicationController
     end
   end
   
-  def auto_complete_for_user_email
-    puts params[:user][:email]
+  def auto_complete_for_user_email(email, person_type)
     find_options = { 
-      :conditions => [ "LOWER(#{:email}) LIKE ? AND person_type = ?", params[:user][:email].downcase + '%' , 'Teacher'], 
+      :conditions => [ "LOWER(#{:email}) LIKE ? AND person_type = ?", email.downcase + '%' , person_type], 
       :order => "#{:email} ASC",
       :limit => 10 }    
     @items = User.find(:all, find_options)   
     render :inline => "<%= auto_complete_result @items, '#{:email}' %>"
+  end
+  
+  def auto_complete_for_student_email
+    auto_complete_for_user_email(params[:user][:email],'Student')
+  end
+  
+  def auto_complete_for_teacher_email
+    auto_complete_for_user_email(params[:user][:email],'Teacher')
   end
   
   def students_list

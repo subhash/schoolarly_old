@@ -73,15 +73,6 @@ class StudentsController < ApplicationController
     end
   end
   
-  def auto_complete_for_user_email
-    find_options = { 
-      :conditions => [ "LOWER(#{:email}) LIKE ? AND person_type = ?", params[:user][:email].downcase + '%' , 'Student'], 
-      :order => "#{:email} ASC",
-      :limit => 10 }    
-    @items = User.find(:all, find_options)   
-    render :inline => "<%= auto_complete_result @items, '#{:email}' %>"
-  end
-  
   def self.tabs(student_id)
     user_id=Student.find(student_id).user.id
     tabs = [:Home => {:controller => :students, :action => 'show', :id=>student_id},
