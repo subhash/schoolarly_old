@@ -1,6 +1,6 @@
 <% form_for @person, :url => {:controller => :user_profiles, :action => 'update', :id=>@user } do |person_form| %>
   <%= person_form.error_messages %>
-<div class="c38l">
+<div class="c25l">
 	<table>
 		<% fields_for @user_profile do |profile_form| %>	
 			<%= render :partial => "user_profiles/profile", :object => profile_form %>
@@ -8,7 +8,7 @@
 	</table>
 </div>
 
-<div class="c38r">
+<div class="c66r">
     <table>
     	<%= render :partial => "user_profiles/" + @person_partial, :object => person_form %>
 	</table>

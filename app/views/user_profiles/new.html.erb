@@ -1,7 +1,7 @@
 <% form_for @user_profile, :url => {:controller => :user_profiles, :action => :create, :method => :post, :id => @user} do |profile_form| %>
 <!--<%= error_messages_for 'user' %>!-->
   <%= profile_form.error_messages %>
-<div class="c38l">
+<div class="c25l">
     	<!--TODO Check with Subhash if the partial _form can be used here... Right now using another partial.
     	<% fields_for @user do |user_form| %>
 			<%= render :partial => "/users/form", :object => user_form  %>
@@ -12,7 +12,7 @@
 	
     
 </div>
-<div class="c38r">
+<div class="c66r">
     <table>
     	<% fields_for @person do |person_form| %>
 		<%= person_form.error_messages %>

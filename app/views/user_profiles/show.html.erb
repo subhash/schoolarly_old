@@ -1,4 +1,4 @@
-<div class="c38l">
+<div class="c25l">
     <table>
         <tr>
             <td>
@@ -50,7 +50,7 @@
         </tr>
     </table>
 </div>
-<div class="c38r">
+<div class="c66r">
     <%= render :partial => "user_profiles/" + @person_partial + "_details" %>
     <table>
         <tr>
@@ -66,7 +66,13 @@
     <p class="icaption_right">
         <% current_user = @user %>
         <% if current_user == @user %>
-        <%= link_to 'Edit', {:controller => :user_profiles, :action => 'edit', :id=>@user} %>|<% end %>
-        <%= link_to 'Back', {:controller => @person_partial.pluralize, :action => 'show', :id=>@person} %>
+		<div class="small_button ui-state-default ui-corner-all float_left">
+        <%= link_to 'Edit', {:controller => :user_profiles, :action => 'edit', :id=>@user} %>
+		</div>
+		<div class="small_button ui-state-default ui-corner-all float_left">
+		<%= link_to 'Back', {:controller => @person_partial.pluralize, :action => 'show', :id=>@person} %>
+		</div>
+		<% end %>
+        
     </p>
 </div>
