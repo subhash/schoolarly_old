@@ -83,6 +83,11 @@ class UserProfilesController < ApplicationController
     qualification.date=params[:date]
     @person.qualifications << qualification
     @person.save!
+    render :update do |page|
+        page << "jQuery('#dialog_add_qualification').dialog('close');"
+        page.insert_html(:bottom, :editlist, :partial =>'qualification_item', :object => qualification)
+    end
+        
   rescue Exception => e
     flash[:notice]="Error occured in qualification add: <br /> #{e.message}"
   end
