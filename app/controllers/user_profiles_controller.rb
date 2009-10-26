@@ -56,8 +56,10 @@ class UserProfilesController < ApplicationController
     person_type=@user.person_type.to_s.downcase
     User.transaction do
       if person_type=="teacher"
-        Qualification.update(params[:qualification].keys, params[:qualification].values)
-        if !params[:cb].nil?
+        if params[:qualification]
+          Qualification.update(params[:qualification].keys, params[:qualification].values)
+        end
+        if params[:cb]
           qualifications_marked_for_deletion=Qualification.find(params[:cb].keys)
           Qualification.destroy(qualifications_marked_for_deletion)
         end
@@ -83,11 +85,17 @@ class UserProfilesController < ApplicationController
     qualification.date=params[:date]
     @person.qualifications << qualification
     @person.save!
-    render :update do |page|
-        page << "jQuery('#dialog_add_qualification').dialog('close');"
-        page.insert_html(:bottom, :editlist, :partial =>'qualification_item', :object => qualification)
-    end
-        
+    if @person.qualifications.count==1
+        render :update do |page|
+            page << "jQuery('#dialog_add_qualification').dialog('close');"
+            page.replace_html(:qualification_list_div, :partial =>'qualification_list', :object => qualification)
+        end
+    else
+        render :update do |page|
+            page << "jQuery('#dialog_add_qualification').dialog('close');"
+            page.insert_html(:bottom, :editlist, :partial =>'qualification_item', :object => qualification)
+        end
+    end    
   rescue Exception => e
     flash[:notice]="Error occured in qualification add: <br /> #{e.message}"
   end
