@@ -1,6 +1,4 @@
 class StudentsController < ApplicationController
-  # GET /students
-  # GET /students.xml
   
   protect_from_forgery :only => [:create, :update, :destroy]
   
@@ -28,7 +26,8 @@ class StudentsController < ApplicationController
   # GET /students/new
   # GET /students/new.xml
   def new
-  
+    @student = Student.new
+    @user = User.new
   end
   
   # GET /students/1/edit
@@ -39,10 +38,22 @@ class StudentsController < ApplicationController
   # POST /students
   # POST /students.xml
   def create
-
+    @student = Student.new(params[:student])
+    @user = User.new(params[:user])
+    @student.user = @user
+    respond_to do |format|
+      if @student.save and @user.invite!
+        flash[:notice] = 'Student was successfully created.'
+        format.html { redirect_to(@student) }
+        format.xml  { render :xml => @student, :status => :created, :location => @student }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @student.errors, :status => :unprocessable_entity }
+      end
+    end
   end
   
-
+  
   # PUT /students/1
   # PUT /students/1.xml
   def update
@@ -86,4 +97,5 @@ class StudentsController < ApplicationController
     :Profile =>  {:controller => :user_profiles, :action => 'edit', :id=>user_id} ]
     return tabs
   end
+  
 end
