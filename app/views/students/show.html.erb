@@ -1,9 +1,16 @@
 <p>
-  <b>Admission number:</b>
-  <%=h @student.admission_number %>
+    <% if(controller.allow_read(@student)) %>
+    <b>Admission number:</b>
+    <%=h @student.admission_number %>
+    <% else %>
+    <b>Don't pry! Shame on you!</b>	
+    <% end %>
+	<br/>
+    <% if(controller.allow_write(@student)) %>
+    <b>Write baby, write</b>
+    <%=h @student.admission_number %>
+    <% else %>
+    <b>Don't pry! Shame on you!</b>
+    <% end %>
 </p>
-
-
-
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+<%= link_to 'Edit', edit_student_path(@student) %> |<%= link_to 'Back', students_path %>

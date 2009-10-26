@@ -17,7 +17,11 @@ class ApplicationController < ActionController::Base
   end
   
   def active_user
-    return User.find(session[:active_user])
+    begin
+      return User.find(session[:active_user])
+    rescue Exception => err
+      return nil
+    end
   end
   
   def current_user
@@ -29,6 +33,15 @@ class ApplicationController < ActionController::Base
     if(active_user)
       return eval("#{active_user.person_type.pluralize}Controller").send(:tabs , active_user.person_id)
     end
+  end
+  
+  
+  def allow_read(object)
+    current_user and (current_user.is_reader_of?(object) or current_user.is_reader_of?(object.class))
+  end
+  
+  def allow_write(object)
+    current_user and (current_user.is_editor_of?(object) or current_user.is_editor_of?(object.class))
   end
   
   private

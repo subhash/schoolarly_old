@@ -22,10 +22,10 @@ config.action_mailer.smtp_settings = {
   :tls => "true",
   :address => "smtp.gmail.com",
   :port => "587",
-  :domain => "localhost.localdomain",
+  :domain => "schoolarly.com",
   :authentication => :plain,
-  :user_name => "subhashgo",
-  :password => "myword178"
+  :user_name => "test@schoolarly.com",
+  :password => "testuser"
 }
 config.action_mailer.perform_deliveries = true
 # Don't care if the mailer can't send
