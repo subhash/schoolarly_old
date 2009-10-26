@@ -1,0 +1,20 @@
+<%@qualification=qualification_item %>
+<tr>
+    <div id=<%=qualification_item.id%>>
+        <td>
+            <%= check_box_tag("cb[" + @qualification.id.to_s + "]"  ) %>
+        </td>
+    </div>
+    <td>
+        <%= text_field("qualification[]" , :university, :size=>45) %>
+    </td>
+    <td>
+        <%= text_field("qualification[]" , :degree, :size=>20) %>
+    </td>
+    <td>
+        <%= text_field("qualification[]" , :subject, :size=>20) %>
+    </td>
+    <td>
+        <%= text_field("qualification[]" , :date, :size=>9) %>
+    </td>
+</tr>

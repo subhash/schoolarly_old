@@ -1,56 +1,33 @@
-
-
-    <%teacher=@person %>
-	
-    <%if !teacher.qualifications.nil? && !teacher.qualifications.empty?%>
-		<%@qualifications = teacher.qualifications%>
-		<table id="editlist">
-    <tr>
-    	
-        <th>
-            Delete
-        </th>    	
-        <th>
-            University
-        </th>
-        <th>
-            Degree
-        </th>
-        <th>
-            Subject
-        </th>
-        <th>
-            Date
-        </th>
-    </tr>
-	<fieldset>
-		<%@cb=[]%>
-		<%for @qualification in @qualifications %>
-		
-			    <tr>
-			    	<div id=<%=@qualification.id%>>
-			        <td>
-			            <%= check_box_tag("cb[" + @qualification.id.to_s + "]"  )%>
-			        </td>
-					</div>
-			        <td>
-			            <%= text_field("qualification[]" , :university) %>
-			        </td>
-			        <td>
-			        	<%= text_field("qualification[]" , :degree) %>
-			        </td>
-			        <td>
-			        	<%= text_field("qualification[]" , :subject) %>
-			        </td>
-			        <td>
-			        	<%= text_field("qualification[]" , :date) %>
-			        </td>
-			    </tr>
-    	<%end %>
-		</fieldset>
-		</table>
-	<%else%>
-		<blockquote>Qualification Details Unavailable</blockquote>
-    <%end %>
-	
-
+<%teacher=@person %>
+<%if !teacher.qualifications.nil? && !teacher.qualifications.empty? %>
+	<%@qualifications = teacher.qualifications %>
+	<table id="editlist">
+	    <tr>
+	        <th>
+	            Delete
+	        </th>
+	        <th>
+	            University
+	        </th>
+	        <th>
+	            Degree
+	        </th>
+	        <th>
+	            Subject
+	        </th>
+	        <th>
+	            Date
+	        </th>
+	    </tr>
+	    <fieldset>
+	        <%@cb=[] %>
+	        <%for @qualification in @qualifications %>
+	        	<%= render :partial => 'qualification_item', :object => @qualification %>
+	        <%end %>
+	    </fieldset>
+	</table>
+<%else %>
+	<blockquote>
+	    Qualification Details Unavailable
+	</blockquote>
+<%end %>
