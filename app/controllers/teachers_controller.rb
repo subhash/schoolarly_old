@@ -1,23 +1,28 @@
 class TeachersController < ApplicationController
   protect_from_forgery :only => [:destroy]
+
+  before_filter :set_active_tab_Teachers, :only => [:show, :new, :edit, :destroy]
+  before_filter :set_active_tab_Allotments, :only => [:allotment_show, :list_add_allotment, :add_allotments, :list_delete_allotment, :delete_allotments]
+  before_filter :find_teacher, :except => [ :new, :create]
   
-  # GET /teachers
-  # GET /teachers.xml
-  def index
+  def set_active_tab_Teachers
     @active_tab = :Teachers
-    @teachers = Teacher.all
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @teachers }
-    end
   end
   
+  def set_active_tab_Allotments
+    @active_tab = :Allotments
+  end
+  
+  def find_teacher    
+    if(params[:id])
+      @teacher = Teacher.find(params[:id])
+    end
+  end  
+  
+   
   # GET /teachers/1
   # GET /teachers/1.xml
   def show
-    @active_tab = :Teachers
-    @teacher = Teacher.find(params[:id])
     set_active_user(@teacher.user.id)
     respond_to do |format|
       format.html # show.html.erb
@@ -28,7 +33,6 @@ class TeachersController < ApplicationController
   # GET /teachers/new
   # GET /teachers/new.xml
   def new
-    @active_tab = :Teachers
     @teacher = Teacher.new
     @user = User.new
     respond_to do |format|
@@ -39,8 +43,7 @@ class TeachersController < ApplicationController
   
   # GET /teachers/1/edit
   def edit
-    @active_tab = :Teachers
-    @teacher = Teacher.find(params[:id])
+
   end
   
   # POST /teachers
@@ -64,7 +67,6 @@ class TeachersController < ApplicationController
   # PUT /teachers/1
   # PUT /teachers/1.xml
   def update
-    @teacher = Teacher.find(params[:id])
     
     respond_to do |format|
       if @teacher.update_attributes(params[:teacher])
@@ -81,8 +83,7 @@ class TeachersController < ApplicationController
   # DELETE /teachers/1
   # DELETE /teachers/1.xml
   def destroy
-    @active_tab = :Teachers
-    @teacher = Teacher.find(params[:id])
+
     @teacher.user.destroy
     @teacher.destroy
     
@@ -93,8 +94,7 @@ class TeachersController < ApplicationController
   end
   
   def allotment_show
-    @active_tab = :Allotments
-    @teacher=Teacher.find(params[:id])
+
     @user=@teacher.user
     set_active_user(@user.id)
     @school=@teacher.school
@@ -103,15 +103,12 @@ class TeachersController < ApplicationController
   end
   
   def list_add_allotment
-    @active_tab = :Allotments
-    @teacher=Teacher.find(params[:id])
     @school=@teacher.school
     @year = Klass.current_academic_year(@school)
     @allotment_subjects=@school.subjects
   end
   
   def allot_klasses
-    @teacher=Teacher.find(params[:id])
     @subject=Subject.find(params[:subject_id])
     @subject_id=params[:subject_id]
     current_subject_allotments=@teacher.current_allotments.find_all_by_subject_id(params[:subject_id])
@@ -128,8 +125,6 @@ class TeachersController < ApplicationController
   end
   
   def add_allotments
-    @active_tab = :Allotments
-    @teacher=Teacher.find(params[:id])
     subject_id=params[:subject_id]
     add_klasses=params[:klasses].split(',')
     add_klasses.each {|klass_id| 
@@ -146,8 +141,6 @@ class TeachersController < ApplicationController
   end
   
   def list_delete_allotment
-    @active_tab = :Allotments
-    @teacher=Teacher.find(params[:id])
     @user=@teacher.user
     @school=@teacher.school
     @year = Klass.current_academic_year(@school)
@@ -155,8 +148,6 @@ class TeachersController < ApplicationController
   end
   
   def delete_allotments
-    @active_tab = :Allotments
-    @teacher=Teacher.find(params[:id])
     @allotment_ids=params[:allotments]
     allotments=params[:allotments].split(',')
     allotments.each {|allotment_id| 
@@ -172,7 +163,7 @@ class TeachersController < ApplicationController
     user_id=Teacher.find(teacher_id).user.id
     tabs = [:Home => {:controller => :teachers, :action => 'show', :id=>teacher_id},
     :Classes => {:controller => :teachers, :action => 'klasses', :id=>teacher_id},
-    :Allotments => {:controller => :teachers, :action => 'teacher_allotment', :id=>teacher_id},
+    :Allotments => {:controller => :teachers, :action => 'allotment_show', :id=>teacher_id},
     :Students => "#",
     :Profile =>  {:controller => :user_profiles, :action => 'show', :id=>user_id}]
     return tabs
