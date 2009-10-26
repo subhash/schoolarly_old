@@ -38,7 +38,7 @@
             </td>
             <%end %>
             <th>
-                <%= link_to 'Delete', student_path(student), :confirm => 'Are you sure?', :method => :delete %>
+                <%= link_to_remote 'Delete', :url => {:controller => 'schools', :action => 'remove_student',:id => @school, :student_id => student}, :confirm => 'Are you sure?' %>
             </th>
         </tr>
         <%end %>

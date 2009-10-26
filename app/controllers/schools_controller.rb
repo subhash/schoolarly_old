@@ -204,6 +204,18 @@ class SchoolsController < ApplicationController
     end  
   end
   
+  def remove_student
+    @school = School.find(params[:id])
+    @student = Student.find(params[:student_id])
+    @school.students.delete(@student)
+    if @school.save
+       @students = @school.students
+      render :update do |page|
+        page.replace_html("school_students_table", :partial => "students/list")
+      end
+    end
+  end
+  
   def klasses
     @active_tab = :Classes
     @school=School.find(params[:id])
