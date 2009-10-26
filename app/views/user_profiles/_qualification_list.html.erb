@@ -1,7 +1,8 @@
 <%teacher=@person %>
+<table id="editlist">
 <%if !teacher.qualifications.nil? && !teacher.qualifications.empty? %>
 	<%@qualifications = teacher.qualifications %>
-	<table id="editlist">
+	
 	    <tr>
 	        <th>
 	            Delete
@@ -25,9 +26,19 @@
 	        	<%= render :partial => 'qualification_item', :object => @qualification %>
 	        <%end %>
 	    </fieldset>
-	</table>
+
 <%else %>
-	<blockquote>
-	    Qualification Details Unavailable
-	</blockquote>
+<tr>
+	<td></td>
+	<td>
+		<blockquote>
+	    	Qualification Details Unavailable
+		</blockquote>
+	</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	
+</tr>	
 <%end %>
+	</table>
