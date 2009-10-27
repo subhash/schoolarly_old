@@ -3,14 +3,14 @@
 </table>
 <div class="c38l"">
 <div class="button ui-state-default ui-corner-all center float_right">
-    <div id="button_subjects">
+    <div id="add_button">
         <%= link_to_remote 'Add Allotment', :url => {:controller => 'teachers', :action => 'list_add_allotment', :id=>@teacher} %>
     </div>
 </div>
 </div>
-<div class="c38r"">
+<div class="c38r">
 <div class="button ui-state-default ui-corner-all center float_left">
-    <div id="button_subjects">
+    <div id="delete_button" >
         <%= link_to_remote 'Delete Allotment', :url => {:controller => 'teachers', :action => 'list_delete_allotment', :id=>@teacher} %>
     </div>
 </div>
@@ -26,6 +26,3 @@
 		
     </div>
 </div>
-
-
-<!--<%= link_to 'Delete Allotment', :controller => 'teachers', :action => 'allotment_delete', :id=>@teacher %>!-->
