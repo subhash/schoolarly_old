@@ -13,7 +13,7 @@
     </td>
     <% if teacher_user.person.current_subjects.empty? %>
     <td>
-        -
+		<%= link_to 'Allotment not yet done', :controller => 'teachers', :action => 'allotment_show', :id=>teacher_user.person %>
     </td>
     <%else %>
     <%p=nil %>
