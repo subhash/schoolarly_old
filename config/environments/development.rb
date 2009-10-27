@@ -27,6 +27,6 @@ config.action_mailer.smtp_settings = {
   :user_name => "test@schoolarly.com",
   :password => "testuser"
 }
-config.action_mailer.perform_deliveries = true
+config.action_mailer.perform_deliveries = false
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = true
