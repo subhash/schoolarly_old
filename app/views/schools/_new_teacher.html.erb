@@ -1,0 +1,16 @@
+<h3 class="ui-widget-header">New Teacher</h3>
+<% remote_form_for @user , :url => {:controller => 'schools', :action => 'create_teacher', :school_id => @school},:html => {:class => "yform"} do |f| %>
+<%= f.error_messages %>
+<%= f.label :email %>
+<%= text_field_with_auto_complete :user, :email, {:value => nil, :size => 40}, {:tokens => ',', :url => {:controller => 'schools', :action => 'auto_complete_for_teacher_email'}} %>
+<%= button_to_remote "Add Teacher", {:url => {:controller => 'schools', :action => 'add_teacher',  :school_id => @school},:with => "'email='+user_email.value"}, {:id => "add_teacher_button"} %>
+<div id="password" style="display: none">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+    <%= f.submit 'Create' %>
+    <br/>
+</div>
+<% end %>
+<%= link_to 'Back', school_path(@school) %>
