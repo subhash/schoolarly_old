@@ -18,7 +18,6 @@ class TeachersController < ApplicationController
       @teacher = Teacher.find(params[:id])
     end
   end  
-  
    
   # GET /teachers/1
   # GET /teachers/1.xml
@@ -94,7 +93,6 @@ class TeachersController < ApplicationController
   end
   
   def allotment_show
-
     @user=@teacher.user
     set_active_user(@user.id)
     @school=@teacher.school
@@ -138,6 +136,12 @@ class TeachersController < ApplicationController
       end
     } 
     @teacher_allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
+  end
+  
+  def close_delete_allotments
+    render :update do |page|
+      page << "jQuery('#dialog_delete_allotment').dialog('close');"
+    end
   end
   
   def list_delete_allotment
