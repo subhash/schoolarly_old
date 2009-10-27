@@ -1,9 +1,9 @@
 class TeachersController < ApplicationController
   protect_from_forgery :only => [:destroy]
 
-  before_filter :set_active_tab_Teachers, :only => [:show, :new, :edit, :destroy]
+  before_filter :set_active_tab_Teachers, :only => [:destroy]
   before_filter :set_active_tab_Allotments, :only => [:allotment_show, :list_add_allotment, :add_allotments, :list_delete_allotment, :delete_allotments]
-  before_filter :find_teacher, :except => [ :new, :create]
+  before_filter :find_teacher
   
   def set_active_tab_Teachers
     @active_tab = :Teachers
@@ -19,66 +19,6 @@ class TeachersController < ApplicationController
     end
   end  
    
-  # GET /teachers/1
-  # GET /teachers/1.xml
-  def show
-    set_active_user(@teacher.user.id)
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @teacher }
-    end
-  end
-  
-  # GET /teachers/new
-  # GET /teachers/new.xml
-  def new
-    @teacher = Teacher.new
-    @user = User.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @teacher }
-    end
-  end
-  
-  # GET /teachers/1/edit
-  def edit
-
-  end
-  
-  # POST /teachers
-  # POST /teachers.xml
-  def create
-    @teacher = Teacher.new(params[:teacher])
-    @user = User.new(params[:user])
-    @user.person = @teacher
-    respond_to do |format|
-      if @teacher.save and @user.invite!
-        flash[:notice] = 'Teacher was successfully invited.'
-        format.html { redirect_to(@teacher) }
-        format.xml  { render :xml => @teacher, :status => :created, :location => @teacher }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @teacher.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-  
-  # PUT /teachers/1
-  # PUT /teachers/1.xml
-  def update
-    
-    respond_to do |format|
-      if @teacher.update_attributes(params[:teacher])
-        flash[:notice] = 'Teacher was successfully updated.'
-        format.html { redirect_to(@teacher) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @teacher.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-  
   # DELETE /teachers/1
   # DELETE /teachers/1.xml
   def destroy
@@ -165,7 +105,7 @@ class TeachersController < ApplicationController
   
   def self.tabs(teacher_id)
     user_id=Teacher.find(teacher_id).user.id
-    tabs = [:Home => {:controller => :teachers, :action => 'show', :id=>teacher_id},
+    tabs = [:Home => "#",
     :Classes => {:controller => :teachers, :action => 'klasses', :id=>teacher_id},
     :Allotments => {:controller => :teachers, :action => 'allotment_show', :id=>teacher_id},
     :Students => "#",
