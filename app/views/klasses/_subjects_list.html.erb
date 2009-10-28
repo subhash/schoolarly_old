@@ -7,11 +7,12 @@ if subjects && !(subjects.empty?) %>
     <li id=<%= "#{@klass.id}_#{subject.id}" %>
  class="ui-widget-content">
         <%= link_to_function subject.name do |page|
-        page.select("#subjects_list .delete").each do |item|
-        item.hide
-        end
-        page["#{@school.id}#{@klass.id}_#{subject.id}_delete"].show
-        end %>
+        		page.select("#subjects_list .delete").each do |item|
+        			item.hide
+        		end
+        		page["#{@school.id}#{@klass.id}_#{subject.id}_delete"].show
+        		end 
+		%>
     </li>
     <%end %>
 </ol>

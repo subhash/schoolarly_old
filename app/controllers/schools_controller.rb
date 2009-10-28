@@ -99,6 +99,7 @@ class SchoolsController < ApplicationController
   def teachers_index
     @active_tab = :Teachers
     @school=School.find(params[:id])
+    set_active_user(@school.user.id)
     @teachers=@school.teachers
     if @teachers.empty?
       flash[:notice] = 'No teacher exists.'
@@ -220,7 +221,7 @@ class SchoolsController < ApplicationController
           render :update do |page|
             page.select("form").first.reset
             page[:new_student_form].hide
-            page.replace_html("school_students_table", :partial => "students/list")
+            page.replace_html("school_students_table", :partial => "students")
           end
         end
       end
@@ -252,7 +253,7 @@ class SchoolsController < ApplicationController
         render :update do |page|
           page.select("form").first.reset
           page[:new_student_form].hide
-          page.replace_html("school_students_table", :partial => "students/list")
+          page.replace_html("school_students_table", :partial => "students")
         end
       else
         render :action => :new
@@ -270,14 +271,21 @@ class SchoolsController < ApplicationController
     if @school.save
        @students = @school.students
       render :update do |page|
-        page.replace_html("school_students_table", :partial => "students/list")
+        page.replace_html("school_students_table", :partial => "students")
       end
     end
+  end
+  
+  def enroll_student
+    @school = School.find(params[:id])
+    @student = Student.find(params[:student_id])
+    @klasses = @school.klasses
   end
   
   def klasses
     @active_tab = :Classes
     @school=School.find(params[:id])
+    set_active_user(@school.user.id)
     @year = Klass.current_academic_year(@school)
     @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
     @school_subjects = @school.subjects
@@ -292,7 +300,7 @@ class SchoolsController < ApplicationController
     delete_klasses = params[:delete_klasses].split(',')
     delete_klasses.each {|klass_id| 
       if (!klass_id.empty?) 
-        Klass.destroy(klass_id.to_i)
+        Klass.destroy(klass_id.split('_').first)
       end
     }  
     @school=School.find(params[:id])

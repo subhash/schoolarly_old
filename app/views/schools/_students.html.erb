@@ -1,0 +1,53 @@
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery("#students_list_table").tablesorter({
+            sortList: [[0, 0]]
+        });
+    });
+</script>
+<table id="students_list_table" class="ui-state-default" border="1px">
+    <caption>
+        Students in <%=@school.name %>
+    </caption>
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Class (Level-Division)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @students.each do |student| %>
+        <tr>
+            <td>
+                <%if student.user.user_profile %>
+                <%= student.user.user_profile.name %>
+                <%else %>
+                <%= link_to "Profile not created", {:controller => 'user_profiles', :action => 'new', :id => student.user}, {:class => "profile"} %>
+                <%end %>
+            </td>
+            <td>
+                <%= student.user.email %>
+            </td>
+            <% if student.current_enrollment %>
+            <td>
+                <%= student.current_enrollment.klass.name %>
+            </td>
+            <%else %>
+            <td class="ui-state-focus">
+                <%= link_to 'Enroll student',  {:controller => 'schools', :action => 'enroll_student', :id => @school, :student_id => student} %>
+            </td>
+            <%end %>
+            <th>
+                <%= link_to_remote 'Delete', :url => {:controller => 'schools', :action => 'remove_student',:id => @school, :student_id => student}, :confirm => 'Are you sure?' %>
+            </th>
+        </tr>
+        <%end %>
+    </tbody>
+</table>

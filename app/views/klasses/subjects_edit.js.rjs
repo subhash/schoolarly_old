@@ -1,6 +1,7 @@
+
 page.replace_html "klass_subjects_edit", :partial => 'klasses/subjects_edit'
 page.replace_html "add_subjects_dialog_controls" , :partial => 'klasses/add_subjects_dialog'
-       
+
 page[:klass_subjects_edit].show
 page[:klass_subjects_edit].visual_effect :highlight,
 :startcolor => "#3B69AD" 
@@ -22,3 +23,8 @@ page << "jQuery('#add_subjects_list').bind('selectablestop', function(event, ui)
                 klass_subject_indices += id + \",\";
             });
         });" 
+page.select(".sticker tr td").each do |e|  
+  e.remove_class_name("ui-state-highlight")
+end
+
+page["#{@klass.id}"].add_class_name "ui-state-highlight"

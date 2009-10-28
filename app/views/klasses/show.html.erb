@@ -1,0 +1,64 @@
+<script type="text/javascript">
+    jQuery(function(){
+        jQuery("#klass_tabs").tabs().addClass('ui-tabs-vertical ui-helper-clearfix');
+        jQuery("#klass_tabs li").removeClass('ui-corner-top').addClass('ui-corner-left');
+        jQuery("#add_subjects_dialog").dialog({
+            bgiframe: true,
+            height: 500,
+            width: 400,
+            modal: true,
+            autoOpen: false
+        });
+    });
+</script>
+<!--
+<script type="text/javascript">
+jQuery(function(){
+jQuery("#klass_tabs").tabs();
+jQuery("#klass_tabs li");
+});
+</script>
+-->
+<div id="klass_tabs">
+    <ul>
+        <li>
+            <a href="#klass_tabs-1">Students</a>
+        </li>
+        <li>
+            <a href="#klass_tabs-2">Subjects</a>
+        </li>
+        <li>
+            <a href="#klass_tabs-3">Teachers</a>
+        </li>
+    </ul>
+    <div id="klass_tabs-1">
+        <h2>Students in <%=@klass.name %></h2>
+        <p>
+            <%= render :partial => "students" %>
+        </p>
+    </div>
+    <div id="klass_tabs-2">
+        <h2>Subjects taught in <%=@klass.name %></h2>
+        <p>
+            <div id="subjects_list" class="sticker">
+                <%=render :partial => 'klasses/subjects_list', :object => @klass_subjects %>
+            </div>
+            <div class="button ui-state-default center">
+                <%= link_to_remote 'Add',:url => {:controller => 'klasses', :action => 'list_add_subjects', :id=>@klass} %>
+            </div>
+            <div id="add_subjects_dialog" title="Select subjects to add" style="display: none;">
+                <div id="add_subjects_dialog_controls">
+                </div>
+            </div>
+        </p>
+    </div>
+    <div id="klass_tabs-3">
+        <h2>Teachers for <%=@klass.name %></h2>
+        <p>
+           
+        </p>
+        <p>
+            
+        </p>
+    </div>
+</div>

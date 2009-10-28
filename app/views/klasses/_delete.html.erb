@@ -8,7 +8,7 @@
             <%=level %>
         </th>
         <%level_klasses.each do |klass| %>
-        <td id=<%=klass.id%>
+        <td id=<%="#{klass.id}_delete"%>
             class="ui-state-default"><%if ['Pre-school', 'L.K.G','U.K.G','Mont1','Mont2','Mont3'].include?(level.to_s) %>
             <%=klass.division %>
             <%else %>

@@ -287,11 +287,11 @@ ActiveRecord::Schema.define(:version => 20091009163200) do
   add_foreign_key "student_enrollments_subjects", ["student_enrollment_id"], "student_enrollments", ["id"], :name => "student_enrollments_subjects_ibfk_1"
   add_foreign_key "student_enrollments_subjects", ["subject_id"], "subjects", ["id"], :name => "student_enrollments_subjects_ibfk_2"
 
-  add_foreign_key "students", ["current_enrollment_id"], "student_enrollments", ["id"], :name => "students_ibfk_2"
   add_foreign_key "students", ["school_id"], "schools", ["id"], :name => "students_ibfk_1"
+  add_foreign_key "students", ["current_enrollment_id"], "student_enrollments", ["id"], :name => "students_ibfk_2"
 
-  add_foreign_key "teacher_allotments", ["subject_id"], "subjects", ["id"], :name => "teacher_allotments_ibfk_2"
   add_foreign_key "teacher_allotments", ["teacher_id"], "teachers", ["id"], :name => "teacher_allotments_ibfk_1"
+  add_foreign_key "teacher_allotments", ["subject_id"], "subjects", ["id"], :name => "teacher_allotments_ibfk_2"
   add_foreign_key "teacher_allotments", ["klass_id"], "klasses", ["id"], :name => "teacher_allotments_ibfk_3"
 
   add_foreign_key "teachers", ["school_id"], "schools", ["id"], :name => "teachers_ibfk_1"

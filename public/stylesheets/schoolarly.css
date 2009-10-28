@@ -7,11 +7,11 @@
  */
 /*
  * for dialog widget
- */ .sticker {
+ */ .sticker, .selectable {
     list-style-type: none;
     margin: 0;
     padding: 0;
-} .sticker td {
+} .sticker td, .selectable td {
     margin: 3px;
     padding: 1px;
     float: left;
@@ -28,12 +28,12 @@
     font-size: 1.2em;
     list-style-type: none;
 }.sticker .ui-icon {
-	float: right;	
+    float: right;
 }
 
 /*
  * for links inside sticker table cells
- */ .sticker td a {
+ */ .sticker td a, .sticker li a {
     display: block;
     width: 100%;
     height: 100%;
@@ -45,14 +45,8 @@
 }.sticker td a:focus {
     background-color: #666;
     color: #ccc;
-} .sticker li a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    color: #666;
-    text-decoration: none;
 } .sticker li a:hover {
-    background-color: #EDF2F8 ;
+    background-color: #EDF2F8;
     color: #ccc;
 }.sticker li a:focus {
     background-color: #EDF2F8;
@@ -71,18 +65,6 @@
 } .selectable li.ui-selected {
     background: #F39814;
     color: white;
-}.selectable {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-} .selectable td {
-    margin: 3px;
-    padding: 1px;
-    float: left;
-    width: 70px;
-    height: 45px;
-    font-size: 1.5em;
-    text-align: center;
 }.selectable li {
     margin: 3px;
     padding: 0.4em;
@@ -94,19 +76,15 @@
  * for button
  */ .button {
     padding: .5em 3em;
-	margin: 10px;
+    margin: 10px;
     text-decoration: none;
-	height :1.5em;	
-}
-
-.small_button {
+    height: 1.5em;
+} .small_button {
     padding: .2em .7em;
-	margin: 10px 20px;
+    margin: 10px 20px;
     text-decoration: none;
-	height :1.1em;	
-}
-
-.auto_complete ul li {
+    height: 1.1em;
+} .auto_complete ul li {
     list-style-type: none;
 } .nested {
     border: none;
@@ -124,20 +102,45 @@
     background: #B1EBF5;
 }
 
-table.ui-state-default a.profile{
-	text-decoration: underline;
-	font-weight: normal;
-	font-style: italic;
-	color: red;
+table.ui-state-default a.profile {
+    text-decoration: underline;
+    font-weight: normal;
+    font-style: italic;
+    color: red;
 }
 
+table.ui-state-default td.ui-state-focus:hover {
+    background-color: #F6A828;
+}
 
-table.ui-state-default td.ui-state-focus:hover{
-	background-color: #F6A828;
+table.ui-state-default td.ui-state-focus:focus {
+    background-color: #F6A828
 }
-table.ui-state-default td.ui-state-focus:focus{
-	background-color: #F6A828
-}
+
 table.nested .list-line-odd {
     background: #E0F8FC;
+} .ui-tabs-vertical {
+    width: 55em;
+} .ui-tabs-vertical .ui-tabs-nav {
+    padding: .2em .1em .2em .2em;
+    float: left;
+    width: 12em;
+} .ui-tabs-vertical .ui-tabs-nav li {
+    clear: left;
+    width: 100%;
+    border-bottom-width: 1px !important;
+    border-right-width: 0 !important;
+    margin: 0 -1px .2em 0;
+    list-style-type: none
+} .ui-tabs-vertical .ui-tabs-nav li a {
+    display: block;
+} .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-selected {
+    padding-bottom: 0;
+    padding-right: .1em;
+    border-right-width: 1px;
+    border-right-width: 1px;
+} .ui-tabs-vertical .ui-tabs-panel {
+    padding: 1em;
+    float: right;
+    width: 40em;
 }
