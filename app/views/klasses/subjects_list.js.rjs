@@ -1,0 +1,21 @@
+page.replace_html "heading", "Class : "+@klass.name
+#page[:heading].visual_effect(:highlight)
+page.replace_html "select_subjects_heading", "Select Subjects"
+page.replace_html "subjects", :partial => 'klasses/subjects'
+page.replace_html "enroll_submit_button", (button_to "Enroll" , {:controller => 'students', :action => 'enroll', :id => @student, :klass_id => @klass}, {:with => "'subjects=' + subject_indices"})
+page.select(".sticker tr td").each do |e|  
+  e.remove_class_name("ui-state-highlight")
+end
+
+page["#{@klass.id}"].add_class_name "ui-state-highlight"
+
+page << "jQuery('#subjects').selectable({
+           filter: 'li'
+        });"             
+page << "jQuery('#subjects').bind('selectablestop', function(event, ui){
+            subject_indices = \"\";
+            jQuery('#subjects li.ui-selected').each(function(i){
+                id = this.id;
+                subject_indices += id + \",\";
+            });
+        });" 

@@ -3,7 +3,9 @@
 <%= f.error_messages %>
 <%= f.label :email %>
 <%= text_field_with_auto_complete :user, :email, {:value => nil, :size => 40}, {:tokens => ',', :url => {:controller => 'schools', :action => 'auto_complete_for_student_email'}} %>
-<%= button_to_remote "Add student", {:url => {:controller => 'schools', :action => 'add_student',  :school_id => @school},:with => "'email='+user_email.value"}, {:id => "add_student_button"} %>
+<%= label_tag :admission_number %>
+<%= text_field_tag :admission_number %>
+<%= button_to_remote "Add student", {:url => {:controller => 'schools', :action => 'add_student',  :school_id => @school},:with => "'email='+user_email.value+'&admission_number='+admission_number.value"}, {:id => "add_student_button"} %>
 <div id="password" style="display: none">
     <%= f.label :password %>
     <%= f.password_field :password %>

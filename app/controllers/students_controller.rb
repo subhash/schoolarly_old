@@ -11,6 +11,32 @@ class StudentsController < ApplicationController
     end
   end
   
+  
+  def enroll_edit
+    session[:redirect] = request.request_uri
+    @student = Student.find(params[:id])
+    @school = @student.school
+    #    set_active_user(@student.user.id)
+    @active_tab = :Students
+    @year = Klass.current_academic_year(@school)
+    @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
+    @action = 'subjects_list'
+  end
+  
+  def enroll
+    @student = Student.find(params[:id])
+    @klass = Klass.find(params[:klass_id])    
+    subjects = params[:subjects].split(',')
+    subjects.each {|subject_id| 
+      if (!subject_id.empty?)        
+        subject = Subject.find(subject_id.split('_').last)
+        enrollment = StudentEnrollment.new()
+#        @student.enrollments << 
+    end
+    }
+  end
+  
+  
   # GET /students/1
   # GET /students/1.xml
   def show
@@ -34,6 +60,7 @@ class StudentsController < ApplicationController
   def edit
     @student = Student.find(params[:id])
   end
+  
   
   # POST /students
   # POST /students.xml

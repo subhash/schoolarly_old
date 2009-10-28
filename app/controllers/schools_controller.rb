@@ -108,17 +108,17 @@ class SchoolsController < ApplicationController
     @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
   end
   
-#  def add_school_teacher
-#    @school=School.find(params[:id])
-#    @user = User.find(:first, :conditions => ["email = ?",params[:user][:email]])
-#    if @user.nil?
-#      flash[:notice] = "The user does not exist"
-#    else
-#      @school.teachers << @user.person
-#    end
-#  end
+  #  def add_school_teacher
+  #    @school=School.find(params[:id])
+  #    @user = User.find(:first, :conditions => ["email = ?",params[:user][:email]])
+  #    if @user.nil?
+  #      flash[:notice] = "The user does not exist"
+  #    else
+  #      @school.teachers << @user.person
+  #    end
+  #  end
   
-   def new_teacher
+  def new_teacher
     @active_tab = :Teachers
     @user = User.new
     @school = School.find(params[:id])
@@ -151,7 +151,7 @@ class SchoolsController < ApplicationController
       render :action => :new
     end  
   end
-
+  
   def add_teacher    
     @school = School.find(params[:school_id])
     if(params[:email])
@@ -203,30 +203,6 @@ class SchoolsController < ApplicationController
     @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}   
   end
   
-  def add_student    
-    @school = School.find(params[:school_id])
-    if(params[:email])
-      @user = User.find_by_email_and_person_type(params[:email], 'Student')
-      if @user.nil?
-        render :update do |page|
-          page[:password].show
-          page[:add_student_button].disable
-        end
-      else
-        @student = @user.person
-        @student.school = @school
-        if @student.save
-          @students = @school.students
-          flash[:notice] = "Account registered!"
-          render :update do |page|
-            page.select("form").first.reset
-            page[:new_student_form].hide
-            page.replace_html("school_students_table", :partial => "students")
-          end
-        end
-      end
-    end
-  end 
   
   def new_student
     @active_tab = :Students
@@ -264,22 +240,43 @@ class SchoolsController < ApplicationController
     end  
   end
   
-    def remove_student
+  def add_student    
+    @school = School.find(params[:school_id])
+    if(params[:email])
+      @user = User.find_by_email_and_person_type(params[:email], 'Student')
+      if @user.nil?
+        render :update do |page|
+          page[:password].show
+          page[:add_student_button].disable
+        end
+      else
+        @student = @user.person
+        @student.school = @school
+        @student.admission_number = params[:admission_number]
+        if @student.save
+          @students = @school.students
+          flash[:notice] = "Account registered!"
+          render :update do |page|
+            page.select("form").first.reset
+            page[:new_student_form].hide
+            page.replace_html("school_students_table", :partial => "students")
+          end
+        end
+      end
+    end
+  end 
+  
+  
+  def remove_student
     @school = School.find(params[:id])
     @student = Student.find(params[:student_id])
     @school.students.delete(@student)
     if @school.save
-       @students = @school.students
+      @students = @school.students
       render :update do |page|
         page.replace_html("school_students_table", :partial => "students")
       end
     end
-  end
-  
-  def enroll_student
-    @school = School.find(params[:id])
-    @student = Student.find(params[:student_id])
-    @klasses = @school.klasses
   end
   
   def klasses
@@ -290,6 +287,7 @@ class SchoolsController < ApplicationController
     @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
     @school_subjects = @school.subjects
     @add_subjects = Subject.find(:all) -  @school_subjects
+    @action = 'subjects_edit'
   end
   
   def list_delete_klasses   

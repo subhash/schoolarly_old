@@ -18,6 +18,9 @@
                 Email
             </th>
             <th>
+                Admission Number
+            </th>
+            <th>
                 Class (Level-Division)
             </th>
         </tr>
@@ -35,13 +38,16 @@
             <td>
                 <%= student.user.email %>
             </td>
+            <td>
+                <%= student.admission_number %>
+            </td>
             <% if student.current_enrollment %>
             <td>
                 <%= student.current_enrollment.klass.name %>
             </td>
             <%else %>
             <td class="ui-state-focus">
-                <%= link_to 'Enroll student',  {:controller => 'schools', :action => 'enroll_student', :id => @school, :student_id => student} %>
+                <%= link_to 'Enroll student',  {:controller => 'students', :action => 'enroll_edit', :id => student} %>
             </td>
             <%end %>
             <th>

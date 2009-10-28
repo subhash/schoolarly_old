@@ -6,7 +6,7 @@
         </th>
         <%level_klasses.each do |klass| %>
         <td id=<%=klass.id%> class="ui-state-default">
-            <% url = {:url => {:controller => 'klasses', :action => 'subjects_edit', :id=>klass}} %>
+            <% url = {:url => {:controller => 'klasses', :action => @action, :id=>klass}} %>
             <%if ['Pre-school', 'L.K.G','U.K.G','Mont1','Mont2','Mont3'].include?(level.to_s) %>
             <%=link_to_remote klass.division,url %>
             <%else %>

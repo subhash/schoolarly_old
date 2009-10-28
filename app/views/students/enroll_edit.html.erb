@@ -1,0 +1,19 @@
+<h2>Enroll <%=@student.user.email %></h2>
+<h3 id="heading"></h3>
+<div class=c62l>
+    <strong>Select a class</strong>
+    <div>
+        <%= render :partial =>'klasses/list' %>
+    </div>
+    <div id="roll_number">
+        <%= label_tag :roll_number %>
+        <%= text_field_tag :roll_number %>
+    </div>
+</div>
+<div class=c38r>
+    <strong id="select_subjects_heading"></strong>
+    <div id="subjects" class="selectable">
+    </div>
+    <div id="enroll_submit_button" class="float_left">
+    </div>
+</div>
