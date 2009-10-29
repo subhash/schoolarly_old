@@ -108,15 +108,15 @@ class SchoolsController < ApplicationController
     @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
   end
   
-#  def add_school_teacher
-#    @school=School.find(params[:id])
-#    @user = User.find(:first, :conditions => ["email = ?",params[:user][:email]])
-#    if @user.nil?
-#      flash[:notice] = "The user does not exist"
-#    else
-#      @school.teachers << @user.person
-#    end
-#  end
+  #  def add_school_teacher
+  #    @school=School.find(params[:id])
+  #    @user = User.find(:first, :conditions => ["email = ?",params[:user][:email]])
+  #    if @user.nil?
+  #      flash[:notice] = "The user does not exist"
+  #    else
+  #      @school.teachers << @user.person
+  #    end
+  #  end
   
   def new_teacher
     @active_tab = :Teachers
@@ -349,11 +349,14 @@ class SchoolsController < ApplicationController
     @klasses=Klass.current_klasses(@school, @year)
     exam_groups=[]
     for @klass in @klasses
+      if @klass.exam_groups.empty? || @klass.exam_groups.nil?
+        exam_groups << ExamGroup.new(:klass => @klass)
+      end
       @klass.exam_groups.each do |eg|
         exam_groups << eg  
       end
     end
-    @exam_groups=exam_groups.group_by{|eg| Klass.find(eg.klass_id)}
+    @exam_groups = exam_groups.group_by{|eg| Klass.find(eg.klass_id)}
   end
   
   def exams
@@ -362,7 +365,7 @@ class SchoolsController < ApplicationController
     @exams=@exam_group.exams
     render :partial => "exams", :id=> @exams   
   end
-    
+  
   def remove_exam_group
     @active_tab = :Exams
     @exam_group=ExamGroup.find(params[:id])
@@ -373,24 +376,24 @@ class SchoolsController < ApplicationController
     @exam_group.destroy
     if klass.exam_groups.empty?
       render :update do |page|      
-          page.replace_html(div_name, :text => "<blockquote>No exam group added yet</blockquote>")
-          page.replace_html("exams", :text => "")
+        page.replace_html(div_name, :text => "<blockquote>No exam group added yet</blockquote>")
+        page.replace_html("exams", :text => "")
       end
     else
       render :update do |page|      
-          page.replace_html(div_name, :partial => 'exam_group', :collection => klass.exam_groups)
-          page.replace_html("exams", :text => "")
-        end
+        page.replace_html(div_name, :partial => 'exam_group', :collection => klass.exam_groups)
+        page.replace_html("exams", :text => "")
+      end
     end
-        
+    
   end
-
-def add_exam_group_dialog_show
-  @klass=Klass.find(params[:id])
-  @exam_types=ExamType.find(:all)
-end
-
-def add_exam_group
+  
+  def add_exam_group_dialog_show
+    @klass=Klass.find(params[:id])
+    @exam_types=ExamType.find(:all)
+  end
+  
+  def add_exam_group
     @klass=Klass.find(params[:id])
     exam_group=ExamGroup.new()
     exam_group.exam_type=ExamType.find(params[:exam_type])
@@ -399,20 +402,20 @@ def add_exam_group
     @klass.save!
     div_name=@klass.id.to_s + '_content_table'
     if @klass.exam_groups.count==1
-        render :update do |page|
-            page << "jQuery('#dialog_add_exam_group').dialog('close');"
-            page.replace_html(div_name, :partial =>'exam_group', :object => exam_group)
-        end
+      render :update do |page|
+        page << "jQuery('#dialog_add_exam_group').dialog('close');"
+        page.replace_html(div_name, :partial =>'exam_group', :object => exam_group)
+      end
     else
-        render :update do |page|
-            page << "jQuery('#dialog_add_exam_group').dialog('close');"
-            page.insert_html(:bottom, div_name, :partial =>'exam_group', :object => exam_group)
-        end
+      render :update do |page|
+        page << "jQuery('#dialog_add_exam_group').dialog('close');"
+        page.insert_html(:bottom, div_name, :partial =>'exam_group', :object => exam_group)
+      end
     end    
   rescue Exception => e
     flash[:notice]="Error occured in exam group add: <br /> #{e.message}"
   end
-
+  
   def self.tabs(school_id)
     user_id=School.find(school_id).user.id
     tabs = [:Home => {:controller => :schools, :action => 'show', :id=>school_id},
