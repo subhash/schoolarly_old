@@ -1,0 +1,35 @@
+    <%if !@exams.nil? && !@exams.empty?%>
+		<h3>Listing exams under <%=@exam_group.description %></h3>
+		<table>
+			<tr>
+		    	<th>Subject</th><th>Start Time</th><th>End Time</th><th>Venue</th><th>Max Score</th><th>Pass Score</th></tr>
+		    <tr>
+			<%@exams.each do |exam|%> 
+		            <td>
+		                <%=h exam.subject.name%>
+		            </td>
+		            <td>
+		                <%=h exam.start_time%>
+		            </td>
+		            <td>
+		                <%=h exam.end_time%>
+		            </td>
+		            <td>
+		                <%=h exam.venue%>
+		            </td>
+					<td>
+		                <%=h exam.max_score%>
+		            </td>
+					<td>
+		                <%=h exam.pass_score%>
+		            </td>
+		        </tr>
+		   	<%end%>
+		 </table>	
+		
+	<%else%> 
+	<br />
+		<blockquote>
+	    	No exam added yet
+		</blockquote>
+	<%end%>

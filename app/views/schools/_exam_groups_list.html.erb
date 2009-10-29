@@ -1,0 +1,56 @@
+<script type="text/javascript">
+		jQuery(function() {
+		jQuery("#accordion").accordion({
+			autoHeight: false
+		});
+
+		jQuery(document).ready(function(){
+	jQuery('.accordion .head').click(function() {
+		this.next().toggle();
+		return false;
+	}).next().hide();
+});
+	});
+</script>
+
+	<%if !@exam_groups.nil? && !@exam_groups.empty? %> 
+		<h3>Exam groups of <%=@school.name %></h3>
+<div id="accordion">
+	<% @exam_groups.each do |klass, egs| %>
+    	<h3><a href="#"><%=klass.name%></a></h3>
+		<div>
+			<table id="<%=klass.id.to_s + '_content_table'%>" class="ui-state-default" border="1px">
+			<%=render :partial => 'exam_group' , :collection => egs%>
+			<!--<% egs.each do |eg|%>
+			<%=render :partial => 'exam_group' , :object => eg%> 
+			<tr>
+			<td class="ui-state-focus"><%= link_to_remote eg.description, :url => {:action => :exams, :id => eg}, :update => "exams"%></td>
+			<th><%= link_to_remote 'Delete', :url => {:controller => 'schools', :action => 'remove_exam_group',:id => eg}, :confirm => 'Are you sure?' %></th>
+			</tr>
+			<%end%>
+			!-->
+			
+			</table>
+			<div class="small_button ui-state-default ui-corner-all center" >
+    			<div id="add_button">
+        			<%= link_to_remote 'Add Exam Group', :url => {:controller => 'schools', :action => 'add_exam_group_dialog_show', :id=>klass} %>
+    			</div>
+			</div>
+	</div>
+	
+	<% end %>
+</div>
+	
+	<div id="dialog_add_exam_group" title="Add Exam Group" style="display: none;">
+ 
+    		<div id="add_exam_group">
+    			
+    		</div>
+	</div>	
+
+<%else%>
+	<br />
+		<blockquote>
+	    	No exam group added yet
+		</blockquote>
+<%end%>

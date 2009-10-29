@@ -1,0 +1,13 @@
+<%puts "i am in exam group partial"%>
+<% if !exam_group.nil? %> 
+<tr>
+    <td class="ui-state-focus">
+        <%= link_to_remote exam_group.description, :url => {:action => :exams, :id => exam_group}, :update => "exams" %>
+    </td>
+    <th>
+        <%= link_to_remote 'Delete', :url => {:controller => 'schools', :action => 'remove_exam_group',:id => exam_group}, :confirm => 'Are you sure?' %>
+    </th>
+</tr>
+<%else%>
+	<blockquote>No exam group added yet</blockquote>
+<%end%>

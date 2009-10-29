@@ -1,0 +1,16 @@
+        	<fieldset align=center>
+				<table class="center">
+	            <tr>
+	            	<th><label for="exam_type">Exam Type</label></th>
+	                <td><%= select_tag(:exam_type, options_from_collection_for_select(@exam_types,:id,:name,{:selected => 1}), { :style => "width: 231px"} )%></td>
+	            </tr>		
+	            <tr>
+	           		<th><label for="description">Description</label></th>
+	                <td><%= text_field_tag(:description, "", :size => 36)%></td>
+	            </tr>
+	            
+				</table>
+	                <%=link_to_remote 'Add', :url => {:controller => 'schools', :action => 'add_exam_group', :id=>@klass}, :with => "'exam_type=' + $('exam_type').value + '&description=' + $('description').value" %>
+	        </fieldset>
+		
+    	

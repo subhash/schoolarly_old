@@ -1,0 +1,10 @@
+page.call 'jQuery.noConflict'
+page.replace_html("add_exam_group", :partial =>'add_exam_group_input' , :object=>@klass)
+page << "jQuery('#dialog_add_exam_group').dialog({
+            bgiframe: true,
+            height: 198,
+            width: 360,
+            modal: true,
+            autoOpen: false
+        });"
+page << "jQuery('#dialog_add_exam_group').dialog('open');"      
