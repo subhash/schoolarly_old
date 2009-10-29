@@ -86,11 +86,13 @@ class UserProfilesController < ApplicationController
     @person.qualifications << qualification
     @person.save!
     if @person.qualifications.count==1
+      puts "i am in if"
         render :update do |page|
             page << "jQuery('#dialog_add_qualification').dialog('close');"
             page.replace_html(:qualification_list_div, :partial =>'qualification_list', :object => qualification)
         end
     else
+      puts "i am in else"
         render :update do |page|
             page << "jQuery('#dialog_add_qualification').dialog('close');"
             page.insert_html(:bottom, :editlist, :partial =>'qualification_item', :object => qualification)
