@@ -347,6 +347,10 @@ class SchoolsController < ApplicationController
     @school=School.find(params[:id])
     @year = Klass.current_academic_year(@school)
     @klasses=Klass.current_klasses(@school, @year)
+    if params[:exam_group]
+      @exam_group=ExamGroup.find(params[:exam_group])
+      @exams=@exam_group.exams
+    end
     exam_groups=[]
     for @klass in @klasses
       if @klass.exam_groups.empty? || @klass.exam_groups.nil?
@@ -414,6 +418,33 @@ class SchoolsController < ApplicationController
     end    
   rescue Exception => e
     flash[:notice]="Error occured in exam group add: <br /> #{e.message}"
+  end
+  
+  def exam_group_edit
+    @exam_group=ExamGroup.find(params[:id])
+    #@subjects=@examgroup.klass.subjects
+    @subjects=Subject.find(:all)
+    puts "**********i am here..."
+    render :update do |page|
+      page.replace_html("exams", :partial => "exam_list", :id=> @exam_group) 
+    end
+         
+  end
+  
+  def exam_update
+    puts params[:exam].inspect
+    @exam_group=ExamGroup.find(params[:id])
+        if params[:exam]
+          Exam.update(params[:exam].keys, params[:exam].values)
+        end
+        if params[:cb]
+          exams_marked_for_deletion=Exam.find(params[:cb].keys)
+          Exam.destroy(exams_marked_for_deletion)
+      end
+      @exams=@exam_group.exams
+      @school=@exam_group.klass.school
+      flash[:notice] = 'Exam Details were successfully updated.'
+      redirect_to(:controller => :schools, :action => 'exam_groups_index', :id=>@school, :exam_group => @exam_group)
   end
   
   def self.tabs(school_id)
