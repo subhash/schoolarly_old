@@ -1,22 +1,33 @@
 <script type="text/javascript">
-    jQuery(function(){
-        jQuery("#accordion").accordion({
-            autoHeight: false
-        });
-        
-        jQuery(document).ready(function(){
-            jQuery('.accordion .head').click(function(){
-                this.next().toggle();
-                return false;
-            }).next().hide();
-        });
-    });
+        jQuery(function(){
+            jQuery("#accordion").accordion({
+                autoHeight: false,
+				active: "#activate_this"
+            });
+    	});
+                   
+            jQuery(document).ready(function(){
+                jQuery('.accordion .head').click(function(){
+                    this.next().toggle();
+                    return false;
+                }).next().hide();
+            });
+
 </script>
 <%if !@exam_groups.nil? && !@exam_groups.empty? %>
 <h3>Exam groups of <%=@school.name %></h3>
 <div id="accordion">
     <% @exam_groups.each do |klass, egs| %>
-    <h3><a href="#"><%=klass.name %></a></h3>
+
+<%if @exam_group%>
+	<%if @exam_group.klass.id.to_s==klass.id.to_s%>
+		<h3 id="activate_this"><a href="#"><%=klass.name %></a></h3>
+	<%else%>
+		<h3><a href="#"><%=klass.name %></a></h3>
+	<%end%>
+<%else%>
+	<h3><a href="#"><%=klass.name %></a></h3>
+<%end%>
     <div>
         <table id="<%=klass.id.to_s + '_content_table'%>" class="ui-state-default" border="1px">
             <%=render :partial => 'exam_group' , :collection => egs %>
