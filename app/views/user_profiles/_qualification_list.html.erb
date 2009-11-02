@@ -22,9 +22,7 @@
 	    </tr>
 	    <fieldset>
 	        <%@cb=[] %>
-	        <%for @qualification in @qualifications %>
-	        	<%= render :partial => 'qualification_item', :object => @qualification %>
-	        <%end %>
+			<%= render :partial => 'qualification_item', :collection => @qualifications %>
 	    </fieldset>
 
 <%else %>
