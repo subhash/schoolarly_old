@@ -47,7 +47,7 @@
             </td>
             <%else %>
             <td class="ui-state-focus">
-                <%= link_to 'Enroll student',  {:controller => 'students', :action => 'enroll_edit', :id => student} %>
+                <%= link_to 'Enroll student',  {:controller => 'student_enrollment', :action => 'new', :id => student} %>
             </td>
             <%end %>
             <th>

@@ -1,19 +1,25 @@
+<% form_for :student_enrollment, :url => {:action => :create, :id => @student} do |form| %>
 <h2>Enroll <%=@student.user.email %></h2>
-<h3 id="heading"></h3>
 <div class=c62l>
     <strong>Select a class</strong>
     <div>
         <%= render :partial =>'klasses/list' %>
     </div>
+    <h3 id="heading"></h3>
     <div id="roll_number">
-        <%= label_tag :roll_number %>
-        <%= text_field_tag :roll_number %>
+        <p>
+            Admission Number: <%=@student_enrollment.admission_number %>
+            <br>
+            Roll Number: <%= form.text_field :roll_number %>
+        </p>
     </div>
 </div>
 <div class=c38r>
+    <%= hidden_field_tag :subject_subscriptions %>
     <strong id="select_subjects_heading"></strong>
     <div id="subjects" class="selectable">
     </div>
     <div id="enroll_submit_button" class="float_left">
     </div>
 </div>
+<% end %>
