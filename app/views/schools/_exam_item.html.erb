@@ -5,8 +5,9 @@
             <%= check_box_tag("cb[" + @exam.id.to_s + "]" ) %>
         </td>
     </div>
-
-
+    <td>
+		<%=select("exam[]", "subject_id", @subjects)%>
+    </td>
     <td>
         <%= text_field("exam[]" , :start_time, :size=>9) %>
     </td>
