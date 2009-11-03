@@ -363,11 +363,13 @@ class SchoolsController < ApplicationController
     @exam_groups = exam_groups.group_by{|eg| Klass.find(eg.klass_id)}
   end
   
-  def exams
+  def exam_index
     @active_tab = :Exams
     @exam_group=ExamGroup.find(params[:id])
     @exams=@exam_group.exams
-    render :partial => "exams", :id=> @exams   
+    #subjects=@examgroup.klass.subjects
+    @subjects=Subject.find(:all)
+    render :partial => "exam_index", :id=> @exams   
   end
   
   def remove_exam_group
@@ -422,9 +424,11 @@ class SchoolsController < ApplicationController
   
   def exam_group_edit
     @exam_group=ExamGroup.find(params[:id])
-    #@subjects=@examgroup.klass.subjects
-    @subjects=Subject.find(:all)
-    puts "**********i am here..."
+    #subjects=@examgroup.klass.subjects
+    subjects=Subject.find(:all)
+    @subjects = subjects.map do |subject|
+      [subject.name,subject.id]
+    end
     render :update do |page|
       page.replace_html("exams", :partial => "exam_list", :id=> @exam_group) 
     end
@@ -432,19 +436,51 @@ class SchoolsController < ApplicationController
   end
   
   def exam_update
-    puts params[:exam].inspect
     @exam_group=ExamGroup.find(params[:id])
-        if params[:exam]
-          Exam.update(params[:exam].keys, params[:exam].values)
-        end
-        if params[:cb]
-          exams_marked_for_deletion=Exam.find(params[:cb].keys)
-          Exam.destroy(exams_marked_for_deletion)
+    if params[:exam]
+      Exam.update(params[:exam].keys, params[:exam].values)
+    end
+    if params[:cb]
+      exams_marked_for_deletion=Exam.find(params[:cb].keys)
+      Exam.destroy(exams_marked_for_deletion)
+    end
+    @exams=@exam_group.exams
+    @school=@exam_group.klass.school
+    @subjects=Subject.find(:all)
+    flash[:notice] = 'Exam Details were successfully updated.'
+    redirect_to(:controller => :schools, :action => 'exam_groups_index', :id=>@school, :exam_group => @exam_group)
+  end
+  
+  def add_exam_dialog_show
+    @exam_group=ExamGroup.find(params[:id])
+    @subjects=Subject.find(:all)
+  end
+  
+  def add_exam
+    @exam_group=ExamGroup.find(params[:id])
+    exam=Exam.new()
+    exam.subject=Subject.find(params[:subject])
+    exam.start_time=params[:start_time]
+    exam.end_time=params[:end_time]
+    exam.venue=params[:venue]
+    exam.max_score=params[:max_score]
+    exam.pass_score=params[:pass_score]
+    @exam_group.exams << exam
+    @exam_group.save!
+    @exams=@exam_group.exams
+    if @exam_group.exams.count==1
+      render :update do |page|
+        page << "jQuery('#dialog_add_exam').dialog('close');"
+        page.replace_html("exams_index_div", :partial =>'exams', :object => @exams)
       end
-      @exams=@exam_group.exams
-      @school=@exam_group.klass.school
-      flash[:notice] = 'Exam Details were successfully updated.'
-      redirect_to(:controller => :schools, :action => 'exam_groups_index', :id=>@school, :exam_group => @exam_group)
+    else
+      render :update do |page|
+        page << "jQuery('#dialog_add_exam').dialog('close');"
+        page.insert_html(:bottom, "exam_list_table", :partial =>'exam', :object => exam)
+      end
+    end    
+  rescue Exception => e
+    flash[:notice]="Error occured in exam add: <br /> #{e.message}"
   end
   
   def self.tabs(school_id)
