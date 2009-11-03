@@ -201,6 +201,7 @@ class SchoolsController < ApplicationController
     @students = @school.students
     @year = Klass.current_academic_year(@school)
     @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}   
+    session[:redirect] = request.request_uri
   end
   
   
