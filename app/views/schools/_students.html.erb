@@ -30,7 +30,7 @@
         <tr>
             <td>
                 <%if student.user.user_profile %>
-                <%= student.user.user_profile.name %>
+                <%= link_to student.user.user_profile.name, {:controller => 'user_profiles', :action => 'new', :id => student.user} %>
                 <%else %>
                 <%= link_to "Profile not created", {:controller => 'user_profiles', :action => 'new', :id => student.user}, {:class => "profile"} %>
                 <%end %>
@@ -39,8 +39,7 @@
                 <%= student.user.email %>
             </td>
             <td>
-            	<input type="button" id="edit_no_<%= student.id %>" value="edit"/>
-                <strong id=<%="admission_number_#{student.id}"%>><%=student.admission_number %></strong>
+                <input type="button" id="edit_no_<%= student.id %>" class="ui-state-default float_right" value="edit"/><strong id=<%="admission_number_#{student.id}" %>><%=student.admission_number %></strong>
                 <%= in_place_editor "admission_number_#{student.id}" ,{:url => {:action => 'set_student_admission_number', :id => student},:external_control => "edit_no_#{student.id}"} %>
             </td>
             <% if student.current_enrollment %>

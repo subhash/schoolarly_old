@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
   
   protect_from_forgery :only => [:create, :update, :destroy]
-   
+  
   def index
     @students = Student.all
     
@@ -11,7 +11,7 @@ class StudentsController < ApplicationController
     end
   end
   
- 
+  
   # GET /students/1
   # GET /students/1.xml
   def show
@@ -96,6 +96,7 @@ class StudentsController < ApplicationController
     :Exams => '#',
     :Scores => '#',
     :AcademicHistory => '#',
+    :CurrentClass => '#',
     :Profile =>  {:controller => :user_profiles, :action => 'edit', :id=>user_id} ]
     return tabs
   end

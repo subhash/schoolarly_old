@@ -1,5 +1,7 @@
 class StudentEnrollmentController < ApplicationController
   
+  before_filter :set_active_tab
+  
   def new
     @student = Student.find(params[:id])
     @school = @student.school
@@ -42,4 +44,9 @@ class StudentEnrollmentController < ApplicationController
     @school = @klass.school
     @subjects = @klass.subjects
   end
+  
+  def set_active_tab
+    @active_tab = :CurrentClass
+  end
+  
 end
