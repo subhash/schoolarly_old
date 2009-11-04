@@ -44,7 +44,7 @@
             </td>
             <% if student.current_enrollment %>
             <td>
-                <%= student.current_enrollment.klass.name %>
+                <%= link_to student.current_enrollment.klass.name , klass_path(student.current_enrollment.klass)%>
             </td>
             <%else %>
             <td class="ui-state-focus">
