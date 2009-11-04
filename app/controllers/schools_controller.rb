@@ -4,6 +4,17 @@ class SchoolsController < ApplicationController
   #permit "creator of Student", :except => :index
   protect_from_forgery :only => [:create, :update, :destroy]
   
+  in_place_edit_for :exam_group, :description
+
+  def self.in_place_loader_for(object, attribute, options = {})
+    define_method("get_#{object}_#{attribute}") do
+      @item = object.to_s.camelize.constantize.find(params[:id])
+      render :text => (@item.send(attribute).blank? ? "[No Name]" : @item.send(attribute))
+    end
+  end  
+
+  in_place_loader_for :exam_group, :description
+  
   # GET /schools
   # GET /schools.xml
   def index
