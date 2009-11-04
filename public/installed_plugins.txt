@@ -1,13 +1,20 @@
 Installed plugins
-1) enum-column - script/plugin install svn://rubyforge.org/var/svn/enum-column/plugins/enum-column
-2) foreign-key migrations -  ruby script/plugin install svn://rubyforge.org/var/svn/redhillonrails/trunk/vendor/plugins/redhillonrails_core
-3) auto_complete - script/plugin install git://github.com/rails/auto_complete.git
-4) in_place_edit - script/plugin install git://github.com/rails/in_place_editing.git
-
+-----------------
+1)  	enum-column - script/plugin install svn://rubyforge.org/var/svn/enum-column/plugins/enum-column
+2)		foreign-key migrations -  ruby script/plugin install svn://rubyforge.org/var/svn/redhillonrails/trunk/vendor/plugins/redhillonrails_core
+3)		auto_complete - script/plugin install git://github.com/rails/auto_complete.git
+4)		in_place_edit - script/plugin install git://github.com/rails/in_place_editing.git
+  4.1)	custom_in_place_editing http://www.pluitsolutions.com/2007/03/20/custom-in_place_edit-with-validation/
+  		Created custom_in_place_editing.rb in [app_root]/lib directory.
+		Controller: in_place_edit_with_validation_for
+		Views: <%= in_place_editor_field :entity, :attribute, {}, :script => true %>
+		environment.rb: require 'custom_in_place_editing'
 jquery plugins/widgets used
+---------------------------
 1) jquery dialog (jquery-ui.com)
 2) jquery selectable (jquery-ui.com)
 3) jquery plugin - tablesorter - http://tablesorter.com/docs/
 
 Installed gems
+--------------
 
