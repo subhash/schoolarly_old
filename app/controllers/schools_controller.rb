@@ -4,18 +4,20 @@ class SchoolsController < ApplicationController
   #permit "creator of Student", :except => :index
   protect_from_forgery :only => [:create, :update, :destroy]
   
+  in_place_edit_with_validation_for :exam_group, :description
+
   def self.in_place_loader_for(object, attribute, options = {})
     define_method("get_#{object}_#{attribute}") do
       @item = object.to_s.camelize.constantize.find(params[:id])
       render :text => (@item.send(attribute).blank? ? "[No Name]" : @item.send(attribute))
     end
   end  
-  
+
   in_place_loader_for :exam_group, :description
+  
   in_place_loader_for :student, :admission_number
-    
-  in_place_edit_for :exam_group, :description
   in_place_edit_for :student, :admission_number
+  
   # GET /schools
   # GET /schools.xml
   def index
@@ -432,6 +434,10 @@ class SchoolsController < ApplicationController
     end    
   rescue Exception => e
     flash[:notice]="Error occured in exam group add: <br /> #{e.message}"
+    render :update do |page|
+      page << "jQuery('#dialog_add_exam_group').dialog('close');"
+      page.replace_html("exams", :text => flash[:notice])
+    end
   end
   
   def exam_group_edit
@@ -444,7 +450,6 @@ class SchoolsController < ApplicationController
     render :update do |page|
       page.replace_html("exams", :partial => "exam_list", :id=> @exam_group) 
     end
-    
   end
   
   def exam_update
