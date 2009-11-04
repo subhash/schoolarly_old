@@ -1,4 +1,5 @@
 class StudentEnrollmentController < ApplicationController
+  
   def new
     @student = Student.find(params[:id])
     @school = @student.school
@@ -34,5 +35,11 @@ class StudentEnrollmentController < ApplicationController
     else
       redirect_to :action => :new
     end
+  end
+  
+  def subjects_list
+    @klass = Klass.find(params[:id])
+    @school = @klass.school
+    @subjects = @klass.subjects
   end
 end

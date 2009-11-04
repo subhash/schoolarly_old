@@ -288,7 +288,6 @@ class SchoolsController < ApplicationController
     @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
     @school_subjects = @school.subjects
     @add_subjects = Subject.find(:all) -  @school_subjects
-    @action = 'subjects_edit'
   end
   
   def list_delete_klasses   

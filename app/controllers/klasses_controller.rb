@@ -65,11 +65,6 @@ class KlassesController < ApplicationController
     @add_subjects = @school.subjects - @klass.subjects   
   end
   
-  def subjects_list
-    @klass = Klass.find(params[:id])
-    @school = @klass.school
-    @subjects = @klass.subjects
-  end
   
   def list_add_subjects
     @klass = Klass.find(params[:id])

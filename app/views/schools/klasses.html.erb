@@ -7,7 +7,7 @@
     <div id="col2_content" class="clearfix">
         <h3>Listing classes in <%=@school.name %>for the year - <%=@year %></h3>
         <div id="klasses_list">
-            <%= render :partial =>'klasses/list' %>
+            <%= render :partial =>'klasses/list',:locals => {:subjects_controller => 'klasses', :subjects_action => 'subjects_edit'} %>
         </div>
         <%= link_to 'New class', new_school_klass_path(@school, @klass) %>
         <div class="button ui-state-focus center">
@@ -26,7 +26,6 @@
         </div>
         <div id="add_subjects_dialog" title="Select subjects to add" style="display: none;">
             <div id="add_subjects_dialog_controls">
-                
             </div>
         </div>
     </div>
