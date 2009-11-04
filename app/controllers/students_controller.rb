@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
   
   protect_from_forgery :only => [:create, :update, :destroy]
-  
+   
   def index
     @students = Student.all
     

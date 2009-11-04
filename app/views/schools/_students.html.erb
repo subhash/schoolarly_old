@@ -39,7 +39,9 @@
                 <%= student.user.email %>
             </td>
             <td>
-                <%= student.admission_number %>
+            	<input type="button" id="edit_no_<%= student.id %>" value="edit"/>
+                <strong id=<%="admission_number_#{student.id}"%>><%=student.admission_number %></strong>
+                <%= in_place_editor "admission_number_#{student.id}" ,{:url => {:action => 'set_student_admission_number', :id => student},:external_control => "edit_no_#{student.id}"} %>
             </td>
             <% if student.current_enrollment %>
             <td>
