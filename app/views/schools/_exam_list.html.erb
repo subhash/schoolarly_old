@@ -1,5 +1,6 @@
 <%exam_group=@exam_group %>
 
+<h3>Listing exams under <%= in_place_editor_field "exam_group" , "description", {}, {:load_text_url=> url_for(:action=>"get_exam_group_description" , :id=>exam_group), :external_control => "edit_description" } %></h3>
 
 <table id="editlist">
 <%if !exam_group.exams.nil? && !exam_group.exams.empty? %>
