@@ -1,3 +1,4 @@
+<% if @user_profile %>
 <div class="c25l">
     <table>
         <tr>
@@ -50,6 +51,7 @@
         </tr>
     </table>
 </div>
+<% end %>
 <div class="c66r">
     <%= render :partial => "user_profiles/" + @person_partial + "_details" %>
     <table>
@@ -64,8 +66,7 @@
     </table>
     <br/>
     <p class="icaption_right">
-        <% current_user = @user %>
-        <% if current_user == @user %>
+        <% if controller.allow_write(@user.person) %>
 		<div class="small_button ui-state-default ui-corner-all float_left">
         <%= link_to 'Edit', {:controller => :user_profiles, :action => 'edit', :id=>@user} %>
 		</div>

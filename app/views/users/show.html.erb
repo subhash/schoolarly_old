@@ -1,29 +1,27 @@
 <p>
     <b>Login:</b>
     <%=h @user.email %>
-</p>
-<p>
-    <b>Login count:</b>
+    -<b>Login count:</b>
     <%=h @user.login_count %>
-</p>
-<p>
-    <b>Last request at:</b>
+    -<b>Last request at:</b>
     <%=h @user.last_request_at %>
-</p>
-<p>
-    <b>Last login at:</b>
+    -<b>Last login at:</b>
     <%=h @user.last_login_at %>
-</p>
-<p>
-    <b>Current login at:</b>
+    -<b>Current login at:</b>
     <%=h @user.current_login_at %>
-</p>
-<p>
-    <b>Last login ip:</b>
+    -<b>Last login ip:</b>
     <%=h @user.last_login_ip %>
-</p>
-<p>
-    <b>Current login ip:</b>
+    -<b>Current login ip:</b>
     <%=h @user.current_login_ip %>
 </p>
 <%= link_to 'Edit', edit_account_path %>
+<p>
+    <% form_tag "/users/roles/#{@user.id}"  do %>
+    <% Role.find(:all).each do |role| %>
+    <%= label "role#{role.id}", "#{role.name} , #{role.authorizable_type}" %>
+    <%= check_box_tag "role[#{role.id}]", "#{role.id}", role.users.include?(@user) %>
+    <br/>
+    <% end %>
+    <%= submit_tag 'Submit' %>
+    <% end %>
+</p>

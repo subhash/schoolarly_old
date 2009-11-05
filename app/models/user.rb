@@ -13,17 +13,21 @@ class User < ActiveRecord::Base
   belongs_to :person, :polymorphic => true
   has_one :user_profile
   
-  after_create :add_roles_for_person  
+  after_create :add_roles  
   
-  def add_roles_for_person
+  def add_roles
+    self.has_role 'editor', self.person if self.person
+    add_roles_for_person
+  end
+  
+  def add_roles_for_person    
     # Ensure person association and that roles are added
     return (person and self.person.add_roles)    
   end
   
   def invite!()
     reset_perishable_token
-    save_without_session_maintenance(true)
-    Notifier.deliver_invitation(self)  
+    save_without_session_maintenance(true) and Notifier.deliver_invitation(self)  
   end
   
   def deliver_password_reset_instructions!  

@@ -98,7 +98,7 @@ class StudentsController < ApplicationController
     :Scores => '#',
     :AcademicHistory => '#',
     :CurrentClass => '#',
-    :Profile =>  {:controller => :user_profiles, :action => 'edit', :id=>user_id} ]
+    :Profile =>  {:controller => :user_profiles, :action => 'show', :id=>user_id} ]
     return tabs
   end
   

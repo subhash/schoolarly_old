@@ -24,6 +24,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :password_resets
   
+  map.conect 'users/roles/:id', :controller => "users", :action => "roles"
+  
   # The priority is based upon order of creation: first created -> highest priority.
   
   # Sample of regular route:

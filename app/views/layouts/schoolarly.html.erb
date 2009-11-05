@@ -24,7 +24,7 @@
                         <span class="hideme">.</span>
                         <a href="#">Home</a>
                         | <% if current_user %>
-                        <%= link_to 'Logout', user_session_path,  :method => :delete, :confirm => 'Are you sure you want to logout?' %>
+                        <%= link_to "Logout, #{current_user.email}", user_session_path,  :method => :delete, :confirm => 'Are you sure you want to logout?' %>
                         <% else %>
                         <%= link_to 'Login', new_user_session_path %>
                         <% end %>

@@ -38,7 +38,7 @@ class UserProfilesController < ApplicationController
   
   def show
     set_active_user(@user.id)
-    if @user.user_profile.nil?
+    if @user.user_profile.nil? and @user == current_user
       redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
     end
     @user_profile=@user.user_profile
