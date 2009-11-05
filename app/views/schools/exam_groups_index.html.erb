@@ -1,12 +1,12 @@
 <div class="c25l">
     <div id="exam_groups">
-        <%=render :partial => "exam_groups_list", :object => @school %>
+        <%=render :partial => "exam_groups/index", :object => @school %>
     </div>
 </div>
 <div class="c66r">
     <div id="exams">
     	<%if @exam_group%>
-			<%= render :partial => "exam_index", :id=> @exams%>
+			<%= render :partial => "exam_groups/show", :object=> @exam_group%>
 		<%end%>
     </div>
 </div>
