@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
   
-  #before_filter :require_user
+  before_filter :require_user
   
   def set_active_user(user_id)
     session[:active_user] = user_id
@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
   def require_user
     unless current_user
       store_location
-      flash[:notice] = "You must be logged in to access this page"
+      flash[:notice] = "You must be logged in to access this page - "+request.request_uri
       redirect_to new_user_session_url
       return false
     end

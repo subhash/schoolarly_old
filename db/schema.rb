@@ -126,6 +126,9 @@ ActiveRecord::Schema.define(:version => 20091027081719) do
     t.datetime "updated_at"
   end
 
+  add_index "roles_users", ["user_id"], :name => "user_id"
+  add_index "roles_users", ["role_id"], :name => "role_id"
+
   create_table "schools", :force => true do |t|
     t.string   "name"
     t.enum     "board",      :limit => [:cbse, :icse, :state, :others], :default => :cbse
@@ -236,8 +239,8 @@ ActiveRecord::Schema.define(:version => 20091027081719) do
   add_index "user_profiles", ["user_id"], :name => "user_id"
 
   create_table "users", :force => true do |t|
-    t.integer  "person_id"
-    t.string   "person_type"
+    t.integer  "person_id",                          :null => false
+    t.string   "person_type",                        :null => false
     t.string   "email"
     t.string   "crypted_password"
     t.string   "password_salt"
@@ -275,6 +278,9 @@ ActiveRecord::Schema.define(:version => 20091027081719) do
 
   add_foreign_key "qualifications", ["teacher_id"], "teachers", ["id"], :name => "qualifications_ibfk_1"
 
+  add_foreign_key "roles_users", ["user_id"], "users", ["id"], :name => "roles_users_ibfk_1"
+  add_foreign_key "roles_users", ["role_id"], "roles", ["id"], :name => "roles_users_ibfk_2"
+
   add_foreign_key "schools_subjects", ["school_id"], "schools", ["id"], :name => "schools_subjects_ibfk_1"
   add_foreign_key "schools_subjects", ["subject_id"], "subjects", ["id"], :name => "schools_subjects_ibfk_2"
 
@@ -287,8 +293,8 @@ ActiveRecord::Schema.define(:version => 20091027081719) do
   add_foreign_key "student_enrollments_subjects", ["student_enrollment_id"], "student_enrollments", ["id"], :name => "student_enrollments_subjects_ibfk_1"
   add_foreign_key "student_enrollments_subjects", ["subject_id"], "subjects", ["id"], :name => "student_enrollments_subjects_ibfk_2"
 
-  add_foreign_key "students", ["school_id"], "schools", ["id"], :name => "students_ibfk_1"
   add_foreign_key "students", ["current_enrollment_id"], "student_enrollments", ["id"], :name => "students_ibfk_2"
+  add_foreign_key "students", ["school_id"], "schools", ["id"], :name => "students_ibfk_1"
 
   add_foreign_key "teacher_allotments", ["teacher_id"], "teachers", ["id"], :name => "teacher_allotments_ibfk_1"
   add_foreign_key "teacher_allotments", ["subject_id"], "subjects", ["id"], :name => "teacher_allotments_ibfk_2"

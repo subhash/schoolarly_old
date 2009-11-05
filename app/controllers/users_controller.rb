@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  #before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:show, :edit, :update]
+  skip_before_filter :require_user, :except => [:show, :edit, :update]
   
   def new
     @user = User.new
@@ -72,5 +71,17 @@ class UsersController < ApplicationController
     :Students => users_path(:user_type => :student)]
     
     return tabs
+  end
+  
+    
+  def roles
+    @user = User.find(params[:id])
+    puts params.inspect
+    puts @user
+    Role.find(:all).each do |r|
+      puts params[:role]["#{r.id}"]
+      @user.has_role(r) if params[:role]["#{r.id}"]      
+    end
+    redirect_to request.request_uri
   end
 end

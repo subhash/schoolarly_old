@@ -8,7 +8,7 @@ class Student < ActiveRecord::Base
   has_one :parent
   has_many :scores
   
-  after_update :add_roles
+  after_update :update_roles
   
   acts_as_authorizable
   
@@ -17,9 +17,15 @@ class Student < ActiveRecord::Base
   end
   
   def add_roles
+    puts 'student adds roles'
     self.user.has_role 'reader', School
     self.user.has_role 'reader', Teacher
     self.user.has_role 'reader', Student
-    self.school.user.has_role 'editor', self if school
+    update_roles
   end
+  
+  def update_roles
+    puts 'student updates roles'
+    self.school.user.has_role 'editor', self if school
+  end    
 end

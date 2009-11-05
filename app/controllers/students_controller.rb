@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+  skip_before_filter :require_user, :only => [:new, :create]
   
   protect_from_forgery :only => [:create, :update, :destroy]
   

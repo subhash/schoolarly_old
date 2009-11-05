@@ -1,6 +1,7 @@
 class TeachersController < ApplicationController
+  skip_before_filter :require_user, :only => [:new, :create]
   protect_from_forgery :only => [:destroy]
-
+  
   before_filter :set_active_tab_Teachers, :only => [:destroy]
   before_filter :set_active_tab_Allotments, :only => [:allotment_show, :list_add_allotment, :add_allotments, :list_delete_allotment, :delete_allotments]
   before_filter :find_teacher
@@ -18,11 +19,11 @@ class TeachersController < ApplicationController
       @teacher = Teacher.find(params[:id])
     end
   end  
-   
+  
   # DELETE /teachers/1
   # DELETE /teachers/1.xml
   def destroy
-
+    
     @teacher.user.destroy
     @teacher.destroy
     

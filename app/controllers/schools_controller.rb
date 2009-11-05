@@ -1,6 +1,5 @@
 class SchoolsController < ApplicationController
-  
-  #skip_before_filter :require_user, :only => :index
+  skip_before_filter :require_user, :only => [:new, :create]
   #permit "creator of Student", :except => :index
   protect_from_forgery :only => [:create, :update, :destroy]
   
@@ -68,7 +67,7 @@ class SchoolsController < ApplicationController
     @user = User.new(params[:user])
     @user.person = @school
     respond_to do |format|
-      if @school.save and @user.invite!
+      if @user.invite!
         flash[:notice] = 'School was successfully created.'
         format.html { redirect_to(@school) }
         format.xml  { render :xml => @school, :status => :created, :location => @school }

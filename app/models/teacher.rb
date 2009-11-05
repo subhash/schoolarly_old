@@ -11,11 +11,8 @@ class Teacher < ActiveRecord::Base
   
   def add_roles
     puts 'teacher add roles'
+    self.user.has_role 'reader', School
     self.user.has_role 'reader', Teacher
-    self.user.has_role 'editor', Teacher
     self.user.has_role 'reader', Student
-    self.user.has_role 'editor', Student
-    self.user.has_role 'creator', Student
-    self.user.has_role 'deletor', Student
   end
 end

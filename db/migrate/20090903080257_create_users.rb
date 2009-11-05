@@ -12,8 +12,8 @@ class CreateUsers < ActiveRecord::Migration
 #      t.string :pincode
 #      t.string :phone_landline
 #      t.string :phone_mobile      
-      t.integer :person_id
-      t.string :person_type
+      t.integer :person_id, :null => false
+      t.string :person_type, :null => false
       
       t.string :email
       t.string :crypted_password

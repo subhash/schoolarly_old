@@ -10,6 +10,7 @@ class Notifier < ActionMailer::Base
   end
   
   def invitation(user)
+    puts 'Invitation URL - '+edit_password_reset_url(user.perishable_token)
     subject       "Welcome to Schoolarly"
     from          "Team Schoolarly"
     recipients    user.email
