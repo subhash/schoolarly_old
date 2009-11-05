@@ -1,0 +1,44 @@
+<%exam_group=exams %>
+<h3>Listing exams under <%=exam_group.description %></h3>
+<table id="exam_list_table">
+    <%if !exam_group.exams.nil? && !exam_group.exams.empty? %>
+    <tr>
+        <th>
+            Subject
+        </th>
+        <th>
+            Start Time
+        </th>
+        <th>
+            End Time
+        </th>
+        <th>
+            Venue
+        </th>
+        <th>
+            Max Score
+        </th>
+        <th>
+            Pass Score
+        </th>
+    </tr>
+    <%=render :partial => "exams/exam", :collection => exam_group.exams %>
+</table>
+<div class="button ui-state-default ui-corner-all float_left">
+    <%= link_to_remote 'Edit', :url => {:controller => :exams, :action => :exam_edit, :id=>exam_group} %>
+</div>
+<%else %>
+<tr>
+    <td>
+        <blockquote>
+            No exam added yet
+        </blockquote>
+    </td>
+</tr>
+</table>
+<%end %>
+<div class="button ui-state-default ui-corner-all float_left">
+    <div id="button_add_exam">
+        <%= link_to_remote 'Add Exam to ' + exam_group.description , :url => {:controller => :exams, :action => 'add_exam_dialog_show', :id=>exam_group.id} %>
+    </div>
+</div>
