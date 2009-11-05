@@ -1,6 +1,6 @@
 class StudentEnrollmentController < ApplicationController
   
-
+  
   def self.in_place_loader_for(object, attribute, options = {})
     define_method("get_#{object}_#{attribute}") do
       @item = object.to_s.camelize.constantize.find(params[:id])
@@ -62,6 +62,7 @@ class StudentEnrollmentController < ApplicationController
   def edit
     @student_enrollment  = StudentEnrollment.find(params[:id])
     @student = @student_enrollment.student
+    set_active_user(@student.user.id)
     @school = @student_enrollment.student.school
     @klass = @student_enrollment.klass
     @year = Klass.current_academic_year(@school)
@@ -95,7 +96,7 @@ class StudentEnrollmentController < ApplicationController
   end
   
   def set_active_tab
-    @active_tab = "Class:Subjects"
+    @active_tab = "Class/Subjects"
   end
   
 end
