@@ -32,6 +32,6 @@ module ActionController
   end
 end
 
-ActionController::Base.class_eval do
-  include ActionController::Macros::CustomInPlaceEditing
-end
+#ActionController::Base.class_eval do
+#  include ActionController::Macros::CustomInPlaceEditing
+#end
