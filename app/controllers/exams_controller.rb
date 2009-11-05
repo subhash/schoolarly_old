@@ -1,87 +1,98 @@
 class ExamsController < ApplicationController
-
   
-  # GET /exams
-  # GET /exams.xml
-  def index
-    @exams = Exam.all
+  protect_from_forgery :only => [:create, :update, :destroy]
+  
+  #in_place_edit_with_validation_for :exam_group, :description
+  in_place_edit_for :exam_group, :description
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @exams }
+  def self.in_place_loader_for(object, attribute, options = {})
+    define_method("get_#{object}_#{attribute}") do
+      @item = object.to_s.camelize.constantize.find(params[:id])
+      render :text => (@item.send(attribute).blank? ? "[No Name]" : @item.send(attribute))
+    end
+  end  
+
+  in_place_loader_for :exam_group, :description
+  
+
+  def exam_edit
+    @exam_group=ExamGroup.find(params[:id])
+    #subjects=@examgroup.klass.subjects
+    subjects=Subject.find(:all)
+    @subjects = subjects.map do |subject|
+      [subject.name,subject.id]
+    end
+    render :update do |page|
+      page.replace_html("exams", :partial => "exam_list", :object=> @exam_group) 
     end
   end
-
-  # GET /exams/1
-  # GET /exams/1.xml
-  def show
-    @exam = Exam.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @exam }
+  
+  def exam_update
+    @exam_group=ExamGroup.find(params[:id])
+    if params[:exam]
+      Exam.update(params[:exam].keys, params[:exam].values)
     end
-  end
-
-  # GET /exams/new
-  # GET /exams/new.xml
-  def new
-    @exam = Exam.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @exam }
+    if params[:cb]
+      exams_marked_for_deletion=Exam.find(params[:cb].keys)
+      Exam.destroy(exams_marked_for_deletion)
     end
+    #@exams=@exam_group.exams
+    school=@exam_group.klass.school
+    #@subjects=Subject.find(:all)
+    flash[:notice] = 'Exam Details were successfully updated.'
+    redirect_to(:controller => :schools, :action => 'exam_groups_index', :id=>school, :exam_group => @exam_group)
   end
-
-  # GET /exams/1/edit
-  def edit
-    @exam = Exam.find(params[:id])
+  
+  def add_exam_dialog_show
+    @exam_group=ExamGroup.find(params[:id])
+    @subjects=Subject.find(:all)
+    render :update do |page|
+      page.call 'jQuery.noConflict'
+      page << "jQuery('#dialog_add_exam').dialog('destroy');"
+      page.replace_html("add_exam", :partial =>'exams/new_exam', :object => @exam_group)
+     # page.alert("Going to call the dialog for " + @exam_group.description)
+      page << "jQuery('#dialog_add_exam').dialog({
+            bgiframe: true,
+            height: 333,
+            width: 360,
+            modal: true,
+            autoOpen: false
+        });"
+     #   page.replace_html("add_exam", :partial =>'exams/new_exam', :object => @exam_group)
+      page << "jQuery('#dialog_add_exam').dialog('open');"      
+    end
+    
   end
-
-  # POST /exams
-  # POST /exams.xml
-  def create
-    @exam = Exam.new(params[:exam])
-
-    respond_to do |format|
-      if @exam.save
-        flash[:notice] = 'Exam was successfully created.'
-        format.html { redirect_to(@exam) }
-        format.xml  { render :xml => @exam, :status => :created, :location => @exam }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @exam.errors, :status => :unprocessable_entity }
+  
+  def add_exam
+    @exam_group=ExamGroup.find(params[:id])
+    exam=Exam.new()
+    exam.subject=Subject.find(params[:subject])
+    exam.start_time=params[:start_time]
+    exam.end_time=params[:end_time]
+    exam.venue=params[:venue]
+    exam.max_score=params[:max_score]
+    exam.pass_score=params[:pass_score]
+    @exam_group.exams << exam
+    @exam_group.save!
+    @exams=@exam_group.exams
+    if @exam_group.exams.count==1
+      render :update do |page|
+        page << "jQuery('#dialog_add_exam').dialog('close');"
+       # page << "jQuery('#dialog_add_exam').dialog('destroy');"
+        page.alert("Closing 1 add exam dialog: " + @exam_group.description)
+        page.replace_html("exams_index_div", :partial =>'exams', :object => exam)
       end
-    end
-  end
-
-  # PUT /exams/1
-  # PUT /exams/1.xml
-  def update
-    @exam = Exam.find(params[:id])
-
-    respond_to do |format|
-      if @exam.update_attributes(params[:exam])
-        flash[:notice] = 'Exam was successfully updated.'
-        format.html { redirect_to(@exam) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @exam.errors, :status => :unprocessable_entity }
+    else
+      render :update do |page|
+        page << "jQuery('#dialog_add_exam').dialog('close');"
+     #   page << "jQuery('#dialog_add_exam').dialog('destroy');"
+        page.alert("Closing add exam dialog: " + @exam_group.description)
+        page.insert_html(:bottom, "exam_list_table", :partial =>'exam', :object => exam)
       end
-    end
+    end    
+  rescue Exception => e
+    flash[:notice]="Error occured in exam add: <br /> #{e.message}"
   end
-
-  # DELETE /exams/1
-  # DELETE /exams/1.xml
-  def destroy
-    @exam = Exam.find(params[:id])
-    @exam.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(exams_url) }
-      format.xml  { head :ok }
-    end
-  end
+  
 end
