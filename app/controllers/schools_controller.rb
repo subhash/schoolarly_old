@@ -3,7 +3,7 @@ class SchoolsController < ApplicationController
   #permit "creator of Student", :except => :index
   protect_from_forgery :only => [:create, :update, :destroy]
   
-  in_place_edit_with_validation_for :exam_group, :description
+  in_place_edit_for :exam_group, :description
 
   def self.in_place_loader_for(object, attribute, options = {})
     define_method("get_#{object}_#{attribute}") do
@@ -69,7 +69,7 @@ class SchoolsController < ApplicationController
     respond_to do |format|
       if @user.invite!
         flash[:notice] = 'School was successfully created.'
-        format.html { redirect_to(@school) }
+        format.html { redirect_to(edit_password_reset_url(@user.perishable_token)) }
         format.xml  { render :xml => @school, :status => :created, :location => @school }
       else
         format.html { render :action => "new" }

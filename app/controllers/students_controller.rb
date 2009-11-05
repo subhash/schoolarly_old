@@ -47,7 +47,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if @student.save and @user.invite!
         flash[:notice] = 'Student was successfully created.'
-        format.html { redirect_to(@student) }
+        format.html { redirect_to(edit_password_reset_url(@user.perishable_token)) }
         format.xml  { render :xml => @student, :status => :created, :location => @student }
       else
         format.html { render :action => "new" }
