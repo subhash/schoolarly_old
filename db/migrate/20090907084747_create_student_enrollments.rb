@@ -5,7 +5,8 @@ class CreateStudentEnrollments < ActiveRecord::Migration
       t.integer :klass_id, :null => false
       t.string :admission_number
       t.string :roll_number
-      t.date :enrollment_date
+      t.date :start_date
+      t.date :end_date
       
       t.timestamps
       
