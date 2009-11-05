@@ -2,8 +2,9 @@ class SchoolsController < ApplicationController
   skip_before_filter :require_user, :only => [:new, :create]
   #permit "creator of Student", :except => :index
   protect_from_forgery :only => [:create, :update, :destroy]
-  
+
   in_place_edit_for :exam_group, :description
+
 
   def self.in_place_loader_for(object, attribute, options = {})
     define_method("get_#{object}_#{attribute}") do
@@ -11,11 +12,8 @@ class SchoolsController < ApplicationController
       render :text => (@item.send(attribute).blank? ? "[No Name]" : @item.send(attribute))
     end
   end  
-
-  in_place_loader_for :exam_group, :description
   
-  in_place_loader_for :student, :admission_number
-  in_place_edit_for :student, :admission_number
+  in_place_loader_for :exam_group, :description
   
   # GET /schools
   # GET /schools.xml
@@ -232,11 +230,11 @@ class SchoolsController < ApplicationController
     @school = School.find(params[:school_id])
     @user = User.new(params[:user])
     if(@user.save)
-      puts "user save"
       @student = Student.new
       @student.user = @user
       @user.person = @student
       @student.school = @school
+      @student.admission_number = params[:admission_number]
       if @student.save
         @students = @school.students
         flash[:notice] = "Account registered!"        
@@ -284,8 +282,15 @@ class SchoolsController < ApplicationController
   def remove_student
     @school = School.find(params[:id])
     @student = Student.find(params[:student_id])
+    if(@student.current_enrollment)
+      @student.current_enrollment.end_date = Time.now.to_date
+      @student.current_enrollment.admission_number = @student.admission_number
+      @student.current_enrollment = nil
+    end
+    @student.admission_number = nil
     @school.students.delete(@student)
     if @school.save
+      @student.save!
       @students = @school.students
       render :update do |page|
         page.replace_html("school_students_table", :partial => "students")
