@@ -25,3 +25,13 @@
     <%= submit_tag 'Submit' %>
     <% end %>
 </p>
+<p>
+    <% form_tag :action => 'roles', :id => @user  do %>
+    <% for user in @users %>    
+    <%= label "#{user.email}", "#{user.email}" %>
+    <%= select_tag 'user[]', user.id %>
+    <br/>
+    <% end %>
+    <%= submit_tag 'Submit' %>
+    <% end %>
+</p>

@@ -18,8 +18,9 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = @current_user
+    @user = current_user
     set_active_user(@user.id)
+    @users = User.find(:all)
   end
   
   def edit
@@ -75,13 +76,11 @@ class UsersController < ApplicationController
   
     
   def roles
-    @user = User.find(params[:id])
-    puts params.inspect
-    puts @user
-    Role.find(:all).each do |r|
-      puts params[:role]["#{r.id}"]
-      @user.has_role(r) if params[:role]["#{r.id}"]      
-    end
-    redirect_to request.request_uri
+      flash[:notice]=(params[:user].inspect)
+      puts params[:user].inspect
+      for u in params[:user]
+        puts u.inspect
+      end
+    redirect_to :action => :show, :id => params[:id]
   end
 end
