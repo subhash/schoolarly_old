@@ -31,12 +31,13 @@
             </td>
             <td>
                 <%= student.user.email %>
-            </td>            
+            </td>
             <td>
-                <%= student.current_enrollment.roll_number %>
-            </td>            
+				<input type="button" id="edit_no_<%= student.id %>" class="ui-state-default float_right" value="edit"/><strong id=<%="roll_number_#{student.id}" %>><%=student.current_enrollment.roll_number %></strong>
+                <%= in_place_editor "roll_number_#{student.id}" ,{:url => {:controller => 'student_enrollment', :action => 'set_student_enrollment_roll_number', :id => student.current_enrollment},:external_control => "edit_no_#{student.id}"} %>
+            </td>
             <th>
-                <%= link_to_remote 'Remove Enrollment', :url => {:controller => 'klasses', :action => 'remove_student',:id => @klass, :student_id => student}, :confirm => 'Are you sure?' %>
+                <%= link_to 'Change Assignment', :controller => 'student_enrollment', :action => 'edit',:id => student.current_enrollment %>
             </th>
         </tr>
         <%end %>

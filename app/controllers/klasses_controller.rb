@@ -38,10 +38,12 @@ class KlassesController < ApplicationController
   
   def show
     @klass = Klass.find(params[:id])    
-    @students = @klass.students
+    @students = @klass.current_students
+    puts "students = "+@students.inspect
     @school = @klass.school
     @klass_subjects = @klass.subjects
     @add_subjects = @school.subjects - @klass.subjects 
+    session[:redirect] = request.request_uri
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @klass }

@@ -162,7 +162,8 @@ ActiveRecord::Schema.define(:version => 20091027081719) do
     t.integer  "klass_id",         :null => false
     t.string   "admission_number"
     t.string   "roll_number"
-    t.date     "enrollment_date"
+    t.date     "start_date"
+    t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

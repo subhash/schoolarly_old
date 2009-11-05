@@ -15,7 +15,7 @@ class Klass < ActiveRecord::Base
   validates_uniqueness_of :division, :scope => [:school_id, :level, :year]
   
   def current_students
-    self.enrollments.select{|e| e.current_student}
+   (self.enrollments.select{|e| e.current_student}).collect{|s|s.student}
   end
   
   def self.current_academic_year(school_id)
