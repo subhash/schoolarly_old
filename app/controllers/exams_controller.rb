@@ -13,7 +13,6 @@ class ExamsController < ApplicationController
   end  
 
   in_place_loader_for :exam_group, :description
-  
 
   def exam_edit
     @exam_group=ExamGroup.find(params[:id])
