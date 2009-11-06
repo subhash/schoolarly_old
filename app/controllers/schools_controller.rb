@@ -217,13 +217,13 @@ class SchoolsController < ApplicationController
   def create_student
     @school = School.find(params[:school_id])
     @user = User.new(params[:user])
-    if(@user.save)
+#    if(@user.save)
       @student = Student.new
       @student.user = @user
       @user.person = @student
       @student.school = @school
       @student.admission_number = params[:admission_number]
-      if @student.save
+      if @student.save!
         @students = @school.students
         flash[:notice] = "Account registered!"        
         render :update do |page|
@@ -234,10 +234,10 @@ class SchoolsController < ApplicationController
       else
         render :action => :new
       end
-    else
-      puts "user save else"
-      render :action => :new
-    end  
+#    else
+#      puts "user save else"
+#      render :action => :new
+#    end  
   end
   
   def add_student    
