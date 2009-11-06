@@ -276,9 +276,9 @@ class SchoolsController < ApplicationController
       @student.current_enrollment = nil
     end
     @student.admission_number = nil
+    @student.save!
     @school.students.delete(@student)
     if @school.save
-      @student.save!
       @students = @school.students
       render :update do |page|
         page.replace_html("school_students_table", :partial => "students")
