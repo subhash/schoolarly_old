@@ -1,4 +1,5 @@
 <% form_for :student_enrollment, :url => {:action => :create, :id => @student} do |form| %>
+<%= form.error_messages %>
 <h2>Enroll <%=@student.user.email %></h2>
 <div class=c62l>
     <strong>Select a class</strong>
@@ -13,7 +14,7 @@
                     Admission Number: 
                 </td>
                 <td>
-                    <%=@student_enrollment.admission_number %>
+                    <%=@student.admission_number %>
                 </td>
             </tr>
             <tr>

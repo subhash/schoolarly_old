@@ -1,5 +1,6 @@
 <% form_for :student_enrollment, :url => {:action => :update, :id => @student_enrollment} do |form| %>
 <h2>Change enrollment for <%=@student.user.email %></h2>
+<%= form.error_messages %>
 <div class=c62l>
     <strong>Select a class</strong>
     <div>
