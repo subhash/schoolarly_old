@@ -1,6 +1,6 @@
 <%exam_group=exam_list %>
 
-<h3>Listing exams under <%= in_place_editor_field "exam_group" , "description", {}, {:external_control => "edit_description", :load_text_url=> url_for(:action=>"get_exam_group_description", :id=>exam_group)}%>
+<h3>Listing exams under <%=exam_group.exam_type.description + ": "%><%= in_place_editor_field "exam_group" , "description", {}, {:external_control => "edit_description", :load_text_url=> url_for(:action=>"get_exam_group_description", :id=>exam_group)}%>
 <span id="edit_description" class="small_button ui-state-default ui-corner-all" style="font-size:.7em">Edit Name</span></h3>
  
 <table id="editlist">

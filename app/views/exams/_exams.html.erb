@@ -1,5 +1,5 @@
 <%exam_group=exams %>
-<h3>Listing exams under <%=exam_group.description %></h3>
+<h3>Listing exams under <%=exam_group.exam_type.description + ": " + exam_group.description %></h3>
 <table id="exam_list_table">
     <%if !exam_group.exams.nil? && !exam_group.exams.empty? %>
     <tr>

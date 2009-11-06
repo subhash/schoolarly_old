@@ -1,7 +1,7 @@
 <% if !exam_group.id.nil? %>
 <tr>
     <td class="ui-state-focus">
-        <%= link_to_remote exam_group.description, :url => {:controller => :exam_groups, :action => :show, :id => exam_group}, :update => "exams" %>
+        <%= link_to_remote exam_group.exam_type.description + ": " + exam_group.description, :url => {:controller => :exam_groups, :action => :show, :id => exam_group}, :update => "exams" %>
     </td>
     <th>
         <%= link_to_remote 'Delete', :url => {:controller => :exam_groups, :action => 'remove_exam_group',:id => exam_group}, :confirm => 'Are you sure?' %>
