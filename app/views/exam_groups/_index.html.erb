@@ -1,4 +1,5 @@
 <script type="text/javascript">
+	jQuery.noConflict
         jQuery(function(){
             jQuery("#accordion").accordion({
                 autoHeight: false,
@@ -6,14 +7,25 @@
             });
     	});
                    
-            jQuery(document).ready(function(){
-                jQuery('.accordion .head').click(function(){
+		jQuery(document).ready(function(){
+        	jQuery('.accordion .head').click(function(){
                     this.next().toggle();
                     return false;
                 }).next().hide();
             });
+  
+	  	jQuery(function(){
+			jQuery('#dialog_add_exam').dialog({
+	            bgiframe: true,
+	            height: 333,
+	            width: 360,
+	            modal: true,
+	            autoOpen: false
+        	});
+		});
 
 </script>
+
 <%school=index%>
 <%if !@exam_groups.nil? && !@exam_groups.empty? %>
 <h3>Exam groups of <%=school.name %></h3>
@@ -30,12 +42,12 @@
 	<h3><a href="#"><%=klass.name %></a></h3>
 <%end%>
     <div>
-        <table id="<%=klass.id.to_s + '_content_table'%>" class="ui-state-default" border="1px">
+        <table id="<%=klass.id.to_s + '_content_table'%>" class="ui-state-default" border="1px" >
             <%=render :partial => 'exam_groups/exam_group' , :collection => egs %>
         </table>
-        <div class="small_button ui-state-default ui-corner-all center">
+        <div class="button ui-state-default ui-corner-all center" style="padding: 0.5em" >
             <div id="add_button">
-                <%= link_to_remote 'Add Exam Group', :url => {:controller => :exam_groups, :action => 'add_exam_group_dialog_show', :id=>klass} %>
+                <%= link_to_remote 'Add Group', :url => {:controller => :exam_groups, :action => 'add_exam_group_dialog_show', :id=>klass} %>
             </div>
         </div>
     </div>
@@ -43,6 +55,10 @@
 </div>
 <div id="dialog_add_exam_group" title="Add Exam Group" style="display: none;">
     <div id="add_exam_group">
+    </div>
+</div>
+<div id="dialog_edit_exam_group" title="Edit Exam Group" style="display: none;">
+    <div id="edit_exam_group">
     </div>
 </div>
 <%else %>

@@ -1,0 +1,26 @@
+<%exam_group=edit%>
+<fieldset align=center>
+    <table class="center">
+        <tr>
+            <th>
+                <label for="exam_type">
+                    Exam Type
+                </label>
+            </th>
+            <td>
+                <%= select_tag(:edit_exam_type, options_from_collection_for_select(@exam_types,:id,:name,{:selected => exam_group.exam_type.id}), { :style => "width: 231px"} ) %>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="description">
+                    Description
+                </label>
+            </th>
+            <td>
+                <%= text_field_tag(:edit_description, exam_group.description, :size => 36) %>
+            </td>
+        </tr>
+    </table>
+    <%=link_to_remote 'Edit', :url => {:controller => 'exam_groups', :action => 'update_exam_group', :id=>exam_group}, :with => "'exam_type=' + $('edit_exam_type').value + '&description=' + $('edit_description').value" %>
+</fieldset>
