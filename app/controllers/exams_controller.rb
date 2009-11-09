@@ -35,9 +35,7 @@ class ExamsController < ApplicationController
       exams_marked_for_deletion=Exam.find(params[:cb].keys)
       Exam.destroy(exams_marked_for_deletion)
     end
-    #@exams=@exam_group.exams
     school=@exam_group.klass.school
-    #@subjects=Subject.find(:all)
     flash[:notice] = 'Exam Details were successfully updated.'
     redirect_to(:controller => :schools, :action => 'exam_groups_index', :id=>school, :exam_group => @exam_group)
   end
@@ -47,24 +45,14 @@ class ExamsController < ApplicationController
     @subjects=Subject.find(:all)
     render :update do |page|
       page.call 'jQuery.noConflict'
-      page << "jQuery('#dialog_add_exam').dialog('destroy');"
       page.replace_html("add_exam", :partial =>'exams/new_exam', :object => @exam_group)
-     # page.alert("Going to call the dialog for " + @exam_group.description)
-      page << "jQuery('#dialog_add_exam').dialog({
-            bgiframe: true,
-            height: 333,
-            width: 360,
-            modal: true,
-            autoOpen: false
-        });"
-     #   page.replace_html("add_exam", :partial =>'exams/new_exam', :object => @exam_group)
-      page << "jQuery('#dialog_add_exam').dialog('open');"      
+      page << "jQuery('#dialog_add_exam').dialog('open');"
     end
-    
   end
   
   def add_exam
-    @exam_group=ExamGroup.find(params[:id])
+    @subjects=Subject.find(:all)
+    exam_group=ExamGroup.find(params[:id])
     exam=Exam.new()
     exam.subject=Subject.find(params[:subject])
     exam.start_time=params[:start_time]
@@ -72,21 +60,24 @@ class ExamsController < ApplicationController
     exam.venue=params[:venue]
     exam.max_score=params[:max_score]
     exam.pass_score=params[:pass_score]
-    @exam_group.exams << exam
-    @exam_group.save!
-    @exams=@exam_group.exams
-    if @exam_group.exams.count==1
+    exam_group.exams << exam
+    exam_group.save!
+    exams=exam_group.exams
+    if exam_group.exams.count==1
       render :update do |page|
         page << "jQuery('#dialog_add_exam').dialog('close');"
-       # page << "jQuery('#dialog_add_exam').dialog('destroy');"
-        page.alert("Closing 1 add exam dialog: " + @exam_group.description)
-        page.replace_html("exams_index_div", :partial =>'exams', :object => exam)
+        page.replace_html("exams_index_div", :partial =>'exams', :object => exam_group)
+        page << "$('new_subject').value = \"\";"
+        page << "$('new_start_time').value = \"\";"
+        page << "$('new_end_time').value = \"\";"
+        page << "$('new_venue').value = \"\";"
+        page << "$('new_max_score').value = \"\";"
+        page << "$('new_pass_score').value = \"\";"
       end
     else
       render :update do |page|
-        page << "jQuery('#dialog_add_exam').dialog('close');"
-     #   page << "jQuery('#dialog_add_exam').dialog('destroy');"
-        page.alert("Closing add exam dialog: " + @exam_group.description)
+        page << "jQuery('#dialog_add_exam').dialog('close')"
+        page.alert("Closing add exam dialog: " + exam_group.description)
         page.insert_html(:bottom, "exam_list_table", :partial =>'exam', :object => exam)
       end
     end    
