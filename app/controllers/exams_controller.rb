@@ -67,17 +67,10 @@ class ExamsController < ApplicationController
       render :update do |page|
         page << "jQuery('#dialog_add_exam').dialog('close');"
         page.replace_html("exams_index_div", :partial =>'exams', :object => exam_group)
-        page << "$('new_subject').value = \"\";"
-        page << "$('new_start_time').value = \"\";"
-        page << "$('new_end_time').value = \"\";"
-        page << "$('new_venue').value = \"\";"
-        page << "$('new_max_score').value = \"\";"
-        page << "$('new_pass_score').value = \"\";"
       end
     else
       render :update do |page|
         page << "jQuery('#dialog_add_exam').dialog('close')"
-        page.alert("Closing add exam dialog: " + exam_group.description)
         page.insert_html(:bottom, "exam_list_table", :partial =>'exam', :object => exam)
       end
     end    
