@@ -21,7 +21,7 @@
         <th>
             Pass Score
         </th>
-		<th>
+        <th>
             Enter Score
         </th>
     </tr>
@@ -42,6 +42,6 @@
 <%end %>
 <div class="button ui-state-default ui-corner-all float_left">
     <div id="button_add_exam">
-        <%= link_to_remote 'Add Exam to ' + exam_group.description , :url => {:controller => :exams, :action => 'add_exam_dialog_show', :id=>exam_group.id} %>
+        <%= link_to_remote 'Add Exam', :url => {:controller => :exams, :action => 'add_exam_dialog_show', :id=>exam_group} %>
     </div>
 </div>

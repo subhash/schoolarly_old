@@ -4,28 +4,28 @@
 			<table class="center">
             <tr>
             	<th><label for="subject">Subject</label></th>
-				<td><%= select_tag(:subject, options_from_collection_for_select(@subjects,:id,:name,{:selected => 9}), { :style => "width: 231px"} ) %></td>
+				<td><%= select_tag("new_subject", options_from_collection_for_select(@subjects,:id,:name,{:selected => 9}), { :style => "width: 231px"} ) %></td>
             </tr>
             <tr>
            		<th><label for="start_time">Start Time</label></th>
-                <td><%= text_field_tag(:start_time, "", :size => 36)%></td>
+                <td><%= text_field_tag("new_start_time", "", :size => 36)%></td>
             </tr>
             <tr>
             	<th><label for="end_time">End Time</label></th>
-                <td><%= text_field_tag(:end_time, "", :size => 36)%></td>
+                <td><%= text_field_tag("new_end_time", "", :size => 36)%></td>
             </tr>
             <tr>
             	<th><label for="venue">Venue</label></th>
-                <td><%= text_field_tag(:venue, "", :size => 36)%></td>
+                <td><%= text_field_tag("new_venue", "", :size => 36)%></td>
             </tr>
 			<tr>
             	<th><label for="max_score">Max Score</label></th>
-                <td><%= text_field_tag(:max_score, "", :size => 36)%></td>
+                <td><%= text_field_tag("new_max_score", "", :size => 36)%></td>
             </tr>
 			<tr>
             	<th><label for="pass_score">Pass Score</label></th>
-                <td><%= text_field_tag(:pass_score, "", :size => 36)%></td>
+                <td><%= text_field_tag("new_pass_score", "", :size => 36)%></td>
             </tr>
 			</table>
-                <%=link_to_remote 'Add', :url => {:controller => :exams, :action => 'add_exam', :id=>new_exam}, :with => "'subject=' + $('subject').value + '&start_time=' + $('start_time').value + '&end_time=' + $('end_time').value + '&venue=' + $('venue').value + '&max_score=' + $('max_score').value + '&pass_score=' + $('pass_score').value" %>
+                <%=link_to_remote 'Add', :url => {:controller => :exams, :action => 'add_exam', :id=>new_exam}, :with => "'subject=' + $('new_subject').value + '&start_time=' + $('new_start_time').value + '&end_time=' + $('new_end_time').value + '&venue=' + $('new_venue').value + '&max_score=' + $('new_max_score').value + '&pass_score=' + $('new_pass_score').value" %>
         </fieldset>
