@@ -5,6 +5,8 @@ class ExamsController < ApplicationController
   #in_place_edit_with_validation_for :exam_group, :description
   in_place_edit_for :exam_group, :description
 
+#  in_place_timepickr_for :exam, :start_time
+
   def self.in_place_loader_for(object, attribute, options = {})
     define_method("get_#{object}_#{attribute}") do
       @item = object.to_s.camelize.constantize.find(params[:id])
@@ -22,7 +24,7 @@ class ExamsController < ApplicationController
       [subject.name,subject.id]
     end
     render :update do |page|
-      page.replace_html("exams", :partial => "exam_list", :object=> @exam_group) 
+      page.replace_html("exams_index_div", :partial => "exam_list", :object=> @exam_group) 
     end
   end
   
