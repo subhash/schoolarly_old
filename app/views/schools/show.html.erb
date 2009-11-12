@@ -22,4 +22,12 @@
     <br/>
     <% end %>
 </p>
+<p>
+    <h3>Students</h3>
+    <br/>
+    <% @students.each do |student| %>
+    <%= link_to student.user.email, student %>
+    <br/>
+    <% end %>
+</p>
 <%= link_to 'Edit', edit_school_path(@school) %>|<%= link_to 'Back', schools_path %>
