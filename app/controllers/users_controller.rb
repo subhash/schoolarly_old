@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   
   def index
     user_type = params[:user_type]   
-    
+    @page_path = {'Users' => nil}
     if user_type == School.name.downcase
       @users = User.find_all_by_person_type(:School)
       @active_tab = :Schools

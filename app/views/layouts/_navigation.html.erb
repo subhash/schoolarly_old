@@ -1,19 +1,9 @@
 <div id="nav">
     <a id="navigation" name="navigation"></a>
-    <div class="hlist">
-        <!-- main navigation: horizontal list -->
-        <ul>
-            <%tabs.each {|key,value| %>
-            <%if key == @active_tab %>
-            <li class="active">
-                <strong><%=key %></strong>
-            </li>
-            <%else %>
-            <li>
-                <%= link_to key,value %>
-            </li>
-            <%end %>
-            <%} %>
-        </ul>
+    <div>
+        <% @page_path ||= {} %>
+        <% @page_path.each do |k,v| %>
+        <%= if(v) then link_to(k, v) else k end %>
+        <% end %>
     </div>
 </div>
