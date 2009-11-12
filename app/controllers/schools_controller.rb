@@ -17,10 +17,13 @@ class SchoolsController < ApplicationController
   
   # GET /schools/1
   # GET /schools/1.xml
-  def show
-    @active_tab = :Home
+  def show    
     @school=School.find(params[:id])
-    set_active_user(@school.user.id)
+    @page_path = [[@school.name, nil]]
+    @page_actions = [['Create Class (TODO: Make js)', url_for(:controller => :schools, :action => 'klasses', :id=>@school)]]
+    @klasses = @school.klasses
+    @students = @school.students
+    
     
     respond_to do |format|
       format.html # show.html.erb
@@ -217,27 +220,27 @@ class SchoolsController < ApplicationController
   def create_student
     @school = School.find(params[:school_id])
     @user = User.new(params[:user])
-#    if(@user.save)
-      @student = Student.new
-      @student.user = @user
-      @user.person = @student
-      @student.school = @school
-      @student.admission_number = params[:admission_number]
-      if @student.save!
-        @students = @school.students
-        flash[:notice] = "Account registered!"        
-        render :update do |page|
-          page.select("form").first.reset
-          page[:new_student_form].hide
-          page.replace_html("school_students_table", :partial => "students")
-        end
-      else
-        render :action => :new
+    #    if(@user.save)
+    @student = Student.new
+    @student.user = @user
+    @user.person = @student
+    @student.school = @school
+    @student.admission_number = params[:admission_number]
+    if @student.save!
+      @students = @school.students
+      flash[:notice] = "Account registered!"        
+      render :update do |page|
+        page.select("form").first.reset
+        page[:new_student_form].hide
+        page.replace_html("school_students_table", :partial => "students")
       end
-#    else
-#      puts "user save else"
-#      render :action => :new
-#    end  
+    else
+      render :action => :new
+    end
+    #    else
+    #      puts "user save else"
+    #      render :action => :new
+    #    end  
   end
   
   def add_student    

@@ -27,15 +27,31 @@
                         <%= link_to "Logout, #{current_user.email}", user_session_path,  :method => :delete, :confirm => 'Are you sure you want to logout?' %>
                         <% else %>
                         <%= link_to 'Login', new_user_session_path %>
-                        <% end %>                        
+                        <% end %>
                     </div>
-					<%= render :partial => "/layouts/navigation", :collection => controller.navigation_tabs , :as => :tabs %>
+                    <%= render :partial => "/layouts/navigation", :collection => controller.navigation_tabs , :as => :tabs %>
                 </div>
                 <div id="main">
                     <p style="color: green">
                         <%= flash[:notice] %>
                     </p>
-                    <%= yield %>
+                    <div id="col2">
+                        <div id="col2_content">
+                            <%= yield %>
+                        </div>
+                    </div>
+                    <div id="col3">
+                        <div id ="col3_content">
+                            <div>
+                            	<h2>Actions</h2>
+                                <% @page_actions ||= [] %>
+                                <% @page_actions.each do |a| %>
+                                <strong><%= if(a[1]) then link_to(a[0], a[1]) else a[0] end %></strong>
+								<br/>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="footer">
                     <a href="#">About Schoolarly</a>

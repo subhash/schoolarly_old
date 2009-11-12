@@ -37,10 +37,10 @@ class KlassesController < ApplicationController
   end
   
   def show
-    @klass = Klass.find(params[:id])    
-    @students = @klass.current_students
-    puts "students = "+@students.inspect
+    @klass = Klass.find(params[:id])   
     @school = @klass.school
+    @page_path = [[@school.name, @school],[@klass.name, nil]]
+    @students = @klass.current_students        
     @klass_subjects = @klass.subjects
     @add_subjects = @school.subjects - @klass.subjects 
     session[:redirect] = request.request_uri

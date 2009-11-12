@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   
   def index
     user_type = params[:user_type]   
-    @page_path = {'Users' => nil}
+    @page_path = [['Users', nil]]
     if user_type == School.name.downcase
       @users = User.find_all_by_person_type(:School)
       @active_tab = :Schools
@@ -74,13 +74,13 @@ class UsersController < ApplicationController
     return tabs
   end
   
-    
+  
   def roles
-      flash[:notice]=(params[:user].inspect)
-      puts params[:user].inspect
-      for u in params[:user]
-        puts u.inspect
-      end
+    flash[:notice]=(params[:user].inspect)
+    puts params[:user].inspect
+    for u in params[:user]
+      puts u.inspect
+    end
     redirect_to :action => :show, :id => params[:id]
   end
 end
