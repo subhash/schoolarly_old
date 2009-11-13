@@ -33,3 +33,21 @@
         &#160; 
     </div>
 </div>
+<div id="formDiv">
+    <form id="myForm" action="klasses/new" method="get">
+        Name: <input type="text" name="name" />Comment: 
+        <textarea name="comment">
+        </textarea>
+        <input type="submit" value="Submit Comment" />
+    </form>
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function(){        
+        dialog = jQuery("#formDiv");
+		dialog.dialog();
+		jQuery('#myForm').ajaxForm(function(){
+            alert("Thank you for your comment!");
+			dialog.dialog('close');
+        });
+    });
+</script>

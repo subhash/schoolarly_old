@@ -24,7 +24,8 @@ class SchoolsController < ApplicationController
     @page_actions = [['Allot student to class', {:action => 'allot_student', :id => @school}, {:class => 'allot_student'}],                    
     ['Allot teacher to class', {:action => 'allot_teacher', :id => @school}, {:class => 'allot_teacher'}]]    
     
-    @page_js_actions = [['Create Class','createClass();', {:id => 'create_class'}]]
+    @page_js_actions = [['Create Class','createClass()', {:id => 'create_class_link'}],
+    ['Invite Student','inviteStudent()', {:id => 'invite_student_link'}]]
     
     @klasses = @school.klasses
     @students = @school.students
