@@ -43,11 +43,16 @@
                     <div id="col3">
                         <div id ="col3_content">
                             <div>
-                            	<h2>Actions</h2>
+                                <h2>Actions</h2>
                                 <% @page_actions ||= [] %>
-                                <% @page_actions.each do |a| %>
-                                <strong><%= if(a[1]) then link_to(a[0], a[1]) else a[0] end %></strong>
-								<br/>
+                                <% @page_actions.each do |action| %>
+                                <%= link_to *action %>
+                                <br/>
+                                <% end %>
+                                <% @page_js_actions ||= [] %>
+                                <% @page_js_actions.each do |action| %>
+                                <%= link_to_function *action %>
+                                <br/>
                                 <% end %>
                             </div>
                         </div>

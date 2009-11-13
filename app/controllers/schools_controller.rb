@@ -20,9 +20,12 @@ class SchoolsController < ApplicationController
   def show    
     @school=School.find(params[:id])
     @page_path = [[@school.name, nil]]
-    @page_actions = [['Create Class (TODO: Make js)', url_for(:action => 'klasses', :id => @school)],
-    ['Allot student to class', url_for(:action => 'allot_student', :id => @school)],
-    ['Allot teacher to class', url_for(:action => 'allot_teacher', :id => @school)]]
+    
+    @page_actions = [['Allot student to class', {:action => 'allot_student', :id => @school}, {:class => 'allot_student'}],                    
+    ['Allot teacher to class', {:action => 'allot_teacher', :id => @school}, {:class => 'allot_teacher'}]]    
+    
+    @page_js_actions = [['Create Class','createClass();', {:id => 'create_class'}]]
+    
     @klasses = @school.klasses
     @students = @school.students
     respond_to do |format|
