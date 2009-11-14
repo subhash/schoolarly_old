@@ -31,10 +31,8 @@
     <br/>
     <% end %>
 </p>
-<div id="invite_student_dialog" style="display: none;">
-    <% form_tag '/students', :id => 'invite_students_form' do %>
-    <%= render :partial => 'users/invite_input' %>
-	<%= submit_tag 'Invite' %>
-    <% end %>
-</div>
 <%= link_to 'Edit', edit_school_path(@school) %>|<%= link_to 'Back', schools_path %>
+
+<div id="invite_student_dialog" style="display: none;">
+    <%= render :partial => 'students/invite_student_form', :locals => {:student => Student.new} %>
+</div>

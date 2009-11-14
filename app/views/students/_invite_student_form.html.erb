@@ -1,0 +1,11 @@
+<% puts invite_student_form.inspect %>
+<% debug student %>
+<% form_for student do |f| %>
+<%= f.error_messages %>
+<p>
+    <%= render :partial => 'users/invite_input', :locals => {:user => User.new} %>
+</p>
+<p>
+    <%= f.submit 'Invite' %>
+</p>
+<% end %>

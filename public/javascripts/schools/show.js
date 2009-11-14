@@ -8,7 +8,7 @@ jQuery(function(){
     page.dialog({
         autoOpen: false
     });
-    jQuery('#invite_students_form').ajaxForm(function(){
+    jQuery('#new_student').ajaxForm(function(responseText, statusText){
         alert("Thank you for your form!");
 		page = jQuery("#invite_student_dialog");
 		page.dialog('close');				

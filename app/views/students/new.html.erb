@@ -1,14 +1,3 @@
 <h1>New student</h1>
-
-<% form_for(@student) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= render :partial => 'users/invite_input'%>
-  </p>
-  <p>
-    <%= f.submit 'Invite' %>
-  </p>
-<% end %>
-
+<%= render :partial => 'invite_student_form', :locals => {:student => @student} %>
 <%= link_to 'Back', students_path %>
