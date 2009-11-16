@@ -44,6 +44,7 @@ class StudentsController < ApplicationController
     @student = Student.new(params[:student])
     @user = User.new(params[:user])
     @student.user = @user
+    
     respond_to do |format|
       if @student.save and @user.invite!
         flash[:notice] = 'Student was successfully created.'

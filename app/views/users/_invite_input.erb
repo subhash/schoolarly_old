@@ -1,4 +1,5 @@
 <% fields_for :user do |user| %>
+<%= user.error_messages %>
 <%= user.label :email %>
 <br/>
 <%= user.text_field :email %>
