@@ -43,14 +43,14 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(params[:student])
     @user = User.new(params[:user])
-    @student.user = @user
-    
+    @student.user = @user    
     respond_to do |format|
       if @student.save and @user.invite!
         flash[:notice] = 'Student was successfully created.'
         format.html { redirect_to(edit_password_reset_url(@user.perishable_token)) }
         format.xml  { render :xml => @student, :status => :created, :location => @student }
       else
+        format.html {render :partial => 'invite_student_form', :locals => {:student => @student}} if request.xhr?
         format.html { render :action => "new" }
         format.xml  { render :xml => @student.errors, :status => :unprocessable_entity }
       end

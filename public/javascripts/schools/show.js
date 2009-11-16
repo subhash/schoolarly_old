@@ -5,9 +5,9 @@ function inviteStudent(){
 }
 
 function handleResponse(responseText, statusText){
-    alert("Thank you for your form!");
-    page = jQuery("#invite_student_dialog");
-    page.dialog('close');
+    alert("Thank you for your form!");	
+//    page = jQuery("#invite_student_dialog");
+//    page.dialog('close');
 }
 
 function validate(formData, jqForm, options){
@@ -21,6 +21,7 @@ jQuery(function(){
     });
     jQuery('#new_student').ajaxForm({
         beforeSubmit: validate,
+		target: '#new_student',
         success: handleResponse
     });
 });
