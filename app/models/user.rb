@@ -27,7 +27,14 @@ class User < ActiveRecord::Base
   
   def invite!()
     reset_perishable_token
-    save_without_session_maintenance(true) and Notifier.deliver_invitation(self)  
+    save_before_invite and  Notifier.deliver_invitation(self)
+  end
+  
+  def save_before_invite
+    self.skip_session_maintenance = true
+    result = save!
+    self.skip_session_maintenance = false
+    result
   end
   
   def deliver_password_reset_instructions!  

@@ -1,17 +1,22 @@
 function inviteStudent(){
     page = jQuery("#invite_student_dialog");
-	jQuery('#new_student').clearForm();
+    jQuery('#new_student').resetForm();
     page.dialog('open');
 }
 
-function handleResponse(responseText, statusText){
-    alert("Thank you for your form!");	
-//    page = jQuery("#invite_student_dialog");
-//    page.dialog('close');
+function handleResponse(data, textStatus){
+    jQuery('#new_student').resetForm();
+    page = jQuery("#invite_student_dialog");
+    page.dialog('close');
+	jQuery('#notice').html(data);
 }
 
-function validate(formData, jqForm, options){
-	return true;
+function handleError(request, textStatus, errorThrown){
+    jQuery('#invite_student_dialog').html(request.responseText);
+    jQuery('#new_student').ajaxForm({
+        success: handleResponse,
+        error: handleError
+    });
 }
 
 jQuery(function(){
@@ -20,9 +25,8 @@ jQuery(function(){
         autoOpen: false
     });
     jQuery('#new_student').ajaxForm({
-        beforeSubmit: validate,
-		target: '#new_student',
-        success: handleResponse
+        success: handleResponse,
+        error: handleError
     });
 });
 

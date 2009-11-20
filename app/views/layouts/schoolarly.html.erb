@@ -4,9 +4,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <title>Untitled Document</title>
         <%= stylesheet_link_tag 'tablesorter', 'my_layout', 'patch_my_layout', 'jquery', 'schoolarly' %>
-		<%= javascript_include_tag 'prototype' %>        
-		<%= javascript_include_tag 'jquery' %>
-		<%= javascript_include_tag :all %>
+        <%= javascript_include_tag 'prototype' %>
+        <%= javascript_include_tag 'jquery' %>
+        <%= javascript_include_tag :all %>
     </head>
     <body>
         <div class="page_margins">
@@ -34,42 +34,45 @@
                 </div>
                 <div id="main">
                     <p style="color: green">
-                        <%= flash[:notice] %>
-                    </p>
-                    <div id="col2">
-                        <div id="col2_content">
-                            <%= yield %>
-                        </div>
-                    </div>
-                    <div id="col3">
-                        <div id ="col3_content">
-                            <div>
-                                <h2>Actions</h2>
-                                <% @page_actions ||= [] %>
-                                <% @page_actions.each do |action| %>
-                                <%= link_to *action %>
-                                <br/>
-                                <% end %>
-                                <% @page_js_actions ||= [] %>
-                                <% @page_js_actions.each do |action| %>
-                                <%= link_to_function *action %>
-                                <br/>
-                                <% end %>
-                            </div>
-                        </div>
+                    <div id="notice">
+                    	<%= flash[:notice] %>
+                    </div>                    
+                </div>
+                </p>
+                <div id="col2">
+                    <div id="col2_content">
+                        <%= yield %>
                     </div>
                 </div>
-                <div id="footer">
-                    <a href="#">About Schoolarly</a>
-                    | <a href="#">Contact Us</a>
+                <div id="col3">
+                    <div id ="col3_content">
+                        <div>
+                            <h2>Actions</h2>
+                            <% @page_actions ||= [] %>
+                            <% @page_actions.each do |action| %>
+                            <%= link_to *action %>
+                            <br/>
+                            <% end %>
+                            <% @page_js_actions ||= [] %>
+                            <% @page_js_actions.each do |action| %>
+                            <%= link_to_function *action %>
+                            <br/>
+                            <% end %>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="border-bottom">
-                <div id="edge-bl">
-                </div>
-                <div id="edge-br">
-                </div>
+            <div id="footer">
+                <a href="#">About Schoolarly</a>
+                | <a href="#">Contact Us</a>
             </div>
+        </div>
+        <div id="border-bottom">
+            <div id="edge-bl">
+            </div>
+            <div id="edge-br">
+            </div>
+        </div>
         </div>
     </body>
 </html>
