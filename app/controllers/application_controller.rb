@@ -44,6 +44,11 @@ class ApplicationController < ActionController::Base
     current_user and (current_user.is_editor_of?(object) or current_user.is_editor_of?(object.class))
   end
   
+  def add_breadcrumb name, url = nil
+    @breadcrumbs ||= []
+    @breadcrumbs << [name, url]
+  end
+  
   private
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
@@ -76,5 +81,7 @@ class ApplicationController < ActionController::Base
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
+  
+  
   
 end

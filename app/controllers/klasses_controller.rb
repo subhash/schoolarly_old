@@ -39,7 +39,8 @@ class KlassesController < ApplicationController
   def show
     @klass = Klass.find(params[:id])   
     @school = @klass.school
-    @page_path = [[@school.name, @school],[@klass.name, nil]]
+    add_breadcrumb(@school.name, @school)
+    add_breadcrumb(@klass.name)
     @students = @klass.current_students        
     @klass_subjects = @klass.subjects
     @add_subjects = @school.subjects - @klass.subjects 

@@ -19,7 +19,7 @@ class SchoolsController < ApplicationController
   # GET /schools/1.xml
   def show    
     @school=School.find(params[:id])
-    @page_path = [[@school.name, nil]]
+    add_breadcrumb(@school.name) 
     
     @page_actions = [['Allot student to class', {:action => 'allot_student', :id => @school}, {:class => 'allot_student'}],                    
     ['Allot teacher to class', {:action => 'allot_teacher', :id => @school}, {:class => 'allot_teacher'}]]    

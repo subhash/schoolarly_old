@@ -1,8 +1,7 @@
 <div id="nav">
     <a id="navigation" name="navigation"></a>
     <div>
-        <% @page_path ||= [] %>
-        <% @page_path.each do |a| %>
+        <% @breadcrumbs.each do |a| %>
         <strong><%= if(a[1]) then link_to(a[0], a[1])+" > " else a[0] end %></strong>
         <% end %>
     </div>
