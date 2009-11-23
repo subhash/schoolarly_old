@@ -1,14 +1,26 @@
+jQuery(function(){
+    jQuery("#invite_student_dialog").dialog({
+        autoOpen: false
+    });
+    jQuery("#invite_student_link").click(inviteStudent);
+    jQuery('#new_student').ajaxForm({
+        success: handleResponse,
+        error: handleError
+    });
+});
+
 function inviteStudent(){
     page = jQuery("#invite_student_dialog");
     jQuery('#new_student').resetForm();
     page.dialog('open');
+	return false;
 }
 
 function handleResponse(data, textStatus){
     jQuery('#new_student').resetForm();
     page = jQuery("#invite_student_dialog");
     page.dialog('close');
-	jQuery('#notice').html(data);
+    jQuery('#notice').html(data);
 }
 
 function handleError(request, textStatus, errorThrown){
@@ -18,16 +30,5 @@ function handleError(request, textStatus, errorThrown){
         error: handleError
     });
 }
-
-jQuery(function(){
-    page = jQuery("#invite_student_dialog");
-    page.dialog({
-        autoOpen: false
-    });
-    jQuery('#new_student').ajaxForm({
-        success: handleResponse,
-        error: handleError
-    });
-});
 
 

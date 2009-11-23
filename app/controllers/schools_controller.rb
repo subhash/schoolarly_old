@@ -23,8 +23,9 @@ class SchoolsController < ApplicationController
     add_page_action('Allot student to class', {:action => 'allot_student', :id => @school})
     add_page_action('Allot teacher to class', {:action => 'allot_teacher', :id => @school})
     
-    @page_js_actions = [['Create Class','createClass()', {:id => 'create_class_link'}],
-    ['Invite Student','inviteStudent()', {:id => 'invite_student_link'}]]
+    # javascript actions follow
+    add_page_action('Create Class',{}, {:id => 'create_class_link'})
+    add_page_action('Invite Student',{}, {:id => 'invite_student_link'})    
     
     @klasses = @school.klasses
     @students = @school.students
