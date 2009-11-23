@@ -41,6 +41,7 @@ class KlassesController < ApplicationController
     @school = @klass.school
     add_breadcrumb(@school.name, @school)
     add_breadcrumb(@klass.name)
+    
     @students = @klass.current_students        
     @klass_subjects = @klass.subjects
     @add_subjects = @school.subjects - @klass.subjects 

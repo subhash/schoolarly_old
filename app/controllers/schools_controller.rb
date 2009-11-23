@@ -20,9 +20,8 @@ class SchoolsController < ApplicationController
   def show    
     @school=School.find(params[:id])
     add_breadcrumb(@school.name) 
-    
-    @page_actions = [['Allot student to class', {:action => 'allot_student', :id => @school}, {:class => 'allot_student'}],                    
-    ['Allot teacher to class', {:action => 'allot_teacher', :id => @school}, {:class => 'allot_teacher'}]]    
+    add_page_action('Allot student to class', {:action => 'allot_student', :id => @school})
+    add_page_action('Allot teacher to class', {:action => 'allot_teacher', :id => @school})
     
     @page_js_actions = [['Create Class','createClass()', {:id => 'create_class_link'}],
     ['Invite Student','inviteStudent()', {:id => 'invite_student_link'}]]

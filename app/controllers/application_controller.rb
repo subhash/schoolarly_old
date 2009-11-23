@@ -44,9 +44,14 @@ class ApplicationController < ActionController::Base
     current_user and (current_user.is_editor_of?(object) or current_user.is_editor_of?(object.class))
   end
   
-  def add_breadcrumb name, url = nil
+  def add_breadcrumb(name, url = nil)
     @breadcrumbs ||= []
     @breadcrumbs << [name, url]
+  end
+  
+  def add_page_action(*options)
+    @page_actions ||=[]
+    @page_actions << [*options]
   end
   
   private
