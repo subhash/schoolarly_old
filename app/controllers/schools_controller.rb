@@ -18,21 +18,30 @@ class SchoolsController < ApplicationController
   # GET /schools/1
   # GET /schools/1.xml
   def show    
+    
     @school=School.find(params[:id])
-    add_breadcrumb(@school.name) 
+    
+    add_breadcrumb(@school.name)
+    
+    add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @school.user})
     add_page_action('Allot student to class', {:action => 'allot_student', :id => @school})
-    add_page_action('Allot teacher to class', {:action => 'allot_teacher', :id => @school})
+    add_page_action('Allot teacher to class', {:action => 'teachers_index', :id => @school})
     
     # javascript actions follow
     add_page_action('Create Class',{}, {:id => 'create_class_link'})
-    add_page_action('Invite Student',{}, {:id => 'invite_student_link'})    
+    add_page_action('Invite Student',{}, {:id => 'invite_student_link'})
+    add_page_action('Invite Teacher',{}, {:id => 'invite_teacher_link'})
     
-    @klasses = @school.klasses
-    @students = @school.students
+    @year = Klass.current_academic_year(@school)
+    @klasses = (Klass.current_klasses(@school, @year))
+    @students = Student.current_students(@school)
+    @teachers = @school.teachers
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @school }
     end
+    
   end
   
   # GET /schools/new
