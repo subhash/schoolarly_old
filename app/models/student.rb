@@ -1,4 +1,8 @@
 class Student < ActiveRecord::Base
+
+  named_scope :current_students, lambda { |school_id|
+      { :conditions =>  ["school_id = ? and current_enrollment_id is not null ", school_id]}
+  }
   has_one :user, :as => :person
   belongs_to :school
   has_many :enrollments, :class_name => 'StudentEnrollment'
@@ -28,4 +32,5 @@ class Student < ActiveRecord::Base
     puts 'student updates roles'
     self.school.user.has_role 'editor', self if school
   end    
+  
 end
