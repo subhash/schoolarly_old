@@ -1,4 +1,7 @@
 jQuery(function(){
+	jQuery("#school_tabs").tabs();
+    jQuery("#school_tabs li");
+	
     jQuery("#invite_student_dialog").dialog({
         autoOpen: false
     });
