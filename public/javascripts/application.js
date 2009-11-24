@@ -2,3 +2,13 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 jQuery.noConflict();
+
+jQuery(function(){
+    jQuery(".jquery-dialog").dialog({
+        autoOpen: false
+    });
+});
+
+function openDialog(id){
+    jQuery("#" + id).dialog('open');
+}

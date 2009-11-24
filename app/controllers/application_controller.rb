@@ -54,6 +54,12 @@ class ApplicationController < ActionController::Base
     @page_actions << [*options]
   end
   
+  
+  def add_js_page_action(*options)
+    @js_page_actions ||=[]
+    @js_page_actions << [*options]
+  end
+  
   private
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
