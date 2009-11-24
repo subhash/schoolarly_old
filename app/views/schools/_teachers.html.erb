@@ -1,0 +1,52 @@
+<table class="ui-state-default" border="1px">
+    <caption>
+        Teachers of <%=@school.name %>
+        <br/>
+    </caption>
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Owns
+            </th>
+            <th>
+                Allotments
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @teachers.each do |teacher| %>
+        <tr>
+            <td>
+                <%if teacher.user.user_profile %>
+                <%= link_to teacher.user.user_profile.name, {:controller => 'user_profiles', :action => 'edit', :id => teacher.user} %>
+                <%else %>
+                <%= link_to "Profile not created", {:controller => 'user_profiles', :action => 'new', :id => teacher.user}, {:class => "cell-link"} %>
+                <%end %>
+            </td>
+            <td>
+                <%= link_to teacher.user.email %>
+            </td>
+            <td>
+                <%teacher.currently_owned_klasses.each do |klass|%>
+				<%=klass.name%>
+				<%end%>
+            </td>
+            <% if !teacher.current_allotments.empty? %>
+            <td>
+                <%= link_to 'Show Allotments',  {:controller => 'teachers', :action => 'allotment_show', :id => teacher} %>
+            </td>
+            <%else %>
+            <td>
+                <%= link_to 'Make Allotments',  {:controller => 'teachers', :action => 'allotment_show', :id => teacher}, {:class => "cell-link"} %>
+            </td>
+            <%end %>
+        </tr>
+        <%end %>
+    </tbody>
+</table>

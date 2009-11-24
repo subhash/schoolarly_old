@@ -17,14 +17,12 @@
     <div id="school_tabs-2">
     </div>
     <div id="school_tabs-3">
-    	<h3>Teachers</h3>
-        <br/>
-        <% @teachers.each do |teacher| %>
-        <%= link_to teacher.user.email, teacher %>
-        <br/>
-        <% end %>
+  		<%=render :partial => "teachers"%>
     </div>
     <div id="invite_student_dialog" style="display: none;">
         <%= render :partial => 'students/invite_student_form', :locals => {:student => Student.new} %>
+    </div>
+	<div id="invite_teacher_dialog" style="display: none;">
+        <%= render :partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new} %>
     </div>
 </div>

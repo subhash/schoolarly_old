@@ -47,6 +47,9 @@ class UserProfilesController < ApplicationController
   
   def edit
     set_active_user(@user.id)
+    if @user.user_profile.nil? #and @user == current_user
+      redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
+    end
     @user_profile=@user.user_profile
     @person_partial=@user.person_type.to_s.downcase    
   end

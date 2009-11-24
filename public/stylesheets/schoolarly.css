@@ -142,3 +142,16 @@ table.nested .list-line-odd {
 #reference_box{
 	
 }
+
+table.ui-state-default a.cell-link {
+    text-decoration: underline;
+    font-weight: bold;
+    font-style: italic;
+    color: #F6A828;
+}
+
+table.ui-state-default th {
+    background: #F6A828 url(images/ui-bg_gloss-wave_35_f6a828_500x100.png) repeat-x scroll 50% 50%;
+	border: 1px solid #E78F08;
+	color: #EEEEEE
+}

@@ -25,13 +25,12 @@ class SchoolsController < ApplicationController
     
     add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @school.user})
     add_page_action('Allot student to class', {:action => 'allot_student', :id => @school})
-    add_page_action('Allot teacher to class', {:action => 'teachers_index', :id => @school})
-    
+        
     # javascript actions follow
     add_page_action('Create Class',{}, {:id => 'create_class_link'})
     add_page_action('Invite Student',{}, {:id => 'invite_student_link'})
     add_page_action('Invite Teacher',{}, {:id => 'invite_teacher_link'})
-    
+        
     @year = Klass.current_academic_year(@school)
     @klasses = (Klass.current_klasses(@school, @year))
     @students = Student.current_students(@school)
