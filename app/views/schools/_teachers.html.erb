@@ -24,17 +24,17 @@
         <tr>
             <td>
                 <%if teacher.user.user_profile %>
-                <%= link_to teacher.user.user_profile.name, {:controller => 'user_profiles', :action => 'edit', :id => teacher.user} %>
+                <%= link_to teacher.user.user_profile.name, {:controller => 'user_profiles', :action => 'show', :id => teacher.user} %>
                 <%else %>
-                <%= link_to "Profile not created", {:controller => 'user_profiles', :action => 'new', :id => teacher.user}, {:class => "cell-link"} %>
+                <%= link_to "Create Profile", {:controller => 'user_profiles', :action => 'new', :id => teacher.user}, {:class => "cell-link"} %>
                 <%end %>
             </td>
             <td>
-                <%= link_to teacher.user.email %>
+                <%= link_to teacher.user.email, {:controller => 'user_profiles', :action => 'show', :id => teacher.user} %>
             </td>
             <td>
                 <%teacher.currently_owned_klasses.each do |klass|%>
-				<%=klass.name%>
+				<%= link_to klass.name + " ", {:controller => :klasses, :action => 'show', :id=>klass}%>
 				<%end%>
             </td>
             <% if !teacher.current_allotments.empty? %>

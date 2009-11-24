@@ -144,7 +144,6 @@ table.nested .list-line-odd {
 }
 
 table.ui-state-default a.cell-link {
-    text-decoration: underline;
     font-weight: bold;
     font-style: italic;
     color: #F6A828;
