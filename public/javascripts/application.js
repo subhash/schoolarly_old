@@ -11,4 +11,5 @@ jQuery(function(){
 
 function openDialog(id){
     jQuery("#" + id).dialog('open');
+	jQuery("#" + id).addClass("open-dialog")
 }

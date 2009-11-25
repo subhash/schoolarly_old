@@ -8,6 +8,7 @@ jQuery(function(){
 });
 
 function handleResponse(data, textStatus){
+	alert(data);
     jQuery('#new_student').resetForm();
     page = jQuery("#invite-student-dialog");
     page.dialog('close');

@@ -50,23 +50,18 @@ class StudentsController < ApplicationController
         @user.invite!
         respond_to do |format|
           flash[:notice] = 'Student was successfully created.'
-          format.html { render :text => flash[:notice] } if request.xhr?
-          format.html { redirect_to(edit_password_reset_url(@user.perishable_token)) }
-          format.xml  { render :xml => @student, :status => :created, :location => @student }                  
-        end        
+          format.js
+        end     
       end      
     rescue Exception => e
       puts e.inspect
       # handle error
       @student = Student.new(params[:student])
-      @student.user = @user
-      respond_to do |format|
-        format.html { render :partial => 'invite_student_form', :locals => {:student => @student}, :status => 403} if request.xhr?
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @student.errors, :status => :unprocessable_entity }      
-      end
+      @student.user = @user      
+      render :update do |page|
+        page.replace_html 'invite-student-dialog', :partial => 'invite_student_form', :locals => {:student => @student}
+      end        
     end
-    
   end
   
   
