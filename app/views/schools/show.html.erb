@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'schools/show' %>
+
 <div id="school_tabs">
     <ul>
         <li>
@@ -15,9 +17,9 @@
     <div id="school_tabs-2">
     </div>
     <div id="school_tabs-3">
-  		<%=render :partial => "teachers"%>
+        <%=render :partial => "teachers" %>
     </div>
-	<div id="invite_teacher_dialog" style="display: none;">
+    <div id="invite_teacher_dialog" style="display: none;">
         <%= render :partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new} %>
     </div>
 </div>
