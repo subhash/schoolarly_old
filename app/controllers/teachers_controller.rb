@@ -68,7 +68,9 @@ class TeachersController < ApplicationController
     @user=@teacher.user
     set_active_user(@user.id)
     @school=@teacher.school
-    @year = Klass.current_academic_year(@school)
+    add_breadcrumb(@school.name, @school)
+    add_breadcrumb(@teacher.user.user_profile.name)
+    #@year = Klass.current_academic_year(@school)
     @teacher_allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
   end
   
