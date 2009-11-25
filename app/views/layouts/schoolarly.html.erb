@@ -44,11 +44,11 @@
                     </div>
                     <div id="right_boxes" class="ui-state-default">
                         <div id="action_box">
-                            <h2>Actions</h2>
                             <% @page_actions ||= [] %>
                             <% @page_actions.each do |action| %>
-                            <%= link_to *action %>
-                            <br/>
+                            <div class= "button ui-state-focus center">
+                                <%= link_to *action %>
+                            </div>
                             <% end %>
                             <% @js_page_actions ||= [] %>
                             <% @js_page_actions.each do |action| %>
@@ -56,8 +56,9 @@
                             <div id="<%= id %>" class="jquery-dialog" style ="display: none;">
                                 <%= render action.last %>
                             </div>
-                            <%= link_to_function action.first,  "openDialog('#{id}')" %>
-							<br/>
+                            <div class= "button ui-state-focus center">
+                                <%= link_to_function action.first,  "openDialog('#{id}')" %>
+                            </div>
                             <% end %>
                         </div>
                     </div>
