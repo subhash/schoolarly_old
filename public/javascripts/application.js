@@ -11,5 +11,12 @@ jQuery(function(){
 
 function openDialog(id){
     jQuery("#" + id).dialog('open');
-	jQuery("#" + id).addClass("open-dialog")
+    jQuery("#" + id).addClass("open-dialog")
+}
+
+function closeDialogs(){
+    $$(".jquery-dialog.open-dialog form").each(function(element){
+        element.reset();
+    });
+    jQuery(".jquery-dialog.open-dialog").removeClass("jquery-dialog open-dialog").dialog('close');
 }
