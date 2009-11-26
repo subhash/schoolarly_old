@@ -87,7 +87,11 @@ class TeachersController < ApplicationController
     add_breadcrumb('Allot')
     add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @teacher.user})
     @array_subject_klasses=[]
-    @allotment_subjects=Subject.all
+    @allotment_subjects=[]
+    #@school.klasses.each do |klass|
+    Klass.current_klasses(@school.id, Klass.current_academic_year(@school.id)).each do |klass|
+      @allotment_subjects = @allotment_subjects | klass.subjects
+    end
     @allotment_subjects.each do |subject|
       allotted_klasses=[]
       @teacher.current_allotments.find_all_by_subject_id(subject.id).each do |allotment|
