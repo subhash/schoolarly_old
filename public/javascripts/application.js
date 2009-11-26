@@ -11,11 +11,15 @@ jQuery(function(){
     jQuery(".tablesorter").tablesorter({
         sortList: [[0, 0]]
     });
+	jQuery("table.selectable").selectable({
+        filter: 'td'
+    });
+	
 });
 
 function openDialog(id){
     jQuery("#" + id).dialog('open');
-    jQuery("#" + id).addClass("open-dialog")
+        jQuery("#" + id).addClass("open-dialog")
 }
 
 function closeDialogs(){
@@ -24,3 +28,11 @@ function closeDialogs(){
     });
     jQuery(".jquery-dialog.open-dialog").removeClass("jquery-dialog open-dialog").dialog('close');
 }
+
+function hideShowDivs(hide_id, show_id){
+	jQuery(hide_id).hide();
+    jQuery(show_id).show();
+}
+
+
+
