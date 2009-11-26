@@ -39,11 +39,11 @@
             </td>
             <% if !teacher.current_allotments.empty? %>
             <td>
-                <%= link_to 'Show Allotments',  {:controller => 'teachers', :action => 'allotment_show', :id => teacher} %>
+                <%= link_to 'Show Allotments',  {:controller => 'teachers', :action => 'show', :id => teacher}, {:style => "font-style:italic;"} %>
             </td>
             <%else %>
             <td>
-                <%= link_to 'Make Allotments',  {:controller => 'teachers', :action => 'allotment_show', :id => teacher}, {:class => "cell-link"} %>
+                <%= link_to 'Make Allotments',  {:controller => 'teachers', :action => 'allot', :id => teacher}, {:class => "cell-link"} %>
             </td>
             <%end %>
         </tr>
