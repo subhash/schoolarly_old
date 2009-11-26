@@ -154,3 +154,16 @@ table.ui-state-default th {
 	border: 1px solid #E78F08;
 	color: #EEEEEE
 }
+
+  table.no-border {
+  	border:none;
+} td.wider {
+    margin: 1px;
+    padding: 1px;
+    float: left;
+    width: 180px;
+    height: 25px;
+    font-size: 1.2em;
+    text-align: center;
+	vertical-align: middle;
+}
