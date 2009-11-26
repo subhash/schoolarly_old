@@ -1,15 +1,15 @@
-    <% if !@teacher_allotments.nil?%>
-	<% allotment_list=@teacher_allotments%>
-	<%end%>
-	<% allotment_list.each do |subject, subject_klasses| %>
-    <tr>
-        <th>
-            <%=Subject.find(subject).name %>
-        </th>
-        <%subject_klasses.each do |klass| %>
-        <td class="ui-state-default">
-            <%=link_to "#{Klass.find(klass.klass_id).level} #{Klass.find(klass.klass_id).division}",klass_path(klass.klass_id) %>
-        </td>
-        <%end %>
-    </tr>
-    <% end %>
+<% if !@teacher_allotments.nil? && !@teacher_allotments.empty?%>
+<% allotment_list=@teacher_allotments %>
+<% allotment_list.each do |subject, subject_klasses| %>
+<tr>
+    <th>
+        <%=Subject.find(subject).name %>
+    </th>
+    <%subject_klasses.each do |klass| %>
+    <td class="ui-state-default">
+        <%=link_to "#{Klass.find(klass.klass_id).level} #{Klass.find(klass.klass_id).division}",klass_path(klass.klass_id) %>
+    </td>
+    <%end %>
+</tr>
+<% end %>
+<%end %>
