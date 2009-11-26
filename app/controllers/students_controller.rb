@@ -50,7 +50,7 @@ class StudentsController < ApplicationController
         @user.invite!
         respond_to do |format|
           flash[:notice] = 'Student was successfully created.'
-          format.js
+          format.js {render :template => 'students/create_success'}
         end     
       end      
     rescue Exception => e
@@ -58,9 +58,9 @@ class StudentsController < ApplicationController
       # handle error
       @student = Student.new(params[:student])
       @student.user = @user      
-      render :update do |page|
-        page.replace_html 'invite-student-dialog', :partial => 'invite_student_form', :locals => {:student => @student}
-      end        
+      respond_to do |format|          
+        format.js {render :template => 'students/create_error'}
+      end           
     end
   end
   

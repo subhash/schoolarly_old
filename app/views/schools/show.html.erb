@@ -1,6 +1,5 @@
 <%= javascript_include_tag 'schools/show' %>
-
-<div id="school_tabs">
+<div id="school_tabs" class="tabs">
     <ul>
         <li>
             <a href="#school_tabs-1">Classes</a>
@@ -15,6 +14,7 @@
     <div id="school_tabs-1">
     </div>
     <div id="school_tabs-2">
+        <%= render :partial => 'students/students' %>
     </div>
     <div id="school_tabs-3">
         <%=render :partial => "teachers" %>

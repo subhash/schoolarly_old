@@ -1,8 +1,3 @@
-<div id="school_students_table">
+<div id="school_students_table" class="tablesorter">
     <%=render :partial => "students" %>
-</div>
-<div class= "button ui-state-focus float_left">
-    <%= link_to_remote "Add Student", :url => {:controller => "schools",  :action => "new_student" , :id => @school} %>
-</div>
-<div id="new_student_form">
 </div>

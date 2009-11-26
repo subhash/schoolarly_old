@@ -7,6 +7,10 @@ jQuery(function(){
     jQuery(".jquery-dialog").dialog({
         autoOpen: false
     });
+    jQuery(".tabs").tabs();
+    jQuery(".tablesorter").tablesorter({
+        sortList: [[0, 0]]
+    });
 });
 
 function openDialog(id){
