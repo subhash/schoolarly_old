@@ -63,43 +63,47 @@ class TeachersController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
-  def allotment_show
+
+  def show
     @user=@teacher.user
     set_active_user(@user.id)
     @school=@teacher.school
+
     add_breadcrumb(@school.name, @school)
-    add_breadcrumb(@teacher.user.user_profile.name)
-    #@year = Klass.current_academic_year(@school)
+    add_breadcrumb(  (@teacher.user.user_profile.nil?)? @teacher.user.email : @teacher.user.user_profile.name)
+    
+    add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @teacher.user})
+    add_page_action('Allot Subjects Classes', {:action => 'allot', :id => @teacher})
+    
     @teacher_allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
   end
   
-  def list_add_allotment
+ 
+  def allot
     @school=@teacher.school
     @year = Klass.current_academic_year(@school)
-    @allotment_subjects=@school.subjects
+    add_breadcrumb(@school.name, @school)
+    add_breadcrumb((@teacher.user.user_profile.nil?)? @teacher.user.email : @teacher.user.user_profile.name, @teacher)
+    add_breadcrumb('Allot')
+    add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @teacher.user})
+    @array_subject_klasses=[]
+    @allotment_subjects=Subject.all
+    @allotment_subjects.each do |subject|
+      allotted_klasses=[]
+      @teacher.current_allotments.find_all_by_subject_id(subject.id).each do |allotment|
+        allotted_klasses << allotment.klass
+      end
+      klasses = (subject.current_subject_klasses(@school.id) - allotted_klasses).group_by{|klass|klass.level}
+     # @array_subject_klasses << [subject.id,klasses]
+      @array_subject_klasses[subject.id] = [subject.id,klasses]
+    end
   end
   
-  def allot_klasses
-    @subject=Subject.find(params[:subject_id])
-    @subject_id=params[:subject_id]
-    current_subject_allotments=@teacher.current_allotments.find_all_by_subject_id(params[:subject_id])
-    if current_subject_allotments.empty?
-      @allot_subject_klasses=(@teacher.school.klasses).group_by{|klass|klass.level}
-    else
-      allot_klasses=[]
-      current_subject_allotments.each {|allotment|
-        allot_klasses << allotment.klass
-      }
-      @allot_subject_klasses=(@teacher.school.klasses - allot_klasses).group_by{|klass|klass.level}
-    end
-    render :partial => "allot_klasses", :id=> @subject
-  end
   
   def add_allotments
     subject_id=params[:subject_id]
     add_klasses=params[:klasses].split(',')
-    add_klasses.each {|klass_id| 
+    add_klasses.each  do |klass_id| 
       if (!subject_id.empty? && !klass_id.empty?)
         new_allotment=TeacherAllotment.new(:is_current => 1)
         @subject=Subject.find(subject_id)
@@ -108,8 +112,12 @@ class TeachersController < ApplicationController
         new_allotment.teacher=@teacher
         new_allotment.save!
       end
-    } 
-    @teacher_allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
+    end
+        flash[:notice] = 'Allotment was successfully done.'
+        redirect_to(url_for( :controller => :teachers, :action => 'show', :id=>@teacher))
+  rescue Exception => e
+    flash[:notice]="Error occured in allotment: <br /> #{e.message}"
+    redirect_to(url_for( :controller => :teachers, :action => 'show', :id=>@teacher)) 
   end
   
   def close_delete_allotments
