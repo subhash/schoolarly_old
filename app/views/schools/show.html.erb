@@ -2,21 +2,30 @@
 <div id="school_tabs" class="tabs">
     <ul>
         <li>
-            <a href="#school_tabs-1">Classes</a>
+            <div class="classes-tab">
+                <a href="#classes-tab">Classes</a>
+            </div>
         </li>
         <li>
-            <a href="#school_tabs-2">Students</a>
+            <div class="students-tab">
+                <a href="#students-tab">Students</a>
+            </div>
         </li>
         <li>
-            <a href="#school_tabs-3">Teachers</a>
+            <div class="teachers-tab">
+                <a href="#teachers-tab">Teachers</a>
+            </div
         </li>
     </ul>
-    <div id="school_tabs-1">
+    <div id="classes-tab">
     </div>
-    <div id="school_tabs-2">
-        <%= render :partial => 'students/students' %>
+    <div id="students-tab">
+        <%= render :partial => 'students/students', :object => @students %>
     </div>
-    <div id="school_tabs-3">
+    <div id="teachers-tab">
         <%=render :partial => "teachers" %>
+    </div>
+    <div id="invite_teacher_dialog" style="display: none;">
+        <%= render :partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new} %>
     </div>
 </div>
