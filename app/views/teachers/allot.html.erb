@@ -5,7 +5,7 @@
             Select a Subject
             <br/>
         </caption>
-        <% @allotment_subjects.each do |subject| %>
+        <% @subjects.each do |subject| %>
         <tr>
             <td id=<%=subject.id%> class="ui-state-default sticker wider" >
                 <%= link_to_function subject.name,  "hideShowDivs('#klasses .klass-div', '##{subject.id.to_s + '-klasses'}')" %>
@@ -17,9 +17,9 @@
 <div class=c38r>
 
     <div id="klasses">
-        <% @allotment_subjects.each do |subject| %>
+        <% @subjects.each do |subject| %>
         <div id="<%=subject.id.to_s + '-klasses'%>" class="klass-div" style="display: none;">
-            <%=render :partial => "klasses", :object => @array_subject_klasses[subject.id]%>
+            <%=render :partial => "klasses", :object => @allotmentItems[subject.id]%>
         </div>
         <% end %>
     </div>
