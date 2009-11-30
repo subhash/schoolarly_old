@@ -1,6 +1,10 @@
 class School < ActiveRecord::Base
   has_one :user, :as => :person
-  has_many :klasses
+  has_many :klasses do
+    def current()
+      find :all , :conditions => ['year = ? ', (Klass.maximum :year, :conditions => {:school_id => id})],:order => "level, division"
+    end
+  end
   has_many :teachers
   has_many :students
   has_and_belongs_to_many :subjects
