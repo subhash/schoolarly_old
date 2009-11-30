@@ -167,3 +167,47 @@ table.ui-state-default th {
     text-align: center;
 	vertical-align: middle;
 }
+  table.center {
+  	margin: 0 0.2em;
+}
+
+#breadcrumbs {
+height:2.5em;
+border:1px solid #dedede;
+
+}
+
+#breadcrumbs li {
+float:left;
+line-height:2.5em;
+padding-left:25px;
+font-weight:900;
+color: #224A88;
+margin-left: 0px;
+margin-right: 0;
+
+}
+#breadcrumbs li a {
+color:#ffffff;
+display:block;
+text-decoration:none;
+padding:0 15px 0 0;
+margin-left: -25px;
+background:url(../images/breadcrumbs.jpg) repeat-x right center;
+width: auto;
+
+}
+#breadcrumbs ul, #breadcrumbs li{
+list-style-type:none;
+}
+#breadcrumbs li strong{
+float:left;
+margin-left: -40px;
+padding-left: 21px;
+background:url(../images/breadcrumb_current.jpg) repeat-x left center;
+}
+td.pre-selected{
+background:#F39814 none repeat scroll 0 0;
+font-weight: bold;
+color:white;
+}
