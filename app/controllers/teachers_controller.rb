@@ -63,12 +63,12 @@ class TeachersController < ApplicationController
       format.xml  { head :ok }
     end
   end
-
+  
   def show
     @user=@teacher.user
     set_active_user(@user.id)
     @school=@teacher.school
-
+    
     add_breadcrumb(@school.name, @school)
     add_breadcrumb(  (@teacher.user.user_profile.nil?)? @teacher.user.email : @teacher.user.user_profile.name)
     
@@ -78,7 +78,29 @@ class TeachersController < ApplicationController
     @teacher_allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
   end
   
- 
+  def get_school_subjects(school_id)
+    school_subjects=[]
+    Klass.current_klasses(school_id, Klass.current_academic_year(school_id)).each do |klass|
+      school_subjects = school_subjects | klass.subjects
+    end
+    return school_subjects
+  end
+  
+  def get_allotment_items(teacher, subjects)
+    preSelectedItems=[]
+    allotmentItems=[]
+    subjects.each do |subject|
+      allotted_klasses=[]
+      teacher.current_allotments.find_all_by_subject_id(subject.id).each do |allotment|
+        allotted_klasses << allotment.klass.id
+      end
+      preSelectedItems[subject.id]=allotted_klasses
+      klasses = (subject.current_subject_klasses(teacher.school.id)).group_by{|klass|klass.level}
+      allotmentItems[subject.id] = [subject.id,klasses]
+    end
+    return preSelectedItems,allotmentItems
+  end
+  
   def allot
     @school=@teacher.school
     @year = Klass.current_academic_year(@school)
@@ -86,23 +108,9 @@ class TeachersController < ApplicationController
     add_breadcrumb((@teacher.user.user_profile.nil?)? @teacher.user.email : @teacher.user.user_profile.name, @teacher)
     add_breadcrumb('Allot')
     add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @teacher.user})
-    @array_subject_klasses=[]
-    @allotment_subjects=[]
-    #@school.klasses.each do |klass|
-    Klass.current_klasses(@school.id, Klass.current_academic_year(@school.id)).each do |klass|
-      @allotment_subjects = @allotment_subjects | klass.subjects
-    end
-    @allotment_subjects.each do |subject|
-      allotted_klasses=[]
-      @teacher.current_allotments.find_all_by_subject_id(subject.id).each do |allotment|
-        allotted_klasses << allotment.klass
-      end
-      klasses = (subject.current_subject_klasses(@school.id) - allotted_klasses).group_by{|klass|klass.level}
-     # @array_subject_klasses << [subject.id,klasses]
-      @array_subject_klasses[subject.id] = [subject.id,klasses]
-    end
+    @subjects=get_school_subjects(@school.id)
+    @preSelectedItems,@allotmentItems=get_allotment_items(@teacher,@subjects)
   end
-  
   
   def add_allotments
     subject_id=params[:subject_id]
@@ -117,8 +125,8 @@ class TeachersController < ApplicationController
         new_allotment.save!
       end
     end
-        flash[:notice] = 'Allotment was successfully done.'
-        redirect_to(url_for( :controller => :teachers, :action => 'show', :id=>@teacher))
+    flash[:notice] = 'Allotment was successfully done.'
+    redirect_to(url_for( :controller => :teachers, :action => 'show', :id=>@teacher))
   rescue Exception => e
     flash[:notice]="Error occured in allotment: <br /> #{e.message}"
     redirect_to(url_for( :controller => :teachers, :action => 'show', :id=>@teacher)) 

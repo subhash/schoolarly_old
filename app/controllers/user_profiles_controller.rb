@@ -16,6 +16,19 @@ class UserProfilesController < ApplicationController
   
   def new
     set_active_user(@user.id)
+    case @user.person_type
+      when 'Teacher'  
+        add_breadcrumb(@person.school.name, @person.school)
+        add_breadcrumb((@user.user_profile.nil?)? @user.email : @user.user_profile.name, @person)
+      when 'Student'
+        add_breadcrumb(@person.school.name, @person.school)
+        add_breadcrumb(@person.klass.name, @person.klass)
+        add_breadcrumb((@user.user_profile.nil?)? @user.email : @user.user_profile.name, @person)
+      when 'School'
+        add_breadcrumb((@person.name.nil?)? @user.email : @person.name, @person)
+    end
+    add_breadcrumb('Profile')
+    add_page_action('Action', '#')
     @user_profile = UserProfile.new
     @person_partial=@user.person_type.to_s.downcase
   end
@@ -47,6 +60,21 @@ class UserProfilesController < ApplicationController
   
   def edit
     set_active_user(@user.id)
+    case @user.person_type
+      when 'Teacher'
+        add_breadcrumb(@person.school.name, @person.school)
+        add_breadcrumb((@user.user_profile.nil?)? @user.email : @user.user_profile.name, @person)
+      when 'Student'
+        add_breadcrumb(@person.school.name, @person.school)
+        add_breadcrumb(@person.klass.name, @person.klass)
+        add_breadcrumb((@user.user_profile.nil?)? @user.email : @user.user_profile.name, @person)
+      when 'School'
+        add_breadcrumb((@person.name.nil?)? @user.email : @person.name, @person)
+    end
+    
+    add_breadcrumb('Profile', {:controller => :user_profiles, :action => 'show', :id => @user})
+    add_breadcrumb('Edit')
+    add_page_action('Action', '#')
     if @user.user_profile.nil? #and @user == current_user
       redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
     end
