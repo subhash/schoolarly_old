@@ -95,7 +95,7 @@ class TeachersController < ApplicationController
         allotted_klasses << allotment.klass.id
       end
       preSelectedItems[subject.id]=allotted_klasses
-      klasses = (subject.current_subject_klasses(teacher.school.id)).group_by{|klass|klass.level}
+      klasses = Klass.current_klasses(teacher.school.id, Klass.current_academic_year(teacher.school.id)).offering(subject.id).group_by{|klass|klass.level}
       allotmentItems[subject.id] = [subject.id,klasses]
     end
     return preSelectedItems,allotmentItems
