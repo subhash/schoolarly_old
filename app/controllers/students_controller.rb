@@ -42,8 +42,10 @@ class StudentsController < ApplicationController
   # POST /students.xml
   def create
     @student = Student.new(params[:student])
+    @school = School.find(params[:school_id])
     @user = User.new(params[:user])
     @student.user = @user
+    @student.school = @school
     begin
       Student.transaction do
         @student.save!

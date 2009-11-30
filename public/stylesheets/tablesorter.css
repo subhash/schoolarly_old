@@ -1,4 +1,4 @@
-table.tablesorter {
+/*table.tablesorter {
 	font-size: 12px;
 	background-color: #4D4D4D;
 	width: 1024px;
@@ -18,7 +18,7 @@ table.tablesorter .even {
 }
 table.tablesorter .odd {
 	background-color: #6E6E6E;
-}
+} */
 table .header {
 	background-image: url(images/bg.png);
 	background-repeat: no-repeat;

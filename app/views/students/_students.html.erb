@@ -15,8 +15,8 @@
             </th>
         </tr>
     </thead>
-    <tbody class="students">
-        <% @students.each do |student| %>
+    <tbody id="students" class="students">
+        <% students.each do |student| %>
         <%= render :partial => 'students/student', :object => student %>
         <%end %>
     </tbody>

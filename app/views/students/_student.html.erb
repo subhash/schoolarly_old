@@ -1,4 +1,5 @@
 <tr>
+	<%puts "in student partial"%>
     <td>
         <%if student.user.user_profile %>
         <%= link_to student.user.user_profile.name, {:controller => 'user_profiles', :action => 'new', :id => student.user} %>
