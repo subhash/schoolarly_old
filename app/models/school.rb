@@ -7,8 +7,12 @@ class School < ActiveRecord::Base
   end
   has_many :teachers
   has_many :students
-  has_and_belongs_to_many :subjects
-  
+  #has_and_belongs_to_many :subjects
+
+  def current_subjects
+    return (self.klasses.in_year(Klass.current_academic_year(self.id)).collect{|k| k.subjects}).flatten.uniq
+  end
+
   after_update :update_roles
     def add_roles
       puts 'school adds roles'

@@ -2,9 +2,6 @@ class Klass < ActiveRecord::Base
   named_scope :current_klasses, lambda { |school_id, year|
     { :conditions => { :school_id => school_id , :year => year } , :order => "level, division"}
   }
-  named_scope :offering, lambda { |subject_id|
-    { :joins => :subjects, :conditions => [ "subjects.id = ?", subject_id ] }
-  }
 
   belongs_to :school
   belongs_to :class_teacher, :class_name => 'Teacher', :foreign_key => 'teacher_id'
