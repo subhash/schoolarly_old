@@ -1,6 +1,7 @@
-page << "jQuery('.students-tab a').click();"
-page.insert_html :bottom, "students", :partial => 'students/student', :object => @student
 page << "closeDialogs();"
+page << "jQuery('.tabs').tabs('select','#students-tab')"
+page.insert_html :bottom, "students", :partial => 'students/student', :object => @student
+
 # jQuery(".students").append("
 #<%= escape_javascript(render :partial => 'students/student', :object => @student ) %>");
 # jQuery(".students-tab a").click(); 
