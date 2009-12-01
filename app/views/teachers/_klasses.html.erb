@@ -1,12 +1,9 @@
 <%subject_id=klasses.first%>
-<script type="text/javascript">
-    jQuery(function(){
-		readySelectable("<%= subject_id.to_s + '-klasses_selectable'%>");
-    });
-</script>
+
 
 <%if !klasses.last.empty?%>
 <table id="<%= subject_id.to_s + '-klasses_selectable'%>" class="selectable no-border">   
+<%= javascript_include_tag 'teachers/klasses'%>
 	<caption>
         Select klasses
         <br />
@@ -18,7 +15,7 @@
             <%=level %>
         </th>
         <%level_klasses.each do |klass| %>
-		<%if @preSelectedItems[subject_id].include?(klass.id)%>
+		<%if @preSelectedItems[subject_id].include?(klass)%>
 		<td id=<%=klass.id%> class="pre-selected"> 
             <%if ['Pre-school', 'L.K.G','U.K.G','Mont1','Mont2','Mont3'].include?(level.to_s) %>
             <%=klass.division %>

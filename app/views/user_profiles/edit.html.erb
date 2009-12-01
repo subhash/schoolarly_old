@@ -1,25 +1,24 @@
 <% form_for @person, :url => {:controller => :user_profiles, :action => 'update', :id=>@user } do |person_form| %>
   <%= person_form.error_messages %>
-<div class="c25l">
-	<table>
+<div class="c33l">
+	<table class="ui-state-default center">
 		<% fields_for @user_profile do |profile_form| %>	
 			<%= render :partial => "user_profiles/profile", :object => profile_form %>
 		<% end %>
 	</table>
-</div>
-
-<div class="c66r">
-    <table>
-    	<%= render :partial => "user_profiles/" + @person_partial, :object => person_form %>
-	</table>
-
-	<% fields_for @user do |user_form| %>
+	<div style="height:0.3em"/></div>
+		<% fields_for @user do |user_form| %>
 		<%= user_form.error_messages %>
-		<table>
+		<table class="ui-state-default center">
 			<%= render :partial => "user_profiles/user", :object => user_form %>
 		</table>
 	<%end%>
+	
+</div>
 
+<div class="c66r">
+    
+    	<%= render :partial => "user_profiles/" + @person_partial, :object => person_form %>
 
     <p class="icaption_right">
         <br/>

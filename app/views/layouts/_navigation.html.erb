@@ -1,9 +1,9 @@
 <div id="nav">
     <a id="navigation" name="navigation"></a>
-    <div id="breadcrumbs">
+    <ul id="breadcrumbs">
     	<% @breadcrumbs ||= [] %>
         <% @breadcrumbs.each do |a| %>
-        <strong><%= if(a[1]) then link_to(a[0], a[1])+" > " else a[0] end %></strong>
+        <li><%= if(a[1]) then link_to(a[0], a[1]) else '<strong>' + a[0].to_s + '</strong>' end %></li>
         <% end %>
-    </div>
+    </ul>
 </div>
