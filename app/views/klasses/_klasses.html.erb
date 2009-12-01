@@ -1,0 +1,12 @@
+<table id="klasses" class="sticker">
+    <% @klasses.each do |level, level_klasses| %>
+    <tr id="<%=level%>">
+        <th>
+            <%=level %>
+        </th>
+        <%level_klasses.each do |klass| %>
+        <%= render :partial => 'klasses/klass', :object => klass %>
+        <%end %>
+    </tr>
+    <% end %>
+</table>

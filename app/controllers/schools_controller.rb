@@ -22,12 +22,11 @@ class SchoolsController < ApplicationController
     add_breadcrumb(@school.name)
     add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @school.user})
     add_page_action('Allot student to class', {:action => 'allot_student', :id => @school})
+    add_js_page_action('Add class',:partial => 'klasses/new_klass_form', :locals => {:klass => Klass.new, :school => @school})
     add_js_page_action('Invite Student',:partial => 'students/invite_student_form', :locals => {:student => Student.new, :school => @school})
-    add_js_page_action('Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new})
-    
-    @year = Klass.current_academic_year(@school)
-    @klasses = (Klass.current_klasses(@school, @year))
-    @students = Student.find_all_by_school_id(@school)
+    add_js_page_action('Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new})        
+    @klasses = @school.klasses.in_year(Klass.current_academic_year(@school)).group_by{|klass|klass.level}
+    @students = @school.students
     @teachers = @school.teachers
     
     respond_to do |format|

@@ -14,7 +14,7 @@ class KlassesController < ApplicationController
   def create
     @klass = Klass.new(params[:klass])
     if (@school.klasses << @klass)
-      redirect_to school_klasses_path(@school)
+      redirect_to school_path(@school)
     else
       render :action => :new
     end    

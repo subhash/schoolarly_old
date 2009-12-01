@@ -1,0 +1,9 @@
+ <td id=<%=klass.level.to_s+klass.division%>
+        class="ui-state-default"><% url = klass_path(klass) %>
+        <%if ['Pre-school', 'L.K.G','U.K.G','Mont1','Mont2','Mont3'].include?(klass.level.to_s) %>
+        <%=link_to klass.division,url %>
+        <%else %>
+        <%=link_to "#{klass.level}#{klass.division}",url %>
+        <%end %>
+  </td>
+ 

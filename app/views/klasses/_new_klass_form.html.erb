@@ -1,10 +1,10 @@
-<h3>New class for <%=@school.name %></h3>
-<% form_for [@school,@klass] do |f| %>
+<% puts "klass="+klass.inspect%>
+<% remote_form_for klass, :url => {:controller => 'klasses', :action => 'create', :school_id => school} do |f| %>
 <%= f.error_messages %>
 <p>
     <%= f.label :level %>
     <br/>
-    <%= input 'klass', 'level' %>
+    <%= input 'klass', 'level'%>
 </p>
 <p>
     <%= f.label :division %>
@@ -20,4 +20,3 @@
     <%= f.submit 'Create' %>
 </p>
 <% end %>
-<%= link_to 'Back', school_klasses_path(@school) %>
