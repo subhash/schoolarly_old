@@ -1,0 +1,6 @@
+<% fields_for :student do |student| %>
+<%= student.error_messages %>
+<%= student.label :admission_number %>
+<br/>
+<%= student.text_field :admission_number %>
+<% end %>
