@@ -1,5 +1,6 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
+sboa:
+  name: SBOA
+  
 st_teresas:
   name: St. Teresa's Convent GHS
   board: State

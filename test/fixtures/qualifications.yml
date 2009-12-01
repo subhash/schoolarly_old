@@ -1,13 +1,22 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  degree: MyString
-  subject: MyString
-  university: MyString
+bsc_maths:
+  degree: BSc
+  subject: Maths
+  university: Silfons
   date: 2009-09-07
+  teacher: mary_kutty
+  
+bsc_statistics:
+  degree: BSc
+  subject: Statistics
+  university: Silfons
+  date: 2009-09-07
+  teacher: mary_kutty  
 
-two:
-  degree: MyString
-  subject: MyString
-  university: MyString
+ma_tamil:
+  degree: MA
+  subject: Tamil
+  university: Gilma
   date: 2009-09-07
+  teacher: v_subramaniam

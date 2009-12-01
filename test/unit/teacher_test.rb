@@ -1,17 +1,14 @@
 require 'test_helper'
 
 class TeacherTest < ActiveSupport::TestCase
+  
   def setup
-    @school = schools(:st_teresas)
-    @user = users(:mary)
+    @mary_kutty = teachers(:mary_kutty)
   end
   
-  test "teacher-user association" do
-    teacher = Teacher.new
-    teacher.user = @user
-    teacher.school = @school
-    assert teacher.save
-    assert_equal @user.person, teacher        
-  end  
+  test "mary kutty has many degrees up her sleeve" do
+    assert @mary_kutty.qualifications.include?(qualifications(:bsc_maths))
+    assert @mary_kutty.qualifications.include?(qualifications(:bsc_statistics))
+  end
   
 end

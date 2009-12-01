@@ -1,14 +1,20 @@
 require 'test_helper'
+require "authlogic/test_case"
 
 class UserTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "invalid with null names" do
-    name=Name.new('f','m','l')
-    user=User.new(:email => "user@schoolarly.com")
-    user.name=name
-    assert !user.valid?
-    #assert user.errors.invalid?(:name)
-    #assert user.errors.valid?(:email)
+  setup :activate_authlogic
+  
+  test "shenu logs in" do
+    shenu = users(:shenu)
+    assert_nil controller.session["user_credentials"]
+    assert UserSession.create(shenu)
+    assert_equal controller.session["user_credentials"], shenu.persistence_token
+  end
+  
+  test "shenu is a student" do
+    shenu = users(:shenu)
+    assert_equal shenu.person, students(:shenu)
+    assert_equal users(:mary_kutty).person, teachers(:mary_kutty)
+    assert_equal users(:sboa).person, schools(:sboa)
   end
 end
-
