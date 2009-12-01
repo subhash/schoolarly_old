@@ -78,25 +78,12 @@ class TeachersController < ApplicationController
     @teacher_allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
   end
   
-  def get_school_subjects(school_id)
-    school_subjects=[]
-    Klass.current_klasses(school_id, Klass.current_academic_year(school_id)).each do |klass|
-      school_subjects = school_subjects | klass.subjects
-    end
-    return school_subjects
-  end
-  
   def get_allotment_items(teacher, subjects)
     preSelectedItems=[]
     allotmentItems=[]
     subjects.each do |subject|
-      allotted_klasses=[]
-      teacher.current_allotments.find_all_by_subject_id(subject.id).each do |allotment|
-        allotted_klasses << allotment.klass.id
-      end
-      preSelectedItems[subject.id]=allotted_klasses
-      klasses = Klass.current_klasses(teacher.school.id, Klass.current_academic_year(teacher.school.id)).offering(subject.id).group_by{|klass|klass.level}
-      allotmentItems[subject.id] = [subject.id,klasses]
+      preSelectedItems[subject.id]=teacher.current_klasses.teaches(subject.id)
+      allotmentItems[subject.id] = [subject.id,subject.klasses.ofSchool(teacher.school.id).group_by{|klass|klass.level}]
     end
     return preSelectedItems,allotmentItems
   end
@@ -108,7 +95,7 @@ class TeachersController < ApplicationController
     add_breadcrumb((@teacher.user.user_profile.nil?)? @teacher.user.email : @teacher.user.user_profile.name, @teacher)
     add_breadcrumb('Allot')
     add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @teacher.user})
-    @subjects=get_school_subjects(@school.id)
+    @subjects=@school.current_subjects
     @preSelectedItems,@allotmentItems=get_allotment_items(@teacher,@subjects)
   end
   
