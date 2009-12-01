@@ -14,9 +14,13 @@ class KlassesController < ApplicationController
   def create
     @klass = Klass.new(params[:klass])
     if (@school.klasses << @klass)
-      redirect_to school_path(@school)
+      respond_to do |format|
+        format.js {render :template => 'klasses/create_success'}
+      end 
     else
-      render :action => :new
+      respond_to do |format|          
+        format.js {render :template => 'klasses/create_error'}
+      end  
     end    
   end
   

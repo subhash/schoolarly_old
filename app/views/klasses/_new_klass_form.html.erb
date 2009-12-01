@@ -1,10 +1,10 @@
-<% puts "klass="+klass.inspect%>
+<% @klass = klass %>
 <% remote_form_for klass, :url => {:controller => 'klasses', :action => 'create', :school_id => school} do |f| %>
 <%= f.error_messages %>
 <p>
     <%= f.label :level %>
     <br/>
-    <%= input 'klass', 'level'%>
+    <%= input 'klass', 'level' %>
 </p>
 <p>
     <%= f.label :division %>
@@ -14,7 +14,7 @@
 <p>
     <%= f.label :year %>
     <br/>
-    <%= f.select :year, (2005..2012).to_a , {:selected => Time.now.year}%>
+    <%= f.select :year, (2005..2012).to_a , {:selected => Time.now.year} %>
 </p>
 <p>
     <%= f.submit 'Create' %>
