@@ -1,9 +1,8 @@
 <%subject_id=klasses.first%>
 
-
 <%if !klasses.last.empty?%>
 <table id="<%= subject_id.to_s + '-klasses_selectable'%>" class="selectable no-border">   
-<%= javascript_include_tag 'teachers/klasses'%>
+
 	<caption>
         Select klasses
         <br />

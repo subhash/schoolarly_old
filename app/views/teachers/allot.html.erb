@@ -8,14 +8,14 @@
         <% @subjects.each do |subject| %>
         <tr>
             <td id=<%=subject.id%> class="ui-state-default sticker wider" >
-                <%= link_to_function subject.name,  "hideShowDivs('#klasses .klass-div', '##{subject.id.to_s + '-klasses'}')" %>
+				<%= link_to_function subject.name,  "showKlasses('#{subject.id}')" %>
             </td>
         </tr>
         <% end %>
     </table>
 </div>
-<div class=c38r>
 
+<div class=c38r>
     <div id="klasses">
         <% @subjects.each do |subject| %>
         <div id="<%=subject.id.to_s + '-klasses'%>" class="klass-div" style="display: none;">
