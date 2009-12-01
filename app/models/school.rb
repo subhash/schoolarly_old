@@ -9,7 +9,7 @@ class School < ActiveRecord::Base
   has_many :students
   #has_and_belongs_to_many :subjects
 
-  def current_subjects
+  def subjects
     return (self.klasses.in_year(Klass.current_academic_year(self.id)).collect{|k| k.subjects}).flatten.uniq
   end
 

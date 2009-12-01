@@ -95,7 +95,7 @@ class TeachersController < ApplicationController
     add_breadcrumb((@teacher.user.user_profile.nil?)? @teacher.user.email : @teacher.user.user_profile.name, @teacher)
     add_breadcrumb('Allot')
     add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @teacher.user})
-    @subjects=@school.current_subjects
+    @subjects=@school.subjects
     @preSelectedItems,@allotmentItems=get_allotment_items(@teacher,@subjects)
   end
   
