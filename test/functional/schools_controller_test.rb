@@ -14,10 +14,22 @@ class SchoolsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:schools)
   end
   
-  test "show school should show breadcrumbs" do
+  test "show school should show breadcrumbs, actions" do
     get :show, :id => @sboa.to_param
     assert_response :success
     assert_select 'div#breadcrumbs strong', @sboa.name
+    assert_select 'div#action_box a[href=?]', edit_user_profile_path(@sboa.user), 'Edit Profile'
+    assert_select 'div#action_box a', 'Invite Student'  
+    assert_select 'div#action_box a', 'Invite Teacher'
+  end
+  
+  test "school should show all students, teachers and classes" do
+    get :show, :id => @sboa.to_param
+    assert_response :success
+    assert_select 'div.tabs li', 3
+    assert_select 'div#teachers-tab .teacher-row', @sboa.teachers.size
+    assert_select 'div#students-tab .student-row', @sboa.students.size
+    # TODO test Classes tab
   end
   
   

@@ -21,7 +21,7 @@
     </thead>
     <tbody>
         <% @teachers.each do |teacher| %>
-        <tr>
+        <tr class="teacher-row">
             <td>
                 <%if teacher.user.user_profile %>
                 <%= link_to teacher.user.user_profile.name, {:controller => 'user_profiles', :action => 'show', :id => teacher.user} %>
