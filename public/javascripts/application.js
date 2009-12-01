@@ -12,7 +12,7 @@ jQuery(function(){
         sortList: [[0, 0]]
     });
 	jQuery("table.selectable").selectable({
-        filter: 'td'
+        filter: 'td.selectFilter'
     });
 	
 });

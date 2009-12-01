@@ -5,7 +5,6 @@
             jQuery(div_id + " " + 'td.ui-selected').each(function(i){
                 id = this.id;
                 klass_indices += "," + id;
-				alert(klass_indices);
             });
         });
 }
