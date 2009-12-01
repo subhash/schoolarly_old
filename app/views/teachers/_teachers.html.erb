@@ -21,6 +21,7 @@
     </thead>
     <tbody>
         <% teachers.each do |teacher| %>
+		<%= render :partial => 'teachers/teacher', :object => teacher %>
          <%end %>
     </tbody>
 </table>
