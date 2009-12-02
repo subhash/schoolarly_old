@@ -14,23 +14,9 @@
             <%=level %>
         </th>
         <%level_klasses.each do |klass| %>
-		<%if @preSelectedItems[subject_id].include?(klass)%>
-		<td id=<%=klass.id%> class="pre-selected"> 
-            <%if ['Pre-school', 'L.K.G','U.K.G','Mont1','Mont2','Mont3'].include?(level.to_s) %>
-            <%=klass.division %>
-            <%else %>
-            <%="#{klass.level}#{klass.division}" %>
-            <%end %>
-        </td>
-		<%else%>
-		<td id=<%=klass.id%> class="ui-state-default selectFilter">
-		<%if ['Pre-school', 'L.K.G','U.K.G','Mont1','Mont2','Mont3'].include?(level.to_s) %>
-            <%=klass.division %>
-            <%else %>
-            <%="#{klass.level}#{klass.division}" %>
-            <%end %>
-        </td>
-		<%end%>
+			<td id=<%=klass.id%> <%if @preSelectedItems[subject_id].include?(klass) %>class="pre-selected"<%else%>class="ui-state-default selectFilter"<%end%>> 
+				<%=render :partial => 'klass', :object => klass%> 
+        	</td>
         <%end %>
     </tr>
     <% end %>

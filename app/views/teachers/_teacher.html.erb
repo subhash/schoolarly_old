@@ -11,7 +11,7 @@
             </td>
             <td>
                 <%teacher.currently_owned_klasses.each do |klass|%>
-				<%= link_to klass.name + " ", {:controller => :klasses, :action => 'show', :id=>klass}%>
+				<%= link_to klass.name + "  ", {:controller => :klasses, :action => 'show', :id=>klass}%>
 				<%end%>
             </td>
             <% if !teacher.current_allotments.empty? %>

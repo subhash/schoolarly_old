@@ -1,0 +1,5 @@
+<%if ['Pre-school', 'L.K.G','U.K.G','Mont1','Mont2','Mont3'].include?(klass.level.to_s) %>
+	<%=klass.division %>
+<%else %>
+	<%="#{klass.level}#{klass.division}" %>
+<%end %>
