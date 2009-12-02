@@ -1,26 +1,21 @@
         <tr class="teacher-row">
             <td>
-                <%if teacher.user.user_profile %>
-                <%= link_to teacher.user.user_profile.name, {:controller => 'user_profiles', :action => 'show', :id => teacher.user} %>
-                <%else %>
-                <%= link_to "Create Profile", {:controller => 'user_profiles', :action => 'new', :id => teacher.user}, {:class => "cell-link"} %>
-                <%end %>
+                <%if teacher.user.user_profile then action='show'; label= teacher.user.user_profile.name; class_name="" else action='new'; label= "Create Profile"; class_name="cell-link" end%>
+                <%= link_to label, {:controller => 'user_profiles', :action => action, :id => teacher.user}, {:class => class_name} %>
             </td>
             <td>
-                <%= link_to teacher.user.email, {:controller => 'user_profiles', :action => 'show', :id => teacher.user} %>
+                <%= link_to teacher.user.email, {:controller => 'user_profiles', :action => action, :id => teacher.user} %>
             </td>
             <td>
                 <%teacher.currently_owned_klasses.each do |klass|%>
 				<%= link_to klass.name + "  ", {:controller => :klasses, :action => 'show', :id=>klass}%>
 				<%end%>
             </td>
-            <% if !teacher.current_allotments.empty? %>
-            <td>
-                <%= link_to 'Show Allotments',  {:controller => 'teachers', :action => 'show', :id => teacher}, {:style => "font-style:italic;"} %>
+			<td>
+				<%=@subjects[teacher.id].collect{|subject| subject.name + ", "}.to_s.chop.chop %>
             </td>
-            <%else %>
+            <% if !teacher.current_allotments.empty? then label='Show Allotments'; action='show' else label='Make Allotments'; action='allot' end%>
             <td>
-                <%= link_to 'Make Allotments',  {:controller => 'teachers', :action => 'allot', :id => teacher}, {:class => "cell-link"} %>
+                <%= link_to label,  {:controller => 'teachers', :action => action, :id => teacher}, {:class => "cell-link"} %>
             </td>
-            <%end %>
         </tr>

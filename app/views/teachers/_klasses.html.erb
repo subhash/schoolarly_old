@@ -2,12 +2,10 @@
 
 <%if !klasses.last.empty?%>
 <table id="<%= subject_id.to_s + '-klasses_selectable'%>" class="selectable no-border">   
-
 	<caption>
         Select klasses
         <br />
     </caption>
-	
    <% klasses.last.each do |level, level_klasses| %>
     <tr>
         <th>
