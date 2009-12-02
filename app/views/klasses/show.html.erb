@@ -28,7 +28,10 @@ jQuery("#klass_tabs li");
             <a href="#klass_tabs-2">Subjects</a>
         </li>
         <li>
-            <a href="#klass_tabs-3">Teachers</a>
+            <a href="#teachers-tab">Teachers</a>
+        </li>
+        <li>
+            <a href="#exams-tab">Exams</a>
         </li>
     </ul>
     <div id="klass_tabs-1">
@@ -52,11 +55,36 @@ jQuery("#klass_tabs li");
             </div>
         </p>
     </div>
-    <div id="klass_tabs-3">
-        <h2>Teachers for <%=@klass.name %></h2>
-        <p>
-        </p>
-        <p>
-        </p>
+    <div id="teachers-tab">
+        <table class="ui-state-default" border="1px" style="margin: auto;">
+            <tr>
+                <th>
+                    Name:
+                </th>
+                <td>
+                    <%= @klass.name %>
+                </td>
+                <th>
+                    Class Teacher:
+                </th>
+                <td>
+                    <%if @klass.class_teacher %>
+                    	<%= link_to (@klass.class_teacher.user.user_profile.nil?)? @klass.class_teacher.user.email : @klass.class_teacher.user.user_profile.name, {:controller => 'user_profiles', :action => 'show', :id => @klass.class_teacher.user} %>
+                    <%else %>
+                    	<%= link_to 'Unassigned', '#', {:class => "cell-link"}%>
+					<%end %>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <br/>
+		<%if !@teachers.empty? %>
+        	<%=render :partial => 'teachers/teachers', :object => @teachers %>
+		<%else%>
+			<blockquote>No allotment done yet.</blockquote>
+		<%end%>
     </div>
+    <div id="exams-tab">
+    </div>	
 </div>
+
