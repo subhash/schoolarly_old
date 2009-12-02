@@ -28,7 +28,11 @@ class SchoolsController < ApplicationController
     @klasses = @school.klasses.in_year(Klass.current_academic_year(@school)).group_by{|klass|klass.level}
     @students = @school.students
     @teachers = @school.teachers
-    
+    @subjects=[]
+    @teachers.each do |teacher|
+      @subjects[teacher.id]=teacher.current_subjects
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @school }

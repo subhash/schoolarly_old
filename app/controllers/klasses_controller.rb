@@ -45,10 +45,19 @@ class KlassesController < ApplicationController
     @school = @klass.school
     add_breadcrumb(@school.name, @school)
     add_breadcrumb(@klass.name)
-    
+    add_page_action('Allot Student', {:action => '#'})
+    add_page_action('Allot Teacher', {:action => '#'})
+    add_page_action('Add Exam',{:action => '#'})
+    add_js_page_action('Add Subjects',{:action => '#'})
+    add_js_page_action('Assign Class Teacher',{:action => '#'})
     @students = @klass.current_students        
     @klass_subjects = @klass.subjects
-    @add_subjects = @school.subjects - @klass.subjects 
+    @add_subjects = @school.subjects - @klass.subjects
+    @teachers = @klass.teachers
+    @subjects=[]
+    @teachers.each do |teacher|
+      @subjects[teacher.id]=@klass.subjectsTaughtBy(teacher.id)
+    end
     session[:redirect] = request.request_uri
     respond_to do |format|
       format.html # show.html.erb
