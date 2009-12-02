@@ -19,8 +19,8 @@
     height: 45px;
     font-size: 1.5em;
     text-align: center;
-}.sticker th {
-    width: 100px;
+}.sticker th, .selectable th {
+    width: auto;
     font-size: 1.5em;
 } .sticker li {
     margin: 3px;
