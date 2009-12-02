@@ -11,7 +11,7 @@ class Teacher < ActiveRecord::Base
       find :all, :conditions => ['subject_id = ? ', subject_id], :order => "level, division"
     end
   end
-  has_many :current_subjects, :through => :current_allotments, :source => :subject
+  has_many :current_subjects, :through => :current_allotments, :source => :subject, :uniq => true
   has_many :owned_klasses, :class_name => 'Klass'
   def currently_owned_klasses
     return owned_klasses.find(:all, :conditions => ["year=?",Klass.current_academic_year(self.school_id)])
