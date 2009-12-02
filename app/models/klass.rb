@@ -9,9 +9,9 @@ class Klass < ActiveRecord::Base
   has_many :students, :through => :enrollments
   has_and_belongs_to_many :subjects
   has_many :teacher_allotments
-  has_many :teachers, :through => :teacher_allotments
-  has_many :exam_groups
-  
+  has_many :teachers, :through => :teacher_allotments, :uniq => true
+	has_many :exam_groups
+	
   validates_uniqueness_of :division, :scope => [:school_id, :level, :year]
   
   def current_students
@@ -24,6 +24,10 @@ class Klass < ActiveRecord::Base
   
   def name
     return level.to_s+" "+division
+  end
+  
+  def subjectsTaughtBy(teacher_id)
+    self.teacher_allotments.select{|a| a.teacher_id == teacher_id}.collect{|s| s.subject}  
   end
   
 end
