@@ -24,13 +24,13 @@ class SchoolsController < ApplicationController
     add_page_action('Allot student to class', {:action => 'allot_student', :id => @school})
     add_js_page_action('Add class',:partial => 'klasses/new_klass_form', :locals => {:klass => Klass.new, :school => @school})
     add_js_page_action('Invite Student',:partial => 'students/invite_student_form', :locals => {:student => Student.new, :school => @school})
-    add_js_page_action('Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new})        
+    add_js_page_action('Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :school => @school}) 
     @klasses = @school.klasses.in_year(Klass.current_academic_year(@school)).group_by{|klass|klass.level}
     @students = @school.students
     @teachers = @school.teachers
-    @subjects=[]
+    @subjects=Hash.new()
     @teachers.each do |teacher|
-      @subjects[teacher.id]=teacher.current_subjects
+      @subjects[teacher.id]=teacher.current_subjects 
     end
 
     respond_to do |format|
