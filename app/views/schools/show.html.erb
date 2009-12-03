@@ -20,7 +20,4 @@
     <div id="teachers-tab">
         <%=render :partial => 'teachers/teachers', :object => @teachers %>
     </div>
-    <div id="invite_teacher_dialog" style="display: none;">
-        <%= render :partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new} %>
-    </div>
 </div>
