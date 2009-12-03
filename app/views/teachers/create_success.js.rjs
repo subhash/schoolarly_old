@@ -1,0 +1,3 @@
+page << "closeDialogs();"
+page << "jQuery('.tabs').tabs('select','#teachers-tab')"
+page.insert_html :top, "teachers", :partial => 'teachers/teacher', :object => @teachers

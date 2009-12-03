@@ -1,4 +1,4 @@
-<% form_for teacher do |f| %>
+<% remote_form_for teacher , :url => {:controller => 'teachers', :action => 'create', :school_id => school} do |f| %>
 <%= f.error_messages %>
 <p>
     <%= render :partial => 'users/invite_input', :locals => {:user => teacher.user} %>
