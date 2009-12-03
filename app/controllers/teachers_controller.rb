@@ -20,36 +20,69 @@ class TeachersController < ApplicationController
     end
   end  
   
-  # POST /teachers
-  # POST /teachers.xml
+   
+  # POST /students
+  # POST /students.xml
   def create
     @teacher = Teacher.new(params[:teacher])
+    @school = School.find(params[:school_id])
     @user = User.new(params[:user])
     @teacher.user = @user
+    @teacher.school = @school
+    @subjects=Hash.new()
+    @subjects[@teacher.id]=@teacher.current_subjects 
     begin
       Teacher.transaction do
         @teacher.save!
         @user.invite!
         respond_to do |format|
           flash[:notice] = 'Teacher was successfully created.'
-          format.html { render :text => flash[:notice] } if request.xhr?
-          format.html { redirect_to(edit_password_reset_url(@user.perishable_token)) }
-          format.xml  { render :xml => @teacher, :status => :created, :location => @teacher }                  
-        end        
-      end      
+          format.js {render :template => 'teachers/create_success'}
+        end 
+      end       
     rescue Exception => e
       puts e.inspect
       # handle error
       @teacher = Teacher.new(params[:teacher])
-      @teacher.user = @user
-      respond_to do |format|
-        format.html { render :partial => 'invite_teacher_form', :locals => {:teacher => @teacher}, :status => 403} if request.xhr?
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @teacher.errors, :status => :unprocessable_entity }      
-      end
+      @teacher.user = @user      
+      respond_to do |format|          
+        format.js {render :template => 'teachers/create_error'}
+      end           
     end
-    
   end
+  
+  
+  
+#  # POST /teachers
+#  # POST /teachers.xml
+#  def create
+#    @teacher = Teacher.new(params[:teacher])
+#    @user = User.new(params[:user])
+#    @teacher.user = @user
+#    begin
+#      Teacher.transaction do
+#        @teacher.save!
+#        @user.invite!
+#        respond_to do |format|
+#          flash[:notice] = 'Teacher was successfully created.'
+#          format.html { render :text => flash[:notice] } if request.xhr?
+#          format.html { redirect_to(edit_password_reset_url(@user.perishable_token)) }
+#          format.xml  { render :xml => @teacher, :status => :created, :location => @teacher }                  
+#        end        
+#      end      
+#    rescue Exception => e
+#      puts e.inspect
+#      # handle error
+#      @teacher = Teacher.new(params[:teacher])
+#      @teacher.user = @user
+#      respond_to do |format|
+#        format.html { render :partial => 'invite_teacher_form', :locals => {:teacher => @teacher}, :status => 403} if request.xhr?
+#        format.html { render :action => "new" }
+#        format.xml  { render :xml => @teacher.errors, :status => :unprocessable_entity }      
+#      end
+#    end
+#    
+#  end
   
   # DELETE /teachers/1
   # DELETE /teachers/1.xml
