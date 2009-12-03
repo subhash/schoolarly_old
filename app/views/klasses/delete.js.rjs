@@ -1,0 +1,3 @@
+page.select(".klass_#{@deleted_klass.id}").each do |element|
+  element.remove
+end

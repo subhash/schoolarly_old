@@ -31,6 +31,12 @@ class KlassesController < ApplicationController
     redirect_to school_klasses_path(@klass.school)
   end
   
+  def delete
+    @klass = Klass.find(params[:id])
+    @deleted_klass = @klass
+    @klass.destroy
+  end
+  
   def update
     @klass = @school.klasses.find(params[:id])
     if @klass.update_attributes(params[:klass])

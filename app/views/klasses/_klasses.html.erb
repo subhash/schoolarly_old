@@ -1,17 +1,37 @@
-<table class="sticker">
-    <tr id="klasses" style="display: none;">
+<table id="klasses" style="display: none;">
+    <th>
+        Recently Added
+    </th>
+    <tr>
         <th>
-            Recently Added
+            Class
+        </th>
+        <th>
+            ClassTeacher
+        </th>
+        <th>
+            Students
         </th>
     </tr>
-    <% @klasses.each do |level, level_klasses| %>
-    <tr id="<%=level%>">
-        <th>
-            <%=level %>
-        </th>
-        <%level_klasses.each do |klass| %>
-        <%= render :partial => 'klasses/klass', :object => klass %>
-        <%end %>
-    </tr>
-    <% end %>
 </table>
+<% @klasses.each do |level, level_klasses| %>
+<table id="<%=level%>">
+    <th>
+        <%=level %>
+    </th>
+    <tr>
+        <th>
+            Class
+        </th>
+        <th>
+            ClassTeacher
+        </th>
+        <th>
+            Students
+        </th>
+    </tr>
+    <%level_klasses.each do |klass| %>
+    <%= render :partial => 'klasses/klass', :object => klass %>
+    <%end %>
+</table>
+<% end %>
