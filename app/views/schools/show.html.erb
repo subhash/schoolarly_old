@@ -18,6 +18,6 @@
         <%= render :partial => 'students/students', :object => @students %>
     </div>
     <div id="teachers-tab">
-        <%=render :partial => 'teachers/teachers', :object => @teachers %>
+        <%=render :partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects} %>
     </div>
 </div>
