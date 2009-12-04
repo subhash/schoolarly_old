@@ -12,8 +12,8 @@
 				<%end%>
             </td>
 			<td>
-				<%if !@subjects[teacher.id].nil? && !@subjects[teacher.id].empty?%>
-					<%=@subjects[teacher.id].collect{|allotment| allotment.subject.name + ", "}.to_s.chop.chop %>
+				<%if !subjects[teacher.id].nil? && !subjects[teacher.id].empty?%>
+					<%=subjects[teacher.id].collect{|allotment| allotment.subject.name}.uniq.join(",") %>
 				<%end%>
             </td>
             <% if !teacher.current_allotments.empty? then label='Show Allotments'; action='show' else label='Make Allotments'; action='allot' end%>

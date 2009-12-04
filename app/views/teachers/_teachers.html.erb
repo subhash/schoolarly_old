@@ -20,7 +20,7 @@
     </thead>
     <tbody id="teachers">
         <% teachers.each do |teacher| %>
-			<%= render :partial => 'teachers/teacher', :object => teacher %>
+			<%= render :partial => 'teachers/teacher', :object => teacher, :locals => {:subjects => subjects} %>
          <%end %>
     </tbody>
 </table>
