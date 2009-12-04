@@ -60,11 +60,11 @@ class KlassesController < ApplicationController
     @klass_subjects = @klass.subjects
     @add_subjects = @school.subjects - @klass.subjects
     @teachers = @klass.teachers
-    @subjects=Hash.new()
-    @teachers.each do |teacher|
-      @subjects[teacher.id]=@klass.subjectsTaughtBy(teacher.id)
-    end
-
+#    @subjects=Hash.new()
+#    @teachers.each do |teacher|
+#      @subjects[teacher.id]=@klass.subjectsTaughtBy(teacher.id)
+#    end
+    @subjects=@klass.teacher_allotments.group_by{|a| a.teacher_id}
     session[:redirect] = request.request_uri
     respond_to do |format|
       format.html # show.html.erb

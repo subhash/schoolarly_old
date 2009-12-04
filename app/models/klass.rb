@@ -8,11 +8,12 @@ class Klass < ActiveRecord::Base
   has_many :enrollments, :class_name =>'StudentEnrollment'  
   has_many :students, :through => :enrollments
   has_and_belongs_to_many :subjects
-  has_many :teacher_allotments do
-    def ofTeacher(teacher_id)
-      find :all, :conditions => ['teacher_id = ? ', teacher_id]
-    end
-  end
+  has_many :teacher_allotments 
+#  do
+#    def ofTeacher(teacher_id)
+#      find :all, :conditions => ['teacher_id = ? ', teacher_id]
+#    end
+#  end
   has_many :teachers, :through => :teacher_allotments, :uniq => true
 	has_many :exam_groups
 	
@@ -30,9 +31,9 @@ class Klass < ActiveRecord::Base
     return level.to_s+" "+division
   end
   
-  def subjectsTaughtBy(teacher_id)
-    #self.teacher_allotments.select{|a| a.teacher_id == teacher_id}.collect{|s| s.subject}
-    self.teacher_allotments.ofTeacher(teacher_id).collect{|s| s.subject}  
-  end
+#  def subjectsTaughtBy(teacher_id)
+#    #self.teacher_allotments.select{|a| a.teacher_id == teacher_id}.collect{|s| s.subject}
+#    self.teacher_allotments.ofTeacher(teacher_id).collect{|s| s.subject}  
+#  end
   
 end
