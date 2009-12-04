@@ -55,15 +55,12 @@ class KlassesController < ApplicationController
     add_page_action('Allot Teacher', {:action => '#'})
     add_page_action('Add Exam',{:action => '#'})
     add_js_page_action('Add Subjects',{:action => '#'})
-    add_js_page_action('Assign Class Teacher',{:action => '#'})
+#    @school_teachers=@school.teachers
+# 	add_js_page_action('Assign Class Teacher',:partial => 'klasses/klass_teacher', :locals => {:teachers => @school_teachers, :klass_id => @klass.id})
     @students = @klass.current_students        
     @klass_subjects = @klass.subjects
     @add_subjects = @school.subjects - @klass.subjects
     @teachers = @klass.teachers
-#    @subjects=Hash.new()
-#    @teachers.each do |teacher|
-#      @subjects[teacher.id]=@klass.subjectsTaughtBy(teacher.id)
-#    end
     @subjects=@klass.teacher_allotments.group_by{|a| a.teacher_id}
     session[:redirect] = request.request_uri
     respond_to do |format|
