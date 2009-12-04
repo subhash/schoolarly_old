@@ -11,8 +11,8 @@ jQuery(function(){
     jQuery(".tablesorter").tablesorter({
         sortList: [[0, 0]]
     });
-	jQuery("table.selectable").selectable({
-        filter: 'td.selectFilter'
+	jQuery(".selectable").selectable({
+        filter: '.selectFilter'
     });
 	
 });
