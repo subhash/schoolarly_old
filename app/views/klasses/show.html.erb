@@ -79,7 +79,7 @@ jQuery("#klass_tabs li");
         <br/>
         <br/>
 		<%if !@teachers.empty? %>
-        	<%=render :partial => 'teachers/teachers', :object => @teachers %>
+        	<%=render :partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects} %>
 		<%else%>
 			<blockquote>No allotment done yet.</blockquote>
 		<%end%>
