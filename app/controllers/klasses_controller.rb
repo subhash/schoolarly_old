@@ -54,13 +54,14 @@ class KlassesController < ApplicationController
     add_page_action('Allot Teacher', {:action => '#'})
     add_page_action('Add Exam',{:action => '#'})
     add_js_page_action('Add Subjects',{:action => '#'})
-#    @school_teachers=@school.teachers
-# 	add_js_page_action('Assign Class Teacher',:partial => 'klasses/klass_teacher', :locals => {:teachers => @school_teachers, :klass_id => @klass.id})
-    @students = @klass.current_students        
-    @klass_subjects = @klass.subjects
+    #    @school_teachers=@school.teachers
+    # 	add_js_page_action('Assign Class Teacher',:partial => 'klasses/klass_teacher', :locals => {:teachers => @school_teachers, :klass_id => @klass.id})
+    @students = @klass.current_students      
+    @subjects = @klass.subjects
+    @teacher_allotments=@klass.teacher_allotments.group_by{|a| a.subject}
     @add_subjects = @school.subjects - @klass.subjects
     @teachers = @klass.teachers
-    @subjects=@klass.teacher_allotments.group_by{|a| a.teacher_id}
+    #    @subjects=@klass.teacher_allotments.group_by{|a| a.teacher_id}
     session[:redirect] = request.request_uri
     respond_to do |format|
       format.html # show.html.erb

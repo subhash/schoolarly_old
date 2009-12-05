@@ -17,7 +17,7 @@
         <%= render :partial => 'students/students', :object => @students %>
     </div>
     <div id="subjects-tab">
-        <%= render :partial => 'subjects/subjects', :object => @klass_subjects %>
+        <%= render :partial => 'subjects/subjects', :object => @subjects, :locals => {:teacher_allotments => @teacher_allotments} %>
     </div>
     <div id="teachers-tab">
         <table class="ui-state-default" border="1px" style="margin: auto;">

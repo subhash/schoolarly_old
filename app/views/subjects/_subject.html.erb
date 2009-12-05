@@ -3,7 +3,15 @@
     <td>
         <%= subject.name %>
     </td>
-	    <td>
-        <%= subject.name %>
+    <td>
+        <% if teacher_allotment %>
+        <% teacher = teacher_allotment.first.teacher %>
+        <%= link_to teacher.name teacher_path(teacher) %>
+        <%else %>
+        <%= link_to_remote "Assign Teacher" %>
+        <%end %>
+    </td>
+    <td>
+        <%= link_to_remote 'Delete', :url => {:controller => 'klasses', :action => 'delete_subject',:id => klass, :subject_id => subject}, :confirm => 'Are you sure?' %>
     </td>
 </tr>
