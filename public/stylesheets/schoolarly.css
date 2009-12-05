@@ -121,26 +121,17 @@ table.nested .list-line-odd {
     background: #E0F8FC;
 } .ui-tabs-nav li {
     list-style-type: none;
-}
-
-
-#content_box{
-	float:left;
-	margin:0;
-	width:72%;
-}
-#right_boxes{ 
-	float: right;
-	width: 27%;
-}
-#action_box{
-	padding: 1%;
-}
-#quick_nav_box{
-	
-}
-#reference_box{
-	
+} #content_box {
+    float: left;
+    margin: 0;
+    width: 72%;
+} #right_boxes {
+    float: right;
+    width: 27%;
+} #action_box {
+    padding: 1%;
+} #quick_nav_box {
+} #reference_box {
 }
 
 table.ui-state-default a.cell-link {
@@ -151,13 +142,15 @@ table.ui-state-default a.cell-link {
 
 table.ui-state-default th {
     background: #F6A828 url(images/ui-bg_gloss-wave_35_f6a828_500x100.png) repeat-x scroll 50% 50%;
-	border: 1px solid #E78F08;
-	color: #EEEEEE
+    border: 1px solid #E78F08;
+    color: #EEEEEE
 }
 
-  table.no-border {
-  	border:none;
-} td.wider {
+table.no-border {
+    border: none;
+}
+
+td.wider {
     margin: 1px;
     padding: 1px;
     float: left;
@@ -165,49 +158,62 @@ table.ui-state-default th {
     height: 25px;
     font-size: 1.2em;
     text-align: center;
-	vertical-align: middle;
-}
-  table.center {
-  	margin: 0 0.2em;
+    vertical-align: middle;
 }
 
-#breadcrumbs {
-height:2.5em;
-border:1px solid #dedede;
-
+table.center {
+    margin: 0 0.2em;
+} #breadcrumbs {
+    height: 2.5em;
+    border: 1px solid #dedede;
+} #breadcrumbs li {
+    float: left;
+    line-height: 2.5em;
+    padding-left: 25px;
+    font-weight: 900;
+    color: #224A88;
+    margin-left: 0px;
+    margin-right: 0;
+} #breadcrumbs li a {
+    color: #ffffff;
+    display: block;
+    text-decoration: none;
+    padding: 0 15px 0 0;
+    margin-left: -25px;
+    background: url(../images/breadcrumbs.jpg) repeat-x right center;
+    width: auto;
+} #breadcrumbs ul, #breadcrumbs li {
+    list-style-type: none;
+} #breadcrumbs li strong {
+    float: left;
+    margin-left: -40px;
+    padding-left: 21px;
+    background: url(../images/breadcrumb_current.jpg) repeat-x left center;
 }
 
-#breadcrumbs li {
-float:left;
-line-height:2.5em;
-padding-left:25px;
-font-weight:900;
-color: #224A88;
-margin-left: 0px;
-margin-right: 0;
+td.pre-selected {
+    background: #F39814 none repeat scroll 0 0;
+    font-weight: bold;
+    color: white;
+}
 
+/**
+ * for rails multiple-select plugin
+ */ .multiple_select {
+    border: 1px solid #aaa;
+    height: 100px;
+    width: 200px;
+    padding: 2px;
+    margin: 1em;
+    overflow: auto;
+} .multiple_select, .multiple_select ul {
+    list-style-type: none;
+} .multiple_select_checkbox {
+    background: #fff;
+} .alt {
+    background: #eef;
 }
-#breadcrumbs li a {
-color:#ffffff;
-display:block;
-text-decoration:none;
-padding:0 15px 0 0;
-margin-left: -25px;
-background:url(../images/breadcrumbs.jpg) repeat-x right center;
-width: auto;
 
-}
-#breadcrumbs ul, #breadcrumbs li{
-list-style-type:none;
-}
-#breadcrumbs li strong{
-float:left;
-margin-left: -40px;
-padding-left: 21px;
-background:url(../images/breadcrumb_current.jpg) repeat-x left center;
-}
-td.pre-selected{
-background:#F39814 none repeat scroll 0 0;
-font-weight: bold;
-color:white;
-}
+/**
+ * for rails multiple-select plugin
+ */

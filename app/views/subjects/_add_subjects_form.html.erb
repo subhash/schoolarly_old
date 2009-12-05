@@ -1,0 +1,6 @@
+<% puts "subjects in form = "+subjects.inspect %>
+<% remote_form_for klass, :url => {:controller => 'klasses', :action => 'add_subjects'} do |f| %>
+<%= f.error_messages %>
+<%= collection_multiple_select('klass', 'subject_ids', subjects, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox'}) %>
+<%= f.submit "Add" %>
+<%end %>

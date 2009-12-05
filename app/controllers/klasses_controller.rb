@@ -53,15 +53,14 @@ class KlassesController < ApplicationController
     add_breadcrumb(@klass.name)
     add_page_action('Allot Teacher', {:action => '#'})
     add_page_action('Add Exam',{:action => '#'})
-    add_js_page_action('Add Subjects',{:action => '#'})
+    @all_subjects = Subject.find(:all)
+    add_js_page_action('Add Subjects',:partial => 'subjects/add_subjects_form', :locals => {:klass => @klass, :subjects => (@all_subjects - @klass.subjects)})    
     #    @school_teachers=@school.teachers
     # 	add_js_page_action('Assign Class Teacher',:partial => 'klasses/klass_teacher', :locals => {:teachers => @school_teachers, :klass_id => @klass.id})
     @students = @klass.current_students      
     @subjects = @klass.subjects
     @teacher_allotments=@klass.teacher_allotments.group_by{|a| a.subject}
-    @add_subjects = @school.subjects - @klass.subjects
     @teachers = @klass.teachers
-    #    @subjects=@klass.teacher_allotments.group_by{|a| a.teacher_id}
     session[:redirect] = request.request_uri
     respond_to do |format|
       format.html # show.html.erb
@@ -86,26 +85,11 @@ class KlassesController < ApplicationController
     @add_subjects = @school.subjects - @klass.subjects   
   end
   
-  
-  def list_add_subjects
-    @klass = Klass.find(params[:id])
-    @school = @klass.school
-    @klass_subjects = @klass.subjects
-    @add_subjects = @school.subjects - @klass.subjects 
-  end
-  
   def add_subjects
     @klass = Klass.find(params[:id])
-    @school = @klass.school
-    add_subjects = params[:klass_add_subjects].split(',')
-    add_subjects.each {|subject_id| 
-      if (!subject_id.empty?)        
-        subject = Subject.find(subject_id.split('_').last)
-        @klass.subjects << subject
-      end
-    }  
-    @klass_subjects = @klass.subjects
-    @add_subjects = @school.subjects - @klass.subjects 
+    @klass.subject_ids = params[:klass][:subject_ids]
+    puts "subject ids = "+@klass.subject_ids.inspect
+    puts "klass = "+@klass.inspect
   end
   
   def delete_subject
