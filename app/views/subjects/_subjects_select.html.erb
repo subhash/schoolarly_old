@@ -1,0 +1,7 @@
+<ol class = "subjects sticker">
+    <%subjects.each do |subject| %>
+    <%= link_to_remote "Delete" , {:url => {:controller => 'klasses', :action => 'delete_subject', :id=>@klass, :subject_id => subject}},
+    {:id => "#{subject.id}_delete", :class => "subject delete ui-icon ui-icon-circle-close", :style => "display: none;" } %>
+    <%= render :partial => 'subjects/subject', :object => subject %>
+    <%end %>
+</ol>

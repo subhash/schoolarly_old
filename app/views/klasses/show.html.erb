@@ -1,31 +1,10 @@
-<script type="text/javascript">
-    jQuery(function(){
-        jQuery("#klass_tabs").tabs();
-        jQuery("#klass_tabs li");
-        jQuery("#add_subjects_dialog").dialog({
-            bgiframe: true,
-            height: 500,
-            width: 400,
-            modal: true,
-            autoOpen: false
-        });
-    });
-</script>
-<!--
-<script type="text/javascript">
-jQuery(function(){
-jQuery("#klass_tabs").tabs();
-jQuery("#klass_tabs li");
-});
-</script>
--->
-<div id="klass_tabs">
+<div id="klass_tabs" class="tabs">
     <ul>
         <li>
-            <a href="#klass_tabs-1">Students</a>
+            <a href="#students-tab">Students</a>
         </li>
         <li>
-            <a href="#klass_tabs-2">Subjects</a>
+            <a href="#subjects-tab">Subjects</a>
         </li>
         <li>
             <a href="#teachers-tab">Teachers</a>
@@ -34,26 +13,11 @@ jQuery("#klass_tabs li");
             <a href="#exams-tab">Exams</a>
         </li>
     </ul>
-    <div id="klass_tabs-1">
-        <h2>Students in <%=@klass.name %></h2>
-        <p>
-            <%= render :partial => "students" %>
-        </p>
+    <div id="students-tab">
+        <%= render :partial => 'students/students', :object => @students %>
     </div>
-    <div id="klass_tabs-2">
-        <h2>Subjects taught in <%=@klass.name %></h2>
-        <p>
-            <div id="subjects_list" class="sticker">
-                <%=render :partial => 'klasses/subjects_list', :object => @klass_subjects %>
-            </div>
-            <div class="button ui-state-default center">
-                <%= link_to_remote 'Add',:url => {:controller => 'klasses', :action => 'list_add_subjects', :id=>@klass} %>
-            </div>
-            <div id="add_subjects_dialog" title="Select subjects to add" style="display: none;">
-                <div id="add_subjects_dialog_controls">
-                </div>
-            </div>
-        </p>
+    <div id="subjects-tab">
+        <%= render :partial => 'subjects/subjects', :object => @klass_subjects %>
     </div>
     <div id="teachers-tab">
         <table class="ui-state-default" border="1px" style="margin: auto;">
@@ -69,22 +33,23 @@ jQuery("#klass_tabs li");
                 </th>
                 <td>
                     <%if @klass.class_teacher %>
-                    	<%= link_to (@klass.class_teacher.user.user_profile.nil?)? @klass.class_teacher.user.email : @klass.class_teacher.user.user_profile.name, {:controller => 'user_profiles', :action => 'show', :id => @klass.class_teacher.user} %>
+                    <%= link_to (@klass.class_teacher.user.user_profile.nil?)? @klass.class_teacher.user.email : @klass.class_teacher.user.user_profile.name, {:controller => 'user_profiles', :action => 'show', :id => @klass.class_teacher.user} %>
                     <%else %>
-                    	<%= link_to 'Unassigned', '#', {:class => "cell-link"}%>
-					<%end %>
+                    <%= link_to 'Unassigned', '#', {:class => "cell-link"} %>
+                    <%end %>
                 </td>
             </tr>
         </table>
         <br/>
         <br/>
-		<%if !@teachers.empty? %>
-        	<%=render :partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects} %>
-		<%else%>
-			<blockquote>No allotment done yet.</blockquote>
-		<%end%>
+        <%if !@teachers.empty? %>
+        <%=render :partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects} %>
+        <%else %>
+        <blockquote>
+            No allotment done yet.
+        </blockquote>
+        <%end %>
     </div>
     <div id="exams-tab">
-    </div>	
+    </div>
 </div>
-

@@ -7,5 +7,4 @@ class Subject < ActiveRecord::Base
   end
   has_many :exams
   has_and_belongs_to_many :student_enrollments
-
 end

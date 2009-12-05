@@ -1,0 +1,13 @@
+<table class="subjects">
+    <tr>
+        <th>
+            Subject
+        </th>
+        <th>
+            Taught by
+        </th>
+    </tr>
+    <% subjects.each do |subject| %>
+    <% render :partial => 'subjects/subject', :object => subject %>
+    <%end %>
+</table>

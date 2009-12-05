@@ -1,0 +1,8 @@
+<li id="<%= subject.id%>">
+    class="subject ui-widget-content"><%= link_to_function subject.name do |page|
+    page.select(".subject.delete").each do |item|
+    item.hide
+    end
+    page["#{subject.id}_delete"].show
+    end %>
+</li>

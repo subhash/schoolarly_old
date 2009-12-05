@@ -51,7 +51,6 @@ class KlassesController < ApplicationController
     @school = @klass.school
     add_breadcrumb(@school.name, @school)
     add_breadcrumb(@klass.name)
-    add_page_action('Allot Student', {:action => '#'})
     add_page_action('Allot Teacher', {:action => '#'})
     add_page_action('Add Exam',{:action => '#'})
     add_js_page_action('Add Subjects',{:action => '#'})

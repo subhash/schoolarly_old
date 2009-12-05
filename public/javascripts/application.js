@@ -7,30 +7,33 @@ jQuery(function(){
     jQuery(".jquery-dialog").dialog({
         autoOpen: false
     });
+    jQuery(".jquery-dialog").bind('dialogclose', function(event, ui){
+        jQuery(this).removeClass("open-dialog")
+    });
     jQuery(".tabs").tabs();
     jQuery(".tablesorter").tablesorter({
         sortList: [[0, 0]]
     });
-	jQuery(".selectable").selectable({
+    jQuery(".selectable").selectable({
         filter: '.selectFilter'
     });
-	
+    
 });
 
 function openDialog(id){
     jQuery("#" + id).dialog('open');
-        jQuery("#" + id).addClass("open-dialog")
+    jQuery("#" + id).addClass("open-dialog")
 }
 
 function closeDialogs(){
-    $$(".jquery-dialog.open-dialog form").each(function(element){
+    $$(".jquery-dialog form").each(function(element){
         element.reset();
     });
-    jQuery(".jquery-dialog.open-dialog").removeClass("jquery-dialog open-dialog").dialog('close');
+    jQuery(".jquery-dialog.open-dialog").dialog('close');
 }
 
 function hideShowDivs(hide_id, show_id){
-	jQuery(hide_id).hide();
+    jQuery(hide_id).hide();
     jQuery(show_id).show();
 }
 
