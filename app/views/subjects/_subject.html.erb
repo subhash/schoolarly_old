@@ -4,6 +4,7 @@
     </td>
     <td>
         <% if teacher_allotment %>
+		<% puts "teacher_allotment =" + teacher_allotment.first.inspect%>
         <% teacher = teacher_allotment.first.teacher %>
         <%= link_to teacher.name, teacher_path(teacher) %>
         <%else %>
