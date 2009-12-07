@@ -86,10 +86,12 @@ class KlassesController < ApplicationController
   end
   
   def add_subjects
+    puts "in add_subjects"
     @klass = Klass.find(params[:id])
-    @klass.subject_ids = params[:klass][:subject_ids]
-    puts "subject ids = "+@klass.subject_ids.inspect
-    puts "klass = "+@klass.inspect
+    subject_ids = params[:klass][:subject_ids]
+    subject_ids.each do |id|
+      @klass.subjects << Subject.find(id)
+    end
   end
   
   def delete_subject

@@ -8,6 +8,6 @@
         </th>
     </tr>
     <% subjects.each do |subject| %>
-    <% render :partial => 'subjects/subject', :object => subject, :locals => {:teacher_allotment => teacher_allotments[subject]} %>
+    <%= render :partial => 'subjects/subject', :object => subject, :locals => {:klass => klass, :teacher_allotment => teacher_allotments[subject]} %>
     <%end %>
 </table>
