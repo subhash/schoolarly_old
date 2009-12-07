@@ -22,4 +22,8 @@ class Teacher < ActiveRecord::Base
     self.user.has_role 'reader', Teacher
     self.user.has_role 'reader', Student
   end
+  
+  def name
+    return user.user_profile.name
+  end
 end

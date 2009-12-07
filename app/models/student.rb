@@ -1,5 +1,5 @@
 class Student < ActiveRecord::Base
-
+  
   has_one :user, :as => :person
   belongs_to :school
   has_many :enrollments, :class_name => 'StudentEnrollment'
@@ -28,6 +28,10 @@ class Student < ActiveRecord::Base
   def update_roles
     puts 'student updates roles'
     self.school.user.has_role 'editor', self if school
-  end    
+  end  
+  
+  def name
+    return user.user_profile.name
+  end
   
 end
