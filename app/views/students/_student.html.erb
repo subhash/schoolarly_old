@@ -1,7 +1,7 @@
 <tr class="student-row">
     <td>
-        <%if student.user.user_profile %>
-        <%= link_to student.user.user_profile.name, {:controller => 'user_profiles', :action => 'new', :id => student.user} %>
+        <%if student.name %>
+        <%= link_to student.name, student_path(student) %>
         <%else %>
         <%= link_to "Profile not created", {:controller => 'user_profiles', :action => 'new', :id => student.user}, {:class => "profile"} %>
         <%end %>

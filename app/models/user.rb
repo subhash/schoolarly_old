@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
   
   after_create :add_roles  
   
+  def name
+    user_profile ? user_profile.name : nil
+  end
+  
   def add_roles
     self.has_role 'editor', self.person if self.person
     add_roles_for_person

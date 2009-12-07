@@ -7,9 +7,6 @@
             <a href="#subjects-tab">Subjects</a>
         </li>
         <li>
-            <a href="#teachers-tab">Teachers</a>
-        </li>
-        <li>
             <a href="#exams-tab">Exams</a>
         </li>
     </ul>
@@ -19,37 +16,7 @@
     <div id="subjects-tab">
         <%= render :partial => 'subjects/subjects', :object => @klass.subjects, :locals => {:klass => @klass, :teacher_allotments => @teacher_allotments} %>
     </div>
-    <div id="teachers-tab">
-        <table class="ui-state-default" border="1px" style="margin: auto;">
-            <tr>
-                <th>
-                    Name:
-                </th>
-                <td>
-                    <%= @klass.name %>
-                </td>
-                <th>
-                    Class Teacher:
-                </th>
-                <td>
-                    <%if @klass.class_teacher %>
-                    <%= link_to (@klass.class_teacher.user.user_profile.nil?)? @klass.class_teacher.user.email : @klass.class_teacher.user.user_profile.name, {:controller => 'user_profiles', :action => 'show', :id => @klass.class_teacher.user} %>
-                    <%else %>
-                    <%= link_to 'Unassigned', '#', {:class => "cell-link"} %>
-                    <%end %>
-                </td>
-            </tr>
-        </table>
-        <br/>
-        <br/>
-        <%if !@teachers.empty? %>
-        <%=render :partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects} %>
-        <%else %>
-        <blockquote>
-            No allotment done yet.
-        </blockquote>
-        <%end %>
-    </div>
+
     <div id="exams-tab">
     </div>
 </div>

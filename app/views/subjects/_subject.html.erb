@@ -2,15 +2,20 @@
     <td class="ui-state-default">
         <%= subject.name %>
     </td>
+    <% if teacher_allotment %>
     <td>
-        <% if teacher_allotment %>
-		<% puts "teacher_allotment =" + teacher_allotment.first.inspect%>
         <% teacher = teacher_allotment.first.teacher %>
-        <%= link_to teacher.name, teacher_path(teacher) %>
+        <%if teacher.name %>
+        <%=link_to teacher.name, teacher_path(teacher) %>
         <%else %>
-        <%= link_to_remote "Assign Teacher" %>
+        <%=link_to "Profile not created", {:controller => 'user_profiles', :action => 'new', :id => teacher.user}, {:class => "profile"} %>
         <%end %>
     </td>
+    <%else %>
+    <td class="ui-state-focus">
+        <%= link_to_remote "Assign Teacher" %>
+    </td>
+    <%end %>
     <td>
         <%= link_to_remote 'Delete', :url => {:controller => 'klasses', :action => 'delete_subject',:id => klass, :subject_id => subject}, :confirm => 'Are you sure?' %>
     </td>

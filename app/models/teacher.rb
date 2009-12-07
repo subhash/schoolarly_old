@@ -24,6 +24,6 @@ class Teacher < ActiveRecord::Base
   end
   
   def name
-    return user.user_profile.name
+    return user.name
   end
 end
