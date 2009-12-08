@@ -9,6 +9,11 @@ Installed plugins
 		Controller: in_place_edit_with_validation_for
 		Views: <%= in_place_editor_field :entity, :attribute, {}, :script => true %>
 		environment.rb: require 'custom_in_place_editing'
+		
+5)     Multiple-select plugin
+		http://ruido-blanco.net/blog/rails-multiple-select-helper-plugin/
+		
+				
 jquery plugins/widgets used
 ---------------------------
 1) jquery dialog (jquery-ui.com)
