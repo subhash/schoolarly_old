@@ -1,6 +1,0 @@
-<div id="add_subjects_list" class="selectable">
-    <%=render :partial => 'klasses/subjects', :object => @add_subjects %>
-</div>
-<div class="button ui-state-default ui-corner-all">
-    <%= link_to_remote 'Add selected subjects to class',:url => {:controller => 'klasses', :action => 'add_subjects', :id=>@klass}, :with => "'klass_add_subjects=' + klass_subject_indices" %>
-</div>

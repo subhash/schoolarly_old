@@ -1,2 +1,0 @@
- page << "jQuery('#add_subjects_dialog').dialog('open');"
-

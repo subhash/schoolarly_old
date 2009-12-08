@@ -54,13 +54,12 @@ class KlassesController < ApplicationController
     add_page_action('Allot Teacher', {:action => '#'})
     add_page_action('Add Exam',{:action => '#'})
     @all_subjects = Subject.find(:all)
-    add_js_page_action('Add Subjects',:partial => 'subjects/add_subjects_form', :locals => {:klass => @klass, :subjects => (@all_subjects - @klass.subjects)})    
+    add_js_page_action('Add/Remove Subjects',:partial => 'subjects/add_subjects_form', :locals => {:klass => @klass, :subjects => @all_subjects })    
     #    @school_teachers=@school.teachers
     # 	add_js_page_action('Assign Class Teacher',:partial => 'klasses/klass_teacher', :locals => {:teachers => @school_teachers, :klass_id => @klass.id})
     @students = @klass.current_students      
     @subjects = @klass.subjects
     @teacher_allotments=@klass.teacher_allotments.group_by{|a| a.subject}
-    @teachers = @klass.teachers
     session[:redirect] = request.request_uri
     respond_to do |format|
       format.html # show.html.erb
@@ -86,12 +85,10 @@ class KlassesController < ApplicationController
   end
   
   def add_subjects
-    puts "in add_subjects"
     @klass = Klass.find(params[:id])
-    subject_ids = params[:klass][:subject_ids]
-    subject_ids.each do |id|
-      @klass.subjects << Subject.find(id)
-    end
+    @klass.subject_ids = params[:klass][:subject_ids]
+    @all_subjects = Subject.find(:all)
+    @teacher_allotments=@klass.teacher_allotments.group_by{|a| a.subject}
   end
   
   def delete_subject
