@@ -59,7 +59,7 @@ class KlassesController < ApplicationController
     # 	add_js_page_action('Assign Class Teacher',:partial => 'klasses/klass_teacher', :locals => {:teachers => @school_teachers, :klass_id => @klass.id})
     @students = @klass.current_students      
     @subjects = @klass.subjects
-    @teacher_allotments=@klass.teacher_allotments.group_by{|a| a.subject}
+    @teacher_allotments=@klass.teacher_allotments.group_by{|a| a.subject.id}
     session[:redirect] = request.request_uri
     respond_to do |format|
       format.html # show.html.erb
@@ -88,7 +88,7 @@ class KlassesController < ApplicationController
     @klass = Klass.find(params[:id])
     @klass.subject_ids = params[:klass][:subject_ids]
     @all_subjects = Subject.find(:all)
-    @teacher_allotments=@klass.teacher_allotments.group_by{|a| a.subject}
+    @teacher_allotments=@klass.teacher_allotments.group_by{|a| a.subject.id}
   end
   
   def delete_subject
