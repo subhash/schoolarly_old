@@ -59,7 +59,7 @@ class KlassesController < ApplicationController
     # 	add_js_page_action('Assign Class Teacher',:partial => 'klasses/klass_teacher', :locals => {:teachers => @school_teachers, :klass_id => @klass.id})
     @students = @klass.current_students      
     @subjects = @klass.subjects
-    @teacher_allotments=@klass.teacher_allotments.group_by{|a| a.subject.id}
+    @teacher_allotments= TeacherAllotment.current_for_klass(@klass.id).group_by{|a| a.subject.id}
     session[:redirect] = request.request_uri
     respond_to do |format|
       format.html # show.html.erb
@@ -77,35 +77,15 @@ class KlassesController < ApplicationController
     @active_tab = :Classes
   end
   
-  def subjects_edit
-    @klass = Klass.find(params[:id])
-    @school = @klass.school
-    @klass_subjects = @klass.subjects
-    @add_subjects = @school.subjects - @klass.subjects   
-  end
-  
   def add_subjects
     @klass = Klass.find(params[:id])
     @klass.subject_ids = params[:klass][:subject_ids]
     @all_subjects = Subject.find(:all)
-    @teacher_allotments=@klass.teacher_allotments.group_by{|a| a.subject.id}
+    @teacher_allotments = TeacherAllotment.current_for_klass(@klass.id).group_by{|a| a.subject.id}
   end
   
-  def delete_subject
-    @klass = Klass.find(params[:id])
-    @school = @klass.school
-    subject = @klass.subjects.find(params[:subject_id])
-    if(subject)
-      @klass.subjects.delete(subject)
-      @klass.save
-    end
-    @klass_subjects = @klass.subjects
-    @school_subjects = @school.subjects
-    @add_subjects = @school_subjects - @klass_subjects
-    render :update do |page|
-      page.replace_html("subjects_list", :partial =>'klasses/subjects_list' , :object=>@klass_subjects)
-      page.replace_html("add_subjects_list", :partial =>'klasses/subjects', :object=>@add_subjects )     
-    end
+  def delete_allotment
+    
   end
   
 end
