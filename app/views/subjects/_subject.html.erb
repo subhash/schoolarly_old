@@ -12,7 +12,7 @@
         <%end %>
     </td>
     <td>
-        <%= link_to_remote 'Delete', :url => {:controller => 'klasses', :action => 'delete_allotment',:id => klass, :subject_id => teacher_allotment.first}, :confirm => 'Are you sure?' %>
+        <%= link_to_remote 'Delete', :url => {:controller => 'klasses', :action => 'delete_allotment',:id => klass, :allotment_id => teacher_allotment.first}, :confirm => 'Are you sure?' %>
     </td>
     <%else %>
     <td class="ui-state-focus">

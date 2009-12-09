@@ -85,7 +85,10 @@ class KlassesController < ApplicationController
   end
   
   def delete_allotment
-    
+    @klass = Klass.find(params[:id])
+    @teacher_allotment = TeacherAllotment.find(params[:allotment_id])
+    @subject = @teacher_allotment.subject
+    @teacher_allotment.destroy
   end
   
 end
