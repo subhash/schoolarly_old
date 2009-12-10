@@ -1,23 +1,29 @@
-<tr>
-    <td>
-        <%=h exam.subject.name %>
-    </td>
-    <td>
-        <%=h exam.start_time %>
-    </td>
-    <td>
-        <%=h exam.end_time %>
-    </td>
-    <td>
-        <%=h exam.venue %>
-    </td>
-    <td>
-        <%=h exam.max_score %>
-    </td>
-    <td>
-        <%=h exam.pass_score %>
-    </td>
-    <td>
-        <%=link_to 'Enter score', :controller => 'scores', :action => 'new', :exam => exam %>
-    </td>
-</tr>
+	<tr class="exam_<%=exam.id%>">
+	    <td class="ui-state-default">
+	    	<%=exam.subject.name%>
+	    </td>
+	    <td class="ui-state-default">
+	    	<%=exam.start_time%>
+	    </td>
+	    <td class="ui-state-default">
+	    	<%=exam.end_time%>
+	    </td>
+		<td class="ui-state-default">
+	    	<%=exam.venue%>
+	    </td>
+		<td class="ui-state-default">
+	    	<%=exam.max_score%>
+	    </td>
+		<td class="ui-state-default">
+	    	<%=exam.pass_score%>
+	    </td>
+		<td class="ui-state-default">
+	        <%= link_to_remote 'Edit', :url => {:controller => 'exams', :action => 'delete',:id => exam}, :html => {:class => "ui-icon ui-icon-pencil"}, :confirm => 'Are you sure?' %>
+	    </td>
+	    <td class="ui-state-default">
+	        <%= link_to_remote 'Delete', :url => {:controller => 'exams', :action => 'delete',:id => exam}, :html => {:class => "ui-icon ui-icon-circle-close"}, :confirm => 'Are you sure?' %>
+	    </td>
+		<td class="ui-state-default">
+        	<%=link_to 'Enter score', {:controller => 'scores', :action => 'new', :exam => exam}, {:class => "ui-icon ui-icon-circle-zoomin"}%>
+	    </td>	
+	</tr>
