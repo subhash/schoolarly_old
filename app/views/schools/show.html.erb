@@ -9,6 +9,9 @@
         <li>
             <a href="#teachers-tab">Teachers</a>
         </li>
+        <li>
+            <a href="#exams-tab">Exams</a>
+        </li>		
     </ul>
     <div id="classes-tab">
     	 <%= render :partial => 'klasses/klasses', :object => @klasses %>
@@ -19,4 +22,7 @@
     <div id="teachers-tab">
         <%=render :partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects} %>
     </div>
+	<div id="exams-tab">
+	    <%=render :partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:school => @school, :exam_group => nil} %>
+	 </div>
 </div>
