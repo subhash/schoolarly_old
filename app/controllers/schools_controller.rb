@@ -25,6 +25,7 @@ class SchoolsController < ApplicationController
     add_js_page_action('Invite Student',:partial => 'students/invite_student_form', :locals => {:student => Student.new, :school => @school})
     add_js_page_action('Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :school => @school})
     @klasses = @school.klasses.in_year(Klass.current_academic_year(@school)).group_by{|klass|klass.level}
+    @exam_groups = @school.exam_groups.group_by{|eg| Klass.find(eg.klass_id)}
     @students = @school.students
     @teachers = @school.teachers
     @subjects=@school.current_teacher_allotments.group_by{|a| a.teacher_id}
@@ -353,27 +354,6 @@ class SchoolsController < ApplicationController
     }  
     @school_subjects = @school.subjects
     @add_subjects = Subject.find(:all) - @school_subjects
-  end
-  
-  def exam_groups_index
-    @active_tab = :Exams
-    @school=School.find(params[:id])
-    @year = Klass.current_academic_year(@school)
-    @klasses=Klass.current_klasses(@school, @year)
-    if params[:exam_group]
-      @exam_group=ExamGroup.find(params[:exam_group])
-      @exams=@exam_group.exams
-    end
-    exam_groups=[]
-    for @klass in @klasses
-      if @klass.exam_groups.empty? || @klass.exam_groups.nil?
-        exam_groups << ExamGroup.new(:klass => @klass)
-      end
-      @klass.exam_groups.each do |eg|
-        exam_groups << eg  
-      end
-    end
-    @exam_groups = exam_groups.group_by{|eg| Klass.find(eg.klass_id)}
   end
   
   def self.tabs(school_id)
