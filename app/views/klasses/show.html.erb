@@ -16,7 +16,7 @@
     <div id="subjects-tab">
         <%= render :partial => 'subjects/subjects', :object => @klass.subjects, :locals => {:klass => @klass, :teacher_allotments => @teacher_allotments} %>
     </div>
-
     <div id="exams-tab">
+    	<%= render :partial => 'exams/exams', :object => @exams %>
     </div>
 </div>
