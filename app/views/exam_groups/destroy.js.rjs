@@ -1,0 +1,8 @@
+div_name=@klass.id.to_s + '_content_table'
+if @klass.exam_groups.empty?
+  page.replace_html(div_name, :text => "<blockquote>No exam group added yet</blockquote>")
+else
+  page.replace_html(div_name, :partial => 'exam_group', :collection => @klass.exam_groups)
+end 
+# page.replace_html("exams_index_div", :text => "")
+    

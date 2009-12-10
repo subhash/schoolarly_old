@@ -1,0 +1,7 @@
+page << "closeDialogs();"
+div_name=@klass.id.to_s + '_content_table'
+if @klass.exam_groups.count==1
+  page.replace_html(div_name, :partial =>'exam_group', :object => @exam_group)
+else
+  page.insert_html(:bottom, div_name, :partial =>'exam_group', :object => @exam_group)
+end 

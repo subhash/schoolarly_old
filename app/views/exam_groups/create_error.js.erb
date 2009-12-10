@@ -1,0 +1,2 @@
+jQuery(".jquery-dialog.open-dialog").html("<%= escape_javascript(render :text => '<blockquote>Exam group could not be created. Try again.</blockquote>') %>");
+jQuery(".jquery-dialog.open-dialog").append("<%= escape_javascript( render :partial => 'exam_groups/new', :object =>@klass, :locals => {:exam_types => ExamType.find(:all)}) %>");

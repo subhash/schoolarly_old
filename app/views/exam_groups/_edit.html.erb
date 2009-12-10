@@ -8,7 +8,7 @@
                 </label>
             </th>
             <td>
-                <%= select_tag(:edit_exam_type, options_from_collection_for_select(@exam_types,:id,:name,{:selected => exam_group.exam_type.id}), { :style => "width: 231px"} ) %>
+                <%= select_tag(:edit_exam_type, options_from_collection_for_select(exam_types,:id,:name,{:selected => exam_group.exam_type.id}), { :style => "width: 231px"} ) %>
             </td>
         </tr>
         <tr>
@@ -22,5 +22,5 @@
             </td>
         </tr>
     </table>
-    <%=link_to_remote 'Edit', :url => {:controller => 'exam_groups', :action => 'update_exam_group', :id=>exam_group}, :with => "'exam_type=' + $('edit_exam_type').value + '&description=' + $('edit_description').value" %>
+    <%=link_to_remote 'Edit', :url => {:controller => 'exam_groups', :action => 'update', :id=>exam_group}, :with => "'exam_type=' + $('edit_exam_type').value + '&description=' + $('edit_description').value" %>
 </fieldset>

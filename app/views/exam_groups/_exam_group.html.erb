@@ -3,16 +3,16 @@
     <td class="ui-state-focus">
         <%= link_to_remote exam_group.exam_type.description + ": " + exam_group.description, :url => {:controller => :exam_groups, :action => :show, :id => exam_group} %>
     </td>
-	<th>
-		<%= link_to_remote 'Edit', :url => {:controller => :exam_groups, :action => 'edit_exam_group_dialog_show', :exam_group_id=>exam_group} %>
-	</th>
-    <th>
-        <%= link_to_remote 'Delete', :url => {:controller => :exam_groups, :action => 'remove_exam_group',:id => exam_group}, :confirm => 'Are you sure?' %>
-    </th>
+	<td>
+		<%= link_to_remote 'Edit', :url => {:controller => :exam_groups, :action => 'edit_dialog_show', :exam_group_id=>exam_group}, :html => {:class => "ui-icon ui-icon-pencil"} %>
+	</td>
+    <td>
+        <%= link_to_remote 'Delete', :url => {:controller => :exam_groups, :action => 'destroy',:id => exam_group}, :html => {:class => "ui-icon ui-icon-circle-close"}, :confirm => 'All the exams, if any, under the group will also be removed. Are you sure?' %>
+    </td>
 </tr>
 <%else %>
 <tr>
-    <td style="width: 100%">
+    <td>
         <blockquote>
             No exam group added yet
         </blockquote>
