@@ -17,6 +17,14 @@ jQuery(function(){
     jQuery(".selectable").selectable({
         filter: '.selectFilter'
     });
+    jQuery("#accordion").accordion({
+        autoHeight: false,
+		active: "#activate_this"
+    });
+    jQuery('.accordion .head').click(function(){
+    	this.next().toggle();
+		return false;
+	}).next().hide();
     
 });
 
