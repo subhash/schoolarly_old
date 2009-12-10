@@ -52,14 +52,15 @@ class KlassesController < ApplicationController
     add_breadcrumb(@school.name, @school)
     add_breadcrumb(@klass.name)
     add_page_action('Allot Teacher', {:action => '#'})
-    add_page_action('Add Exam',{:action => '#'})
+    add_js_page_action('Add Exam Group', :partial =>'exam_groups/new', :locals => {:exam_types => ExamType.find(:all)})
     @all_subjects = Subject.find(:all)
     add_js_page_action('Add/Remove Subjects',:partial => 'subjects/add_subjects_form', :locals => {:klass => @klass, :subjects => @all_subjects })    
-    #    @school_teachers=@school.teachers
-    # 	add_js_page_action('Assign Class Teacher',:partial => 'klasses/klass_teacher', :locals => {:teachers => @school_teachers, :klass_id => @klass.id})
     @students = @klass.current_students      
     @subjects = @klass.subjects
+    #@teacher_allotments=@klass.teacher_allotments.group_by{|a| a.subject}
+    #@teachers = @klass.teachers
     @teacher_allotments= TeacherAllotment.current_for_klass(@klass.id).group_by{|a| a.subject.id}
+    @exams=@klass.exams.group_by{|e| e.exam_group}
     session[:redirect] = request.request_uri
     respond_to do |format|
       format.html # show.html.erb
