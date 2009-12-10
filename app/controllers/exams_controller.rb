@@ -80,4 +80,8 @@ class ExamsController < ApplicationController
     flash[:notice]="Error occured in exam add: <br /> #{e.message}"
   end
   
+  def delete
+    @exam = Exam.find(params[:id])
+    @exam.destroy
+  end
 end
