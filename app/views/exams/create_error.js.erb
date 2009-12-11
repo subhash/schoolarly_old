@@ -1,0 +1,2 @@
+jQuery(".jquery-dialog.open-dialog").html("<%= escape_javascript(render :text => '<blockquote>Exam could not be created. Try again.</blockquote>') %>");
+jQuery(".jquery-dialog.open-dialog").append("<%= escape_javascript( render :partial => 'exams/new', :object =>ExamGroup.find(params[:id]), :locals => {:subjects => @exam.exam_group.klass.subjects}) %>");

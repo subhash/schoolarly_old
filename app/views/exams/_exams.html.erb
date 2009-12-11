@@ -1,44 +1,7 @@
 <% exams.each do |exam_group, exam_collection| %>
 	<table id="<%=exam_group.id%>" class="ui-state-default">
-	    <td style="width:auto;" colspan="9">
-	        <%=exam_group.description + ": " + exam_group.exam_type.description%>
-	    </td>
-		<%if exam_collection.size==1 && exam_collection.first.id.nil? %>
-			<tr>
-			    <td class="ui-state-default" style="width:auto;" colspan="8">
-		            No exam added yet
-			    </td>
-				<td class="ui-state-default" >
-	        		<%= link_to_remote 'Add Exam', :url => {:controller => 'exam_groups', :action => 'new',:id => exam_group}, :html => {:class => "cell-link"} %>
-				</td>
-			</tr>
-		<%else %>	
-		    <tr>
-		        <th>
-		            Subject
-		        </th>
-		        <th>
-		            Start Time
-		        </th>
-		        <th>
-		            End Time
-		        </th>
-				<th>
-		            Venue
-		        </th>
-				<th>
-		            Max. Score
-		        </th>
-				<th>
-		            Pass Score
-		        </th>
-				<td class="ui-state-default" colspan="3">
-	        		<%= link_to_remote 'Add Exam', :url => {:controller => 'exam_groups', :action => 'new',:id => exam_group}, :html => {:class => "cell-link center"} %>
-				</td>
-		    </tr>
-		    <%exam_collection.each do |exam| %>
-		    	<%= render :partial => 'exams/exam', :object => exam %>
-			<%end %>
-	 	<%end %>
+		<tbody id="<%= 'exam_group_' + exam_group.id.to_s%>">
+		<%= render :partial => 'exams/exam_group', :locals => {:exam_group => exam_group, :exam_collection => exam_collection} %>
+		</tbody>
 	</table>
 <% end %>

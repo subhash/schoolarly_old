@@ -1,0 +1,3 @@
+page << "closeDialogs();"
+div_name='exam_'+@exam.id.to_s
+page.replace_html(div_name, :partial =>'exam', :object => @exam)
