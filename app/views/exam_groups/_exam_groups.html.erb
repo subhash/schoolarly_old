@@ -1,41 +1,45 @@
 <%if exam_groups.nil? || exam_groups.empty? %>
-	<br/>
-	<blockquote>
-	    No class exists for the school. Click on the <b>Add class</b> link on the right to create classes.
-	</blockquote>
+<br/>
+<blockquote>
+    No class exists for the school. Click on the <b>Add class</b>
+    link on the right to create classes.
+</blockquote>
 <%else %>
-	<div class="float_left" style="width:30%;">
-		<div id="accordion" style="font-size:1em;">
-	    	<% exam_groups.each do |klass, egs| %>
-				<%css_id=""%>
-				<%if exam_group%>
-					<%if exam_group.klass.id.to_s==klass.id.to_s%>
-						<% css_id="activate_this"%>
-					<%end%>
-				<%end%>
-				<p id=css_id><a href="#"><%=klass.name %></a></p>
-			    <div>
-			        <table id="<%=klass.id.to_s + '_content_table'%>" class="ui-state-default" border="1px" style="font-size:0.9em;">
-			            <%=render :partial => 'exam_groups/exam_group' , :collection => egs %>
-			        </table>
-			        <div class="button ui-state-default ui-corner-all center" style="padding: 0.5em" >
-			            <div id="add_button">
-			                <%= link_to_remote 'Add Group', :url => {:controller => :exam_groups, :action => 'new_dialog_show', :id=>klass} %>
-			            </div>
-			        </div>
-			    </div>
-	    	<% end %>
-		</div>
-			
-		<div id="dialog_add_exam_group" title="Add Exam Group" class="jquery-dialog" style ="display: none;">
-		    <div id="add_exam_group"></div>
-		</div>
-		<div id="dialog_edit_exam_group" title="Edit Exam Group" class="jquery-dialog" style ="display: none;">
-		    <div id="edit_exam_group"></div>
-		</div>
-	</div>
-
-
-	<div id="exams_index_div"></div>
-	<div class="floatbox"></div>
+<div class="float_left" style="width:30%;">
+    <div id="accordion" style="font-size:1em;">
+        <% exam_groups.each do |klass, egs| %>
+        <%css_id="" %>
+        <%if exam_group %>
+        <%if exam_group.klass.id.to_s==klass.id.to_s %>
+        <% css_id="activate_this" %>
+        <%end %>
+        <%end %>
+        <p id=css_id>
+            <a href="#"><%=klass.name %></a>
+        </p>
+        <div>
+            <table id="<%=klass.id.to_s + '_content_table'%>" class="ui-state-default" border="1px" style="font-size:0.9em;">
+                <%=render :partial => 'exam_groups/exam_group' , :collection => egs %>
+            </table>
+            <div class="button ui-state-default ui-corner-all center" style="padding: 0.5em">
+                <div id="add_button">
+                    <%= link_to_remote 'Add Group', :url => {:controller => :exam_groups, :action => 'new_dialog_show', :id=>klass} %>
+                </div>
+            </div>
+        </div>
+        <% end %>
+    </div>
+    <div id="dialog_add_exam_group" title="Add Exam Group" class="jquery-dialog" style ="display: none;">
+        <div id="add_exam_group">
+        </div>
+    </div>
+    <div id="dialog_edit_exam_group" title="Edit Exam Group" class="jquery-dialog" style ="display: none;">
+        <div id="edit_exam_group">
+        </div>
+    </div>
+</div>
+<div id="exams_index_div">
+</div>
+<div class="floatbox">
+</div>
 <%end %>

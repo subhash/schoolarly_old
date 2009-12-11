@@ -11,10 +11,10 @@
         </li>
         <li>
             <a href="#exams-tab">Exams</a>
-        </li>		
+        </li>
     </ul>
     <div id="classes-tab">
-    	 <%= render :partial => 'klasses/klasses', :object => @klasses %>
+        <%= render :partial => 'klasses/klasses', :object => @klasses %>
     </div>
     <div id="students-tab">
         <%= render :partial => 'students/students', :object => @students %>
@@ -22,13 +22,15 @@
     <div id="teachers-tab">
         <%=render :partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects} %>
     </div>
-	<div id="exams-tab">
-	    <%=render :partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:school => @school, :exam_group => nil} %>
-		<div id="dialog_add_exam" title="Add Exam" class="jquery-dialog" style ="display: none;">
-		    <div id="add_exam"></div>
-		</div>
-		<div id="dialog_edit_exam" title="Modify Exam" class="jquery-dialog" style ="display: none;">
-		    <div id="edit_exam"></div>
-		</div>
-	 </div>
+    <div id="exams-tab">
+        <%=render :partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:school => @school, :exam_group => nil} %>
+        <div id="dialog_add_exam" title="Add Exam" class="jquery-dialog" style ="display: none;">
+            <div id="add_exam">
+            </div>
+        </div>
+        <div id="dialog_edit_exam" title="Modify Exam" class="jquery-dialog" style ="display: none;">
+            <div id="edit_exam">
+            </div>
+        </div>
+    </div>
 </div>
