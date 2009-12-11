@@ -81,7 +81,12 @@ class ExamsController < ApplicationController
   end
   
   def delete
-    @exam = Exam.find(params[:id])
-    @exam.destroy
+    exam = Exam.find(params[:id])
+    @exam_group=exam.exam_group
+    exam.destroy
+    respond_to do |format|
+      flash[:notice] = 'Exam was successfully removed.'
+      format.js {render :template => 'exams/delete'}
+    end 
   end
 end
