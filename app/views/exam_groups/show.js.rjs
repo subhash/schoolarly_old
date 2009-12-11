@@ -1,0 +1,1 @@
+page.replace_html("exams_index_div", :partial => "exams/exams", :object => @exams)
