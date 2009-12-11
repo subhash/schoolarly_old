@@ -43,16 +43,19 @@ class ExamGroupsController < ApplicationController
   rescue Exception => e
     respond_to do |format|
       format.js {render :template => 'exam_groups/update_error'}
-    end 
+    end
   end  
   
   def show
     @exam_group=ExamGroup.find(params[:id])
-    @subjects=Subject.find(:all)
+    #@subjects=Subject.find(:all)
     @exams=@exam_group.exams.group_by{|e| e.exam_group}
-    render :update do |page|
-      page.replace_html("exams_index_div", :partial => "exams/exams", :object => @exams)
-    end      
+    if @exams.empty?
+      @exams[@exam_group] = [Exam.new(:exam_group_id => @exam_group.id)]
+    end
+    respond_to do |format|
+      format.js {render :template => 'exam_groups/show'}
+    end 
   end
   
 end
