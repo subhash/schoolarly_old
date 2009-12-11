@@ -37,7 +37,7 @@ class ExamGroupsController < ApplicationController
     @exam_group.description=params[:description]
     @exam_group.save!
     respond_to do |format|
-      flash[:notice] = 'Exam group was successfully updated.'
+      flash[:notice] = 'Exam group was successfully modified.'
       format.js {render :template => 'exam_groups/update_success'}
     end 
   rescue Exception => e
@@ -48,7 +48,6 @@ class ExamGroupsController < ApplicationController
   
   def show
     @exam_group=ExamGroup.find(params[:id])
-    #@subjects=Subject.find(:all)
     @exams=@exam_group.exams.group_by{|e| e.exam_group}
     if @exams.empty?
       @exams[@exam_group] = [Exam.new(:exam_group_id => @exam_group.id)]
