@@ -4,5 +4,5 @@ if @klass.exam_groups.empty?
 else
   page.replace_html(div_name, :partial => 'exam_group', :collection => @klass.exam_groups)
 end 
-# page.replace_html("exams_index_div", :text => "")
+page.replace_html("exams_index_div", :text => "")
     
