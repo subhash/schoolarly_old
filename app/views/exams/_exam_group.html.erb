@@ -1,7 +1,7 @@
 		<td style="width:auto;" colspan="9">
 	        <%=exam_group.description + ": " + exam_group.exam_type.description%>
 	    </td>
-		<%if exam_collection.size==1 && exam_collection.first.id.nil? %>
+		<%if !exam_collection.many? && exam_collection.first.id.nil? %>
 			<tr>
 			    <td class="ui-state-default" style="width:auto;" colspan="8">
 		            No exam added yet
