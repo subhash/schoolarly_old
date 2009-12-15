@@ -29,6 +29,7 @@ class SchoolsController < ApplicationController
     @students = @school.students
     @teachers = @school.teachers
     @subjects=@school.current_teacher_allotments.group_by{|a| a.teacher_id}
+    session[:redirect] = request.request_uri
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @school }
