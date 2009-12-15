@@ -82,6 +82,18 @@ class KlassesController < ApplicationController
     @teacher_allotments = TeacherAllotment.current_for_klass(@klass.id).group_by{|a| a.subject.id}
   end
   
+  def remove_student
+    @student = Student.find(params[:id])
+    @klass = @student.current_enrollment.klass
+    @student.current_enrollment.end_date = Time.now.to_date
+    @student.current_enrollment.admission_number = @student.admission_number
+    @student.current_enrollment = nil
+    @student.admission_number = nil
+    @student.save!
+    @klass.students.delete(@student)
+    @klass.save!
+  end
+  
   def delete_allotment
     @klass = Klass.find(params[:id])
     @teacher_allotment = TeacherAllotment.find(params[:allotment_id])

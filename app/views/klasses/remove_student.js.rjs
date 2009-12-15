@@ -1,0 +1,3 @@
+page.select(".student_#{@student.id}").each do |element|
+  element.remove
+end
