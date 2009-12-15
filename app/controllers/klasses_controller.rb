@@ -59,7 +59,7 @@ class KlassesController < ApplicationController
     @subjects = @klass.subjects
     #@teacher_allotments=@klass.teacher_allotments.group_by{|a| a.subject}
     #@teachers = @klass.teachers
-    @teacher_allotments= TeacherAllotment.current_for_klass(@klass.id).group_by{|a| a.subject.id}
+    @teacher_allotments= @klass.teacher_allotments.current.group_by{|a| a.subject.id}
     @exams=@klass.exams.group_by{|e| e.exam_group}
     session[:redirect] = request.request_uri
     respond_to do |format|
@@ -88,8 +88,8 @@ class KlassesController < ApplicationController
   def delete_allotment
     @klass = Klass.find(params[:id])
     @teacher_allotment = TeacherAllotment.find(params[:allotment_id])
-    @subject = @teacher_allotment.subject
     @teacher_allotment.is_current = false
+    @all_subjects = Subject.find(:all)
   end
   
 end

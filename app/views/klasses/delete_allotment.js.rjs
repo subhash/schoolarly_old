@@ -1,5 +1,3 @@
-page.select("##{@subject.id}.subject").each do |s|
-  s.replace :partial => 'subjects/subject', :object => @subject, :locals => {:klass => @klass, :teacher_allotment => nil} 
-end
+page["subject-#{@teacher_allotment.subject.id}"].replace :partial => 'subjects/subject', :object => @teacher_allotment.subject, :locals => {:klass => @klass, :teacher_allotment => nil}
 page.replace_html 'add-remove-subjects-dialog', :partial => 'subjects/add_subjects_form', :locals => {:klass => @klass, :subjects => @all_subjects}
 
