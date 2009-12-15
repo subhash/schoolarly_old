@@ -31,7 +31,7 @@ class Student < ActiveRecord::Base
   end  
   
   def name
-    return user.name
+    return user.email
   end
   
 end

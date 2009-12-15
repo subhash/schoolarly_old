@@ -1,4 +1,4 @@
-<tr id="<%= subject.id%>" class="subject">
+<tr id="subject-<%= subject.id%>">
     <td class="ui-state-default">
         <%= subject.name %>
     </td>
@@ -16,7 +16,13 @@
     </td>
     <%else %>
     <td class="ui-state-focus">
-        <%= link_to_remote "Assign Teacher" %>
+        <div id="assign-teacher-dialog-<%= subject.id%>" style ="display: none;">
+            <%= render :partial => 'teacher_allotments/new',:locals => {:teacher_allotment => TeacherAllotment.new(:klass_id =>klass.id, :subject_id => subject.id), :teachers => klass.school.teachers } %>
+        </div>
+        <%= link_to_function "Assign Teacher" do |page|
+        page << "bindDialog('assign-teacher-dialog-#{subject.id}');"
+        page << "openDialog('assign-teacher-dialog-#{subject.id}');"
+        end %>
     </td>
     <%end %>
 </tr>

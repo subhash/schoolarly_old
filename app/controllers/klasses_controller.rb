@@ -80,7 +80,7 @@ class KlassesController < ApplicationController
   
   def add_subjects
     @klass = Klass.find(params[:id])
-    @klass.subject_ids = params[:klass][:subject_ids]
+    @klass.subject_ids = params[:klass][:subject_ids] + @klass.allotted_subjects
     @all_subjects = Subject.find(:all)
     @teacher_allotments = TeacherAllotment.current_for_klass(@klass.id).group_by{|a| a.subject.id}
   end
@@ -89,7 +89,7 @@ class KlassesController < ApplicationController
     @klass = Klass.find(params[:id])
     @teacher_allotment = TeacherAllotment.find(params[:allotment_id])
     @subject = @teacher_allotment.subject
-    @teacher_allotment.destroy
+    @teacher_allotment.is_current = false
   end
   
 end

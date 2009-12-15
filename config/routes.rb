@@ -15,6 +15,8 @@ ActionController::Routing::Routes.draw do |map|
     school.resources :klasses
   end
   
+  map.resources :teacher_allotments
+  
   map.resources :users
   
   map.resource :user_session

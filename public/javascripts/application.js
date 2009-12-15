@@ -4,12 +4,7 @@
 jQuery.noConflict();
 
 jQuery(function(){
-    jQuery(".jquery-dialog").dialog({
-        autoOpen: false
-    });
-    jQuery(".jquery-dialog").bind('dialogclose', function(event, ui){
-        jQuery(this).removeClass("open-dialog")
-    });
+    bindDialogs();
     jQuery(".tabs").tabs();
     jQuery(".tablesorter").tablesorter({
         sortList: [[0, 0]]
@@ -19,14 +14,34 @@ jQuery(function(){
     });
     jQuery("#accordion").accordion({
         autoHeight: false,
-		active: "#activate_this"
+        active: "#activate_this"
     });
     jQuery('.accordion .head').click(function(){
-    	this.next().toggle();
-		return false;
-	}).next().hide();
+        this.next().toggle();
+        return false;
+    }).next().hide();
     
 });
+
+function bindDialogs(){
+    jQuery(".jquery-dialog").dialog({
+        autoOpen: false
+    });
+    jQuery(".jquery-dialog").bind('dialogclose', function(event, ui){
+        jQuery(this).removeClass("open-dialog")
+    });
+}
+
+function bindDialog(id){
+    jQuery("#" + id).addClass("jquery-dialog")
+    jQuery("#" + id).dialog({
+        autoOpen: false
+    });
+    
+    jQuery("#" + id).bind('dialogclose', function(event, ui){
+        jQuery(this).removeClass("open-dialog")
+    });
+}
 
 function openDialog(id){
     jQuery("#" + id).dialog('open');
@@ -34,10 +49,10 @@ function openDialog(id){
 }
 
 function closeDialogs(){
+    jQuery(".jquery-dialog.open-dialog").dialog('close');
     $$(".jquery-dialog form").each(function(element){
         element.reset();
     });
-    jQuery(".jquery-dialog.open-dialog").dialog('close');
 }
 
 function hideShowDivs(hide_id, show_id){

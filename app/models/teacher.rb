@@ -24,6 +24,11 @@ class Teacher < ActiveRecord::Base
   end
   
   def name
-    return user.name
+    return user.email
   end
+  
+  def email
+    return user.email
+  end
+  
 end
