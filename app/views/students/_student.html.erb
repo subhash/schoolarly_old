@@ -1,4 +1,4 @@
-<tr class="student-row">
+<tr class="student_<%= student.id%>">
     <td>
         <%if student.name %>
         <%= link_to student.name, student_path(student) %>
@@ -23,6 +23,6 @@
     </td>
     <%end %>
     <th>
-        <%= link_to_remote 'Delete', :url => {:controller => 'schools', :action => 'remove_student',:id => @school, :student_id => student}, :confirm => 'Are you sure?' %>
+        <%= link_to_remote 'Delete', :url => {:action => 'remove_student',:id => student}, :confirm => 'Are you sure?' %>
     </th>
 </tr>

@@ -277,8 +277,8 @@ class SchoolsController < ApplicationController
   
   
   def remove_student
-    @school = School.find(params[:id])
-    @student = Student.find(params[:student_id])
+    @student = Student.find(params[:id])
+    @school = @student.school
     if(@student.current_enrollment)
       @student.current_enrollment.end_date = Time.now.to_date
       @student.current_enrollment.admission_number = @student.admission_number
@@ -287,12 +287,7 @@ class SchoolsController < ApplicationController
     @student.admission_number = nil
     @student.save!
     @school.students.delete(@student)
-    if @school.save
-      @students = @school.students
-      render :update do |page|
-        page.replace_html("school_students_table", :partial => "students")
-      end
-    end
+    @school.save!
   end
   
   def klasses
