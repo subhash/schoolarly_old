@@ -51,14 +51,11 @@ class KlassesController < ApplicationController
     @school = @klass.school
     add_breadcrumb(@school.name, @school)
     add_breadcrumb(@klass.name)
-    add_page_action('Allot Teacher', {:action => '#'})
     add_js_page_action('Add Exam Group', :partial =>'exam_groups/new', :locals => {:exam_types => ExamType.find(:all)})
     @all_subjects = Subject.find(:all)
     add_js_page_action('Add/Remove Subjects',:partial => 'subjects/add_subjects_form', :locals => {:klass => @klass, :subjects => @all_subjects })    
     @students = @klass.current_students      
     @subjects = @klass.subjects
-    #@teacher_allotments=@klass.teacher_allotments.group_by{|a| a.subject}
-    #@teachers = @klass.teachers
     @teacher_allotments= @klass.teacher_allotments.current.group_by{|a| a.subject.id}
     @exams=@klass.exams.group_by{|e| e.exam_group}
     session[:redirect] = request.request_uri

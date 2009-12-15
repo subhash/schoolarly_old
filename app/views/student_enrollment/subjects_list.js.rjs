@@ -9,10 +9,7 @@ end
 page.select('#subject_subscriptions').clear
 
 page["#{@klass.id}"].add_class_name "ui-state-highlight"
-
-page << "jQuery('#subjects').selectable({
-           filter: 'li'
-        });"             
+          
 page << "jQuery('#subjects').bind('selectablestop', function(event, ui){
             subject_indices = \"\";
             jQuery('#subjects li.ui-selected').each(function(i){
