@@ -13,3 +13,24 @@ two_B:
   school: st_teresas
   year: 2009
   teacher_id: 2
+
+historical_two_B:
+  level: "2"
+  division: B
+  school: st_teresas
+  year: 2007
+  teacher_id: 2
+
+four_D:
+  level: "4"
+  division: D
+  school: st_antonys
+  year: 2009
+  class_teacher: teacher_antony
+  
+five_E:
+  level: "5"
+  division: E
+  school: st_antonys
+  year: 2009
+  class_teacher: teacher_antony

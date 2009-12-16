@@ -16,12 +16,14 @@ class KlassTest < ActiveSupport::TestCase
     three_c.save!
     assert_equal 3, @stTheresas.klasses.in_year(2009).size
     three_c.destroy
-    assert_equal(2, @stTheresas.klasses.size)
+    assert_equal 2, @stTheresas.klasses.in_year(2009).size
+    assert_equal 3, @stTheresas.klasses.size
   end
   
   test "klass-school-teacher relationship" do
     assert_equal @oneA.school, @stTheresas
     assert_equal @oneA.class_teacher, @sunil
+    #assert_equal 1, @sunil.currently_owned_klasses
   end
   
   test "klass-student relationship" do
@@ -36,4 +38,5 @@ class KlassTest < ActiveSupport::TestCase
     assert_equal 1, @twoB.students.size
     assert_equal 0, @twoB.current_students.size
   end
+  
 end
