@@ -52,13 +52,7 @@ class StudentEnrollmentController < ApplicationController
       render :action => :new
     end
   end
-  
-  def subjects_list
-    @klass = Klass.find(params[:id])
-    @school = @klass.school
-    @subjects = @klass.subjects
-  end
-  
+
   def edit
     @student_enrollment  = StudentEnrollment.find(params[:id])
     @student = @student_enrollment.student

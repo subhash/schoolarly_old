@@ -1,19 +1,49 @@
-<table class="sticker">
-    <% @klasses.each do |level, level_klasses| %>
-    <tr>
-        <th>
-            <%=level %>
-        </th>
-        <%level_klasses.each do |klass| %>
-        <td id=<%=klass.id%> class="ui-state-default">
-            <% url = {:url => {:controller => 'student_enrollment', :action => 'subjects_list', :id=>klass}} %>
-            <%if ['Pre-school', 'L.K.G','U.K.G','Mont1','Mont2','Mont3'].include?(level.to_s) %>
-            <%=link_to_remote klass.division,url %>
-            <%else %>
-            <%=link_to_remote "#{klass.level}#{klass.division}",url %>
+<div class=c62l>
+    <strong>Select class</strong>
+    <table class="sticker">
+        <% @klasses.each do |level, level_klasses| %>
+        <tr>
+            <th>
+                <%=level %>
+            </th>
+            <%level_klasses.each do |klass| %>
+            <td id=<%=klass.id%>
+                class="ui-state-default"><% url = {:url => {:controller => 'student_enrollment', :action => 'subjects_list', :id=>klass}} %>
+                <%if ['Pre-school', 'L.K.G','U.K.G','Mont1','Mont2','Mont3'].include?(level.to_s) %>
+                <%link = klass.division %>
+                <%else %>
+                <%link = "#{klass.level}#{klass.division}" %>
+                <%end %>
+                <%= link_to_function link do |page|
+                page.select(".subject-selector").each do |e|
+                e.hide
+                end
+                page["subject-selector-#{klass.id}"].show
+                page.select(".sticker tr td").each do |e|
+                e.remove_class_name("ui-state-highlight")
+                end
+                page.select('#subject_subscriptions').clear
+                page["#{klass.id}"].add_class_name "ui-state-highlight"
+                page << "collectSelectedIndices('subjects-#{klass.id}', 'subject_subscriptions');"
+                end %>
+            </td>
             <%end %>
-        </td>
-        <%end %>
-    </tr>
+        </tr>
+        <% end %>
+    </table>
+</div>
+<div class="c38r">
+    <% @klasses.each do |level, level_klasses| %>
+    <%level_klasses.each do |klass| %>
+    <div id="subject-selector-<%=klass.id%>" class="subject-selector" style="display: none;">
+        <strong>Select Subjects</strong>
+        <div id="subjects-<%=klass.id%>" class="selectable">
+            <%= render :partial => 'student_enrollment/subjects' , :object => klass.subjects, :locals => {:klass => klass} %>
+        </div>
+        <div id="enroll_submit_button">
+            <%= submit_tag "Enroll" %>
+        </div>
+    </div>
+    <%end %>
     <% end %>
-</table>
+</div>

@@ -55,6 +55,16 @@ function closeDialogs(){
     });
 }
 
+function collectSelectedIndices(selectable, field){
+	jQuery("#"+selectable).bind('selectablestop', function(event, ui){
+            subject_indices = "";
+            jQuery("#"+selectable+" .selectFilter.ui-selected").each(function(i){
+                id = this.id;
+                subject_indices += id +",";
+                jQuery("#"+field).val(subject_indices)
+            });
+        });
+}
 function hideShowDivs(hide_id, show_id){
     jQuery(hide_id).hide();
     jQuery(show_id).show();

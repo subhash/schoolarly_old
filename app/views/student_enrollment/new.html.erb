@@ -1,39 +1,28 @@
 <% form_for :student_enrollment, :url => {:action => :create, :id => @student} do |form| %>
 <%= form.error_messages %>
 <h2>Enroll <%=@student.user.email %></h2>
-<div class=c62l>
-    <strong>Select a class</strong>
-    <div>
-        <%= render :partial =>'student_enrollment/klasses' %>
-    </div>
-    <h3 id="heading"></h3>
-    <div id="roll_number">
-        <table>
-            <tr>
-                <td>
-                    Admission Number: 
-                </td>
-                <td>
-                    <%=@student.admission_number %>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Roll Number: 
-                </td>
-                <td>
-                    <%= form.text_field :roll_number %>
-                </td>
-            </tr>
-        </table>
-    </div>
+<div id="roll_number">
+    <table>
+        <tr>
+            <td>
+                Admission Number: 
+            </td>
+            <td>
+                <%=@student.admission_number %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Roll Number: 
+            </td>
+            <td>
+                <%= form.text_field :roll_number %>
+            </td>
+        </tr>
+    </table>
 </div>
-<div class=c38r>
-    <%= hidden_field_tag :subject_subscriptions %>
-    <strong id="select_subjects_heading"></strong>
-    <div id="subjects" class="selectable">
-    </div>
-    <div id="enroll_submit_button" class="float_left">
-    </div>
+<%= hidden_field_tag :subject_subscriptions %>
+<div>
+    <%= render :partial =>'student_enrollment/klasses' %>
 </div>
 <% end %>
