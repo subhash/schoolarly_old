@@ -7,8 +7,8 @@ st_teresas:
   fax: 
   website: http://www.stteresas.com
 
-two:
-  name: MyString
-  board: 
-  fax: MyString
-  website: MyString
+st_antonys:
+  name: St. Antonys GHS
+  board: State
+  fax: 123
+  website: http://www.stantonys.com

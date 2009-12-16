@@ -1,6 +1,8 @@
 require 'test_helper'
 
+
 class KlassTest < ActiveSupport::TestCase
+
   def setup
     @oneA = klasses :one_A
     @twoB = klasses :two_B
@@ -9,12 +11,11 @@ class KlassTest < ActiveSupport::TestCase
   end
   
   test "klass-crud" do
-    three_c = Klass.new(:level => '3', :division =>'C', :year =>2009)
+    three_c = Klass.new(:level => 3, :division =>'C', :year =>2009)
     three_c.school = @stTheresas
-    @stTheresas.reload
-    assert_equal(3, @stTheresas.klasses.size)
+    three_c.save!
+    assert_equal 3, @stTheresas.klasses.in_year(2009).size
     three_c.destroy
-    @stTheresas.reload
     assert_equal(2, @stTheresas.klasses.size)
   end
   

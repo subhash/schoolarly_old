@@ -9,12 +9,9 @@ class SubjectTest < ActiveSupport::TestCase
   end
   
   test "school-subject-relationship" do
-    @school.subjects << @mal
-    assert_equal 1,@school.subjects.size
-    @school.subjects << @eng
-    assert @school.save
-    eng_schools = @eng.schools
-    assert eng_schools.include?(@school)
+    @klass.subjects << @mal
+    @klass.subjects << @eng
+    assert_equal 2,@school.subjects.size
   end
   
   test "klass-subject-relationship" do
