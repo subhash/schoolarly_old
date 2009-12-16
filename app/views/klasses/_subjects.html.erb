@@ -1,6 +1,6 @@
 <%= hidden_field_tag :klass_id, @klass.id %>
 <%if subjects && !(subjects.empty?) %>
-<ol class = "sticker selectable">
+<ol class = "sticker">
     <%subjects.each do |subject| %>
     <li id=<%= "#{@school.id}#{@klass.id}_#{subject.id}" %>
  class="selectFilter ui-widget-content">
