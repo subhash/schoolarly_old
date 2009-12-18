@@ -21,23 +21,23 @@ class ScoresControllerTest < ActionController::TestCase
   end
 
   test "should show score" do
-    get :show, :id => scores(:one).to_param
+    get :show, :id => scores(:shenu_score1).to_param
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, :id => scores(:one).to_param
+    get :edit, :id => scores(:shenu_score1).to_param
     assert_response :success
   end
 
   test "should update score" do
-    put :update, :id => scores(:one).to_param, :score => { }
+    put :update, :id => scores(:shenu_score1).to_param, :score => { }
     assert_redirected_to score_path(assigns(:score))
   end
 
   test "should destroy score" do
     assert_difference('Score.count', -1) do
-      delete :destroy, :id => scores(:one).to_param
+      delete :destroy, :id => scores(:shenu_score1).to_param
     end
 
     assert_redirected_to scores_path

@@ -21,23 +21,23 @@ class StudentsControllerTest < ActionController::TestCase
   end
 
   test "should show student" do
-    get :show, :id => students(:one).to_param
+    get :show, :id => students(:shenu).to_param
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, :id => students(:one).to_param
+    get :edit, :id => students(:shenu).to_param
     assert_response :success
   end
 
   test "should update student" do
-    put :update, :id => students(:one).to_param, :student => { }
+    put :update, :id => students(:shenu).to_param, :student => { }
     assert_redirected_to student_path(assigns(:student))
   end
 
   test "should destroy student" do
     assert_difference('Student.count', -1) do
-      delete :destroy, :id => students(:one).to_param
+      delete :destroy, :id => students(:shenu).to_param
     end
 
     assert_redirected_to students_path
