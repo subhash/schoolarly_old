@@ -2,66 +2,48 @@ require 'test_helper'
 require 'authlogic/test_case'
 
 class SchoolsControllerTest < ActionController::TestCase
+  
   def setup
     activate_authlogic
     @sboa = schools(:sboa)
+    @stAntonys=schools(:st_antonys)
+    @stTeresas=schools(:st_teresas)
+    @current_year=Klass.current_academic_year(@stAntonys)
+    @six_D_without_eg=klasses(:six_D_without_eg).id.to_s + '_content_table'
+    @six_E_with_egs=klasses(:six_E_with_egs).id.to_s + '_content_table'
     UserSession.create(@sboa.user)
   end
   
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:schools)
-  end
-  
-  test "show school should show breadcrumbs, actions" do
+  test "school should show breadcrumb with school name and 4 actions" do
     get :show, :id => @sboa.to_param
     assert_response :success
-    assert_select 'div#breadcrumbs strong', @sboa.name
-    assert_select 'div#action_box a[href=?]', edit_user_profile_path(@sboa.user), 'Edit Profile'
-    assert_select 'div#action_box a', 'Invite Student'  
-    assert_select 'div#action_box a', 'Invite Teacher'
+    assert_select 'ul#breadcrumbs strong', @sboa.name
+    assert_select "div#action_box" do
+      assert_select "a", :count => 4
+      assert_select "a[href=?]" , edit_user_profile_path(@sboa.user), :text => 'Edit Profile'
+      assert_select "a[href=?]" , '#', :text => 'Add class'
+      assert_select "a[href=?]" , '#', :text => 'Invite Student'
+      assert_select "a[href=?]" , '#', :text => 'Invite Teacher'
+    end 
   end
   
-  test "school should show all students, teachers and classes" do
-    get :show, :id => @sboa.to_param
+  test "school should show all Class, Students, Teachers, Exams tabs" do
+    get :show, :id => @stAntonys.to_param
     assert_response :success
-    assert_select 'div.tabs li', 3
-    assert_select 'div#teachers-tab .teacher-row', @sboa.teachers.size
-    assert_select 'div#students-tab .student-row', @sboa.students.size
-    # TODO test Classes tab
+    assert_select 'div.tabs li', 4
+    assert_select 'div#classes-tab th a', @stAntonys.klasses.in_year(@current_year).size
+    assert_select 'div#students-tab .student-row', @stAntonys.students.size
+    assert_select 'div#teachers-tab .teacher-row', @stAntonys.teachers.size
+    assert_select 'div#exams-tab p', @stAntonys.klasses.in_year(@current_year).size
   end
   
-  
-  #  test "should get new" do
-  #    get :new
-  #    assert_response :success
-  #  end
-  #
-  #  test "should create school" do
-  #    assert_difference('School.count') do
-  #      post :create, :school => { }
-  #    end
-  #
-  #    assert_redirected_to school_path(assigns(:school))
-  #  end
-  #
-  #
-  #  test "should get edit" do
-  #    get :edit, :id => schools(:sboa).to_param
-  #    assert_response :success
-  #  end
-  #
-  #  test "should update school" do
-  #    put :update, :id => schools(:sboa).to_param, :school => { }
-  #    assert_redirected_to school_path(assigns(:school))
-  #  end
-  #
-  #  test "should destroy school" do
-  #    assert_difference('School.count', -1) do
-  #      delete :destroy, :id => schools(:sboa).to_param
-  #    end
-  #
-  #    assert_redirected_to schools_path
-  #  end
+  test "each klass has exam groups as table of 3 columns or a table of single column with a no exam group info" do
+    get :show, :id => @stAntonys.to_param
+    assert_response :success
+    assert_select "div#accordion table#" + @six_D_without_eg + " tr td", :text => 'No exam group added yet'
+    assert_select "div#accordion table#" + @six_E_with_egs + " tr " do
+      assert_select "td", klasses(:six_E_with_egs).exams.size * 3
+    end
+  end
+
 end

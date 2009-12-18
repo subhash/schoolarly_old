@@ -9,3 +9,13 @@ class_test_1_one_A:
   description: Class test 1 for 1A
   klass: one_A
   exam_type: class_test_1
+
+class_test_1_six_E:
+  description: Class test 1 for 6E
+  klass: six_E_with_egs
+  exam_type: class_test_1
+
+half_yearly_six_E:
+  description: Half yearly exam for 6E
+  klass: six_E_with_egs
+  exam_type: half_yearly

@@ -34,3 +34,17 @@ five_E:
   school: st_antonys
   year: 2009
   class_teacher: teacher_antony
+  
+six_D_without_eg:
+  level: "6"
+  division: D
+  school: st_antonys
+  year: 2009
+  class_teacher: teacher_antony
+  
+six_E_with_egs:
+  level: "6"
+  division: E
+  school: st_antonys
+  year: 2009
+  class_teacher: teacher_antony
