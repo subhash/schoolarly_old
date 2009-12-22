@@ -19,11 +19,11 @@ class StudentEnrollmentController < ApplicationController
   def new
     @student = Student.find(params[:id])
     @school = @student.school
-    set_active_user(@student.user.id)
-    @active_tab = :Class
+    add_breadcrumb(@school.name, @school)  
+    add_breadcrumb(@student.name, @student)  
+    add_breadcrumb("Assign Class") 
     @year = Klass.current_academic_year(@school)
     @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
-    @action = 'subjects_list'
     @student_enrollment = StudentEnrollment.new
     @student_enrollment.student = @student
     @student_enrollment.admission_number = @student.admission_number

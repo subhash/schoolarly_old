@@ -17,7 +17,7 @@ class AddDefaultSubjectsData < ActiveRecord::Migration
     Subject.create(:name => "Civics")
     Subject.create(:name => "Computer Science")
     Subject.create(:name => "Zoology")
-    Subject.create(:name => "Botony")
+    Subject.create(:name => "Botany")
     Subject.create(:name => "Commerce")
     Subject.create(:name => "Literature")    
     Subject.create(:name => "Music")

@@ -53,7 +53,7 @@ class KlassesController < ApplicationController
     add_breadcrumb(@klass.name)
     add_js_page_action('Add Exam Group', :partial =>'exam_groups/new', :locals => {:exam_types => ExamType.find(:all)})
     @all_subjects = Subject.find(:all)
-    add_js_page_action('Add/Remove Subjects',:partial => 'subjects/add_subjects_form', :locals => {:klass => @klass, :subjects => @all_subjects })    
+    add_js_page_action('Add/Remove Subjects',:partial => 'subjects/add_subjects_form', :locals => {:entity => @klass, :subjects => @all_subjects , :disabled => @klass.allotted_subjects})    
     @students = @klass.current_students      
     @subjects = @klass.subjects
     @teacher_allotments= @klass.teacher_allotments.current.group_by{|a| a.subject.id}
@@ -78,7 +78,7 @@ class KlassesController < ApplicationController
   def add_subjects
     @klass = Klass.find(params[:id])
     @klass.subject_ids = params[:klass][:subject_ids] + @klass.allotted_subjects
-    @all_subjects = Subject.find(:all)
+    @all_subjects = Subject.find(:all, :order => :name)
     @teacher_allotments = TeacherAllotment.current_for_klass(@klass.id).group_by{|a| a.subject.id}
   end
   
@@ -90,8 +90,6 @@ class KlassesController < ApplicationController
     @student.current_enrollment = nil
     @student.admission_number = nil
     @student.save!
-    @klass.students.delete(@student)
-    @klass.save!
   end
   
   def delete_allotment

@@ -1,16 +1,19 @@
-<p>
-    <% if(controller.allow_read(@student)) %>
-    <b>Admission number:</b>
-    <%=h @student.admission_number %>
-    <% else %>
-    <b>Don't pry! Shame on you!</b>	
-    <% end %>
-	<br/>
-    <% if(controller.allow_write(@student)) %>
-    <b>Write baby, write</b>
-    <%=h @student.admission_number %>
-    <% else %>
-    <b>Don't pry! Shame on you!</b>
-    <% end %>
-</p>
-<%= link_to 'Edit', edit_student_path(@student) %> |<%= link_to 'Back', students_path %>
+<% if @klass %>
+<div id="student_tabs" class="tabs">
+    <ul>
+        <li>
+            <a href="#subjects-tab">Subjects</a>
+        </li>
+        <li>
+            <a href="#exams-tab">Exams/Scores</a>
+        </li>
+    </ul>
+    <div id="subjects-tab">
+        <%if @current_enrollment %>
+        <%= render :partial => 'subjects/subjects', :object => @current_enrollment.subjects, :locals => {:klass => @klass, :teacher_allotments => @teacher_allotments} %>
+        <%end %>
+    </div>
+    <div id="exams-tab">
+    </div>
+</div>
+<%end %>
