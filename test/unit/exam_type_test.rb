@@ -7,6 +7,6 @@ class ExamTypeTest < ActiveSupport::TestCase
   end
   
   test "sanity" do
-    assert_equal  1, @halfYearly.exam_groups.size
+    assert_equal  2, @halfYearly.exam_groups.size
   end
 end
