@@ -1,5 +1,5 @@
 page << "closeDialogs();"
 page << "jQuery('.tabs').tabs('select','#subjects-tab')"
 page.replace_html 'subjects-tab', :partial => 'subjects/subjects', :object => @student_enrollment.subjects, :locals => {:klass => @klass, :teacher_allotments => @teacher_allotments}
-page.replace_html 'add-remove-subjects-dialog', :partial => 'subjects/add_subjects_form', :locals => {:entity => @student_enrollment, :subjects => @all_subjects , :disabled => @klass.allotted_subjects}
+page.replace_html 'add-remove-subjects-dialog', :partial => 'subjects/add_subjects_form', :locals => {:entity => @student_enrollment, :subjects => @klass.subjects , :disabled => []}
 

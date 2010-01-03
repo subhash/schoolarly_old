@@ -28,7 +28,7 @@ class StudentsController < ApplicationController
         @teacher_allotments= @klass.teacher_allotments.current.group_by{|a| a.subject.id}
         @all_subjects = Subject.find(:all, :order => 'name')
         add_breadcrumb(@klass.name,@klass)
-        add_js_page_action('Add/Remove Subjects',:partial => 'subjects/add_subjects_form', :locals => {:entity => @student_enrollment, :subjects => @all_subjects,:disabled => @klass.allotted_subjects })
+        add_js_page_action('Add/Remove Subjects',:partial => 'subjects/add_subjects_form', :locals => {:entity => @student_enrollment, :subjects => @klass.subjects,:disabled => [] })
       else
         @year = Klass.current_academic_year(@school)
         @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
