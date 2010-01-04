@@ -12,7 +12,7 @@ class UserProfile < ActiveRecord::Base
   %w[phone_mobile phone_mobile]
   ]
   
-  # TODO validate :valid_name
+  validate :valid_name
   
   private
   def valid_name
