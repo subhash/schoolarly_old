@@ -1,11 +1,7 @@
 class UserProfilesController < ApplicationController
   
-  before_filter :set_active_tab
   before_filter :find_user_and_person, :except => :add_qualification
-  
-  def set_active_tab
-    @active_tab = :Profile
-  end
+  before_filter :set_up, :only => [:show, :new, :edit]
   
   def find_user_and_person    
     if(params[:id])
@@ -14,7 +10,7 @@ class UserProfilesController < ApplicationController
     end
   end  
   
-  def new
+  def set_up
     set_active_user(@user.id)
     case @user.person_type
       when 'Teacher'  
@@ -27,6 +23,9 @@ class UserProfilesController < ApplicationController
       when 'School'
         add_breadcrumb((@person.name.nil?)? @user.email : @person.name, @person)
     end
+  end
+  
+  def new
     add_breadcrumb('Profile')
     add_page_action('Action', '#')
     @user_profile = UserProfile.new
@@ -42,15 +41,16 @@ class UserProfilesController < ApplicationController
       @user_profile.save!
       @user.update_attributes!(params[:user])
     end
-    flash[:notice] = 'Profile was successfully created.'
+    flash[:notice] = 'Profile was successfully created. hihihi'
     redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user))
   rescue Exception => e
     flash[:notice]="Error occured in profile creation: <br /> #{e.message}"
-    redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user)) 
+    redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user)) 
   end
   
   def show
-    set_active_user(@user.id)
+    add_breadcrumb('Profile')
+    add_page_action('Edit', {:controller => :user_profiles, :action => 'edit', :id => @user})
     if @user.user_profile.nil? and @user == current_user
       redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
     end
@@ -59,19 +59,6 @@ class UserProfilesController < ApplicationController
   end
   
   def edit
-    set_active_user(@user.id)
-    case @user.person_type
-      when 'Teacher'
-        add_breadcrumb(@person.school.name, @person.school)
-        add_breadcrumb((@user.user_profile.nil?)? @user.email : @user.user_profile.name, @person)
-      when 'Student'
-        add_breadcrumb(@person.school.name, @person.school)
-        add_breadcrumb(@person.klass.name, @person.klass)
-        add_breadcrumb((@user.user_profile.nil?)? @user.email : @user.user_profile.name, @person)
-      when 'School'
-        add_breadcrumb((@person.name.nil?)? @user.email : @person.name, @person)
-    end
-    
     add_breadcrumb('Profile', {:controller => :user_profiles, :action => 'show', :id => @user})
     add_breadcrumb('Edit')
     add_page_action('Action', '#')
@@ -109,27 +96,34 @@ class UserProfilesController < ApplicationController
   
   def add_qualification
     @person=Teacher.find(params[:id])
-    qualification=Qualification.new()
-    qualification.university=params[:university]
-    qualification.degree=params[:degree]
-    qualification.subject=params[:subject]
-    qualification.date=params[:date]
-    @person.qualifications << qualification
+    @qualification=Qualification.new()
+    @qualification.university=params[:university]
+    @qualification.degree=params[:degree]
+    @qualification.subject=params[:subject]
+    @qualification.date=params[:date]
+    @person.qualifications << @qualification
     @person.save!
-    if @person.qualifications.count==1
-      puts "i am in if"
-        render :update do |page|
-            page << "jQuery('#dialog_add_qualification').dialog('close');"
-            page.replace_html(:qualification_list_div, :partial =>'qualification_list', :object => qualification)
-        end
-    else
-      puts "i am in else"
-        render :update do |page|
-            page << "jQuery('#dialog_add_qualification').dialog('close');"
-            page.insert_html(:bottom, :editlist, :partial =>'qualification_item', :object => qualification)
-        end
-    end    
+    respond_to do |format|
+      flash[:notice] = 'Exam group was successfully modified.'
+      format.js {render :template => 'user_profiles/qualification_create_success'}
+    end 
   rescue Exception => e
-    flash[:notice]="Error occured in qualification add: <br /> #{e.message}"
+    respond_to do |format|
+      format.js {render :template => 'user_profiles/qualification_create_error'}
+    end
+#    if @person.qualifications.count==1
+#        render :update do |page|
+#            page << "jQuery('#dialog_add_qualification').dialog('close');"
+#            page.replace_html(:qualification_list_div, :partial =>'qualification_list', :object => @qualification)
+#        end
+#    else
+#        render :update do |page|
+#            page << "jQuery('#dialog_add_qualification').dialog('close');"
+#            page.insert_html(:bottom, :editlist, :partial =>'qualification_item', :object => @qualification)
+#        end
+#    end    
+#  rescue Exception => e
+#    flash[:notice]="Error occured in qualification add: <br /> #{e.message}"
   end
+
 end
