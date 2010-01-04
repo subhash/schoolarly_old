@@ -1,38 +1,13 @@
-
 <div id="qualification_list_div">
-	<%= render :partial => "qualification_list", :object => teacher%> 
+	<%= render :partial => "qualifications", :object => teacher%> 
 </div>
 <div class="button ui-state-default ui-corner-all center">
     <div id="button_subjects">
-        <%= link_to_remote 'Add Qualification', :url => {:controller => 'user_profiles', :action => 'qualification_dialog_show', :id=>@teacher} %>
+        <%= link_to_remote 'Add Qualification', :url => {:controller => 'user_profiles', :action => 'qualification_new_dialog_show', :id => @user} %>
     </div>
 </div>
-<div id="dialog_add_qualification" title="Add Qualification Details" style="display: none;">
+<div id="dialog_add_qualification" class="jquery-dialog" title="Add Qualification Details" style="display: none;">
     <div id="add_qualification">
-<br />
-
-        <fieldset align=center>
-			<table class="center">
-            <tr>
-            	<th><label for="university">University</label></th>
-                <td><%= text_field_tag(:university, "" ,:size => 36)%></td>
-            </tr>
-            <tr>
-           		<th><label for="degree">Degree</label></th>
-                <td><%= text_field_tag(:degree, "", :size => 36)%></td>
-            </tr>
-            <tr>
-            	<th><label for="subject">Subject</label></th>
-                <td><%= text_field_tag(:subject, "", :size => 36)%></td>
-            </tr>
-            <tr>
-            	<th><label for="date">Date</label></th>
-                <td><%= text_field_tag(:date, "", :size => 36)%></td>
-            </tr>
-			</table>
-                <%=link_to_remote 'Add', :url => {:controller => 'user_profiles', :action => 'add_qualification', :id=>@person}, :with => "'university=' + $('university').value + '&degree=' + $('degree').value + '&subject=' + $('subject').value + '&date=' + $('date').value" %>
-        </fieldset>
-		
     </div>
 </div>
 

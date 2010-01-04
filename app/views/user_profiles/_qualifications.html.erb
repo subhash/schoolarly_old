@@ -1,0 +1,37 @@
+<%teacher=@person %>
+<table id="editlist" class="ui-state-default center">
+<%if !teacher.qualifications.nil? && !teacher.qualifications.empty? %>
+	<%@qualifications = teacher.qualifications %>
+	<caption>Qualifications Details</caption>
+	    <tr>
+	        <th>
+	            Delete
+	        </th>
+	        <th>
+	            University
+	        </th>
+	        <th>
+	            Degree
+	        </th>
+	        <th>
+	            Subject
+	        </th>
+	        <th>
+	            Date
+	        </th>
+	    </tr>
+	    <fieldset>
+	        <%@cb=[] %>
+			<%= render :partial => 'qualification', :collection => @qualifications %>
+	    </fieldset>
+
+<%else %>
+<tr>
+	<td colspan=5>
+		<blockquote>
+	    	Qualification Details Unavailable
+		</blockquote>
+	</td>
+</tr>	
+<%end %>
+	</table>

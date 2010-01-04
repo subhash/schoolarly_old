@@ -1,7 +1,6 @@
 <% form_for @user_profile, :url => {:controller => :user_profiles, :action => :create, :method => :post, :id => @user} do |profile_form| %>
-<!--<%= error_messages_for 'user' %>!-->
   <%= profile_form.error_messages %>
-<div class="c33l">
+<div>
     	<!--TODO Check with Subhash if the partial _form can be used here... Right now using another partial.
     	<% fields_for @user do |user_form| %>
 			<%= render :partial => "/users/form", :object => user_form  %>
@@ -9,29 +8,28 @@
 		<table class="ui-state-default center">
 			<%= render :partial => "user_profiles/profile", :object => profile_form %>
 		</table>
-	
-    
 </div>
-<div class="c66r">
-   
+<div style="height:0.3em"/></div>
+<div>
     	<% fields_for @person do |person_form| %>
 		<%= person_form.error_messages %>
 			<%= render :partial => "user_profiles/" + @person_partial, :object => person_form %>
 		<%end%>
-    
-	
+</div>
+<div style="height:0.3em"/></div>
+<div>	
 	<% fields_for @user do |user_form| %>
 		<%= user_form.error_messages %>
 		<table class="ui-state-default center">
 			<%= render :partial => "user_profiles/user", :object => user_form %>
 		</table>
 	<%end%>
-	
 </div>
-<div class="c38r">
+<div>
     <p class="icaption_right">
         <br/>
-		<%= link_to_function( 'Submit' , "document.forms['new_user_profile'].submit()")%>
+		<%= link_to_function( 'Submit' , "document.forms['new_user_profile'].submit()")%> |
+		<%= link_to 'Back', {:controller => :user_profiles, :action => 'show', :id=>@user} %>
         <% end %>
     </p>
 </div>

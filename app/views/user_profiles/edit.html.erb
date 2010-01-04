@@ -1,30 +1,30 @@
 <% form_for @person, :url => {:controller => :user_profiles, :action => 'update', :id=>@user } do |person_form| %>
   <%= person_form.error_messages %>
-<div class="c33l">
+<div>
 	<table class="ui-state-default center">
 		<% fields_for @user_profile do |profile_form| %>	
 			<%= render :partial => "user_profiles/profile", :object => profile_form %>
 		<% end %>
 	</table>
-	<div style="height:0.3em"/></div>
+</div>
+<div style="height:0.3em"/></div>
+<div>
+    	<%= render :partial => "user_profiles/" + @person_partial, :object => person_form %>
+</div>
+<div style="height:0.3em"/></div>
+<div>
 		<% fields_for @user do |user_form| %>
 		<%= user_form.error_messages %>
 		<table class="ui-state-default center">
 			<%= render :partial => "user_profiles/user", :object => user_form %>
 		</table>
 	<%end%>
-	
 </div>
-
-<div class="c66r">
-    
-    	<%= render :partial => "user_profiles/" + @person_partial, :object => person_form %>
-
+<div>
     <p class="icaption_right">
         <br/>
 		<%= link_to_function( 'Submit' , "document.forms['edit_#{@person_partial}_#{@person.id.to_s}'].submit()")%> |
 		<%= link_to 'Back', {:controller => :user_profiles, :action => 'show', :id=>@user} %>
 	<% end %>
     </p>
-
 </div>

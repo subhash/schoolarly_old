@@ -1,0 +1,4 @@
+jQuery(".jquery-dialog.open-dialog").html("<%= escape_javascript(render :text => '<blockquote>Qualification could not be added. Try again.</blockquote>') %>");
+jQuery(".jquery-dialog.open-dialog").append("<%= escape_javascript(render :text => '<div id=\"add_qualification\">')%>");
+jQuery(".jquery-dialog.open-dialog").append("<%= escape_javascript(render :partial => 'user_profiles/qualification_new', :object =>@person) %>");
+jQuery(".jquery-dialog.open-dialog").append("<%= escape_javascript(render :text => '</div>')%>");

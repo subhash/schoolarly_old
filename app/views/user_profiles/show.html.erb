@@ -1,6 +1,7 @@
 <% if @user_profile %>
-<div class="c25l">
-    <table>
+<div>
+    <table class="ui-state-default">
+    	<caption>User Details</caption>
         <tr>
             <td>
                 <b>User Name:</b>
@@ -35,7 +36,7 @@
         </tr>
         <tr>
             <td>
-                <b>Phone landline:</b>
+                <b>Phone Landline:</b>
             </td>
             <td>
                 <%=h @user_profile.phone_landline %>
@@ -43,7 +44,7 @@
         </tr>
         <tr>
             <td>
-                <b>Phone mobile:</b>
+                <b>Phone Mobile:</b>
             </td>
             <td>
                 <%=h @user_profile.phone_mobile %>
@@ -52,9 +53,12 @@
     </table>
 </div>
 <% end %>
-<div class="c66r">
+<div style="height:0.3em"/></div>
+<div>
     <%= render :partial => "user_profiles/" + @person_partial + "_details" %>
-    <table>
+	<div style="height:0.3em"/></div>
+    <table class="ui-state-default">
+    	<caption>Login Details</caption>
         <tr>
             <td>
                 <b>Email:</b>
@@ -64,8 +68,9 @@
             </td>
         </tr>
     </table>
-    <br/>
-    <p class="icaption_right">
+</div>
+<div>
+	<p class="icaption_right">
         <% if controller.allow_write(@user.person) %>
 		<div class="small_button ui-state-default ui-corner-all float_left">
         <%= link_to 'Edit', {:controller => :user_profiles, :action => 'edit', :id=>@user} %>
@@ -74,6 +79,5 @@
 		<%= link_to 'Back', {:controller => @person_partial.pluralize, :action => 'show', :id=>@person} %>
 		</div>
 		<% end %>
-        
     </p>
 </div>
