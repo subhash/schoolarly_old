@@ -10,7 +10,7 @@ class TeachersControllerTest < ActionController::TestCase
     UserSession.create(@sboa.user)
   end
   
-  test "teacher should show breadcrumb with school name, teacher name/email and 2 actions" do
+  test "teacher should show breadcrumbs with school name, teacher name/email and 2 actions" do
     get :show, :id => @subbu.to_param
     assert_response :success
     assert_select 'ul#breadcrumbs li a[href=?]', school_path(@sboa), :text => @sboa.name
