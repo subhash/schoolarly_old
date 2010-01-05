@@ -1,3 +1,10 @@
+<%if teachers.nil? || teachers.empty? %>
+<br/>
+<blockquote>
+    No teacher exists for the school. Click on the <b>Invite Teacher</b>
+    link on the right to invite teachers to the school.
+</blockquote>
+<%else %>
 <table class="ui-state-default" border="1px">
     <thead>
         <tr>
@@ -21,3 +28,4 @@
          <%end %>
     </tbody>
 </table>
+<%end%>
