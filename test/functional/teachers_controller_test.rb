@@ -1,45 +1,25 @@
 require 'test_helper'
+require 'authlogic/test_case'
 
 class TeachersControllerTest < ActionController::TestCase
-  test "should get index" do
-    get :index
+  
+  def setup
+    activate_authlogic
+    @sboa = schools(:sboa)
+    @subbu=teachers(:v_subramaniam)
+    UserSession.create(@sboa.user)
+  end
+  
+  test "teacher should show breadcrumb with school name, teacher name/email and 2 actions" do
+    get :show, :id => @subbu.to_param
     assert_response :success
-    assert_not_nil assigns(:teachers)
+    assert_select 'ul#breadcrumbs li a[href=?]', school_path(@sboa), :text => @sboa.name
+    assert_select 'ul#breadcrumbs strong', @subbu.name
+    assert_select "div#action_box" do
+      assert_select "div.button a", :count => 2
+      assert_select "div.button a[href=?]" , edit_user_profile_path(@subbu.user), :text => 'Edit Profile'
+      assert_select "div.button a[href=?]" , "/teachers/allot/" + @subbu.user.id.to_s, :text => 'Allot Subjects Classes'
+    end 
   end
-
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
-  test "should create teacher" do
-    assert_difference('Teacher.count') do
-      post :create, :teacher => { }
-    end
-
-    assert_redirected_to teacher_path(assigns(:teacher))
-  end
-
-  test "should show teacher" do
-    get :show, :id => teachers(:teacher_antony).to_param
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, :id => teachers(:teacher_antony).to_param
-    assert_response :success
-  end
-
-  test "should update teacher" do
-    put :update, :id => teachers(:teacher_antony).to_param, :teacher => { }
-    assert_redirected_to teacher_path(assigns(:teacher))
-  end
-
-  test "should destroy teacher" do
-    assert_difference('Teacher.count', -1) do
-      delete :destroy, :id => teachers(:teacher_antony).to_param
-    end
-
-    assert_redirected_to teachers_path
-  end
+  
 end
