@@ -1,3 +1,10 @@
+<%if exams.nil? || exams.empty? %>
+<br/>
+<blockquote>
+    No exam exists for the class. Click on the <b>Add Exam Group</b>
+    link on the right to create exams.
+</blockquote>
+<%else %>
 <% exams.each do |exam_group, exam_collection| %>
 	<table id="<%=exam_group.id%>" class="ui-state-default">
 		<tbody id="<%= 'exam_group_' + exam_group.id.to_s%>">
@@ -5,3 +12,4 @@
 		</tbody>
 	</table>
 <% end %>
+<%end%>
