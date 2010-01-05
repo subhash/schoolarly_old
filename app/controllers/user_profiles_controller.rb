@@ -37,11 +37,22 @@ class UserProfilesController < ApplicationController
     @user_profile.user=@user
     person_type=@user.person_type.to_s.downcase
     User.transaction do
+      if person_type=="teacher"
+        if params[:qualification]
+          Qualification.update(params[:qualification].keys, params[:qualification].values)
+        end
+        if params[:cb]
+          qualifications_marked_for_deletion=Qualification.find(params[:cb].keys)
+          Qualification.destroy(qualifications_marked_for_deletion)
+        end
+      else
+        @person.update_attributes!(params[person_type])
+      end
       @person.update_attributes!(params[person_type]) 
       @user_profile.save!
       @user.update_attributes!(params[:user])
     end
-    flash[:notice] = 'Profile was successfully created. hihihi'
+    flash[:notice] = 'Profile was successfully created.'
     redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user))
   rescue Exception => e
     flash[:notice]="Error occured in profile creation: <br /> #{e.message}"
