@@ -1,29 +1,20 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  user_id: 1
-  first_name: MyString
-  middle_name: MyString
-  last_name: MyString
-  address_line_1: MyString
-  address_line_2: MyString
-  city: MyString
-  state: MyString
-  country: MyString
-  pincode: MyString
-  phone_landline: MyString
-  phone_mobile: MyString
+stTeresas:
+  user: admin_st_teresas
+  first_name: admin
+  middle_name: of
+  last_name: stTeresas
+  address_line_1: address1
+  address_line_2: address2
+  city: Kochi
+  state: Kerala
+  country: India
+  pincode: 123
+  phone_landline: 123
+  phone_mobile: 123
 
-two:
-  user_id: 1
-  first_name: MyString
-  middle_name: MyString
-  last_name: MyString
-  address_line_1: MyString
-  address_line_2: MyString
-  city: MyString
-  state: MyString
-  country: MyString
-  pincode: MyString
-  phone_landline: MyString
-  phone_mobile: MyString
+teacher_antony:
+  user: teacher_antony
+  first_name: Antony
+  last_name: Sir
