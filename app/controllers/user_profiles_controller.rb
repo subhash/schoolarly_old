@@ -18,7 +18,9 @@ class UserProfilesController < ApplicationController
         add_breadcrumb((@user.user_profile.nil?)? @user.email : @user.user_profile.name, @person)
       when 'Student'
         add_breadcrumb(@person.school.name, @person.school)
-        add_breadcrumb(@person.klass.name, @person.klass)
+        if @person.current_klass
+          add_breadcrumb(@person.current_klass.name, @person.current_klass)
+        end
         add_breadcrumb((@user.user_profile.nil?)? @user.email : @user.user_profile.name, @person)
       when 'School'
         add_breadcrumb((@person.name.nil?)? @user.email : @person.name, @person)
