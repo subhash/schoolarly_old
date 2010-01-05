@@ -14,6 +14,14 @@ class SchoolsControllerTest < ActionController::TestCase
     UserSession.create(@sboa.user)
   end
   
+  test "login" do
+    #    TODO
+  end
+  
+  test "redirect_if_not_logged_in" do
+    # TODO
+  end
+  
   test "school should show breadcrumb with school name and 4 actions" do
     get :show, :id => @sboa.to_param
     assert_response :success
@@ -37,6 +45,7 @@ class SchoolsControllerTest < ActionController::TestCase
     assert_select 'div#exams-tab p', @stAntonys.klasses.in_year(@current_year).size
   end
   
+  
   test "each klass has exam groups as table of 3 columns or a table of single column with a no exam group info" do
     get :show, :id => @stAntonys.to_param
     assert_response :success
@@ -45,5 +54,6 @@ class SchoolsControllerTest < ActionController::TestCase
       assert_select "td", klasses(:six_E_with_egs).exams.size * 3
     end
   end
-
+  
+  
 end

@@ -38,7 +38,7 @@ class StudentsController < ApplicationController
         add_page_action('Assign Class',  {:controller => 'student_enrollment', :action => 'new', :id => @student})
       end
     else
-      add_js_page_action('Add to school', :partial =>'schools/add_to_school_form', :locals => {:exam_types => ExamType.find(:all)})
+      add_js_page_action('Add to school', :partial =>'students/add_to_school_form', :locals => {:student => @student, :schools => School.find(:all)})
     end
     add_breadcrumb(@student.name)
   end
@@ -135,6 +135,15 @@ class StudentsController < ApplicationController
     @student_enrollment.subject_ids = params[:student_enrollment][:subject_ids] + @klass.allotted_subjects
     @all_subjects = Subject.find(:all, :order => :name)
     @teacher_allotments = TeacherAllotment.current_for_klass(@klass.id).group_by{|a| a.subject.id}
+  end
+  
+  def add_to_school
+    @student = Student.find(params[:id])
+    @school = School.find(params[:student][:school_id])
+    @school.students << @student
+    render :update do |page|
+      page.redirect_to student_path(@student)
+    end
   end
   
 end

@@ -1,10 +1,14 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
+
+mary:
+  admission_number: 222
+  
 paru:
-  admission_number: 123
-  current_enrollment: enrollment_paru_current
-
-
+  admission_number: 1
+  school: sboa
+  
 shenu:
-  admission_number: 111
+  admission_number: 2
+  school: sboa
   current_enrollment: shenu_one
