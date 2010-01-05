@@ -1,6 +1,6 @@
-    <%if !@person.qualifications.nil? && !@person.qualifications.empty?%>
-		<table class="ui-state-default">
-			<caption>Qualification Details</caption>
+	<table class="ui-state-default">
+		<caption>Qualification Details</caption>    
+	<%if !@person.qualifications.nil? && !@person.qualifications.empty?%>
 			<tr>
 		    	<th>University</th><th>Degree</th><th>Subject</th><th>Date</th></tr>
 		    <tr>
@@ -19,11 +19,7 @@
 		            </td>
 		        </tr>
 		   	<%end%>
-		 </table>	
-		
 	<%else%> 
-		<table class="ui-state-default">
-			<caption>Qualification Details</caption>
 		<tr>
 			<td>
 				<blockquote>
@@ -31,5 +27,6 @@
 				</blockquote>
 			</td>
 		</tr>
-		</table>	
+			
 	<%end%>
+</table>

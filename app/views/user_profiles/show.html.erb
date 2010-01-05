@@ -1,7 +1,7 @@
-<% if @user_profile %>
 <div>
     <table class="ui-state-default">
     	<caption>User Details</caption>
+		<% if @user_profile %>
         <tr>
             <td>
                 <b>User Name:</b>
@@ -50,9 +50,19 @@
                 <%=h @user_profile.phone_mobile %>
             </td>
         </tr>
-    </table>
-</div>
+
+
+<%else%>
+<tr>
+	<td colspan=2>
+		<blockquote>
+	    	Profile Unavailable
+		</blockquote>
+	</td>
+</tr>	
 <% end %>
+</table>
+</div>
 <div style="height:0.3em"/></div>
 <div>
     <%= render :partial => "user_profiles/" + @person_partial + "_details" %>
