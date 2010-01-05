@@ -93,7 +93,7 @@ class TeachersController < ApplicationController
     @school=@teacher.school
     @year = Klass.current_academic_year(@school)
     add_breadcrumb(@school.name, @school)
-    add_breadcrumb((@teacher.user.user_profile.nil?)? @teacher.user.email : @teacher.user.user_profile.name, @teacher)
+    add_breadcrumb(@teacher.name, @teacher)
     add_breadcrumb('Allot')
     add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @teacher.user})
     @subjects=@school.subjects
