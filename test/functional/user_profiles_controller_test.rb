@@ -12,6 +12,9 @@ class UserProfilesControllerTest < ActionController::TestCase
     @antonyTeacher=teachers(:teacher_antony)
     @antonyUser=users(:teacher_antony)
     @antonyProfile=user_profiles(:teacher_antony)
+    @one_A=klasses(:one_A)
+    @admitted_student = students(:paru)
+    @enrolled_student = students(:shenu)
     UserSession.create(@stTeresasSchool.user)
   end
   
@@ -27,7 +30,7 @@ class UserProfilesControllerTest < ActionController::TestCase
     assert_select 'table.ui-state-default', :count =>3
   end
   
-  test "teacher profile should show breadcrumbs with school name, teacher name, Profile" do
+  test "teacher profile should show breadcrumbs with school name, teacher name, Profile & 1 action" do
     get :show, :id => @antonyUser.to_param
     assert_response :success
     assert_select 'ul#breadcrumbs li a[href=?]', school_path(@stAntonys), :text => @stAntonys.name
@@ -40,4 +43,30 @@ class UserProfilesControllerTest < ActionController::TestCase
     assert_select 'table.ui-state-default', :count =>3
   end
   
+  test "enrolled student profile should show breadcrumbs with school name, klass name, student name, Profile & 1 action" do
+    get :show, :id => @enrolled_student.user.to_param
+    assert_response :success
+    assert_select 'ul#breadcrumbs li a[href=?]', school_path(@enrolled_student.school), :text => @enrolled_student.school.name
+    assert_select 'ul#breadcrumbs li a[href=?]', klass_path(@one_A), :text => @one_A.name
+    assert_select 'ul#breadcrumbs li a[href=?]', student_path(@enrolled_student), :text => @enrolled_student.name
+    assert_select 'ul#breadcrumbs strong', 'Profile'
+    assert_select "div#action_box" do
+      assert_select "div.button a", :count => 1
+      assert_select "div.button a[href=?]" , edit_user_profile_path(@enrolled_student.user), :text => 'Edit'
+    end 
+    assert_select 'table.ui-state-default', :count => 3
+  end
+  
+    test "admitted student profile should show breadcrumbs with school name, student name, Profile & 1 action" do
+    get :show, :id => @admitted_student.user.to_param
+    assert_response :success
+    assert_select 'ul#breadcrumbs li a[href=?]', school_path(@admitted_student.school), :text => @admitted_student.school.name
+    assert_select 'ul#breadcrumbs li a[href=?]', student_path(@admitted_student), :text => @admitted_student.name
+    assert_select 'ul#breadcrumbs strong', 'Profile'
+    assert_select "div#action_box" do
+      assert_select "div.button a", :count => 1
+      assert_select "div.button a[href=?]" , edit_user_profile_path(@admitted_student.user), :text => 'Edit'
+    end 
+    assert_select 'table.ui-state-default', :count => 3
+  end
 end
