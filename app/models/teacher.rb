@@ -24,7 +24,7 @@ class Teacher < ActiveRecord::Base
   end
   
   def name
-    return user.email
+    return !(user.user_profile.nil?) ? user.user_profile.name : user.email
   end
   
   def email
