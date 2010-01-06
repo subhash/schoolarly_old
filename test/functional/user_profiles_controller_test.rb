@@ -100,4 +100,9 @@ class UserProfilesControllerTest < ActionController::TestCase
     assert_redirected_to :action => 'new', :id => @shenu
   end
   
+  test "should update profile" do
+    put :update, :id => @antonyUser, :user_profile => { :last_name => 'Chettan' }
+    assert_redirected_to user_profile_path(@antonyUser)
+  end
+
 end
