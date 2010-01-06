@@ -26,7 +26,7 @@ class KlassesControllerTest < ActionController::TestCase
     get :show, :id => @one_A.to_param
     assert_response :success
     assert_select 'div.tabs li', 3
-    assert_select 'div#students-tab table tr', 1 + @one_A.students.size
+    assert_select 'div#students-tab table tr', 1 + @one_A.current_students.size
     assert_select 'div#subjects-tab table tr', 1 + @one_A.teachers.size
     assert_select 'div#exams-tab table', @one_A.exam_groups.size
     assert_select 'div#exams-tab table td a.ui-icon', 3 * @one_A.exams.size

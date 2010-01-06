@@ -14,7 +14,6 @@ enrollment_paru_current:
   roll_number: 10
   #start_date: 2009-09-07
   
-  
 enrollment_paru:
   student: paru
   klass: two_B

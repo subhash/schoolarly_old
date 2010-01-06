@@ -6,9 +6,9 @@ mary:
   
 paru:
   admission_number: 1
-  school: sboa
+  school: st_teresas
   
 shenu:
   admission_number: 2
-  school: sboa
+  school: st_teresas
   current_enrollment: shenu_one
