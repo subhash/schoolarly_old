@@ -17,16 +17,34 @@ class StudentsControllerTest < ActionController::TestCase
     assert_template "students/new"
   end
   
-  test "should create student" do
+  test "create student success thru xhr" do
     assert_difference('Student.count') do
-      post :create,{ :student => {:admission_number => "1" }, :user => {:email => "random@gmail.com"}, :school_id =>@sboa.id}
+      xhr :post, :create,{ :student => {:admission_number => "1" }, :user => {:email => "random@gmail.com"}, :school_id =>@sboa.id}
     end    
     assert_response :success
     assert_template "students/create_success"
   end
   
-  test "create student failure" do
-    
+  test "create student success" do   
+    assert_difference('Student.count') do
+      post :create,{ :student => {}, :user => {:email => "random2@gmail.com"}}
+    end 
+    assert_not_nil assigns(:user)
+    assert_redirected_to edit_password_reset_url(assigns(:user).perishable_token)
+  end
+  
+  test "create student failure" do   
+    assert_no_difference('Student.count') do
+      post :create,{ :student => {}, :user => {:email => students(:paru).user.email}}
+    end 
+    assert_response :success
+    assert_template "students/new"
+  end
+  
+  test "create student failure thru xhr" do
+    xhr :post, :create , {:student => {:admission_number => "1" }, :user => {:email => students(:paru).user.email}, :school_id =>@sboa.id}
+    assert_response :success
+    assert_template "students/create_error"
   end
   
   test "show student without school" do
@@ -64,5 +82,5 @@ class StudentsControllerTest < ActionController::TestCase
   
   test "show student with subjects and exams tabs" do
   end
-
+  
 end

@@ -55,8 +55,8 @@ class StudentsController < ApplicationController
         @user.invite!
         respond_to do |format|
           flash[:notice] = 'Student was successfully created.'
-          format.js {render :template => 'students/create_success'}
           format.html { redirect_to(edit_password_reset_url(@user.perishable_token)) }
+          format.js {render :template => 'students/create_success'}
         end     
       end      
     rescue Exception => e
@@ -65,12 +65,12 @@ class StudentsController < ApplicationController
       @student = Student.new(params[:student])
       @student.user = @user      
       respond_to do |format|          
-        format.js {render :template => 'students/create_error'}
         format.html { render :action => "new" }
+        format.js {render :template => 'students/create_error'}
       end           
     end
   end
- 
+  
   def add_subjects
     @student_enrollment = StudentEnrollment.find(params[:id])
     @klass = @student_enrollment.klass
