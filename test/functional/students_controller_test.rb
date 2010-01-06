@@ -25,6 +25,10 @@ class StudentsControllerTest < ActionController::TestCase
     assert_template "students/create_success"
   end
   
+  test "create student failure" do
+    
+  end
+  
   test "show student without school" do
     get :show, :id => @student.to_param
     assert_response :success
@@ -58,4 +62,7 @@ class StudentsControllerTest < ActionController::TestCase
     end 
   end
   
+  test "show student with subjects and exams tabs" do
+  end
+
 end

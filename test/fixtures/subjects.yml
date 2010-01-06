@@ -8,3 +8,12 @@ english:
   
 maths:
   name: Maths
+  
+hindi:
+  name: Hindi
+  
+physics:
+  name: Physics
+  
+chemistry:
+  name: Chemistry

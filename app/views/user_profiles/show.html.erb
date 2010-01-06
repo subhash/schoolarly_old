@@ -1,7 +1,9 @@
 <div>
     <table class="ui-state-default">
-    	<caption>User Details</caption>
-		<% if @user_profile %>
+        <caption>
+            User Details
+        </caption>
+        <% if @user_profile %>
         <tr>
             <td>
                 <b>User Name:</b>
@@ -50,44 +52,45 @@
                 <%=h @user_profile.phone_mobile %>
             </td>
         </tr>
-
-
-<%else%>
-<tr>
-	<td colspan=2>
-		<blockquote>
-	    	Profile Unavailable
-		</blockquote>
-	</td>
-</tr>	
-<% end %>
-</table>
-</div>
-<div style="height:0.3em"/></div>
-<div>
-    <%= render :partial => "user_profiles/" + @person_partial + "_details" %>
-	<div style="height:0.3em"/></div>
-    <table class="ui-state-default">
-    	<caption>Login Details</caption>
+        <% else %>
         <tr>
-            <td>
-                <b>Email:</b>
-            </td>
-            <td>
-                <%=h @user.email %>
+            <td colspan=2>
+                <blockquote>
+                    Profile Unavailable
+                </blockquote>
             </td>
         </tr>
+        <% end %>
     </table>
 </div>
+<div style="height:0.3em">
+</div>
 <div>
-	<p class="icaption_right">
+    <%= render :partial => "user_profiles/" + @person_partial + "_details" %>
+    <div style="height:0.3em"/>
+</div>
+<table class="ui-state-default">
+    <caption>
+        Login Details
+    </caption>
+    <tr>
+        <td>
+            <b>Email:</b>
+        </td>
+        <td>
+            <%=h @user.email %>
+        </td>
+    </tr>
+</table>
+<div>
+    <p class="icaption_right">
         <% if controller.allow_write(@user.person) %>
-		<div class="small_button ui-state-default ui-corner-all float_left">
-        <%= link_to 'Edit', {:controller => :user_profiles, :action => 'edit', :id=>@user} %>
-		</div>
-		<div class="small_button ui-state-default ui-corner-all float_left">
-		<%= link_to 'Back', {:controller => @person_partial.pluralize, :action => 'show', :id=>@person} %>
-		</div>
-		<% end %>
+        <div class="small_button ui-state-default ui-corner-all float_left">
+            <%= link_to 'Edit', {:controller => :user_profiles, :action => 'edit', :id=>@user} %>
+        </div>
+        <div class="small_button ui-state-default ui-corner-all float_left">
+            <%= link_to 'Back', {:controller => @person_partial.pluralize, :action => 'show', :id=>@person} %>
+        </div>
+        <% end %>
     </p>
 </div>

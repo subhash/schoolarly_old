@@ -5,8 +5,6 @@ class UserProfilesControllerTest < ActionController::TestCase
   
   def setup
     activate_authlogic
-    @verbosity = $-v
-    $-v = nil
     @stTeresasSchool=schools(:st_teresas)
     @stTeresasProfile=user_profiles(:stTeresas)
     @stTeresasAdmin=users(:admin_st_teresas)
@@ -20,10 +18,6 @@ class UserProfilesControllerTest < ActionController::TestCase
     @admitted_student = students(:paru)
     @enrolled_student = students(:shenu)
     UserSession.create(@stTeresasSchool.user)
-  end
-  
-  def shutdown
-    $-v = @verbosity
   end
  
   test "school profile should show breadcrumbs with school name, Profile" do
