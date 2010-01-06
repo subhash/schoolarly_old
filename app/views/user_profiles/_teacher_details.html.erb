@@ -2,9 +2,10 @@
 		<caption>Qualification Details</caption>    
 	<%if !@person.qualifications.nil? && !@person.qualifications.empty?%>
 			<tr>
-		    	<th>University</th><th>Degree</th><th>Subject</th><th>Date</th></tr>
-		    <tr>
+		    	<th>University</th><th>Degree</th><th>Subject</th><th>Date</th>
+			</tr>
 			<%@person.qualifications.each do |qualification|%> 
+			<tr>
 		            <td>
 		                <%=h qualification.university%>
 		            </td>
@@ -17,7 +18,7 @@
 		            <td>
 		                <%=h qualification.date%>
 		            </td>
-		        </tr>
+		    </tr>
 		   	<%end%>
 	<%else%> 
 		<tr>
@@ -27,6 +28,5 @@
 				</blockquote>
 			</td>
 		</tr>
-			
 	<%end%>
 </table>
