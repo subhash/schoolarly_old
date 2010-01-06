@@ -1,7 +1,6 @@
 require 'test_helper'
 
-class StudentsControllerTest < ActionController::TestCase
-  
+class StudentsControllerTest < ActionController::TestCase  
   
   def setup
     activate_authlogic
@@ -13,9 +12,9 @@ class StudentsControllerTest < ActionController::TestCase
   end
   
   test "should get new" do
-    #    get :new
-    #    assert_response :success
-    # should be changed to an rjs get
+    get :new
+    assert_response :success
+    assert_template "students/new"
   end
   
   test "should create student" do
@@ -23,6 +22,7 @@ class StudentsControllerTest < ActionController::TestCase
       post :create,{ :student => {:admission_number => "1" }, :user => {:email => "random@gmail.com"}, :school_id =>@sboa.id}
     end    
     assert_response :success
+    assert_template "students/create_success"
   end
   
   test "show student without school" do

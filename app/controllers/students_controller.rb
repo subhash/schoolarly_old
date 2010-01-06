@@ -70,53 +70,7 @@ class StudentsController < ApplicationController
       end           
     end
   end
-  
-  
-  # PUT /students/1
-  # PUT /students/1.xml
-  def update
-    @student = Student.find(params[:id])
-    
-    respond_to do |format|
-      if @student.update_attributes(params[:student])
-        flash[:notice] = 'Student was successfully updated.'
-        format.html { redirect_to(@student) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @student.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-  
-  # DELETE /students/1
-  # DELETE /students/1.xml
-  def destroy
-    @student = Student.find(params[:id])
-    @student.user.destroy
-    @student.destroy
-    
-    respond_to do |format|
-      format.html { redirect_to(students_url) }
-      format.xml  { head :ok }
-    end
-  end
-  
-  def self.tabs(student_id)
-    user_id=Student.find(student_id).user.id
-    tabs = [:Home => {:controller => :students, :action => 'show', :id=>student_id},
-    :Subjects => '#',
-    :Messages => '#',
-    :Calendar => '#',    
-    :Leave => '#',
-    :Exams => '#',
-    :Scores => '#',
-    :AcademicHistory => '#',
-    "Class/Subjects" => '#',
-    :Profile =>  {:controller => :user_profiles, :action => 'show', :id=>user_id} ]
-    return tabs
-  end
-  
+ 
   def add_subjects
     @student_enrollment = StudentEnrollment.find(params[:id])
     @klass = @student_enrollment.klass
