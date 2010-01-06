@@ -1,17 +1,7 @@
 class StudentsController < ApplicationController
   skip_before_filter :require_user, :only => [:new, :create]
   
-  protect_from_forgery :only => [:create, :update, :destroy]
-  
-  def index
-    @students = Student.all
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @students }
-    end
-  end
-  
+  protect_from_forgery :only => [:create, :update, :destroy] 
   
   # GET /students/1
   # GET /students/1.xml
@@ -47,22 +37,18 @@ class StudentsController < ApplicationController
   def new
     @student = Student.new
     @user = User.new
-  end
-  
-  # GET /students/1/edit
-  def edit
-    @student = Student.find(params[:id])
-  end
-  
+  end 
   
   # POST /students
   # POST /students.xml
   def create
     @student = Student.new(params[:student])
-    @school = School.find(params[:school_id])
     @user = User.new(params[:user])
     @student.user = @user
-    @student.school = @school
+    if(params[:school_id])
+      @school = School.find(params[:school_id])
+      @student.school = @school
+    end
     begin
       Student.transaction do
         @student.save!
@@ -70,6 +56,7 @@ class StudentsController < ApplicationController
         respond_to do |format|
           flash[:notice] = 'Student was successfully created.'
           format.js {render :template => 'students/create_success'}
+          format.html { redirect_to(edit_password_reset_url(@user.perishable_token)) }
         end     
       end      
     rescue Exception => e
@@ -79,6 +66,7 @@ class StudentsController < ApplicationController
       @student.user = @user      
       respond_to do |format|          
         format.js {render :template => 'students/create_error'}
+        format.html { render :action => "new" }
       end           
     end
   end
