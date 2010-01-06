@@ -15,6 +15,7 @@ class UserProfilesControllerTest < ActionController::TestCase
     @antonyUser=users(:teacher_antony)
     @antonyProfile=user_profiles(:teacher_antony)
     @one_A=klasses(:one_A)
+    @paru=users(:paru)
     @admitted_student = students(:paru)
     @enrolled_student = students(:shenu)
     UserSession.create(@stTeresasSchool.user)
@@ -63,7 +64,7 @@ class UserProfilesControllerTest < ActionController::TestCase
     assert_select 'table.ui-state-default', :count => 3
   end
   
-    test "admitted student profile should show breadcrumbs with school name, student name, Profile & 1 action" do
+  test "admitted student profile should show breadcrumbs with school name, student name, Profile & 1 action" do
     get :show, :id => @admitted_student.user.to_param
     assert_response :success
     assert_select 'ul#breadcrumbs li a[href=?]', school_path(@admitted_student.school), :text => @admitted_student.school.name
@@ -75,4 +76,17 @@ class UserProfilesControllerTest < ActionController::TestCase
     end 
     assert_select 'table.ui-state-default', :count => 3
   end
+  
+  test "should get new" do
+    get :new, :id => @antonyUser.to_param
+    assert_response :success
+  end
+
+  test "should create profile" do
+    assert_difference('UserProfile.count',1) do
+      post :create, :id => @paru,  :user_profile => {:first_name => 'first', :last_name => 'last' }
+    end
+    assert_redirected_to user_profile_path(@paru)
+  end
+
 end
