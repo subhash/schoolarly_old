@@ -16,6 +16,7 @@ class UserProfilesControllerTest < ActionController::TestCase
     @antonyProfile=user_profiles(:teacher_antony)
     @one_A=klasses(:one_A)
     @paru=users(:paru)
+    @shenu=users(:shenu)
     @admitted_student = students(:paru)
     @enrolled_student = students(:shenu)
     UserSession.create(@stTeresasSchool.user)
@@ -89,4 +90,14 @@ class UserProfilesControllerTest < ActionController::TestCase
     assert_redirected_to user_profile_path(@paru)
   end
 
+  test "should get edit" do
+    get :edit, :id => @antonyUser
+    assert_response :success
+  end
+
+  test "should get redirected to new if profile does not exist" do
+    get :edit, :id => @shenu.to_param
+    assert_redirected_to :action => 'new', :id => @shenu
+  end
+  
 end
