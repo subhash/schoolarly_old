@@ -5,6 +5,8 @@ class UserProfilesControllerTest < ActionController::TestCase
   
   def setup
     activate_authlogic
+    @verbosity = $-v
+    $-v = nil
     @stTeresasSchool=schools(:st_teresas)
     @stTeresasProfile=user_profiles(:stTeresas)
     @stTeresasAdmin=users(:admin_st_teresas)
@@ -18,6 +20,10 @@ class UserProfilesControllerTest < ActionController::TestCase
     UserSession.create(@stTeresasSchool.user)
   end
   
+  def shutdown
+    $-v = @verbosity
+  end
+ 
   test "school profile should show breadcrumbs with school name, Profile" do
     get :show, :id => @stTeresasAdmin.to_param
     assert_response :success
@@ -27,7 +33,7 @@ class UserProfilesControllerTest < ActionController::TestCase
       assert_select "div.button a", :count => 1
       assert_select "div.button a[href=?]" , edit_user_profile_path(@stTeresasSchool.user), :text => 'Edit'
     end 
-    assert_select 'table.ui-state-default', :count =>3
+    assert_select 'table.ui-state-default', :count => 3
   end
   
   test "teacher profile should show breadcrumbs with school name, teacher name, Profile & 1 action" do
