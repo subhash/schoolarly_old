@@ -53,11 +53,11 @@ class TeachersController < ApplicationController
   end
   
   def get_allotment_items(teacher, subjects)
-    preSelectedItems=Hash.new
-    allotmentItems=Hash.new
-    subjects.each do |subject|
-      preSelectedItems[subject.id]=teacher.current_klasses.teaches(subject.id)
-      allotmentItems[subject.id] = [subject.id,subject.klasses.ofSchool(teacher.school.id).group_by{|klass|klass.level}]
+    preSelectedItems= subjects.each_with_object({}) do |subject, hash|
+      hash[subject.id] = teacher.current_klasses.teaches(subject.id)
+    end
+    allotmentItems=subjects.each_with_object({}) do |subject, hash|
+      hash[subject.id] = [subject.id,subject.klasses.ofSchool(teacher.school.id).group_by{|klass|klass.level}]
     end
     return preSelectedItems,allotmentItems
   end
