@@ -1,28 +1,15 @@
 class TeachersController < ApplicationController
   skip_before_filter :require_user, :only => [:new, :create]
   protect_from_forgery :only => [:destroy]
-  
-  before_filter :set_active_tab_Teachers, :only => [:destroy]
-  before_filter :set_active_tab_Allotments, :only => [:allotment_show, :list_add_allotment, :add_allotments, :list_delete_allotment, :delete_allotments]
+   
   before_filter :find_teacher, :except => [:create]
-  
-  def set_active_tab_Teachers
-    @active_tab = :Teachers
-  end
-  
-  def set_active_tab_Allotments
-    @active_tab = :Allotments
-  end
   
   def find_teacher    
     if(params[:id])
       @teacher = Teacher.find(params[:id])
     end
   end  
-  
-   
-  # POST /students
-  # POST /students.xml
+     
   def create
     @teacher = Teacher.new(params[:teacher])
     @school = School.find(params[:school_id])
@@ -50,21 +37,7 @@ class TeachersController < ApplicationController
       end           
     end
   end
-  
     
-  # DELETE /teachers/1
-  # DELETE /teachers/1.xml
-  def destroy
-    
-    @teacher.user.destroy
-    @teacher.destroy
-    
-    respond_to do |format|
-      format.html { redirect_to(teachers_url) }
-      format.xml  { head :ok }
-    end
-  end
-  
   def show
     @user=@teacher.user
     set_active_user(@user.id)
@@ -120,39 +93,29 @@ class TeachersController < ApplicationController
     redirect_to(url_for( :controller => :teachers, :action => 'show', :id=>@teacher)) 
   end
   
-  def close_delete_allotments
-    render :update do |page|
-      page << "jQuery('#dialog_delete_allotment').dialog('close');"
-    end
-  end
-  
-  def list_delete_allotment
-    @user=@teacher.user
-    @school=@teacher.school
-    @year = Klass.current_academic_year(@school)
-    @teacher_allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
-  end
-  
-  def delete_allotments
-    @allotment_ids=params[:allotments]
-    allotments=params[:allotments].split(',')
-    allotments.each {|allotment_id| 
-      if (!allotment_id.empty? && !allotment_id.nil?)
-        allotment=TeacherAllotment.find(allotment_id)
-        allotment.destroy
-      end
-    } 
-    @teacher_allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
-  end
-  
-  def self.tabs(teacher_id)
-    user_id=Teacher.find(teacher_id).user.id
-    tabs = [:Home => "#",
-    :Classes => {:controller => :teachers, :action => 'klasses', :id=>teacher_id},
-    :Allotments => {:controller => :teachers, :action => 'allotment_show', :id=>teacher_id},
-    :Students => "#",
-    :Profile =>  {:controller => :user_profiles, :action => 'show', :id=>user_id}]
-    return tabs
-  end
+#  def close_delete_allotments
+#    render :update do |page|
+#      page << "jQuery('#dialog_delete_allotment').dialog('close');"
+#    end
+#  end
+#  
+#  def list_delete_allotment
+#    @user=@teacher.user
+#    @school=@teacher.school
+#    @year = Klass.current_academic_year(@school)
+#    @teacher_allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
+#  end
+#  
+#  def delete_allotments
+#    @allotment_ids=params[:allotments]
+#    allotments=params[:allotments].split(',')
+#    allotments.each {|allotment_id| 
+#      if (!allotment_id.empty? && !allotment_id.nil?)
+#        allotment=TeacherAllotment.find(allotment_id)
+#        allotment.destroy
+#      end
+#    } 
+#    @teacher_allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
+#  end
   
 end
