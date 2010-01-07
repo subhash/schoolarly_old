@@ -72,9 +72,14 @@ class UserProfilesControllerTest < ActionController::TestCase
     assert_select 'table.ui-state-default', :count => 3
   end
   
+  test "parent profile show" do
+    #TODO
+  end
+  
   test "should get new" do
     get :new, :id => @antonyUser.to_param
     assert_response :success
+    assert_template 'user_profiles/new'
   end
 
   test "should create profile" do
@@ -87,6 +92,7 @@ class UserProfilesControllerTest < ActionController::TestCase
   test "should get edit" do
     get :edit, :id => @antonyUser
     assert_response :success
+    assert_template 'user_profiles/edit'
   end
 
   test "should get redirected to new if profile does not exist" do
