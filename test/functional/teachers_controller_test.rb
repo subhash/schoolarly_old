@@ -36,7 +36,7 @@ class TeachersControllerTest < ActionController::TestCase
     assert_redirected_to teacher_path(@sunil)
   end
   
-  test "already allotted klasses shoud appear preselected" do
+  test "already allotted klasses should appear preselected" do
     get :allot, :id => @sunil
     assert_template 'teachers/allot'
     assert_select 'td.pre-selected', :count => @sunil.current_allotments.count
