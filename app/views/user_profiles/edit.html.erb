@@ -7,11 +7,11 @@
 		<% end %>
 	</table>
 </div>
-<div style="height:0.3em"/></div>
+<div style="height:0.3em"></div>
 <div>
     	<%= render :partial => "user_profiles/" + @person_partial, :object => person_form %>
 </div>
-<div style="height:0.3em"/></div>
+<div style="height:0.3em"></div>
 <div>
 		<% fields_for @user do |user_form| %>
 		<%= user_form.error_messages %>
