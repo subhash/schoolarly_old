@@ -19,7 +19,7 @@ class UserProfilesControllerTest < ActionController::TestCase
     @enrolled_student = students(:shenu)
     UserSession.create(@stTeresasSchool.user)
   end
- 
+
   test "school profile should show breadcrumbs with school name, Profile" do
     get :show, :id => @stTeresasAdmin.to_param
     assert_response :success
