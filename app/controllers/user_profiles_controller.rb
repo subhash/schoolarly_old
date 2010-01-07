@@ -119,24 +119,11 @@ class UserProfilesController < ApplicationController
     respond_to do |format|
       flash[:notice] = 'Exam group was successfully modified.'
       format.js {render :template => 'user_profiles/qualification_create_success'}
-    end 
+    end
   rescue Exception => e
     respond_to do |format|
       format.js {render :template => 'user_profiles/qualification_create_error'}
     end
-#    if @person.qualifications.count==1
-#        render :update do |page|
-#            page << "jQuery('#dialog_add_qualification').dialog('close');"
-#            page.replace_html(:qualification_list_div, :partial =>'qualification_list', :object => @qualification)
-#        end
-#    else
-#        render :update do |page|
-#            page << "jQuery('#dialog_add_qualification').dialog('close');"
-#            page.insert_html(:bottom, :editlist, :partial =>'qualification_item', :object => @qualification)
-#        end
-#    end    
-#  rescue Exception => e
-#    flash[:notice]="Error occured in qualification add: <br /> #{e.message}"
   end
 
 end

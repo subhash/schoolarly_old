@@ -53,8 +53,8 @@ class TeachersController < ApplicationController
   end
   
   def get_allotment_items(teacher, subjects)
-    preSelectedItems=[]
-    allotmentItems=[]
+    preSelectedItems=Hash.new
+    allotmentItems=Hash.new
     subjects.each do |subject|
       preSelectedItems[subject.id]=teacher.current_klasses.teaches(subject.id)
       allotmentItems[subject.id] = [subject.id,subject.klasses.ofSchool(teacher.school.id).group_by{|klass|klass.level}]
@@ -92,30 +92,5 @@ class TeachersController < ApplicationController
     flash[:notice]="Error occured in allotment: <br /> #{e.message}"
     redirect_to(url_for( :controller => :teachers, :action => 'show', :id=>@teacher)) 
   end
-  
-#  def close_delete_allotments
-#    render :update do |page|
-#      page << "jQuery('#dialog_delete_allotment').dialog('close');"
-#    end
-#  end
-#  
-#  def list_delete_allotment
-#    @user=@teacher.user
-#    @school=@teacher.school
-#    @year = Klass.current_academic_year(@school)
-#    @teacher_allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
-#  end
-#  
-#  def delete_allotments
-#    @allotment_ids=params[:allotments]
-#    allotments=params[:allotments].split(',')
-#    allotments.each {|allotment_id| 
-#      if (!allotment_id.empty? && !allotment_id.nil?)
-#        allotment=TeacherAllotment.find(allotment_id)
-#        allotment.destroy
-#      end
-#    } 
-#    @teacher_allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
-#  end
   
 end

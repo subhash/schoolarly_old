@@ -6,6 +6,7 @@ one_A:
   school: st_teresas
   year: 2009
   class_teacher: sunil
+  subjects: english, malayalam, hindi, physics, maths, chemistry
 
 two_B:
   level: "2"
