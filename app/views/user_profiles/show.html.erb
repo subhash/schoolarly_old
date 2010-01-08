@@ -77,15 +77,3 @@
         </tr>
     </table>
 </div>
-<div>
-	<p class="icaption_right">
-        <% if controller.allow_write(@user.person) %>
-			<div class="small_button ui-state-default ui-corner-all float_left">
-        		<%= link_to 'Edit', {:controller => :user_profiles, :action => 'edit', :id=>@user} %>
-			</div>
-			<div class="small_button ui-state-default ui-corner-all float_left">
-				<%= link_to 'Back', {:controller => @person_partial.pluralize, :action => 'show', :id=>@person} %>
-			</div>
-		<% end %>
-    </p>
-</div>
