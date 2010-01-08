@@ -1,4 +1,0 @@
-page << "jQuery('#school_add_subjects_dialog').dialog('destroy');"
-page << "school_subject_indices = \"\";"
-page.replace_html("school_subjects_list", :partial =>'schools/subjects_list' , :object=>@school_subjects)
-page.replace_html("school_add_subjects_list", :partial =>'schools/subjects', :object=>@add_subjects )

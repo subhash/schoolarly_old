@@ -27,8 +27,8 @@ class KlassTest < ActiveSupport::TestCase
   end
   
   test "klass-student relationship" do
-    assert_equal 2, @oneA.students.size    
-    assert_equal 2, @oneA.current_students.size
+    assert_equal 1, @oneA.students.size    
+    assert_equal 1, @oneA.current_students.size
     shenu = students(:shenu)    
     assert_equal @oneA, shenu.current_enrollment.klass
     assert_equal @oneA, shenu.current_klass    
