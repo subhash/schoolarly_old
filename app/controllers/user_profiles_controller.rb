@@ -21,7 +21,7 @@ class UserProfilesController < ApplicationController
         if @person.current_klass
           add_breadcrumb(@person.current_klass.name, @person.current_klass)
         end
-        add_breadcrumb((@user.user_profile.nil?)? @user.email : @user.user_profile.name, @person)
+        add_breadcrumb(@person.name, @person)
       when 'School'
         add_breadcrumb((@person.name.nil?)? @user.email : @person.name, @person)
     end
@@ -29,7 +29,6 @@ class UserProfilesController < ApplicationController
   
   def new
     add_breadcrumb('Profile')
-    add_page_action('Action', '#')
     @user_profile = UserProfile.new
     @person_partial=@user.person_type.to_s.downcase
   end
@@ -50,7 +49,6 @@ class UserProfilesController < ApplicationController
       else
         @person.update_attributes!(params[person_type])
       end
-      @person.update_attributes!(params[person_type]) 
       @user_profile.save!
       @user.update_attributes!(params[:user])
     end
@@ -62,22 +60,21 @@ class UserProfilesController < ApplicationController
   end
   
   def show
-    add_breadcrumb('Profile')
-    add_page_action('Edit', {:controller => :user_profiles, :action => 'edit', :id => @user})
     if @user.user_profile.nil? and @user == current_user
       redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
     end
+    add_breadcrumb('Profile')
+    add_page_action('Edit', {:controller => :user_profiles, :action => 'edit', :id => @user})
     @user_profile=@user.user_profile
     @person_partial=@user.person_type.to_s.downcase
   end
   
   def edit
-    add_breadcrumb('Profile', {:controller => :user_profiles, :action => 'show', :id => @user})
-    add_breadcrumb('Edit')
-    add_page_action('Action', '#')
     if @user.user_profile.nil? #and @user == current_user
       redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
     end
+    add_breadcrumb('Profile', {:controller => :user_profiles, :action => 'show', :id => @user})
+    add_breadcrumb('Edit')
     @user_profile=@user.user_profile
     @person_partial=@user.person_type.to_s.downcase    
   end
@@ -114,10 +111,10 @@ class UserProfilesController < ApplicationController
     @qualification.degree=params[:degree]
     @qualification.subject=params[:subject]
     @qualification.date=params[:date]
+    @qualification.teacher = @person
     @person.qualifications << @qualification
-    @person.save!
     respond_to do |format|
-      flash[:notice] = 'Exam group was successfully modified.'
+      flash[:notice] = 'Qualification details were successfully added.'
       format.js {render :template => 'user_profiles/qualification_create_success'}
     end
   rescue Exception => e
