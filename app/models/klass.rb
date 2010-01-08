@@ -43,7 +43,7 @@ class Klass < ActiveRecord::Base
   end
   
   def can_be_destroyed
-    if (students.size == 0) & (allotted_subjects.size == 0)
+    if students.empty? & allotted_subjects.empty? & exams.empty?
       true
     else
       false    
