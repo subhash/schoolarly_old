@@ -1,2 +1,0 @@
-page.insert_html :bottom, 'teachers', :partial => "teacher_user", :object => @user
-page.select('form').first.reset
