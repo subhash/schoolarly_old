@@ -12,3 +12,6 @@ st_antonys:
   board: State
   fax: 123
   website: http://www.stantonys.com
+  
+paru_school:
+  name: School of Paru

@@ -18,3 +18,15 @@ teacher_antony:
   user: teacher_antony
   first_name: Antony
   last_name: Sir
+  
+admitted_with_profile:
+  user: admitted_with_profile
+  first_name: admitted
+  middle_name: with
+  last_name: profile
+  
+enrolled_with_profile:
+  user: enrolled_with_profile
+  first_name: enrolled
+  middle_name: with
+  last_name: profile

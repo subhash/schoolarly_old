@@ -49,3 +49,10 @@ six_E_with_egs:
   school: st_antonys
   year: 2009
   class_teacher: teacher_antony
+  
+paru_school_2B:
+  level: "2"
+  division: B
+  school: paru_school
+  year: 2009
+ 

@@ -12,7 +12,7 @@ bsc_statistics:
   subject: Statistics
   university: Silfons
   date: 2009-09-07
-  teacher: mary_kutty  
+  teacher: teacher_antony  
 
 ma_tamil:
   degree: MA
@@ -20,3 +20,10 @@ ma_tamil:
   university: Gilma
   date: 2009-09-07
   teacher: v_subramaniam
+  
+err_msc_statistics:
+  degree: MSc
+  subject: Statistics
+  university: SilfonsSilfonsSilfonsSilfonsSilfonsSilfonsSilfonsSilfonsSilfonsSilfonsSilfonsSilfonsSilfonsSilfonsSilfonsSilfonsSilfonsSilfonsSilfons
+  date: 2009-09-07
+  teacher: teacher_antony 
