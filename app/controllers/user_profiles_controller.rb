@@ -28,9 +28,13 @@ class UserProfilesController < ApplicationController
   end
   
   def new
-    add_breadcrumb('Profile')
-    @user_profile = UserProfile.new
-    @person_partial=@user.person_type.to_s.downcase
+    if @user != current_user
+      redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user))
+    else 
+      add_breadcrumb('Profile')
+      @user_profile = UserProfile.new
+      @person_partial=@user.person_type.to_s.downcase
+    end
   end
   
   def create
@@ -38,7 +42,7 @@ class UserProfilesController < ApplicationController
     @user_profile.user=@user
     person_type=@user.person_type.to_s.downcase
     User.transaction do
-      if person_type=="teacher"
+      if person_type=='teacher'
         if params[:qualification]
           Qualification.update(params[:qualification].keys, params[:qualification].values)
         end
@@ -55,7 +59,7 @@ class UserProfilesController < ApplicationController
     flash[:notice] = 'Profile was successfully created.'
     redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user))
   rescue Exception => e
-    flash[:notice]="Error occured in profile creation: <br /> #{e.message}"
+    flash[:notice]="Error occurred in profile creation: <br /> #{e.message}"
     redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user)) 
   end
   
@@ -64,26 +68,32 @@ class UserProfilesController < ApplicationController
       redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
     end
     add_breadcrumb('Profile')
-    add_page_action('Edit', {:controller => :user_profiles, :action => 'edit', :id => @user})
+    if @user == current_user
+      add_page_action('Edit', {:controller => :user_profiles, :action => 'edit', :id => @user})
+    end
     @user_profile=@user.user_profile
     @person_partial=@user.person_type.to_s.downcase
   end
   
   def edit
-    if @user.user_profile.nil? #and @user == current_user
-      redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
+    if @user != current_user
+      redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user))
+    else    
+      if @user.user_profile.nil? 
+        redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
+      end
+      add_breadcrumb('Profile', {:controller => :user_profiles, :action => 'show', :id => @user})
+      add_breadcrumb('Edit')
+      @user_profile=@user.user_profile
+      @person_partial=@user.person_type.to_s.downcase    
     end
-    add_breadcrumb('Profile', {:controller => :user_profiles, :action => 'show', :id => @user})
-    add_breadcrumb('Edit')
-    @user_profile=@user.user_profile
-    @person_partial=@user.person_type.to_s.downcase    
   end
   
   def update
     @user_profile=@user.user_profile
     person_type=@user.person_type.to_s.downcase
     User.transaction do
-      if person_type=="teacher"
+      if person_type=='teacher'
         if params[:qualification]
           Qualification.update(params[:qualification].keys, params[:qualification].values)
         end
@@ -100,7 +110,7 @@ class UserProfilesController < ApplicationController
     flash[:notice] = 'Profile was successfully updated.'
     redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user)) 
   rescue Exception => e
-    flash[:notice]="Error occured in profile update: <br /> #{e.message}"
+    flash[:notice]="Error occurred in profile update: <br /> #{e.message}"
     redirect_to(url_for( :controller => :user_profiles, :action => 'edit', :id=>@user)) 
   end
   
