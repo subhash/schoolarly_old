@@ -1,5 +1,5 @@
 <%if @person.school %>
-<table class="ui-state-default">
+<table class="ui-state-default center">
 	<caption>Student Details</caption>  
     <tr>
         <td>
@@ -17,15 +17,19 @@
             <%=h @person.admission_number %>
         </td>
     </tr>
-    <%if @person.current_enrollment %>
-    <tr>
+	<tr>
         <td>
             <b>Class:</b>
         </td>
+    <%if @person.current_enrollment %>
         <td>
-            <%=h @person.current_enrollment.klass.name %>
+            <%=link_to @person.current_enrollment.klass.name, klass_path(@person.current_enrollment.klass) %>
         </td>
+	<%else%>
+        <td>
+            <blockquote>Not yet enrolled to any class</blockquote>
+        </td>	
+    <%end %>		
     </tr>
-    <%end %>
 </table>
 <%end %>

@@ -1,7 +1,2 @@
 page << "closeDialogs();"
-#if @person.qualifications.count==1
-  page.replace_html(:qualification_list_div, :partial =>'qualifications', :object => @qualification)
-#else
-  #page.insert_html(:bottom, :editlist, :partial =>'qualification', :object => @qualification)
-  #page.replace_html(:qualification_list_div, :partial =>'qualifications', :object => @qualification)
-#end    
+page.replace_html(:qualification_list_div, :partial =>'qualifications', :object => @qualification)
