@@ -1,39 +1,51 @@
-<table class="ui-state-default" border="1px" style="margin: auto;">
-	        <tr>
-	        	<th>Name:</th>
-            <td>
-                <%if @teacher.user.user_profile %>
-                <%= link_to @teacher.user.user_profile.name, {:controller => 'user_profiles', :action => 'show', :id => @teacher.user} %>
-                <%else %>
-                <%= link_to "Create Profile", {:controller => 'user_profiles', :action => 'new', :id => @teacher.user}, {:class => "cell-link"} %>
-                <%end %>
-            </td>
-			<th>email:</th>
-            <td>
-                <%= link_to @teacher.user.email, {:controller => 'user_profiles', :action => 'show', :id => @teacher.user} %>
-            </td>
-			<th>Owns:</th>
-            <td>
-                <%@teacher.currently_owned_klasses.each do |klass|%>
-				<%= link_to klass.name + " ", {:controller => :klasses, :action => 'show', :id=>klass}%>
-				<%end%>
-            </td>
-        </tr>
-</table>
-<br />
-<br />
-<% if !@teacher_allotments.nil? && !@teacher_allotments.empty?%>
-<table id=allotment_list class="sticker no-border" style="margin:auto;">
-    <caption>
-        Allotments of <%= (@teacher.user.user_profile.nil?)? @teacher.user.email : @teacher.user.user_profile.name%>
-        <br/>
-    </caption>
-	<%= render :partial =>'allotment_list' %>
-</table>
-<%else %>
-<blockquote>
-    No allotment done yet.
-</blockquote>
-<%end %>
+<div id="teacher_tabs" class="tabs">
+    <ul>
+        <li>
+            <a href="#classes-tab">Classes</a>
+        </li>
+        <li>
+            <a href="#exams-tab">Exams</a>
+        </li>
+    </ul>
 
-
+	<div id="classes-tab">
+		<table class="ui-state-default" border="1px" style="margin: auto;">
+			<tr>
+		        <th>Name:</th>
+	            <td>
+	                <%if @teacher.user.user_profile %>
+	                <%= link_to @teacher.user.user_profile.name, {:controller => 'user_profiles', :action => 'show', :id => @teacher.user} %>
+	                <%else %>
+	                <%= link_to "Create Profile", {:controller => 'user_profiles', :action => 'new', :id => @teacher.user}, {:class => "cell-link"} %>
+	                <%end %>
+	            </td>
+				<th>email:</th>
+	            <td>
+	                <%= link_to @teacher.user.email, {:controller => 'user_profiles', :action => 'show', :id => @teacher.user} %>
+	            </td>
+				<th>Owns:</th>
+	            <td>
+	                <%@teacher.currently_owned_klasses.each do |klass|%>
+					<%= link_to klass.name + " ", {:controller => :klasses, :action => 'show', :id=>klass}%>
+					<%end%>
+	            </td>
+	        </tr>
+		</table>
+		<br />
+		<br />
+		<% if !@teacher_allotments.nil? && !@teacher_allotments.empty?%>
+			<table id=allotment_list class="sticker no-border" style="margin:auto;">
+		    <caption>
+		        Allotments of <%= @teacher.name%>
+		        <br/>
+		    </caption>
+			<%= render :partial =>'allotment_list' %>
+			</table>
+		<%else %>
+			<blockquote>No allotment done yet.</blockquote>
+		<%end %>
+	</div>
+	<div id="exams-tab">
+		
+	</div>	
+</div>
