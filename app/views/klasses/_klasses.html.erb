@@ -1,6 +1,10 @@
 <table id="klasses" style="display: none;">
     <th>
+    </th>
+    <th>
         Recently Added
+    </th>
+    <th>
     </th>
     <tr>
         <th>
@@ -14,11 +18,18 @@
         </th>
     </tr>
 </table>
+<br/>
 <% klasses.each do |level, level_klasses| %>
 <table id="<%=level%>">
-    <th>
-        <%=level %>
-    </th>
+    <tr>
+        <th>
+        </th>
+        <th>
+            <%=level %>
+        </th>
+        <th>
+        </th>
+    </tr>
     <tr>
         <th>
             Class
@@ -34,4 +45,5 @@
     <%= render :partial => 'klasses/klass', :object => klass %>
     <%end %>
 </table>
+<br/>
 <% end %>

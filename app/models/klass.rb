@@ -42,4 +42,11 @@ class Klass < ActiveRecord::Base
     return teacher_allotments.current.group_by{|a| a.subject.id}.keys
   end
   
+  def can_be_destroyed
+    if (students.size == 0) & (allotted_subjects.size == 0)
+      true
+    else
+      false    
+    end
+  end
 end

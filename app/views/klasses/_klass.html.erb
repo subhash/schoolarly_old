@@ -11,7 +11,9 @@
     </td>
     <td class="ui-state-default">
     </td>
+    <% if klass.can_be_destroyed %>
     <th>
         <%= link_to_remote 'Delete', :url => {:controller => 'klasses', :action => 'delete',:id => klass}, :confirm => 'Are you sure?' %>
     </th>
+    <% end %>
 </tr>
