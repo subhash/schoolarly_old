@@ -4,7 +4,7 @@ class KlassesController < ApplicationController
   before_filter :find_school , :only => [:new, :create]
   
   def index
-    @klasses=@school.klasses
+    @klasses=Klass.all :order => "school_id, level, division"
   end
   
   def new
@@ -25,16 +25,9 @@ class KlassesController < ApplicationController
   end
   
   def destroy
-    puts "in destroy"
-    @klass = Klass.find(params[:id])
+    @klass= Klass.find(params[:id])
     @klass.destroy
-    redirect_to school_klasses_path(@klass.school)
-  end
-  
-  def delete
-    @klass = Klass.find(params[:id])
-    @deleted_klass = @klass
-    @klass.destroy
+    redirect_to :action => 'index'
   end
   
   def update

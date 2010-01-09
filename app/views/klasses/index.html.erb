@@ -1,0 +1,29 @@
+<table border="0" cellpadding="0">
+    <tr>
+        <th>
+            Class
+        </th>
+        <th>
+            School
+        </th>
+        <th>
+            Year
+        </th>
+    </tr>
+    <% @klasses.each do |klass| %>
+    <tr>
+        <td>
+            <%=klass.name %>
+        </td>
+        <td>
+            <%=klass.school.name %>
+        </td>
+        <td>
+            <%=klass.year %>
+        </td>
+		<td>
+			<%= link_to "Delete", klass, :method => :delete, :confirm => "Are you sure?" %>
+		</td>
+    </tr>
+    <%end %>
+</table>

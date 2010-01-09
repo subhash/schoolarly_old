@@ -6,7 +6,6 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.xml
   def index
-    @active_tab = :Home
     @schools = School.all
     
     respond_to do |format|
