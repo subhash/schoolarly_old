@@ -13,10 +13,10 @@
     <% @klasses.each do |klass| %>
     <tr>
         <td>
-            <%=klass.name %>
+            <%=link_to klass.name, klass %>
         </td>
         <td>
-            <%=klass.school.name %>
+            <%=link_to klass.school.name, klass.school %>
         </td>
         <td>
             <%=klass.year %>
