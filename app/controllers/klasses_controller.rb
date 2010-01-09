@@ -1,6 +1,5 @@
 class KlassesController < ApplicationController
   
-  before_filter :set_active_tab
   before_filter :find_school , :only => [:new, :create]
   
   def index
@@ -24,19 +23,17 @@ class KlassesController < ApplicationController
     end    
   end
   
+#  When a klass is deleted from the UI by the school
+  def delete
+    @klass = Klass.find(params[:id])
+    @deleted_klass = @klass
+    @klass.destroy
+  end
+  
   def destroy
     @klass= Klass.find(params[:id])
     @klass.destroy
     redirect_to :action => 'index'
-  end
-  
-  def update
-    @klass = @school.klasses.find(params[:id])
-    if @klass.update_attributes(params[:klass])
-      redirect_to school_url(@school)
-    else
-      render :action => :edit
-    end    
   end
   
   def show
@@ -63,10 +60,6 @@ class KlassesController < ApplicationController
       @school = School.find(params[:school_id])
     end
   end   
-  
-  def set_active_tab
-    @active_tab = :Classes
-  end
   
   def add_subjects
     @klass = Klass.find(params[:id])

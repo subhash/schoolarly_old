@@ -1,9 +1,0 @@
-<h3> Subjects for <%=@klass.name %>
-    <span class="float_right ui-state-focus"><%= link_to "Enter #{@klass.name} -->",:controller => 'klasses', :action => 'show', :id=>@klass %>
-    </span></h3>
-<div id="subjects_list" class="sticker">
-    <%=render :partial => 'klasses/subjects_list', :object => @klass_subjects %>
-</div>
-<div class="button ui-state-default center">
-    <%= link_to_remote 'Add',:url => {:controller => 'klasses', :action => 'list_add_subjects', :id=>@klass} %>
-</div>
