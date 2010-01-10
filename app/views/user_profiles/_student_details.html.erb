@@ -1,6 +1,7 @@
-<%if @person.school %>
+
 <table class="ui-state-default center">
 	<caption>Student Details</caption>  
+	<%if @person.school %>
     <tr>
         <td>
             <b>School:</b>
@@ -31,5 +32,12 @@
         </td>	
     <%end %>		
     </tr>
-</table>
+
+<%else%>
+<tr>
+	<td colspan=2>
+		<blockquote>Student Details Unavailable</blockquote>
+	</td>
+</tr>
 <%end %>
+</table>
