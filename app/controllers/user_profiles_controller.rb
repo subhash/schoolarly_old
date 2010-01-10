@@ -14,12 +14,16 @@ class UserProfilesController < ApplicationController
     set_active_user(@user.id)
     case @user.person_type
       when 'Teacher'  
-        add_breadcrumb(@person.school.name, @person.school)
+        if @person.school
+          add_breadcrumb(@person.school.name, @person.school)
+        end
         add_breadcrumb(@person.name, @person)
       when 'Student'
-        add_breadcrumb(@person.school.name, @person.school)
-        if @person.current_klass
-          add_breadcrumb(@person.current_klass.name, @person.current_klass)
+        if @person.school
+          add_breadcrumb(@person.school.name, @person.school)
+          if @person.current_klass
+            add_breadcrumb(@person.current_klass.name, @person.current_klass)
+          end
         end
         add_breadcrumb(@person.name, @person)
       when 'School'
@@ -31,9 +35,11 @@ class UserProfilesController < ApplicationController
     if @user != current_user
       redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user))
     else 
+      if @user.user_profile
+        redirect_to(url_for( :controller => :user_profiles, :action => 'edit', :id=>@user))
+      end
       add_breadcrumb('Profile')
       @user_profile = UserProfile.new
-      @person_partial=@user.person_type.to_s.downcase
     end
   end
   
@@ -42,7 +48,7 @@ class UserProfilesController < ApplicationController
     @user_profile.user=@user
     person_type=@user.person_type.to_s.downcase
     User.transaction do
-      if person_type=='teacher'
+      if @user.is_a?(Teacher)
         if params[:qualification]
           Qualification.update(params[:qualification].keys, params[:qualification].values)
         end
@@ -72,7 +78,6 @@ class UserProfilesController < ApplicationController
       add_page_action('Edit', {:controller => :user_profiles, :action => 'edit', :id => @user})
     end
     @user_profile=@user.user_profile
-    @person_partial=@user.person_type.to_s.downcase
   end
   
   def edit
@@ -85,7 +90,6 @@ class UserProfilesController < ApplicationController
       add_breadcrumb('Profile', {:controller => :user_profiles, :action => 'show', :id => @user})
       add_breadcrumb('Edit')
       @user_profile=@user.user_profile
-      @person_partial=@user.person_type.to_s.downcase    
     end
   end
   
@@ -93,7 +97,7 @@ class UserProfilesController < ApplicationController
     @user_profile=@user.user_profile
     person_type=@user.person_type.to_s.downcase
     User.transaction do
-      if person_type=='teacher'
+      if @person.is_a?(Teacher)
         if params[:qualification]
           Qualification.update(params[:qualification].keys, params[:qualification].values)
         end
