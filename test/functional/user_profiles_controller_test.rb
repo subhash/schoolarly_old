@@ -14,6 +14,7 @@ class UserProfilesControllerTest < ActionController::TestCase
     @antonyProfile=user_profiles(:teacher_antony)
     @paru=users(:paru)
     @shenu=users(:shenu)
+    @student_without_school=users(:student_without_school)
     @admitted_student = students(:admitted_with_profile)
     @enrolled_student = students(:enrolled_with_profile)
     @bsc_statistics=qualifications(:bsc_statistics)
@@ -24,12 +25,11 @@ class UserProfilesControllerTest < ActionController::TestCase
   test "school profile should show breadcrumbs with school name, Profile" do
     get :show, :id => @stTeresasAdmin.to_param
     assert_response :success
-    assert_select 'ul#breadcrumbs li a[href=?]', school_path(@stTeresasSchool), :text => @stTeresasSchool.name
-    assert_select 'ul#breadcrumbs strong', 'Profile'
-    assert_select "div#action_box" do
-      assert_select "div.button a", :count => 1
-      assert_select "div.button a[href=?]" , edit_user_profile_path(@stTeresasSchool.user), :text => 'Edit'
-    end 
+    assert_breadcrumb(@stTeresasSchool.name,school_path(@stTeresasSchool),1)
+    assert_breadcrumb('Profile',nil,nil)
+    assert_breadcrumb_count(2)
+    assert_action_count(1)
+    assert_action('Edit',edit_user_profile_path(@stTeresasSchool.user),1)
     assert_select 'table.ui-state-default', :count => 3
   end
   
@@ -37,13 +37,12 @@ class UserProfilesControllerTest < ActionController::TestCase
     UserSession.create(@antonyUser)
     get :show, :id => @antonyUser.to_param
     assert_response :success
-    assert_select 'ul#breadcrumbs li a[href=?]', school_path(@stAntonys), :text => @stAntonys.name
-    assert_select 'ul#breadcrumbs li a[href=?]', teacher_path(@antonyTeacher), :text => @antonyTeacher.name
-    assert_select 'ul#breadcrumbs strong', 'Profile'
-    assert_select "div#action_box" do
-      assert_select "div.button a", :count => 1
-      assert_select "div.button a[href=?]" , edit_user_profile_path(@antonyUser), :text => 'Edit'
-    end 
+    assert_breadcrumb(@stAntonys.name,school_path(@stAntonys),1)
+    assert_breadcrumb(@antonyTeacher.name,teacher_path(@antonyTeacher),2)
+    assert_breadcrumb('Profile',nil,nil)
+    assert_breadcrumb_count(3)
+    assert_action_count(1)
+    assert_action('Edit',edit_user_profile_path(@antonyUser),1)
     assert_select 'table.ui-state-default', :count =>3
   end
   
@@ -51,14 +50,13 @@ class UserProfilesControllerTest < ActionController::TestCase
     UserSession.create(@enrolled_student.user)
     get :show, :id => @enrolled_student.user.to_param
     assert_response :success
-    assert_select 'ul#breadcrumbs li a[href=?]', school_path(@enrolled_student.school), :text => @enrolled_student.school.name
-    assert_select 'ul#breadcrumbs li a[href=?]', klass_path(@enrolled_student.current_klass), :text => @enrolled_student.current_klass.name
-    assert_select 'ul#breadcrumbs li a[href=?]', student_path(@enrolled_student), :text => @enrolled_student.name
-    assert_select 'ul#breadcrumbs strong', 'Profile'
-    assert_select "div#action_box" do
-      assert_select "div.button a", :count => 1
-      assert_select "div.button a[href=?]" , edit_user_profile_path(@enrolled_student.user), :text => 'Edit'
-    end 
+    assert_breadcrumb(@enrolled_student.school.name,school_path(@enrolled_student.school),1)
+    assert_breadcrumb(@enrolled_student.current_klass.name,klass_path(@enrolled_student.current_klass),2)
+    assert_breadcrumb(@enrolled_student.name,student_path(@enrolled_student),3)
+    assert_breadcrumb('Profile',nil,nil)
+    assert_breadcrumb_count(4)
+    assert_action_count(1)
+    assert_action('Edit',edit_user_profile_path(@enrolled_student.user),1)
     assert_select 'table.ui-state-default', :count => 3
   end
   
@@ -66,13 +64,24 @@ class UserProfilesControllerTest < ActionController::TestCase
     UserSession.create(@admitted_student.user)
     get :show, :id => @admitted_student.user.to_param
     assert_response :success
-    assert_select 'ul#breadcrumbs li a[href=?]', school_path(@admitted_student.school), :text => @admitted_student.school.name
-    assert_select 'ul#breadcrumbs li a[href=?]', student_path(@admitted_student), :text => @admitted_student.name
-    assert_select 'ul#breadcrumbs strong', 'Profile'
-    assert_select "div#action_box" do
-      assert_select "div.button a", :count => 1
-      assert_select "div.button a[href=?]" , edit_user_profile_path(@admitted_student.user), :text => 'Edit'
-    end 
+    assert_breadcrumb(@admitted_student.school.name,school_path(@admitted_student.school),1)
+    assert_breadcrumb(@admitted_student.name,student_path(@admitted_student),2)
+    assert_breadcrumb('Profile',nil,nil)
+    assert_breadcrumb_count(3)
+    assert_action_count(1)
+    assert_action('Edit',edit_user_profile_path(@admitted_student.user),1)
+    assert_select 'table.ui-state-default', :count => 3
+  end
+  
+  test "user who does not belong to any school should show breadcrumb as user name, Profile & 1 action" do
+    UserSession.create(@student_without_school)
+    get :show, :id => @student_without_school.to_param
+    assert_response :success
+    assert_breadcrumb(@student_without_school.person.name,student_path(@student_without_school.person),1)
+    assert_breadcrumb('Profile',nil,nil)
+    assert_breadcrumb_count(2)
+    assert_action_count(1)
+    assert_action('Edit',edit_user_profile_path(@student_without_school),1)
     assert_select 'table.ui-state-default', :count => 3
   end
 
@@ -80,17 +89,29 @@ class UserProfilesControllerTest < ActionController::TestCase
     #TODO
   end
   
+  test "new should be redirected to edit if profile already exists" do
+    UserSession.create(@admitted_student.user)
+    get :new, :id => @admitted_student.user.to_param
+    assert_redirected_to :action => 'edit', :id => @admitted_student.user
+  end
+
   test "should get new" do
-    UserSession.create(@antonyUser)
-    get :new, :id => @antonyUser.to_param
+    UserSession.create(@paru)
+    get :new, :id => @paru.to_param
     assert_response :success
     assert_template 'user_profiles/new'
   end
-
+  
   test "should create profile" do
+    assert_nil @paru.user_profile
+    assert_equal @paru.email, @paru.person.name
     assert_difference('UserProfile.count',1) do
-      post :create, :id => @paru,  :user_profile => {:first_name => 'first', :last_name => 'last' }
+      post :create, :id => @paru,  :user_profile => {:city=>nil, :phone_mobile=>nil, :pincode=>nil, :country=>nil, :phone_landline=>nil, :address_line_1=>nil, :address_line_2=>nil, :first_name=>'first', :last_name=>'last', :state=>nil, :middle_name=>nil}
     end
+    assert_not_nil assigns(:user_profile)
+    assert_equal 'paru@schoolarly.com',  assigns(:user_profile).user.email
+    assert_equal 'first last',  assigns(:user_profile).user.person.name.to_s
+    assert_equal "Profile was successfully created." , flash[:notice]
     assert_redirected_to user_profile_path(@paru)
   end
 
@@ -122,6 +143,7 @@ class UserProfilesControllerTest < ActionController::TestCase
   test "should update profile" do
     UserSession.create(@antonyUser)
     put :update, :id => @antonyUser, :user_profile => { :last_name => 'Chettan' }
+    assert_equal 'Antony Chettan',  assigns(:user_profile).user.person.name.to_s
     assert_redirected_to user_profile_path(@antonyUser)
   end
   
