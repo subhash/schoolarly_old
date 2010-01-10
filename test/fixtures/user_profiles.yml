@@ -30,3 +30,9 @@ enrolled_with_profile:
   first_name: enrolled
   middle_name: with
   last_name: profile
+  
+student_without_school:
+  user: student_without_school
+  first_name: student
+  last_name: without_school
+ 
