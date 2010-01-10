@@ -9,7 +9,7 @@
 </div>
 <div style="height:0.3em"></div>
 <div>
-    	<%= render :partial => "user_profiles/" + @person_partial, :object => person_form %>
+    	<%= render :partial => "user_profiles/" + @user.person_type.to_s.downcase, :object => person_form %>
 </div>
 <div style="height:0.3em"></div>
 <div>
@@ -23,7 +23,7 @@
 <div>
     <p class="icaption_right">
         <br/>
-		<%= link_to_function( 'Submit' , "document.forms['edit_#{@person_partial}_#{@person.id.to_s}'].submit()")%> |
+		<%= link_to_function( 'Submit' , "document.forms['edit_#{@user.person_type.to_s.downcase}_#{@person.id.to_s}'].submit()")%> |
 		<%= link_to 'Back', {:controller => :user_profiles, :action => 'show', :id=>@user} %>
 	<% end %>
     </p>

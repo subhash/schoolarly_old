@@ -63,7 +63,7 @@
 </div>
 <div style="height:0.3em"></div>
 <div>
-    <%= render :partial => "user_profiles/" + @person_partial + "_details" %>
+    <%= render :partial => "user_profiles/" + @user.person_type.to_s.downcase + "_details" %>
 	<div style="height:0.3em"></div>
     <table class="ui-state-default center">
     	<caption>Login Details</caption>
