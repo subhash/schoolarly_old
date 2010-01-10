@@ -20,20 +20,22 @@ class ActiveSupport::TestCase
   # need to test transactions.  Since your test is bracketed by a transaction,
   # any transactions started in your code will be automatically rolled back.
   self.use_transactional_fixtures = true
-  
+
   # Instantiated fixtures are slow, but give you @david where otherwise you
   # would need people(:david).  If you don't want to migrate your existing
   # test cases which use the @david style and don't mind the speed hit (each
   # instantiated fixtures translates to a database query per test method),
   # then set this back to true.
   self.use_instantiated_fixtures  = false
-  
+
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
   fixtures :all
-  
+
+  # Add more helper methods to be used by all tests here...
+   
   def assert_tab_count(count)
     assert_select '.tabs > ul > li > a',count
   end
@@ -42,48 +44,71 @@ class ActiveSupport::TestCase
     assert_select '.tabs > ul > li > a', label
     assert_select "#"+id, 1
   end
-  # Add more helper methods to be used by all tests here...
   
-  def assert_breadcrumb(label,url,index)
-    if url.nil? && index.nil?
-      assert_select 'ul#breadcrumbs li:last-of-type' do
-        assert_select 'strong', :text => label
-      end
+  def assert_breadcrumb(label, *args)
+    options = args.extract_options!
+    if !label
+      assert false
     else
-      if index.nil?
-        assert_select 'ul#breadcrumbs li a[href=?]', url, :text => label
+      if options.empty?
+        assert_select 'ul#breadcrumbs li:last-of-type' do
+          assert_select 'strong', :text => label
+        end
       else
-        assert_select "ul#breadcrumbs li:nth-of-type(" + index.to_s + ")" do
-          assert_select 'a[href=?]', url, :text => label
+        url=options[:url]
+        if !url
+          assert false
+        else
+          index=options[:index]
+          if !index
+            assert_select 'ul#breadcrumbs li a[href=?]', url, :text => label
+          else
+            assert_select "ul#breadcrumbs li:nth-of-type(" + index.to_s + ")" do
+              assert_select 'a[href=?]', url, :text => label
+            end
+          end
         end
       end
     end
   end
   
   def assert_breadcrumb_count(count)
-    if count.nil?
+    if !count
       assert_select 'ul#breadcrumbs li', :count => count
     end
   end
   
   def assert_action_count(count)
-    if count.nil?
+    if !count
       assert_select "#action_box" do
         assert_select ".button a", :count => count
       end 
     end
   end  
   
-  def assert_action(label,url,index)
-    assert_select "#action_box" do
-      if index.nil?
-        assert_select ".button a[href=?]" , url, :text => label
-      else
-        assert_select ".button:nth-of-type(" + index.to_s + ")" do
-          assert_select 'a[href=?]' , url, :text => label
+        
+  def assert_action(label, *args)
+    options = args.extract_options!
+    if !label
+      assert false
+    else
+      if !options.empty?
+        url = !(options[:url].nil?) ? options[:url] : '#'
+        index = options[:index]
+        assert_select "#action_box" do
+          if !index
+            assert_select ".button a[href=?]" , url, :text => label
+          else
+            assert_select ".button:nth-of-type(" + index.to_s + ")" do
+              assert_select 'a[href=?]' , url, :text => label
+            end
+          end
         end
+      else
+        assert false
       end
-    end 
+    end
   end
-  
+
 end
+
