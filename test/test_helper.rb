@@ -35,4 +35,20 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  
+  def assert_breadcrumb(label,url,index)
+    if url.nil? && index.nil?
+      assert_select 'ul#breadcrumbs li:last-of-type' do
+        assert_select 'strong', :text => label
+      end
+    else
+      if index.nil?
+        assert_select 'ul#breadcrumbs li a[href=?]', url, :text => label
+      else
+        assert_select "ul#breadcrumbs li:nth-of-type(" + index.to_s + ")" do
+          assert_select 'a[href=?]', url, :text => label
+        end
+      end
+    end
+  end
 end
