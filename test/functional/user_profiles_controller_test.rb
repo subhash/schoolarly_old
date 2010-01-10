@@ -25,11 +25,11 @@ class UserProfilesControllerTest < ActionController::TestCase
   test "school profile should show breadcrumbs with school name, Profile" do
     get :show, :id => @stTeresasAdmin.to_param
     assert_response :success
-    assert_breadcrumb(@stTeresasSchool.name,school_path(@stTeresasSchool),1)
-    assert_breadcrumb('Profile',nil,nil)
+    assert_breadcrumb(@stTeresasSchool.name, :url => school_path(@stTeresasSchool), :index => 1 )
+    assert_breadcrumb('Profile')
     assert_breadcrumb_count(2)
     assert_action_count(1)
-    assert_action('Edit',edit_user_profile_path(@stTeresasSchool.user),1)
+    assert_action('Edit', :url => edit_user_profile_path(@stTeresasSchool.user), :index => 1)
     assert_select 'table.ui-state-default', :count => 3
   end
   
@@ -37,12 +37,12 @@ class UserProfilesControllerTest < ActionController::TestCase
     UserSession.create(@antonyUser)
     get :show, :id => @antonyUser.to_param
     assert_response :success
-    assert_breadcrumb(@stAntonys.name,school_path(@stAntonys),1)
-    assert_breadcrumb(@antonyTeacher.name,teacher_path(@antonyTeacher),2)
-    assert_breadcrumb('Profile',nil,nil)
+    assert_breadcrumb(@stAntonys.name, :url => school_path(@stAntonys), :index => 1)
+    assert_breadcrumb(@antonyTeacher.name, :url => teacher_path(@antonyTeacher), :index => 2)
+    assert_breadcrumb('Profile')
     assert_breadcrumb_count(3)
     assert_action_count(1)
-    assert_action('Edit',edit_user_profile_path(@antonyUser),1)
+    assert_action('Edit', :url => edit_user_profile_path(@antonyUser), :index => 1)
     assert_select 'table.ui-state-default', :count =>3
   end
   
@@ -50,13 +50,13 @@ class UserProfilesControllerTest < ActionController::TestCase
     UserSession.create(@enrolled_student.user)
     get :show, :id => @enrolled_student.user.to_param
     assert_response :success
-    assert_breadcrumb(@enrolled_student.school.name,school_path(@enrolled_student.school),1)
-    assert_breadcrumb(@enrolled_student.current_klass.name,klass_path(@enrolled_student.current_klass),2)
-    assert_breadcrumb(@enrolled_student.name,student_path(@enrolled_student),3)
-    assert_breadcrumb('Profile',nil,nil)
+    assert_breadcrumb(@enrolled_student.school.name, :url => school_path(@enrolled_student.school), :index => 1)
+    assert_breadcrumb(@enrolled_student.current_klass.name, :url => klass_path(@enrolled_student.current_klass), :index => 2)
+    assert_breadcrumb(@enrolled_student.name, :url => student_path(@enrolled_student), :index => 3)
+    assert_breadcrumb('Profile')
     assert_breadcrumb_count(4)
     assert_action_count(1)
-    assert_action('Edit',edit_user_profile_path(@enrolled_student.user),1)
+    assert_action('Edit', :url => edit_user_profile_path(@enrolled_student.user), :index => 1)
     assert_select 'table.ui-state-default', :count => 3
   end
   
@@ -64,12 +64,12 @@ class UserProfilesControllerTest < ActionController::TestCase
     UserSession.create(@admitted_student.user)
     get :show, :id => @admitted_student.user.to_param
     assert_response :success
-    assert_breadcrumb(@admitted_student.school.name,school_path(@admitted_student.school),1)
-    assert_breadcrumb(@admitted_student.name,student_path(@admitted_student),2)
-    assert_breadcrumb('Profile',nil,nil)
+    assert_breadcrumb(@admitted_student.school.name, :url => school_path(@admitted_student.school), :index => 1)
+    assert_breadcrumb(@admitted_student.name, :url => student_path(@admitted_student), :index => 2)
+    assert_breadcrumb('Profile')
     assert_breadcrumb_count(3)
     assert_action_count(1)
-    assert_action('Edit',edit_user_profile_path(@admitted_student.user),1)
+    assert_action('Edit', :url => edit_user_profile_path(@admitted_student.user), :index => 1)
     assert_select 'table.ui-state-default', :count => 3
   end
   
@@ -77,11 +77,11 @@ class UserProfilesControllerTest < ActionController::TestCase
     UserSession.create(@student_without_school)
     get :show, :id => @student_without_school.to_param
     assert_response :success
-    assert_breadcrumb(@student_without_school.person.name,student_path(@student_without_school.person),1)
-    assert_breadcrumb('Profile',nil,nil)
+    assert_breadcrumb(@student_without_school.person.name, :url => student_path(@student_without_school.person), :index => 1)
+    assert_breadcrumb('Profile')
     assert_breadcrumb_count(2)
     assert_action_count(1)
-    assert_action('Edit',edit_user_profile_path(@student_without_school),1)
+    assert_action('Edit', :url => edit_user_profile_path(@student_without_school), :index => 1)
     assert_select 'table.ui-state-default', :count => 3
   end
 
