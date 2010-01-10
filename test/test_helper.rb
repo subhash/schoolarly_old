@@ -20,20 +20,28 @@ class ActiveSupport::TestCase
   # need to test transactions.  Since your test is bracketed by a transaction,
   # any transactions started in your code will be automatically rolled back.
   self.use_transactional_fixtures = true
-
+  
   # Instantiated fixtures are slow, but give you @david where otherwise you
   # would need people(:david).  If you don't want to migrate your existing
   # test cases which use the @david style and don't mind the speed hit (each
   # instantiated fixtures translates to a database query per test method),
   # then set this back to true.
   self.use_instantiated_fixtures  = false
-
+  
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
   fixtures :all
-
+  
+  def assert_tab_count(count)
+    assert_select '.tabs > ul > li > a',count
+  end
+  
+  def assert_tab(label, id)
+    assert_select '.tabs > ul > li > a', label
+    assert_select "#"+id, 1
+  end
   # Add more helper methods to be used by all tests here...
   
   def assert_breadcrumb(label,url,index)
@@ -60,18 +68,18 @@ class ActiveSupport::TestCase
   
   def assert_action_count(count)
     if count.nil?
-      assert_select "div#action_box" do
-        assert_select "div.button a", :count => count
+      assert_select "#action_box" do
+        assert_select ".button a", :count => count
       end 
     end
   end  
   
   def assert_action(label,url,index)
-    assert_select "div#action_box" do
+    assert_select "#action_box" do
       if index.nil?
-        assert_select "div.button a[href=?]" , url, :text => label
+        assert_select ".button a[href=?]" , url, :text => label
       else
-        assert_select "div.button:nth-of-type(" + index.to_s + ")" do
+        assert_select ".button:nth-of-type(" + index.to_s + ")" do
           assert_select 'a[href=?]' , url, :text => label
         end
       end
@@ -79,4 +87,3 @@ class ActiveSupport::TestCase
   end
   
 end
-

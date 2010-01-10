@@ -5,11 +5,7 @@ class KlassesController < ApplicationController
   def index
     @klasses=Klass.all :order => "school_id, level, division"
   end
-  
-  def new
-    @klass = Klass.new
-  end
-  
+
   def create
     @klass = Klass.new(params[:klass])
     if (@school.klasses << @klass)
