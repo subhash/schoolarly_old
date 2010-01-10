@@ -51,4 +51,32 @@ class ActiveSupport::TestCase
       end
     end
   end
+  
+  def assert_breadcrumb_count(count)
+    if count.nil?
+      assert_select 'ul#breadcrumbs li', :count => count
+    end
+  end
+  
+  def assert_action_count(count)
+    if count.nil?
+      assert_select "div#action_box" do
+        assert_select "div.button a", :count => count
+      end 
+    end
+  end  
+  
+  def assert_action(label,url,index)
+    assert_select "div#action_box" do
+      if index.nil?
+        assert_select "div.button a[href=?]" , url, :text => label
+      else
+        assert_select "div.button:nth-of-type(" + index.to_s + ")" do
+          assert_select 'a[href=?]' , url, :text => label
+        end
+      end
+    end 
+  end
+  
 end
+
