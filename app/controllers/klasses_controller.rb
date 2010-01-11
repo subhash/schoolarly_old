@@ -5,7 +5,7 @@ class KlassesController < ApplicationController
   def index
     @klasses=Klass.all :order => "school_id, level, division"
   end
-
+  
   def create
     @klass = Klass.new(params[:klass])
     if (@school.klasses << @klass)
@@ -19,17 +19,21 @@ class KlassesController < ApplicationController
     end    
   end
   
-#  When a klass is deleted from the UI by the school
-  def delete
-    @klass = Klass.find(params[:id])
-    @deleted_klass = @klass
-    @klass.destroy
-  end
-  
-  def destroy
+  def destroy    
     @klass= Klass.find(params[:id])
-    @klass.destroy
-    redirect_to :action => 'index'
+    if(current_user.person.is_a?(SchoolarlyAdmin))
+      @klass.enrollments.destroy_all
+      @klass.teacher_allotments.destroy_all
+      @klass.exam_groups.destroy_all
+      @klass.destroy
+      redirect_to :action => 'index'
+    else
+      @deleted_klass = @klass
+      @klass.destroy
+      respond_to do |format|
+        format.js {render :template => 'klasses/delete'}
+      end
+    end
   end
   
   def show

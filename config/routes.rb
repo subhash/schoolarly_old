@@ -11,11 +11,13 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :students,  :member => {:create_student => :get}
   
-  map.resources :schools, :member => {:profile => :get, :klasses => :get} , :shallow => true do |school|
+  map.resources :schools, :member => {:profile => :get} , :shallow => true do |school|
     school.resources :klasses
   end
   
   map.resources :teacher_allotments
+  
+  map.resources :schoolarly_admins
   
   map.resources :users
   
