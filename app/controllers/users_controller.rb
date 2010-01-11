@@ -45,23 +45,15 @@ class UsersController < ApplicationController
   end
   
   def index
-    user_type = params[:user_type]   
-    @page_path = [['Users', nil]]
-    if user_type == School.name.downcase
-      @users = User.find_all_by_person_type(:School)
-      @active_tab = :Schools
-    elsif user_type == Teacher.name.downcase
-      puts "in teacher"
-      @users = User.find_all_by_person_type(:Teacher)
-      @active_tab = :Teachers
-    elsif user_type == Student.name.downcase
-      @users = User.find_all_by_person_type(:Student)
-      @active_tab = :Students
-    else
-      @users = User.find(:all)
-      @active_tab = :Users
-    end
+    add_breadcrumb('Home')
+    add_js_page_action('Invite Student',:partial => 'students/invite_student_form', :locals => {:student => Student.new, :school => @school})
+    add_js_page_action('Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :school => @school})
     
+    @schools = User.find_all_by_person_type(:School)
+    @students = Student.find(:all)
+    @teachers = Teacher.find(:all)
+    # XXX Hack - Get only current allotments
+    @subjects = TeacherAllotment.find(:all).group_by{|a| a.teacher_id}
   end
   
   

@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <th>id</th>
+    <th>Email</th>
+    <th>Person</th>
+    <th>Person type</th>
+  </tr>
+
+<% users.each do |user| %>
+  <tr>
+    <td><%=h user.id%></td>
+    <td><%=link_to user.email, send("#{user.person_type.downcase}_path" , user.person) %></td>
+    <td><%=h user.person_id %></td>
+    <td><%=h user.person_type %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

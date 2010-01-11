@@ -1,24 +1,26 @@
-<table>
-  <tr>
-    <th>id</th>
-    <th>Email</th>
-    <th>Person</th>
-    <th>Person type</th>
-  </tr>
+<div id="users_tabs" class="tabs">
+    <ul>
+        <li>
+            <a href="#schools-tab">Schools</a>
+        </li>
+        <li>
+            <a href="#students-tab">Students</a>
+        </li>
+        <li>
+            <a href="#teachers-tab">Teachers</a>
+        </li>
+    </ul>
+    <div id="schools-tab">
+        <%= render :partial => 'users', :object => @schools %>
+    </div>
+    <div id="students-tab">
+        <%= render :partial => 'students/students', :object => @students %>
+    </div>
+    <div id="teachers-tab">
+        <%=render :partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects} %>
+    </div>
+</div>
 
-<% @users.each do |user| %>
-  <tr>
-    <td><%=h user.id%></td>
-    <td><%=link_to user.email, send("#{user.person_type.underscore}_path" , user.person) %></td>
-    <td><%=h user.person_id %></td>
-    <td><%=h user.person_type %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
 
 <%= link_to 'New School', new_school_path %>
 <%= link_to 'New Student', new_student_path %>
