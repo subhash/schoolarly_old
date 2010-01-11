@@ -29,13 +29,18 @@ class KlassesControllerTest < ActionController::TestCase
   test "klass should show breadcrumb with school, klass & 2 actions" do
     get :show, :id => @one_A.to_param
     assert_response :success
-    assert_select 'ul#breadcrumbs li a[href=?]', school_path(@stTeresas), :text => @stTeresas.name
-    assert_select 'ul#breadcrumbs strong', @one_A.name
-    assert_select "#action_box" do
-      assert_select ".button a", :count => 2
-      assert_select ".button a[href=?]" , '#', :text => 'Add Exam Group'
-      assert_select ".button a[href=?]" , '#', :text => 'Add/Remove Subjects'
-    end 
+    #    assert_select 'ul#breadcrumbs li a[href=?]', school_path(@stTeresas), :text => @stTeresas.name
+    assert_breadcrumb(@stTeresas.name, :url => school_path(@stTeresas), :index => 1)
+    #    assert_select 'ul#breadcrumbs strong', @one_A.name
+    assert_breadcrumb( @one_A.name)
+    assert_action_count(2)
+    assert_action('Add Exam Group',:url =>  '#')
+    assert_action('Add/Remove Subjects', :url => '#')
+    #    assert_select "#action_box" do
+    #      assert_select ".button a", :count => 2
+    #      assert_select ".button a[href=?]" , '#', :text => 'Add Exam Group'
+    #      assert_select ".button a[href=?]" , '#', :text => 'Add/Remove Subjects'
+    #    end 
   end
   
   test "klass should show all Students, Subjects, Exams tabs" do
