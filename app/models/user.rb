@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   after_create :add_roles  
   
   def name
-    user_profile ? user_profile.name : nil
+    user_profile ? user_profile.name : email
   end
   
   def add_roles
@@ -46,36 +46,4 @@ class User < ActiveRecord::Base
     Notifier.deliver_password_reset_instructions(self)    
   end  
   
-end
-
-class Address
-  # include ActiveRecord::Validations
-  attr_reader :address_line1,  :address_line2,  :city,  :state,  :country,  :pincode,  :phone_landline,  :phone_mobile
-  def initialize(address_line1,  address_line2,  city,  state,  country,  pincode,  phone_landline,  phone_mobile)
-    @address_line1=address_line1
-    @address_line2=address_line2
-    @city=city
-    @state=state
-    @country=country  
-    @pincode=pincode  
-    @phone_landline=phone_landline  
-    @phone_mobile =  phone_mobile
-  end
-  # validates_presence_of :address_line1,   :city,    :state,    :country
-  #TODO validates_format_of pincode,landline,mobile  
-end
-
-class Name
-  # include ActiveRecord::Validations
-  attr_reader :first_name, :middle_name, :last_name
-  def initialize(first_name, middle_name, last_name)
-    @first_name=first_name
-    @middle_name=middle_name
-    @last_name=last_name
-  end
-  def is_valid?(errors)
-    errors.add("first name should not be blank") if first_name.blank? 
-    errors.add("last name should not be blank") if last_name.blank?
-  end
-  # validates_presence_of :first_name, :last_name
 end
