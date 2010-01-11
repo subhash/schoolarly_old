@@ -1,1 +1,43 @@
-<%= render :partial => 'student_details' %>
+
+<table class="ui-state-default center">
+	<caption>Student Details</caption>  
+	<%if @person.school %>
+    <tr>
+        <td>
+            <b>School:</b>
+        </td>
+        <td>
+            <%=link_to @person.school.name, school_path(@person.school) %>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>Admission Number:</b>
+        </td>
+        <td>
+            <%=h @person.admission_number %>
+        </td>
+    </tr>
+	<tr>
+        <td>
+            <b>Class:</b>
+        </td>
+    <%if @person.current_enrollment %>
+        <td>
+            <%=link_to @person.current_enrollment.klass.name, klass_path(@person.current_enrollment.klass) %>
+        </td>
+	<%else%>
+        <td>
+            <blockquote>Not yet enrolled to any class</blockquote>
+        </td>	
+    <%end %>		
+    </tr>
+
+<%else%>
+<tr>
+	<td colspan=2>
+		<blockquote>Student Details Unavailable</blockquote>
+	</td>
+</tr>
+<%end %>
+</table>

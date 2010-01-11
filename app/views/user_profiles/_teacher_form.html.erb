@@ -1,0 +1,14 @@
+<%teacher=teacher_form%>
+<div id="qualification_list_div">
+	<%= render :partial => "qualifications", :object => teacher%> 
+</div>
+<div class="button ui-state-default ui-corner-all center">
+    <div id="button_subjects">
+        <%= link_to_remote 'Add Qualification', :url => {:controller => 'user_profiles', :action => 'qualification_new_dialog_show', :id => @user} %>
+    </div>
+</div>
+<div id="dialog_add_qualification" class="jquery-dialog" title="Add Qualification Details" style="display: none;">
+    <div id="add_qualification">
+    </div>
+</div>
+

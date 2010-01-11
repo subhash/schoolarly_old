@@ -1,35 +1,35 @@
- <table class="ui-state-default center">
-	<caption>School Details</caption>
-    <tr>
-        <td>
-            <b><%= school.label :name %>:</b>
-        </td>
-        <td>
-            <%= school.text_field :name %>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <b><%= school.label :board %>:</b>
-        </td>
-        <td>
-            <%= school.text_field :board %>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <b><%= school.label :fax %>:</b>
-        </td>
-        <td>
-            <%= school.text_field :fax %>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <b><%= school.label :website %>:</b>
-        </td>
-        <td>
-            <%= school.text_field :website %>
-        </td>
-    </tr>
-</table>
+    <table class="ui-state-default center">
+    	<caption>School Details</caption>
+    	<tr>
+            <td>
+                <b>Name:</b>
+            </td>
+            <td>
+                <%=h @person.name %>
+            </td>
+        </tr>    	
+        <tr>
+            <td>
+                <b>Board:</b>
+            </td>
+            <td>
+                <%=h @person.board %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Fax:</b>
+            </td>
+            <td>
+                <%=h @person.fax %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Website:</b>
+            </td>
+            <td>
+                <%=h @person.website %>
+            </td>
+        </tr>
+    </table>

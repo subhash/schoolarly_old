@@ -9,7 +9,7 @@
 </div>
 <div style="height:0.3em"></div>
 <div>
-    	<%= render :partial => "user_profiles/" + @user.person_type.to_s.downcase, :object => person_form %>
+    	<%= render :partial => "user_profiles/" + @user.person_type.to_s.downcase + "_form", :object => person_form %>
 </div>
 <div style="height:0.3em"></div>
 <div>

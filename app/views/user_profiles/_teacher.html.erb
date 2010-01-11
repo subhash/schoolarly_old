@@ -1,13 +1,32 @@
-<div id="qualification_list_div">
-	<%= render :partial => "qualifications", :object => teacher%> 
-</div>
-<div class="button ui-state-default ui-corner-all center">
-    <div id="button_subjects">
-        <%= link_to_remote 'Add Qualification', :url => {:controller => 'user_profiles', :action => 'qualification_new_dialog_show', :id => @user} %>
-    </div>
-</div>
-<div id="dialog_add_qualification" class="jquery-dialog" title="Add Qualification Details" style="display: none;">
-    <div id="add_qualification">
-    </div>
-</div>
-
+	<table class="ui-state-default center">
+		<caption>Qualification Details</caption>    
+	<%if !@person.qualifications.nil? && !@person.qualifications.empty?%>
+			<tr>
+		    	<th>University</th><th>Degree</th><th>Subject</th><th>Date</th>
+			</tr>
+			<%@person.qualifications.each do |qualification|%> 
+			<tr>
+		            <td>
+		                <%=h qualification.university%>
+		            </td>
+		            <td>
+		                <%=h qualification.degree%>
+		            </td>
+		            <td>
+		                <%=h qualification.subject%>
+		            </td>
+		            <td>
+		                <%=h qualification.date%>
+		            </td>
+		    </tr>
+		   	<%end%>
+	<%else%> 
+		<tr>
+			<td>
+				<blockquote>
+	    			Qualification Details Unavailable
+				</blockquote>
+			</td>
+		</tr>
+	<%end%>
+</table>
