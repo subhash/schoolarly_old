@@ -25,6 +25,7 @@ class UserProfilesControllerTest < ActionController::TestCase
   test "school profile should show breadcrumbs with school name, Profile" do
     get :show, :id => @stTeresasAdmin.to_param
     assert_response :success
+    assert_template 'user_profiles/show'
     assert_breadcrumb(@stTeresasSchool.name, :url => school_path(@stTeresasSchool), :index => 1 )
     assert_breadcrumb('Profile')
     assert_breadcrumb_count(2)
@@ -33,10 +34,18 @@ class UserProfilesControllerTest < ActionController::TestCase
     assert_select 'table.ui-state-default', :count => 3
   end
   
+  test "school should not show Edit action if it is not the current user" do
+    get :show, :id => @stTeresasAdmin.to_param
+    assert_response :success
+    assert_template 'user_profiles/show'
+    assert_action_count(0)
+  end
+  
   test "teacher profile should show breadcrumbs with school name, teacher name, Profile & 1 action" do
     UserSession.create(@antonyUser)
     get :show, :id => @antonyUser.to_param
     assert_response :success
+    assert_template 'user_profiles/show'
     assert_breadcrumb(@stAntonys.name, :url => school_path(@stAntonys), :index => 1)
     assert_breadcrumb(@antonyTeacher.name, :url => teacher_path(@antonyTeacher), :index => 2)
     assert_breadcrumb('Profile')
@@ -46,10 +55,18 @@ class UserProfilesControllerTest < ActionController::TestCase
     assert_select 'table.ui-state-default', :count =>3
   end
   
+  test "teacher should not show Edit action if it is not the current user" do
+    get :show, :id => @antonyUser.to_param
+    assert_response :success
+    assert_template 'user_profiles/show'
+    assert_action_count(0)
+  end
+  
   test "enrolled student profile should show breadcrumbs with school name, klass name, student name, Profile & 1 action" do
     UserSession.create(@enrolled_student.user)
     get :show, :id => @enrolled_student.user.to_param
     assert_response :success
+    assert_template 'user_profiles/show'
     assert_breadcrumb(@enrolled_student.school.name, :url => school_path(@enrolled_student.school), :index => 1)
     assert_breadcrumb(@enrolled_student.current_klass.name, :url => klass_path(@enrolled_student.current_klass), :index => 2)
     assert_breadcrumb(@enrolled_student.name, :url => student_path(@enrolled_student), :index => 3)
@@ -60,10 +77,18 @@ class UserProfilesControllerTest < ActionController::TestCase
     assert_select 'table.ui-state-default', :count => 3
   end
   
+  test "enrolled student should not show Edit action if it is not the current user" do
+    get :show, :id => @enrolled_student.user.to_param
+    assert_response :success
+    assert_template 'user_profiles/show'
+    assert_action_count(0)
+  end  
+  
   test "admitted student profile should show breadcrumbs with school name, student name, Profile & 1 action" do
     UserSession.create(@admitted_student.user)
     get :show, :id => @admitted_student.user.to_param
     assert_response :success
+    assert_template 'user_profiles/show'
     assert_breadcrumb(@admitted_student.school.name, :url => school_path(@admitted_student.school), :index => 1)
     assert_breadcrumb(@admitted_student.name, :url => student_path(@admitted_student), :index => 2)
     assert_breadcrumb('Profile')
@@ -72,11 +97,19 @@ class UserProfilesControllerTest < ActionController::TestCase
     assert_action('Edit', :url => edit_user_profile_path(@admitted_student.user), :index => 1)
     assert_select 'table.ui-state-default', :count => 3
   end
+
+  test "admitted student should not show Edit action if it is not the current user" do
+    get :show, :id => @admitted_student.user.to_param
+    assert_response :success
+    assert_template 'user_profiles/show'
+    assert_action_count(0)
+  end
   
   test "user who does not belong to any school should show breadcrumb as user name, Profile & 1 action" do
     UserSession.create(@student_without_school)
     get :show, :id => @student_without_school.to_param
     assert_response :success
+    assert_template 'user_profiles/show'
     assert_breadcrumb(@student_without_school.person.name, :url => student_path(@student_without_school.person), :index => 1)
     assert_breadcrumb('Profile')
     assert_breadcrumb_count(2)
@@ -128,6 +161,14 @@ class UserProfilesControllerTest < ActionController::TestCase
     assert_redirected_to :action => 'new', :id => @paru
   end
   
+  test "should show without Edit action if i am not the current user" do
+    UserSession.create(@shenu)
+    get :show, :id => @paru.to_param
+    assert_response :success
+    assert_template 'user_profiles/show'
+    assert_action_count(0)
+  end
+  
   test "edit should get redirected to show if i am not the current user" do
     UserSession.create(@shenu)
     get :edit, :id => @paru.to_param
@@ -142,7 +183,9 @@ class UserProfilesControllerTest < ActionController::TestCase
   
   test "should update profile" do
     UserSession.create(@antonyUser)
-    put :update, :id => @antonyUser, :user_profile => { :last_name => 'Chettan' }
+    assert_difference('UserProfile.count',0) do
+      put :update, :id => @antonyUser, :user_profile => { :last_name => 'Chettan' }
+    end
     assert_equal 'Antony Chettan',  assigns(:user_profile).user.person.name.to_s
     assert_redirected_to user_profile_path(@antonyUser)
   end
@@ -150,13 +193,13 @@ class UserProfilesControllerTest < ActionController::TestCase
   test "teacher should add qualification thru xhr" do
     xhr :post, :add_qualification , {:id => @antonyTeacher, :qualification => @bsc_statistics}
     assert_response :success
-    assert_template "user_profiles/qualification_create_success"
+    assert_template 'user_profiles/qualification_create_success'
   end
 
   test "teacher should show error in add qualification thru xhr" do
     xhr :post, :add_qualification , {:id => @sunil, :qualification => @err}
     assert_response :success
-    assert_template "user_profiles/qualification_create_error"
+    assert_template 'user_profiles/qualification_create_error'
   end
   
 end
