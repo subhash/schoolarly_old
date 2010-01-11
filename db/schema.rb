@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091027081719) do
+ActiveRecord::Schema.define(:version => 20100111144534) do
 
   create_table "exam_groups", :force => true do |t|
     t.string   "description"
@@ -128,6 +128,11 @@ ActiveRecord::Schema.define(:version => 20091027081719) do
 
   add_index "roles_users", ["user_id"], :name => "user_id"
   add_index "roles_users", ["role_id"], :name => "role_id"
+
+  create_table "schoolarly_admins", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "schools", :force => true do |t|
     t.string   "name"
@@ -294,8 +299,8 @@ ActiveRecord::Schema.define(:version => 20091027081719) do
   add_foreign_key "student_enrollments_subjects", ["student_enrollment_id"], "student_enrollments", ["id"], :name => "student_enrollments_subjects_ibfk_1"
   add_foreign_key "student_enrollments_subjects", ["subject_id"], "subjects", ["id"], :name => "student_enrollments_subjects_ibfk_2"
 
-  add_foreign_key "students", ["current_enrollment_id"], "student_enrollments", ["id"], :name => "students_ibfk_2"
   add_foreign_key "students", ["school_id"], "schools", ["id"], :name => "students_ibfk_1"
+  add_foreign_key "students", ["current_enrollment_id"], "student_enrollments", ["id"], :name => "students_ibfk_2"
 
   add_foreign_key "teacher_allotments", ["teacher_id"], "teachers", ["id"], :name => "teacher_allotments_ibfk_1"
   add_foreign_key "teacher_allotments", ["subject_id"], "subjects", ["id"], :name => "teacher_allotments_ibfk_2"

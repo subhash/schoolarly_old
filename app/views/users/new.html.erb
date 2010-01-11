@@ -3,7 +3,7 @@
 <%= f.error_messages %>
 <%= render :partial => "form", :object => f %>
 <select name="user_type">
-<%= options_for_select [['Teacher','Teacher'],['Student','Student'],['Parent','Parent'],['School','School']]%>
+<%= options_for_select [['Teacher','Teacher'],['Student','Student'],['Parent','Parent'],['School','School'],['Schoolarly Admin','SchoolarlyAdmin']]%>
 </select>
 <%= f.submit "Register" %>
 <% end %>
