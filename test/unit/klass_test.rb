@@ -20,6 +20,14 @@ class KlassTest < ActiveSupport::TestCase
     assert_equal 3, @stTheresas.klasses.size
   end
   
+  test "klass-can-be-destroyed" do
+    three_c = Klass.new(:level => 3, :division =>'C', :year =>2009)
+    three_c.school = @stTheresas
+    three_c.save!
+    assert three_c.can_be_destroyed
+    assert !@oneA.can_be_destroyed
+  end
+  
   test "klass-school-teacher relationship" do
     assert_equal @oneA.school, @stTheresas
     assert_equal @oneA.class_teacher, @sunil
