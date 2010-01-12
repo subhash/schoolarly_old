@@ -50,25 +50,44 @@ class ActiveSupport::TestCase
     if !label
       assert false
     else
-      if options.empty?
+      url=options[:url]
+      current=options[:current]
+      index=options[:index]
+    end
+    case  
+      when options.empty? then
+        assert_select 'ul#breadcrumbs li' , :text => label
+      when current && !url  then
         assert_select 'ul#breadcrumbs li:last-of-type' do
           assert_select 'strong', :text => label
         end
-      else
-        url=options[:url]
-        if !url
-          assert false
-        else
-          index=options[:index]
-          if !index
-            assert_select 'ul#breadcrumbs li a[href=?]', url, :text => label
-          else
-            assert_select "ul#breadcrumbs li:nth-of-type(" + index.to_s + ")" do
-              assert_select 'a[href=?]', url, :text => label
+        if index
+          assert_select 'ul#breadcrumbs li' , :count => index
+        end
+      when current && url then
+        assert false
+      when !current && !url then
+        if index
+          assert_select "ul#breadcrumbs li:nth-of-type(" + index.to_s + ")" do
+            if current==false
+              assert_select 'a', :text => label
+            else
+              (assert_select 'a', :text => label) || (assert_select 'strong', :text => label) 
             end
           end
+        else
+          assert_select 'ul#breadcrumbs li' , :text => label
         end
-      end
+      when !current && url then
+        if index
+          assert_select "ul#breadcrumbs li:nth-of-type(" + index.to_s + ")" do
+            assert_select 'a[href=?]', url, :text => label
+          end
+        else
+          assert_select 'ul#breadcrumbs li' do
+            assert_select 'a[href=?]', url, :text => label
+          end
+        end
     end
   end
   
@@ -85,7 +104,6 @@ class ActiveSupport::TestCase
       end 
     end
   end  
-  
         
   def assert_action(label, *args)
     options = args.extract_options!
