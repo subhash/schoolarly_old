@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
   
   before_filter :require_user
-  
+   
   def set_active_user(user_id)
     session[:active_user] = user_id
   end
@@ -92,7 +92,25 @@ class ApplicationController < ActionController::Base
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
+
+  #Exception Handlers
   
+  rescue_from Exception do |exception|
+    case  exception
+      when ActiveRecord::RecordNotFound 
+        then flash_and_redirect_back(exception)
+      when ActiveRecord::StatementInvalid 
+        then flash_and_redirect_back(exception)
+      when ActiveRecord::RecordInvalid 
+        then flash_and_redirect_back(exception)
+    else
+      flash_and_redirect_back(exception)
+    end
+  end
   
+  def flash_and_redirect_back(exception)
+    flash[:notice]="Error occurred: <br /> #{exception.message.slice(0, 50)}"
+    redirect_to(url_for( :controller => params[:controller], :action => params[:action], :id => params[:id])) 
+  end
   
 end
