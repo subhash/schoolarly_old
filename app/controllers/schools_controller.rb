@@ -120,7 +120,7 @@ class SchoolsController < ApplicationController
     @user = User.new
     @school = School.find(params[:id])
     render :update do |page|      
-      page.replace_html ("new_teacher_form", :partial => "schools/new_teacher")
+      page.replace_html("new_teacher_form", :partial => "schools/new_teacher")
       page[:new_teacher_form].show
     end        
   end
