@@ -113,9 +113,6 @@ class UserProfilesController < ApplicationController
     end
     flash[:notice] = 'Profile was successfully updated.'
     redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user)) 
-  rescue Exception => e
-    flash[:notice]="Error occurred in profile update: <br /> #{e.message}"
-    redirect_to(url_for( :controller => :user_profiles, :action => 'edit', :id=>@user)) 
   end
   
   def add_qualification
