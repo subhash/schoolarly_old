@@ -27,7 +27,7 @@ class Klass < ActiveRecord::Base
   end
   
   def self.current_academic_year(school_id)
-    return Klass.maximum :year, :conditions => {:school_id => school_id}
+    return Klass.maximum(:year, :conditions => {:school_id => school_id})
   end
   
   def current_academic_year
