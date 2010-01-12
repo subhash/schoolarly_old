@@ -15,7 +15,7 @@ class ScoreTest < ActiveSupport::TestCase
   test "subject-score relationship" do
     maths = subjects(:maths)
     s = maths.exams.first.scores
-    assert s.include? @shenuScore1
-    assert s.include? @paruScore1
+    assert s.include?(@shenuScore1)
+    assert s.include?(@paruScore1)
   end
 end
