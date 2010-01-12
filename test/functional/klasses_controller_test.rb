@@ -61,14 +61,18 @@ class KlassesControllerTest < ActionController::TestCase
   
   #  TODO not sure how to do this with login incorporated
   test "destroy klass success" do
-    xhr :post, :create, :klass => {:level => 1.to_sym, :division => "A"}, :school_id =>  @stTeresas.id
-    xhr :get, :destroy, :id => assigns(:klass).id
+    assert_no_difference ['Klass.count','@stTeresas.klasses.size'] do
+      xhr :post, :create, :klass => {:level => 1.to_sym, :division => "A"}, :school_id =>  @stTeresas.id
+      xhr :get, :destroy, :id => assigns(:klass).id
+    end
     assert_response :success
     assert_template "klasses/delete"
   end
   
   test "destroy klass failure" do
-    get :destroy, :id => @one_A.to_param
+    assert_no_difference ['Klass.count','@stTeresas.klasses.size'] do
+      get :destroy, :id => @one_A.to_param
+    end
     assert_response :redirect
   end
   
