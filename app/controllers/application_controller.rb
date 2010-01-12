@@ -109,8 +109,8 @@ class ApplicationController < ActionController::Base
   end
   
   def flash_and_redirect_back(exception)
-    flash[:notice]="Error occurred: <br /> #{exception.message.slice(0, 50)}"
-    redirect_to(url_for( :controller => params[:controller], :action => params[:action], :id => params[:id])) 
+    flash[:notice]="Error Occurred: <br /> #{exception.message}"
+    redirect_to(session[:parent_url] ? session[:parent_url] : request.request_uri)
   end
   
 end
