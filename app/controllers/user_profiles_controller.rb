@@ -2,6 +2,7 @@ class UserProfilesController < ApplicationController
   
   before_filter :find_user_and_person, :except => :add_qualification
   before_filter :set_up, :only => [:show, :new, :edit]
+  after_filter :store_parent_url, :only => [:show, :new, :edit]
   
   def find_user_and_person    
     if(params[:id])
@@ -29,6 +30,10 @@ class UserProfilesController < ApplicationController
       when 'School'
         add_breadcrumb((@person.name.nil?)? @user.email : @person.name, @person)
     end
+  end
+  
+  def store_parent_url
+    session[:parent_url] = request.request_uri
   end
   
   def new
@@ -64,9 +69,6 @@ class UserProfilesController < ApplicationController
     end
     flash[:notice] = 'Profile was successfully created.'
     redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user))
-  rescue Exception => e
-    flash[:notice]="Error occurred in profile creation: <br /> #{e.message}"
-    redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user)) 
   end
   
   def show
@@ -112,7 +114,7 @@ class UserProfilesController < ApplicationController
       @user.update_attributes!(params[:user])
     end
     flash[:notice] = 'Profile was successfully updated.'
-    redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user)) 
+    redirect_to(url_for(:controller => :user_profiles, :action => 'show', :id=>@user))
   end
   
   def add_qualification
