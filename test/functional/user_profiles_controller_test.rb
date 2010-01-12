@@ -19,6 +19,7 @@ class UserProfilesControllerTest < ActionController::TestCase
     @enrolled_student = students(:enrolled_with_profile)
     @bsc_statistics=qualifications(:bsc_statistics)
     @err=qualifications(:err_msc_statistics)
+    @treasa=users(:treasa)
     UserSession.create(@stTeresasSchool.user)
   end
 
@@ -26,8 +27,8 @@ class UserProfilesControllerTest < ActionController::TestCase
     get :show, :id => @stTeresasAdmin.to_param
     assert_response :success
     assert_template 'user_profiles/show'
-    assert_breadcrumb(@stTeresasSchool.name, :url => school_path(@stTeresasSchool), :index => 1 )
-    assert_breadcrumb('Profile')
+    assert_breadcrumb(@stTeresasSchool.name, :url => school_path(@stTeresasSchool), :index => 1)
+    assert_breadcrumb('Profile', :current => true)
     assert_breadcrumb_count(2)
     assert_action_count(1)
     assert_action('Edit', :url => edit_user_profile_path(@stTeresasSchool.user), :index => 1)
@@ -48,7 +49,7 @@ class UserProfilesControllerTest < ActionController::TestCase
     assert_template 'user_profiles/show'
     assert_breadcrumb(@stAntonys.name, :url => school_path(@stAntonys), :index => 1)
     assert_breadcrumb(@antonyTeacher.name, :url => teacher_path(@antonyTeacher), :index => 2)
-    assert_breadcrumb('Profile')
+    assert_breadcrumb('Profile', :current => true)
     assert_breadcrumb_count(3)
     assert_action_count(1)
     assert_action('Edit', :url => edit_user_profile_path(@antonyUser), :index => 1)
@@ -70,7 +71,7 @@ class UserProfilesControllerTest < ActionController::TestCase
     assert_breadcrumb(@enrolled_student.school.name, :url => school_path(@enrolled_student.school), :index => 1)
     assert_breadcrumb(@enrolled_student.current_klass.name, :url => klass_path(@enrolled_student.current_klass), :index => 2)
     assert_breadcrumb(@enrolled_student.name, :url => student_path(@enrolled_student), :index => 3)
-    assert_breadcrumb('Profile')
+    assert_breadcrumb('Profile', :current => true)
     assert_breadcrumb_count(4)
     assert_action_count(1)
     assert_action('Edit', :url => edit_user_profile_path(@enrolled_student.user), :index => 1)
@@ -91,7 +92,7 @@ class UserProfilesControllerTest < ActionController::TestCase
     assert_template 'user_profiles/show'
     assert_breadcrumb(@admitted_student.school.name, :url => school_path(@admitted_student.school), :index => 1)
     assert_breadcrumb(@admitted_student.name, :url => student_path(@admitted_student), :index => 2)
-    assert_breadcrumb('Profile')
+    assert_breadcrumb('Profile', :current => true)
     assert_breadcrumb_count(3)
     assert_action_count(1)
     assert_action('Edit', :url => edit_user_profile_path(@admitted_student.user), :index => 1)
@@ -188,6 +189,16 @@ class UserProfilesControllerTest < ActionController::TestCase
     end
     assert_equal 'Antony Chettan',  assigns(:user_profile).user.person.name.to_s
     assert_redirected_to user_profile_path(@antonyUser)
+  end
+  
+  test "exception handler handles exceptions" do
+    UserSession.create(@treasa)
+    session[:parent_url] = edit_user_profile_path(@treasa)
+    assert_difference('UserProfile.count',0) do
+      put :create, :id => @treasa, :user_profile => { :last_name => 'ChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechyChechy' }
+    end
+    assert_equal "Error Occurred:", flash[:notice].slice(0,15)
+    assert_redirected_to edit_user_profile_path(@treasa)
   end
   
   test "teacher should add qualification thru xhr" do
