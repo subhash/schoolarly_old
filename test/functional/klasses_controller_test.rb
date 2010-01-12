@@ -46,6 +46,8 @@ class KlassesControllerTest < ActionController::TestCase
   test "klass should show all Students, Subjects, Exams tabs" do
     get :show, :id => @one_A.to_param
     assert_response :success
+    assert_equal @one_A.current_students.size, assigns(:students).size
+    assert_equal @one_A.subjects.size, assigns(:subjects).size
     assert_tab_count(3)
     assert_tab("Students", "students-tab")
     assert_tab("Subjects", "subjects-tab")
@@ -55,6 +57,19 @@ class KlassesControllerTest < ActionController::TestCase
     #    assert_select 'div#subjects-tab table tr', 1 + @one_A.subjects.size
     #    assert_select 'div#exams-tab table', @one_A.exam_groups.size
     #    assert_select 'div#exams-tab table td a.ui-icon', 3 * @one_A.exams.size
+  end
+  
+  #  TODO not sure how to do this with login incorporated
+  test "destroy klass success" do
+    xhr :post, :create, :klass => {:level => 1.to_sym, :division => "A"}, :school_id =>  @stTeresas.id
+    xhr :get, :destroy, :id => assigns(:klass).id
+    assert_response :success
+    assert_template "klasses/delete"
+  end
+  
+  test "destroy klass failure" do
+    get :destroy, :id => @one_A.to_param
+    assert_response :redirect
   end
   
 end
