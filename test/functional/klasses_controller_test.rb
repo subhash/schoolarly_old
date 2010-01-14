@@ -8,6 +8,9 @@ class KlassesControllerTest < ActionController::TestCase
     @stTeresas=schools(:st_teresas)
     @one_A=klasses(:one_A)
     UserSession.create(@stTeresas.user)
+    @english = subjects(:english)
+    @malayalam = subjects(:malayalam)
+    @maths = subjects(:maths)
   end
   
   test "create klass failure" do
@@ -74,6 +77,17 @@ class KlassesControllerTest < ActionController::TestCase
       get :destroy, :id => @one_A.to_param
     end
     assert_response :redirect
+  end
+  
+  test "add subjects" do
+    #    add_subjects is invoked from the show page
+#    get :show, :id => @one_A.to_param
+    xhr :post, "add_subjects", {:klass => {:subject_ids => [@malayalam.to_param , @maths.to_param ]}, :id => @one_A.to_param }
+    assert_response :success
+    assert_template "klasses/add_subjects"
+    # add_subject_form is made such that the subjects which are allotted will be disabled for select
+    # so, in the action add_subjects we have to explicitly add the allotted subjects to class
+    assert_equal (2 + @one_A.allotted_subjects.size), @one_A.subjects.size
   end
   
 end
