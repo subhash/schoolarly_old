@@ -50,7 +50,8 @@ class StudentsControllerTest < ActionController::TestCase
   test "show student without school" do
     get :show, :id => @student.to_param
     assert_response :success
-    assert_select 'ul#breadcrumbs strong', @student.name
+    #    assert_select 'ul#breadcrumbs strong', @student.name
+    assert_breadcrumb (@student.name)
     assert_select "div#action_box" do
       assert_select "div.button a", :count => 1
       assert_select "div.button a[href=?]" , '#', :text => 'Add to school'
@@ -60,8 +61,10 @@ class StudentsControllerTest < ActionController::TestCase
   test "show student with school without enrollment " do
     get :show, :id => @admitted_student.to_param
     assert_response :success
-    assert_select 'ul#breadcrumbs li a[href=?]', school_path(@admitted_student.school), :text => @admitted_student.school.name
-    assert_select 'ul#breadcrumbs strong', @admitted_student.name
+    #    assert_select 'ul#breadcrumbs li a[href=?]', school_path(@admitted_student.school), :text => @admitted_student.school.name
+    assert_breadcrumb(@admitted_student.school.name, school_path(@admitted_student.school), 1)
+    #    assert_select 'ul#breadcrumbs strong', @admitted_student.name
+    assert_breadcrumb(@admitted_student.name)
     assert_select "div#action_box" do
       assert_select "div.button a", :count => 1
       assert_select "div.button a[href=?]" , "/student_enrollment/new/"+@admitted_student.id.to_s, :text => 'Assign Class'
