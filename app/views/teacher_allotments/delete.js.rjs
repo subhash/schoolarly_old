@@ -1,0 +1,2 @@
+div_name = @allotment.subject_id.to_s + '_' + @allotment.klass.id.to_s
+page.replace_html(div_name, :text => "<span class='info-sticker'>" + @allotment.klass.name + ":<blockquote>Deleted</blockquote></span>")
