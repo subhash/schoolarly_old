@@ -29,6 +29,8 @@
     list-style-type: none;
 }.sticker .ui-icon {
     float: right;
+}.sticker td {
+	margin-bottom: 10px
 }
 
 /*
@@ -51,6 +53,9 @@
 }.sticker li a:focus {
     background-color: #EDF2F8;
     color: #ccc;
+}.info-sticker {
+	font-size: 12px;
+	color:#666;
 }
 
 /*
