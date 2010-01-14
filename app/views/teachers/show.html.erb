@@ -39,7 +39,7 @@
 		        Allotments of <%= @teacher.name%>
 		        <br/>
 		    </caption>
-			<%= render :partial =>'allotment_list' %>
+			<%= render :partial =>'teacher_allotments/allotments', :object => @teacher_allotments  %>
 			</table>
 		<%else %>
 			<blockquote>No allotment done yet.</blockquote>
