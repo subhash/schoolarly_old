@@ -44,12 +44,13 @@ class TeachersController < ApplicationController
     @school=@teacher.school
     
     add_breadcrumb(@school.name, @school)
-    add_breadcrumb(  (@teacher.user.user_profile.nil?)? @teacher.user.email : @teacher.user.user_profile.name)
+    add_breadcrumb((@teacher.user.user_profile.nil?)? @teacher.user.email : @teacher.user.user_profile.name)
     
     add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @teacher.user})
     add_page_action('Allot Subjects Classes', {:action => 'allot', :id => @teacher})
     
     @teacher_allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
+    @exams=@teacher.exams.group_by{|e| e.exam_group}
   end
   
   def get_allotment_items(teacher, subjects)
