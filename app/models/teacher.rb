@@ -32,7 +32,7 @@ class Teacher < ActiveRecord::Base
   end
 
   def exams
-  return current_allotments.collect{|allotment| Exam.all(:conditions => ["exam_group_id IN (:egid) AND subject_id = :sid", {:egid => allotment.klass.exam_groups.collect{|eg| eg.id}, :sid => allotment.subject.id}])}.flatten
+    return current_allotments.collect{|allotment| Exam.all(:conditions => ["exam_group_id IN (:egid) AND subject_id = :sid", {:egid => allotment.klass.exam_groups.collect{|eg| eg.id}, :sid => allotment.subject.id}])}.flatten
   end
   
 end
