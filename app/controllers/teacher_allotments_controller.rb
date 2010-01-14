@@ -1,6 +1,5 @@
 class TeacherAllotmentsController < ApplicationController
   
-  
   def create
     @teacher_allotment = TeacherAllotment.new(params[:teacher_allotment])
     @teacher_allotment.subject = Subject.find(params[:subject_id])
@@ -16,8 +15,18 @@ class TeacherAllotmentsController < ApplicationController
     else
       respond_to do |format|          
         format.js {render :template => 'teacher_allotments/create_error'}
-      end  
+      end
     end    
   end
   
+  def delete
+    @allotment = TeacherAllotment.find(params[:id])
+    @allotment.is_current = false
+    @allotment.save!
+    respond_to do |format|
+      flash[:notice] = 'Allotment was successfully removed.'
+      format.js {render :template => 'teacher_allotments/delete'}
+    end 
+  end
+ 
 end
