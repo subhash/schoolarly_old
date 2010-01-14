@@ -46,6 +46,14 @@
 		<%end %>
 	</div>
 	<div id="exams-tab">
-		
+		<%= render :partial => 'exams/exams', :object => @exams %>
+		        <div id="dialog_add_exam" title="Add Exam" class="jquery-dialog" style ="display: none;">
+            <div id="add_exam">
+            </div>
+        </div>
+        <div id="dialog_edit_exam" title="Modify Exam" class="jquery-dialog" style ="display: none;">
+            <div id="edit_exam">
+            </div>
+        </div>
 	</div>	
 </div>
