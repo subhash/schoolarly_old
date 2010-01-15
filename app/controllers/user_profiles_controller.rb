@@ -1,6 +1,6 @@
 class UserProfilesController < ApplicationController
   
-  before_filter :find_user_and_person, :except => :add_qualification
+  before_filter :find_user_and_person
   before_filter :set_up, :only => [:show, :new, :edit]
   after_filter :store_parent_url, :only => [:show, :new, :edit]
   
@@ -37,10 +37,10 @@ class UserProfilesController < ApplicationController
   end
   
   def new
-    if !@user.equal?(current_user)
+    if @user != current_user
       redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user))
     else 
-      if @user.user_profile
+      if !@user.user_profile.nil?
         redirect_to(url_for( :controller => :user_profiles, :action => 'edit', :id=>@user))
       end
       add_breadcrumb('Profile')
@@ -52,17 +52,7 @@ class UserProfilesController < ApplicationController
     @user_profile = UserProfile.new(params[:user_profile])
     @user_profile.user=@user
     User.transaction do
-      if @user.is_a?(Teacher)
-        if params[:qualification]
-          Qualification.update(params[:qualification].keys, params[:qualification].values)
-        end
-        if params[:cb]
-          qualifications_marked_for_deletion=Qualification.find(params[:cb].keys)
-          Qualification.destroy(qualifications_marked_for_deletion)
-        end
-      else
-        @person.update_attributes!(params[:person])
-      end
+      @person.update_attributes!(params[:person])
       @user_profile.save!
       @user.update_attributes!(params[:user])
     end
@@ -71,18 +61,18 @@ class UserProfilesController < ApplicationController
   end
   
   def show
-    if @user.user_profile.nil? and @user.equal?(current_user) 
+    if @user.user_profile.nil? and @user == current_user 
       redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
     end
     add_breadcrumb('Profile')
-    if @user.equal?(current_user)
+    if @user == current_user
       add_page_action('Edit', {:controller => :user_profiles, :action => 'edit', :id => @user})
     end
     @user_profile=@user.user_profile
   end
   
   def edit
-    if !@user.equal?(current_user)
+    if @user != current_user
       redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user))
     else    
       if @user.user_profile.nil? 
@@ -98,41 +88,12 @@ class UserProfilesController < ApplicationController
   def update
     @user_profile=@user.user_profile
     User.transaction do
-      if @person.is_a?(Teacher)
-        if params[:qualification]
-          Qualification.update(params[:qualification].keys, params[:qualification].values)
-        end
-        if params[:cb]
-          qualifications_marked_for_deletion=Qualification.find(params[:cb].keys)
-          Qualification.destroy(qualifications_marked_for_deletion)
-        end
-      else
-        @person.update_attributes!(params[:person])
-      end
+      @person.update_attributes!(params[:person])
       @user_profile.update_attributes!(params[:user_profile])
       @user.update_attributes!(params[:user])
     end
     flash[:notice] = 'Profile was successfully updated.'
     redirect_to(url_for(:controller => :user_profiles, :action => 'show', :id=>@user))
-  end
-  
-  def add_qualification
-    @person=Teacher.find(params[:id])
-    @qualification=Qualification.new()
-    @qualification.university=params[:university]
-    @qualification.degree=params[:degree]
-    @qualification.subject=params[:subject]
-    @qualification.date=params[:date]
-    @qualification.teacher = @person
-    @person.qualifications << @qualification
-    respond_to do |format|
-      flash[:notice] = 'Qualification details were successfully added.'
-      format.js {render :template => 'user_profiles/qualification_create_success'}
-    end
-  rescue Exception => e
-    respond_to do |format|
-      format.js {render :template => 'user_profiles/qualification_create_error'}
-    end
   end
 
 end
