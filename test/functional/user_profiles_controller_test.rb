@@ -17,8 +17,6 @@ class UserProfilesControllerTest < ActionController::TestCase
     @student_without_school=users(:student_without_school)
     @admitted_student = students(:admitted_with_profile)
     @enrolled_student = students(:enrolled_with_profile)
-    @bsc_statistics=qualifications(:bsc_statistics)
-    @err=qualifications(:err_msc_statistics)
     @treasa=users(:treasa)
     UserSession.create(@stTeresasSchool.user)
   end
@@ -132,7 +130,6 @@ class UserProfilesControllerTest < ActionController::TestCase
   test "should get new" do
     UserSession.create(@paru)
     get :new, :id => @paru.to_param
-    assert_response :success
     assert_template 'user_profiles/new'
   end
   
@@ -199,18 +196,6 @@ class UserProfilesControllerTest < ActionController::TestCase
     end
     assert_equal "Error Occurred:", flash[:notice].slice(0,15)
     assert_redirected_to edit_user_profile_path(@treasa)
-  end
-  
-  test "teacher should add qualification thru xhr" do
-    xhr :post, :add_qualification , {:id => @antonyTeacher, :qualification => @bsc_statistics}
-    assert_response :success
-    assert_template 'user_profiles/qualification_create_success'
-  end
-
-  test "teacher should show error in add qualification thru xhr" do
-    xhr :post, :add_qualification , {:id => @sunil, :qualification => @err}
-    assert_response :success
-    assert_template 'user_profiles/qualification_create_error'
   end
   
 end
