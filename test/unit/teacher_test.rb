@@ -14,11 +14,6 @@ class TeacherTest < ActiveSupport::TestCase
     assert teachers(:treasa).user
   end
   
-  test "mary kutty has many degrees up her sleeve" do
-    assert @mary_kutty.qualifications.include?(qualifications(:bsc_maths))
-    assert @mary_kutty.qualifications.include?(qualifications(:msc_maths))
-  end
-  
   test "teacher antony can be the class teacher of more than one class" do
     assert_equal 4, @antony.currently_owned_klasses.size
   end
