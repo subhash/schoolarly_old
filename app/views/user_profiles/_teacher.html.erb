@@ -1,45 +1,13 @@
 <table class="ui-state-default center">
     <caption>
-        Qualification Details
+        Teacher Details
     </caption>
-    <%if !teacher.qualifications.nil? && !teacher.qualifications.empty? %>
-	    <tr>
-	        <th>
-	            University
-	        </th>
-	        <th>
-	            Degree
-	        </th>
-	        <th>
-	            Subject
-	        </th>
-	        <th>
-	            Date
-	        </th>
-	    </tr>
-	    <%teacher.qualifications.each do |qualification| %>
-		    <tr>
-		        <td>
-		            <%=h qualification.university %>
-		        </td>
-		        <td>
-		            <%=h qualification.degree %>
-		        </td>
-		        <td>
-		            <%=h qualification.subject %>
-		        </td>
-		        <td>
-		            <%=h qualification.date %>
-		        </td>
-		    </tr>
-	    <%end %>
-    <%else %>
-	    <tr>
-	        <td>
-	            <blockquote>
-	                Qualification Details Unavailable
-	            </blockquote>
-	        </td>
-	    </tr>
-    <%end %>
+    <tr>
+        <td>
+            <b>Qualifications:</b>
+        </td>
+        <td>
+            <%=h teacher.qualifications %>
+        </td>
+    </tr>
 </table>
