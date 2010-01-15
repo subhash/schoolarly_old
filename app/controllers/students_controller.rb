@@ -42,6 +42,9 @@ class StudentsController < ApplicationController
   # POST /students
   # POST /students.xml
   def create
+    #    TODO - if the user already exists, with school not assigned, 
+    #we should let that be added to school after enough warnings
+    
     @student = Student.new(params[:student])
     @user = User.new(params[:user])
     @student.user = @user

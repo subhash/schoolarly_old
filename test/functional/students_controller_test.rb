@@ -49,8 +49,7 @@ class StudentsControllerTest < ActionController::TestCase
   
   test "show student without school" do
     get :show, :id => @student.to_param
-    assert_response :success
-    #    assert_select 'ul#breadcrumbs strong', @student.name
+    assert_response :success    
     assert_breadcrumb (@student.name)
     assert_select "div#action_box" do
       assert_select "div.button a", :count => 1
@@ -61,9 +60,7 @@ class StudentsControllerTest < ActionController::TestCase
   test "show student with school without enrollment " do
     get :show, :id => @admitted_student.to_param
     assert_response :success
-    #    assert_select 'ul#breadcrumbs li a[href=?]', school_path(@admitted_student.school), :text => @admitted_student.school.name
-    assert_breadcrumb(@admitted_student.school.name, school_path(@admitted_student.school), 1)
-    #    assert_select 'ul#breadcrumbs strong', @admitted_student.name
+    assert_breadcrumb(@admitted_student.school.name, school_path(@admitted_student.school), 1)   
     assert_breadcrumb(@admitted_student.name)
     assert_select "div#action_box" do
       assert_select "div.button a", :count => 1
@@ -74,9 +71,11 @@ class StudentsControllerTest < ActionController::TestCase
   test "show student with school with enrollment " do
     get :show, :id => @enrolled_student.to_param
     assert_response :success
-    assert_select 'ul#breadcrumbs li a[href=?]', school_path(@enrolled_student.school), :text => @enrolled_student.school.name
-    assert_select 'ul#breadcrumbs li a[href=?]', klass_path(@enrolled_student.current_enrollment.klass), :text => @enrolled_student.current_enrollment.klass.name
-    assert_select 'ul#breadcrumbs strong', @enrolled_student.name
+    #    assert_select 'ul#breadcrumbs li a[href=?]', school_path(@enrolled_student.school), :text => @enrolled_student.school.name
+    assert_breadcrumb(@enrolled_student.school.name, school_path(@enrolled_student.school),1)
+    #    assert_select 'ul#breadcrumbs li a[href=?]', klass_path(@enrolled_student.current_enrollment.klass), :text => @enrolled_student.current_enrollment.klass.name
+    assert_breadcrumb(@enrolled_student.current_enrollment.klass.name, klass_path(@enrolled_student.current_enrollment.klass), 2)
+    assert_breadcrumb(@enrolled_student.name)
     assert_select "div#action_box" do
       assert_select "div.button a", :count => 1
       assert_select "div.button a[href=?]" , "#", :text => 'Add/Remove Subjects'

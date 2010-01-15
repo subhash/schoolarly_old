@@ -4,6 +4,7 @@ class StudentTest < ActiveSupport::TestCase
   def setup
     @school = schools(:st_teresas)
     @user = users(:mary)
+    @paru = students(:paru)
   end
   
   test "student-user association" do
@@ -13,4 +14,15 @@ class StudentTest < ActiveSupport::TestCase
     assert student.save
     assert_equal @user.person, student        
   end  
+  
+  test "student-school association" do 
+    assert_equal @paru.school, @school
+    assert_equal 2, @school. students.size
+    @school.students.delete(@paru)
+    @school.save!
+    # TODO revisit the reload - why doesnt it work otherwise?
+    @paru.reload
+    assert_nil @paru.school
+    assert_equal 1, @school.students.size
+  end
 end
