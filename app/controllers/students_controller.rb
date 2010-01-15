@@ -86,6 +86,7 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
     @school = School.find(params[:student][:school_id])
     @school.students << @student
+    @school.save!
     render :update do |page|
       page.redirect_to student_path(@student)
     end

@@ -71,9 +71,7 @@ class StudentsControllerTest < ActionController::TestCase
   test "show student with school with enrollment " do
     get :show, :id => @enrolled_student.to_param
     assert_response :success
-    #    assert_select 'ul#breadcrumbs li a[href=?]', school_path(@enrolled_student.school), :text => @enrolled_student.school.name
     assert_breadcrumb(@enrolled_student.school.name, school_path(@enrolled_student.school),1)
-    #    assert_select 'ul#breadcrumbs li a[href=?]', klass_path(@enrolled_student.current_enrollment.klass), :text => @enrolled_student.current_enrollment.klass.name
     assert_breadcrumb(@enrolled_student.current_enrollment.klass.name, klass_path(@enrolled_student.current_enrollment.klass), 2)
     assert_breadcrumb(@enrolled_student.name)
     assert_select "div#action_box" do
@@ -83,6 +81,11 @@ class StudentsControllerTest < ActionController::TestCase
   end
   
   test "show student with subjects and exams tabs" do
+    get :show, :id => @enrolled_student.to_param
+    assert_tab_count(2)
+    assert_tabs("Subjects", "subjects-tab")
+    assert_tabs("Exams/Scores", "exams-tab")   
+    assert_select '#subjects-tab tr[id*=subject-]', @enrolled_student.current_enrollment.subjects.size    
   end
   
 end
