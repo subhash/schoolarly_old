@@ -1,79 +1,9 @@
 <div>
-    <table class="ui-state-default center">
-    	<caption>User Details</caption>
-		<% if @user_profile %>
-        <tr>
-            <td>
-                <b>User Name:</b>
-            </td>
-            <td>
-                <%=h @user_profile.name.to_s %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <b>Address:</b>
-            </td>
-            <td>
-                <%=h @user_profile.address.address_line_1 %>
-                <br/>
-                <%=h @user_profile.address.address_line_2 %>
-                <br/>
-                <%=h @user_profile.address.city %>
-                <br/>
-                <%=h @user_profile.address.state %>
-                <br/>
-                <%=h @user_profile.address.country %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <b>Pincode:</b>
-            </td>
-            <td>
-                <%=h @user_profile.pincode %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <b>Phone Landline:</b>
-            </td>
-            <td>
-                <%=h @user_profile.phone_landline %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <b>Phone Mobile:</b>
-            </td>
-            <td>
-                <%=h @user_profile.phone_mobile %>
-            </td>
-        </tr>
-        <% else %>
-        <tr>
-            <td colspan=2>
-                <blockquote>
-                    Profile Unavailable
-                </blockquote>
-            </td>
-        </tr>
-        <% end %>
-    </table>
+    <%= render :partial => "user_profiles/user_profile", :object => @user_profile %>
 </div>
-<div style="height:0.3em"></div>
 <div>
-    <%= render :partial => "user_profiles/" + @user.person_type.to_s.downcase %>
-	<div style="height:0.3em"></div>
-    <table class="ui-state-default center">
-    	<caption>Login Details</caption>
-        <tr>
-            <td>
-                <b>Email:</b>
-            </td>
-            <td>
-                <%=h @user.email %>
-            </td>
-        </tr>
-    </table>
+    <%= render :partial => "user_profiles/" + @user.person_type.downcase, :object => @person %>
+</div>
+<div>
+    <%= render :partial => "user_profiles/user", :object => @user %>
 </div>

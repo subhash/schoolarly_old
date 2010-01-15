@@ -1,13 +1,12 @@
-
 <table class="ui-state-default center">
 	<caption>Student Details</caption>  
-	<%if @person.school %>
+	<%if student.school %>
     <tr>
         <td>
             <b>School:</b>
         </td>
         <td>
-            <%=link_to @person.school.name, school_path(@person.school) %>
+            <%=link_to student.school.name, school_path(student.school) %>
         </td>
     </tr>
     <tr>
@@ -15,16 +14,16 @@
             <b>Admission Number:</b>
         </td>
         <td>
-            <%=h @person.admission_number %>
+            <%=h student.admission_number %>
         </td>
     </tr>
 	<tr>
         <td>
             <b>Class:</b>
         </td>
-    <%if @person.current_enrollment %>
+    <%if student.current_enrollment %>
         <td>
-            <%=link_to @person.current_enrollment.klass.name, klass_path(@person.current_enrollment.klass) %>
+            <%=link_to student.current_enrollment.klass.name, klass_path(student.current_enrollment.klass) %>
         </td>
 	<%else%>
         <td>

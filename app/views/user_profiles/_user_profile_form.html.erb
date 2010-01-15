@@ -1,0 +1,54 @@
+<% fields_for :user_profile do |user_profile| %>
+	<%= user_profile.error_messages %>
+	<table class="ui-state-default center">
+	    <caption>
+	        User Details
+	    </caption>
+	    <tr>
+	        <td>
+	            <b>User Name:</b>
+	        </td>
+	        <td>
+	            <%= user_profile.text_field :first_name %>
+	            <%= user_profile.text_field :middle_name %>
+	            <%= user_profile.text_field :last_name %>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>
+	            <b><%= user_profile.label :Address %>:</b>
+	        </td>
+	        <td>
+	            <%= user_profile.text_field :address_line_1 %>
+	            <%= user_profile.text_field :address_line_2 %>
+	            <%= user_profile.text_field :city %>
+	            <%= user_profile.text_field :state %>
+	            <%= user_profile.text_field :country %>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>
+	            <b><%= user_profile.label :pincode %>:</b>
+	        </td>
+	        <td>
+	            <%= user_profile.text_field :pincode %>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>
+	            <b><%= user_profile.label :phone_landline %>:</b>
+	        </td>
+	        <td>
+	            <%= user_profile.text_field :phone_landline %>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>
+	            <b><%= user_profile.label :phone_mobile %>:</b>
+	        </td>
+	        <td>
+	            <%= user_profile.text_field :phone_mobile %>
+	        </td>
+	    </tr>
+	</table>
+<%end %>

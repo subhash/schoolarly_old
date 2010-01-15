@@ -1,25 +1,11 @@
-		<caption>Login Details</caption>
-		<tr>
+   <table class="ui-state-default center">
+    	<caption>Login Details</caption>
+        <tr>
             <td>
-                <b><%= user.label :email %>:</b>
+                <b>Email:</b>
             </td>
             <td>
-            	<%= user.text_field :email, :readonly => true %>
-            </td>
-        </tr>		
-		<tr>
-            <td>
-                <b><%= user.label 'Change Password' %>:</b>
-            </td>
-            <td>
-            	<%= user.password_field :password %>
-            </td>
-        </tr>	
-		<tr>
-            <td>
-                <b><%= user.label 'Confirm Password' %>:</b>
-            </td>
-            <td>
-            	<%= user.password_field :password_confirmation %>
+                <%=h user.email %>
             </td>
         </tr>
+    </table>

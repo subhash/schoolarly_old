@@ -1,6 +1,7 @@
-<%teacher=teacher_form%>
+<% fields_for :person do |teacher| %>
+<%= teacher.error_messages %>
 <div id="qualification_list_div">
-	<%= render :partial => "qualifications", :object => teacher%> 
+    <%= render :partial => "qualifications", :object => teacher %>
 </div>
 <div class="button ui-state-default ui-corner-all center">
     <div id="button_subjects">
@@ -11,4 +12,4 @@
     <div id="add_qualification">
     </div>
 </div>
-
+<%end %>

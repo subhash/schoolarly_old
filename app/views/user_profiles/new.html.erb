@@ -1,32 +1,18 @@
-<% form_for @user_profile, :url => {:controller => :user_profiles, :action => :create, :method => :post, :id => @user} do |profile_form| %>
-  <%= profile_form.error_messages %>
+<% form_for @user_profile, :url => {:controller => :user_profiles, :action => :create, :method => :post, :id => @user} do |user_profile|%>
+<%= user_profile.error_messages %>
 <div>
-		<table class="ui-state-default center">
-			<%= render :partial => "user_profiles/profile", :object => profile_form %>
-		</table>
+    <%= render :partial => "user_profiles/user_profile_form", :locals => {:user_profile => user_profile} %>
 </div>
-<div style="height:0.3em"></div>
 <div>
-    	<% fields_for @person do |person_form| %>
-		<%= person_form.error_messages %>
-			<%= render :partial => "user_profiles/" + @user.person_type.to_s.downcase + "_form", :object => person_form %>
-		<%end%>
+    <%= render :partial => "user_profiles/" +  @user.person_type.downcase + "_form", :locals => {:person => @person} %>
 </div>
-<div style="height:0.3em"></div>
-<div>	
-	<% fields_for @user do |user_form| %>
-		<%= user_form.error_messages %>
-		<table class="ui-state-default center">
-			<%= render :partial => "user_profiles/user", :object => user_form %>
-		</table>
-	<%end%>
+<div>
+    <%= render :partial => "user_profiles/user_form", :locals => {:user => @user} %>
 </div>
 <div>
     <p class="icaption_right">
         <br/>
-		<%= link_to_function( 'Submit' , "document.forms['new_user_profile'].submit()")%> |
-		<%= link_to 'Back', {:controller => :user_profiles, :action => 'show', :id=>@user} %>
-        <% end %>
+        <%= link_to_function( 'Submit' , "document.forms['new_user_profile'].submit()") %>|<%= link_to 'Back', {:controller => :user_profiles, :action => 'show', :id=>@user} %>
     </p>
 </div>
-
+<% end %>
