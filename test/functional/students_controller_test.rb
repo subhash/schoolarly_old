@@ -83,8 +83,8 @@ class StudentsControllerTest < ActionController::TestCase
   test "show student with subjects and exams tabs" do
     get :show, :id => @enrolled_student.to_param
     assert_tab_count(2)
-    assert_tabs("Subjects", "subjects-tab")
-    assert_tabs("Exams/Scores", "exams-tab")   
+    assert_tab("Subjects", "subjects-tab")
+    assert_tab("Exams/Scores", "exams-tab")   
     assert_select '#subjects-tab tr[id*=subject-]', @enrolled_student.current_enrollment.subjects.size    
   end
   
