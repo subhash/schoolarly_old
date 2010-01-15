@@ -1,7 +1,6 @@
 class Teacher < ActiveRecord::Base
   has_one :user, :as => :person
   belongs_to :school
-  has_many :qualifications
   has_many :allotments, :class_name =>'TeacherAllotment' 
   has_many :subjects, :through => :allotments
   has_many :current_allotments, :class_name => 'TeacherAllotment', :conditions => {:is_current => true}, :order => "subject_id"
