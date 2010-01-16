@@ -95,22 +95,22 @@ class ApplicationController < ActionController::Base
 
   #Exception Handlers
   
-  rescue_from Exception do |exception|
-    case  exception
-      when ActiveRecord::RecordNotFound 
-        then flash_and_redirect_back(exception)
-      when ActiveRecord::StatementInvalid 
-        then flash_and_redirect_back(exception)
-      when ActiveRecord::RecordInvalid 
-        then flash_and_redirect_back(exception)
-    else
-      flash_and_redirect_back(exception)
-    end
-  end
-  
-  def flash_and_redirect_back(exception)
-    flash[:notice]="Error Occurred: <br /> #{exception.message}"
-    redirect_to(session[:parent_url] ? session[:parent_url] : request.request_uri)
-  end
+#  rescue_from Exception do |exception|
+#    case  exception
+#      when ActiveRecord::RecordNotFound 
+#        then flash_and_redirect_back(exception)
+#      when ActiveRecord::StatementInvalid 
+#        then flash_and_redirect_back(exception)
+#      when ActiveRecord::RecordInvalid 
+#        then flash_and_redirect_back(exception)
+#    else
+#      flash_and_redirect_back(exception)
+#    end
+#  end
+#  
+#  def flash_and_redirect_back(exception)
+#    flash[:notice]="Error Occurred: <br /> #{exception.message}"
+#    redirect_to(session[:parent_url] ? session[:parent_url] : request.request_uri)
+#  end
   
 end

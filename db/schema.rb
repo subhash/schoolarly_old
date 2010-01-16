@@ -219,6 +219,7 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
 
   create_table "teachers", :force => true do |t|
     t.integer  "school_id"
+    t.text     "qualifications"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -299,8 +300,8 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
   add_foreign_key "student_enrollments_subjects", ["student_enrollment_id"], "student_enrollments", ["id"], :name => "student_enrollments_subjects_ibfk_1"
   add_foreign_key "student_enrollments_subjects", ["subject_id"], "subjects", ["id"], :name => "student_enrollments_subjects_ibfk_2"
 
-  add_foreign_key "students", ["school_id"], "schools", ["id"], :name => "students_ibfk_1"
   add_foreign_key "students", ["current_enrollment_id"], "student_enrollments", ["id"], :name => "students_ibfk_2"
+  add_foreign_key "students", ["school_id"], "schools", ["id"], :name => "students_ibfk_1"
 
   add_foreign_key "teacher_allotments", ["teacher_id"], "teachers", ["id"], :name => "teacher_allotments_ibfk_1"
   add_foreign_key "teacher_allotments", ["subject_id"], "subjects", ["id"], :name => "teacher_allotments_ibfk_2"

@@ -40,10 +40,11 @@ class KlassesController < ApplicationController
     @klass = Klass.find(params[:id])   
     @school = @klass.school
     add_breadcrumb(@school.name, @school)
-    add_breadcrumb(@klass.name)
-    add_js_page_action('Add Exam Group', :partial =>'exam_groups/new', :locals => {:exam_types => ExamType.find(:all)})
+    add_breadcrumb(@klass.name)    
+    add_js_page_action('Add Students', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled })
     @all_subjects = Subject.find(:all)
-    add_js_page_action('Add/Remove Subjects',:partial => 'subjects/add_subjects_form', :locals => {:entity => @klass, :subjects => @all_subjects , :disabled => @klass.allotted_subjects})    
+    add_js_page_action('Add/Remove Subjects',:partial => 'subjects/add_subjects_form', :locals => {:entity => @klass, :subjects => @all_subjects , :disabled => @klass.allotted_subjects})
+    add_js_page_action('Add Exam Group', :partial =>'exam_groups/new', :locals => {:exam_types => ExamType.find(:all)})    
     @students = @klass.current_students      
     @subjects = @klass.subjects
     @teacher_allotments= @klass.teacher_allotments.current.group_by{|a| a.subject.id}
@@ -67,6 +68,26 @@ class KlassesController < ApplicationController
     @all_subjects = Subject.find(:all, :order => :name)
     @teacher_allotments = TeacherAllotment.current_for_klass(@klass.id).group_by{|a| a.subject.id}
   end
+  
+  def add_students
+    @klass = Klass.find(params[:id])
+    @existing_students = @klass.students    
+    new_ids = params[:klass][:student_ids]
+    #    have to do this since multi-select always returns one empty selection - TODO explore why
+    @new_students = Student.find(new_ids.to(-2))
+    @new_students.each do |student|
+      student_enrollment = StudentEnrollment.new
+      student_enrollment.start_date = Time.now.to_date
+      student_enrollment.klass  = @klass
+      student.enrollments << student_enrollment
+      student.current_enrollment = student_enrollment
+      @klass.students << student
+      student.save!      
+    end
+    @klass.save!
+    @addable_students = @klass.school.students.not_enrolled
+  end
+  
   
   def remove_student
     @student = Student.find(params[:id])

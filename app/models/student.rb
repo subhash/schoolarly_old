@@ -1,5 +1,9 @@
 class Student < ActiveRecord::Base
   
+  named_scope :not_enrolled, lambda {
+    {:conditions => { :current_enrollment_id => nil}}
+  }
+  
   has_one :user, :as => :person
   belongs_to :school
   has_many :enrollments, :class_name => 'StudentEnrollment'
