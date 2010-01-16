@@ -13,13 +13,13 @@ class UserProfilesController < ApplicationController
   
   def set_up
     set_active_user(@user.id)
-    case @user.person_type
-      when 'Teacher'  
+    case 
+      when @person.is_a?(Teacher)  
         if @person.school
           add_breadcrumb(@person.school.name, @person.school)
         end
         add_breadcrumb(@person.name, @person)
-      when 'Student'
+      when @person.is_a?(Student)
         if @person.school
           add_breadcrumb(@person.school.name, @person.school)
           if @person.current_klass
@@ -27,7 +27,7 @@ class UserProfilesController < ApplicationController
           end
         end
         add_breadcrumb(@person.name, @person)
-      when 'School'
+      when @person.is_a?(School)
         add_breadcrumb((@person.name.nil?)? @user.email : @person.name, @person)
     end
   end
