@@ -2,6 +2,9 @@
     <caption>
         Teacher Details
     </caption>
+	<%if teacher.qualifications.nil? || teacher.qualifications.empty?%>
+		<tr><td><blockquote>Teacher Details Unavailable</blockquote></td></tr>
+	<%else%>
     <tr>
         <td>
             <b>Qualifications:</b>
@@ -10,4 +13,5 @@
             <%=h teacher.qualifications %>
         </td>
     </tr>
+	<%end%>
 </table>

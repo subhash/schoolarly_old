@@ -1,2 +1,0 @@
-page.replace_html("add_qualification", :partial =>'user_profiles/qualification_new', :object => @person)
-page << "openDialog('dialog_add_qualification');"

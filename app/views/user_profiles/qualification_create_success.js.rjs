@@ -1,2 +1,0 @@
-page << "closeDialogs();"
-page.replace_html(:qualification_list_div, :partial =>'qualifications', :object => @qualification)
