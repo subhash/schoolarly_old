@@ -56,6 +56,7 @@ class UsersController < ApplicationController
     add_js_page_action('Invite Student',:partial => 'students/invite_student_form', :locals => {:student => Student.new, :school => @school})
     add_js_page_action('Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :school => @school})
     add_js_page_action('Add Student',:partial => 'users/new_user', :locals => {:user => User.new, :person_type => 'Student'})
+    add_js_page_action('Add Teacher',:partial => 'users/new_user', :locals => {:user => User.new, :person_type => 'Teacher'})
     
     @schools = User.find_all_by_person_type(:School)
     @students = Student.find(:all)

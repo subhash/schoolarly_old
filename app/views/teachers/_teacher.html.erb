@@ -12,7 +12,8 @@
 				<%end%>
             </td>
 			<td>
-				<%if !subjects[teacher.id].nil? && !subjects[teacher.id].empty?%>
+				<!-- TODO improve following check of subjects -->
+				<%if local_assigns[:subjects] and !subjects[teacher.id].nil? and !subjects[teacher.id].empty?%>
 					<%=subjects[teacher.id].collect{|allotment| allotment.subject.name}.uniq.join(",") %>
 				<%end%>
 			</td>

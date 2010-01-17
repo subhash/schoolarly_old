@@ -1,3 +1,7 @@
+name = @person_type.underscore.pluralize
+tab_name = "#{name}-tab"
+class_name = "#{name}"
+partial_name = "#{name}/#{@person_type.underscore}"
 page << "closeDialogs();"
-page << "jQuery('.tabs').tabs('select','#students-tab')"
-page.insert_html :top, "students", :partial => 'students/student', :object => @user.person
+page << "jQuery('.tabs').tabs('select','#{tab_name}')"
+page.insert_html :top, "#{name}", :partial => "#{partial_name}", :object => @user.person
