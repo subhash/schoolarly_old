@@ -7,13 +7,20 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
-    person_class = Object.const_get(params[:user_type])
+    @person_type = params[:person_type]
+    person_class = Object.const_get(@person_type)
     @user.person = person_class.new
     if @user.save
-      flash[:notice] = "Account registered!"
-      redirect_back_or_default account_url
+      respond_to do |format|
+        flash[:notice] = 'User was successfully created.'
+        format.html { redirect_back_or_default account_url }
+        format.js {render :template => 'users/create_success'}
+      end     
     else
-      render :action => :new
+      respond_to do |format|          
+        format.html { render :action => "new" }
+        format.js {render :template => 'users/create_error'}
+      end
     end
   end
   
@@ -48,6 +55,7 @@ class UsersController < ApplicationController
     add_breadcrumb('Home')
     add_js_page_action('Invite Student',:partial => 'students/invite_student_form', :locals => {:student => Student.new, :school => @school})
     add_js_page_action('Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :school => @school})
+    add_js_page_action('Add Student',:partial => 'users/new_user', :locals => {:user => User.new, :person_type => 'Student'})
     
     @schools = User.find_all_by_person_type(:School)
     @students = Student.find(:all)
@@ -75,4 +83,13 @@ class UsersController < ApplicationController
     end
     redirect_to :action => :show, :id => params[:id]
   end
+  
+  def remove_student
+    @student = Student.find(params[:id])
+    Student.transaction do
+      @student.user.destroy
+      @student.destroy
+    end
+  end
+  
 end

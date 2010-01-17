@@ -99,18 +99,6 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
 
   add_index "parents", ["student_id"], :name => "student_id"
 
-  create_table "qualifications", :force => true do |t|
-    t.string   "degree"
-    t.string   "subject"
-    t.string   "university"
-    t.date     "date"
-    t.integer  "teacher_id", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "qualifications", ["teacher_id"], :name => "teacher_id"
-
   create_table "roles", :force => true do |t|
     t.string   "name",              :limit => 40
     t.string   "authorizable_type", :limit => 40
@@ -282,8 +270,6 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
   add_foreign_key "messages", ["sender_id"], "users", ["id"], :name => "messages_ibfk_1"
 
   add_foreign_key "parents", ["student_id"], "students", ["id"], :name => "parents_ibfk_1"
-
-  add_foreign_key "qualifications", ["teacher_id"], "teachers", ["id"], :name => "qualifications_ibfk_1"
 
   add_foreign_key "roles_users", ["user_id"], "users", ["id"], :name => "roles_users_ibfk_1"
   add_foreign_key "roles_users", ["role_id"], "roles", ["id"], :name => "roles_users_ibfk_2"

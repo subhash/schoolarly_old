@@ -31,7 +31,7 @@ class Student < ActiveRecord::Base
   
   def update_roles
     puts 'student updates roles'
-    self.school.user.has_role 'editor', self if school
+#    self.school.user.has_role 'editor', self if school
   end  
   
   def name
