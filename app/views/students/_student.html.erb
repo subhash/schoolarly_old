@@ -1,4 +1,4 @@
-<tr class="student_<%= student.id%>">
+<tr id="student_<%= student.id%>">
     <td>
         <%if student.name %>
         <%= link_to student.name, student_path(student) %>
@@ -10,18 +10,26 @@
         <%= student.user.email %>
     </td>
     <td>
-    	<% if student.school %>
-        <input type="button" id="edit_no_<%= student.id %>" class="ui-state-default float_right" value="edit"/><strong id=<%="admission_number_#{student.id}" %>><%=student.admission_number %></strong>        
-		<%= in_place_editor "admission_number_#{student.id}" ,{:url => {:controller => 'student_enrollment', :action => 'set_student_admission_number', :id => student},:external_control => "edit_no_#{student.id}"} %>
-		<% end %>
+        <% if student.school %>
+        <input type="button" id="edit_no_<%= student.id %>" class="ui-state-default float_right" value="edit"/><strong id=<%="admission_number_#{student.id}" %>><%=student.admission_number %></strong>
+        <%= in_place_editor "admission_number_#{student.id}" ,{:url => {:controller => 'student_enrollment', :action => 'set_student_admission_number', :id => student},:external_control => "edit_no_#{student.id}"} %>
+        <% end %>
     </td>
     <% if student.current_enrollment %>
+    <%enrollment = student.current_enrollment %>
     <td>
-        <%= link_to student.current_enrollment.klass.name , klass_path(student.current_enrollment.klass) %>
+        <%= link_to enrollment.klass.name , klass_path(enrollment.klass) %>
+    </td>
+    <td>
+        <div id="add-subjects-for-enrollment-<%=enrollment.id%>" style ="display: none;">
+        </div>
+        <%= link_to_remote  enrollment.subjects.size, :url => edit_student_enrollment_url(enrollment), :method => :get %>
     </td>
     <%elsif student.school %>
     <td class="ui-state-focus">
-        <%= link_to 'Assign Class',  {:controller => 'student_enrollment', :action => 'new', :id => student} %>
+        <%= link_to 'Assign Class',  {:controller => 'student_enrollments', :action => 'new', :id => student} %>
+    </td>
+    <td>
     </td>
     <% else %>
     <td>

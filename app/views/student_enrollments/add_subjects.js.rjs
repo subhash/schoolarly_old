@@ -1,0 +1,5 @@
+page << "closeDialogs();"
+page.remove "add-subjects-for-enrollment-#{@student_enrollment.id}"
+page.replace "student_#{@student.id}", :partial => 'students/student', :object => @student
+page << "bindDialog('add-subjects-for-enrollment-#{@student_enrollment.id}');"
+

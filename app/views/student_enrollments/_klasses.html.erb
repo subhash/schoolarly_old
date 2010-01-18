@@ -38,7 +38,7 @@
     <div id="subject-selector-<%=klass.id%>" class="subject-selector" style="display: none;">
         <strong>Select Subjects</strong>
         <div id="subjects-<%=klass.id%>" class="selectable">
-            <%= render :partial => 'student_enrollment/subjects' , :object => klass.subjects, :locals => {:klass => klass} %>
+            <%= render :partial => 'student_enrollments/subjects' , :object => klass.subjects, :locals => {:klass => klass} %>
         </div>
         <div id="enroll_submit_button">
             <%= submit_tag "Enroll" %>

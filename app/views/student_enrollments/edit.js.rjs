@@ -1,0 +1,3 @@
+page.replace_html "add-subjects-for-enrollment-#{@student_enrollment.id}", :partial => 'subjects/add_subjects_form', :locals => {:entity => @student_enrollment, :subjects => @klass.subjects , :disabled => []}
+page << "bindDialog('add-subjects-for-enrollment-#{@student_enrollment.id}');"
+page << "openDialog('add-subjects-for-enrollment-#{@student_enrollment.id}')"

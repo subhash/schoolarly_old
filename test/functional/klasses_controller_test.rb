@@ -52,7 +52,7 @@ class KlassesControllerTest < ActionController::TestCase
     assert_tab_count(3)
     assert_tab("Students", "students-tab")
     assert_tab("Subjects", "subjects-tab")
-    assert_select '#students-tab tr[class*=student]', @one_A.current_students.size
+    assert_select '#students-tab tr[id*=student_]', @one_A.current_students.size
     assert_select '#subjects-tab tr[id*=subject-]', @one_A.subjects.size
     # NOT A GOOD WAY TO TEST for the no. of students. What if there are rows for table headers, footers, etc? (Instead we may have to use CSS classes)   
     #    assert_select 'div#subjects-tab table tr', 1 + @one_A.subjects.size
@@ -70,16 +70,16 @@ class KlassesControllerTest < ActionController::TestCase
     assert_template "klasses/delete"
   end
   
-  test "destroy klass failure" do
-    assert_no_difference ['Klass.count','@stTeresas.klasses.size'] do
+#  TODO - behaviour interlinked with exception handling
+  test "destroy klass failure" do    
+    assert_raise ActiveRecord::StatementInvalid  do 
       get :destroy, :id => @one_A.to_param
     end
-    assert_response :redirect
   end
   
   test "add subjects" do
     #    add_subjects is invoked from the show page
-#    get :show, :id => @one_A.to_param
+    #    get :show, :id => @one_A.to_param
     xhr :post, "add_subjects", {:klass => {:subject_ids => [@malayalam.to_param , @maths.to_param ]}, :id => @one_A.to_param }
     assert_response :success
     assert_template "klasses/add_subjects"

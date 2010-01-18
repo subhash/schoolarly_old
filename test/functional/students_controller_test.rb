@@ -64,7 +64,7 @@ class StudentsControllerTest < ActionController::TestCase
     assert_breadcrumb(@admitted_student.name)
     assert_select "div#action_box" do
       assert_select "div.button a", :count => 1
-      assert_select "div.button a[href=?]" , "/student_enrollment/new/"+@admitted_student.id.to_s, :text => 'Assign Class'
+      assert_select "div.button a[href=?]" , "/student_enrollments/new/"+@admitted_student.id.to_s, :text => 'Assign Class'
     end 
   end
   

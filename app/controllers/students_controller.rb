@@ -25,7 +25,7 @@ class StudentsController < ApplicationController
         @student_enrollment = StudentEnrollment.new
         @student_enrollment.student = @student
         @student_enrollment.admission_number = @student.admission_number
-        add_page_action('Assign Class',  {:controller => 'student_enrollment', :action => 'new', :id => @student})
+        add_page_action('Assign Class',  {:controller => 'student_enrollments', :action => 'new', :id => @student})
       end
     else
       add_js_page_action('Add to school', :partial =>'students/add_to_school_form', :locals => {:student => @student, :schools => School.find(:all)})
@@ -77,7 +77,7 @@ class StudentsController < ApplicationController
   def add_subjects
     @student_enrollment = StudentEnrollment.find(params[:id])
     @klass = @student_enrollment.klass
-    @student_enrollment.subject_ids = params[:student_enrollment][:subject_ids] + @klass.allotted_subjects
+    @student_enrollment.subject_ids = params[:student_enrollment][:subject_ids]
     @all_subjects = Subject.find(:all, :order => :name)
     @teacher_allotments = TeacherAllotment.current_for_klass(@klass.id).group_by{|a| a.subject.id}
   end

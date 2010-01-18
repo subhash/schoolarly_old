@@ -1,4 +1,4 @@
-class StudentEnrollmentController < ApplicationController
+class StudentEnrollmentsController < ApplicationController
   
   
   def self.in_place_loader_for(object, attribute, options = {})
@@ -52,15 +52,21 @@ class StudentEnrollmentController < ApplicationController
       render :action => :new
     end
   end
-
+  
   def edit
+    puts "in edit"
     @student_enrollment  = StudentEnrollment.find(params[:id])
-    @student = @student_enrollment.student
-    set_active_user(@student.user.id)
-    @school = @student_enrollment.student.school
+    @student = @student_enrollment.student   
     @klass = @student_enrollment.klass
-    @year = Klass.current_academic_year(@school)
-    @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
+     respond_to do |format|          
+        format.js {render :template => 'student_enrollments/edit'}
+      end  
+  end
+  
+  def add_subjects
+    @student_enrollment = StudentEnrollment.find(params[:id])
+    @student = @student_enrollment.student
+    @student_enrollment.subject_ids = params[:student_enrollment][:subject_ids]
   end
   
   def update
