@@ -13,6 +13,10 @@ shenu:
   school: st_teresas
   current_enrollment: shenu_one
   
+subhash:
+  admission_number: 2
+  school: st_antonys
+  
 admitted_with_profile:
   school: paru_school
   
