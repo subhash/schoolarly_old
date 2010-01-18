@@ -18,8 +18,10 @@
         <%end %>
     </td>
     <td>
+    	<% if teacher.school %>
         <% if !teacher.current_allotments.empty? then label='Show Details'; action='show'; css_class="ui-icon ui-icon-info" else label='Make Allotments'; action='allot'; css_class="ui-icon ui-icon-pencil" end %>
         <%= link_to label,  {:controller => 'teachers', :action => action, :id => teacher}, {:class => css_class} %>
+		<% end %>
     </td>
     <th>
         <%= link_to_remote 'Delete', :url => {:action => 'remove_teacher',:id => teacher}, :confirm => 'Are you sure?' %>
