@@ -1,24 +1,27 @@
-        <tr class="teacher-row">
-            <td>
-                <%if teacher.user.user_profile then cntrlr = 'teachers'; action='show'; id=teacher; label=teacher.user.user_profile.name; class_name="" else cntrlr='user_profiles'; action='new'; id=teacher.user; label= "Create Profile"; class_name="cell-link" end%>
-                <%= link_to label, {:controller => cntrlr, :action => action, :id => id}, {:class => class_name} %>
-            </td>
-            <td>
-                <%= link_to teacher.user.email, {:controller => 'user_profiles', :action => action, :id => teacher.user} %>
-            </td>
-            <td>
-                <%teacher.currently_owned_klasses.each do |klass|%>
-				<%= link_to klass.name + "  ", {:controller => :klasses, :action => 'show', :id=>klass}%>
-				<%end%>
-            </td>
-			<td>
-				<!-- TODO improve following check of subjects -->
-				<%if local_assigns[:subjects] and !subjects[teacher.id].nil? and !subjects[teacher.id].empty?%>
-					<%=subjects[teacher.id].collect{|allotment| allotment.subject.name}.uniq.join(",") %>
-				<%end%>
-			</td>
-			<td>		
-                <% if !teacher.current_allotments.empty? then label='Show Details'; action='show'; css_class="ui-icon ui-icon-info" else label='Make Allotments'; action='allot'; css_class="ui-icon ui-icon-pencil" end%>
-                	<%= link_to label,  {:controller => 'teachers', :action => action, :id => teacher}, {:class => css_class} %>
-            </td>
-        </tr>
+<tr class="teacher_<%= teacher.id%>">
+    <td>
+        <%if teacher.user.user_profile then cntrlr = 'teachers'; action='show'; id=teacher; label=teacher.user.user_profile.name; class_name="" else cntrlr='user_profiles'; action='new'; id=teacher.user; label= "Create Profile"; class_name="cell-link" end %>
+        <%= link_to label, {:controller => cntrlr, :action => action, :id => id}, {:class => class_name} %>
+    </td>
+    <td>
+        <%= link_to teacher.user.email, {:controller => 'user_profiles', :action => action, :id => teacher.user} %>
+    </td>
+    <td>
+        <%teacher.currently_owned_klasses.each do |klass| %>
+        <%= link_to klass.name + "  ", {:controller => :klasses, :action => 'show', :id=>klass} %>
+        <%end %>
+    </td>
+    <td>
+        <!-- TODO improve following check of subjects -->
+        <%if local_assigns[:subjects] and !subjects[teacher.id].nil? and !subjects[teacher.id].empty? %>
+        <%=subjects[teacher.id].collect{|allotment| allotment.subject.name}.uniq.join(",") %>
+        <%end %>
+    </td>
+    <td>
+        <% if !teacher.current_allotments.empty? then label='Show Details'; action='show'; css_class="ui-icon ui-icon-info" else label='Make Allotments'; action='allot'; css_class="ui-icon ui-icon-pencil" end %>
+        <%= link_to label,  {:controller => 'teachers', :action => action, :id => teacher}, {:class => css_class} %>
+    </td>
+    <th>
+        <%= link_to_remote 'Delete', :url => {:action => 'remove_teacher',:id => teacher}, :confirm => 'Are you sure?' %>
+    </th>
+</tr>

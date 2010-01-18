@@ -93,4 +93,12 @@ class UsersController < ApplicationController
     end
   end
   
+  def remove_teacher
+    @teacher = Teacher.find(params[:id])
+    Teacher.transaction do
+      @teacher.user.destroy
+      @teacher.destroy
+    end
+  end
+  
 end
