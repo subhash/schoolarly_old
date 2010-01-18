@@ -1,0 +1,16 @@
+<% remote_form_for student_enrollment , :url => {:controller => 'student_enrollments', :action => 'create', :student_id => student_enrollment.student} do |f| %>
+<%= f.error_messages %>
+<p>
+    <%= f.label :roll_number %>
+    <br/>
+    <%= f.text_field :roll_number %>
+</p>
+<p>
+    <%= f.label "Class" %>
+    <br/>
+    <%= f.select :klass_id, klasses.collect {|k| [ k.name, k.id ] } %>
+</p>
+<p>
+    <%= f.submit 'Assign' %>
+</p>
+<% end %>

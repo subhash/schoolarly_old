@@ -17,50 +17,45 @@ class StudentEnrollmentsController < ApplicationController
   in_place_edit_for :student_enrollment, :roll_number
   
   def new
-    @student = Student.find(params[:id])
+    @student = Student.find(params[:student_id])
     @school = @student.school
-    add_breadcrumb(@school.name, @school)  
-    add_breadcrumb(@student.name, @student)  
-    add_breadcrumb("Assign Class") 
     @year = Klass.current_academic_year(@school)
-    @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
+    @klasses = @school.klasses.in_year(@year)
     @student_enrollment = StudentEnrollment.new
     @student_enrollment.student = @student
     @student_enrollment.admission_number = @student.admission_number
+    respond_to do |format|          
+      format.js {render :template => 'student_enrollments/new'}
+    end  
   end
   
   def create
     @student_enrollment = StudentEnrollment.new(params[:student_enrollment])
-    @student = Student.find(params[:id])
-    @klass = Klass.find(params[:klass_id])    
-    @student_enrollment.klass = @klass
-    #@student_enrollment.admission_number = @student.admission_number
-    @student_enrollment.start_date = Time.now.to_date
-    subjects = params[:subject_subscriptions].split(',')
-    subjects.each {|subject_id| 
-      if (!subject_id.empty?)        
-        subject = Subject.find(subject_id.split('_').last)
-        @student_enrollment.subjects << subject
-      end
-    }
+    @student = Student.find(params[:student_id])
+    @student_enrollment.start_date = Time.now.to_date    
     @student.enrollments << @student_enrollment
     @student.current_enrollment = @student_enrollment
-    if(@student.save)
-      flash[:notice] = @student.user.email + " enrolled to "+@klass.name
-      redirect_to session[:redirect]
+    if(@student.save)    
+      respond_to do |format|
+        format.js {render :template => 'student_enrollments/create_success'}
+      end 
     else
-      render :action => :new
+      @school = @student.school
+      @year = Klass.current_academic_year(@school)
+      @klasses = @school.klasses.in_year(@year)
+      respond_to do |format|          
+        format.js {render :template => 'student_enrollments/create_error'}
+      end  
     end
   end
   
   def edit
-    puts "in edit"
     @student_enrollment  = StudentEnrollment.find(params[:id])
     @student = @student_enrollment.student   
     @klass = @student_enrollment.klass
-     respond_to do |format|          
-        format.js {render :template => 'student_enrollments/edit'}
-      end  
+    respond_to do |format|          
+      format.js {render :template => 'student_enrollments/edit'}
+    end  
   end
   
   def add_subjects
