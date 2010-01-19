@@ -97,6 +97,9 @@ class KlassesController < ApplicationController
     @student.current_enrollment = nil
     @student.admission_number = nil
     @student.save!
+    respond_to do |format|
+      format.js {render :template => 'students/remove'}
+    end 
   end
   
   def delete_allotment

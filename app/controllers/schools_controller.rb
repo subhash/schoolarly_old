@@ -190,6 +190,9 @@ class SchoolsController < ApplicationController
     @student.save!
     @school.students.delete(@student)
     @school.save!
+    respond_to do |format|
+      format.js {render :template => 'students/remove'}
+    end 
   end
   
 end
