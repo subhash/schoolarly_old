@@ -1,0 +1,6 @@
+page.select(".teacher_#{@teacher.id}").each do |element|
+  element.remove
+end
+if @teacher.school.teachers.empty?
+  page.replace_html('teachers-tab', :partial => 'teachers/teachers', :object => @teacher.school.teachers, :locals => {:subjects => @subjects})
+end
