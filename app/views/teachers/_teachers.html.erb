@@ -1,12 +1,10 @@
 <%if teachers.nil? || teachers.empty? %>
-<br/>
 <blockquote>
-    No teacher exists for the school. Click on the <b>Invite Teacher</b>
-    link on the right to invite teachers to the school.
+    No teacher exists. Click on the <b>Invite Teacher</b>
+    link on the right to invite teachers.
 </blockquote>
 <%else %>
 <table class="ui-state-default" border="1px">
-    <thead>
         <tr>
             <th>
                 Name
@@ -20,11 +18,11 @@
 			<th>
 				Subjects
 			</th>
+			<td colspan=2></td>
         </tr>
-    </thead>
     <tbody id="teachers">
         <% teachers.each do |teacher| %>
-			<%= render :partial => 'teachers/teacher', :object => teacher, :locals => {:subjects => subjects} %>
+			<%= render :partial => 'teachers/teacher', :object => teacher, :locals => {:active_cntrlr => (@active_cntrlr.nil?) ? controller.controller_name : @active_cntrlr} %>
          <%end %>
     </tbody>
 </table>
