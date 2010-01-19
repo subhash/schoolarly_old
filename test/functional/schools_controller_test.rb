@@ -8,6 +8,7 @@ class SchoolsControllerTest < ActionController::TestCase
     @sboa = schools(:sboa)
     @stAntonys=schools(:st_antonys)
     @stTeresas=schools(:st_teresas)
+    @subbu = teachers(:v_subramaniam)
     @current_year=Klass.current_academic_year(@stAntonys)
     @six_D_without_eg=klasses(:six_D_without_eg).id.to_s + '_content_table'
     @six_E_with_egs=klasses(:six_E_with_egs).id.to_s + '_content_table'
@@ -55,5 +56,14 @@ class SchoolsControllerTest < ActionController::TestCase
     end
   end
   
+  test "remove teacher from school through xhr" do
+    assert_equal @subbu.school, @sboa
+    assert_no_difference('Teacher.count') do
+        xhr :get, :remove_teacher, :id => @subbu.id
+    end
+    assert_nil assigns(@subbu.school)
+    assert_response :success
+    assert_template "teachers/remove"
+  end
   
 end
