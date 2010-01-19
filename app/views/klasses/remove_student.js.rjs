@@ -1,0 +1,2 @@
+page.remove "student_#{@student.id}"
+page.replace_html 'add-students-dialog', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @addable_students, :selected => @klass.current_student_ids }

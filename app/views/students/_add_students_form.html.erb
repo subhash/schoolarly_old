@@ -1,4 +1,5 @@
+<% puts "selected = "+selected.inspect %>
 <% form_remote_tag  :url => {:action => 'add_students', :id => entity} do |f| %>
-<%= collection_multiple_select(entity.class.name.underscore, 'student_ids', students, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox'}) %>
+<%= collection_multiple_select(entity.class.name.underscore, 'student_ids', students, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox', :selected_items => selected}) %>
 <%= submit_tag "Save" %>
 <%end %>

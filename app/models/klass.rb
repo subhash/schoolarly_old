@@ -26,6 +26,10 @@ class Klass < ActiveRecord::Base
    (self.enrollments.select{|e| e.current_student}).collect{|s|s.student}
   end
   
+  def current_student_ids
+   (self.enrollments.select{|e| e.current_student}).collect{|s|s.student.id}
+  end
+  
   def self.current_academic_year(school_id)
     return Klass.maximum(:year, :conditions => {:school_id => school_id})
   end

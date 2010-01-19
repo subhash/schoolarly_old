@@ -41,7 +41,7 @@ class KlassesController < ApplicationController
     @school = @klass.school
     add_breadcrumb(@school.name, @school)
     add_breadcrumb(@klass.name)    
-    add_js_page_action(:title => 'Add Students', :render => {:partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled }})
+    add_js_page_action(:title => 'Add Students', :render => {:partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled, :selected => @klass.current_student_ids }})
     @all_subjects = Subject.find(:all)
     add_js_page_action(:title => 'Add/Remove Subjects',:render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @klass, :subjects => @all_subjects , :disabled => @klass.allotted_subjects}})
     add_js_page_action(:title => 'Add Exam Group', :render => {:partial =>'exam_groups/new', :locals => {:exam_types => ExamType.find(:all)}})    
@@ -98,7 +98,8 @@ class KlassesController < ApplicationController
     @student.admission_number = nil
     @student.save!
     respond_to do |format|
-      format.js {render :template => 'students/remove'}
+      @addable_students = @klass.school.students.not_enrolled
+      format.js {render :template => 'klasses/remove_student'}
     end 
   end
   

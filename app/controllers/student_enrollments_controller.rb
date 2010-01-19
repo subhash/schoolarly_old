@@ -36,9 +36,16 @@ class StudentEnrollmentsController < ApplicationController
     @student.enrollments << @student_enrollment
     @student.current_enrollment = @student_enrollment
     if(@student.save)    
-      respond_to do |format|
-        format.js {render :template => 'student_enrollments/create_success'}
-      end 
+      #    TODO redesign this when we do wizard flows for right-bar actions
+      if(session[:redirect]) and session[:redirect] == student_path(@student)
+        render :update do |page|
+          page.redirect_to session[:redirect]
+        end
+      else
+        respond_to do |format|
+          format.js {render :template => 'student_enrollments/create_success'}
+        end 
+      end
     else
       @school = @student.school
       @year = Klass.current_academic_year(@school)
