@@ -70,11 +70,11 @@ class KlassesController < ApplicationController
   end
   
   def add_students
-    @klass = Klass.find(params[:id])
-    @existing_students = @klass.students    
+    @klass = Klass.find(params[:id])  
     new_ids = params[:klass][:student_ids]
     #    have to do this since multi-select always returns one empty selection - TODO explore why
     @new_students = Student.find(new_ids.to(-2))
+    puts "new students = "+@new_students.inspect
     @new_students.each do |student|
       student_enrollment = StudentEnrollment.new
       student_enrollment.start_date = Time.now.to_date
@@ -85,6 +85,7 @@ class KlassesController < ApplicationController
       student.save!      
     end
     @klass.save!
+    puts "current students = "+@klass.current_students.inspect
     @addable_students = @klass.school.students.not_enrolled
   end
   

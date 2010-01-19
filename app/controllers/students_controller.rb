@@ -57,7 +57,6 @@ class StudentsController < ApplicationController
         @student.save!
         @user.invite!
         respond_to do |format|
-          flash[:notice] = 'Student was successfully created.'
           format.html { redirect_to(edit_password_reset_url(@user.perishable_token)) }
           format.js {render :template => 'students/create_success'}
         end     

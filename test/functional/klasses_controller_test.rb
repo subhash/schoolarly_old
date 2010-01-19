@@ -7,10 +7,13 @@ class KlassesControllerTest < ActionController::TestCase
     activate_authlogic
     @stTeresas=schools(:st_teresas)
     @one_A=klasses(:one_A)
+    @two_B = klasses(:two_B)    
     UserSession.create(@stTeresas.user)
     @english = subjects(:english)
     @malayalam = subjects(:malayalam)
     @maths = subjects(:maths)
+    @paru = students(:paru)
+    @reeny = students(:reeny)
   end
   
   test "create klass failure" do
@@ -70,7 +73,7 @@ class KlassesControllerTest < ActionController::TestCase
     assert_template "klasses/delete"
   end
   
-#  TODO - behaviour interlinked with exception handling
+  #  TODO - behaviour interlinked with exception handling
   test "destroy klass failure" do    
     assert_raise ActiveRecord::StatementInvalid  do 
       get :destroy, :id => @one_A.to_param
@@ -78,14 +81,20 @@ class KlassesControllerTest < ActionController::TestCase
   end
   
   test "add subjects" do
-    #    add_subjects is invoked from the show page
-    #    get :show, :id => @one_A.to_param
     xhr :post, "add_subjects", {:klass => {:subject_ids => [@malayalam.to_param , @maths.to_param ]}, :id => @one_A.to_param }
     assert_response :success
     assert_template "klasses/add_subjects"
     # add_subject_form is made such that the subjects which are allotted will be disabled for select
     # so, in the action add_subjects we have to explicitly add the allotted subjects to class
     assert_equal (2 + @one_A.allotted_subjects.size), @one_A.subjects.size
+  end
+  
+  test "add students" do
+    assert_difference '@one_A.reload.current_students.size', 2 do
+      xhr :post, "add_students", {:klass => {:student_ids => [@paru.to_param , @reeny.to_param, ""]}, :id => @one_A.to_param }
+    end
+    assert_response :success
+    assert_template "klasses/add_students"   
   end
   
 end
