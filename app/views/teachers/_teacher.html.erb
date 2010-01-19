@@ -12,18 +12,15 @@
         <%end %>
     </td>
     <td>
-        <!-- TODO improve following check of subjects -->
-        <%if local_assigns[:subjects] and !subjects[teacher.id].nil? and !subjects[teacher.id].empty? %>
-        <%=subjects[teacher.id].collect{|allotment| allotment.subject.name}.uniq.join(",") %>
-        <%end %>
+		<%=teacher.current_subjects.find(:all, :select => "name").index_by{|subject| subject.name}.keys.join(",")%>
     </td>
     <td>
-    	<% if teacher.school %>
-        <% if !teacher.current_allotments.empty? then label='Show Details'; action='show'; css_class="ui-icon ui-icon-info" else label='Make Allotments'; action='allot'; css_class="ui-icon ui-icon-pencil" end %>
-        <%= link_to label,  {:controller => 'teachers', :action => action, :id => teacher}, {:class => css_class} %>
+	    <% if teacher.school %>
+        	<% if !teacher.current_allotments.empty? then label='Show Allotments'; action='show'; css_class="ui-icon ui-icon-info" else label='Make Allotments'; action='allot'; css_class="ui-icon ui-icon-pencil" end %>
+       		<%= link_to label,  {:controller => 'teachers', :action => action, :id => teacher}, {:class => css_class, :title => label} %>
 		<% end %>
     </td>
-    <th>
-        <%= link_to_remote 'Delete', :url => {:action => 'remove_teacher',:id => teacher}, :confirm => 'Are you sure?' %>
-    </th>
+    <td>
+        <%= link_to_remote 'Delete', :url => {:controller => active_cntrlr, :action => 'remove_teacher',:id => teacher}, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'Are you sure?' %>
+    </td>
 </tr>
