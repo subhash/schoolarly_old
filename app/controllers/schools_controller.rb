@@ -27,13 +27,11 @@ class SchoolsController < ApplicationController
     @exam_groups = @school.exam_groups.group_by{|eg| Klass.find(eg.klass_id)}
     @students = @school.students
     @teachers = @school.teachers
-    @subjects=@school.current_teacher_allotments.group_by{|a| a.teacher_id}
     session[:redirect] = request.request_uri
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @school }
     end
-    
   end
   
   # GET /schools/new
@@ -103,81 +101,6 @@ class SchoolsController < ApplicationController
     end
   end
   
-  def teachers_index
-    @active_tab = :Teachers
-    @school=School.find(params[:id])
-    set_active_user(@school.user.id)
-    @teachers=@school.teachers
-    if @teachers.empty?
-      flash[:notice] = 'No teacher exists.'
-    end
-    @year = Klass.current_academic_year(@school)
-    @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
-  end
-  
-  def new_teacher
-    @active_tab = :Teachers
-    @user = User.new
-    @school = School.find(params[:id])
-    render :update do |page|      
-      page.replace_html("new_teacher_form", :partial => "schools/new_teacher")
-      page[:new_teacher_form].show
-    end        
-  end
-  
-  def create_teacher
-    @school = School.find(params[:school_id])
-    @user = User.new(params[:user])
-    if(@user.save)
-      @teacher = Teacher.new
-      @teacher.user = @user
-      @user.person = @teacher
-      @teacher.school = @school
-      if @teacher.save
-        @teachers = @school.teachers
-        flash[:notice] = "Account registered!"        
-        render :update do |page|
-          page.select("form").first.reset
-          page[:new_teacher_form].hide
-          page.insert_html :bottom, 'teachers', :partial => "teacher_user", :object => @user
-        end
-      else
-        render :action => :new
-      end
-    else
-      render :action => :new
-    end  
-  end
-  
-  def add_teacher    
-    @school = School.find(params[:school_id])
-    if(params[:email])
-      @user = User.find_by_email_and_person_type(params[:email], 'Teacher')
-      if @user.nil?
-        render :update do |page|
-          page[:password].show
-          page[:add_teacher_button].disable
-        end
-      else
-        @teacher = @user.person
-        @teacher.school = @school
-        if @teacher.save
-          @teachers = @school.teachers
-          flash[:notice] = "Account registered!"
-          render :update do |page|
-            page.select("form").first.reset
-            page[:new_teacher_form].hide
-            page.insert_html :bottom, 'teachers', :partial => "teacher_user", :object => @user
-          end
-        end
-      end
-    end
-  end 
-  
-  def auto_complete_for_teacher_email
-    auto_complete_for_user_email(params[:user][:email],'Teacher')
-  end
-  
   def remove_student
     @student = Student.find(params[:id])
     @school = @student.school
@@ -192,6 +115,22 @@ class SchoolsController < ApplicationController
     @school.save!
     respond_to do |format|
       format.js {render :template => 'students/remove'}
+    end 
+  end
+ 
+  def remove_teacher
+    @teacher = Teacher.find(params[:id])
+    @school = @teacher.school
+    if(!@teacher.current_allotments.empty? && !@teacher.current_allotments.nil?)
+      @teacher.current_allotments.each do |allotment|
+        allotment.is_current = false
+      end
+    end
+    @teacher.save!
+    @school.teachers.delete(@teacher)
+    @school.save!
+    respond_to do |format|
+      format.js {render :template => 'teachers/remove'}
     end 
   end
   
