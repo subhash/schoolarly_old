@@ -43,4 +43,33 @@ class TeachersControllerTest < ActionController::TestCase
     assert_select 'table#' + @eng.id.to_s + '-klasses_selectable td.selectFilter', :count => @eng.klasses.ofSchool(@stTeresasSchool).size - 1
   end
   
+  test "create teacher success thru xhr" do
+    assert_difference('Teacher.count') do
+      xhr :post, :create,{ :user => {:email => "sboateacher@gmail.com"}, :school_id =>@sboa.id }
+    end    
+    assert_response :success
+    assert_template "teachers/create_success"
+  end
+  
+  test "create teacher success" do   
+    assert_difference('Teacher.count') do
+      post :create,{ :user => {:email => "teacher@gmail.com"}}
+    end 
+    assert_not_nil assigns(:user)
+    assert_redirected_to edit_password_reset_url(assigns(:user).perishable_token)
+  end
+  
+  test "create teacher failure" do   
+    assert_no_difference('Student.count') do
+      post :create,{:user => {:email => @sunil.user.email}}
+    end 
+    assert_response :success
+    assert_template "teachers/new"
+  end
+  
+  test "create teacher failure thru xhr" do
+    xhr :post, :create , {:user => {:email => @sunil.user.email}, :school_id =>@sboa.id}
+    assert_response :success
+    assert_template "teachers/create_error"
+  end
 end
