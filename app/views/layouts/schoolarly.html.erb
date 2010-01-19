@@ -52,12 +52,16 @@
                             <% end %>
                             <% @js_page_actions ||= [] %>
                             <% @js_page_actions.each do |action| %>
-                            <% id = action.first.parameterize+"-dialog" %>
+                            <% if action[:id]
+                            id = action[:id]
+                            else
+                            id = action[:title].parameterize+"-dialog"
+                            end %>
                             <div id="<%= id %>" class="jquery-dialog" style ="display: none;">
-                                <%= render action.last %>
+                                <%= render action[:render] %>
                             </div>
                             <div class= "button ui-state-focus center">
-                                <%= link_to_function action.first,  "openDialog('#{id}')" %>
+                                <%= link_to_function action[:title],  "openDialog('#{id}')" %>
                             </div>
                             <% end %>
                         </div>

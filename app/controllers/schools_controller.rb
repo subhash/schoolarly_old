@@ -20,9 +20,9 @@ class SchoolsController < ApplicationController
     @school=School.find(params[:id])
     add_breadcrumb(@school.name)
     add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @school.user})    
-    add_js_page_action('Add class',:partial => 'klasses/new_klass_form', :locals => {:klass => Klass.new, :school => @school})
-    add_js_page_action('Invite Student',:partial => 'students/invite_student_form', :locals => {:student => Student.new, :school => @school})
-    add_js_page_action('Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :school => @school})
+    add_js_page_action(:title => 'Add class',:render => {:partial => 'klasses/new_klass_form', :locals => {:klass => Klass.new, :school => @school}})
+    add_js_page_action(:title => 'Invite Student',:render => {:partial => 'students/invite_student_form', :locals => {:student => Student.new, :school => @school}})
+    add_js_page_action(:title => 'Invite Teacher',:render => {:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :school => @school}})
     @klasses = @school.klasses.in_year(Klass.current_academic_year(@school)).group_by{|klass|klass.level}
     @exam_groups = @school.exam_groups.group_by{|eg| Klass.find(eg.klass_id)}
     @students = @school.students

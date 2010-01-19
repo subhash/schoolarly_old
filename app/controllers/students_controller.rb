@@ -18,17 +18,17 @@ class StudentsController < ApplicationController
         @teacher_allotments= @klass.teacher_allotments.current.group_by{|a| a.subject.id}
         @all_subjects = Subject.find(:all, :order => 'name')
         add_breadcrumb(@klass.name,@klass)
-        add_js_page_action('Add/Remove Subjects',:partial => 'subjects/add_subjects_form', :locals => {:entity => @student_enrollment, :subjects => @klass.subjects,:disabled => [] })
+        add_js_page_action(:title => 'Add/Remove Subjects',:render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @student_enrollment, :subjects => @klass.subjects,:disabled => [] }})
       else
         @year = Klass.current_academic_year(@school)
-        @klasses = (Klass.current_klasses(@school, @year)).group_by{|klass|klass.level}
+        @klasses = @school.klasses.in_year(@year)
         @student_enrollment = StudentEnrollment.new
         @student_enrollment.student = @student
         @student_enrollment.admission_number = @student.admission_number
-        add_page_action('Assign Class',  {:controller => 'student_enrollments', :action => 'new', :id => @student})
+        add_js_page_action(:title => 'Assign Class', :id => "new-enrollment-for-#{@student.id}", :render => {:partial => 'student_enrollments/new_enrollment_form', :locals => {:student_enrollment => @student_enrollment, :klasses => @klasses}})
       end
     else
-      add_js_page_action('Add to school', :partial =>'students/add_to_school_form', :locals => {:student => @student, :schools => School.find(:all)})
+      add_js_page_action(:title => 'Add to school', :render => {:partial =>'students/add_to_school_form', :locals => {:student => @student, :schools => School.find(:all)}})
     end
     add_breadcrumb(@student.name)
   end

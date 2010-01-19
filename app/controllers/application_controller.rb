@@ -55,9 +55,9 @@ class ApplicationController < ActionController::Base
   end
   
   
-  def add_js_page_action(*options)
+  def add_js_page_action(options)    
     @js_page_actions ||=[]
-    @js_page_actions << [*options]
+    @js_page_actions << options
   end
   
   private
