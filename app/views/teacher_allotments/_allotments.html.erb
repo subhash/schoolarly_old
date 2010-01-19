@@ -7,7 +7,7 @@
     <%subject_klasses.each do |allotment| %>
 	<%k=Klass.find(allotment.klass_id)%>
     <td id="<%=allotment.subject.id.to_s + '_' + k.id.to_s%>" class="ui-state-default">
-        <%=link_to "#{k.level} #{k.division}",klass_path(k.id) %>
+        <%=link_to "#{k.name}",klass_path(k.id) %>
 		<span class="ui-icon ui-icon-trash"><%=link_to_remote 'Delete', :url => {:controller => :teacher_allotments, :action => 'delete',:id => allotment.id}, :html => {:title => 'Delete'}, :confirm => 'Are you sure?' %></span>
     </td>
     <%end %>
