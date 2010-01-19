@@ -24,7 +24,7 @@
 	<br />
 </div>
 
-<div class="button ui-state-default ui-corner-all">
+<div class="button ui-state-default ui-corner-all center">
     <%= link_to 'Add',{ :action => 'add_allotments', :id=>@teacher, :subject_id => subject_id }, {:onclick => " if (typeof(klass_indices) == 'undefined') {return false; } else { this.href +='&klasses='+klass_indices;}; return true;"}%>
 </div>
 <%end%>
