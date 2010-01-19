@@ -10,31 +10,39 @@ class TeachersController < ApplicationController
     end
   end  
      
+  def new
+    @teacher = Teacher.new
+    @user = User.new
+  end 
+  
   def create
     @teacher = Teacher.new(params[:teacher])
-    @school = School.find(params[:school_id])
     @user = User.new(params[:user])
     @teacher.user = @user
-    @teacher.school = @school
-    @subjects=Hash.new()
-    @subjects[@teacher.id]=@teacher.current_subjects 
+    if(params[:school_id])
+      @school = School.find(params[:school_id])
+      @teacher.school = @school
+      @active_cntrlr = 'schools'
+    else
+      @active_cntrlr = 'users'
+    end
     begin
       Teacher.transaction do
         @teacher.save!
         @user.invite!
         respond_to do |format|
           flash[:notice] = 'Teacher was successfully created.'
+          format.html { redirect_to(edit_password_reset_url(@user.perishable_token)) }
           format.js {render :template => 'teachers/create_success'}
         end 
       end       
     rescue Exception => e
-      puts e.inspect
-      # handle error
       @teacher = Teacher.new(params[:teacher])
       @teacher.user = @user      
       respond_to do |format|          
+        format.html { render :action => 'new' }
         format.js {render :template => 'teachers/create_error'}
-      end           
+      end
     end
   end
     
