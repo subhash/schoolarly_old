@@ -1,0 +1,7 @@
+<ul>
+    <%for tab in tabs%>
+        <li>
+            <a href="<%= '#' + tab + '-tab' %>" > <%= tab.camelize %></a>
+        </li>
+	<%end%>
+</ul>
