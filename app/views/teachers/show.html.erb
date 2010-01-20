@@ -1,1 +1,27 @@
-<%= render_show('classes','exams')%>
+<div id="teacher_tabs" class="tabs">
+   <ul>
+        <li>
+            <a href="#classes-tab">Classes</a>
+        </li>
+        <li>
+            <a href="#exams-tab">Exams</a>
+        </li>
+    </ul>
+    <div id="classes-tab">
+        <%if !@teacher.school %>
+        <blockquote>
+            The teacher currently does not belong to any school.
+        </blockquote>
+        <%else %>
+        <br/>
+        	<%= render :partial =>'teacher_allotments/allotments', :object => @allotments %>
+        <%end %>
+    </div>
+    <div id="exams-tab">
+        <%if !@teacher.school %>
+        <blockquote>
+            The teacher currently does not belong to any school.
+        </blockquote>
+        <%end %>
+    </div>
+</div>
