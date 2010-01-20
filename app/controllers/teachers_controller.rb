@@ -60,10 +60,9 @@ class TeachersController < ApplicationController
   def show
     set_up
     add_breadcrumb(@teacher.name)
-
     add_page_action('Allot Subjects/Classes', {:action => 'allot', :id => @teacher}) if @school
     @allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
-    @exams=@teacher.exams.group_by{|e| e.exam_group}
+    #TODO @exams=@teacher.exams.group_by{|e| e.exam_group}
   end
   
   def get_allotment_items(teacher, subjects)
