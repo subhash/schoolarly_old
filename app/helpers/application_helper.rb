@@ -5,4 +5,9 @@ module ApplicationHelper
       page[div].toggle
     end
   end
+  
+  def lay_tabs(*tabs)
+    render :partial => "layouts/tabs", :locals => {:tabs => tabs}
+  end
+  
 end
