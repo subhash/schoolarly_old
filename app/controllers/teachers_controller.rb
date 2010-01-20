@@ -4,6 +4,17 @@ class TeachersController < ApplicationController
    
   before_filter :find_teacher, :except => [:create]
   
+  def set_up
+    @user=@teacher.user
+    set_active_user(@user.id)
+    if @teacher.school
+      @school=@teacher.school
+      add_breadcrumb(@school.name, @school)
+    end
+    if @user == current_user then label = 'Edit Profile'; action = 'edit' else label = 'View Profile'; action = 'show' end
+    add_page_action(label, {:controller => :user_profiles, :action => action, :id => @teacher.user})
+  end
+  
   def find_teacher    
     if(params[:id])
       @teacher = Teacher.find(params[:id])
@@ -47,17 +58,11 @@ class TeachersController < ApplicationController
   end
     
   def show
-    @user=@teacher.user
-    set_active_user(@user.id)
-    @school=@teacher.school
-    
-    add_breadcrumb(@school.name, @school)
-    add_breadcrumb((@teacher.user.user_profile.nil?)? @teacher.user.email : @teacher.user.user_profile.name)
-    
-    add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @teacher.user})
-    add_page_action('Allot Subjects Classes', {:action => 'allot', :id => @teacher})
-    
-    @teacher_allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
+    set_up
+    add_breadcrumb(@teacher.name)
+
+    add_page_action('Allot Subjects/Classes', {:action => 'allot', :id => @teacher}) if @school
+    @allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
     @exams=@teacher.exams.group_by{|e| e.exam_group}
   end
   
@@ -72,14 +77,16 @@ class TeachersController < ApplicationController
   end
   
   def allot
-    @school=@teacher.school
-    @year = Klass.current_academic_year(@school)
-    add_breadcrumb(@school.name, @school)
-    add_breadcrumb(@teacher.name, @teacher)
-    add_breadcrumb('Allot')
-    add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @teacher.user})
-    @subjects=@school.subjects
-    @preSelectedItems,@allotmentItems=get_allotment_items(@teacher,@subjects)
+    set_up
+    if !@school
+      redirect_to(url_for( :controller => :teachers, :action => 'show', :id=>@teacher))
+    else
+      @year = Klass.current_academic_year(@school)
+      add_breadcrumb(@teacher.name, @teacher)
+      add_breadcrumb('Allot')
+      @subjects=@school.subjects
+      @preSelectedItems,@allotmentItems=get_allotment_items(@teacher,@subjects)
+    end
   end
   
   def add_allotments
