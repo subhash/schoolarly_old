@@ -1,16 +1,25 @@
-<% if !allotments.nil? && !allotments.empty?%>
-<% allotments.each do |subject, subject_klasses| %>
-<tr id=<%=subject.id%>>
-    <th>
-        <%=Subject.find(subject).name %>
-    </th>
-    <%subject_klasses.each do |allotment| %>
-	<%k=Klass.find(allotment.klass_id)%>
-    <td id="<%=allotment.subject.id.to_s + '_' + k.id.to_s%>" class="ui-state-default">
-        <%=link_to "#{k.name}",klass_path(k.id) %>
-		<span class="ui-icon ui-icon-trash"><%=link_to_remote 'Delete', :url => {:controller => :teacher_allotments, :action => 'delete',:id => allotment.id}, :html => {:title => 'Delete'}, :confirm => 'Are you sure?' %></span>
-    </td>
-    <%end %>
-</tr>
-<% end %>
+<% if !allotments.nil? && !allotments.empty? %>
+<table id=allotment_list class="sticker no-border" style="margin:auto;">
+    <caption>
+        Allotments of <%= @teacher.name %>
+    </caption>
+    <% allotments.each do |subject, subject_klasses| %>
+    <tr id=<%=subject.id%>>
+        <th>
+            <%=Subject.find(subject).name %>
+        </th>
+        <%subject_klasses.each do |allotment| %>
+        <%k=Klass.find(allotment.klass_id) %>
+        <td id="<%=allotment.subject.id.to_s + '_' + k.id.to_s%>" class="ui-state-default">
+            <%=link_to "#{k.name}",klass_path(k.id) %>
+            <span class="ui-icon ui-icon-trash"><%=link_to_remote 'Delete', :url => {:controller => :teacher_allotments, :action => 'delete',:id => allotment.id}, :html => {:title => 'Delete'}, :confirm => 'Are you sure?' %></span>
+        </td>
+        <%end %>
+    </tr>
+    <% end %>
+</table>
+<%else %>
+<blockquote>
+    No allotment done yet.
+</blockquote>
 <%end %>
