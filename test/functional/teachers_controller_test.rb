@@ -18,6 +18,7 @@ class TeachersControllerTest < ActionController::TestCase
   end
   
   test "teacher should show breadcrumbs with school name, teacher name/email and 2 actions" do
+    UserSession.create(@subbu.user)
     get :show, :id => @subbu.to_param
     assert_response :success
     assert_select 'ul#breadcrumbs li a[href=?]', school_path(@sboa), :text => @sboa.name
@@ -25,8 +26,11 @@ class TeachersControllerTest < ActionController::TestCase
     assert_select "div#action_box" do
       assert_select "div.button a", :count => 2
       assert_select "div.button a[href=?]" , edit_user_profile_path(@subbu.user), :text => 'Edit Profile'
-      assert_select "div.button a[href=?]" , "/teachers/allot/" + @subbu.user.id.to_s, :text => 'Allot Subjects Classes'
-    end 
+      assert_select "div.button a[href=?]" , "/teachers/allot/" + @subbu.user.id.to_s, :text => 'Allot Subjects/Classes'
+    end
+    assert_tab_count(2)
+    assert_tab("Classes", "classes-tab")
+    assert_tab("Exams", "exams-tab")   
   end
   
   test "add allotments should redirect to teacher show" do
