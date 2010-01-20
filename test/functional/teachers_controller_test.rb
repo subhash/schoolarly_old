@@ -33,6 +33,21 @@ class TeachersControllerTest < ActionController::TestCase
     assert_tab("Exams", "exams-tab")   
   end
   
+  test "Others should only view & not edit teacher profile. Rest of the breadcrumbs & actions should be the same" do
+    get :show, :id => @subbu.to_param
+    assert_response :success
+    assert_select 'ul#breadcrumbs li a[href=?]', school_path(@sboa), :text => @sboa.name
+    assert_select 'ul#breadcrumbs strong', @subbu.name
+    assert_select "div#action_box" do
+      assert_select "div.button a", :count => 2
+      assert_select "div.button a[href=?]" , user_profile_path(@subbu.user), :text => 'View Profile'
+      assert_select "div.button a[href=?]" , "/teachers/allot/" + @subbu.user.id.to_s, :text => 'Allot Subjects/Classes'
+    end
+    assert_tab_count(2)
+    assert_tab("Classes", "classes-tab")
+    assert_tab("Exams", "exams-tab")   
+  end
+  
   test "add allotments should redirect to teacher show" do
     assert @sunil.current_allotments.count, 1
     post :add_allotments, :id => @sunil, :subject => @mal, :klasses => @klasses
