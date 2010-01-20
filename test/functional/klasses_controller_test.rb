@@ -80,6 +80,10 @@ class KlassesControllerTest < ActionController::TestCase
     end
   end
   
+  test "destroy klass with dependents for school-admin" do
+#    TODO
+  end
+  
   test "add subjects" do
     xhr :post, "add_subjects", {:klass => {:subject_ids => [@malayalam.to_param , @maths.to_param ]}, :id => @one_A.to_param }
     assert_response :success
@@ -97,4 +101,7 @@ class KlassesControllerTest < ActionController::TestCase
     assert_template "klasses/add_students"   
   end
   
+  test "remove student" do
+#    TODO
+  end
 end

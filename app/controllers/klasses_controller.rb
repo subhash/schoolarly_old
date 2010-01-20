@@ -105,8 +105,8 @@ class KlassesController < ApplicationController
   end
   
   def delete_allotment
-    @klass = Klass.find(params[:id])
-    @teacher_allotment = TeacherAllotment.find(params[:allotment_id])
+    @teacher_allotment = TeacherAllotment.find(params[:id])
+    @klass = @teacher_allotment.klass
     @teacher_allotment.is_current = false
     @all_subjects = Subject.find(:all)
   end

@@ -17,12 +17,12 @@ class StudentTest < ActiveSupport::TestCase
   
   test "student-school association" do 
     assert_equal @paru.school, @school
-    assert_equal 2, @school. students.size
+    assert_equal 3, @school. students.size
     @school.students.delete(@paru)
     @school.save!
     # TODO revisit the reload - why doesnt it work otherwise?
     @paru.reload
     assert_nil @paru.school
-    assert_equal 1, @school.students.size
+    assert_equal 2, @school.students.size
   end
 end

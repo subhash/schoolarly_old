@@ -2,7 +2,7 @@ require 'test_helper'
 
 
 class KlassTest < ActiveSupport::TestCase
-
+  
   def setup
     @oneA = klasses :one_A
     @twoB = klasses :two_B
@@ -45,6 +45,14 @@ class KlassTest < ActiveSupport::TestCase
   test "historical klass membership" do    
     assert_equal 1, @twoB.students.size
     assert_equal 0, @twoB.current_students.size
+  end
+  
+  test "teacher_allotments" do
+    #    TODO
+  end
+  
+  test "current_academic_year" do
+    #  TODO
   end
   
 end

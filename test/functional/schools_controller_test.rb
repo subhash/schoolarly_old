@@ -66,4 +66,8 @@ class SchoolsControllerTest < ActionController::TestCase
     assert_template "teachers/remove"
   end
   
+  test "remove student" do
+#    TODO
+  end
+  
 end
