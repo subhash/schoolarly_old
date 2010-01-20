@@ -1,0 +1,10 @@
+ <%target=controller.controller_name.singularize%>
+ <div id="<%=target + '-tabs'%>" class="tabs">
+    <%=lay_tabs(options) %>
+    <%for option in options%>
+	<div id="<%=option + '-tab'%>">
+		<% partial = target.pluralize + '/show_' + target + '_' + option %>
+       <%= render :partial => partial%>
+	</div>
+	<%end%>
+ </div>
