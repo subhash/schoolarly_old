@@ -1,7 +1,7 @@
 <% if !allotments.nil? && !allotments.empty? %>
 <table id=allotment_list class="sticker no-border" style="margin:auto;">
     <caption>
-        Allotments of <%= @teacher.name %>
+        Allotments of <%= allotments.values.flatten.first.teacher.name %>
     </caption>
     <% allotments.each do |subject, subject_klasses| %>
     <tr id=<%=subject.id%>>
