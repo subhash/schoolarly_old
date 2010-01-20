@@ -1,8 +1,0 @@
-<ul>
-    <%for tab in tabs.flatten%>
-	<%puts tab.inspect%>
-        <li>
-            <a href="<%= '#' + tab + '-tab' %>" > <%= tab.camelize %></a>
-        </li>
-	<%end%>
-</ul>

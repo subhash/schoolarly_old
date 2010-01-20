@@ -1,9 +1,0 @@
-        <%if !@teacher.school %>
-        <blockquote>
-            The teacher currently does not belong to any school.
-        </blockquote>
-        <%else %>
-        <br/>
-        	<%= render :partial =>'teacher_allotments/allotments', :object => @allotments %>
-        <%end %>
-
