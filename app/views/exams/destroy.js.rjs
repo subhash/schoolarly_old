@@ -5,5 +5,5 @@ if @exam_group.exams.empty?
   page.replace_html(div_name, :partial => "exams/exam_group", :locals => {:exam_group => @exam_group, :exam_collection => exams[@exam_group]})
 else
   div_name = 'exam_' + params[:id].to_s
-  page.replace_html(div_name, :text=> '')
+  page.remove div_name
 end 

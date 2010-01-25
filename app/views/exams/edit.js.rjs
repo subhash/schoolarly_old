@@ -1,0 +1,2 @@
+page.replace_html("exam-dialog", :partial =>'exams/edit', :locals => {:exam => @exam, :subjects => @exam.exam_group.klass.subjects})
+page << "openDialog('exam-dialog');"

@@ -1,5 +1,14 @@
-		<td style="width:auto;" colspan="9">
+		<td style="width:auto;" colspan="7">
 	        <%=exam_group.description + ": " + exam_group.exam_type.description%>
+	    </td>
+		<td class="ui-state-default">
+			<%= link_to_function "Edit", {:class => "ui-icon ui-icon-pencil", :title => 'Edit'} do |page|
+				page.replace_html("exam-dialog", :partial =>'exam_groups/edit', :locals => {:exam_group => exam_group, :exam_types => ExamType.all})
+				page << "openDialog('exam-dialog');"	        	
+	        end %>
+	    </td>
+		<td class="ui-state-default">
+			<%= link_to_remote 'Delete', :url => {:controller => :exam_groups, :action => 'destroy',:id => exam_group}, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'All the exams under this will be deleted. Are you sure?' %>
 	    </td>
 		<%if !exam_collection.many? && exam_collection.first.id.nil? %>
 			<tr>
@@ -7,7 +16,7 @@
 		            No exam added yet
 			    </td>
 				<td class="ui-state-default" >
-	        		<%= link_to_remote 'Add Exam', :url => {:controller => 'exams', :action => 'new_dialog_show',:id => exam_group}, :html => {:class => "cell-link"} %>
+					<%= link_to_remote 'Add Exam', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group}, :html => {:title => 'Add Exam', :class => "ui-icon ui-icon-plus" }%>
 				</td>
 			</tr>
 		<%else %>	
@@ -31,7 +40,7 @@
 		            Pass Score
 		        </th>
 				<td class="ui-state-default" colspan="3">
-	        		<%= link_to_remote 'Add Exam', :url => {:controller => 'exams', :action => 'new_dialog_show',:id => exam_group}, :html => {:class => "cell-link center"} %>
+					<%= link_to_remote ' + Add Exam + ', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group}, :html => {:title => 'Add Exam', :class => "cell-link" }%>
 				</td>
 		    </tr>
 		    <%exam_collection.each do |exam| %>

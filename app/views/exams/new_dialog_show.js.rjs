@@ -1,2 +1,0 @@
-page.replace_html("add_exam", :partial =>'exams/new', :object =>ExamGroup.find(params[:id]), :locals => {:subjects => ExamGroup.find(params[:id]).klass.subjects})
-page << "openDialog('dialog_add_exam');"

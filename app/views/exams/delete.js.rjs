@@ -1,9 +1,0 @@
-if @exam_group.exams.empty?
-  exams=@exam_group.exams.group_by{|e| e.exam_group}
-  exams[@exam_group] = [Exam.new(:exam_group_id => @exam_group.id)]
-  div_name="exams_index_div"
-  page.replace_html(div_name, :partial => "exams/exams", :object => exams)
-else
-  div_name = 'exam_' + params[:id].to_s
-  page.replace_html(div_name, :text=> '')
-end 

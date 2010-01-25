@@ -1,31 +1,35 @@
-<fieldset align=center>
-			<table class="center">
+<% remote_form_for exam, :url => {:controller => :exams, :action => 'create', :exam_group_id =>  exam.exam_group_id} do |f| %>
+	<table class="center">
+		<tbody>
             <tr>
-            	<th><label for="subject">Subject</label></th>
-				<td><%= select_tag("new_subject", options_from_collection_for_select(subjects,:id,:name), { :style => "width: 231px"} ) %></td>
+            	<th><label for=:"subject">Subject</label></th>
+				<td><%= f.select(:subject_id, options_from_collection_for_select(subjects,:id,:name)) %></td>
             </tr>
             <tr>
            		<th><label for="start_time">Start Time</label></th>
-                <td><%= text_field_tag("new_start_time", "", :size => 36)%></td>
+                <td><%= f.text_field(:start_time, :size => 36)%></td>
             </tr>
             <tr>
             	<th><label for="end_time">End Time</label></th>
-                <td><%= text_field_tag("new_end_time", "", :size => 36)%></td>
+                <td><%= f.text_field(:end_time, :size => 36)%></td>
             </tr>
             <tr>
             	<th><label for="venue">Venue</label></th>
-                <td><%= text_field_tag("new_venue", "", :size => 36)%></td>
+                <td><%= f.text_field(:venue, :size => 36)%></td>
             </tr>
 			<tr>
             	<th><label for="max_score">Max Score</label></th>
-                <td><%= text_field_tag("new_max_score", "", :size => 36)%></td>
+                <td><%= f.text_field(:max_score, :size => 36)%></td>
             </tr>
 			<tr>
             	<th><label for="pass_score">Pass Score</label></th>
-                <td><%= text_field_tag("new_pass_score", "", :size => 36)%></td>
+                <td><%= f.text_field(:pass_score, :size => 36)%></td>
             </tr>
-			</table>
-			<div class="center">
-                <%=link_to_remote 'Add', :url => {:controller => :exams, :action => 'create_exam', :id=>new}, :with => "'subject=' + $('new_subject').value + '&start_time=' + $('new_start_time').value + '&end_time=' + $('new_end_time').value + '&venue=' + $('new_venue').value + '&max_score=' + $('new_max_score').value + '&pass_score=' + $('new_pass_score').value" %>
-			</div>
-        </fieldset>
+		</tbody>
+	</table>
+	<div class="center">
+		<%= submit_tag "Add" %>
+	</div>
+<%end %>
+
+

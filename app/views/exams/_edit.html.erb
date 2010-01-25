@@ -1,31 +1,31 @@
-<fieldset align=center>
-			<table class="center">
-            <tr>
-            	<th><label for="subject">Subject</label></th>
-				<td><%= select_tag("edit_subject", options_from_collection_for_select(subjects,:id,:name,{:selected => edit.subject_id}), { :style => "width: 231px"} ) %></td>
-            </tr>
-            <tr>
-           		<th><label for="start_time">Start Time</label></th>
-                <td><%= text_field_tag("edit_start_time", edit.start_time, :size => 36)%></td>
-            </tr>
-            <tr>
-            	<th><label for="end_time">End Time</label></th>
-                <td><%= text_field_tag("edit_end_time", edit.end_time, :size => 36)%></td>
-            </tr>
-            <tr>
-            	<th><label for="venue">Venue</label></th>
-                <td><%= text_field_tag("edit_venue", edit.venue, :size => 36)%></td>
-            </tr>
-			<tr>
-            	<th><label for="max_score">Max Score</label></th>
-                <td><%= text_field_tag("edit_max_score", edit.max_score, :size => 36)%></td>
-            </tr>
-			<tr>
-            	<th><label for="pass_score">Pass Score</label></th>
-                <td><%= text_field_tag("edit_pass_score", edit.pass_score, :size => 36)%></td>
-            </tr>
-			</table>
-			<div class="center">
-                <%=link_to_remote 'Update', :url => {:controller => :exams, :action => 'update_exam', :id=>edit}, :with => "'subject_id=' + $('edit_subject').value + '&start_time=' + $('edit_start_time').value + '&end_time=' + $('edit_end_time').value + '&venue=' + $('edit_venue').value + '&max_score=' + $('edit_max_score').value + '&pass_score=' + $('edit_pass_score').value" %>
-			</div>
-        </fieldset>
+<% remote_form_for exam, :url => {:controller => :exams, :action => 'update', :id => exam } do |f| %>
+	<table class="center">
+		<tr>
+        	<th><label for="subject">Subject</label></th>
+			<td><%= f.select(:subject_id, options_from_collection_for_select(subjects, :id, :name, {:selected => exam.subject_id}), {:style => "width: 231px"} ) %></td>
+		</tr>
+	    <tr>
+			<th><label for="start_time">Start Time</label></th>
+            <td><%= f.text_field(:start_time, :size => 36)%></td>
+         </tr>
+        <tr>
+        	<th><label for="end_time">End Time</label></th>
+            <td><%= f.text_field(:end_time, :size => 36)%></td>
+         </tr>
+        <tr>
+        	<th><label for="venue">Venue</label></th>
+            <td><%= f.text_field(:venue, :size => 36)%></td>
+        </tr>
+		<tr>
+            <th><label for="max_score">Max Score</label></th>
+            <td><%= f.text_field(:max_score, :size => 36)%></td>
+        </tr>
+		<tr>
+          	<th><label for="pass_score">Pass Score</label></th>
+            <td><%= f.text_field(:pass_score, :size => 36)%></td>
+        </tr>
+	</table>
+	<div class="center">
+		<%= submit_tag "Update" %>
+	</div>
+<%end %>
