@@ -32,19 +32,15 @@ class KlassesControllerTest < ActionController::TestCase
     assert_template "klasses/create_success"
   end
   
-  test "klass should show breadcrumb with school, klass & 2 actions" do
+  test "klass should show breadcrumb with school, klass & 3 actions" do
     get :show, :id => @one_A.to_param
     assert_response :success
     assert_breadcrumb(@stTeresas.name, school_path(@stTeresas), 1)
     assert_breadcrumb( @one_A.name)
-    assert_action_count(2)
-    assert_action('Add Exam Group',:url =>  '#')
+    assert_action_count(3)
+    assert_action('Add Students',:url =>  '#')
     assert_action('Add/Remove Subjects', :url => '#')
-    #    assert_select "#action_box" do
-    #      assert_select ".button a", :count => 2
-    #      assert_select ".button a[href=?]" , '#', :text => 'Add Exam Group'
-    #      assert_select ".button a[href=?]" , '#', :text => 'Add/Remove Subjects'
-    #    end 
+    assert_action('Add Exams',:url =>  '#')
   end
   
   test "klass should show all Students, Subjects, Exams tabs" do
