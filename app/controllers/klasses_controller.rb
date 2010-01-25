@@ -41,14 +41,16 @@ class KlassesController < ApplicationController
     @school = @klass.school
     add_breadcrumb(@school.name, @school)
     add_breadcrumb(@klass.name)    
-    add_js_page_action(:title => 'Add Students', :render => {:partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled, :selected => @klass.current_student_ids }})
-    @all_subjects = Subject.find(:all)
-    add_js_page_action(:title => 'Add/Remove Subjects',:render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @klass, :subjects => @all_subjects , :disabled => @klass.allotted_subjects}})
-    add_js_page_action(:title => 'Add Exam Group', :render => {:partial =>'exam_groups/new', :locals => {:exam_types => ExamType.find(:all)}})    
-    @students = @klass.current_students      
     @subjects = @klass.subjects
+    @exam_groups = ExamGroup.find(:all, :conditions => {:klass_id => @klass.id})
+    @all_subjects = Subject.find(:all)
+    add_js_page_action(:title => 'Add Students', :render => {:partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled, :selected => @klass.current_student_ids }})
+    add_js_page_action(:title => 'Add/Remove Subjects', :render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @klass, :subjects => @all_subjects , :disabled => @klass.allotted_subjects}})
+    add_js_page_action(:title => 'Add Exams', :render => {:partial =>'exam_groups/new', :locals => {:exam_group => ExamGroup.new(), :subjects => @subjects, :klass => @klass, :exam_types => ExamType.all}})    
+    @students = @klass.current_students      
     @teacher_allotments= @klass.teacher_allotments.current.group_by{|a| a.subject.id}
     @exams=@klass.exams.group_by{|e| e.exam_group}
+    
     session[:redirect] = request.request_uri
     respond_to do |format|
       format.html # show.html.erb
