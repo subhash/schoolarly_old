@@ -1,0 +1,23 @@
+<% fields_for exam_group do |f| %>
+		<tr class="new_class">
+            <th>
+                <label for="exam_type">
+                    Exam Type
+                </label>
+            </th>
+            <td>
+                <%= f.select(:exam_type_id, options_from_collection_for_select(exam_types,:id,:name,{:selected => 1}) ) %>
+            </td>
+        </tr>
+        <tr class="new_class">
+            <th>
+                <label for="description">
+                    Description
+                </label>
+            </th>
+            <td>
+                <%= f.text_field(:description, :size => 36) %>
+            </td>
+		</tr>
+		<%= f.hidden_field(:klass_id)%>
+<%end%>

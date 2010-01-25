@@ -1,27 +1,15 @@
-<fieldset align=center>
+<% remote_form_for exam_group, :url => {:controller => :exam_groups, :action => 'update', :id => exam_group } do |f| %>
     <table class="center">
         <tr>
-            <th>
-                <label for="exam_type">
-                    Exam Type
-                </label>
-            </th>
-            <td>
-                <%= select_tag(:edit_exam_type, options_from_collection_for_select(exam_types,:id,:name,{:selected => edit.exam_type.id}), { :style => "width: 231px"} ) %>
-            </td>
+            <th><label for="exam_type">Exam Type</label></th>
+            <td><%= f.select(:exam_type_id, options_from_collection_for_select(exam_types, :id, :name, {:selected => exam_group.exam_type_id}), {:style => "width: 231px"} ) %></td>
         </tr>
         <tr>
-            <th>
-                <label for="description">
-                    Description
-                </label>
-            </th>
-            <td>
-                <%= text_field_tag(:edit_description, edit.description, :size => 36) %>
-            </td>
+            <th><label for="description">Description</label></th>
+			<td><%= f.text_field("description", :size => 36)%></td>
         </tr>
     </table>
 	<div class="center">
-    	<%=link_to_remote 'Update', :url => {:controller => 'exam_groups', :action => 'update', :id=>edit}, :with => "'exam_type=' + $('edit_exam_type').value + '&description=' + $('edit_description').value" %>
+		<%= submit_tag "Update" %>
 	</div>
-</fieldset>
+<%end %>

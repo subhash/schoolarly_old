@@ -1,8 +1,6 @@
-div_name=@klass.id.to_s + '_content_table'
+div_name='eg_'+params[:id].to_s
 if @klass.exam_groups.empty?
-  page.replace_html(div_name, :text => "<blockquote>No exam group added yet</blockquote>")
+  page.replace_html('exams-tab', :text => "<blockquote> No exam exists for the class. Click on the <b>Add Exam</b> link on the right to create exams.</blockquote>")
 else
-  page.replace_html(div_name, :partial => 'exam_group', :collection => @klass.exam_groups)
-end 
-page.replace_html("exams_index_div", :text => "")
-    
+  page.remove div_name
+end

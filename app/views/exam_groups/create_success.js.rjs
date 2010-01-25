@@ -1,7 +1,4 @@
 page << "closeDialogs();"
-div_name=@klass.id.to_s + '_content_table'
-if @klass.exam_groups.count==1
-  page.replace_html(div_name, :partial =>'exam_group', :object => @exam_group)
-else
-  page.insert_html(:bottom, div_name, :partial =>'exam_group', :object => @exam_group)
-end 
+page << "jQuery('.tabs').tabs('select','#exams-tab')"
+div_name='exams-tab'
+page.insert_html(:top, div_name, :partial => 'exams/exams', :object => @exam_group.exams.group_by{|e| e.exam_group} )

@@ -1,27 +1,16 @@
-<fieldset align=center>
-    <table class="center">
-        <tr>
-            <th>
-                <label for="exam_type">
-                    Exam Type
-                </label>
-            </th>
-            <td>
-                <%= select_tag(:new_exam_type, options_from_collection_for_select(exam_types,:id,:name,{:selected => 1}), { :style => "width: 231px"} ) %>
-            </td>
-        </tr>
-        <tr>
-            <th>
-                <label for="description">
-                    Description
-                </label>
-            </th>
-            <td>
-                <%= text_field_tag(:new_description, "", :size => 36) %>
-            </td>
-        </tr>
-    </table>
+<% remote_form_for exam_group, :url => {:controller => :exam_groups, :action => 'create' } do |f| %>
+	<table class="center">
+		<tbody>
+			<%=render :partial => 'exam_groups/exam_group_form', :locals => {:exam_group => ExamGroup.new(:klass_id => klass.id), :exam_types => ExamType.all}%>
+            <tr>
+            	<th><label for="subject">Subject</label></th>
+				<td align="left">
+					<%= collection_multiple_select(:exam, 'subject_ids', subjects, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox', :disabled => []}) %>
+				</td>				
+            </tr>
+		</tbody>
+	</table>
 	<div class="center">
-    	<%=link_to_remote 'Add', :url => {:controller => 'exam_groups', :action => 'create', :id=>new}, :with => "'exam_type=' + $('new_exam_type').value + '&description=' + $('new_description').value" %>
+		<%= submit_tag "Add" %>
 	</div>
-</fieldset>
+<%end %>
