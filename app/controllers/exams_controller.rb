@@ -2,14 +2,42 @@ class ExamsController < ApplicationController
   
   protect_from_forgery :only => [:create, :update, :destroy]
   
-   def update_exam
+  def new
+    @exam_group = ExamGroup.find(params[:exam_group])
+    @exam = Exam.new(:exam_group => @exam_group)
+    respond_to do |format|
+      format.js {render :template => 'exams/new'}
+    end  
+  end
+  
+  def create
+    @exam = Exam.new(params[:exam])
+    @exam.exam_group=ExamGroup.find(params[:exam_group_id])
+    @exam.save!
+    respond_to do |format|
+      flash[:notice] = 'Exams were successfully created.'
+      format.js {render :template => 'exams/create_success'}
+    end 
+  rescue Exception => e
+    respond_to do |format|
+    flash[:notice] = 'Error: ' + e.message
+      format.js {render :template => 'exams/create_error'}
+    end 
+  end
+  
+  def edit
+    @exam = Exam.find(params[:id])
+    respond_to do |format|
+      format.js {render :template => 'exams/edit'}
+    end  
+  end
+  
+  def update
     @exam=Exam.find(params[:id])
     if params
-      update_params=params.reject{|key,value| !["subject_id","start_time","end_time","venue","max_score","pass_score"].include?(key) }
-      @exam.update_attributes!(update_params)
+      @exam.update_attributes!(params[:exam])
     end
     respond_to do |format|
-      flash[:notice] = 'Exam details were successfully updated.'
       format.js {render :template => 'exams/update_success'}
     end 
   rescue Exception => e
@@ -19,28 +47,7 @@ class ExamsController < ApplicationController
     end
   end
   
-  def create_exam
-    exam_group=ExamGroup.find(params[:id])
-    @exam=Exam.new()
-    @exam.subject=Subject.find(params[:subject])
-    @exam.start_time=params[:start_time]
-    @exam.end_time=params[:end_time]
-    @exam.venue=params[:venue]
-    @exam.max_score=params[:max_score]
-    @exam.pass_score=params[:pass_score]
-    exam_group.exams << @exam
-    exam_group.save!
-    respond_to do |format|
-      flash[:notice] = 'Exam was successfully created.'
-      format.js {render :template => 'exams/create_success'}
-    end 
-  rescue Exception => e
-    respond_to do |format|
-      format.js {render :template => 'exams/create_error'}
-    end 
-  end  
-  
-  def destroy_exam
+  def destroy
     exam = Exam.find(params[:id])
     @exam_group=exam.exam_group
     exam.destroy
@@ -48,5 +55,6 @@ class ExamsController < ApplicationController
       flash[:notice] = 'Exam was successfully removed.'
       format.js {render :template => 'exams/destroy'}
     end 
-  end
+  end  
+  
 end
