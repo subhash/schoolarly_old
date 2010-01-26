@@ -44,7 +44,7 @@ class ActiveSupport::TestCase
     assert_select '.tabs > ul > li > a', label
     assert_select "#"+id, 1
   end
-
+  
   
   def assert_breadcrumb(label,url = nil, index = nil)
     assert_select 'ul#breadcrumbs li' , :text => label 
@@ -100,6 +100,14 @@ class ActiveSupport::TestCase
         assert false
       end
     end
+  end
+  
+  def assert_tabs(count)
+    assert_select 'div.tabs li', count
+  end
+  
+  def assert_tab_rows(type, count)    
+    assert_select "div##{type.downcase.pluralize}-tab tr[id*=#{type.downcase}_]", count
   end
   
 end

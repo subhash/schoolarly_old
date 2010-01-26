@@ -1,0 +1,21 @@
+<tr id="school_<%= school.id%>">
+    <td>
+        <%if school.name %>
+        <%= link_to school.name, school_path(school) %>
+        <%else %>
+        <%= link_to "Profile not created", {:controller => 'user_profiles', :action => 'new', :id => school.user}, {:class => "profile"} %>
+        <%end %>
+    </td>
+    <td>
+        <%= school.user.email %>
+    </td>
+	<td>
+        <%= school.board %>
+    </td>
+	<td>
+        <%= school.fax %>
+    </td>
+	<td>
+        <%= school.website %>
+    </td>    
+</tr>

@@ -1,0 +1,26 @@
+<table class="tablesorter ui-state-default" border="1px">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Board
+            </th>
+            <th>
+                Fax
+            </th>
+            <th>
+                Website
+            </th>
+        </tr>
+    </thead>
+    <tbody id="schools" class="schools">
+        <% schools.each do |school| %>
+        <%= render :partial => 'schools/school', :object => school %>
+        <%end %>
+    </tbody>
+</table>

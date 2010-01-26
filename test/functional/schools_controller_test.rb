@@ -40,8 +40,10 @@ class SchoolsControllerTest < ActionController::TestCase
     get :show, :id => @stAntonys.to_param
     assert_response :success
     assert_select 'div.tabs li', 4
+    assert_tab_count 4
     assert_select 'div#classes-tab [class*=klass]', @stAntonys.klasses.in_year(@current_year).size
     assert_select 'div#students-tab tr[id*=student_]', @stAntonys.students.size
+    assert_tab_rows 'student', @stAntonys.students.size
     assert_select 'div#teachers-tab tr[class*=teacher_]', @stAntonys.teachers.size
     assert_select 'div#exams-tab p', @stAntonys.klasses.in_year(@current_year).size
   end
