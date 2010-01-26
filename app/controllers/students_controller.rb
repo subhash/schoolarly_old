@@ -3,6 +3,21 @@ class StudentsController < ApplicationController
   
   protect_from_forgery :only => [:create, :update, :destroy] 
   
+  
+  def self.in_place_loader_for(object, attribute, options = {})
+    define_method("get_#{object}_#{attribute}") do
+      @item = object.to_s.camelize.constantize.find(params[:id])
+      render :text => (@item.send(attribute).blank? ? "[No Name]" : @item.send(attribute))
+    end
+  end  
+  
+  in_place_loader_for :student, :admission_number
+  in_place_edit_for :student, :admission_number
+  
+  in_place_loader_for :student, :roll_number
+  in_place_edit_for :student, :roll_number
+  
+  
   # GET /students/1
   # GET /students/1.xml
   def show
@@ -24,7 +39,6 @@ class StudentsController < ApplicationController
         @klasses = @school.klasses.in_year(@year)
         @student_enrollment = StudentEnrollment.new
         @student_enrollment.student = @student
-        @student_enrollment.admission_number = @student.admission_number
         add_js_page_action(:title => 'Assign Class', :id => "new-enrollment-for-#{@student.id}", :render => {:partial => 'student_enrollments/new_enrollment_form', :locals => {:student_enrollment => @student_enrollment, :klasses => @klasses}})
       end
     else

@@ -1,10 +1,12 @@
 <% remote_form_for student_enrollment , :url => {:controller => 'student_enrollments', :action => 'create', :student_id => student_enrollment.student} do |f| %>
 <%= f.error_messages %>
+<% fields_for :student do |student| %>
 <p>
-    <%= f.label :roll_number %>
+    <%= student.label :roll_number %>
     <br/>
-    <%= f.text_field :roll_number %>
+    <%= student.text_field :roll_number %>
 </p>
+<%end %>
 <p>
     <%= f.label "Class" %>
     <br/>

@@ -12,7 +12,7 @@
     <td>
         <% if student.school %>
         <input type="button" id="edit_no_<%= student.id %>" class="ui-state-default float_right" value="edit"/><strong id=<%="admission_number_#{student.id}" %>><%=student.admission_number %></strong>
-        <%= in_place_editor "admission_number_#{student.id}" ,{:url => {:controller => 'student_enrollments', :action => 'set_student_admission_number', :id => student},:external_control => "edit_no_#{student.id}"} %>
+        <%= in_place_editor "admission_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_admission_number', :id => student},:external_control => "edit_no_#{student.id}"} %>
         <% end %>
     </td>
     <% if student.current_enrollment %>
@@ -21,8 +21,8 @@
         <%= link_to enrollment.klass.name , klass_path(enrollment.klass) %>
     </td>
     <td>
-        <input type="button" id="edit_roll_no_<%= enrollment.id %>" class="ui-state-default float_right" value="edit"/><strong id=<%="roll_number_#{enrollment.id}" %>><%=enrollment.roll_number %></strong>
-        <%= in_place_editor "roll_number_#{enrollment.id}" ,{:url => {:controller => 'student_enrollments', :action => 'set_student_enrollment_roll_number', :id => enrollment},:external_control => "edit_roll_no_#{enrollment.id}"} %>
+        <input type="button" id="edit_roll_no_<%= student.id %>" class="ui-state-default float_right" value="edit"/><strong id=<%="roll_number_#{student.id}" %>><%=student.roll_number %></strong>
+        <%= in_place_editor "roll_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_roll_number', :id => student},:external_control => "edit_roll_no_#{student.id}"} %>
     </td>
     <td>
         <div id="add-subjects-for-enrollment-<%=enrollment.id%>" style ="display: none;">

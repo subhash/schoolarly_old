@@ -1,18 +1,5 @@
 class StudentEnrollmentsController < ApplicationController
-    
-  def self.in_place_loader_for(object, attribute, options = {})
-    define_method("get_#{object}_#{attribute}") do
-      @item = object.to_s.camelize.constantize.find(params[:id])
-      render :text => (@item.send(attribute).blank? ? "[No Name]" : @item.send(attribute))
-    end
-  end  
-  
-  in_place_loader_for :student, :admission_number
-  in_place_edit_for :student, :admission_number
-  
-  in_place_loader_for :student_enrollment, :roll_number
-  in_place_edit_for :student_enrollment, :roll_number
-  
+
   def new
     @student = Student.find(params[:student_id])
     @school = @student.school
@@ -20,7 +7,6 @@ class StudentEnrollmentsController < ApplicationController
     @klasses = @school.klasses.in_year(@year)
     @student_enrollment = StudentEnrollment.new
     @student_enrollment.student = @student
-    @student_enrollment.admission_number = @student.admission_number
     respond_to do |format|          
       format.js {render :template => 'student_enrollments/new'}
     end  
@@ -29,6 +15,7 @@ class StudentEnrollmentsController < ApplicationController
   def create
     @student_enrollment = StudentEnrollment.new(params[:student_enrollment])
     @student = Student.find(params[:student_id])
+    @student.roll_number = params[:student][:roll_number]
     @student_enrollment.start_date = Time.now.to_date    
     @student.enrollments << @student_enrollment
     @student.current_enrollment = @student_enrollment

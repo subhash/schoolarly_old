@@ -3,6 +3,7 @@ class CreateStudents < ActiveRecord::Migration
     create_table :students , :force=> true do |t|
       t.integer :school_id
       t.string :admission_number
+      t.string :roll_number
       t.integer :current_enrollment_id
       t.timestamps
       

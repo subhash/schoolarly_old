@@ -11,6 +11,7 @@ paru:
 shenu:
   admission_number: 2
   school: st_teresas
+  roll_number: 52
   current_enrollment: shenu_one
   
 reeny:

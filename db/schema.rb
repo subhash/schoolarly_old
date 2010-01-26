@@ -151,10 +151,8 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
   add_index "scores", ["student_id"], :name => "student_id"
 
   create_table "student_enrollments", :force => true do |t|
-    t.integer  "student_id",       :null => false
-    t.integer  "klass_id",         :null => false
-    t.string   "admission_number"
-    t.string   "roll_number"
+    t.integer  "student_id", :null => false
+    t.integer  "klass_id",   :null => false
     t.date     "start_date"
     t.date     "end_date"
     t.datetime "created_at"
@@ -177,6 +175,7 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
   create_table "students", :force => true do |t|
     t.integer  "school_id"
     t.string   "admission_number"
+    t.string   "roll_number"
     t.integer  "current_enrollment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
