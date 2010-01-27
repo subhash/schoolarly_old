@@ -1,4 +1,8 @@
 page << "closeDialogs();"
 page << "jQuery('.tabs').tabs('select','#exams-tab')"
-div_name='exams-tab'
-page.insert_html(:top, div_name, :partial => 'exams/exams', :object => @exam_group.exams.group_by{|e| e.exam_group} )
+div_name='exams_of_klass_' + @klass.id.to_s
+if @klass.exam_groups.size ==1
+  page.replace_html(div_name, :partial => 'exams/exams', :object => @exam_group.exams.group_by{|e| e.exam_group}, :locals => {:entity => @klass})
+else
+  page.insert_html(:top, div_name, :partial => 'exams/exams', :object => @exam_group.exams.group_by{|e| e.exam_group}, :locals => {:entity => @klass})
+end

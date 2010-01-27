@@ -1,6 +1,6 @@
 div_name='eg_'+params[:id].to_s
-if @klass.exam_groups.empty?
-  page.replace_html('exams-tab', :text => "<blockquote> No exam exists for the class. Click on the <b>Add Exam</b> link on the right to create exams.</blockquote>")
+if @klass.exams.empty?
+  page.replace(div_name, :text => "<blockquote> No exam available.</blockquote>")
 else
   page.remove div_name
 end

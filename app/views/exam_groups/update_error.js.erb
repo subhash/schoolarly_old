@@ -1,2 +1,2 @@
 jQuery(".jquery-dialog.open-dialog").html("<%= escape_javascript(render :text => '<blockquote>Exams could not be updated. Try again.</blockquote>') %>");
-jQuery(".jquery-dialog.open-dialog").append("<%= escape_javascript( render :partial => 'exam_groups/edit', :locals => {:exam_group => @exam_group, :exam_types => ExamType.all}) %>");  
+jQuery(".jquery-dialog.open-dialog").append("<%= escape_javascript( render :partial => 'exam_groups/edit', :locals => {:exam_group => @exam_group, :exam_types => ExamType.all, :subjects => @subjects }) %>");  
