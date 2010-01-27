@@ -14,6 +14,10 @@
         <%end %>
     </div>
     <div id="exams-tab">
+        <div id="exam-dialog" title="Exam" class="jquery-dialog" style ="display: none;"></div>
+        <div id="exams">
+            <%= render :partial => 'exams/exams', :object => @exams, :locals => {:entity => @student_enrollment} %>
+        </div>
     </div>
 </div>
 <%end %>
