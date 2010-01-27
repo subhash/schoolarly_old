@@ -18,8 +18,11 @@ class ExamGroupsController < ApplicationController
  
   def update
     @exam_group=ExamGroup.find(params[:id])
+    subject_ids=params[:subjects].uniq
+    @subjects=subject_ids.collect do |subject_id|
+      Subject.find(subject_id)
+    end   
     @exam_group.update_attributes!(params[:exam_group])
-    @exam_group.save!
     respond_to do |format|
       format.js {render :template => 'exam_groups/update_success'}
     end 
