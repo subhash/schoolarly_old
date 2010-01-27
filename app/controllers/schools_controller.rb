@@ -25,6 +25,9 @@ class SchoolsController < ApplicationController
     add_js_page_action(:title => 'Invite Teacher',:render => {:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :school => @school}})
     @klasses = @school.klasses.in_year(Klass.current_academic_year(@school)).group_by{|klass|klass.level}
     @exam_groups = @school.exam_groups.group_by{|eg| Klass.find(eg.klass_id)}
+    @klass_exams= @school.klasses.each_with_object({}) do |klass, hash|
+      hash[klass.id] = klass.exams.group_by{|e| e.exam_group}
+    end
     @students = @school.students
     @teachers = @school.teachers
     session[:redirect] = request.request_uri
