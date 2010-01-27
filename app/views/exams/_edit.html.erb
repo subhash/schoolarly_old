@@ -1,8 +1,8 @@
-<% remote_form_for exam, :url => {:controller => :exams, :action => 'update', :id => exam } do |f| %>
+<% remote_form_for exam, :url => {:controller => :exams, :action => 'update', :id => exam, :entity_class => entity.class.name, :entity_id => entity} do |f| %>
 	<table class="center">
 		<tr>
         	<th><label for="subject">Subject</label></th>
-			<td><%= f.select(:subject_id, options_from_collection_for_select(subjects, :id, :name, {:selected => exam.subject_id}), {:style => "width: 231px"} ) %></td>
+			<td><%= f.select(:subject_id, options_from_collection_for_select(entity.subjects.uniq, :id, :name, {:selected => exam.subject_id}), {:style => "width: 231px"} ) %></td>
 		</tr>
 	    <tr>
 			<th><label for="start_time">Start Time</label></th>

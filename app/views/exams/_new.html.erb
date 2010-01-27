@@ -1,9 +1,9 @@
-<% remote_form_for exam, :url => {:controller => :exams, :action => 'create', :exam_group_id =>  exam.exam_group_id} do |f| %>
+<% remote_form_for exam, :url => {:controller => :exams, :action => 'create', :exam_group_id => exam.exam_group_id, :entity_class => entity.class.name, :entity_id => entity} do |f| %>
 	<table class="center">
 		<tbody>
             <tr>
             	<th><label for=:"subject">Subject</label></th>
-				<td><%= f.select(:subject_id, options_from_collection_for_select(subjects,:id,:name)) %></td>
+				<td><%= f.select(:subject_id, options_from_collection_for_select(entity.subjects.uniq,:id,:name)) %></td>
             </tr>
             <tr>
            		<th><label for="start_time">Start Time</label></th>

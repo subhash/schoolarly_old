@@ -1,2 +1,2 @@
-page.replace_html("exam-dialog", :partial =>'exams/edit', :locals => {:exam => @exam, :subjects => @exam.exam_group.klass.subjects})
+page.replace_html("exam-dialog", :partial =>'exams/edit', :locals => {:exam => @exam, :entity => Object.const_get(params[:entity_class]).find(params[:entity_id])})
 page << "openDialog('exam-dialog');"

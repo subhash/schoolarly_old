@@ -1,9 +1,8 @@
-if @exam_group.exams.empty?
-  exams=@exam_group.exams.group_by{|e| e.exam_group}
-  exams[@exam_group] = [Exam.new(:exam_group_id => @exam_group.id)]
+entity = Object.const_get(params[:entity_class]).find(params[:entity_id])
+if entity.exams.select{|exam| exam.exam_group_id==@exam_group.id && !exam.id.nil?}.empty?
   div_name='exam_group_' + @exam_group.id.to_s
-  page.replace_html(div_name, :partial => "exams/exam_group", :locals => {:exam_group => @exam_group, :exam_collection => exams[@exam_group]})
+  page.replace_html(div_name, :partial => "exams/exam_group", :locals => {:exam_group => @exam_group, :exam_collection => [Exam.new(:exam_group_id => @exam_group.id)], :entity => entity})
 else
   div_name = 'exam_' + params[:id].to_s
   page.remove div_name
-end 
+end

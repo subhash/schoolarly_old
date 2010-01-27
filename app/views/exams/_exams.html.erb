@@ -1,14 +1,13 @@
 <%if exams.nil? || exams.empty? %>
 <br/>
 <blockquote>
-    No exam exists for the class. Click on the <b>Add Exams</b>
-    link on the right to create exams.
+    No exam available.
 </blockquote>
 <%else %>
 	<% exams.each do |exam_group, exam_collection| %>
 		<table id="<%='eg_'+exam_group.id.to_s%>" class="ui-state-default">
 			<tbody id="<%= 'exam_group_' + exam_group.id.to_s%>">
-				<%= render :partial => 'exams/exam_group', :locals => {:exam_group => exam_group, :exam_collection => exam_collection} %>
+				<%= render :partial => 'exams/exam_group', :locals => {:exam_group => exam_group, :exam_collection => exam_collection, :entity => entity} %>
 			</tbody>
 		</table>
 	<% end %>
