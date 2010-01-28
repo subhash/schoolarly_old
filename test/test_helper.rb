@@ -97,7 +97,7 @@ class ActiveSupport::TestCase
           end
         end
       else
-        assert false
+        assert_select ".button", :text => label
       end
     end
   end
