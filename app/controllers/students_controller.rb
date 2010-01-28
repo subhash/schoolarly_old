@@ -45,8 +45,9 @@ class StudentsController < ApplicationController
       add_js_page_action(:title => 'Add to school', :render => {:partial =>'students/add_to_school_form', :locals => {:student => @student, :schools => School.find(:all)}})
     end
     add_breadcrumb(@student.name)
-    @exams=@student_enrollment.exams.group_by{|e| e.exam_group}
+    if !@current_enrollment.nil? then @exams=@current_enrollment.exams.group_by{|e| e.exam_group} else @exams=nil end 
   end
+  
   # GET /students/new
   # GET /students/new.xml
   def new
