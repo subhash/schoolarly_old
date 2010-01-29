@@ -1,4 +1,0 @@
-page << "closeDialogs();"
-div_name='exam_group_' + @exam_group.id.to_s
-page.replace_html(div_name, :partial =>'exams/exam_group', :locals => {:exam_group => @exam_group, :exam_collection => (!(@exam_group.exams.empty?) ? @exam_group.exams : [Exam.new(:exam_group_id => @exam_group.id)]), :entity => @exam_group.klass})
-
