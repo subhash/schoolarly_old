@@ -2,27 +2,27 @@
 	<table class="center">
 		<tr>
         	<th><label for="subject">Subject</label></th>
-			<td><%= f.select(:subject_id, options_from_collection_for_select(entity.subjects.uniq, :id, :name, {:selected => exam.subject_id}), {:style => "width: 231px"} ) %></td>
+			<td><%=text_field_tag(:subject_name, exam.subject.name, :readonly => true, :size => 27)%></td>
 		</tr>
 	    <tr>
 			<th><label for="start_time">Start Time</label></th>
-            <td><%= f.text_field(:start_time, :size => 36)%></td>
+            <td><%= f.text_field(:start_time, :size => 27)%></td>
          </tr>
         <tr>
         	<th><label for="end_time">End Time</label></th>
-            <td><%= f.text_field(:end_time, :size => 36)%></td>
+            <td><%= f.text_field(:end_time, :size => 27)%></td>
          </tr>
         <tr>
         	<th><label for="venue">Venue</label></th>
-            <td><%= f.text_field(:venue, :size => 36)%></td>
+            <td><%= f.text_field(:venue, :size => 27)%></td>
         </tr>
 		<tr>
             <th><label for="max_score">Max Score</label></th>
-            <td><%= f.text_field(:max_score, :size => 36)%></td>
+            <td><%= f.text_field(:max_score, :size => 27)%></td>
         </tr>
 		<tr>
           	<th><label for="pass_score">Pass Score</label></th>
-            <td><%= f.text_field(:pass_score, :size => 36)%></td>
+            <td><%= f.text_field(:pass_score, :size => 27)%></td>
         </tr>
 	</table>
 	<div class="center">

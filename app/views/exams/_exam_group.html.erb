@@ -1,18 +1,14 @@
-		<td style="width:auto;" colspan="7">
-	        <%=exam_group.description + ": " + exam_group.exam_type.description%>
-	    </td>
 		<%if entity.class.name == 'Klass'%>
-			<td class="ui-state-default">
-				<%= link_to_function "Edit", {:class => "ui-icon ui-icon-pencil", :title => 'Edit'} do |page|
-					page.replace_html("exam-dialog", :partial =>'exam_groups/edit', :locals => {:exam_group => exam_group, :exam_types => ExamType.all, :subjects => entity.subjects})
-					page << "openDialog('exam-dialog');"	        	
-		        end %>
-		    </td>
+			<td style="width:auto;" colspan="8">
+	        	<%=exam_group.exam_type.description + ": " %>
+				<div id="edit_description_<%= exam_group.id %>" class="ui-icon ui-icon-pencil float_right"></div><strong id=<%="description_#{exam_group.id}" %>><%=exam_group.description %></strong>
+        		<%= in_place_editor "description_#{exam_group.id}" ,{:url => {:controller => 'exam_groups', :action => 'set_exam_group_description', :id => exam_group},:external_control => "edit_description_#{exam_group.id}"} %>
+	    	</td>
 			<td class="ui-state-default">
 				<%= link_to_remote 'Delete', :url => {:controller => :exam_groups, :action => 'destroy', :id => exam_group, :context => entity.class.name.pluralize}, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'All the exams under this will be deleted. Are you sure?' %>
 		    </td>
 		<%else%>
-			<td colspan="2"></td>
+			<td colspan="9"><%=exam_group.exam_type.description + ": " + exam_group.description%></td>
 		<%end%>
 		<%if !exam_collection.many? && exam_collection.first.id.nil? %>
 			<tr>
