@@ -3,7 +3,7 @@
 		<tbody>
             <tr>
             	<th><label for=:"subject">Subject</label></th>
-				<td><%= f.select(:subject_id, options_from_collection_for_select(entity.subjects.uniq,:id,:name)) %></td>
+				<td><%= f.select(:subject_id, options_from_collection_for_select(entity.subjects.uniq - exam.exam_group.subjects,:id,:name)) %></td>
             </tr>
             <tr>
            		<th><label for="start_time">Start Time</label></th>
