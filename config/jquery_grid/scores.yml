@@ -11,7 +11,7 @@
   - :width: 130
     :index: email
     :name: email
-    :editable: true    
+    :editable: false    
   - :width: 130
     :index: name
     :name: name
