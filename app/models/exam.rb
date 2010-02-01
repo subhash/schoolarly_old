@@ -7,7 +7,7 @@ class Exam < ActiveRecord::Base
   has_one :exam_type, :through => :exam_group
   
   def to_s
-    return self.subject.name + ' ' + exam_group.exam_type.description + ' for ' + exam_group.klass.name + ': ' + exam_group.description 
+    return exam_group.description + ' for ' + subject.name
   end
   
   acts_as_authorizable
