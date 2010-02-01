@@ -14,6 +14,7 @@ class ExamGroupsController < ApplicationController
   def create
     @exam_group=ExamGroup.new(params[:exam_group])
     @klass=@exam_group.klass
+    @exam_group.description = @exam_group.exam_type.description + ' for ' + @klass.name
     @exam_group.subject_ids = params[:exam][:subject_ids]
     @exam_group.save!
     respond_to do |format|
