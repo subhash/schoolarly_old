@@ -87,7 +87,6 @@ class KlassesController < ApplicationController
       student.save!      
     end
     @klass.save!
-    puts "current students = "+@klass.current_students.inspect
     @addable_students = @klass.school.students.not_enrolled
   end
   

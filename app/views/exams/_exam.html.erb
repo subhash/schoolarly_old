@@ -24,6 +24,6 @@
 			<%= link_to_remote 'Delete', :url => {:controller => :exams, :action => 'destroy', :id => exam, :entity_class => entity.class.name, :entity_id => entity, :method => :delete}, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'Are you sure?' %>
 	    </td>
 		<td class="ui-state-default">
-        	<%=link_to 'Enter Score', {:controller => 'scores', :action => 'new', :exam => exam}, {:class => "ui-icon ui-icon-circle-zoomin", :title => 'View/Edit Scores'}%>
+        	<%=link_to 'Enter Score', {:controller => 'scores', :action => 'show', :exam => exam}, {:class => "ui-icon ui-icon-circle-zoomin", :title => 'View/Edit Scores'}%>
 	    </td>	
 	</tr>
