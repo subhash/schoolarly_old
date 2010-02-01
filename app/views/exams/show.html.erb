@@ -4,12 +4,19 @@
             <a href="#scores-tab">Scores</a>
         </li>
         <li>
-            <a href="#details-tab">Exam details</a>
+            <a href="#details-tab">Exam Details</a>
         </li>
     </ul>
+	
     <div id="details-tab">
+        <div id="exam-dialog" title="Exam" class="jquery-dialog" style ="display: none;"></div>
+        <div id="exams">
+            <%= render :partial => 'exams/exams', :object => @exams, :locals => {:entity => @exam} %>
+        </div>
     </div>
-    <div id="scores-tab">
+	
+	<div id="scores-tab">
         <%= render :partial => 'scores/scores' , :locals => {:exam => @exam} %>
     </div>
+	
 </div>
