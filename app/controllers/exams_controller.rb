@@ -1,12 +1,13 @@
 class ExamsController < ApplicationController
   
-  
+  protect_from_forgery :only => [:create, :update, :destroy]
+
   def show
-    @exam = Exam.find(params[:id])
-    @klass = @exam.exam_group.klass
-    @school = @klass.school
-    add_breadcrumb(@school.name, @school)
-    add_breadcrumb(@klass.name, @klass)
+    @exam=Exam.find(params[:id])
+    add_breadcrumb(@exam.exam_group.klass.school.name, @exam.exam_group.klass.school)
+    add_breadcrumb(@exam.exam_group.klass.name, @exam.exam_group.klass)
+    add_breadcrumb(@exam.to_s)
+    @exams=[@exam].group_by{|e| e.exam_group}
   end
   
   def new
