@@ -1,5 +1,16 @@
 class ExamGroupsController < ApplicationController
   
+  protect_from_forgery :only => [:create, :update, :destroy] 
+ 
+  def self.in_place_loader_for(object, attribute, options = {})
+    define_method("get_#{object}_#{attribute}") do
+      @item = object.to_s.camelize.constantize.find(params[:id])
+      render :text => (@item.send(attribute).blank? ? "[No Name]" : @item.send(attribute))
+    end
+  end  
+  in_place_edit_for :exam_group, :description
+  in_place_loader_for :exam_group, :description
+  
   def create
     @exam_group=ExamGroup.new(params[:exam_group])
     @klass=@exam_group.klass
@@ -16,23 +27,6 @@ class ExamGroupsController < ApplicationController
     end 
   end 
  
-  def update
-    @exam_group=ExamGroup.find(params[:id])
-    subject_ids=params[:subjects].uniq
-    @subjects=subject_ids.collect do |subject_id|
-      Subject.find(subject_id)
-    end   
-    @exam_group.update_attributes!(params[:exam_group])
-    respond_to do |format|
-      format.js {render :template => 'exam_groups/update_success'}
-    end 
-  rescue Exception => e
-    respond_to do |format|
-      flash[:notice] = 'Error:' + e.message
-      format.js {render :template => 'exam_groups/update_error'}
-    end
-  end  
-  
   def destroy
     @active_tab = :Exams
     exam_group=ExamGroup.find(params[:id])
