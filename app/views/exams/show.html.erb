@@ -1,0 +1,15 @@
+<div id="exam_tabs" class="tabs">
+    <ul>
+        <li>
+            <a href="#scores-tab">Scores</a>
+        </li>
+        <li>
+            <a href="#details-tab">Exam details</a>
+        </li>
+    </ul>
+    <div id="details-tab">
+    </div>
+    <div id="scores-tab">
+        <%= render :partial => 'scores/scores' , :locals => {:exam => @exam} %>
+    </div>
+</div>

@@ -1,6 +1,13 @@
 class ExamsController < ApplicationController
   
-  protect_from_forgery :only => [:create, :update, :destroy]
+  
+  def show
+    @exam = Exam.find(params[:id])
+    @klass = @exam.exam_group.klass
+    @school = @klass.school
+    add_breadcrumb(@school.name, @school)
+    add_breadcrumb(@klass.name, @klass)
+  end
   
   def new
     @exam_group = ExamGroup.find(params[:exam_group])
@@ -20,7 +27,7 @@ class ExamsController < ApplicationController
     end 
   rescue Exception => e
     respond_to do |format|
-    flash[:notice] = 'Error: ' + e.message
+      flash[:notice] = 'Error: ' + e.message
       format.js {render :template => 'exams/create_error'}
     end 
   end

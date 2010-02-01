@@ -1,0 +1,8 @@
+<%= jquery_grid :scores, {:url => grid_data_scores_url(:exam => exam.id), :editurl => row_edit_scores_url(:exam => exam.id) } %>
+<center>
+    <div style="background :black; color:white; width:518px;">
+        Scores for exam 
+    </div>
+    <%= jquery_grid_table %>
+    <%= jquery_grid_pager %>
+</center>
