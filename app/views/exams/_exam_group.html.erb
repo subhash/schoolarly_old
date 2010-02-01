@@ -1,7 +1,7 @@
 		<%if entity.class.name == 'Klass'%>
 			<td style="width:auto;" colspan="8">
 	        	<%=exam_group.exam_type.description + ": " %>
-				<div id="edit_description_<%= exam_group.id %>" class="ui-icon ui-icon-pencil float_right"></div><strong id=<%="description_#{exam_group.id}" %>><%=exam_group.description %></strong>
+				<div id="edit_description_<%= exam_group.id %>" class="ui-icon ui-icon-pencil float_right", title='Edit'></div><strong id=<%="description_#{exam_group.id}" %>><%=exam_group.description %></strong>
         		<%= in_place_editor "description_#{exam_group.id}" ,{:url => {:controller => 'exam_groups', :action => 'set_exam_group_description', :id => exam_group},:external_control => "edit_description_#{exam_group.id}"} %>
 	    	</td>
 			<td class="ui-state-default">
@@ -40,7 +40,9 @@
 		            Pass Score
 		        </th>
 				<td class="ui-state-default" colspan="3">
-					<%= link_to_remote ' + Add Exam + ', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group, :entity_class => entity.class.name, :entity_id => entity}, :html => {:title => 'Add Exam', :class => "cell-link" }%>
+					<%if entity.class.name != 'Exam'%>
+						<%= link_to_remote 'Add Exam', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group, :entity_class => entity.class.name, :entity_id => entity}, :html => {:title => 'Add Exam', :class => "cell-link" }%>
+					<%end%>
 				</td>
 		    </tr>
 		    <%exam_collection.each do |exam| %>
