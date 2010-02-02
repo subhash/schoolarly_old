@@ -16,10 +16,8 @@ class ScoresController < ApplicationController
   
   def grid_data
     @exam = Exam.find(params[:exam])
-    @exam_group = @exam.exam_group
-    @klass = @exam_group.klass
-    @students = @klass.students_studying(@exam.subject.id)
-    @students_scores = @students.each_with_object({}) {|student, hash| hash[student] = student.scores.for_exam(@exam.id)}
+    @students = @exam.students
+    @students_scores = @students.each_with_object({}) {|student, hash| hash[student] = @exam.scores.find_by_student_id(student.id)}
     respond_to do |format|
       format.xml {render :partial => 'grid_data.xml.builder', :layout => false }
     end   
@@ -28,7 +26,7 @@ class ScoresController < ApplicationController
   def row_edit
     @exam = Exam.find(params[:exam])
     @student = Student.find_by_id(params[:id])
-    @score = @student.scores.for_exam(@exam.id)
+    @score =  @exam.scores.find_by_student_id(@student.id)
     if(@score)
       @score.score = params[:score]
     else
@@ -37,8 +35,8 @@ class ScoresController < ApplicationController
         s.student = @student
         s.exam = @exam
       end
-      @score.save!
     end  
+    @score.save!
     respond_to do |format|
       format.js
     end  

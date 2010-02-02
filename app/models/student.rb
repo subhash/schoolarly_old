@@ -11,12 +11,7 @@ class Student < ActiveRecord::Base
   belongs_to :current_enrollment, :class_name => 'StudentEnrollment', :foreign_key => 'current_enrollment_id'
   has_one :current_klass ,:through => :current_enrollment, :source =>:klass
   has_one :parent
-  has_many :scores do
-    def for_exam(exam_id)
-      find :first, :conditions => ['exam_id = ? ', exam_id]
-    end
-  end
-  
+  has_many :scores   
   after_update :update_roles
   
   acts_as_authorizable
