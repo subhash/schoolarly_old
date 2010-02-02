@@ -19,6 +19,7 @@
   - :width: 75
     :index: score
     :name: score
+    :sorttype: int
     :editable: true
   :pager: jQuery('#<grid_name>_pager')
   :function_onSelectRow: "(id)
