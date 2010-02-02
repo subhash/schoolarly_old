@@ -28,7 +28,7 @@
 	  jQuery('#<grid_name>').editRow(id,true);
 	  lastsel2=id;
 	}"
-  :sortname: last_name
+  :sortname: email
   :sortorder: asc	
   :rowNum: 10
   :imgpath: /stylesheets/jqGrid-themes/basic/images
