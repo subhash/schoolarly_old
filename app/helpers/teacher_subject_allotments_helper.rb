@@ -1,0 +1,2 @@
+module TeacherSubjectAllotmentsHelper
+end
