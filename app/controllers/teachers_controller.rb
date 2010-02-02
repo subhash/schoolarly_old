@@ -60,52 +60,19 @@ class TeachersController < ApplicationController
   def show
     set_up
     add_breadcrumb(@teacher.name)
-    add_page_action('Allot Subjects/Classes', {:action => 'allot', :id => @teacher}) if @school
-    @allotments=(@teacher.current_allotments).group_by{|allotment|allotment.subject_id}
-    #TODO @exams=@teacher.exams.group_by{|e| e.exam_group}
+    add_js_page_action(:title => 'Add/Remove Subjects', :render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @teacher, :subjects => Subject.all, :disabled => @teacher.allotted_subject_ids }})
+    @exams=@teacher.exams.group_by{|e| e.exam_group}
   end
   
-  def get_allotment_items(teacher, subjects)
-    preSelectedItems= subjects.each_with_object({}) do |subject, hash|
-      hash[subject.id] = teacher.current_klasses.teaches(subject.id)
+  def add_subjects
+    @teacher = Teacher.find(params[:id])
+    subjects_to_add = Subject.find(params[:teacher][:subject_ids].compact.reject(&:blank?)) - @teacher.current_subjects
+    subjects_to_remove = @teacher.current_subjects - @teacher.subjects - Subject.find(params[:teacher][:subject_ids].compact.reject(&:blank?))
+    subjects_to_add.each do |subject|
+      @teacher.teacher_subject_allotments << TeacherSubjectAllotment.new(:school => @teacher.school, :subject => subject)
     end
-    allotmentItems=subjects.each_with_object({}) do |subject, hash|
-      hash[subject.id] = [subject.id,subject.klasses.ofSchool(teacher.school.id).group_by{|klass|klass.level}]
-    end
-    return preSelectedItems,allotmentItems
-  end
-  
-  def allot
-    set_up
-    if !@school
-      redirect_to(url_for( :controller => :teachers, :action => 'show', :id=>@teacher))
-    else
-      @year = Klass.current_academic_year(@school)
-      add_breadcrumb(@teacher.name, @teacher)
-      add_breadcrumb('Allot')
-      @subjects=@school.subjects
-      @preSelectedItems,@allotmentItems=get_allotment_items(@teacher,@subjects)
-    end
-  end
-  
-  def add_allotments
-    subject_id=params[:subject_id]
-    add_klasses=params[:klasses].split(',')
-    add_klasses.each  do |klass_id| 
-      if (!subject_id.empty? && !klass_id.empty?)
-        new_allotment=TeacherAllotment.new(:is_current => 1)
-        @subject=Subject.find(subject_id)
-        new_allotment.subject=@subject
-        new_allotment.klass=Klass.find(klass_id)
-        new_allotment.teacher=@teacher
-        new_allotment.save!
-      end
-    end
-    flash[:notice] = 'Allotment was successfully done.'
-    redirect_to(url_for( :controller => :teachers, :action => 'show', :id=>@teacher))
-  rescue Exception => e
-    flash[:notice]="Error occured in allotment: <br /> #{e.message}"
-    redirect_to(url_for( :controller => :teachers, :action => 'show', :id=>@teacher)) 
+    TeacherSubjectAllotment.destroy(@teacher.current_subject_allotments.select{|allotment| subjects_to_remove.include?(allotment.subject)}.collect{|alltmnt| alltmnt.id })
+    @teacher.reload
   end
   
 end
