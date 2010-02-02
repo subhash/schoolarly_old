@@ -1,18 +1,4 @@
 class ScoresController < ApplicationController
-  # GET /scores
-  # GET /scores.xml
-  def index
-    @scores = Score.all
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @scores }
-    end
-  end
-  
-  def show
-    @exam = Exam.find(params[:exam])
-  end
   
   def grid_data
     @exam = Exam.find(params[:exam])
