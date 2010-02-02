@@ -17,8 +17,6 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :student_enrollments
   
-  map.resources :teacher_allotments
-  
   map.resources :schoolarly_admins
   
   map.resources :users
