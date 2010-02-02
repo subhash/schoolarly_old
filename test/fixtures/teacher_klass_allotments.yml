@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  teacher_subject_allotment_id: 1
+  klass_id: 1
+
+two:
+  teacher_subject_allotment_id: 1
+  klass_id: 1

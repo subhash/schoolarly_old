@@ -1,8 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
- sunil_eng_1A:
-   teacher: sunil
-   subject: english
-   klass: one_A
-   is_current: 1
-
