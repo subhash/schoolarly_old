@@ -1,5 +1,0 @@
-<% @teacher_allotment = teacher_allotment %>
-<% remote_form_for teacher_allotment, :url => {:controller => :teacher_allotments, :action => 'create', :klass_id => teacher_allotment.klass,:subject_id => teacher_allotment.subject} do |f| %>
-<%= select('teacher_allotment', 'teacher_id', teachers.collect{|t|[t.name,t.id]}) %>
-<%= submit_tag "Add" %>
-<%end %>
