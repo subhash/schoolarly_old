@@ -5,7 +5,6 @@ class School < ActiveRecord::Base
       find :all , :conditions => ['year = ? ', year],:order => "level, division"
     end
   end
-  has_many :current_teacher_allotments, :through => :klasses, :source => :teacher_allotments, :conditions => {:is_current => true}
   has_many :teachers 
   has_many :students
   

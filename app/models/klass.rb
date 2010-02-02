@@ -2,7 +2,7 @@ class Klass < ActiveRecord::Base
   named_scope :current_klasses, lambda { |school_id, year|
     { :conditions => { :school_id => school_id , :year => year } , :order => "level, division"}
   }
-  
+  has_many :teacher_klass_allotments
   belongs_to :school
   belongs_to :class_teacher, :class_name => 'Teacher', :foreign_key => 'teacher_id'
   has_many :enrollments, :class_name =>'StudentEnrollment' do
@@ -52,7 +52,7 @@ class Klass < ActiveRecord::Base
   end
   
   def allotted_subjects
-    return teacher_allotments.current.group_by{|a| a.subject.id}.keys
+    return teacher_klass_allotments.collect{|ka| ka.teacher_subject_allotment.subject.id}
   end
   
   def can_be_destroyed
