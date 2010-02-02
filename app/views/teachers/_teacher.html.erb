@@ -1,26 +1,35 @@
 <tr class="teacher_<%= teacher.id%>">
     <td>
-        <%if teacher.user.user_profile then cntrlr = 'teachers'; action='show'; id=teacher; label=teacher.user.user_profile.name; class_name="" else cntrlr='user_profiles'; action='new'; id=teacher.user; label= "Create Profile"; class_name="cell-link" end %>
-        <%= link_to label, {:controller => cntrlr, :action => action, :id => id}, {:class => class_name} %>
+        <%= link_to teacher.name, {:controller => :teachers, :action => 'show', :id => teacher} %>
     </td>
     <td>
-        <%= link_to teacher.user.email, {:controller => 'user_profiles', :action => action, :id => teacher.user} %>
+        <%= link_to teacher.user.email, {:controller => 'user_profiles', :action => 'show', :id => teacher.user} %>
     </td>
+	<%if controller.controller_name=='users'%>
+    	<%if teacher.school %> 
+			<td><%=teacher.school.name%> </td>
+		<%else%>
+			<td align="center">
+				<%= link_to_remote 'Assign School', :url => '#', :html => {:class => "cell-link"}%>
+			</td>
+		<%end%>
+	<%end%>
     <td>
         <%teacher.currently_owned_klasses.each do |klass| %>
-        <%= link_to klass.name + "  ", {:controller => :klasses, :action => 'show', :id=>klass} %>
+        	<%= link_to klass.name + "  ", {:controller => :klasses, :action => 'show', :id=>klass} %>
         <%end %>
     </td>
-    <td>
-		<%=teacher.current_subjects.find(:all, :select => "name").index_by{|subject| subject.name}.keys.join(",")%>
+	<td>
+	    <%if !teacher.current_subjects.empty?%>
+			<%=teacher.current_subjects.index_by{|subject| subject.name}.keys.join(", ")%>
+		<%end%>
     </td>
     <td>
 	    <% if teacher.school %>
-        	<% if !teacher.current_allotments.empty? then label='Show Allotments'; action='show'; css_class="ui-icon ui-icon-info" else label='Make Allotments'; action='allot'; css_class="ui-icon ui-icon-pencil" end %>
-       		<%= link_to label,  {:controller => 'teachers', :action => action, :id => teacher}, {:class => css_class, :title => label} %>
+		  		<%= link_to_remote 'Add/Remove Subjects', '#', {:class => "ui-icon ui-icon-pencil", :title => 'Add/Remove Subjects'} %>
 		<% end %>
     </td>
     <td>
-        <%= link_to_remote 'Delete', :url => {:controller => active_cntrlr, :action => 'remove_teacher',:id => teacher}, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'Are you sure?' %>
+        <%= link_to_remote 'Delete', :url => { :action => 'remove_teacher',:id => teacher}, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'Are you sure?' %>
     </td>
 </tr>
