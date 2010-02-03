@@ -1,8 +1,9 @@
 class CreateExams < ActiveRecord::Migration
   def self.up
     create_table :exams do |t|
-      t.timestamp :start_time
-      t.timestamp :end_time
+      t.date :exam_date
+      t.time :start_time
+      t.time :end_time
       t.string :venue
       t.integer :max_score
       t.integer :pass_score
