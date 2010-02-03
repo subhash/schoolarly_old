@@ -30,7 +30,7 @@ class StudentsController < ApplicationController
       if @current_enrollment
         @student_enrollment = @current_enrollment
         @klass = @current_enrollment.klass
-        @teacher_allotments= @klass.teacher_allotments.current.group_by{|a| a.subject.id}
+        @teacher_subject_allotments= @klass.teacher_klass_allotments.collect{|klass_allotment| klass_allotment.teacher_subject_allotment}.group_by{|s| s.subject.id}
         @all_subjects = Subject.find(:all, :order => 'name')
         add_breadcrumb(@klass.name,@klass)
         add_js_page_action(:title => 'Add/Remove Subjects',:render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @student_enrollment, :subjects => @klass.subjects,:disabled => [] }})

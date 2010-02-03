@@ -60,7 +60,9 @@ class TeachersController < ApplicationController
   def show
     set_up
     add_breadcrumb(@teacher.name)
-    add_js_page_action(:title => 'Add/Remove Subjects', :render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @teacher, :subjects => Subject.all, :disabled => @teacher.allotted_subject_ids }})
+    if @teacher.school
+      add_js_page_action(:title => 'Add/Remove Subjects', :render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @teacher, :subjects => Subject.all, :disabled => @teacher.allotted_subject_ids }})
+    end
     @exams=@teacher.exams.group_by{|e| e.exam_group}
   end
   

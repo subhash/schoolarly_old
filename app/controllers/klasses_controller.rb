@@ -68,7 +68,7 @@ class KlassesController < ApplicationController
     @klass = Klass.find(params[:id])
     @klass.subject_ids = params[:klass][:subject_ids] + @klass.allotted_subjects
     @all_subjects = Subject.find(:all, :order => :name)
-    @teacher_allotments = TeacherAllotment.current_for_klass(@klass.id).group_by{|a| a.subject.id}
+    @teacher_subject_allotments = @klass.teacher_klass_allotments.collect{|klass_allotment| klass_allotment.teacher_subject_allotment}.group_by{|s| s.subject.id}
   end
   
   def add_students
@@ -106,9 +106,10 @@ class KlassesController < ApplicationController
   end
   
   def delete_allotment
-    @teacher_allotment = TeacherAllotment.find(params[:id])
-    @klass = @teacher_allotment.klass
-    @teacher_allotment.is_current = false
+    @teacher_klass_allotment = TeacherKlassAllotment.find(params[:id])
+    @teacher_klass_allotment.end_date = Time.now.to_date
+    @teacher_klass_allotment.save!
+    @klass = @teacher_klass_allotment.klass
     @all_subjects = Subject.find(:all)
   end
   
