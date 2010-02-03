@@ -4,7 +4,8 @@ class Teacher < ActiveRecord::Base
   
   has_many :teacher_subject_allotments
   has_many :teacher_klass_allotments, :through => :teacher_subject_allotments
-  has_many :owned_klasses, :class_name => 'Klass'  
+  has_many :current_klass_allotments, :through => :teacher_subject_allotments, :source => :teacher_klass_allotments, :conditions => [' end_date is not null ' ]
+  has_many :owned_klasses, :class_name => 'Klass'
   
   def current_subject_allotments
     return teacher_subject_allotments.select{|allotment| allotment.school_id == self.school_id}
@@ -39,7 +40,6 @@ class Teacher < ActiveRecord::Base
   end
   
   def add_roles
-    puts 'teacher add roles'
     self.user.has_role 'reader', School
     self.user.has_role 'reader', Teacher
     self.user.has_role 'reader', Student
@@ -54,7 +54,7 @@ class Teacher < ActiveRecord::Base
   end
 
   def exams
-    return teacher_klass_allotments.collect{|allotment| Exam.all(:conditions => ["exam_group_id IN (:egid) AND subject_id = :sid", {:egid => allotment.klass.exam_groups.collect{|eg| eg.id}, :sid => allotment.teacher_subject_allotment.subject.id}])}.flatten
+    return current_klass_allotments.collect{|allotment| Exam.all(:conditions => ["exam_group_id IN (:egid) AND subject_id = :sid", {:egid => allotment.klass.exam_groups.collect{|eg| eg.id}, :sid => allotment.teacher_subject_allotment.subject.id}])}.flatten
   end
   
 end
