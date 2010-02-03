@@ -47,7 +47,7 @@ class Klass < ActiveRecord::Base
   end
   
   def allotted_subjects
-    return teacher_klass_allotments.collect{|ka| ka.teacher_subject_allotment.subject.id}
+    return current_klass_allotments.collect{|ka| ka.teacher_subject_allotment.subject.id}
   end
   
   def can_be_destroyed
