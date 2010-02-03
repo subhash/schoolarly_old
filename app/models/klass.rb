@@ -3,6 +3,7 @@ class Klass < ActiveRecord::Base
     { :conditions => { :school_id => school_id , :year => year } , :order => "level, division"}
   }
   has_many :teacher_klass_allotments
+  #has_many :current_klass_allotments, :through => :teacher_klass_allotments, :conditions => [' end_date is not null ' ]
   belongs_to :school
   belongs_to :class_teacher, :class_name => 'Teacher', :foreign_key => 'teacher_id'
   has_many :enrollments, :class_name =>'StudentEnrollment' do
@@ -12,12 +13,6 @@ class Klass < ActiveRecord::Base
   end
   has_many :students, :through => :enrollments  
   has_and_belongs_to_many :subjects, :order => "name"
-  has_many :teacher_allotments  do
-    def current
-      find :all , :conditions => ['is_current = ? ', true]
-    end
-  end
-  has_many :teachers, :through => :teacher_allotments, :uniq => true
   has_many :exam_groups
   
   validates_uniqueness_of :division, :scope => [:school_id, :level, :year]
