@@ -48,7 +48,7 @@ class KlassesController < ApplicationController
     add_js_page_action(:title => 'Add/Remove Subjects', :render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @klass, :subjects => @all_subjects , :disabled => @klass.allotted_subjects}})
     add_js_page_action(:title => 'Add Exams', :render => {:partial =>'exam_groups/new', :locals => {:exam_group => ExamGroup.new(), :subjects => @subjects, :klass => @klass, :exam_types => ExamType.all}})    
     @students = @klass.current_students      
-    @teacher_subject_allotments= @klass.teacher_klass_allotments.collect{|klass_allotment| klass_allotment.teacher_subject_allotment}.group_by{|s| s.subject.id}
+    @teacher_subject_allotments= @klass.current_klass_allotments.collect{|klass_allotment| klass_allotment.teacher_subject_allotment}.group_by{|s| s.subject.id}
     @exams=@klass.exams.group_by{|e| e.exam_group}
     
     session[:redirect] = request.request_uri
