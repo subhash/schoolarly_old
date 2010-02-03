@@ -4,7 +4,7 @@ class Teacher < ActiveRecord::Base
   
   has_many :teacher_subject_allotments
   has_many :teacher_klass_allotments, :through => :teacher_subject_allotments
-  has_many :current_klass_allotments, :through => :teacher_subject_allotments, :source => :teacher_klass_allotments, :conditions => [' end_date is not null ' ]
+  has_many :current_klass_allotments, :through => :teacher_subject_allotments, :source => :teacher_klass_allotments, :conditions => [' end_date IS NULL ' ]
   has_many :owned_klasses, :class_name => 'Klass'
   
   def current_subject_allotments
