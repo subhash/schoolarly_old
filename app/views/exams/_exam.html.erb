@@ -2,11 +2,14 @@
 		<td class="ui-state-default">
 	    	<%=link_to exam.subject.name, exam%>
 	    </td>
-	    <td class="ui-state-default">
-	    	<%=exam.start_time%>
+		<td class="ui-state-default">
+	    	<%=!exam.exam_date.nil? ? exam.exam_date.strftime('%d-%b-%y') : exam.exam_date%>
 	    </td>
 	    <td class="ui-state-default">
-	    	<%=exam.end_time%>
+	    	<%=!exam.start_time.nil? ? exam.start_time.strftime('%I:%M %p') : exam.start_time%>
+	    </td>
+	    <td class="ui-state-default">
+	    	<%=!exam.end_time.nil? ? exam.end_time.strftime('%I:%M %p') : exam.end_time%>
 	    </td>
 		<td class="ui-state-default">
 	    	<%=exam.venue%>

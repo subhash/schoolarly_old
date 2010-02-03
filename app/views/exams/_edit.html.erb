@@ -4,13 +4,17 @@
         	<th><label for="subject">Subject</label></th>
 			<td><strong><%=exam.subject.name%></strong></td>
 		</tr>
+		<tr>
+			<th><label for="start_time">Exam Date</label></th>
+            <td><%= f.date_select(:exam_date, :size => 27)%></td>
+         </tr>
 	    <tr>
 			<th><label for="start_time">Start Time</label></th>
-            <td><%= f.text_field(:start_time, :size => 27)%></td>
+            <td><%= f.time_select(:start_time, :size => 27)%></td>
          </tr>
         <tr>
         	<th><label for="end_time">End Time</label></th>
-            <td><%= f.text_field(:end_time, :size => 27)%></td>
+            <td><%= f.time_select(:end_time, :size => 27)%></td>
          </tr>
         <tr>
         	<th><label for="venue">Venue</label></th>
