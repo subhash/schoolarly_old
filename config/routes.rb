@@ -9,6 +9,10 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :teachers
   
+  map.resources :teacher_subject_allotments
+  
+  map.resources :teacher_klass_allotments
+  
   map.resources :students
   
   map.resources :schools, :member => {:profile => :get} , :shallow => true do |school|
