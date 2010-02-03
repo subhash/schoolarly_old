@@ -10,7 +10,7 @@
     </ul>
     <div id="subjects-tab">
         <%if @current_enrollment %>
-        <%= render :partial => 'subjects/subjects', :object => @current_enrollment.subjects, :locals => {:klass => @klass, :teacher_allotments => @teacher_allotments} %>
+        <%= render :partial => 'subjects/subjects', :object => @current_enrollment.subjects, :locals => {:klass => @klass, :teacher_subject_allotments => @teacher_subject_allotments} %>
         <%end %>
     </div>
     <div id="exams-tab">
