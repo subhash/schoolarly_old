@@ -124,9 +124,9 @@ class SchoolsController < ApplicationController
   def remove_teacher
     @teacher = Teacher.find(params[:id])
     @school = @teacher.school
-    if(!@teacher.current_allotments.empty? && !@teacher.current_allotments.nil?)
-      @teacher.current_allotments.each do |allotment|
-        allotment.is_current = false
+    if(!@teacher.current_klass_allotments.empty? && !@teacher.current_klass_allotments.nil?)
+      @teacher.current_klass_allotments.each do |allotment|
+        allotment.end_date = Time.now.to_date
       end
     end
     @teacher.save!
