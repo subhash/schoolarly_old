@@ -44,13 +44,15 @@ class KlassesController < ApplicationController
     @subjects = @klass.subjects
     @exam_groups = ExamGroup.find(:all, :conditions => {:klass_id => @klass.id})
     @all_subjects = Subject.find(:all)
+#    subjects_of_klass_with_exam = @klass.exams.collect{|exam| exam.subject.id}
+#    subjects_of_klass_with_teacher = @klass.allotted_subjects
+#    subjects_cannot_be_removed = subjects_of_klass_with_exam.concat(subjects_of_klass_with_teacher)
     add_js_page_action(:title => 'Add Students', :render => {:partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled, :selected => @klass.current_student_ids }})
     add_js_page_action(:title => 'Add/Remove Subjects', :render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @klass, :subjects => @all_subjects , :disabled => @klass.allotted_subjects}})
     add_js_page_action(:title => 'Add Exams', :render => {:partial =>'exam_groups/new', :locals => {:exam_group => ExamGroup.new(), :subjects => @subjects, :klass => @klass, :exam_types => ExamType.all}})    
     @students = @klass.current_students      
     @teacher_subject_allotments= @klass.current_klass_allotments.collect{|klass_allotment| klass_allotment.teacher_subject_allotment}.group_by{|s| s.subject.id}
     @exams=@klass.exams.group_by{|e| e.exam_group}
-    
     session[:redirect] = request.request_uri
     respond_to do |format|
       format.html # show.html.erb
@@ -110,6 +112,25 @@ class KlassesController < ApplicationController
     @teacher_klass_allotment.save!
     @klass = @teacher_klass_allotment.klass
     @all_subjects = Subject.find(:all)
+  end
+  
+  def allot_teacher
+    @teacher_klass_allotment = TeacherKlassAllotment.new(:klass_id => params[:klass_id])
+    @klass = Klass.find(params[:klass_id])
+    teacher_subject_allotment = TeacherSubjectAllotment.find(:first, :conditions => ["teacher_id = ? and subject_id = ?", params[:teacher_id], params[:subject_id]])
+    @teacher_klass_allotment.teacher_subject_allotment = teacher_subject_allotment
+    @teacher_klass_allotment.klass = @klass
+    @teacher_klass_allotment.start_date = Time.now.to_date
+    @all_subjects = Subject.find(:all)
+    if (@teacher_klass_allotment.save)
+      respond_to do |format|
+        format.js {render :template => 'teacher_klass_allotments/allot_teacher_success'}
+      end 
+    else
+      respond_to do |format|          
+        format.js {render :template => 'teacher_klass_allotments/allot_teacher_error'}
+      end
+    end    
   end
   
 end
