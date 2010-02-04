@@ -54,4 +54,9 @@ class Klass < ActiveRecord::Base
   def can_be_destroyed
     students.empty? and allotted_subjects.empty? and exam_groups.empty?    
   end
+  
+  def teachers(subject)
+    return self.school.teachers.select{|teacher| teacher.current_subjects.include?(subject)}
+  end
+  
 end
