@@ -22,8 +22,8 @@
 	    </td>
 		<%if entity.class.name == 'StudentEnrollment'%>
 			<td class="ui-state-default">
-				<% score = exam.scores.select{|score| score.student == entity} %>
-				<%= score.empty? ? 'Unavailable' : score.flatten.score %>
+				<% score = exam.scores.select{|score| score.student == entity.student} %>
+				<%= score.empty? ? 'Unavailable' : score.first.score %>
 			</td>
 		<%else%>
 			<td class="ui-state-default">
