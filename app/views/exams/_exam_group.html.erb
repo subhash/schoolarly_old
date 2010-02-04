@@ -42,13 +42,17 @@
 				<th>
 		            Pass Score
 		        </th>
-				<td class="ui-state-default" colspan="3">
-					<%if entity.class.name != 'Exam'%>
+				<%if entity.class.name == 'StudentEnrollment'%>
+					<th>Score</th>
+				<%elsif entity.class.name != 'Exam'%>
+					<td class="ui-state-default" colspan="3">
 						<%= link_to_remote 'Add Exam', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group, :entity_class => entity.class.name, :entity_id => entity}, :html => {:title => 'Add Exam', :class => "cell-link" }%>
-					<%end%>
-				</td>
+					</td>
+				<%else%>
+					<td colspan=2></td>
+				<%end%>
 		    </tr>
 		    <%exam_collection.each do |exam| %>
-		    		<%= render :partial => 'exams/exam', :object => exam, :locals => {:entity => entity} %>
+	    		<%= render :partial => 'exams/exam', :object => exam, :locals => {:entity => entity} %>
 			<%end %>
 	 	<%end %>
