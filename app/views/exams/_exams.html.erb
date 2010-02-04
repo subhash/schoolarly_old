@@ -6,11 +6,7 @@
 </blockquote>
 <%else %>
 	<% exams.each do |exam_group, exam_collection| %>
-		<table id="<%='eg_'+exam_group.id.to_s%>" class="ui-state-default">
-			<tbody id="<%= 'exam_group_' + exam_group.id.to_s%>">
-				<%= render :partial => 'exams/exam_group', :locals => {:exam_group => exam_group, :exam_collection => exam_collection, :entity => entity} %>
-			</tbody>
-		</table>
+		<%= render :partial => 'exams/exam_group', :locals => {:exam_group => exam_group, :exam_collection => exam_collection, :entity => entity} %>
 	<% end %>
 <%end%>
 </div>

@@ -1,58 +1,60 @@
-		<%if entity.class.name == 'Klass'%>
-			<td style="width:auto;" colspan="8">
-	        	<%=exam_group.exam_type.description + ": " %>
-				<div id="edit_description_<%= exam_group.id %>" class="ui-icon ui-icon-pencil float_right", title='Edit'></div><strong id=<%="description_#{exam_group.id}" %>><%=exam_group.description %></strong>
-        		<%= in_place_editor "description_#{exam_group.id}" ,{:url => {:controller => 'exam_groups', :action => 'set_exam_group_description', :id => exam_group},:external_control => "edit_description_#{exam_group.id}"} %>
-	    	</td>
-			<td class="ui-state-default">
-				<%= link_to_remote 'Delete', :url => {:controller => :exam_groups, :action => 'destroy', :id => exam_group, :context => entity.class.name.pluralize}, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'All the exams under this will be deleted. Are you sure?' %>
+<table id="<%='eg_'+exam_group.id.to_s%>" class="ui-state-default">
+	<%if entity.class.name == 'Klass'%>
+		<td style="width:auto;" colspan="8">
+	       	<%=exam_group.exam_type.description + ": " %>
+			<div id="edit_description_<%= exam_group.id %>" class="ui-icon ui-icon-pencil float_right", title='Edit'></div><strong id=<%="description_#{exam_group.id}" %>><%=exam_group.description %></strong>
+       		<%= in_place_editor "description_#{exam_group.id}" ,{:url => {:controller => 'exam_groups', :action => 'set_exam_group_description', :id => exam_group},:external_control => "edit_description_#{exam_group.id}"} %>
+	   	</td>
+		<td class="ui-state-default">
+			<%= link_to_remote 'Delete', :url => {:controller => :exam_groups, :action => 'destroy', :id => exam_group, :context => entity.class.name.pluralize}, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'All the exams under this will be deleted. Are you sure?' %>
+	    </td>
+	<%else%>
+		<td colspan="9"><%=exam_group.exam_type.description + ": " + exam_group.description%></td>
+	<%end%>
+	<%if !exam_collection.many? && exam_collection.first.id.nil? %>
+		<tr>
+		    <td class="ui-state-default" style="width:auto;" colspan="8">
+	            No exam added yet
 		    </td>
-		<%else%>
-			<td colspan="9"><%=exam_group.exam_type.description + ": " + exam_group.description%></td>
-		<%end%>
-		<%if !exam_collection.many? && exam_collection.first.id.nil? %>
-			<tr>
-			    <td class="ui-state-default" style="width:auto;" colspan="8">
-		            No exam added yet
-			    </td>
-				<td class="ui-state-default" >
-					<%= link_to_remote 'Add Exam', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group, :entity_class => entity.class.name, :entity_id => entity}, :html => {:title => 'Add Exam', :class => "ui-icon ui-icon-plus" }%>
+			<td class="ui-state-default" >
+				<%= link_to_remote 'Add Exam', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group, :entity_class => entity.class.name, :entity_id => entity}, :html => {:title => 'Add Exam', :class => "ui-icon ui-icon-plus" }%>
+			</td>
+		</tr>
+	<%else %>	
+	    <tr>
+	        <th>
+	            Subject
+	        </th>
+			<th>
+				Exam Date
+			</th>
+	        <th>
+	            Start Time
+	        </th>
+	        <th>
+	            End Time
+	        </th>
+			<th>
+	            Venue
+	        </th>
+			<th>
+	            Max. Score
+	        </th>
+			<th>
+	            Pass Score
+	        </th>
+			<%if entity.class.name == 'StudentEnrollment'%>
+				<th>Score</th>
+			<%elsif entity.class.name != 'Exam'%>
+				<td class="ui-state-default" colspan="3">
+					<%= link_to_remote 'Add Exam', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group, :entity_class => entity.class.name, :entity_id => entity}, :html => {:title => 'Add Exam', :class => "cell-link" }%>
 				</td>
-			</tr>
-		<%else %>	
-		    <tr>
-		        <th>
-		            Subject
-		        </th>
-				<th>
-					Exam Date
-				</th>
-		        <th>
-		            Start Time
-		        </th>
-		        <th>
-		            End Time
-		        </th>
-				<th>
-		            Venue
-		        </th>
-				<th>
-		            Max. Score
-		        </th>
-				<th>
-		            Pass Score
-		        </th>
-				<%if entity.class.name == 'StudentEnrollment'%>
-					<th>Score</th>
-				<%elsif entity.class.name != 'Exam'%>
-					<td class="ui-state-default" colspan="3">
-						<%= link_to_remote 'Add Exam', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group, :entity_class => entity.class.name, :entity_id => entity}, :html => {:title => 'Add Exam', :class => "cell-link" }%>
-					</td>
-				<%else%>
-					<td colspan=2></td>
-				<%end%>
-		    </tr>
-		    <%exam_collection.each do |exam| %>
-	    		<%= render :partial => 'exams/exam', :object => exam, :locals => {:entity => entity} %>
-			<%end %>
-	 	<%end %>
+			<%else%>
+				<td colspan=2></td>
+			<%end%>
+	    </tr>
+	    <%exam_collection.each do |exam| %>
+	   		<%= render :partial => 'exams/exam', :object => exam, :locals => {:entity => entity} %>
+		<%end %>
+	<%end %>
+</table>
