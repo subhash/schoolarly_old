@@ -108,8 +108,7 @@ class SchoolsController < ApplicationController
     @student = Student.find(params[:id])
     @school = @student.school
     if(@student.current_enrollment)
-      @student.current_enrollment.end_date = Time.now.to_date
-      @student.current_enrollment.admission_number = @student.admission_number
+      @student.current_enrollment.end_date = Time.now.to_date      
       @student.current_enrollment = nil
     end
     @student.admission_number = nil
