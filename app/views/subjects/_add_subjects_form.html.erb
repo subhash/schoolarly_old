@@ -1,4 +1,4 @@
-<% form_remote_tag  :url => {:controller => entity.class.name.pluralize, :action => 'add_subjects', :id => entity} do |f| %>
+<% form_remote_tag  :url => {:controller => entity.class.name.underscore.pluralize, :action => 'add_subjects', :id => entity} do |f| %>
 <%= collection_multiple_select(entity.class.name.underscore, 'subject_ids', subjects, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox', :disabled => disabled}) %>
 <%= submit_tag "Save" %>
 <%end %>
