@@ -20,19 +20,28 @@
 		<td class="ui-state-default">
 	    	<%=exam.pass_score%>
 	    </td>
-		<td class="ui-state-default">
-			<%= link_to_remote 'Edit', :url =>  {:controller => :exams, :action => 'edit', :id => exam, :entity_class => entity.class.name, :entity_id => entity}, :method => :get, :html => {:title => 'Edit', :class => "ui-icon ui-icon-pencil" }%>
-	    </td>
-	    <td class="ui-state-default">
-	    	<%if exam.scores.nil? || exam.scores.empty?%>
-				<%= link_to_remote 'Delete', :url => {:controller => :exams, :action => 'destroy', :id => exam, :entity_class => entity.class.name, :entity_id => entity}, :method => :delete, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'Are you sure?' %>
-			<%else%>
-			      <%= link_to_function "Delete Not Allowed", {:class => "ui-icon ui-icon-locked", :title => "Delete Not Allowed"} do |page|
-        				page << "alert('Cannot delete as scores already exists for the exam');"
-					end %>
+		<%if entity.class.name == 'StudentEnrollment'%>
+			<td class="ui-state-default">
+				<% score = exam.scores.select{|score| score.student == entity} %>
+				<%= score.empty? ? 'Unavailable' : score.flatten.score %>
+			</td>
+		<%else%>
+			<td class="ui-state-default">
+				<%= link_to_remote 'Edit', :url =>  {:controller => :exams, :action => 'edit', :id => exam, :entity_class => entity.class.name, :entity_id => entity}, :method => :get, :html => {:title => 'Edit', :class => "ui-icon ui-icon-pencil" }%>
+	    	</td>
+	    	<%if entity.class.name != 'Exam'%>
+				<td class="ui-state-default">
+		    		<%if exam.scores.nil? || exam.scores.empty?%>
+						<%= link_to_remote 'Delete', :url => {:controller => :exams, :action => 'destroy', :id => exam, :entity_class => entity.class.name, :entity_id => entity}, :method => :delete, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'Are you sure?' %>
+					<%else%>
+				      	<%= link_to_function "Delete Not Allowed", {:class => "ui-icon ui-icon-locked", :title => "Delete Not Allowed"} do |page|
+	        					page << "alert('Cannot delete as scores already exist for the exam');"
+							end %>
+					<%end%>
+	    		</td>
 			<%end%>
-	    </td>
-		<td class="ui-state-default">
-        	<%=link_to 'View/Edit Scores', exam, {:class => "ui-icon ui-icon-circle-zoomin", :title => 'View/Edit Scores'}%>
-	    </td>
+			<td class="ui-state-default">
+	       		<%=link_to 'View/Edit Scores', exam, {:class => "ui-icon ui-icon-circle-zoomin", :title => 'View/Edit Scores'}%>
+	    	</td>
+		<%end%>
 	</tr>
