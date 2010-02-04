@@ -2,7 +2,7 @@ class TeachersController < ApplicationController
   skip_before_filter :require_user, :only => [:new, :create]
   protect_from_forgery :only => [:destroy]
    
-  before_filter :find_teacher, :except => [:create]
+  before_filter :find_teacher, :only => [:show, :add_subjects]
   
   def set_up
     @user=@teacher.user
@@ -67,7 +67,6 @@ class TeachersController < ApplicationController
   end
   
   def add_subjects
-    @teacher = Teacher.find(params[:id])
     subjects_to_add = Subject.find(params[:teacher][:subject_ids].compact.reject(&:blank?)) - @teacher.current_subjects
     subjects_to_remove = @teacher.current_subjects - @teacher.subjects - Subject.find(params[:teacher][:subject_ids].compact.reject(&:blank?))
     subjects_to_add.each do |subject|
@@ -77,4 +76,18 @@ class TeachersController < ApplicationController
     @teacher.reload
   end
   
+  def edit_klass_allotments
+    @teacher_subject_allotment=TeacherSubjectAllotment.find(params[:id])
+    @klasses=@teacher_subject_allotment.subject.klasses.ofSchool(@teacher_subject_allotment.teacher.school.id)
+     respond_to do |format|
+      format.js {render :template => 'teacher_subject_allotments/edit_klass_allotments'}
+    end  
+  end
+  
+  def add_klasses
+    teacher_subject_allotment=TeacherSubjectAllotment.find(params[:id])
+    teacher_subject_allotment.klass_ids = params[:teacher_subject_allotment][:klass_ids].compact.reject(&:blank?)
+    @teacher=teacher_subject_allotment.teacher
+  end
+    
 end
