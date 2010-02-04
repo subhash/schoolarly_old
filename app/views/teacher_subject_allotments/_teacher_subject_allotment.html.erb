@@ -8,6 +8,6 @@
 	    <%end %>
     </td>
     <td>
-        <%= link_to_remote 'Add/Remove Classes', :url => {:controller => :teacher_subject_allotments, :action => 'edit', :id => teacher_subject_allotment}, :method => :get, :html => {:title => 'Add/Remove Classes', :class => "ui-icon ui-icon-pencil"} %>
+        <%= link_to_remote 'Add/Remove Classes', :url => {:action => 'edit_klass_allotments', :id => teacher_subject_allotment}, :method => :get, :html => {:title => 'Add/Remove Classes', :class => "ui-icon ui-icon-pencil"} %>
     </td>
 </tr>

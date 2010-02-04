@@ -18,8 +18,7 @@
     <%else %>
     <td class="ui-state-focus">
         <div id="assign-teacher-dialog-<%= subject.id%>" style ="display: none;">
-			<%teachers=klass.school.teachers.select{|teacher| teacher.current_subjects.include?(subject)}%>
-            <%= render :partial => 'teacher_klass_allotments/new',:locals => {:teacher_klass_allotment => TeacherKlassAllotment.new(:klass =>klass), :teachers => teachers, :subject => subject} %>
+            <%= render :partial => 'teacher_klass_allotments/allot_teacher_form',:locals => {:teacher_klass_allotment => TeacherKlassAllotment.new(:klass =>klass), :teachers => klass.teachers(subject), :subject => subject} %>
         </div>
         <%= link_to_function "Assign Teacher" do |page|
         page << "bindDialog('assign-teacher-dialog-#{subject.id}');"
