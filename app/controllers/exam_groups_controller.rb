@@ -23,7 +23,6 @@ class ExamGroupsController < ApplicationController
     end 
   rescue Exception => e
     respond_to do |format|
-    flash[:notice] = 'Error: ' + e.message
       format.js {render :template => 'exam_groups/create_error'}
     end 
   end 

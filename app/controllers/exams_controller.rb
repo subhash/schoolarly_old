@@ -28,7 +28,6 @@ class ExamsController < ApplicationController
     end 
   rescue Exception => e
     respond_to do |format|
-      flash[:notice] = 'Error: ' + e.message
       format.js {render :template => 'exams/create_error'}
     end 
   end
@@ -50,7 +49,6 @@ class ExamsController < ApplicationController
     end 
   rescue Exception => e
     respond_to do |format|
-      flash[:notice]=e.message
       format.js {render :template => 'exams/update_error'}
     end
   end
