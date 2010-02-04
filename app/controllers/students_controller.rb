@@ -94,7 +94,7 @@ class StudentsController < ApplicationController
     @klass = @student_enrollment.klass
     @student_enrollment.subject_ids = params[:student_enrollment][:subject_ids]
     @all_subjects = Subject.find(:all, :order => :name)
-    @teacher_allotments = TeacherAllotment.current_for_klass(@klass.id).group_by{|a| a.subject.id}
+    @teacher_subject_allotments =@klass.current_subject_allotments.group_by{|a| a.subject.id}
   end
   
   def add_to_school
