@@ -6,17 +6,10 @@
 <%else %>
     <div id="accordion" style="font-size:1em;">
         <% exam_groups.each do |klass, egs| %>
-        	<%css_id="" %>
-        	<%if exam_group %>
-        		<%if exam_group.klass.id.to_s==klass.id.to_s %>
-        			<% css_id="activate_this" %>
-        		<%end %>
-        	<%end %>
-        <p id=css_id>
-            <a href="#"><%=klass.name %></a>
-        </p>
+	        <p>
+	            <a href="#"><%=klass.name %></a>
+	        </p>
         	<%= render :partial => 'exams/exams', :object => @klass_exams[klass.id], :locals => {:entity => klass} %>
         <% end %>
     </div>
-
 <%end %>
