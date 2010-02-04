@@ -15,11 +15,7 @@
         <p id=css_id>
             <a href="#"><%=klass.name %></a>
         </p>
-        <div id = "<%='exams_of_klass_' + klass.id.to_s%>" >
-            <table id="<%=klass.id.to_s + '_content_table'%>" class="ui-state-default" border="1px" style="font-size:0.9em;">
-                <%= render :partial => 'exams/exams', :object => @klass_exams[klass.id], :locals => {:entity => klass} %>
-            </table>
-        </div>
+        	<%= render :partial => 'exams/exams', :object => @klass_exams[klass.id], :locals => {:entity => klass} %>
         <% end %>
     </div>
 
