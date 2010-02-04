@@ -3,7 +3,8 @@ class Klass < ActiveRecord::Base
     { :conditions => { :school_id => school_id , :year => year } , :order => "level, division"}
   }
   has_many :teacher_klass_allotments
-  has_many :current_klass_allotments, :class_name => 'TeacherKlassAllotment', :conditions => [' end_date is null ' ]
+  has_many :current_klass_allotments, :class_name => 'TeacherKlassAllotment', :conditions => [' end_date IS NULL ' ]
+  has_many :current_subject_allotments, :through => :current_klass_allotments, :source => :teacher_subject_allotment
   belongs_to :school
   belongs_to :class_teacher, :class_name => 'Teacher', :foreign_key => 'teacher_id'
   has_many :enrollments, :class_name =>'StudentEnrollment' do
