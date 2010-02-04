@@ -1,13 +1,8 @@
-if params[:entity_class] == 'Exam'
-  div_name='eg_' + @exam_group.id.to_s
-  page.replace(div_name, :text => '<blockquote>No such exam exists.</blockquote>') 
-else
   entity = Object.const_get(params[:entity_class]).find(params[:entity_id])
   if !entity.exams.select{|exam| exam.exam_group_id==@exam_group.id && !exam.id.nil?}.empty? 
     div_name = 'exam_' + params[:id].to_s
     page.remove div_name
   else
-    div_name='exam_group_' + @exam_group.id.to_s
-    page.replace_html(div_name, :partial => "exams/exam_group", :locals => {:exam_group => @exam_group, :exam_collection => [Exam.new(:exam_group_id => @exam_group.id)], :entity => entity})
+    div_name='eg_' + @exam_group.id.to_s
+    page.replace(div_name, :partial => "exams/exam_group", :locals => {:exam_group => @exam_group, :exam_collection => [Exam.new(:exam_group_id => @exam_group.id)], :entity => entity})
   end
-end
