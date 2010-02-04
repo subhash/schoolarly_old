@@ -4,7 +4,7 @@
     </td>
     <td>
 		<%if !teacher_subject_allotment.klasses.empty? %>
-        	<%=teacher_subject_allotment.klasses.index_by{|klass| klass.name}.keys.join(", ")%>
+        	<%=teacher_subject_allotment.current_klasses.index_by{|klass| klass.name}.keys.join(", ")%>
 	    <%end %>
     </td>
     <td>
