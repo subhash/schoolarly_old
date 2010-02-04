@@ -95,7 +95,6 @@ class KlassesController < ApplicationController
     @student = Student.find(params[:id])
     @klass = @student.current_enrollment.klass
     @student.current_enrollment.end_date = Time.now.to_date
-    @student.current_enrollment.admission_number = @student.admission_number
     @student.current_enrollment = nil
     @student.admission_number = nil
     @student.save!
