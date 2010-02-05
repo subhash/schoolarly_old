@@ -6,7 +6,7 @@
                 </label>
             </th>
             <td>
-                <%= f.select(:exam_type_id, options_from_collection_for_select(exam_types,:id,:name,{:selected => 1}) ) %>
+                <%= f.select(:exam_type_id, options_from_collection_for_select(exam_types,:id,:name) ) %>
             </td>
         </tr>
 		<%= f.hidden_field(:klass_id)%>
