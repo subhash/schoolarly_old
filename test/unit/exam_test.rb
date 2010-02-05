@@ -26,4 +26,8 @@ class ExamTest < ActiveSupport::TestCase
     assert_equal @oneA, @english_test.klass 
   end
   
+  test "exam.to_s should return a readable description of exam" do
+    assert_equal 'First class test in an year for English', @english_test.to_s
+  end
+  
 end
