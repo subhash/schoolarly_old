@@ -6,4 +6,7 @@ class TeacherSubjectAllotment < ActiveRecord::Base
   has_many :current_klass_allotments, :class_name => 'TeacherKlassAllotment', :conditions => [' end_date IS NULL ' ]
   has_many :klasses, :through => :teacher_klass_allotments, :class_name => 'Klass'
   has_many :current_klasses, :through => :current_klass_allotments, :source => :klass
+  def klass_ids
+    return self.current_klasses.collect{|klass| klass.id}
+  end
 end
