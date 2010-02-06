@@ -87,6 +87,7 @@ class TeachersController < ApplicationController
   def add_klasses
     teacher_subject_allotment=TeacherSubjectAllotment.find(params[:id])
     teacher_subject_allotment.klass_ids = params[:teacher_subject_allotment][:klass_ids].compact.reject(&:blank?)
+    teacher_subject_allotment.teacher_klass_allotments.select{|ka| ka.start_date==nil}.each{|allotment| allotment.start_date = allotment.updated_at; allotment.save!}
     @teacher=teacher_subject_allotment.teacher
   end
     
