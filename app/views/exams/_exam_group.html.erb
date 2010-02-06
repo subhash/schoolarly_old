@@ -6,7 +6,13 @@
        		<%= in_place_editor "description_#{exam_group.id}" ,{:url => {:controller => 'exam_groups', :action => 'set_exam_group_description', :id => exam_group},:external_control => "edit_description_#{exam_group.id}"} %>
 	   	</td>
 		<td class="ui-state-default">
-			<%= link_to_remote 'Delete', :url => {:controller => :exam_groups, :action => 'destroy', :id => exam_group, :context => entity.class.name.pluralize}, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'All the exams under this will be deleted. Are you sure?' %>
+			<% if exam_group.is_destroyable?%>
+				<%= link_to_remote 'Delete', :url => {:controller => :exam_groups, :action => 'destroy', :id => exam_group, :context => entity.class.name.pluralize}, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'All the exams under this will be deleted. Are you sure?' %>
+			<%else%>
+				<%= link_to_function "Delete Not Allowed", {:class => "ui-icon ui-icon-locked", :title => "Delete Not Allowed"} do |page|
+	        			page << "alert('Cannot delete as scores already exist for some of the exams');"
+				end %>
+			<%end%>
 	    </td>
 	<%else%>
 		<td colspan="9"><%=exam_group.exam_type.description + ": " + exam_group.description%></td>

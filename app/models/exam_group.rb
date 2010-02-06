@@ -12,4 +12,8 @@ class ExamGroup < ActiveRecord::Base
     return exam_type.description + ' for ' + klass.name
   end
   
+  def is_destroyable?
+    return self.exams.select{|exam| !exam.scores.empty? }.empty? 
+  end
+  
 end
