@@ -6,7 +6,7 @@ class Teacher < ActiveRecord::Base
   has_many :teacher_klass_allotments, :through => :teacher_subject_allotments
   has_many :current_klass_allotments, :through => :teacher_subject_allotments, :source => :teacher_klass_allotments, :conditions => [' end_date IS NULL ' ]
   has_many :owned_klasses, :class_name => 'Klass'
-  
+    
   def current_subject_allotments
     return teacher_subject_allotments.select{|allotment| allotment.school_id == self.school_id}
   end
@@ -32,11 +32,12 @@ class Teacher < ActiveRecord::Base
   end
   
   def subjects
-    return teacher_klass_allotments.collect{|allotment| TeacherSubjectAllotment.all(:conditions => ["id = :tsa_id AND school_id = :school_id", {:tsa_id => allotment.teacher_subject_allotment_id, :school_id => self.school.id}])}.flatten.collect{|sa| sa.subject}.uniq
+    return current_klass_allotments.collect{|allotment| TeacherSubjectAllotment.all(:conditions => ["id = :tsa_id AND school_id = :school_id", {:tsa_id => allotment.teacher_subject_allotment_id, :school_id => self.school.id}])}.flatten.collect{|sa| sa.subject}.uniq
+#    return current_subject_allotments.collect{|allotment| allotment.subject}  
   end
   
   def allotted_subject_ids
-    return self.subjects.collect{|subject| subject.id }
+    return self.current_klass_allotments.collect{|allot| allot.teacher_subject_allotment.subject.id}.uniq
   end
   
   def add_roles
