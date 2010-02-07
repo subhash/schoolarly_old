@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100111144534) do
+ActiveRecord::Schema.define(:version => 20100128083920) do
 
   create_table "exam_groups", :force => true do |t|
     t.string   "description"
@@ -30,8 +30,9 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
   end
 
   create_table "exams", :force => true do |t|
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.date     "exam_date"
+    t.time     "start_time"
+    t.time     "end_time"
     t.string   "venue"
     t.integer  "max_score"
     t.integer  "pass_score"
@@ -190,19 +191,29 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
     t.datetime "updated_at"
   end
 
-  create_table "teacher_allotments", :force => true do |t|
-    t.integer  "teacher_id",     :null => false
-    t.integer  "subject_id",     :null => false
-    t.integer  "klass_id",       :null => false
-    t.date     "allotment_date"
-    t.boolean  "is_current"
+  create_table "teacher_klass_allotments", :force => true do |t|
+    t.integer  "teacher_subject_allotment_id"
+    t.integer  "klass_id"
+    t.date     "start_date"
+    t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "teacher_allotments", ["teacher_id"], :name => "teacher_id"
-  add_index "teacher_allotments", ["subject_id"], :name => "subject_id"
-  add_index "teacher_allotments", ["klass_id"], :name => "klass_id"
+  add_index "teacher_klass_allotments", ["teacher_subject_allotment_id"], :name => "teacher_subject_allotment_id"
+  add_index "teacher_klass_allotments", ["klass_id"], :name => "klass_id"
+
+  create_table "teacher_subject_allotments", :force => true do |t|
+    t.integer  "teacher_id"
+    t.integer  "school_id"
+    t.integer  "subject_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "teacher_subject_allotments", ["teacher_id", "school_id", "subject_id"], :name => "index_teacher_subject_allotments", :unique => true
+  add_index "teacher_subject_allotments", ["school_id"], :name => "school_id"
+  add_index "teacher_subject_allotments", ["subject_id"], :name => "subject_id"
 
   create_table "teachers", :force => true do |t|
     t.integer  "school_id"
@@ -288,9 +299,12 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
   add_foreign_key "students", ["current_enrollment_id"], "student_enrollments", ["id"], :name => "students_ibfk_2"
   add_foreign_key "students", ["school_id"], "schools", ["id"], :name => "students_ibfk_1"
 
-  add_foreign_key "teacher_allotments", ["teacher_id"], "teachers", ["id"], :name => "teacher_allotments_ibfk_1"
-  add_foreign_key "teacher_allotments", ["subject_id"], "subjects", ["id"], :name => "teacher_allotments_ibfk_2"
-  add_foreign_key "teacher_allotments", ["klass_id"], "klasses", ["id"], :name => "teacher_allotments_ibfk_3"
+  add_foreign_key "teacher_klass_allotments", ["teacher_subject_allotment_id"], "teacher_subject_allotments", ["id"], :name => "teacher_klass_allotments_ibfk_1"
+  add_foreign_key "teacher_klass_allotments", ["klass_id"], "klasses", ["id"], :name => "teacher_klass_allotments_ibfk_2"
+
+  add_foreign_key "teacher_subject_allotments", ["teacher_id"], "teachers", ["id"], :name => "teacher_subject_allotments_ibfk_1"
+  add_foreign_key "teacher_subject_allotments", ["school_id"], "schools", ["id"], :name => "teacher_subject_allotments_ibfk_2"
+  add_foreign_key "teacher_subject_allotments", ["subject_id"], "subjects", ["id"], :name => "teacher_subject_allotments_ibfk_3"
 
   add_foreign_key "teachers", ["school_id"], "schools", ["id"], :name => "teachers_ibfk_1"
 

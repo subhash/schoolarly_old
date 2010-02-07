@@ -52,7 +52,7 @@ class StudentsControllerTest < ActionController::TestCase
     assert_response :success    
     assert_breadcrumb (@student.name)
     assert_select "div#action_box" do
-      assert_select "div.button a", :count => 1
+      assert_select "div.button a", :count => 2
       assert_select "div.button a[href=?]" , '#', :text => 'Add to school'
     end 
   end  
@@ -63,7 +63,7 @@ class StudentsControllerTest < ActionController::TestCase
     assert_breadcrumb(@admitted_student.school.name, school_path(@admitted_student.school), 1)   
     assert_breadcrumb(@admitted_student.name)
     assert_select "div#action_box" do
-      assert_select "div.button a", :count => 1
+      assert_select "div.button a", :count => 2
       assert_select "div.button a[href=?]" , "#", :text => 'Assign Class'
     end 
   end
@@ -75,7 +75,7 @@ class StudentsControllerTest < ActionController::TestCase
     assert_breadcrumb(@enrolled_student.current_enrollment.klass.name, klass_path(@enrolled_student.current_enrollment.klass), 2)
     assert_breadcrumb(@enrolled_student.name)
     assert_select "div#action_box" do
-      assert_select "div.button a", :count => 1
+      assert_select "div.button a", :count => 2
       assert_select "div.button a[href=?]" , "#", :text => 'Add/Remove Subjects'
     end 
   end
