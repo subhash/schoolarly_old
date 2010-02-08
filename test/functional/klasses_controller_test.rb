@@ -14,6 +14,7 @@ class KlassesControllerTest < ActionController::TestCase
     @maths = subjects(:maths)
     @paru = students(:paru)
     @reeny = students(:reeny)
+    @shenu = students(:shenu)
   end
   
   test "create klass failure" do
@@ -98,6 +99,10 @@ class KlassesControllerTest < ActionController::TestCase
   end
   
   test "remove student" do
-#    TODO
+    assert_difference '@one_A.reload.current_students.size', -1 do
+      xhr :get, "remove_student", :id => @shenu.to_param 
+    end
+    assert_response :success
+    assert_template "klasses/remove_student"   
   end
 end
