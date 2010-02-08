@@ -21,9 +21,6 @@ jQuery.noConflict();
 jQuery(function(){
     bindDialogs();
     jQuery(".tabs").tabs();
-    jQuery(".tablesorter").tablesorter({
-        sortList: [[0, 0]]
-    });
     jQuery(".selectable").selectable({
         filter: '.selectFilter'
     });
