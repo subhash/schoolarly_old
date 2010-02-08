@@ -17,6 +17,15 @@ paru:
   perishable_token: <%= Authlogic::Random.friendly_token %>
   person: paru (Student)
   
+sboa_student:
+  email: sboa_student@schoolarly.com
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("sboa_student" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  person: sboa_student (Student)  
+  
 reeny:
   email: reeny@schoolarly.com
   password_salt: <%= salt = Authlogic::Random.hex_token %>

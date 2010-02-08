@@ -8,6 +8,10 @@ paru:
   admission_number: 1
   school: st_teresas
   
+sboa_student:
+  admission_number: 1
+  school: sboa
+  
 shenu:
   admission_number: 2
   school: st_teresas
