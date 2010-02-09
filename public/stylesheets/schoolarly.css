@@ -51,18 +51,8 @@ table.nested .list-line-odd {
     background: #E0F8FC;
 } .ui-tabs-nav li {
     list-style-type: none;
-} #content_box {
-    float: left;
-    margin: 0;
-    width: 72%;
-} #right_boxes {
-    float: right;
-    width: 27%;
 } #action_box {
     padding: 1%;
-} #left_boxes {
-    float: left;
-    width: 27%;
 } #quick_nav_box {
     padding: 1%;
 } #details_box {
