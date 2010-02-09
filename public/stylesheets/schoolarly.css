@@ -60,8 +60,13 @@ table.nested .list-line-odd {
     width: 27%;
 } #action_box {
     padding: 1%;
+} #left_boxes {
+    float: left;
+    width: 27%;
 } #quick_nav_box {
-} #reference_box {
+    padding: 1%;
+} #details_box {
+    padding: 1%;
 }
 
 table.ui-state-default a.cell-link {
