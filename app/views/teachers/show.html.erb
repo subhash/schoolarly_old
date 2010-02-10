@@ -7,13 +7,13 @@
             <a href="#exams-tab">Exams</a>
         </li>
     </ul>
+	<div id="main-dialog" title="Schoolarly" class="jquery-dialog" style ="display: none;"></div>
     <div id="subjects-tab">
         <%if !@teacher.school %>
         <blockquote>
             The teacher currently does not belong to any school.
         </blockquote>
         <%else %>
-			<div id="allotment-dialog" title="Allotment" class="jquery-dialog" style ="display: none;"></div>
 			<div id="allotments">
 	        	<%= render :partial => 'teacher_subject_allotments/teacher_subject_allotments', :object => @teacher.current_subject_allotments %>
 			</div>
@@ -25,7 +25,6 @@
             The teacher currently does not belong to any school.
         </blockquote>
 		<%else%>
-		   	<div id="exam-dialog" title="Exam" class="jquery-dialog" style ="display: none;"></div>
 			<div id="exams">
         		<%= render :partial => 'exams/exams', :object => @exams, :locals => {:entity => @teacher} %>            
         	</div>
