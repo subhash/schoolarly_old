@@ -1,8 +1,8 @@
 page << "closeDialogs();"
 page << "jQuery('.tabs').tabs('select','#classes-tab')"
 page.insert_html :bottom, "klasses", :partial => 'klasses/klass', :object => @klass
+klass_exams = {@klass.id => @klass.exams.group_by{|e| e.exam_group}}
+if !@klass_exams.nil? then klass_exams = klass_exams.concat(@klass_exams) end
+page.replace_html "exam_groups", :partial => 'exam_groups/exam_groups', :object => @klass.school.exam_groups.group_by{|eg| Klass.find(eg.klass_id)}, :locals => {:school => @klass.school, :klass_exams => klass_exams }
+page << "bindAccordion();"
 page[:klasses].show
-
-# jQuery(".students").append("
-#<%= escape_javascript(render :partial => 'students/student', :object => @student ) %>");
-# jQuery(".students-tab a").click(); 

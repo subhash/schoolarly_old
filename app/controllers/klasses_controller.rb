@@ -21,6 +21,9 @@ class KlassesController < ApplicationController
   
   def destroy    
     @klass= Klass.find(params[:id])
+    @klass_exams = @klass.school.klasses.each_with_object({}) do |klass, hash|
+      hash[klass.id] = klass.exams.group_by{|e| e.exam_group}
+    end
     if(current_user.person.is_a?(SchoolarlyAdmin))
       @klass.enrollments.destroy_all
       @klass.teacher_allotments.destroy_all

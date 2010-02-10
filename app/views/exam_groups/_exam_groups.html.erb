@@ -4,12 +4,12 @@
 	    link on the right to create classes.
 	</blockquote>
 <%else %>
-    <div id="accordion" style="font-size:1em;">
+    <div class="accordion" style="font-size:1em;">
         <% exam_groups.each do |klass, egs| %>
-	        <p>
+	        <p id=<%='p_' + klass.id.to_s%>>
 	            <a href="#"><%=klass.name %></a>
 	        </p>
-        	<%= render :partial => 'exams/exams', :object => @klass_exams[klass.id], :locals => {:entity => klass} %>
+        		<%= render :partial => 'exams/exams', :object => klass_exams[klass.id], :locals => {:entity => klass} %>
         <% end %>
     </div>
 <%end %>
