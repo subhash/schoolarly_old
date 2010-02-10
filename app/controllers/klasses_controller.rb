@@ -37,7 +37,7 @@ class KlassesController < ApplicationController
   end
   
   def show
-    @klass = Klass.find(params[:id])   
+    @klass = Klass.find(params[:id])
     @school = @klass.school
     add_breadcrumb(@school.name, @school)
     add_breadcrumb(@klass.name)    
@@ -106,12 +106,29 @@ class KlassesController < ApplicationController
     end 
   end
   
-  def delete_allotment
+#  def delete_allotment
+#    @teacher_klass_allotment = TeacherKlassAllotment.find(params[:id])
+#    @subject=@teacher_klass_allotment.teacher_subject_allotment.subject
+#    @klass = @teacher_klass_allotment.klass
+#    @all_subjects = Subject.find(:all)
+#    @teacher_klass_allotment.destroy
+#  end 
+  
+  def delete_allotment    
     @teacher_klass_allotment = TeacherKlassAllotment.find(params[:id])
+    @teacher_klass_allotment.end_date = Time.now.to_date
+    @teacher_klass_allotment.save!
     @subject=@teacher_klass_allotment.teacher_subject_allotment.subject
     @klass = @teacher_klass_allotment.klass
     @all_subjects = Subject.find(:all)
-    @teacher_klass_allotment.destroy
+  end
+  
+  def allot_teacher_new
+    @subject = Subject.find(params[:subject])
+    @klass = Klass.find(params[:klass])
+    respond_to do |format|
+      format.js {render :template => 'teacher_klass_allotments/allot_teacher_new'}
+    end
   end
   
   def allot_teacher
