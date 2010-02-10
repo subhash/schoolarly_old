@@ -39,6 +39,10 @@ class Teacher < ActiveRecord::Base
   def subjects_of_klass(klass)
     return klass.current_klass_allotments.collect{|allotment| TeacherSubjectAllotment.all(:conditions => ["id = :tsa_id AND school_id = :school_id AND teacher_id = :teacher_id", {:tsa_id => allotment.teacher_subject_allotment_id, :school_id => self.school.id, :teacher_id => self.id}])}.flatten.collect{|sa| sa.subject}
   end
+
+  def allotted_subjects
+    return self.current_klass_allotments.collect{|allot| allot.teacher_subject_allotment.subject}.uniq
+  end
   
   def allotted_subject_ids
     return self.current_klass_allotments.collect{|allot| allot.teacher_subject_allotment.subject.id}.uniq
