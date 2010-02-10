@@ -1,0 +1,2 @@
+page.replace_html("main-dialog", :partial =>'teacher_klass_allotments/allot_teacher_form', :locals => {:teacher_klass_allotment => TeacherKlassAllotment.new(:klass =>@klass), :teachers => @klass.teachers(@subject), :subject => @subject})
+page << "openDialog('main-dialog');"

@@ -3,27 +3,16 @@
         <%= subject.name %>
     </td>
     <% if teacher_klass_allotment %>
-	<%teacher_subject_allotment=teacher_klass_allotment.teacher_subject_allotment%>
-    <td>
-        <% teacher = teacher_subject_allotment.teacher %>
-        <%if teacher.name %>
-        <%=link_to teacher.name, teacher_path(teacher) %>
-        <%else %>
-        <%=link_to "Profile not created", {:controller => 'user_profiles', :action => 'new', :id => teacher.user}, {:class => "profile"} %>
-        <%end %>
-    </td>
-    <td>
-        <%= link_to_remote 'Remove Assignment', :url => {:controller => 'klasses', :action => 'delete_allotment',:id => teacher_klass_allotment}, :confirm => 'Are you sure?' %>
-    </td>
+		<%teacher_subject_allotment=teacher_klass_allotment.teacher_subject_allotment%>
+	    <td>
+	        <%=link_to teacher_subject_allotment.teacher.name, teacher_path(teacher_subject_allotment.teacher) %>
+	    </td>
+	    <td>
+	        <%= link_to_remote 'Remove Assignment', :url => {:controller => 'klasses', :action => 'delete_allotment',:id => teacher_klass_allotment}, :confirm => 'Are you sure?' %>
+	    </td>
     <%else %>
-    <td class="ui-state-focus">
-        <div id="assign-teacher-dialog-<%= subject.id%>" style ="display: none;">
-            <%= render :partial => 'teacher_klass_allotments/allot_teacher_form',:locals => {:teacher_klass_allotment => TeacherKlassAllotment.new(:klass =>klass), :teachers => klass.teachers(subject), :subject => subject} %>
-        </div>
-        <%= link_to_function "Assign Teacher" do |page|
-        page << "bindDialog('assign-teacher-dialog-#{subject.id}');"
-        page << "openDialog('assign-teacher-dialog-#{subject.id}');"
-        end %>
-    </td>
+	    <td class="ui-state-focus">
+	    	<%= link_to_remote 'Allot Teacher', :url => {:action => 'allot_teacher_new', :subject => subject, :klass => klass} %>
+	    </td>
     <%end %>
 </tr>
