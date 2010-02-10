@@ -39,7 +39,7 @@ class StudentsController < ApplicationController
         @klasses = @school.klasses.in_year(@year)
         @student_enrollment = StudentEnrollment.new
         @student_enrollment.student = @student
-        add_js_page_action(:title => 'Assign Class', :id => "new-enrollment-for-#{@student.id}", :render => {:partial => 'student_enrollments/new_enrollment_form', :locals => {:student_enrollment => @student_enrollment, :klasses => @klasses}})
+        add_js_page_action(:title => 'Assign Class', :render => {:partial => 'student_enrollments/new_enrollment_form', :locals => {:student_enrollment => @student_enrollment, :klasses => @klasses}})
       end
     else
       add_js_page_action(:title => 'Add to school', :render => {:partial =>'students/add_to_school_form', :locals => {:student => @student, :schools => School.find(:all)}})
