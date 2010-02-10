@@ -68,7 +68,7 @@ class TeachersController < ApplicationController
   
   def add_subjects
     subjects_to_add = Subject.find(params[:teacher][:subject_ids].compact.reject(&:blank?)) - @teacher.current_subjects
-    subjects_to_remove = @teacher.current_subjects - @teacher.subjects - Subject.find(params[:teacher][:subject_ids].compact.reject(&:blank?))
+    subjects_to_remove = @teacher.current_subjects - @teacher.allotted_subjects - Subject.find(params[:teacher][:subject_ids].compact.reject(&:blank?))
     subjects_to_add.each do |subject|
       @teacher.teacher_subject_allotments << TeacherSubjectAllotment.new(:school => @teacher.school, :subject => subject)
     end
