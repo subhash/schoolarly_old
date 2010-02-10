@@ -8,11 +8,11 @@
         </th>
     </tr>
     <% subjects.each do |subject| %>
-	<%if !teacher_subject_allotments[subject.id].nil?%>
-		<%teacher_klass_allotment=TeacherKlassAllotment.find(:first, :conditions => ["teacher_subject_allotment_id =? AND klass_id = ? AND end_date is NULL", teacher_subject_allotments[subject.id].first.id, klass.id])%>
-	<%else%>
-		<%teacher_klass_allotment=nil%>
-	<%end%>
-    <%= render :partial => 'subjects/subject', :object => subject, :locals => {:klass => klass, :teacher_klass_allotment => teacher_klass_allotment} %>
+		<%if !teacher_subject_allotments[subject.id].nil?%>
+			<%teacher_klass_allotment=TeacherKlassAllotment.find(:first, :conditions => ["teacher_subject_allotment_id =? AND klass_id = ? AND end_date IS NULL", teacher_subject_allotments[subject.id].first.id, klass.id])%>
+		<%else%>
+			<%teacher_klass_allotment=nil%>
+		<%end%>
+	    <%= render :partial => 'subjects/subject', :object => subject, :locals => {:klass => klass, :teacher_klass_allotment => teacher_klass_allotment} %>
     <%end %>
 </table>
