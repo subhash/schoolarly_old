@@ -1,7 +1,6 @@
 page << "closeDialogs();"
-page.remove "new-enrollment-for-#{@student.id}"
 page.replace "student_#{@student.id}", :partial => 'students/student', :object => @student
-page << "bindDialog('add-subjects-for-enrollment-#{@student_enrollment.id}');"
+
 
 
 # jQuery(".students").append("

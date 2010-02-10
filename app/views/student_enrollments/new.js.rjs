@@ -1,3 +1,2 @@
-page.replace_html "new-enrollment-for-#{@student.id}", :partial => 'student_enrollments/new_enrollment_form', :locals => {:student_enrollment => @student_enrollment, :klasses => @klasses}
-page << "bindDialog('new-enrollment-for-#{@student.id}');"
-page << "openDialog('new-enrollment-for-#{@student.id}')"
+page.replace_html "main-dialog", :partial => 'student_enrollments/new_enrollment_form', :locals => {:student_enrollment => @student_enrollment, :klasses => @klasses}
+page << "openDialog('main-dialog')"

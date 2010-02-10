@@ -24,15 +24,11 @@
         <input type="button" id="edit_roll_no_<%= student.id %>" class="ui-state-default float_right" value="edit"/><strong id=<%="roll_number_#{student.id}" %>><%=student.roll_number %></strong>
         <%= in_place_editor "roll_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_roll_number', :id => student},:external_control => "edit_roll_no_#{student.id}"} %>
     </td>
-    <td  class="ui-state-focus">
-        <div id="add-subjects-for-enrollment-<%=enrollment.id%>" style ="display: none;">
-        </div>
+    <td class="ui-state-focus">
         <%= link_to_remote  enrollment.subjects.size, :url => edit_student_enrollment_url(enrollment), :method => :get %>
     </td>
     <%elsif student.school %>
     <td class="ui-state-focus">
-        <div id="new-enrollment-for-<%=student.id%>" style ="display: none;">
-        </div>
         <%= link_to_remote 'Assign Class', :url =>  {:controller => 'student_enrollments', :action => 'new', :student_id => student} %>
     </td>
     <td>
