@@ -24,6 +24,8 @@
         <%=render :partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects} %>
     </div>
     <div id="exams-tab">
-        <%=render :partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:school => @school} %>
+    	<div id="exam_groups">
+        	<%=render :partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:school => @school, :klass_exams => @klass_exams} %>
+		</div>
     </div>
 </div>
