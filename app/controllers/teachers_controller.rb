@@ -84,27 +84,27 @@ class TeachersController < ApplicationController
     end  
   end
   
-  def add_klasses
-    teacher_subject_allotment=TeacherSubjectAllotment.find(params[:id])
-    teacher_subject_allotment.klass_ids = params[:teacher_subject_allotment][:klass_ids].compact.reject(&:blank?)
-    @teacher=teacher_subject_allotment.teacher
-  end
- 
 #  def add_klasses
 #    teacher_subject_allotment=TeacherSubjectAllotment.find(params[:id])
-#    klass_ids_to_be_added = params[:teacher_subject_allotment][:klass_ids].compact.reject(&:blank?) - teacher_subject_allotment.klass_ids
-#    klass_ids_to_be_removed = teacher_subject_allotment.klass_ids - params[:teacher_subject_allotment][:klass_ids].compact.reject(&:blank?)
-#    klass_ids_to_be_added.each do |klass_id|
-#      teacher_subject_allotment.teacher_klass_allotments << TeacherKlassAllotment.new(:klass_id => klass_id, :start_date => Time.now.to_date)
-#    end
-#    klass_ids_to_be_removed.each do |klass_id|
-#      tka = TeacherKlassAllotment.find(:first, :conditions => {:teacher_subject_allotment_id => teacher_subject_allotment.id, :end_date => nil, :klass_id => klass_id})
-#      if !tka.nil?
-#        tka.end_date = tka.updated_at
-#        tka.save!
-#      end
-#    end
+#    teacher_subject_allotment.klass_ids = params[:teacher_subject_allotment][:klass_ids].compact.reject(&:blank?)
 #    @teacher=teacher_subject_allotment.teacher
 #  end
+ 
+  def add_klasses
+    teacher_subject_allotment=TeacherSubjectAllotment.find(params[:id])
+    klass_ids_to_be_added = params[:teacher_subject_allotment][:klass_ids].compact.reject(&:blank?) - teacher_subject_allotment.klass_ids
+    klass_ids_to_be_removed = teacher_subject_allotment.klass_ids - params[:teacher_subject_allotment][:klass_ids].compact.reject(&:blank?)
+    klass_ids_to_be_added.each do |klass_id|
+      teacher_subject_allotment.teacher_klass_allotments << TeacherKlassAllotment.new(:klass_id => klass_id, :start_date => Time.now.to_date)
+    end
+    klass_ids_to_be_removed.each do |klass_id|
+      tka = TeacherKlassAllotment.find(:first, :conditions => {:teacher_subject_allotment_id => teacher_subject_allotment.id, :end_date => nil, :klass_id => klass_id})
+      if !tka.nil?
+        tka.end_date = tka.updated_at
+        tka.save!
+      end
+    end
+    @teacher=teacher_subject_allotment.teacher
+  end
     
 end
