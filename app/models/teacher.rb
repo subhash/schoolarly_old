@@ -31,9 +31,13 @@ class Teacher < ActiveRecord::Base
     return owned_klasses.find(:all, :conditions => ["year=?",Klass.current_academic_year(self.school_id)])
   end
   
-  def subjects
-    return current_klass_allotments.collect{|allotment| TeacherSubjectAllotment.all(:conditions => ["id = :tsa_id AND school_id = :school_id", {:tsa_id => allotment.teacher_subject_allotment_id, :school_id => self.school.id}])}.flatten.collect{|sa| sa.subject}.uniq
-#    return current_subject_allotments.collect{|allotment| allotment.subject}  
+#  def subjects
+#    return current_klass_allotments.collect{|allotment| TeacherSubjectAllotment.all(:conditions => ["id = :tsa_id AND school_id = :school_id", {:tsa_id => allotment.teacher_subject_allotment_id, :school_id => self.school.id}])}.flatten.collect{|sa| sa.subject}
+##    return current_subject_allotments.collect{|allotment| allotment.subject}  
+#  end
+
+  def subjects_of_klass(klass)
+    return klass.current_klass_allotments.collect{|allotment| TeacherSubjectAllotment.all(:conditions => ["id = :tsa_id AND school_id = :school_id AND teacher_id = :teacher_id", {:tsa_id => allotment.teacher_subject_allotment_id, :school_id => self.school.id, :teacher_id => self.id}])}.flatten.collect{|sa| sa.subject}
   end
   
   def allotted_subject_ids
