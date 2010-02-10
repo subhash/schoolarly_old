@@ -24,7 +24,7 @@ jQuery(function(){
     jQuery(".selectable").selectable({
         filter: '.selectFilter'
     });
-    jQuery("#accordion").accordion({
+    jQuery(".accordion").accordion({
         autoHeight: false,
         active: "#activate_this"
     });
@@ -42,6 +42,17 @@ function bindDialogs(){
     jQuery(".jquery-dialog").bind('dialogclose', function(event, ui){
         jQuery(this).removeClass("open-dialog")
     });
+}
+
+function bindAccordion(){
+    jQuery(".accordion").accordion({
+        autoHeight: false,
+        active: "#activate_this"
+    });
+    jQuery('.accordion .head').click(function(){
+        this.next().toggle();
+        return false;
+    }).next().hide();
 }
 
 function bindDialog(id){
@@ -77,10 +88,9 @@ function collectSelectedIndices(selectable, field){
             });
         });
 }
+
 function hideShowDivs(hide_id, show_id){
     jQuery(hide_id).hide();
     jQuery(show_id).show();
 }
-
-
 
