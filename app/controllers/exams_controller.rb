@@ -13,6 +13,13 @@ class ExamsController < ApplicationController
   def new
     @exam_group = ExamGroup.find(params[:exam_group])
     @exam = Exam.new(:exam_group => @exam_group)
+    entity_class = params[:entity_class]
+    entity=Object.const_get(params[:entity_class]).find(params[:entity_id])
+    if entity_class == 'Teacher'
+      @new_subjects = entity.subjects_of_klass(@exam_group.klass) - @exam_group.subjects
+    else
+      @new_subjects = entity.subjects - @exam_group.subjects      
+    end
     respond_to do |format|
       format.js {render :template => 'exams/new'}
     end  
