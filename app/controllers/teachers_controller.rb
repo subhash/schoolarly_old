@@ -84,12 +84,6 @@ class TeachersController < ApplicationController
     end  
   end
   
-#  def add_klasses
-#    teacher_subject_allotment=TeacherSubjectAllotment.find(params[:id])
-#    teacher_subject_allotment.klass_ids = params[:teacher_subject_allotment][:klass_ids].compact.reject(&:blank?)
-#    @teacher=teacher_subject_allotment.teacher
-#  end
- 
   def add_klasses
     teacher_subject_allotment=TeacherSubjectAllotment.find(params[:id])
     klass_ids_to_be_added = params[:teacher_subject_allotment][:klass_ids].compact.reject(&:blank?) - teacher_subject_allotment.klass_ids
