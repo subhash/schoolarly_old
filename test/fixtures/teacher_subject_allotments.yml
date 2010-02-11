@@ -1,2 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
+sunil_maths:
+  teacher: sunil
+  school: st_teresas
+  subject: maths
+
+sunil_physics:
+  teacher: sunil
+  school: st_teresas
+  subject: physics

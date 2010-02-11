@@ -13,7 +13,7 @@ class TeachersControllerTest < ActionController::TestCase
     @two_B = klasses(:two_B)
     @mal = subjects(:malayalam)
     @eng = subjects(:english)
-    @klasses = ',' + @one_A.id.to_s + ','+ @two_B.id.to_s
+    @sunil_physics = teacher_subject_allotments(:sunil_physics)
     UserSession.create(@sboa.user)
   end
   
@@ -48,20 +48,6 @@ class TeachersControllerTest < ActionController::TestCase
     assert_tab("Exams", "exams-tab")   
   end
   
-#  test "add allotments should redirect to teacher show" do
-#    assert @sunil.current_allotments.count, 1
-#    post :add_allotments, :id => @sunil, :subject => @mal, :klasses => @klasses
-#    assert @sunil.current_allotments.count, 3
-#    assert_redirected_to teacher_path(@sunil)
-#  end
-#  
-#  test "already allotted klasses should appear preselected" do
-#    get :allot, :id => @sunil
-#    assert_template 'teachers/allot'
-#    assert_select 'td.pre-selected', :count => @sunil.current_allotments.count
-#    assert_select 'table#' + @eng.id.to_s + '-klasses_selectable td.selectFilter', :count => @eng.klasses.ofSchool(@stTeresasSchool).size - 1
-#  end
-  
   test "create teacher success thru xhr" do
     assert_difference('Teacher.count') do
       xhr :post, :create,{ :user => {:email => "sboateacher@gmail.com"}, :school_id =>@sboa.id }
@@ -70,25 +56,24 @@ class TeachersControllerTest < ActionController::TestCase
     assert_template "teachers/create_success"
   end
   
-#  test "create teacher success" do   
-#    assert_difference('Teacher.count') do
-#      post :create,{ :user => {:email => "teacher@gmail.com"}}
-#    end 
-#    assert_not_nil assigns(:user)
-#    assert_redirected_to edit_password_reset_url(assigns(:user).perishable_token)
-#  end
-#  
-#  test "create teacher failure" do   
-#    assert_no_difference('Student.count') do
-#      post :create,{:user => {:email => @sunil.user.email}}
-#    end 
-#    assert_response :success
-#    assert_template "teachers/new"
-#  end
-#  
   test "create teacher failure thru xhr" do
     xhr :post, :create , {:user => {:email => @sunil.user.email}, :school_id =>@sboa.id}
     assert_response :success
     assert_template "teachers/create_error"
   end
+  
+  test "add subjects thru xhr" do
+    xhr :post, :add_subjects, {:id => @sunil, :teacher => {:subject_ids => [@eng.to_param ,@mal.to_param]}}
+    assert @sunil.current_subjects.include?(@eng)
+    assert @sunil.current_subjects.include?(@mal)
+    assert_response :success
+  end
+  
+  test "update klass allotments thru xhr" do
+    xhr :post, :add_klasses, {:id => @sunil_physics, :teacher_subject_allotment => { :klass_ids => [@one_A.to_param ,@two_B.to_param]}}
+    assert @sunil_physics.current_klasses.include?(@one_A)
+    assert @sunil_physics.current_klasses.include?(@two_B)
+    assert_response :success
+  end
+  
 end
