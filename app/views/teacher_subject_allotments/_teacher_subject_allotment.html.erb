@@ -3,7 +3,7 @@
         <%= teacher_subject_allotment.subject.name %>
     </td>
     <td>
-		<%if !teacher_subject_allotment.klasses.empty? %>
+		<%if !teacher_subject_allotment.current_klasses.empty? %>
         	<%=teacher_subject_allotment.current_klasses.index_by{|klass| klass.name}.keys.join(", ")%>
 	    <%end %>
     </td>
