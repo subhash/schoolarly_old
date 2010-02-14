@@ -34,9 +34,7 @@
 		    		<%if exam.scores.nil? || exam.scores.empty?%>
 						<%= link_to_remote 'Delete', :url => {:controller => :exams, :action => 'destroy', :id => exam, :entity_class => entity.class.name, :entity_id => entity}, :method => :delete, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'Are you sure?' %>
 					<%else%>
-				      	<%= link_to_function "Delete Not Allowed", {:class => "ui-icon ui-icon-locked", :title => "Delete Not Allowed"} do |page|
-	        					page << "alert('Cannot delete as scores already exist for the exam');"
-							end %>
+						<span class="ui-icon ui-icon-locked" title = "Delete Not Allowed"></span>
 					<%end%>
 	    		</td>
 			<%end%>
