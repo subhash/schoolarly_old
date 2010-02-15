@@ -1,0 +1,20 @@
+<%if teacher_subject_allotments.nil? || teacher_subject_allotments.empty? %>
+<blockquote>
+    No subjects alloted yet. <br /> <br />Click on the <b>Add/Remove Subjects</b>
+    link on the right to allot subjects to the teacher.
+</blockquote>
+<%else %>
+	<table id="subjects" class="ui-state-default" border="1px">
+	    <tr>
+	        <th>
+	            Subject
+	        </th>
+	        <th>
+	            Classes
+	        </th>
+	    </tr>
+	    <% teacher_subject_allotments.each do |teacher_subject_allotment| %>
+			<%= render :partial => 'teacher_allotments/teacher_allotment', :locals => {:teacher_subject_allotment => teacher_subject_allotment} %>
+	    <%end %>
+	</table>
+<%end%>
