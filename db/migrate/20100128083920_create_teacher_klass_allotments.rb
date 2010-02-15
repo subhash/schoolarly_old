@@ -8,7 +8,7 @@ class CreateTeacherKlassAllotments < ActiveRecord::Migration
       
       t.timestamps
       
-      t.foreign_key :teacher_subject_allotment_id, :teacher_subject_allotments, :id
+      t.foreign_key :teacher_subject_allotment_id, :teacher_subject_allotments, :id, :on_delete => :cascade
       t.foreign_key :klass_id, :klasses, :id
       
     end
