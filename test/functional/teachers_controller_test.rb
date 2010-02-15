@@ -62,18 +62,18 @@ class TeachersControllerTest < ActionController::TestCase
     assert_template "teachers/create_error"
   end
   
-  test "add subjects thru xhr" do
-    xhr :post, :add_subjects, {:id => @sunil, :teacher => {:subject_ids => [@eng.to_param ,@mal.to_param]}}
-    assert @sunil.current_subjects.include?(@eng)
-    assert @sunil.current_subjects.include?(@mal)
-    assert_response :success
-  end
-  
-  test "update klass allotments thru xhr" do
-    xhr :post, :add_klasses, {:id => @sunil_physics, :teacher_subject_allotment => { :klass_ids => [@one_A.to_param ,@two_B.to_param]}}
-    assert @sunil_physics.current_klasses.include?(@one_A)
-    assert @sunil_physics.current_klasses.include?(@two_B)
-    assert_response :success
-  end
+#  test "add subjects thru xhr" do
+#    xhr :post, :add_subjects, {:id => @sunil, :teacher => {:subject_ids => [@eng.to_param ,@mal.to_param]}}
+#    assert @sunil.current_subjects.include?(@eng)
+#    assert @sunil.current_subjects.include?(@mal)
+#    assert_response :success
+#  end
+#  
+#  test "update klass allotments thru xhr" do
+#    xhr :post, :add_klasses, {:id => @sunil_physics, :teacher_subject_allotment => { :klass_ids => [@one_A.to_param ,@two_B.to_param]}}
+#    assert @sunil_physics.current_klasses.include?(@one_A)
+#    assert @sunil_physics.current_klasses.include?(@two_B)
+#    assert_response :success
+#  end
   
 end
