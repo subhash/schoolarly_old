@@ -67,16 +67,6 @@ class UsersController < ApplicationController
   end
   
   
-  def navigation_tabs
-    tabs = [:Users => users_path(:user_type => :user),
-    :Schools => users_path(:user_type => :school),
-    :Teachers => users_path(:user_type => :teacher),
-    :Students => users_path(:user_type => :student)]
-    
-    return tabs
-  end
-  
-  
   def roles
     flash[:notice]=(params[:user].inspect)
     puts params[:user].inspect
