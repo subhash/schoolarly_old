@@ -17,14 +17,13 @@ class TeacherAllotmentsController < ApplicationController
     @teacher_klass_allotment.start_date = Time.now.to_date
     @all_subjects = Subject.find(:all)
     if (@teacher_klass_allotment.save)
-      respond_to do |format|
-        format.js {render :template => 'teacher_allotments/allot_teacher_success'}
-      end 
+      template_name = params[:entity_klass].underscore.pluralize + '/allot_teacher_success'
     else
-      respond_to do |format|          
-        format.js {render :template => 'teacher_allotments/allot_teacher_error'}
-      end
-    end    
+      template_name = params[:entity_klass].underscore.pluralize + '/allot_teacher_error'
+    end
+    respond_to do |format|
+      format.js {render :template => template_name}
+    end 
   end
 
   def delete_teacher_allotment    
@@ -34,6 +33,10 @@ class TeacherAllotmentsController < ApplicationController
     @subject=@teacher_klass_allotment.teacher_subject_allotment.subject
     @klass = @teacher_klass_allotment.klass
     @all_subjects = Subject.find(:all)
+    template_name = params[:entity_klass].underscore.pluralize + '/delete_teacher_allotment'
+    respond_to do |format|
+      format.js {render :template => template_name}
+    end 
   end
   
   def edit_klass_allotments
