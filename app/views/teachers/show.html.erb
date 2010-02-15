@@ -15,7 +15,7 @@
         </blockquote>
         <%else %>
 			<div id="allotments">
-	        	<%= render :partial => 'teacher_subject_allotments/teacher_subject_allotments', :object => @teacher.current_subject_allotments %>
+	        	<%= render :partial => 'teacher_allotments/teacher_allotments', :locals => {:teacher_subject_allotments => @teacher.current_subject_allotments} %>
 			</div>
         <%end %>
     </div>
