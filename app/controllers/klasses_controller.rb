@@ -26,7 +26,7 @@ class KlassesController < ApplicationController
     end
     if(current_user.person.is_a?(SchoolarlyAdmin))
       @klass.enrollments.destroy_all
-      @klass.teacher_allotments.destroy_all
+      @klass.teacher_klass_allotments.destroy_all
       @klass.exam_groups.destroy_all
       @klass.destroy
       redirect_to :action => 'index'
@@ -106,15 +106,6 @@ class KlassesController < ApplicationController
       @addable_students = @klass.school.students.not_enrolled
       format.js {render :template => 'klasses/remove_student'}
     end 
-  end
-  
-  def delete_allotment    
-    @teacher_klass_allotment = TeacherKlassAllotment.find(params[:id])
-    @teacher_klass_allotment.end_date = Time.now.to_date
-    @teacher_klass_allotment.save!
-    @subject=@teacher_klass_allotment.teacher_subject_allotment.subject
-    @klass = @teacher_klass_allotment.klass
-    @all_subjects = Subject.find(:all)
   end
   
 end
