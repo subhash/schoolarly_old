@@ -31,8 +31,6 @@ class ExamGroupsController < ApplicationController
     @active_tab = :Exams
     exam_group=ExamGroup.find(params[:id])
     @klass=exam_group.klass
-    Exam.delete(exam_group.exams)
-    exam_group.save!
     exam_group.destroy
     respond_to do |format|
       flash[:notice] = 'Exam group was successfully removed.'
