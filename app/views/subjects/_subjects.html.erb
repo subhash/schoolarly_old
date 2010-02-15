@@ -13,6 +13,6 @@
 		<%else%>
 			<%teacher_klass_allotment=nil%>
 		<%end%>
-	    <%= render :partial => 'subjects/subject', :object => subject, :locals => {:klass => klass, :teacher_klass_allotment => teacher_klass_allotment} %>
+	    <%= render :partial => 'subjects/subject', :object => subject, :locals => {:klass => klass, :teacher_klass_allotment => teacher_klass_allotment, :entity_klass => entity.class.name} %>
     <%end %>
 </table>

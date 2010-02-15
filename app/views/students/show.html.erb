@@ -11,7 +11,7 @@
 	<div id="main-dialog" title="Schoolarly" class="jquery-dialog" style ="display: none;"></div>
     <div id="subjects-tab">
         <%if @current_enrollment %>
-        <%= render :partial => 'subjects/subjects', :object => @current_enrollment.subjects, :locals => {:klass => @klass, :teacher_subject_allotments => @teacher_subject_allotments} %>
+        <%= render :partial => 'subjects/subjects', :object => @current_enrollment.subjects, :locals => {:klass => @klass, :teacher_subject_allotments => @teacher_subject_allotments, :entity => @current_enrollment} %>
         <%end %>
     </div>
     <div id="exams-tab">

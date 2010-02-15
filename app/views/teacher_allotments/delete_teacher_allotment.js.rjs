@@ -1,2 +1,4 @@
-page["subject-#{@subject.id}"].replace :partial => 'subjects/subject', :object => @subject, :locals => {:klass => @klass, :teacher_klass_allotment => nil}
-page.replace_html 'add-remove-subjects-dialog', :partial => 'subjects/add_subjects_form', :locals => {:entity => @klass, :subjects => @all_subjects , :disabled => @klass.allotted_subjects}
+page["subject-#{@subject.id}"].replace :partial => 'subjects/subject', :object => @subject, :locals => {:klass => @klass, :teacher_klass_allotment => nil, :entity_klass => params[:entity_klass]}
+if params[:entity_klass] != 'StudentEnrollment'
+  page.replace_html 'add-remove-subjects-dialog', :partial => 'subjects/add_subjects_form', :locals => {:entity => @klass, :subjects => @all_subjects , :disabled => @klass.allotted_subjects}
+end

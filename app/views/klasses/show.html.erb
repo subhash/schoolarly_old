@@ -15,7 +15,7 @@
         <%= render :partial => 'students/students', :object => @students %>
     </div>
     <div id="subjects-tab">
-        <%= render :partial => 'subjects/subjects', :object => @klass.subjects, :locals => {:klass => @klass, :teacher_subject_allotments => @teacher_subject_allotments} %>
+        <%= render :partial => 'subjects/subjects', :object => @klass.subjects, :locals => {:klass => @klass, :teacher_subject_allotments => @teacher_subject_allotments, :entity => @klass} %>
     </div>
     <div id="exams-tab">
        	<%= render :partial => 'exams/exams', :object => @exams, :locals => {:entity => @klass} %>
