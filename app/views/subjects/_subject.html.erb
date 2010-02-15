@@ -8,11 +8,11 @@
 	        <%=link_to teacher_subject_allotment.teacher.name, teacher_path(teacher_subject_allotment.teacher) %>
 	    </td>
 	    <td>
-	        <%= link_to_remote 'Remove Assignment', :url => {:controller => 'klasses', :action => 'delete_allotment', :id => teacher_klass_allotment}, :confirm => 'Are you sure?' %>
+	        <%= link_to_remote 'Remove Assignment', :url => {:controller => 'teacher_allotments', :action => 'delete_teacher_allotment', :id => teacher_klass_allotment}, :confirm => 'Are you sure?' %>
 	    </td>
     <%else %>
 	    <td class="ui-state-focus">
-	    	<%= link_to_remote 'Allot Teacher', :url => {:controller => 'teacher_klass_allotments', :action => 'allot_teacher_new', :subject => subject, :klass => klass} %>
+	    	<%= link_to_remote 'Allot Teacher', :url => {:controller => 'teacher_allotments', :action => 'allot_teacher_new', :subject => subject, :klass => klass} %>
 	    </td>
     <%end %>
 </tr>
