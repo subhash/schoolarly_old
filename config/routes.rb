@@ -9,9 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :teachers
   
-  map.resources :teacher_subject_allotments
-  
-  map.resources :teacher_klass_allotments
+  map.resources :teacher_allotments
   
   map.resources :students
   
