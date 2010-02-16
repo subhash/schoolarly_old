@@ -1,10 +1,7 @@
-<%if teachers.nil? || teachers.empty? %>
-<blockquote>
-    No teacher exists. Click on the <b>Invite Teacher</b>
-    link on the right to invite teachers.
-</blockquote>
-<%else %>
-<table class="ui-state-default" border="1px">
+<%if !render_message_if_empty(teachers, message_if_empty_teachers).nil?%>
+	<%=	render :text => render_message_if_empty(teachers, message_if_empty_teachers)%>
+<%else%>
+	<table class="ui-state-default" border="1px">
         <tr>
             <th>
                 Name

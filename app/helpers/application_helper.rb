@@ -7,7 +7,7 @@ module ApplicationHelper
     end
   end
   
-  def is_collection_empty?(collection, message)
+  def render_message_if_empty(collection, message)
     if collection.nil? || collection.empty?
       render :text => '<br/><blockquote>' + message + '</blockquote>'
     end

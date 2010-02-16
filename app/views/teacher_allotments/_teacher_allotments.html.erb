@@ -1,9 +1,6 @@
-<%if teacher_subject_allotments.nil? || teacher_subject_allotments.empty? %>
-<blockquote>
-    No subjects alloted yet. <br /> <br />Click on the <b>Add/Remove Subjects</b>
-    link on the right to allot subjects to the teacher.
-</blockquote>
-<%else %>
+<%if !render_message_if_empty(teacher_subject_allotments, message_if_empty_allotments).nil?%>
+	<%=	render :text => render_message_if_empty(teacher_subject_allotments, message_if_empty_allotments)%>
+<%else%>
 	<table id="subjects" class="ui-state-default" border="1px">
 	    <tr>
 	        <th>
