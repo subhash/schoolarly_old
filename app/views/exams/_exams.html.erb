@@ -1,12 +1,6 @@
 <div id = "<%='exams_of_' + entity.id.to_s%>" >
-<%if exams.nil? || exams.empty? %>
-<br/>
-<blockquote>
-    No exam available.
-</blockquote>
-<%else %>
+	<%= is_collection_empty?(exams, 'No exam available')%>
 	<% exams.each do |exam_group, exam_collection| %>
 		<%= render :partial => 'exams/exam_group', :locals => {:exam_group => exam_group, :exam_collection => exam_collection, :entity => entity} %>
 	<% end %>
-<%end%>
 </div>
