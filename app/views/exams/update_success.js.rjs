@@ -1,3 +1,4 @@
 page << "closeDialogs();"
+entity = Object.const_get(params[:entity_class]).find(params[:entity_id])
 div_name='exam_'+@exam.id.to_s
-page.replace(div_name, :partial =>'exams/exam', :object => @exam, :locals => {:entity => Object.const_get(params[:entity_class]).find(params[:entity_id])})
+page.replace(div_name, :partial =>'exams/exam', :object => @exam, :locals => {:options => get_show_options(entity), get_symbol_for_local(entity) => entity})

@@ -46,7 +46,8 @@ class StudentsController < ApplicationController
     end
     add_breadcrumb(@student.name)
     add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @student.user})
-    if !@current_enrollment.nil? then @exams=@current_enrollment.exams.group_by{|e| e.exam_group} else @exams=nil end 
+    #if !@current_enrollment.nil? then @exams=@current_enrollment.exams.group_by{|e| e.exam_group} else @exams=nil end
+    if !@current_enrollment.nil? then @exam_groups = @current_enrollment.exams.collect{|exam| exam.exam_group}.uniq else @exam_groups = nil end
   end
   
   # GET /students/new

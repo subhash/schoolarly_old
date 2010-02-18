@@ -2,5 +2,5 @@ page << "closeDialogs();"
 page << "jQuery('.tabs').tabs('select','#subjects-tab')"
 page.replace_html 'subjects-tab', :partial => 'subjects/subjects', :object => @student_enrollment.subjects, :locals => {:klass => @klass, :teacher_subject_allotments => @teacher_subject_allotments, :entity => @student_enrollment}
 page.replace_html 'add-remove-subjects-dialog', :partial => 'subjects/add_subjects_form', :locals => {:entity => @student_enrollment, :subjects => @klass.subjects , :disabled => []}
-page.replace_html 'exams', :partial => 'exams/exams', :object => @student_enrollment.exams.group_by{|e| e.exam_group}, :locals => {:entity => @student_enrollment}
+page.replace_html 'exams-tab', :partial => 'exam_groups/exam_groups', :object => @student_enrollment.exams.collect{|exam| exam.exam_group}.uniq, :locals => {:options => get_show_options(@student_enrollment), get_symbol_for_local(@student_enrollment) => @student_enrollment}
 

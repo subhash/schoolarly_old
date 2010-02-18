@@ -26,7 +26,7 @@
         </blockquote>
 		<%else%>
 			<div id="exams">
-        		<%= render :partial => 'exams/exams', :object => @exams, :locals => {:entity => @teacher} %>            
+        		<%= render :partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:teacher => @teacher} %>            
         	</div>
         <%end %>
     </div>

@@ -16,7 +16,7 @@
     </div>
     <div id="exams-tab">
         <div id="exams">
-            <%= render :partial => 'exams/exams', :object => @exams, :locals => {:entity => @student_enrollment} %>
+			<%= render :partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:student_enrollment => @student_enrollment} %>
         </div>
     </div>
 </div>

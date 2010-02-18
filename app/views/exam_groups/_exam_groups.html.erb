@@ -1,15 +1,28 @@
-<%if exam_groups.nil? || exam_groups.empty? %>
-	<blockquote>
-	    No class exists for the school. Click on the <b>Add Class</b>
-	    link on the right to create classes.
-	</blockquote>
-<%else %>
-    <div class="accordion" style="font-size:1em;">
-        <% exam_groups.each do |klass, egs| %>
-	        <p id=<%='p_' + klass.id.to_s%>>
-	            <a href="#"><%=klass.name %></a>
-	        </p>
-        		<%= render :partial => 'exams/exams', :object => klass_exams[klass.id], :locals => {:entity => klass} %>
-        <% end %>
-    </div>
+<%entity = local_assigns[:school] || local_assigns[:klass] || local_assigns[:student_enrollment] || local_assigns[:teacher] || local_assigns[:exam]%>
+<%options = get_show_options(entity)%>
+<%if !render_message_if_empty(exam_groups, (local_assigns[:school]? message_if_empty_klasses : message_if_empty_exam_groups)).nil?%>
+	<%=	render :text => render_message_if_empty(exam_groups, message_if_empty_exam_groups)%>
+<%else%>
+	<%if options.include?(:show_klass)%>
+	    <div class="accordion" style="font-size:1em;">
+	        <% exam_groups.each do |klass, egs| %>
+		        <p id=<%='p_' + klass.id.to_s%>>
+		            <a href="#"><%=klass.name %></a>
+		        </p>
+				<div id = "<%='exams_of_' + klass.id.to_s%>" >
+					<% egs.each do |exam_group| %>
+						<%= render :partial => 'exam_groups/exam_group', :object => exam_group, :locals => {:options => options, get_symbol_for_local(entity) => entity} %>
+					<% end %>
+				</div>
+	        <% end %>
+	    </div>
+	<%else%>
+			<% exam_groups.each do |exam_group| %>
+				<%= render :partial => 'exam_groups/exam_group', :object => exam_group, :locals => {:options => options, get_symbol_for_local(entity) => entity} %>
+			<% end %>
+	<%end%>
 <%end %>
+
+
+
+

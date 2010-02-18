@@ -1,3 +1,4 @@
+<%entity = local_assigns[:school] || local_assigns[:klass] || local_assigns[:student_enrollment] || local_assigns[:teacher] || local_assigns[:exam] %>
 	<tr id="exam_<%=exam.id%>">
 		<td class="ui-state-default">
 	    	<%=link_to exam.subject.name, exam%>
@@ -20,24 +21,27 @@
 		<td class="ui-state-default">
 	    	<%=exam.pass_score%>
 	    </td>
-		<%if entity.class.name == 'StudentEnrollment'%>
+		<%if options.include?(:show_score)%>
 			<td class="ui-state-default">
 				<% score = exam.scores.select{|score| score.student == entity.student}.first %>
 				<%= score.nil? ? '<i>Unavailable</i>' :  score.score %>
 			</td>
-		<%else%>
+		<%end%>
+		<%if options.include?(:edit_exam)%>
 			<td class="ui-state-default">
 				<%= link_to_remote 'Edit', :url =>  {:controller => :exams, :action => 'edit', :id => exam, :entity_class => entity.class.name, :entity_id => entity}, :method => :get, :html => {:title => 'Edit', :class => "ui-icon ui-icon-pencil" }%>
 	    	</td>
-	    	<%if entity.class.name != 'Exam'%>
-				<td class="ui-state-default">
-		    		<%if exam.scores.nil? || exam.scores.empty?%>
-						<%= link_to_remote 'Delete', :url => {:controller => :exams, :action => 'destroy', :id => exam, :entity_class => entity.class.name, :entity_id => entity}, :method => :delete, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'Are you sure?' %>
-					<%else%>
-						<span class="ui-icon ui-icon-locked" title = "Delete Not Allowed"></span>
-					<%end%>
-	    		</td>
-			<%end%>
+		<%end%>
+    	<%if options.include?(:delete_exam)%>
+			<td class="ui-state-default">
+	    		<%if exam.is_destroyable? %>
+					<%= link_to_remote 'Delete', :url => {:controller => :exams, :action => 'destroy', :id => exam, :entity_class => entity.class.name, :entity_id => entity}, :method => :delete, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'Are you sure?' %>
+				<%else%>
+					<span class="ui-icon ui-icon-locked" title = "Delete Not Allowed"></span>
+				<%end%>
+    		</td>
+		<%end%>
+		<%if options.include?(:view_scores)%>
 			<td class="ui-state-default">
 	       		<%=link_to 'View/Edit Scores', exam, {:class => "ui-icon ui-icon-circle-zoomin", :title => 'View/Edit Scores'}%>
 	    	</td>

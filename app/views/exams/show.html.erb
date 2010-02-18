@@ -10,7 +10,7 @@
 	<div id="main-dialog" title="Schoolarly" class="jquery-dialog" style ="display: none;"></div>
     <div id="details-tab">
         <div id="exams">
-            <%= render :partial => 'exams/exams', :object => @exams, :locals => {:entity => @exam} %>
+            <%= render :partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:exam => @exam} %>
         </div>
     </div>
 	<div id="scores-tab">

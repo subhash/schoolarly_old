@@ -1,8 +1,9 @@
   entity = Object.const_get(params[:entity_class]).find(params[:entity_id])
-  if !entity.exams.select{|exam| exam.exam_group_id==@exam_group.id && !exam.id.nil?}.empty? 
+  if !get_entity_exams(entity, @exam_group).empty?
+    puts "innn iofffffff"
     div_name = 'exam_' + params[:id].to_s
     page.remove div_name
   else
     div_name='eg_' + @exam_group.id.to_s
-    page.replace(div_name, :partial => "exams/exam_group", :locals => {:exam_group => @exam_group, :exam_collection => [Exam.new(:exam_group_id => @exam_group.id)], :entity => entity})
+    page.replace(div_name, :partial => "exam_groups/exam_group", :object => @exam_group, :locals => {:options => get_show_options(entity), get_symbol_for_local(entity) => entity})
   end

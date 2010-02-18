@@ -1,7 +1,50 @@
-<div id = "<%='exams_of_' + entity.id.to_s%>" >
-	<%=render_message_if_empty(exams, message_if_empty_exams)%>
-	<% exams.each do |exam_group, exam_collection| %>
-		<%= render :partial => 'exams/exam_group', :locals => {:exam_group => exam_group, :exam_collection => exam_collection, :entity => entity} %>
+<%entity = local_assigns[:school] || local_assigns[:klass] || local_assigns[:student_enrollment] || local_assigns[:teacher] || local_assigns[:exam]%>
+<%if !render_message_if_empty(exams, message_if_empty_exams).nil?%>
+	<tr>
+	    <td class="ui-state-default" style="width:auto;" colspan="8">
+            <%=	render :text => render_message_if_empty(exams, message_if_empty_exams)%>
+	    </td>
+		<%if options.include?(:add_exam)%>
+			<td class="ui-state-default" >
+				<%= link_to_remote 'Add Exam', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group, :entity_class => entity.class.name, :entity_id => entity}, :html => {:title => 'Add Exam', :class => "ui-icon ui-icon-plus" }%>
+			</td>
+		<%end%>
+	</tr>		
+<%else%>	
+    <tr>
+        <th>
+            Subject
+        </th>
+		<th>
+			Exam Date
+		</th>
+        <th>
+            Start Time
+        </th>
+        <th>
+            End Time
+        </th>
+		<th>
+            Venue
+        </th>
+		<th>
+            Max. Score
+        </th>
+		<th>
+            Pass Score
+        </th>
+		<%if options.include?(:show_score)%>
+			<th>Score</th>
+		<%elsif options.include?(:add_exam)%>
+			<td class="ui-state-default" colspan="3">
+				<%= link_to_remote 'Add Exam', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group, :entity_class => entity.class.name, :entity_id => entity}, :html => {:title => 'Add Exam', :class => "cell-link" }%>
+			</td>
+		<%else%>
+			<td colspan=2></td>
+		<%end%>
+	</tr>
+	<% exams.each do |exam| %>
+		<%= render :partial => 'exams/exam', :object => exam, :locals => {:options => options, get_symbol_for_local(entity) => entity } %>
 	<% end %>
-
-</div>
+	
+<%end%>
