@@ -14,6 +14,10 @@ class Exam < ActiveRecord::Base
     klass.students_studying(subject)
   end
   
+  def is_destroyable?
+    return self.scores.empty? 
+  end
+  
   acts_as_authorizable
   
 end
