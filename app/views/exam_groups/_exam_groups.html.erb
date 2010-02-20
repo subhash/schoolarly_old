@@ -17,9 +17,9 @@
 	        <% end %>
 	    </div>
 	<%else%>
-			<% exam_groups.each do |exam_group| %>
-				<%= render :partial => 'exam_groups/exam_group', :object => exam_group, :locals => {:options => options, get_symbol_for_local(entity) => entity} %>
-			<% end %>
+		<% exam_groups.each do |exam_group| %>
+			<%= render :partial => 'exam_groups/exam_group', :object => exam_group, :locals => {:options => options, get_symbol_for_local(entity) => entity} %>
+		<% end %>
 	<%end%>
 <%end %>
 
