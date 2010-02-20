@@ -3,21 +3,14 @@ class ScoresController < ApplicationController
   def grid_data
     @exam = Exam.find(params[:exam])
     @students = @exam.students
-#    sort_by gives errors for @ in email - so sorting cannot be done for emails
-#    if(params[:sidx] == 'email')
-#      if(params[:sord] == 'asc')
-#        @students.sort_by{|s|s.email}
-#      else
-#        @students.sort_by{|s| -s.email}
-#      end
-#    elsif(params[:sidx] == 'name')
-#      if(params[:sord] == 'asc')
-#        @students.sort_by{|s|s.name}
-#      else
-#        @students.sort_by{|s| -s.name}
-#      end  
-#    end
     @students_scores = @students.each_with_object({}) {|student, hash| hash[student] = @exam.scores.find_by_student_id(student.id)}
+    if(params[:sidx] == 'score')
+      @students_scores = (params[:sord] == 'asc')? (@students_scores.sort {|a,b| a[1].score<=>b[1].score}) : (@students_scores.sort {|a,b| a[1].score<=>b[1].score}.reverse)
+    elsif(params[:sidx] == 'name')
+      @students_scores = (params[:sord] == 'asc')? (@students_scores.sort {|a,b| a[0].name<=>b[0].name}) : (@students_scores.sort {|a,b| a[0].name<=>b[0].name}.reverse)
+    elsif(params[:sidx] == 'email')
+      @students_scores = (params[:sord] == 'asc')? (@students_scores.sort {|a,b| a[0].email<=>b[0].email}) : (@students_scores.sort {|a,b| a[0].email<=>b[0].email}.reverse)
+    end
     respond_to do |format|
       format.xml {render :partial => 'grid_data.xml.builder', :layout => false }
     end   
