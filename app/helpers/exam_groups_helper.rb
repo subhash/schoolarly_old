@@ -9,7 +9,7 @@ module ExamGroupsHelper
           when 'School'             then [:show_klass, :edit_exam_group, :delete_exam_group, :add_exam, :edit_exam, :delete_exam, :view_scores]
           when 'Klass'              then [:edit_exam_group, :delete_exam_group, :add_exam, :edit_exam, :delete_exam, :view_scores]
           when 'StudentEnrollment'  then [:edit_exam, :show_score]
-          when 'Teacher'            then [:add_exam, :edit_exam, :delete_exam, :view_scores]
+          when 'Teacher'            then [:show_klass, :add_exam, :edit_exam, :delete_exam, :view_scores]
           when 'Exam'               then [:edit_exam, :view_scores]
     end
     return options

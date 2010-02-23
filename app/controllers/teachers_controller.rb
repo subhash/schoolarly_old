@@ -63,7 +63,7 @@ class TeachersController < ApplicationController
     if @teacher.school
       add_js_page_action(:title => 'Add/Remove Subjects', :render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @teacher, :subjects => Subject.all, :disabled => @teacher.allotted_subject_ids }})
     end
-    @exam_groups = @teacher.exams.collect{|exam| exam.exam_group}.uniq
+    @exam_groups = @teacher.exams.collect{|exam| exam.exam_group}.uniq.group_by{|eg| eg.klass}
   end
   
   def add_subjects
