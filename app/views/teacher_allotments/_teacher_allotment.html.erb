@@ -7,7 +7,7 @@
         	<%=teacher_subject_allotment.current_klasses.index_by{|klass| klass.name}.keys.join(", ")%>
 	    <%end %>
     </td>
-    <td>
+    <td class="ui-state-focus">
         <%= link_to_remote 'Add/Remove Classes', :url => {:controller => :teacher_allotments, :action => 'edit_klass_allotments', :id => teacher_subject_allotment}, :method => :get, :html => {:title => 'Add/Remove Classes', :class => "ui-icon ui-icon-pencil"} %>
     </td>
 </tr>

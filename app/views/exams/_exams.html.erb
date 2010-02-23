@@ -5,7 +5,7 @@
             <%=	render :text => render_message_if_empty(exams, message_if_empty_exams)%>
 	    </td>
 		<%if options.include?(:add_exam)%>
-			<td class="ui-state-default" >
+			<td class="ui-state-focus" >
 				<%= link_to_remote 'Add Exam', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group, :entity_class => entity.class.name, :entity_id => entity}, :html => {:title => 'Add Exam', :class => "ui-icon ui-icon-plus" }%>
 			</td>
 		<%end%>
@@ -36,8 +36,8 @@
 		<%if options.include?(:show_score)%>
 			<th>Score</th>
 		<%elsif options.include?(:add_exam)%>
-			<td class="ui-state-default" colspan="3">
-				<%= link_to_remote 'Add Exam', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group, :entity_class => entity.class.name, :entity_id => entity}, :html => {:title => 'Add Exam', :class => "cell-link" }%>
+			<td class="ui-state-focus" colspan="3">
+				<%= link_to_remote 'Add Exam', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group, :entity_class => entity.class.name, :entity_id => entity}, :html => {:title => 'Add Exam'}%>
 			</td>
 		<%else%>
 			<td colspan=2></td>

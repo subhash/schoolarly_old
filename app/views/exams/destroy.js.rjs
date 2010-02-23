@@ -1,6 +1,5 @@
   entity = Object.const_get(params[:entity_class]).find(params[:entity_id])
   if !get_entity_exams(entity, @exam_group).empty?
-    puts "innn iofffffff"
     div_name = 'exam_' + params[:id].to_s
     page.remove div_name
   else

@@ -55,7 +55,6 @@ class KlassesController < ApplicationController
     add_js_page_action(:title => 'Add Exams', :render => {:partial =>'exam_groups/new', :locals => {:exam_group => ExamGroup.new(), :subjects => @subjects, :klass => @klass, :exam_types => ExamType.all}})    
     @students = @klass.current_students      
     @teacher_subject_allotments= @klass.current_klass_allotments.collect{|klass_allotment| klass_allotment.teacher_subject_allotment}.group_by{|s| s.subject.id}
-    #@exams=@klass.exams.group_by{|e| e.exam_group}
     @exam_groups = @klass.exam_groups
     session[:redirect] = request.request_uri
     respond_to do |format|

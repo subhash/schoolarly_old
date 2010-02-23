@@ -63,7 +63,6 @@ class TeachersController < ApplicationController
     if @teacher.school
       add_js_page_action(:title => 'Add/Remove Subjects', :render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @teacher, :subjects => Subject.all, :disabled => @teacher.allotted_subject_ids }})
     end
-    #@exams=@teacher.exams.group_by{|e| e.exam_group}
     @exam_groups = @teacher.exams.collect{|exam| exam.exam_group}.uniq
   end
   
@@ -76,5 +75,12 @@ class TeachersController < ApplicationController
     TeacherSubjectAllotment.destroy(@teacher.current_subject_allotments.select{|allotment| subjects_to_remove.include?(allotment.subject)}.collect{|alltmnt| alltmnt.id })
     @teacher.reload
   end
+
+  def add_to_school
+    @teacher = Teacher.find(params[:id])
+    @school = School.find(params[:entity][:school_id])
+    @school.teachers << @teacher
+    @school.save!
+  end  
   
 end

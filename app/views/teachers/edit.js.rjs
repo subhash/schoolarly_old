@@ -1,0 +1,2 @@
+page.replace_html("main-dialog", :partial =>'subjects/add_subjects_form', :locals => {:entity => @teacher, :subjects => Subject.all, :disabled => @teacher.allotted_subject_ids})
+page << "openDialog('main-dialog');"

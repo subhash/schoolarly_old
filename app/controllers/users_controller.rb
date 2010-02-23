@@ -90,6 +90,9 @@ class UsersController < ApplicationController
       @teacher.user.destroy
       @teacher.destroy
     end
+    respond_to do |format|
+      format.js {render :template => 'teachers/remove'}
+    end 
   end
   
 end

@@ -1,0 +1,2 @@
+page.replace_html("main-dialog", :partial =>'schools/add_to_school_form', :locals => {:entity => Object.const_get(params[:entity_class]).find(params[:entity_id]), :schools => School.all})
+page << "openDialog('main-dialog');"  

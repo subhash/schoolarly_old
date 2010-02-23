@@ -28,12 +28,12 @@
 			</td>
 		<%end%>
 		<%if options.include?(:edit_exam)%>
-			<td class="ui-state-default">
+			<td class="ui-state-focus">
 				<%= link_to_remote 'Edit', :url =>  {:controller => :exams, :action => 'edit', :id => exam, :entity_class => entity.class.name, :entity_id => entity}, :method => :get, :html => {:title => 'Edit', :class => "ui-icon ui-icon-pencil" }%>
 	    	</td>
 		<%end%>
     	<%if options.include?(:delete_exam)%>
-			<td class="ui-state-default">
+			<td class="ui-state-focus">
 	    		<%if exam.is_destroyable? %>
 					<%= link_to_remote 'Delete', :url => {:controller => :exams, :action => 'destroy', :id => exam, :entity_class => entity.class.name, :entity_id => entity}, :method => :delete, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'Are you sure?' %>
 				<%else%>
@@ -42,7 +42,7 @@
     		</td>
 		<%end%>
 		<%if options.include?(:view_scores)%>
-			<td class="ui-state-default">
+			<td class="ui-state-focus">
 	       		<%=link_to 'View/Edit Scores', exam, {:class => "ui-icon ui-icon-circle-zoomin", :title => 'View/Edit Scores'}%>
 	    	</td>
 		<%end%>

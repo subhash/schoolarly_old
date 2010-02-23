@@ -1,3 +1,0 @@
-page.select(".teacher_#{@teacher.id}").each do |element|
-  element.remove
-end

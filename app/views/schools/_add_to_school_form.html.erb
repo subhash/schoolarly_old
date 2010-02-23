@@ -1,0 +1,5 @@
+<%@entity=entity%>
+<% form_remote_tag :url => {:action => 'add_to_school', :id => entity} do |f| %>
+<%= select('entity', 'school_id', schools.collect{|s|[s.name,s.id]}) %>
+<%= submit_tag "Add" %>
+<%end%>
