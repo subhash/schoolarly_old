@@ -9,28 +9,9 @@
     margin: 10px;
     text-decoration: none;
     height: 1.5em;
-} .small_button {
-    padding: .2em .7em;
-    margin: 10px 20px;
-    text-decoration: none;
-    height: 1.1em;
 } .auto_complete ul li {
     list-style-type: none;
-} .nested {
-    border: none;
-    margin: 0;
-} .nested tbody td {
-    border-bottom: none;
-} .nested td {
-    text-align: center;
-    vertical-align: middle;
-    padding-bottom: 0;
-    padding-top: 0.5em;
-} .nested .list-line-main {
-    background: #E0ECF8;
-} .nested .list-line-even {
-    background: #B1EBF5;
-}
+} 
 
 table.ui-state-default a.profile {
     text-decoration: underline;
@@ -47,43 +28,25 @@ table.ui-state-default td.ui-state-focus:focus {
     background-color: #F6A828
 }
 
-table.nested .list-line-odd {
-    background: #E0F8FC;
-} .ui-tabs-nav li {
+ .ui-tabs-nav li {
     list-style-type: none;
+} #content_box {
+    float: left;
+    margin: 0;
+    width: 72%;
+} #right_boxes {
+    float: right;
+    width: 27%;
 } #action_box {
     padding: 1%;
 } #quick_nav_box {
-    padding: 1%;
-} #details_box {
-    padding: 1%;
-}
-
-table.ui-state-default a.cell-link {
-    font-weight: bold;
-    font-style: italic;
-    color: #EF8C08;
+} #reference_box {
 }
 
 table.ui-state-default th {
     background: #F6A828 url(images/ui-bg_gloss-wave_35_f6a828_500x100.png) repeat-x scroll 50% 50%;
     border: 1px solid #E78F08;
     color: #EEEEEE
-}
-
-table.no-border {
-    border: none;
-}
-
-td.wider {
-    margin: 1px;
-    padding: 1px;
-    float: left;
-    width: 180px;
-    height: 25px;
-    font-size: 1.2em;
-    text-align: center;
-    vertical-align: middle;
 }
 
 table.center {
@@ -116,12 +79,6 @@ table.center {
     background: url(../images/breadcrumb_current.jpg) repeat-x left center;
 }
 
-td.pre-selected {
-    background: #F39814 none repeat scroll 0 0;
-    font-weight: bold;
-    color: white;
-}
-
 /**
  * for rails multiple-select plugin
  */ .multiple_select {
@@ -131,7 +88,7 @@ td.pre-selected {
     padding: 2px;
     margin: 1em;
     overflow: auto;
-} .multiple_select, .multiple_select ul {
+} .multiple_select, .multiple_select ul, ul li {
     list-style-type: none;
 } .multiple_select_checkbox {
     background: #fff;
