@@ -266,7 +266,7 @@ ActiveRecord::Schema.define(:version => 20100128083920) do
   add_foreign_key "exam_groups", ["exam_type_id"], "exam_types", ["id"], :name => "exam_groups_ibfk_1"
   add_foreign_key "exam_groups", ["klass_id"], "klasses", ["id"], :name => "exam_groups_ibfk_2"
 
-  add_foreign_key "exams", ["exam_group_id"], "exam_groups", ["id"], :name => "exams_ibfk_1"
+  add_foreign_key "exams", ["exam_group_id"], "exam_groups", ["id"], :on_delete => :cascade, :name => "exams_ibfk_1"
   add_foreign_key "exams", ["subject_id"], "subjects", ["id"], :name => "exams_ibfk_2"
 
   add_foreign_key "klasses", ["school_id"], "schools", ["id"], :name => "klasses_ibfk_1"
@@ -299,7 +299,7 @@ ActiveRecord::Schema.define(:version => 20100128083920) do
   add_foreign_key "students", ["current_enrollment_id"], "student_enrollments", ["id"], :name => "students_ibfk_2"
   add_foreign_key "students", ["school_id"], "schools", ["id"], :name => "students_ibfk_1"
 
-  add_foreign_key "teacher_klass_allotments", ["teacher_subject_allotment_id"], "teacher_subject_allotments", ["id"], :name => "teacher_klass_allotments_ibfk_1"
+  add_foreign_key "teacher_klass_allotments", ["teacher_subject_allotment_id"], "teacher_subject_allotments", ["id"], :on_delete => :cascade, :name => "teacher_klass_allotments_ibfk_1"
   add_foreign_key "teacher_klass_allotments", ["klass_id"], "klasses", ["id"], :name => "teacher_klass_allotments_ibfk_2"
 
   add_foreign_key "teacher_subject_allotments", ["teacher_id"], "teachers", ["id"], :name => "teacher_subject_allotments_ibfk_1"
