@@ -24,3 +24,25 @@ jquery plugins/widgets used
 Installed gems
 --------------
 
+1) mysql gem -
+    For mac, there are sidenotes  - refer to http://cho.hapgoods.com/wordpress/?cat=20 
+    To uninstall mysql server from mac  - http://forums.mysql.com/read.php?11,75256,255851
+        - http://egopoly.com/2009/09/01/how-to-uninstall-mysql-5-1-on-snow-leopard/
+    Uninstalling MySQL - (Mac - OS) 
+From a terminal do the following: 
+
+1. sudo rm /usr/local/mysql 
+2. sudo rm -rf /usr/local/mysql* 
+3. sudo rm -rf /Library/StartupItems/MySQLCOM 
+4. sudo rm -rf /Library/PreformancPanes/My* 
+5. Edit /etc/hostconfig - sudo vi /etc/hostconfig - Remove line MYSQLCOM=-YES 
+6. sudo rm -rf /Library/Reciepts/mysql* 
+7. sudo rm -rf /Library/Reciepts/MySQL* 
+8. sudo rm -rf /var/db/receipts/com.mysql.mysql*
+    Install only 32-bit mysql server (else use 64-bit ruby interpreter recompiled for mac)
+Finally, what worked
+
+- download and install Mac OS X ver. 10.6 (x86, 64-bit), DMG Archive (mysql-5.1.44-osx10.6-x86_64.dmg)    
+- From terminal, run the command sudo env ARCHFLAGS="-arch x86_64" gem install --no-rdoc --no-ri  mysql -- --with-mysql-config=/usr/local/mysql/bin/mysql_config
+    
+    
