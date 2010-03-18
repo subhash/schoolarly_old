@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100128083920) do
+ActiveRecord::Schema.define(:version => 20100111144534) do
 
   create_table "exam_groups", :force => true do |t|
     t.string   "description"
@@ -38,18 +38,19 @@ ActiveRecord::Schema.define(:version => 20100128083920) do
     t.integer  "pass_score"
     t.integer  "exam_group_id", :null => false
     t.integer  "subject_id",    :null => false
+    t.integer  "teacher_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "exams", ["exam_group_id"], :name => "exam_group_id"
   add_index "exams", ["subject_id"], :name => "subject_id"
+  add_index "exams", ["teacher_id"], :name => "teacher_id"
 
   create_table "klasses", :force => true do |t|
     t.enum     "level",      :limit => [:"Pre-school", :"L.K.G", :"U.K.G", :Mont1, :Mont2, :Mont3, :"1", :"2", :"3", :"4", :"5", :"6", :"7", :"8", :"9", :"10", :"11", :"12"]
     t.string   "division"
     t.integer  "school_id",                                                                                                                                                    :null => false
-    t.integer  "year"
     t.integer  "teacher_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -57,14 +58,6 @@ ActiveRecord::Schema.define(:version => 20100128083920) do
 
   add_index "klasses", ["school_id"], :name => "school_id"
   add_index "klasses", ["teacher_id"], :name => "teacher_id"
-
-  create_table "klasses_subjects", :id => false, :force => true do |t|
-    t.integer "klass_id",   :null => false
-    t.integer "subject_id", :null => false
-  end
-
-  add_index "klasses_subjects", ["klass_id", "subject_id"], :name => "index_klasses_subjects_on_klass_id_and_subject_id", :unique => true
-  add_index "klasses_subjects", ["subject_id"], :name => "subject_id"
 
   create_table "leave_requests", :force => true do |t|
     t.integer  "parent_id",                                                           :null => false
@@ -91,6 +84,18 @@ ActiveRecord::Schema.define(:version => 20100128083920) do
   end
 
   add_index "messages", ["sender_id"], :name => "sender_id"
+
+  create_table "papers", :force => true do |t|
+    t.integer  "klass_id"
+    t.integer  "subject_id"
+    t.integer  "teacher_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "papers", ["klass_id"], :name => "klass_id"
+  add_index "papers", ["subject_id"], :name => "subject_id"
+  add_index "papers", ["teacher_id"], :name => "teacher_id"
 
   create_table "parents", :force => true do |t|
     t.integer  "student_id", :null => false
@@ -151,69 +156,33 @@ ActiveRecord::Schema.define(:version => 20100128083920) do
   add_index "scores", ["exam_id"], :name => "exam_id"
   add_index "scores", ["student_id"], :name => "student_id"
 
-  create_table "student_enrollments", :force => true do |t|
+  create_table "student_subjects", :id => false, :force => true do |t|
     t.integer  "student_id", :null => false
-    t.integer  "klass_id",   :null => false
-    t.date     "start_date"
-    t.date     "end_date"
+    t.integer  "subject_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "student_enrollments", ["student_id"], :name => "student_id"
-  add_index "student_enrollments", ["klass_id"], :name => "klass_id"
-
-  create_table "student_enrollments_subjects", :id => false, :force => true do |t|
-    t.integer  "student_enrollment_id", :null => false
-    t.integer  "subject_id",            :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "student_enrollments_subjects", ["student_enrollment_id", "subject_id"], :name => "index_enrollment_subjects", :unique => true
-  add_index "student_enrollments_subjects", ["subject_id"], :name => "subject_id"
+  add_index "student_subjects", ["student_id", "subject_id"], :name => "index_student_subjects_on_student_id_and_subject_id", :unique => true
+  add_index "student_subjects", ["subject_id"], :name => "subject_id"
 
   create_table "students", :force => true do |t|
     t.integer  "school_id"
     t.string   "admission_number"
     t.string   "roll_number"
-    t.integer  "current_enrollment_id"
+    t.integer  "klass_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "students", ["school_id"], :name => "school_id"
-  add_index "students", ["current_enrollment_id"], :name => "current_enrollment_id"
+  add_index "students", ["klass_id"], :name => "klass_id"
 
   create_table "subjects", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "teacher_klass_allotments", :force => true do |t|
-    t.integer  "teacher_subject_allotment_id"
-    t.integer  "klass_id"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "teacher_klass_allotments", ["teacher_subject_allotment_id"], :name => "teacher_subject_allotment_id"
-  add_index "teacher_klass_allotments", ["klass_id"], :name => "klass_id"
-
-  create_table "teacher_subject_allotments", :force => true do |t|
-    t.integer  "teacher_id"
-    t.integer  "school_id"
-    t.integer  "subject_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "teacher_subject_allotments", ["teacher_id", "school_id", "subject_id"], :name => "index_teacher_subject_allotments", :unique => true
-  add_index "teacher_subject_allotments", ["school_id"], :name => "school_id"
-  add_index "teacher_subject_allotments", ["subject_id"], :name => "subject_id"
 
   create_table "teachers", :force => true do |t|
     t.integer  "school_id"
@@ -268,16 +237,18 @@ ActiveRecord::Schema.define(:version => 20100128083920) do
 
   add_foreign_key "exams", ["exam_group_id"], "exam_groups", ["id"], :on_delete => :cascade, :name => "exams_ibfk_1"
   add_foreign_key "exams", ["subject_id"], "subjects", ["id"], :name => "exams_ibfk_2"
+  add_foreign_key "exams", ["teacher_id"], "teachers", ["id"], :name => "exams_ibfk_3"
 
   add_foreign_key "klasses", ["school_id"], "schools", ["id"], :name => "klasses_ibfk_1"
   add_foreign_key "klasses", ["teacher_id"], "teachers", ["id"], :name => "klasses_ibfk_2"
 
-  add_foreign_key "klasses_subjects", ["klass_id"], "klasses", ["id"], :name => "klasses_subjects_ibfk_1"
-  add_foreign_key "klasses_subjects", ["subject_id"], "subjects", ["id"], :name => "klasses_subjects_ibfk_2"
-
   add_foreign_key "leave_requests", ["parent_id"], "users", ["id"], :name => "leave_requests_ibfk_1"
 
   add_foreign_key "messages", ["sender_id"], "users", ["id"], :name => "messages_ibfk_1"
+
+  add_foreign_key "papers", ["klass_id"], "klasses", ["id"], :name => "papers_ibfk_1"
+  add_foreign_key "papers", ["subject_id"], "subjects", ["id"], :name => "papers_ibfk_2"
+  add_foreign_key "papers", ["teacher_id"], "teachers", ["id"], :name => "papers_ibfk_3"
 
   add_foreign_key "parents", ["student_id"], "students", ["id"], :name => "parents_ibfk_1"
 
@@ -290,21 +261,11 @@ ActiveRecord::Schema.define(:version => 20100128083920) do
   add_foreign_key "scores", ["exam_id"], "exams", ["id"], :name => "scores_ibfk_1"
   add_foreign_key "scores", ["student_id"], "students", ["id"], :name => "scores_ibfk_2"
 
-  add_foreign_key "student_enrollments", ["student_id"], "students", ["id"], :name => "student_enrollments_ibfk_1"
-  add_foreign_key "student_enrollments", ["klass_id"], "klasses", ["id"], :name => "student_enrollments_ibfk_2"
+  add_foreign_key "student_subjects", ["student_id"], "students", ["id"], :name => "student_subjects_ibfk_1"
+  add_foreign_key "student_subjects", ["subject_id"], "subjects", ["id"], :name => "student_subjects_ibfk_2"
 
-  add_foreign_key "student_enrollments_subjects", ["student_enrollment_id"], "student_enrollments", ["id"], :name => "student_enrollments_subjects_ibfk_1"
-  add_foreign_key "student_enrollments_subjects", ["subject_id"], "subjects", ["id"], :name => "student_enrollments_subjects_ibfk_2"
-
-  add_foreign_key "students", ["current_enrollment_id"], "student_enrollments", ["id"], :name => "students_ibfk_2"
   add_foreign_key "students", ["school_id"], "schools", ["id"], :name => "students_ibfk_1"
-
-  add_foreign_key "teacher_klass_allotments", ["teacher_subject_allotment_id"], "teacher_subject_allotments", ["id"], :on_delete => :cascade, :name => "teacher_klass_allotments_ibfk_1"
-  add_foreign_key "teacher_klass_allotments", ["klass_id"], "klasses", ["id"], :name => "teacher_klass_allotments_ibfk_2"
-
-  add_foreign_key "teacher_subject_allotments", ["teacher_id"], "teachers", ["id"], :name => "teacher_subject_allotments_ibfk_1"
-  add_foreign_key "teacher_subject_allotments", ["school_id"], "schools", ["id"], :name => "teacher_subject_allotments_ibfk_2"
-  add_foreign_key "teacher_subject_allotments", ["subject_id"], "subjects", ["id"], :name => "teacher_subject_allotments_ibfk_3"
+  add_foreign_key "students", ["klass_id"], "klasses", ["id"], :name => "students_ibfk_2"
 
   add_foreign_key "teachers", ["school_id"], "schools", ["id"], :name => "teachers_ibfk_1"
 

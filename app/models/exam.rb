@@ -1,6 +1,7 @@
 class Exam < ActiveRecord::Base
   belongs_to :exam_group
   belongs_to :subject
+  belongs_to :teacher
   has_many :scores, :dependent => :destroy
   
   has_one :klass, :through => :exam_group

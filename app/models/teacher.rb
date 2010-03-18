@@ -2,51 +2,15 @@ class Teacher < ActiveRecord::Base
   has_one :user, :as => :person
   belongs_to :school
   
-  has_many :teacher_subject_allotments
-  has_many :teacher_klass_allotments, :through => :teacher_subject_allotments
-  has_many :current_klass_allotments, :through => :teacher_subject_allotments, :source => :teacher_klass_allotments, :conditions => [' end_date IS NULL ' ]
+  has_many :papers
+  has_many :klasses, :through => :papers, :uniq => true do
+    def for_subject(subject_id)
+      find :all , :conditions => ['papers.subject_id = ?', subject_id]
+    end
+  end
+  has_many :subjects, :through => :papers, :uniq => true, :order => 'name'
   has_many :owned_klasses, :class_name => 'Klass'
-    
-  def current_subject_allotments
-    return teacher_subject_allotments.select{|allotment| allotment.school_id == self.school_id}
-  end
-  
-  def klasses(subject_id)
-    self.current_subject_allotments.select{|allotment| allotment.subject_id == subject_id}.collect{|alltmnt| alltmnt.klasses}
-  end
-
-  def current_subjects
-    return current_subject_allotments.collect{|allotment| allotment.subject}
-  end
-  
-  def subject_ids
-    return self.current_subjects.collect{|subject| subject.id}
-  end
-  
-  def current_klasses
-    return (self.current_subject_allotments.collect{|allotment| allotment.klasses}).flatten
-  end
-
-  def currently_owned_klasses
-    return owned_klasses.find(:all, :conditions => ["year=?",Klass.current_academic_year(self.school_id)])
-  end
-  
-#  def subjects
-#    return current_klass_allotments.collect{|allotment| TeacherSubjectAllotment.all(:conditions => ["id = :tsa_id AND school_id = :school_id", {:tsa_id => allotment.teacher_subject_allotment_id, :school_id => self.school.id}])}.flatten.collect{|sa| sa.subject}
-##    return current_subject_allotments.collect{|allotment| allotment.subject}  
-#  end
-
-  def subjects_of_klass(klass)
-    return klass.current_klass_allotments.collect{|allotment| TeacherSubjectAllotment.all(:conditions => ["id = :tsa_id AND school_id = :school_id AND teacher_id = :teacher_id", {:tsa_id => allotment.teacher_subject_allotment_id, :school_id => self.school.id, :teacher_id => self.id}])}.flatten.collect{|sa| sa.subject}
-  end
-
-  def allotted_subjects
-    return self.current_klass_allotments.collect{|allot| allot.teacher_subject_allotment.subject}.uniq
-  end
-  
-  def allotted_subject_ids
-    return self.current_klass_allotments.collect{|allot| allot.teacher_subject_allotment.subject.id}.uniq
-  end
+  has_many :exams
   
   def add_roles
     self.user.has_role 'reader', School
@@ -60,10 +24,6 @@ class Teacher < ActiveRecord::Base
   
   def email
     return user.email
-  end
-
-  def exams
-    return current_klass_allotments.collect{|allotment| Exam.all(:conditions => ["exam_group_id IN (:egid) AND subject_id = :sid", {:egid => allotment.klass.exam_groups.collect{|eg| eg.id}, :sid => allotment.teacher_subject_allotment.subject.id}])}.flatten
   end
   
 end
