@@ -1,6 +1,6 @@
 class Klass < ActiveRecord::Base
   
-  has_many :papers, :include => :subject, :order => "subject.name"
+  has_many :papers, :include => :subject, :order => "subjects.name"
   has_many :subjects, :through => :papers, :order => "name"
   has_many :teachers, :through => :papers, :uniq => true 
   belongs_to :school

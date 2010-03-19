@@ -3,19 +3,21 @@
         <%= paper.subject.name %>
     </td>
 	<td class="ui-state-focus">
-        <%= link_to_remote  paper.students.size, :url => {:controller => 'students', :action => 'edit_subjects', :id => student} %>
+        <%= link_to_remote  paper.students.size, :url => {:controller => 'papers', :action => 'add_students', :id => paper} %>
     </td>
-    <% if teacher_klass_allotment %>
-		<%teacher_subject_allotment=teacher_klass_allotment.teacher_subject_allotment%>
+    <% if paper.teacher %>
 	    <td>
-	        <%=link_to teacher_subject_allotment.teacher.name, teacher_path(teacher_subject_allotment.teacher) %>
+	        <%=link_to paper.teacher.name, teacher_path(paper.teacher) %>
 	    </td>
 	    <td class="ui-state-focus">
 	        <%= link_to_remote 'Remove Assignment', :url => {:controller => 'teacher_allotments', :action => 'delete_teacher_allotment', :id => teacher_klass_allotment, :entity_klass => entity_klass}, :confirm => 'Are you sure?' %>
 	    </td>
     <%else %>
 	    <td class="ui-state-focus">
-	    	<%= link_to_remote 'Allot Teacher', :url => {:controller => 'teacher_allotments', :action => 'allot_teacher_new', :subject => subject, :klass => klass, :entity_klass => entity_klass} %>
+	    	<%= link_to_remote 'Allot Teacher', :url => {:controller => 'papers', :action => 'add_teacher', :id => paper} %>
 	    </td>
     <%end %>
+	<td>
+		<%= link_to_remote "Delete Subject", :url => paper_url(paper), :method => :delete, :confirm => 'Are you sure?' %>
+	</td>
 </tr>
