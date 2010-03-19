@@ -62,8 +62,6 @@ class UsersController < ApplicationController
     @schools = School.find(:all)
     @students = Student.find(:all)
     @teachers = Teacher.find(:all)
-    # XXX Hack - Get only current allotments
-    @subjects = TeacherSubjectAllotment.find(:all).select{|tsa| tsa.school_id == tsa.teacher.school_id}.group_by{|a| a.teacher_id}
   end
   
   

@@ -5,7 +5,7 @@ class Klass < ActiveRecord::Base
   has_many :teachers, :through => :papers, :uniq => true 
   belongs_to :school
   belongs_to :class_teacher, :class_name => 'Teacher', :foreign_key => 'teacher_id'
-  has_many :students    do
+  has_many :students  do
     def for_subject(subject_id)
       find :all, :include => [:subjects] , :conditions => ['student_subjects.subject_id = ?',subject_id]
     end  

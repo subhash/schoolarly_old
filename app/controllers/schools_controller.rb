@@ -23,7 +23,7 @@ class SchoolsController < ApplicationController
     add_js_page_action(:title => 'Add class',:render => {:partial => 'klasses/new_klass_form', :locals => {:klass => Klass.new, :school => @school}})
     add_js_page_action(:title => 'Invite Student',:render => {:partial => 'students/invite_student_form', :locals => {:student => Student.new, :school => @school}})
     add_js_page_action(:title => 'Invite Teacher',:render => {:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :school => @school}})
-    @klasses = @school.klasses.in_year(Klass.current_academic_year(@school)).group_by{|klass|klass.level}
+    @klasses = @school.klasses.group_by{|klass|klass.level}
     @exam_groups = @school.exam_groups.group_by{|eg| Klass.find(eg.klass_id)}
     @students = @school.students
     @teachers = @school.teachers

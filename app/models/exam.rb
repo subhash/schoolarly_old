@@ -12,7 +12,7 @@ class Exam < ActiveRecord::Base
   end
   
   def students
-    klass.students_studying(subject)
+    klass.students.for_subject(subject)
   end
   
   def is_destroyable?

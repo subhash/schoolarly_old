@@ -90,6 +90,13 @@ class StudentsController < ApplicationController
     end
   end
   
+  def edit
+    @student = Student.find(params[:id])
+    respond_to do |format|          
+      format.js {render :template => 'student_enrollments/new'}
+    end  
+  end
+  
   def add_subjects
     @student_enrollment = StudentEnrollment.find(params[:id])
     @klass = @student_enrollment.klass
