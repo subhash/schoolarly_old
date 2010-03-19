@@ -1,2 +1,0 @@
-class PaperController < ApplicationController
-end

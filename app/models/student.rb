@@ -7,7 +7,7 @@ class Student < ActiveRecord::Base
   has_one :user, :as => :person
   belongs_to :school
   belongs_to :klass
-  has_and_belongs_to_many :subjects
+  has_and_belongs_to_many :papers
   has_one :parent
   has_many :scores   
   has_many :exams, :through => :scores

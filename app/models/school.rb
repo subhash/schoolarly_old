@@ -2,7 +2,11 @@ class School < ActiveRecord::Base
   has_one :user, :as => :person
   has_many :klasses , :order => ["level, division"]
   has_many :teachers 
-  has_many :students
+  has_many :students do
+    def not_enrolled
+      find :all, :conditions => {:klass_id => nil}
+    end
+  end
   has_many :subjects, :through => :klasses, :uniq => true
   has_many :exam_groups, :through => :klasses
   

@@ -97,6 +97,16 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
   add_index "papers", ["subject_id"], :name => "subject_id"
   add_index "papers", ["teacher_id"], :name => "teacher_id"
 
+  create_table "papers_students", :id => false, :force => true do |t|
+    t.integer  "student_id", :null => false
+    t.integer  "paper_id",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "papers_students", ["student_id", "paper_id"], :name => "index_papers_students_on_student_id_and_paper_id", :unique => true
+  add_index "papers_students", ["paper_id"], :name => "paper_id"
+
   create_table "parents", :force => true do |t|
     t.integer  "student_id", :null => false
     t.datetime "created_at"
@@ -167,16 +177,6 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
 
   add_index "students", ["school_id"], :name => "school_id"
   add_index "students", ["klass_id"], :name => "klass_id"
-
-  create_table "students_subjects", :id => false, :force => true do |t|
-    t.integer  "student_id", :null => false
-    t.integer  "subject_id", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "students_subjects", ["student_id", "subject_id"], :name => "index_students_subjects_on_student_id_and_subject_id", :unique => true
-  add_index "students_subjects", ["subject_id"], :name => "subject_id"
 
   create_table "subjects", :force => true do |t|
     t.string   "name"
@@ -250,6 +250,9 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
   add_foreign_key "papers", ["subject_id"], "subjects", ["id"], :name => "papers_ibfk_2"
   add_foreign_key "papers", ["teacher_id"], "teachers", ["id"], :name => "papers_ibfk_3"
 
+  add_foreign_key "papers_students", ["student_id"], "students", ["id"], :name => "papers_students_ibfk_1"
+  add_foreign_key "papers_students", ["paper_id"], "papers", ["id"], :name => "papers_students_ibfk_2"
+
   add_foreign_key "parents", ["student_id"], "students", ["id"], :name => "parents_ibfk_1"
 
   add_foreign_key "roles_users", ["user_id"], "users", ["id"], :name => "roles_users_ibfk_1"
@@ -263,9 +266,6 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
 
   add_foreign_key "students", ["school_id"], "schools", ["id"], :name => "students_ibfk_1"
   add_foreign_key "students", ["klass_id"], "klasses", ["id"], :name => "students_ibfk_2"
-
-  add_foreign_key "students_subjects", ["student_id"], "students", ["id"], :name => "students_subjects_ibfk_1"
-  add_foreign_key "students_subjects", ["subject_id"], "subjects", ["id"], :name => "students_subjects_ibfk_2"
 
   add_foreign_key "teachers", ["school_id"], "schools", ["id"], :name => "teachers_ibfk_1"
 

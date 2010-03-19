@@ -25,8 +25,7 @@ class KlassesController < ApplicationController
       hash[klass.id] = klass.exams.group_by{|e| e.exam_group}
     end
     if(current_user.person.is_a?(SchoolarlyAdmin))
-      @klass.enrollments.destroy_all
-      @klass.teacher_klass_allotments.destroy_all
+      @klass.papers.destroy_all
       @klass.exam_groups.destroy_all
       @klass.destroy
       redirect_to :action => 'index'
@@ -44,17 +43,13 @@ class KlassesController < ApplicationController
     @school = @klass.school
     add_breadcrumb(@school.name, @school)
     add_breadcrumb(@klass.name)    
-    @subjects = @klass.subjects
-    @exam_groups = ExamGroup.find(:all, :conditions => {:klass_id => @klass.id})
+#    @exam_groups = ExamGroup.find(:all, :conditions => {:klass_id => @klass.id})
     @all_subjects = Subject.find(:all)
-#    subjects_of_klass_with_exam = @klass.exams.collect{|exam| exam.subject.id}
-#    subjects_of_klass_with_teacher = @klass.allotted_subjects
-#    subjects_cannot_be_removed = subjects_of_klass_with_exam.concat(subjects_of_klass_with_teacher)
-    add_js_page_action(:title => 'Add Students', :render => {:partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled, :selected => @klass.current_student_ids }})
-    add_js_page_action(:title => 'Add/Remove Subjects', :render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @klass, :subjects => @all_subjects , :disabled => @klass.allotted_subjects}})
-    add_js_page_action(:title => 'Add Exams', :render => {:partial =>'exam_groups/new', :locals => {:exam_group => ExamGroup.new(), :subjects => @subjects, :klass => @klass, :exam_types => ExamType.all}})    
-    @students = @klass.current_students      
-    @teacher_subject_allotments= @klass.current_klass_allotments.collect{|klass_allotment| klass_allotment.teacher_subject_allotment}.group_by{|s| s.subject.id}
+    add_js_page_action(:title => 'Add Students', :render => {:partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled, :selected => @klass.student_ids }})
+    add_js_page_action(:title => 'Add Subjects', :render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @klass, :subjects => @all_subjects - @klass.subjects , :disabled => []}})
+#    add_js_page_action(:title => 'Add Exams', :render => {:partial =>'exam_groups/new', :locals => {:exam_group => ExamGroup.new(), :subjects => @subjects, :klass => @klass, :exam_types => ExamType.all}})    
+    @students = @klass.students      
+#    @teacher_subject_allotments= @klass.current_klass_allotments.collect{|klass_allotment| klass_allotment.teacher_subject_allotment}.group_by{|s| s.subject.id}
     @exam_groups = @klass.exam_groups
     session[:redirect] = request.request_uri
     respond_to do |format|
@@ -71,9 +66,11 @@ class KlassesController < ApplicationController
   
   def add_subjects
     @klass = Klass.find(params[:id])
-    @klass.subject_ids = params[:klass][:subject_ids] + @klass.allotted_subjects
-    @all_subjects = Subject.find(:all, :order => :name)
-    @teacher_subject_allotments = @klass.teacher_klass_allotments.collect{|klass_allotment| klass_allotment.teacher_subject_allotment}.group_by{|s| s.subject.id}
+    subject_ids = params[:klass][:subject_ids]
+    subject_ids.each do |subject_id|
+      @klass.papers << Paper.new(:subject_id => subject_id)
+    end
+    @klass.save!
   end
   
   def add_students
