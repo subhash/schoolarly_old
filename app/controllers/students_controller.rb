@@ -93,16 +93,44 @@ class StudentsController < ApplicationController
   def edit
     @student = Student.find(params[:id])
     respond_to do |format|          
-      format.js {render :template => 'student_enrollments/new'}
+      format.js {render :template => 'students/edit'}
+    end  
+  end
+  
+  def update
+    @student = Student.find(params[:id])
+    if(@student.update_attributes(params[:student]))    
+      #    TODO redesign this when we do wizard flows for right-bar actions
+      if(session[:redirect]) and session[:redirect] == student_path(@student)
+        render :update do |page|
+          page.redirect_to session[:redirect]
+        end
+      else
+        respond_to do |format|
+          format.js {render :template => 'students/update_success'}
+        end 
+      end
+    else
+      respond_to do |format|          
+        format.js {render :template => 'students/update_error'}
+      end  
+    end
+  end
+  
+  def edit_subjects
+    @student  = Student.find(params[:id])  
+    @klass = @student.klass
+    respond_to do |format|          
+      format.js {render :template => 'students/edit_subjects'}
     end  
   end
   
   def add_subjects
-    @student_enrollment = StudentEnrollment.find(params[:id])
-    @klass = @student_enrollment.klass
-    @student_enrollment.subject_ids = params[:student_enrollment][:subject_ids]
+    @student = Student.find(params[:id])
+    @klass = @student.klass
+    @student.subject_ids = params[:student][:subject_ids]
     @all_subjects = Subject.find(:all, :order => :name)
-    @teacher_subject_allotments =@klass.current_subject_allotments.group_by{|a| a.subject.id}
+    @teacher_subject_allotments =@klass.papers.group_by{|p| p.subject.id}
   end
   
   def add_to_school

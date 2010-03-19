@@ -156,16 +156,6 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
   add_index "scores", ["exam_id"], :name => "exam_id"
   add_index "scores", ["student_id"], :name => "student_id"
 
-  create_table "student_subjects", :id => false, :force => true do |t|
-    t.integer  "student_id", :null => false
-    t.integer  "subject_id", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "student_subjects", ["student_id", "subject_id"], :name => "index_student_subjects_on_student_id_and_subject_id", :unique => true
-  add_index "student_subjects", ["subject_id"], :name => "subject_id"
-
   create_table "students", :force => true do |t|
     t.integer  "school_id"
     t.string   "admission_number"
@@ -177,6 +167,16 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
 
   add_index "students", ["school_id"], :name => "school_id"
   add_index "students", ["klass_id"], :name => "klass_id"
+
+  create_table "students_subjects", :id => false, :force => true do |t|
+    t.integer  "student_id", :null => false
+    t.integer  "subject_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "students_subjects", ["student_id", "subject_id"], :name => "index_students_subjects_on_student_id_and_subject_id", :unique => true
+  add_index "students_subjects", ["subject_id"], :name => "subject_id"
 
   create_table "subjects", :force => true do |t|
     t.string   "name"
@@ -261,11 +261,11 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
   add_foreign_key "scores", ["exam_id"], "exams", ["id"], :name => "scores_ibfk_1"
   add_foreign_key "scores", ["student_id"], "students", ["id"], :name => "scores_ibfk_2"
 
-  add_foreign_key "student_subjects", ["student_id"], "students", ["id"], :name => "student_subjects_ibfk_1"
-  add_foreign_key "student_subjects", ["subject_id"], "subjects", ["id"], :name => "student_subjects_ibfk_2"
-
   add_foreign_key "students", ["school_id"], "schools", ["id"], :name => "students_ibfk_1"
   add_foreign_key "students", ["klass_id"], "klasses", ["id"], :name => "students_ibfk_2"
+
+  add_foreign_key "students_subjects", ["student_id"], "students", ["id"], :name => "students_subjects_ibfk_1"
+  add_foreign_key "students_subjects", ["subject_id"], "subjects", ["id"], :name => "students_subjects_ibfk_2"
 
   add_foreign_key "teachers", ["school_id"], "schools", ["id"], :name => "teachers_ibfk_1"
 

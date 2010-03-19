@@ -22,12 +22,12 @@ class Klass < ActiveRecord::Base
     return level.to_s+" "+division
   end
   
-  def allotted_subjects
+  def allotted_papers
     return papers.collect{|p| p.teacher}
   end
   
   def can_be_destroyed
-    students.empty? and allotted_subjects.empty? and exam_groups.empty?    
+    students.empty? and allotted_papers.empty? and exam_groups.empty?    
   end
   
 end

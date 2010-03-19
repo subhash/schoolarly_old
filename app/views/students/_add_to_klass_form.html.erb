@@ -1,0 +1,16 @@
+<% remote_form_for student do |f| %>
+<%= f.error_messages %>
+<p>
+    <%= f.label :roll_number %>
+    <br/>
+    <%= f.text_field :roll_number %>
+</p>
+<p>
+    <%= f.label :klass %>
+    <br/>
+    <%= f.select :klass_id, student.school.klasses.collect {|k| [ k.name, k.id ] } %>
+</p>
+<p>
+    <%= f.submit 'Assign' %>
+</p>
+<%end %>

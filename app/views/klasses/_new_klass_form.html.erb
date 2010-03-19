@@ -13,11 +13,6 @@
     <%= f.text_field :division %>
 </p>
 <p>
-    <%= f.label :year %>
-    <br/>
-    <%= f.select :year, ((Time.now.year - 5)..(Time.now.year + 2)).to_a , {:selected => Time.now.year} %>
-</p>
-<p>
     <%= f.submit 'Create' %>
 </p>
 <% end %>
