@@ -11,6 +11,6 @@
         </th>
     </tr>
     <% papers.each do |paper| %>
-    	<%= render :partial => 'papers/paper', :object => paper, :locals => {:klass => klass} %>
+    	<%= render :partial => 'papers/paper', :object => paper %>
     <%end %>
 </table>

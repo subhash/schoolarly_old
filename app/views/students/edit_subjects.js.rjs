@@ -1,2 +1,2 @@
-page.replace_html "main-dialog", :partial => 'subjects/add_subjects_form', :locals => {:entity => @student_enrollment, :subjects => @klass.subjects , :disabled => []}
+page.replace_html "main-dialog", :partial => 'subjects/add_subjects_form', :locals => {:entity => @student, :subjects => @klass.subjects , :disabled => []}
 page << "openDialog('main-dialog')"

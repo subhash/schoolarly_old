@@ -46,7 +46,7 @@ class KlassesController < ApplicationController
 #    @exam_groups = ExamGroup.find(:all, :conditions => {:klass_id => @klass.id})
     @all_subjects = Subject.find(:all)
     add_js_page_action(:title => 'Add Students', :render => {:partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled, :selected => @klass.student_ids }})
-    add_js_page_action(:title => 'Add Subjects', :render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @klass, :subjects => @all_subjects - @klass.subjects , :disabled => []}})
+    add_js_page_action(:title => 'Add Subjects', :render => {:partial => 'papers/create_papers_form', :locals => {:klass => @klass, :subjects => @all_subjects - @klass.subjects }})
 #    add_js_page_action(:title => 'Add Exams', :render => {:partial =>'exam_groups/new', :locals => {:exam_group => ExamGroup.new(), :subjects => @subjects, :klass => @klass, :exam_types => ExamType.all}})    
     @students = @klass.students      
 #    @teacher_subject_allotments= @klass.current_klass_allotments.collect{|klass_allotment| klass_allotment.teacher_subject_allotment}.group_by{|s| s.subject.id}
@@ -78,14 +78,8 @@ class KlassesController < ApplicationController
     new_ids = params[:klass][:student_ids]
     #    have to do this since multi-select always returns one empty selection - TODO explore why
     @new_students = Student.find(new_ids.to(-2))
-    puts "new students = "+@new_students.inspect
     @new_students.each do |student|
-      student_enrollment = StudentEnrollment.new
-      student_enrollment.start_date = Time.now.to_date
-      student_enrollment.klass  = @klass
-      student.enrollments << student_enrollment
-      student.current_enrollment = student_enrollment
-      @klass.students << student
+      student.klass = @klass
       student.save!      
     end
     @klass.save!
