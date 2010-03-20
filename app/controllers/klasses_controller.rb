@@ -88,13 +88,10 @@ class KlassesController < ApplicationController
   
   def remove_student
     @student = Student.find(params[:id])
-    @klass = @student.current_enrollment.klass
-    @student.current_enrollment.end_date = Time.now.to_date
-    @student.current_enrollment = nil
-    @student.admission_number = nil
+    @student.klass = nil
     @student.save!
     respond_to do |format|
-      @addable_students = @klass.school.students.not_enrolled
+      @addable_students = @student.school.students.not_enrolled
       format.js {render :template => 'klasses/remove_student'}
     end 
   end
