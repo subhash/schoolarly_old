@@ -117,20 +117,18 @@ class StudentsController < ApplicationController
     end
   end
   
-  def edit_subjects
+  def edit_papers
     @student  = Student.find(params[:id])  
     @klass = @student.klass
     respond_to do |format|          
-      format.js {render :template => 'students/edit_subjects'}
+      format.js {render :template => 'students/edit_papers'}
     end  
   end
   
-  def add_subjects
+  def update_papers
     @student = Student.find(params[:id])
-    @klass = @student.klass
-    @student.subject_ids = params[:student][:subject_ids]
-    @all_subjects = Subject.find(:all, :order => :name)
-    @teacher_subject_allotments =@klass.papers.group_by{|p| p.subject.id}
+    @student.paper_ids = params[:klass][:paper_ids]
+    @student.save!
   end
   
   def add_to_school

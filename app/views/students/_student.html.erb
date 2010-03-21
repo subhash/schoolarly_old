@@ -24,7 +24,7 @@
         <%= in_place_editor "roll_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_roll_number', :id => student},:external_control => "edit_roll_no_#{student.id}"} %>
     </td>
     <td class="ui-state-focus">
-        <%= link_to_remote  student.papers.size, :url => {:controller => 'students', :action => 'edit_subjects', :id => student} %>
+        <%= link_to_remote  student.papers.size, :url => {:controller => 'students', :action => 'edit_papers', :id => student} %>
     </td>
     <%elsif student.school %>
     <td class="ui-state-focus">

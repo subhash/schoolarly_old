@@ -1,0 +1,2 @@
+page.replace_html "main-dialog", :partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @klass.papers }
+page << "openDialog('main-dialog')"

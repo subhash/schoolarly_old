@@ -7,6 +7,5 @@ class PapersController < ApplicationController
       @klass.papers << Paper.create(:subject_id => subject_id)
     end
     @klass.save!
-    @all_subjects = Subject.find(:all)
   end
 end

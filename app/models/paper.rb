@@ -6,4 +6,8 @@ class Paper < ActiveRecord::Base
   
   validates_uniqueness_of :subject_id, :scope => [:klass_id]
   validates_presence_of :klass_id, :subject_id
+  
+  def name
+    subject.name
+  end
 end
