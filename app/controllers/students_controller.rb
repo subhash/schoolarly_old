@@ -141,4 +141,24 @@ class StudentsController < ApplicationController
     end
   end
   
+  def remove
+    @student = Student.find(params[:id])
+    @klass = @student.klass
+    @school = @student.school
+    @student.papers.delete_all
+    @student.klass = nil
+    @student.save!
+    if session[:redirect].include?('school')
+      @student.school = nil
+      @student.save!
+      respond_to do |format|
+        format.js {render :template => 'schools/remove_student'}
+      end 
+    else    
+      respond_to do |format|
+        @addable_students = @student.school.students.not_enrolled
+        format.js {render :template => 'klasses/remove_student'}
+      end 
+    end
+  end
 end

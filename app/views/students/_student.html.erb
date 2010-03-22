@@ -44,6 +44,6 @@
     </td>
     <%end %>
     <th>
-        <%= link_to_remote 'Delete', :url => {:action => 'remove_student',:id => student}, :confirm => 'Are you sure?' %>
+        <%= link_to_remote 'Delete', :url => {:controller => 'students',:action => 'remove',:id => student}, :confirm => 'Are you sure?' %>
     </th>
 </tr>

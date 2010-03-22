@@ -100,23 +100,7 @@ class SchoolsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
-  def remove_student
-    @student = Student.find(params[:id])
-    @school = @student.school
-    if(@student.current_enrollment)
-      @student.current_enrollment.end_date = Time.now.to_date      
-      @student.current_enrollment = nil
-    end
-    @student.admission_number = nil
-    @student.save!
-    @school.students.delete(@student)
-    @school.save!
-    respond_to do |format|
-      format.js {render :template => 'schools/remove_student'}
-    end 
-  end
- 
+
   def remove_teacher
     @teacher = Teacher.find(params[:id])
     @school = @teacher.school
