@@ -8,4 +8,21 @@ class PapersController < ApplicationController
     end
     @klass.save!
   end
+  
+  def edit_students
+    @paper  = Paper.find(params[:id])  
+    @klass = @paper.klass
+    respond_to do |format|          
+      format.js {render :template => 'papers/edit_students'}
+    end  
+  end
+  
+  def add_students
+    @paper = Paper.find(params[:id])
+    @old_students = Array.new(@paper.students)
+    @paper.student_ids = params[:paper][:student_ids]
+    @paper.save!
+#    student rows to be updated with changes in subjects
+    @students = (@old_students | @paper.students) - (@old_students & @paper.students)
+  end
 end
