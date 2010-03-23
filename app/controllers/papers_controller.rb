@@ -22,7 +22,17 @@ class PapersController < ApplicationController
     @old_students = Array.new(@paper.students)
     @paper.student_ids = params[:paper][:student_ids]
     @paper.save!
-#    student rows to be updated with changes in subjects
+    #    student rows to be updated with changes in subjects
     @students = (@old_students | @paper.students) - (@old_students & @paper.students)
+  end
+  
+  def destroy
+    @paper = Paper.find(params[:id])
+    @deleted_paper = @paper
+    @klass = @paper.klass
+    @paper.destroy
+    respond_to do |format|
+      format.js {render :template => 'papers/delete'}
+    end
   end
 end
