@@ -10,14 +10,14 @@
 	        <%=link_to paper.teacher.name, teacher_path(paper.teacher) %>
 	    </td>
 	    <td class="ui-state-focus">
-	        <%= link_to_remote 'Change Assignment', :url => {:controller => 'teacher_allotments', :action => 'delete_teacher_allotment', :id => teacher_klass_allotment, :entity_klass => entity_klass}, :confirm => 'Are you sure?' %>
+	        <%= link_to_remote 'Change Teacher', :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper}, :confirm => 'Are you sure?' %>
 	    </td>
     <%else %>
 	    <td class="ui-state-focus">
-	    	<%= link_to_remote 'Allot Teacher', :url => {:controller => 'papers', :action => 'add_teacher', :id => paper} %>
+	    	<%= link_to_remote 'Allot Teacher', :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper} %>
 	    </td>
     <%end %>
 	<td>
-		<%= link_to_remote "Delete", :url => paper_url(paper), :method => :delete, :confirm => 'Are you sure?' %>
+		<%= link_to_remote "Delete", :url => paper_url(paper), :method => :delete, :html => {:class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' %>
 	</td>
 </tr>

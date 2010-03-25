@@ -26,6 +26,15 @@ class PapersController < ApplicationController
     @students = (@old_students | @paper.students) - (@old_students & @paper.students)
   end
   
+  def edit_teacher
+    @paper = Paper.find(params[:id])
+  end
+  
+  def update
+    @paper = Paper.find(params[:id])
+    @paper.update_attributes(params[:paper])
+  end
+  
   def destroy
     @paper = Paper.find(params[:id])
     @deleted_paper = @paper

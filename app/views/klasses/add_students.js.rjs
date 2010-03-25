@@ -3,5 +3,5 @@ page << "jQuery('.tabs').tabs('select','#students-tab')"
 @new_students.each do |student|
   page.insert_html :top, "students", :partial => 'students/student', :object => student
 end
-page.replace_html 'add-students-dialog', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @addable_students , :selected => @klass.student_ids}
+page.replace_html 'add-students-dialog', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @klass.school.students.not_enrolled}
 

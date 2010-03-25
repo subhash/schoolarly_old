@@ -81,7 +81,6 @@ class KlassesController < ApplicationController
       student.save!      
     end
     @klass.save!
-    @addable_students = @klass.school.students.not_enrolled
   end
   
 end

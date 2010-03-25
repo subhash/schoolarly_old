@@ -7,7 +7,6 @@ class School < ActiveRecord::Base
       find :all, :conditions => {:klass_id => nil}
     end
   end
-  has_many :subjects, :through => :klasses, :uniq => true
   has_many :exam_groups, :through => :klasses
   
   after_update :update_roles
