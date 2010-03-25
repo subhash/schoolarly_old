@@ -9,6 +9,11 @@ class Teacher < ActiveRecord::Base
     end
   end
   has_many :subjects, :through => :papers, :uniq => true, :order => 'name'
+  
+  def subjects_for_klass(klass_id)
+    self.papers.collect{|paper| (paper.klass.id==klass_id) ?  paper.subject : nil}
+  end
+
   has_many :owned_klasses, :class_name => 'Klass'
   has_many :exams
   
