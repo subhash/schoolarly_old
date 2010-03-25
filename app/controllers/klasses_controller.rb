@@ -61,15 +61,6 @@ class KlassesController < ApplicationController
     end
   end   
   
-  def add_subjects
-    @klass = Klass.find(params[:id])
-    subject_ids = params[:klass][:subject_ids]
-    subject_ids.each do |subject_id|
-      @klass.papers << Paper.new(:subject_id => subject_id)
-    end
-    @klass.save!
-  end
-  
   def add_students
     @klass = Klass.find(params[:id])  
     new_ids = params[:klass][:student_ids]
