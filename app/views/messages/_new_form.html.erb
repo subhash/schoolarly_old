@@ -1,0 +1,17 @@
+<% fields_for message do |f| %>
+		<tr>
+            <th>
+                <label for="subject">
+                    Subject
+                </label>
+            </th>
+            <td>
+                <%= f.text_field :subject %>
+            </td>
+        </tr>
+		<tr>
+            <td colspan=2>
+                <%= f.text_area :body%>
+            </td>
+        </tr>
+<%end%>

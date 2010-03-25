@@ -1,0 +1,3 @@
+page << toggle_div('body-' + @mail.id.to_s)
+#div_name='change-read-status-of-' + @mail.id.to_s
+#page.replace(div_name, :partial => "mails/read_status", :locals => {:mail => @mail})
