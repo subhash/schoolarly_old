@@ -8,6 +8,11 @@ class School < ActiveRecord::Base
     end
   end
   has_many :exam_groups, :through => :klasses
+  has_many :papers, :through => :klasses
+
+  def subjects_for_klass(klass_id)
+    self.papers.collect{|paper| (paper.klass.id==klass_id) ?  paper.subject : nil}
+  end
   
   after_update :update_roles
   def add_roles
