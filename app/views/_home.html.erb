@@ -1,0 +1,16 @@
+<div>
+	<div id="home-info" class="ui-state-default">
+		<blockquote><br /><br />Home page content goes here...<br /><br /><br /></blockquote>
+    </div>
+	<%if user!=current_user%>
+		<div id="mail-boxes">
+			<%mailboxes={:inbox => 'Inbox', :sentbox => 'Sent Items', :trash => 'Trash'}%>
+			<div class="accordion" style="font-size:1em;">
+			<%mailboxes.each do |mbox|%>
+				<p><a href="#"><%=mbox[1]%></a></p>
+				<div><div id="<%=mbox[0].to_s + '-area'%>"><%= render :partial => 'mails/mails', :object => user.mailbox[mbox[0]].latest_mail, :locals => {:is_latest => true, :mailbox => mbox[0]} %></div></div>
+			<%end%>
+			</div>
+    	</div>
+	<%end%>
+ </div>
