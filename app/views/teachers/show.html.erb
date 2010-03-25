@@ -1,21 +1,27 @@
 <div id="teacher_tabs" class="tabs">
    <ul>
+   	   	<li>
+            <a href="#home-tab">Home</a>
+        </li>
         <li>
-            <a href="#subjects-tab">Subjects/Classes</a>
+            <a href="#papers-tab">Papers</a>
         </li>
         <li>
             <a href="#exams-tab">Exams</a>
         </li>
     </ul>
 	<div id="main-dialog" title="Schoolarly" class="jquery-dialog" style ="display: none;"></div>
-    <div id="subjects-tab">
+	<div id="home-tab">
+		<%=render :partial => '/home', :locals => {:user => @teacher.user}%>
+    </div>
+    <div id="papers-tab">
         <%if !@teacher.school %>
         <blockquote>
             The teacher currently does not belong to any school.
         </blockquote>
         <%else %>
 			<div id="allotments">
-	        	<%= render :partial => 'teacher_allotments/teacher_allotments', :locals => {:teacher_subject_allotments => @teacher.current_subject_allotments} %>
+	        	<%= render :partial => 'papers/papers', :object => @teacher.papers%>
 			</div>
         <%end %>
     </div>
