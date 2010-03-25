@@ -88,6 +88,7 @@ class UsersController < ApplicationController
       @teacher.user.destroy
       @teacher.destroy
     end
+    @teachers=Teacher.all
     respond_to do |format|
       format.js {render :template => 'teachers/remove'}
     end 
