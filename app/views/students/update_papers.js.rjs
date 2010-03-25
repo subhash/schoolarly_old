@@ -1,4 +1,9 @@
 page << "closeDialogs();"
-page.replace "student_#{@student.id}", :partial => 'students/student', :object => @student
-#page.replace_html 'exams-tab', :partial => 'exam_groups/exam_groups', :object => @student.exams.collect{|exam| exam.exam_group}.uniq, :locals => {:options => get_show_options(@student), get_symbol_for_local(@student) => @student}
+if session[:redirect].include?('student')
+  page << "jQuery('.tabs').tabs('select','#subjects-tab')"
+  page.replace_html 'subjects-tab', :partial => 'papers/papers', :object => @student.papers
+  page.replace_html 'add-remove-subjects-dialog', :partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @student.klass.papers,:disabled => @student.paper_ids }
+else
+  page.replace "student_#{@student.id}", :partial => 'students/student', :object => @student
+end
 

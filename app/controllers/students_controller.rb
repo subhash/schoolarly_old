@@ -24,29 +24,23 @@ class StudentsController < ApplicationController
     session[:redirect] = request.request_uri
     @student = Student.find(params[:id])
     @school = @student.school
-    @current_enrollment = @student.current_enrollment
+    @klass = @student.klass
     if @school
       add_breadcrumb(@school.name, @school)    
-      if @current_enrollment
-        @student_enrollment = @current_enrollment
-        @klass = @current_enrollment.klass
-        @teacher_subject_allotments= @klass.teacher_klass_allotments.collect{|klass_allotment| klass_allotment.teacher_subject_allotment}.group_by{|s| s.subject.id}
+      if @klass
         @all_subjects = Subject.find(:all, :order => 'name')
         add_breadcrumb(@klass.name,@klass)
-        add_js_page_action(:title => 'Add/Remove Subjects',:render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @student_enrollment, :subjects => @klass.subjects,:disabled => [] }})
+        add_js_page_action(:title => 'Add/Remove Subjects',:render => {:partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @klass.papers}})
+        @exam_groups = @klass.exams.collect{|exam| exam.exam_group}.uniq
       else
-        @year = Klass.current_academic_year(@school)
-        @klasses = @school.klasses.in_year(@year)
-        @student_enrollment = StudentEnrollment.new
-        @student_enrollment.student = @student
-        add_js_page_action(:title => 'Assign Class', :render => {:partial => 'student_enrollments/new_enrollment_form', :locals => {:student_enrollment => @student_enrollment, :klasses => @klasses}})
+        @klasses = @school.klasses
+        add_js_page_action(:title => 'Assign Class', :render => {:partial => 'students/add_to_klass_form', :locals => {:student => @student}})
       end
     else
       add_js_page_action(:title => 'Add to school', :render => {:partial =>'students/add_to_school_form', :locals => {:student => @student, :schools => School.find(:all)}})
     end
     add_breadcrumb(@student.name)
     add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @student.user})
-    if !@current_enrollment.nil? then @exam_groups = @current_enrollment.exams.collect{|exam| exam.exam_group}.uniq else @exam_groups = nil end
   end
   
   # GET /students/new
@@ -156,7 +150,6 @@ class StudentsController < ApplicationController
       end 
     else    
       respond_to do |format|
-        @addable_students = @student.school.students.not_enrolled
         format.js {render :template => 'klasses/remove_student'}
       end 
     end
