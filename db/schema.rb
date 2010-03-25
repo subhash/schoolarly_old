@@ -9,7 +9,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100111144534) do
+ActiveRecord::Schema.define(:version => 20100318054750) do
+
+  create_table "conversations", :force => true do |t|
+    t.string   "subject",    :default => ""
+    t.datetime "created_at",                 :null => false
+  end
 
   create_table "exam_groups", :force => true do |t|
     t.string   "description"
@@ -71,19 +76,30 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
 
   add_index "leave_requests", ["parent_id"], :name => "parent_id"
 
-  create_table "messages", :force => true do |t|
-    t.integer  "sender_id",                                      :null => false
-    t.integer  "receiver_id"
-    t.string   "subject"
-    t.string   "body"
-    t.datetime "time"
-    t.enum     "status",      :limit => [:read, :unread, :spam]
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "users"
+  create_table "mail", :force => true do |t|
+    t.integer  "user_id",                                          :null => false
+    t.integer  "message_id",                                       :null => false
+    t.integer  "conversation_id"
+    t.boolean  "read",                          :default => false
+    t.boolean  "trashed",                       :default => false
+    t.string   "mailbox",         :limit => 25
+    t.datetime "created_at",                                       :null => false
   end
 
-  add_index "messages", ["sender_id"], :name => "sender_id"
+  create_table "messages", :force => true do |t|
+    t.text     "body"
+    t.string   "subject",         :default => ""
+    t.text     "headers"
+    t.integer  "sender_id",                          :null => false
+    t.integer  "conversation_id"
+    t.boolean  "sent",            :default => false
+    t.datetime "created_at",                         :null => false
+  end
+
+  create_table "messages_recipients", :id => false, :force => true do |t|
+    t.integer "message_id",   :null => false
+    t.integer "recipient_id", :null => false
+  end
 
   create_table "papers", :force => true do |t|
     t.integer  "klass_id"
@@ -243,8 +259,6 @@ ActiveRecord::Schema.define(:version => 20100111144534) do
   add_foreign_key "klasses", ["teacher_id"], "teachers", ["id"], :name => "klasses_ibfk_2"
 
   add_foreign_key "leave_requests", ["parent_id"], "users", ["id"], :name => "leave_requests_ibfk_1"
-
-  add_foreign_key "messages", ["sender_id"], "users", ["id"], :name => "messages_ibfk_1"
 
   add_foreign_key "papers", ["klass_id"], "klasses", ["id"], :name => "papers_ibfk_1"
   add_foreign_key "papers", ["subject_id"], "subjects", ["id"], :name => "papers_ibfk_2"
