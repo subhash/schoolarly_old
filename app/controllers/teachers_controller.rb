@@ -13,6 +13,16 @@ class TeachersController < ApplicationController
     end
     if @user == current_user then label = 'Edit Profile'; action = 'edit' else label = 'View Profile'; action = 'show' end
     add_page_action(label, {:controller => :user_profiles, :action => action, :id => @teacher.user})
+		#TODO The condition below will be changed to @user == current_user
+    if @user != current_user && @teacher.school
+      @users = User.find_all_by_person_type_and_person_id('Teacher',@school.teacher_ids) 
+      @users << User.find_all_by_person_type_and_person_id('Student',@school.student_ids)
+#      parent_ids = @school.students.collect do |student|
+#        student.parent.id
+#      end
+#      users << User.find_all_by_person_type_and_person_id('Parent',parent_ids)
+      add_js_page_action(:title => 'Compose Message', :render => {:partial => 'conversations/new_form', :locals => {:users => @users.flatten, :sender => @user, :mail => Mail.new()}})
+    end
   end
   
   def find_teacher    
@@ -60,9 +70,9 @@ class TeachersController < ApplicationController
   def show
     set_up
     add_breadcrumb(@teacher.name)
-    if @teacher.school
-      add_js_page_action(:title => 'Add/Remove Subjects', :render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @teacher, :subjects => Subject.all, :disabled => @teacher.allotted_subject_ids }})
-    end
+    #if @teacher.school
+      #add_js_page_action(:title => 'Add/Remove Subjects', :render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @teacher, :subjects => Subject.all, :disabled => @teacher.allotted_subject_ids }})
+    #end
     @exam_groups = @teacher.exams.collect{|exam| exam.exam_group}.uniq.group_by{|eg| eg.klass}
   end
   
