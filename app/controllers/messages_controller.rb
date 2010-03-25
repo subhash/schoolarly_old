@@ -1,85 +1,65 @@
 class MessagesController < ApplicationController
-  # GET /messages
-  # GET /messages.xml
-  def index
-    @messages = Message.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @messages }
-    end
-  end
-
-  # GET /messages/1
-  # GET /messages/1.xml
-  def show
-    @message = Message.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @message }
-    end
-  end
-
-  # GET /messages/new
-  # GET /messages/new.xml
-  def new
-    @message = Message.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @message }
-    end
-  end
-
-  # GET /messages/1/edit
-  def edit
-    @message = Message.find(params[:id])
-  end
-
-  # POST /messages
-  # POST /messages.xml
-  def create
-    @message = Message.new(params[:message])
-
-    respond_to do |format|
-      if @message.save
-        flash[:notice] = 'Message was successfully created.'
-        format.html { redirect_to(@message) }
-        format.xml  { render :xml => @message, :status => :created, :location => @message }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /messages/1
-  # PUT /messages/1.xml
-  def update
-    @message = Message.find(params[:id])
-
-    respond_to do |format|
-      if @message.update_attributes(params[:message])
-        flash[:notice] = 'Message was successfully updated.'
-        format.html { redirect_to(@message) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /messages/1
-  # DELETE /messages/1.xml
-  def destroy
-    @message = Message.find(params[:id])
-    @message.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(messages_url) }
-      format.xml  { head :ok }
-    end
-  end
+#
+#  def create
+#    sender=User.find(params[:sender])
+#    receiver=User.find(params[:mail][:user_id])
+#    @sentMail=sender.send_message(receiver, params[:message][:body], params[:message][:subject])
+#    #@sentMail = sender.mailbox[:sentbox].latest_mail.first
+#    if sender==receiver then @inMail = sender.mailbox[:inbox].latest_mail.first end
+#    respond_to do |format|
+#      flash[:notice] = 'Message was successfully sent.'
+#      format.js {render :template => 'mails/create_success'}
+#    end 
+#  rescue Exception => e
+#    respond_to do |format|
+#      format.js {render :template => 'mails/create_error'}
+#    end 
+#  end
+#  
+#  def destroy
+#    @mail=Mail.find(params[:id])
+#    @mailbox=@mail.mailbox
+#    if @mail.mailbox != 'trash'
+#      convo = @mail.conversation
+#      @mail.user.mailbox.move_to(:trash, :conversation => convo)
+#    else
+#  #      @mail.destroy
+#  #      puts "deleting the mail"
+#  end
+#      respond_to do |format|
+#        format.js {render :template => 'mails/destroy'}
+#      end 
+#  #    @message = Message.find(params[:id])
+#  #    @message.destroy
+#  #
+#  #    respond_to do |format|
+#  #      format.html { redirect_to(messages_url) }
+#  #      format.xml  { head :ok }
+#  #    end
+#  end
+#  
+#  #def mark_as_read
+#  #    @mail=Mail.find(params[:id])
+#  #    @mail.mark_as_read()
+#  #    respond_to do |format|
+#  #      format.js {render :template => 'mails/change_read_status'}
+#  #    end 
+#  #end
+#  #
+#  #def mark_as_unread
+#  #    @mail=Mail.find(params[:id])
+#  #    @mail.mark_as_unread()
+#  #    respond_to do |format|
+#  #      format.js {render :template => 'mails/change_read_status'}
+#  #    end     
+#  #end
+#  
+#  def mark_and_show
+#      @mail=Mail.find(params[:id])
+#      @mail.mark_as_read()
+#      respond_to do |format|
+#        format.js {render :template => 'mails/mark_and_show'}
+#      end 
+#  end
+  
 end
