@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :leave_requests
   
-  map.resources :messages
+  #map.resources :messages
   
   map.resources :exams
   
