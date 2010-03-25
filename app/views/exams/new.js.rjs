@@ -1,2 +1,6 @@
-page.replace_html("main-dialog", :partial =>'exams/new', :locals => {:exam => @exam, :subjects => @new_subjects, :entity => Object.const_get(params[:entity_class]).find(params[:entity_id])})
-page << "openDialog('main-dialog');"  
+if @new_subjects.empty?
+  page.replace_html("main-dialog", :text =>'<br /><blockquote>No more papers to add. <br /></blockquote>')
+else
+  page.replace_html("main-dialog", :partial =>'exams/new', :locals => {:exam => @exam, :subjects => @new_subjects, :entity => Object.const_get(params[:entity_class]).find(params[:entity_id])})
+end
+page << "openDialog('main-dialog');"
