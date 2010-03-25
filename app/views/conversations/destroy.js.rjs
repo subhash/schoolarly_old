@@ -1,0 +1,15 @@
+div_trash = 'trash'
+div_mail = 'mail-row-' + @mail.id.to_s
+div_body='body-' + @mail.id.to_s
+
+if @mail.user.mailbox[@mail.mailbox].mail.size==0
+  page.replace_html(@mail.mailbox + '-area', :partial => "mails/mails", :object => @mail.user.mailbox[@mail.mailbox].mail, :locals => {:is_latest => true})
+else
+  page.remove div_body
+  page.remove div_mail
+end
+if @mail.user.mailbox[:trash].mail.size == 1
+  page.replace_html('trash-area', :partial => "mails/mails", :object => [@mail], :locals => {:is_latest => true, :mailbox => 'trash'})
+else
+  page.insert_html(:top, div_trash, :partial => "mails/mail", :object => @mail, :locals => {:is_latest => true})
+end

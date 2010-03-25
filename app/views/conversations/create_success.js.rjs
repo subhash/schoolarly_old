@@ -1,0 +1,37 @@
+page << "closeDialogs();"
+page << "jQuery('.tabs').tabs('select','#home-tab')"
+div_sent = 'sentbox'
+div_inbox = 'inbox'
+if @sentMail.message.sender.mailbox[:sentbox].mail.size == 1
+  page.replace_html("sentbox-area", :partial => 'mails/mails', :object => [@sentMail], :locals => {:is_latest => true, :mailbox => 'sentbox'})
+else
+  page.insert_html(:top, div_sent, :partial => "mails/mail", :object => @sentMail, :locals => {:is_latest => true})
+end
+if !@inMail.nil?
+  if @sentMail.message.sender.mailbox[:inbox].mail.size == 1
+    page.replace_html("inbox-area", :partial => 'mails/mails', :object => [@inMail], :locals => {:is_latest => true, :mailbox => 'inbox'})
+  else
+    page.insert_html(:top, div_inbox, :partial => 'mails/mail', :object => @inMail, :locals => {:is_latest => true})
+  end
+end
+if !@mail.nil? 
+  if (@mail.mailbox=='sentbox' || @mail.mailbox=='inbox' && !@inMail.nil?)
+    div_mail = 'mail-row-' + @mail.id.to_s
+    div_body = 'body-' + @mail.id.to_s
+    page.remove div_mail
+    page.remove div_body
+  end
+  if !@inMail.nil?
+    if @mail.mailbox=='sentbox' 
+      #check if there is any mail in inbox under the same conversation & remove the coresponding div
+       class_name='conv-' + 'inbox' + '-' + @mail.conversation.id.to_s
+    elsif @mail.mailbox=='inbox'
+      #check if there is any mail in sentbox under the same conversation & remove the coresponding div
+      class_name='conv-' + 'sentbox' + '-' + @mail.conversation.id.to_s
+    end
+#    if !class_name.nil?
+#      c='.' + class_name
+#      page.select(c).each { |element| element.remove }
+#    end
+  end
+end

@@ -1,0 +1,3 @@
+mails = @mail.conversation.mails.select{|mail| mail.user == @mail.user && !mail.trashed} - [@mail]
+page.replace_html("main-dialog", :partial =>'mails/mails', :object => mails, :locals => {:is_latest => false})
+page << "openDialog('main-dialog');"  

@@ -1,0 +1,16 @@
+<% remote_form_for :mail, :url => {:controller => :conversations, :action => 'create', :sender => sender, :users => users } do |f| %>
+		<table class="center">
+			<tr>
+				<th>
+                	<label for="user_id">To</label>
+            	</th>
+	            <td>
+	                <%= f.select(:user_id, options_from_collection_for_select(users,:id,:email) ) %>
+	            </td>
+			</tr>
+			<%=render :partial => 'messages/new_form', :locals => {:message => Message.new()}%>
+		</table>
+		<div class="center">
+			<%= submit_tag "Send" %>
+		</div>
+	<%end %>
