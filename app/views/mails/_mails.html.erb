@@ -1,0 +1,10 @@
+<%if !render_message_if_empty(mails, message_if_empty_messages).nil?%>
+	<%=	render :text => render_message_if_empty(mails, message_if_empty_messages)%>
+<%else%>
+<table id="<%=local_assigns[:mailbox]%>" class="ui-state-default" border="1px">
+	<% mails.each do |mail|%>
+		<%= render :partial => 'mails/mail', :object => mail, :locals => {:is_latest => local_assigns[:is_latest] ? is_latest : false} %>
+	<%end%>
+</table>
+<%end%>
+

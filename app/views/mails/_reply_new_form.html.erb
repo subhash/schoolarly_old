@@ -1,0 +1,28 @@
+<% form_remote_tag :url => {:controller => :mails, :action => 'send_reply', :mail => mail } do  %>
+		<table class="center">
+			<tr>
+				<th>
+                	<label for="user_id">To</label>
+            	</th>
+	            <td>
+	                <%= mail.message.sender.name %>
+	            </td>
+			</tr>
+			<tr>
+				<th>
+                	<label for="subject">Subject</label>
+            	</th>
+	            <td>
+	                <%= text_field_tag :subject, 'RE:' + mail.message.subject%>
+	            </td>
+			</tr>
+			<tr>
+            	<td colspan=2>
+                <%= text_area_tag :body, nil, :size => "43x9"%>
+            	</td>
+        	</tr>
+		</table>
+		<div class="center">
+			<%= submit_tag "Send" %>
+		</div>
+	<%end %>
