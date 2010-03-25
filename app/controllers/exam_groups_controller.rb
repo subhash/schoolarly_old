@@ -17,6 +17,10 @@ class ExamGroupsController < ApplicationController
     @exam_group.description = @exam_group.exam_type.description + ' for ' + @klass.name
     @exam_group.subject_ids = params[:exam][:subject_ids]
     @exam_group.save!
+    @exam_group.exams.each do |exam|
+      exam.teacher=Paper.find_by_klass_id_and_subject_id(@klass.id, exam.subject_id).teacher
+      exam.save!
+    end
     respond_to do |format|
       flash[:notice] = 'Exams were successfully created.'
       format.js {render :template => 'exam_groups/create_success'}
