@@ -16,8 +16,8 @@ class ExamsController < ApplicationController
     @exam = Exam.new(:exam_group => @exam_group)
     entity_class = params[:entity_class]
     entity=Object.const_get(params[:entity_class]).find(params[:entity_id])
-    if entity_class == 'Teacher'
-      @new_subjects = entity.subjects_of_klass(@exam_group.klass) - @exam_group.subjects
+    if entity_class == 'Teacher' || entity_class == 'School'
+      @new_subjects = entity.subjects_for_klass(@exam_group.klass.id) - @exam_group.subjects
     else
       @new_subjects = entity.subjects - @exam_group.subjects      
     end
@@ -28,7 +28,9 @@ class ExamsController < ApplicationController
   
   def create
     @exam = Exam.new(params[:exam])
-    @exam.exam_group=ExamGroup.find(params[:exam_group_id])
+    exam_group=ExamGroup.find(params[:exam_group_id])
+    @exam.exam_group=exam_group
+    @exam.teacher=Paper.find_by_klass_id_and_subject_id(exam_group.klass.id, @exam.subject_id).teacher
     @exam.save!
     respond_to do |format|
       flash[:notice] = 'Exams were successfully created.'
