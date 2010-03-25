@@ -16,13 +16,13 @@
 		<%end%>
 	<%end%>
     <td>
-        <%teacher.currently_owned_klasses.each do |klass| %>
+        <%teacher.klasses.each do |klass| %>
         	<%= link_to klass.name + "  ", {:controller => :klasses, :action => 'show', :id=>klass} %>
         <%end %>
     </td>
 	<td>
-	    <%if !teacher.current_subjects.empty?%>
-			<%=teacher.current_subjects.index_by{|subject| subject.name}.keys.join(", ")%>
+	    <%if teacher.papers%>
+			<%=teacher.subjects.index_by{|subject| subject.name}.keys.join(", ")%>
 		<%end%>
     </td>
 	<%if active_cntrlr != 'users'%>
