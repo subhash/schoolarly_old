@@ -11,4 +11,9 @@ class Paper < ActiveRecord::Base
   def name
     subject.name
   end
+
+  def desc
+    klass.name + ' - ' + subject.name
+  end
+  
 end
