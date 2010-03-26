@@ -1,4 +1,4 @@
-<%entity = local_assigns[:school] || local_assigns[:klass] || local_assigns[:student_enrollment] || local_assigns[:teacher] || local_assigns[:exam] %>
+<%entity = local_assigns[:school] || local_assigns[:klass] || local_assigns[:student] || local_assigns[:teacher] || local_assigns[:exam] %>
 	<tr id="exam_<%=exam.id%>">
 		<td class="ui-state-default">
 	    	<%=link_to exam.subject.name, exam%>

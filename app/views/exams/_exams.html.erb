@@ -1,4 +1,4 @@
-<%entity = local_assigns[:school] || local_assigns[:klass] || local_assigns[:student_enrollment] || local_assigns[:teacher] || local_assigns[:exam]%>
+<%entity = local_assigns[:school] || local_assigns[:klass] || local_assigns[:student] || local_assigns[:teacher] || local_assigns[:exam]%>
 <%if !render_message_if_empty(exams, message_if_empty_exams).nil?%>
 	<tr>
 	    <td class="ui-state-default" style="width:auto;" colspan="8">

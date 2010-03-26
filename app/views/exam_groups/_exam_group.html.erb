@@ -1,4 +1,4 @@
-<%entity = local_assigns[:school] || local_assigns[:klass] || local_assigns[:student_enrollment] || local_assigns[:teacher] || local_assigns[:exam]%>
+<%entity = local_assigns[:school] || local_assigns[:klass] || local_assigns[:student] || local_assigns[:teacher] || local_assigns[:exam]%>
 <%if !render_message_if_empty(exam_group.klass.exam_groups, message_if_empty_exams).nil?%>
 	<%=	render :text => render_message_if_empty(exam_group.klass.exam_groups, message_if_empty_exams)%>
 <%else%>
