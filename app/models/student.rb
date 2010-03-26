@@ -28,6 +28,10 @@ class Student < ActiveRecord::Base
     #    self.school.user.has_role 'editor', self if school
   end  
   
+  def subjects
+    return self.papers.collect{|paper| paper.subject}  
+  end
+  
   def name
     return !(user.user_profile.nil?) ? user.user_profile.name : user.email
   end
