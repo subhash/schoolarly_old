@@ -9,6 +9,7 @@ class School < ActiveRecord::Base
   end
   has_many :exam_groups, :through => :klasses
   has_many :papers, :through => :klasses
+  has_many :unallotted_papers, :source => :papers, :through => :klasses, :conditions => ['papers.teacher_id IS NULL']
 
   def subjects_for_klass(klass_id)
     self.papers.collect{|paper| (paper.klass.id==klass_id) ?  paper.subject : nil}
