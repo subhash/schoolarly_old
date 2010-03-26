@@ -2,9 +2,10 @@ class TeachersController < ApplicationController
   skip_before_filter :require_user, :only => [:new, :create]
   protect_from_forgery :only => [:destroy]
    
-  before_filter :find_teacher, :only => [:show, :add_subjects]
+  before_filter :find_teacher, :only => [:show, :add_subjects, :update_papers, :add_to_school]
   
   def set_up
+    session[:redirect] = request.request_uri
     @user=@teacher.user
     set_active_user(@user.id)
     if @teacher.school
@@ -13,8 +14,7 @@ class TeachersController < ApplicationController
     end
     if @user == current_user then label = 'Edit Profile'; action = 'edit' else label = 'View Profile'; action = 'show' end
     add_page_action(label, {:controller => :user_profiles, :action => action, :id => @teacher.user})
-		#TODO The condition below will be changed to @user == current_user
-    if @user != current_user && @teacher.school
+    if @user == current_user && @teacher.school
       @users = User.find_all_by_person_type_and_person_id('Teacher',@school.teacher_ids) 
       @users << User.find_all_by_person_type_and_person_id('Student',@school.student_ids)
 #      parent_ids = @school.students.collect do |student|
@@ -70,10 +70,13 @@ class TeachersController < ApplicationController
   def show
     set_up
     add_breadcrumb(@teacher.name)
-    #if @teacher.school
-      #add_js_page_action(:title => 'Add/Remove Subjects', :render => {:partial => 'subjects/add_subjects_form', :locals => {:entity => @teacher, :subjects => Subject.all, :disabled => @teacher.allotted_subject_ids }})
-    #end
-    @exam_groups = @teacher.exams.collect{|exam| exam.exam_group}.uniq.group_by{|eg| eg.klass}
+    if @teacher.school
+      @papers=@teacher.school.unallotted_papers + @teacher.papers
+      add_js_page_action(:title => 'Add/Remove Subjects',:render => {:partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers}})
+      @exam_groups = @teacher.exams.collect{|exam| exam.exam_group}.uniq.group_by{|eg| eg.klass}
+    else
+      add_js_page_action(:title => 'Add to school', :render => {:partial =>'schools/add_to_school_form', :locals => {:entity => @teacher, :schools => School.all}})
+    end
   end
   
   def add_subjects
@@ -87,10 +90,19 @@ class TeachersController < ApplicationController
   end
 
   def add_to_school
-    @teacher = Teacher.find(params[:id])
     @school = School.find(params[:entity][:school_id])
     @school.teachers << @teacher
     @school.save!
+    if session[:redirect].include?('teacher')
+      render :update do |page|
+        page.redirect_to teacher_path(@teacher)
+      end
+    end
   end  
+  
+  def update_papers
+    @teacher.paper_ids = params[:klass][:paper_ids]
+    @teacher.save!
+  end
   
 end
