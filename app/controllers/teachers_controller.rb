@@ -72,7 +72,7 @@ class TeachersController < ApplicationController
     add_breadcrumb(@teacher.name)
     if @teacher.school
       @papers=@teacher.school.unallotted_papers + @teacher.papers
-      add_js_page_action(:title => 'Add/Remove Subjects',:render => {:partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers}})
+      add_js_page_action(:title => 'Add/Remove Papers',:render => {:partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers}})
       @exam_groups = @teacher.exams.collect{|exam| exam.exam_group}.uniq.group_by{|eg| eg.klass}
     else
       add_js_page_action(:title => 'Add to school', :render => {:partial =>'schools/add_to_school_form', :locals => {:entity => @teacher, :schools => School.all}})
