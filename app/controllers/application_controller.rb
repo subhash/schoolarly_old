@@ -115,5 +115,17 @@ class ApplicationController < ActionController::Base
 #    flash[:notice]="Error Occurred: <br /> #{exception.message}"
 #    redirect_to(session[:parent_url] ? session[:parent_url] : request.request_uri)
 #  end
-  
+ 
+ def get_users_for_composing(user,person)
+   if user == current_user && (person.is_a?(School) || person.school)
+     users = User.find_all_by_person_type_and_person_id('Teacher',person.school.teacher_ids) 
+     users << User.find_all_by_person_type_and_person_id('Student',person.school.student_ids)
+#    parent_ids = person.school.students.collect do |student|
+#      student.parent.id
+#    end
+#    users << User.find_all_by_person_type_and_person_id('Parent',parent_ids)
+     return users
+    end
+ end
+ 
 end
