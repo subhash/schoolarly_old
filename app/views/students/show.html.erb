@@ -1,14 +1,20 @@
-<% if @klass %>
 <div id="student_tabs" class="tabs">
     <ul>
+   	   	<li>
+            <a href="#home-tab">Home</a>
+        </li>    
+<% if @klass %>
         <li>
             <a href="#subjects-tab">Subjects</a>
         </li>
         <li>
             <a href="#exams-tab">Exams/Scores</a>
         </li>
-    </ul>
+	</ul>
     <div id="main-dialog" title="Schoolarly" class="jquery-dialog" style ="display: none;">
+    </div>
+	<div id="home-tab">
+		<%=render :partial => '/home', :locals => {:user => @student.user}%>
     </div>
     <div id="subjects-tab">
         <%= render :partial => 'papers/papers', :object => @student.papers %>
@@ -18,5 +24,10 @@
             <%= render :partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:student => @student} %>
         </div>
     </div>
-</div>
+<%else%>
+	</ul>
+	<div id="home-tab">
+		<%=render :partial => '/home', :locals => {:user => @student.user}%>
+    </div>
 <%end %>
+</div>
