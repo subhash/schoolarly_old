@@ -1,13 +1,11 @@
-<tr id="subject-<%= teacher_subject_allotment.subject.id%>">
+<tr id="paper-<%= teacher_allotment.id%>">
     <td>
-        <%= teacher_subject_allotment.subject.name %>
+        <%= link_to teacher_allotment.klass.name, klass_path(teacher_allotment.klass) %>
     </td>
-    <td>
-		<%if !teacher_subject_allotment.current_klasses.empty? %>
-        	<%=teacher_subject_allotment.current_klasses.index_by{|klass| klass.name}.keys.join(", ")%>
-	    <%end %>
+	<td>
+        <%= teacher_allotment.students.size%>
     </td>
-    <td class="ui-state-focus">
-        <%= link_to_remote 'Add/Remove Classes', :url => {:controller => :teacher_allotments, :action => 'edit_klass_allotments', :id => teacher_subject_allotment}, :method => :get, :html => {:title => 'Add/Remove Classes', :class => "ui-icon ui-icon-pencil"} %>
+	<td class="ui-state-focus">
+        <%= link_to_remote "Delete", :url => {:controller => 'teachers', :action => 'remove_paper', :id => teacher_allotment}, :html => {:class => "ui-icon ui-icon-trash", :title => 'Remove Allotment'}, :confirm => 'Are you sure?' %>
     </td>
 </tr>

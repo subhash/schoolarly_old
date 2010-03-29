@@ -1,17 +1,24 @@
-<%if !render_message_if_empty(teacher_subject_allotments, message_if_empty_allotments).nil?%>
-	<%=	render :text => render_message_if_empty(teacher_subject_allotments, message_if_empty_allotments)%>
+<%if !render_message_if_empty(teacher_allotments, message_if_empty_papers).nil?%>
+	<%=	render :text => render_message_if_empty(teacher_allotments, message_if_empty_papers)%>
 <%else%>
-	<table id="subjects" class="ui-state-default" border="1px">
-	    <tr>
-	        <th>
-	            Subject
-	        </th>
-	        <th>
-	            Classes
-	        </th>
-	    </tr>
-	    <% teacher_subject_allotments.each do |teacher_subject_allotment| %>
-			<%= render :partial => 'teacher_allotments/teacher_allotment', :locals => {:teacher_subject_allotment => teacher_subject_allotment} %>
-	    <%end %>
-	</table>
+	    <div class="accordion" style="font-size:1em;">
+	        <% teacher_allotments.each do |subject, allotments| %>
+		        <p id=<%='p_' + subject.id.to_s%>>
+		            <a href="#"><%=subject.name %></a>
+		        </p>
+				<div id = "<%='div_' + subject.id.to_s%>" >
+					<table id="<%='papers_with_' + subject.id.to_s%>" class="ui-state-default" border="1px">
+		    			<tr>
+		        			<th>Classes</th>
+							<th>Students</th>
+		    			</tr>
+		    			<% allotments.each do |paper| %>
+							<%= render :partial => 'teacher_allotments/teacher_allotment', :object => paper %>
+						<% end %>
+					</table>
+				</div>
+	        <% end %>
+	    </div>
+		
+	
 <%end%>
