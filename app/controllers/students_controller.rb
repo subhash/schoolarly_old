@@ -41,6 +41,11 @@ class StudentsController < ApplicationController
     end
     add_breadcrumb(@student.name)
     add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @student.user})
+    @user=@student.user
+    @users=get_users_for_composing(@user,@student)
+    if !@users.nil? 
+      add_js_page_action(:title => 'Compose Message', :render => {:partial => 'conversations/new_form', :locals => {:users => @users.flatten, :sender => @user, :mail => Mail.new()}})
+    end
   end
   
   # GET /students/new
