@@ -2,7 +2,7 @@ class TeachersController < ApplicationController
   skip_before_filter :require_user, :only => [:new, :create]
   protect_from_forgery :only => [:destroy]
    
-  before_filter :find_teacher, :only => [:show, :add_subjects, :update_papers, :add_to_school]
+  before_filter :find_teacher, :only => [:show, :edit, :update_papers, :add_to_school]
   
   def set_up
     session[:redirect] = request.request_uri
@@ -79,16 +79,6 @@ class TeachersController < ApplicationController
     end
   end
   
-  def add_subjects
-    subjects_to_add = Subject.find(params[:teacher][:subject_ids].compact.reject(&:blank?)) - @teacher.current_subjects
-    subjects_to_remove = @teacher.current_subjects - @teacher.allotted_subjects - Subject.find(params[:teacher][:subject_ids].compact.reject(&:blank?))
-    subjects_to_add.each do |subject|
-      @teacher.teacher_subject_allotments << TeacherSubjectAllotment.new(:school => @teacher.school, :subject => subject)
-    end
-    TeacherSubjectAllotment.destroy(@teacher.current_subject_allotments.select{|allotment| subjects_to_remove.include?(allotment.subject)}.collect{|alltmnt| alltmnt.id })
-    @teacher.reload
-  end
-
   def add_to_school
     @school = School.find(params[:entity][:school_id])
     @school.teachers << @teacher
@@ -100,9 +90,35 @@ class TeachersController < ApplicationController
     end
   end  
   
+  def edit
+    @papers=@teacher.school.unallotted_papers + @teacher.papers
+    respond_to do |format|
+      format.js {render :template => 'teachers/edit'}
+    end  
+  end
+  
   def update_papers
     @teacher.paper_ids = params[:klass][:paper_ids]
     @teacher.save!
+    if session[:redirect].include?('school')
+      respond_to do |format|
+        format.js {render :template => 'schools/update_papers'}
+      end 
+    else    
+      respond_to do |format|
+        format.js {render :template => 'teachers/update_papers'}
+      end 
+    end
+  end
+  
+  def remove_paper
+    @paper=Paper.find(params[:id])
+    @teacher=@paper.teacher
+    @paper.teacher=nil
+    @paper.save!
+    respond_to do |format|
+      format.js {render :template => 'teachers/remove_paper'}
+    end 
   end
   
 end

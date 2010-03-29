@@ -1,0 +1,10 @@
+if @teacher.papers.empty?
+  page.replace_html("papers-tab",:partial => 'teacher_allotments/teacher_allotments', :object => @teacher.papers.group_by{|paper| paper.subject_id} )
+elsif @teacher.papers.select{|p| p.subject == @paper.subject}.size == 0
+  page.remove "p_#{params[:id]}"
+  page.remove "div_#{params[:id]}"
+else
+  page.remove "paper-#{params[:id]}"
+end
+@papers=@teacher.school.unallotted_papers + @teacher.papers
+page.replace_html('add-remove-papers-dialog', :partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers})

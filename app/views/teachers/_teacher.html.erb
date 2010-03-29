@@ -28,7 +28,7 @@
 	<%if active_cntrlr != 'users'%>
     <td class="ui-state-focus">
 	    <% if teacher.school %>
-	  		<%= link_to_remote 'Add/Remove Subjects', :url => {:controller => active_cntrlr, :action => 'edit_teacher', :id => teacher}, :method => :get, :html => {:class => "ui-icon ui-icon-pencil", :title => 'Add/Remove Subjects'} %>
+	  		<%= link_to_remote 'Add/Remove Papers', :url => {:controller => :teachers, :action => 'edit', :id => teacher}, :method => :get, :html => {:class => "ui-icon ui-icon-pencil", :title => 'Add/Remove Papers'} %>
 		<% end %>
     </td>
 	<%end%>

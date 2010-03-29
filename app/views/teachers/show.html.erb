@@ -21,7 +21,7 @@
         </blockquote>
         <%else %>
 			<div id="allotments">
-	        	<%= render :partial => 'papers/papers', :object => @teacher.papers%>
+	        	<%= render :partial => 'teacher_allotments/teacher_allotments', :object => @teacher.papers.group_by{|p| Subject.find(p.subject_id)}%>
 			</div>
         <%end %>
     </div>

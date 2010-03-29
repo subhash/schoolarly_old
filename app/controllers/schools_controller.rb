@@ -118,28 +118,4 @@ class SchoolsController < ApplicationController
     end 
   end
   
-  def edit_teacher
-    @teacher = Teacher.find(params[:id])
-    respond_to do |format|
-      format.js {render :template => 'teachers/edit'}
-    end  
-  end
-
-  def add_subjects
-    if params[:entity_klass] == 'Teacher'
-      @teacher = Teacher.find(params[:id])
-      subjects_to_add = Subject.find(params[:teacher][:subject_ids].compact.reject(&:blank?)) - @teacher.current_subjects
-      subjects_to_remove = @teacher.current_subjects - @teacher.allotted_subjects - Subject.find(params[:teacher][:subject_ids].compact.reject(&:blank?))
-      subjects_to_add.each do |subject|
-        @teacher.teacher_subject_allotments << TeacherSubjectAllotment.new(:school => @teacher.school, :subject => subject)
-      end
-      TeacherSubjectAllotment.destroy(@teacher.current_subject_allotments.select{|allotment| subjects_to_remove.include?(allotment.subject)}.collect{|alltmnt| alltmnt.id })
-      @teacher.reload
-    end
-    template_name = 'schools/add_subjects_to_' + params[:entity_klass].downcase
-    respond_to do |format|
-      format.js {render :template => template_name}
-    end 
-  end  
-  
 end
