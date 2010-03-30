@@ -26,12 +26,14 @@ class ConversationsController < ApplicationController
     if @mail.mailbox != 'trash'
       convo = @mail.conversation
       @mail.user.mailbox.move_to(:trash, :conversation => convo)
+      #c = 'id = ' + @mail.id.to_s
+      #@mail.user.mailbox.move_to(:trash, :conditions => c)
     else
   #      @mail.destroy
   #      puts "deleting the mail"
   end
       respond_to do |format|
-        format.js {render :template => 'mails/destroy'}
+        format.js {render :template => 'conversations/destroy'}
       end 
   #    @message = Message.find(params[:id])
   #    @message.destroy

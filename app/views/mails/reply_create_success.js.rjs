@@ -1,0 +1,6 @@
+page << "closeDialogs();"
+page << "jQuery('.tabs').tabs('select','#home-tab')"
+page.replace_html("sentbox-area", :partial => 'mails/mails', :object => @sentMail.message.sender.mailbox[:sentbox].latest_mail, :locals => {:is_latest => true, :mailbox => 'sentbox'})
+if !@inMail.nil?
+  page.replace_html("inbox-area", :partial => 'mails/mails', :object => @sentMail.message.sender.mailbox[:inbox].latest_mail, :locals => {:is_latest => true, :mailbox => 'inbox'})
+end

@@ -12,7 +12,7 @@ class MailsController < ApplicationController
     if sender==receiver then @inMail = sender.mailbox[:inbox].latest_mail.first end
     respond_to do |format|
       flash[:notice] = 'Message was successfully sent.'
-      format.js {render :template => 'conversations/create_success'}
+      format.js {render :template => 'mails/reply_create_success'}
     end 
   rescue Exception => e
     respond_to do |format|
