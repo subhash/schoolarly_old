@@ -16,7 +16,7 @@
 		<%end%>
 	<%end%>
     <td>
-        <%teacher.klasses.each do |klass| %>
+        <%teacher.owned_klasses.each do |klass| %>
         	<%= link_to klass.name + "  ", {:controller => :klasses, :action => 'show', :id=>klass} %>
         <%end %>
     </td>
