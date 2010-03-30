@@ -22,8 +22,8 @@ class UserProfilesController < ApplicationController
       when @person.is_a?(Student)
         if @person.school
           add_breadcrumb(@person.school.name, @person.school)
-          if @person.current_klass
-            add_breadcrumb(@person.current_klass.name, @person.current_klass)
+          if @person.klass
+            add_breadcrumb(@person.klass.name, @person.klass)
           end
         end
         add_breadcrumb(@person.name, @person)
