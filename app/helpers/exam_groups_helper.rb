@@ -1,7 +1,7 @@
 module ExamGroupsHelper
   
   def message_if_empty_exam_groups
-    return 'No exam exists.'
+    return 'No exam exists'
   end
   
   def get_show_options(entity)
