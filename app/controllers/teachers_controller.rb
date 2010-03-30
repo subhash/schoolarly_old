@@ -95,6 +95,8 @@ class TeachersController < ApplicationController
   def update_papers
     @teacher.paper_ids = params[:klass][:paper_ids]
     @teacher.save!
+    papers=Paper.find(@teacher.paper_ids)
+    papers.each{|p| p.orphan_exams.each{|oe| oe.teacher=@teacher; oe.save!}}
     if session[:redirect].include?('school')
       respond_to do |format|
         format.js {render :template => 'schools/update_papers'}
