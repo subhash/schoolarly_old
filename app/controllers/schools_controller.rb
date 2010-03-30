@@ -112,9 +112,9 @@ class SchoolsController < ApplicationController
     if !@teacher.papers.empty?
       @teacher.papers.each do |paper|
         paper.teacher = nil
+        paper.save!
       end
     end
-    @teacher.save!
     @school.teachers.delete(@teacher)
     @school.save!
     @teachers=@school.teachers
