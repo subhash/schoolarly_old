@@ -1,6 +1,0 @@
-if @klass.teachers(@subject).empty?
-  page.replace_html("main-dialog", :text =>'<br /><blockquote>No ' + @subject.name + ' teacher exists. <br />Assign the subject to teachers and then proceed.</blockquote>')
-else
-  page.replace_html("main-dialog", :partial =>'teacher_allotments/allot_teacher_form', :locals => {:teacher_klass_allotment => TeacherKlassAllotment.new(:klass =>@klass), :teachers => @klass.teachers(@subject), :subject => @subject, :entity_klass => params[:entity_klass]})
-end
-page << "openDialog('main-dialog');"

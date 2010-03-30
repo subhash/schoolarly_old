@@ -1,4 +1,0 @@
-<% form_remote_tag(:url => {:action => 'allot_teacher', :klass_id => teacher_klass_allotment.klass, :subject_id => subject.id, :entity_klass => entity_klass, :method => :get}) do %>
-<%= select_tag('teacher_id', options_from_collection_for_select(teachers, :id, :name)) %>
-<%= submit_tag "Add" %>
-<%end%>

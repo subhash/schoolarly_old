@@ -1,7 +1,0 @@
-klasses = @teacher_subject_allotment.subject.klasses.ofSchool(@teacher_subject_allotment.teacher.school.id)
-if klasses.empty?
-  page.replace_html("main-dialog", :text =>'<blockquote><br />No class exists which offers ' + @teacher_subject_allotment.subject.name + '. <br />Subscribe subjects to classes and then proceed.</blockquote>')
-else
-  page.replace_html("main-dialog", :partial =>'teacher_allotments/add_klasses_form', :locals => {:teacher_subject_allotment => @teacher_subject_allotment, :klasses => klasses})
-end
-page << "openDialog('main-dialog');"
