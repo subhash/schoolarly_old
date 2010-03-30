@@ -1,5 +1,5 @@
-<%if !render_message_if_empty(mails, message_if_empty_messages).nil?%>
-	<%=	render :text => render_message_if_empty(mails, message_if_empty_messages)%>
+<%if !render_message_if_empty(mails, message_if_empty_mails).nil?%>
+	<%=	render :text => render_message_if_empty(mails, message_if_empty_mails)%>
 <%else%>
 <table id="<%=local_assigns[:mailbox]%>" class="ui-state-default" border="1px">
 	<% mails.each do |mail|%>
