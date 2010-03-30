@@ -21,9 +21,9 @@
         <td>
             <b>Class:</b>
         </td>
-    <%if student.current_enrollment %>
+    <%if student.klass %>
         <td>
-            <%=link_to student.current_enrollment.klass.name, klass_path(student.current_enrollment.klass) %>
+            <%=link_to student.klass.name, klass_path(student.klass) %>
         </td>
 	<%else%>
         <td>
