@@ -1,2 +1,6 @@
-page.replace_html("main-dialog", :partial =>'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers})
+if @papers.empty?
+  page.replace_html("main-dialog", :text =>'<br/><blockquote>' + message_if_empty_unallotted_papers + '</blockquote>')
+else
+  page.replace_html("main-dialog", :partial =>'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers})
+end
 page << "openDialog('main-dialog');"
