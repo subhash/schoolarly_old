@@ -1,4 +1,4 @@
-#my-main {
+#main {
     float: left;
     width: 950px;
     padding-left: 100px;
@@ -6,37 +6,42 @@
 
 /*
  * Header
- */ #my-header {
+ */ #header {
     width: 100%;
     padding-bottom: 50px;
-} #my-header ul {
+} #header ul {
     width: auto;
     display: inline;
     float: right;
     margin: 0px;
-} #my-header ul li {
+} #header ul li {
     display: inline;
     margin-left: 20px;
-} #my-header ul li a {
+} #header ul li a {
     font: "Lucida Grande";
     font-size: medium;
     text-decoration: none;
-} #my-header ul li:hover {
+} #header ul li:hover {
     border-bottom: solid;
 }
 
 /*
  * Contents and right bar
- */ #my-contents {
+ */ #contents {
     width: 640px;
     float: left;
     padding: 0px 25px 0px 20px;
-} #my-right-bar {
+} #right-bar {
     width: 240px;
-    float: left;
+    float: right;
     padding-left: 15px;
     border-left: 1px dashed;
-} #my-right-bar a {
+} #right-bar li {
+	margin: 10px;
+	padding: 5px;
+}
+
+#right-bar a {
     font: bold 85% "Lucida Grande", Arial, sans-serif;
     text-shadow: #FFF 0 1px 0;
     margin: 0;
@@ -51,7 +56,7 @@
  * Breadcrumbs
  */
 
-#my-breadcrumbs {
+#breadcrumbs {
 	padding-bottom: 10px;
 }
 ul, li {

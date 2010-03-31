@@ -1,9 +1,0 @@
-<div id="nav">
-    <a id="navigation" name="navigation"></a>
-    <ul id="breadcrumbs">
-    	<% @breadcrumbs ||= [] %>
-        <% @breadcrumbs.each do |a| %>
-        <li><%= if(a[1]) then link_to(a[0], a[1]) else '<strong>' + a[0].to_s + '</strong>' end %></li>
-        <% end %>
-    </ul>
-</div>

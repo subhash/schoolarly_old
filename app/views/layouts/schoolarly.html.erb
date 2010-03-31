@@ -3,7 +3,7 @@
     <head>
         <title>Welcome to Schoolarly</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <%= stylesheet_link_tag  'schoolarly','my_hacks','my_layout_hacks' %>
+        <%= stylesheet_link_tag  'my_hacks','my_layout_hacks' %>
         <%= javascript_include_tag 'prototype' %>
         <%= javascript_include_tag 'jquery' %>
         <%= include_jquery_grid_javascript %>
@@ -17,8 +17,8 @@
     </head>
     <body>
         <!-- Missing: Header with home, logout etc., Footer with about, contact etc,. Flash message box, Breadcrumbs-->
-        <div id="my-main">
-            <div id="my-header">
+        <div id="main">
+            <div id="header">
                 <ul>
                     <li>
                         <a href="">Home</a>
@@ -31,8 +31,8 @@
                     </li>
                 </ul>
             </div>
-            <div id="my-contents">
-                <div id="my-breadcrumbs">
+            <div id="contents">
+                <div id="breadcrumbs">
                     <ul id="crumbs">
                         <% @breadcrumbs ||= [] %>
                         <% @breadcrumbs.each do |a| %>
@@ -44,27 +44,20 @@
                 </div>
                 <%= yield %>
             </div>
-            <div id="my-right-bar">
-                <div id="action_box">
+            <ul id="right-bar">
                     <% @page_actions ||= [] %>
                     <% @page_actions.each do |action| %>
-                    <div class= "button ui-state-focus center">
+                    <li>
                         <%= link_to *action %>
-                    </div>
+                    </li>
                     <% end %>
                     <% @js_page_actions ||= [] %>
                     <% @js_page_actions.each do |action| %>
-                    <% if action[:id]
-                    id = action[:id]
-                    else
-                    id = action[:title].parameterize+"-dialog"
-                    end %>
-                    <div class= "button ui-state-focus center">
+                    <li>
                         <%= link_to_function action[:title],  "Modalbox.show('#{escape_javascript(render action[:render])}', {title: '#{action[:title]}'})" %>
-                    </div>
+                    </li>
                     <% end %>
-                </div>
-            </div>
+            </ul>
         </div>
     </body>
 </html>
