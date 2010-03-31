@@ -1,5 +1,5 @@
-<div id="myhack">
-    <ul id="myhackmenu">
+<div class="tab-box">
+    <ul class="tab-bar">
         <li>
             <a href="#classes-tab">Classes</a>
         </li>
@@ -14,16 +14,16 @@
         </li>
     </ul>
 	<div id="main-dialog" title="Schoolarly" class="jquery-dialog" style ="display: none;"></div>
-    <div id="classes-tab" class ="myhackcontents">
+    <div id="classes-tab" class ="tab">
         <%= render :partial => 'klasses/klasses', :object => @klasses %>
     </div>
-    <div id="students-tab" class ="myhackcontents">
+    <div id="students-tab" class ="tab">
         <%= render :partial => 'students/students', :object => @students %>
     </div>
-    <div id="teachers-tab" class ="myhackcontents">
+    <div id="teachers-tab" class ="tab">
         <%=render :partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects} %>
     </div>
-    <div id="exams-tab" class ="myhackcontents">
+    <div id="exams-tab" class ="tab">
     	<div id="exam_groups">
         	<%=render :partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:school => @school} %>
 		</div>

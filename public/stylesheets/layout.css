@@ -37,11 +37,9 @@
     padding-left: 15px;
     border-left: 1px dashed;
 } #right-bar li {
-	margin: 10px;
-	padding: 5px;
-}
-
-#right-bar a {
+    margin: 10px;
+    padding: 5px;
+} #right-bar a {
     font: bold 85% "Lucida Grande", Arial, sans-serif;
     text-shadow: #FFF 0 1px 0;
     margin: 0;
@@ -55,14 +53,12 @@
 /*
  * Breadcrumbs
  */
-
-#breadcrumbs {
-	padding-bottom: 10px;
-}
 ul, li {
     list-style-type: none;
     padding: 0;
     margin: 0;
+} #breadcrumbs {
+    padding-bottom: 10px;
 } #crumbs {
     height: 1.5em;
     border: 1px solid #dedede;
@@ -75,12 +71,51 @@ ul, li {
     background: url(../images/crumbs.gif) no-repeat right center;
     display: block;
     padding: 0 15px 0 0;
-	font-weight: bold;
+    font-weight: bold;
 } #crumbs li a:link, #crumbs li a:visited {
     color: #777;
     text-decoration: none;
 }
 
+/*
+ * Tabs
+ */
 a:link, a:visited, #crumbs li a:hover, #crumbs li a:focus {
     color: #dd2c0d;
+} .tab-bar {
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+    padding-bottom: 35px;
+    padding-left: 10px;
+} .tab-bar ul, .tab-bar li {
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+} .tab-bar a:link, .tab-bar a:visited {
+    background: #E8EBF0;
+    border: 1px solid #ccc;
+    color: #666;
+    float: left;
+    font-size: medium;
+    font-weight: bold;
+    line-height: 14px;
+    margin-right: 8px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+} .tab-bar li.active a {
+    background: #fff;
+    border-bottom: 1px solid #fff;
+    color: #000;
+} .tab-bar a:hover {
+    color: #f00;
+} .tab-bar ul a:hover {
+    color: #f00 !important;
+} .tab {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    clear: both;
+    margin: 0px;
+    padding: 15px;
 }

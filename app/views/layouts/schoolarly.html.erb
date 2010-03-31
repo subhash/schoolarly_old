@@ -3,16 +3,11 @@
     <head>
         <title>Welcome to Schoolarly</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <%= stylesheet_link_tag  'my_hacks','my_layout_hacks' %>
-        <%= javascript_include_tag 'prototype' %>
-        <%= javascript_include_tag 'jquery' %>
+        <%= stylesheet_link_tag  'layout', 'modalbox' %>
+        <%= javascript_include_tag :all %>
+        <%= javascript_include_tag :defaults, 'modalbox' %>
         <%= include_jquery_grid_javascript %>
         <%= include_jquery_grid_css %>
-        <%= javascript_include_tag :all %>
-        <%= javascript_include_tag :defaults %>
-        <%= javascript_include_tag 'builder' %>
-        <%= javascript_include_tag 'modalbox' %>
-        <%= stylesheet_link_tag 'modalbox' %>
         <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
     </head>
     <body>
@@ -45,18 +40,18 @@
                 <%= yield %>
             </div>
             <ul id="right-bar">
-                    <% @page_actions ||= [] %>
-                    <% @page_actions.each do |action| %>
-                    <li>
-                        <%= link_to *action %>
-                    </li>
-                    <% end %>
-                    <% @js_page_actions ||= [] %>
-                    <% @js_page_actions.each do |action| %>
-                    <li>
-                        <%= link_to_function action[:title],  "Modalbox.show('#{escape_javascript(render action[:render])}', {title: '#{action[:title]}'})" %>
-                    </li>
-                    <% end %>
+                <% @page_actions ||= [] %>
+                <% @page_actions.each do |action| %>
+                <li>
+                    <%= link_to *action %>
+                </li>
+                <% end %>
+                <% @js_page_actions ||= [] %>
+                <% @js_page_actions.each do |action| %>
+                <li>
+                    <%= link_to_function action[:title],  "Modalbox.show('#{escape_javascript(render action[:render])}', {title: '#{action[:title]}'})" %>
+                </li>
+                <% end %>
             </ul>
         </div>
     </body>

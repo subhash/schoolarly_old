@@ -37,14 +37,14 @@ jQuery(function(){
 });
 
 jQuery(document).ready(function(){
-    jQuery('#myhack div').hide(); // Hide all divs
-    jQuery('#myhack div:first').show(); // Show the first div
-    jQuery('#myhack ul li:first').addClass('active'); // Set the class for active state
-    jQuery('#myhack ul li a').click(function(){ // When link is clicked
-        jQuery('#myhack ul li').removeClass('active'); // Remove active class from links
+    jQuery('.tab-box div').hide(); // Hide all divs
+    jQuery('.tab-box div:first').show(); // Show the first div
+    jQuery('.tab-box ul li:first').addClass('active'); // Set the class for active state
+    jQuery('.tab-box ul li a').click(function(){ // When link is clicked
+        jQuery('.tab-box ul li').removeClass('active'); // Remove active class from links
         jQuery(this).parent().addClass('active'); //Set parent of clicked link class to active
         var currentTab = jQuery(this).attr('href'); // Set currentTab to value of href attribute
-        jQuery('#myhack div').hide(); // Hide all divs
+        jQuery('.tab-box div').hide(); // Hide all divs
         jQuery(currentTab).show(); // Show div with id equal to variable currentTab
         return false;
     });
