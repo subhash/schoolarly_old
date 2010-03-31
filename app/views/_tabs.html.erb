@@ -1,0 +1,14 @@
+<div class="tab-box">
+    <ul class="tab-bar">
+        <% tabs.each do |t| %>
+        <li>
+            <a href="#<%=t[0]%>-tab"><%= t[0] %></a>
+        </li>
+        <% end %>
+    </ul>
+    <% tabs.each do |t| %>
+    <div id="<%=t[0]%>-tab" class ="tab">
+        <%= render t[1] %>
+    </div>
+    <% end%>
+</div>

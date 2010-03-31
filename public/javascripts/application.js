@@ -36,6 +36,7 @@ jQuery(function(){
     
 });
 
+// Bind tabs
 jQuery(document).ready(function(){
     jQuery('.tab-box div').hide(); // Hide all divs
     jQuery('.tab-box div:first').show(); // Show the first div
