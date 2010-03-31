@@ -11,23 +11,7 @@ class Student < ActiveRecord::Base
   has_one :parent
   has_many :scores   
   has_many :exams, :through => :scores
-  after_update :update_roles
-  
-  acts_as_authorizable
-  
-  def add_roles
-    puts 'student adds roles'
-    self.user.has_role 'reader', School
-    self.user.has_role 'reader', Teacher
-    self.user.has_role 'reader', Student
-    update_roles
-  end
-  
-  def update_roles
-    puts 'student updates roles'
-    #    self.school.user.has_role 'editor', self if school
-  end  
-  
+
   def subjects
     return self.papers.collect{|paper| paper.subject}  
   end

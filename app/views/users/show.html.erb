@@ -15,23 +15,4 @@
     <%=h @user.current_login_ip %>
 </p>
 <%= link_to 'Edit', edit_account_path %>
-<p>
-    <% form_tag "/users/roles/#{@user.id}"  do %>
-    <% Role.find(:all).each do |role| %>
-    <%= label "role#{role.id}", "#{role.name} , #{role.authorizable_type}" %>
-    <%= check_box_tag "role[#{role.id}]", "#{role.id}", role.users.include?(@user) %>
-    <br/>
-    <% end %>
-    <%= submit_tag 'Submit' %>
-    <% end %>
-</p>
-<p>
-    <% form_tag :action => 'roles', :id => @user  do %>
-    <% for user in @users %>    
-    <%= label "#{user.email}", "#{user.email}" %>
-    <%= select_tag 'user[]', user.id %>
-    <br/>
-    <% end %>
-    <%= submit_tag 'Submit' %>
-    <% end %>
-</p>
+

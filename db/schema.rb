@@ -131,24 +131,6 @@ ActiveRecord::Schema.define(:version => 20100318054750) do
 
   add_index "parents", ["student_id"], :name => "student_id"
 
-  create_table "roles", :force => true do |t|
-    t.string   "name",              :limit => 40
-    t.string   "authorizable_type", :limit => 40
-    t.integer  "authorizable_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "roles_users", :id => false, :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "roles_users", ["user_id"], :name => "user_id"
-  add_index "roles_users", ["role_id"], :name => "role_id"
-
   create_table "schoolarly_admins", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -268,9 +250,6 @@ ActiveRecord::Schema.define(:version => 20100318054750) do
   add_foreign_key "papers_students", ["paper_id"], "papers", ["id"], :name => "papers_students_ibfk_2"
 
   add_foreign_key "parents", ["student_id"], "students", ["id"], :name => "parents_ibfk_1"
-
-  add_foreign_key "roles_users", ["user_id"], "users", ["id"], :name => "roles_users_ibfk_1"
-  add_foreign_key "roles_users", ["role_id"], "roles", ["id"], :name => "roles_users_ibfk_2"
 
   add_foreign_key "schools_subjects", ["school_id"], "schools", ["id"], :name => "schools_subjects_ibfk_1"
   add_foreign_key "schools_subjects", ["subject_id"], "subjects", ["id"], :name => "schools_subjects_ibfk_2"

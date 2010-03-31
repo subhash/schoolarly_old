@@ -6,29 +6,13 @@ class User < ActiveRecord::Base
     c.validates_length_of_password_confirmation_field_options = validates_length_of_password_confirmation_field_options.merge(option)
   end
   
-  # Authorization plugin
-  acts_as_authorized_user
-  acts_as_authorizable
-  
   belongs_to :person, :polymorphic => true
-  has_one :user_profile
-  
-  after_create :add_roles  
+  has_one :user_profile 
   
   def name
     user_profile ? user_profile.name : email
   end
-  
-  def add_roles
-    self.has_role 'editor', self.person if self.person
-    add_roles_for_person
-  end
-  
-  def add_roles_for_person    
-    # Ensure person association and that roles are added
-    return (person and self.person.add_roles)    
-  end
-  
+
   def invite!()
     reset_perishable_token
     save_before_invite and  Notifier.deliver_invitation(self)

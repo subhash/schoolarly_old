@@ -63,17 +63,7 @@ class UsersController < ApplicationController
     @students = Student.find(:all)
     @teachers = Teacher.find(:all)
   end
-  
-  
-  def roles
-    flash[:notice]=(params[:user].inspect)
-    puts params[:user].inspect
-    for u in params[:user]
-      puts u.inspect
-    end
-    redirect_to :action => :show, :id => params[:id]
-  end
-  
+
   def remove_student
     @student = Student.find(params[:id])
     Student.transaction do

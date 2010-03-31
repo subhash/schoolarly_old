@@ -15,16 +15,4 @@ class School < ActiveRecord::Base
     self.papers.collect{|paper| (paper.klass.id==klass_id) ?  paper.subject : nil}
   end
   
-  after_update :update_roles
-  def add_roles
-    puts 'school adds roles'
-    self.user.has_role 'reader', School
-    self.user.has_role 'reader', Student
-    self.user.has_role 'reader', Teacher    
-  end
-  
-  def update_roles
-    puts 'school updates roles'
-  end
-  
 end

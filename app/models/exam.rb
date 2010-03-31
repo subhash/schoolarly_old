@@ -19,6 +19,4 @@ class Exam < ActiveRecord::Base
     return self.scores.empty? 
   end
   
-  acts_as_authorizable
-  
 end
