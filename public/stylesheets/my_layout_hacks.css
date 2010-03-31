@@ -1,0 +1,81 @@
+#my-main {
+    float: left;
+    width: 950px;
+    padding-left: 100px;
+}
+
+/*
+ * Header
+ */ #my-header {
+    width: 100%;
+    padding-bottom: 50px;
+} #my-header ul {
+    width: auto;
+    display: inline;
+    float: right;
+    margin: 0px;
+} #my-header ul li {
+    display: inline;
+    margin-left: 20px;
+} #my-header ul li a {
+    font: "Lucida Grande";
+    font-size: medium;
+    text-decoration: none;
+} #my-header ul li:hover {
+    border-bottom: solid;
+}
+
+/*
+ * Contents and right bar
+ */ #my-contents {
+    width: 640px;
+    float: left;
+    padding: 0px 25px 0px 20px;
+} #my-right-bar {
+    width: 240px;
+    float: left;
+    padding-left: 15px;
+    border-left: 1px dashed;
+} #my-right-bar a {
+    font: bold 85% "Lucida Grande", Arial, sans-serif;
+    text-shadow: #FFF 0 1px 0;
+    margin: 0;
+    padding: 5px;
+    text-align: left;
+    background: #DDD;
+    text-decoration: none;
+    color: #000;
+}
+
+/*
+ * Breadcrumbs
+ */
+
+#my-breadcrumbs {
+	padding-bottom: 10px;
+}
+ul, li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+} #crumbs {
+    height: 1.5em;
+    border: 1px solid #dedede;
+} #crumbs li {
+    float: left;
+    line-height: 1.5em;
+    color: #777;
+    padding-left: .75em;
+} #crumbs li a {
+    background: url(../images/crumbs.gif) no-repeat right center;
+    display: block;
+    padding: 0 15px 0 0;
+	font-weight: bold;
+} #crumbs li a:link, #crumbs li a:visited {
+    color: #777;
+    text-decoration: none;
+}
+
+a:link, a:visited, #crumbs li a:hover, #crumbs li a:focus {
+    color: #dd2c0d;
+}

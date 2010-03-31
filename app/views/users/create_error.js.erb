@@ -1,1 +1,1 @@
-jQuery(".jquery-dialog.open-dialog").html("<%= escape_javascript(render :partial => 'users/new_user', :locals => {:user => @user, :person_type => @person_type}) %>");
+Modalbox.show("<%= escape_javascript(render :partial => 'users/new_user', :locals => {:user => @user, :person_type => @person_type}) %>");

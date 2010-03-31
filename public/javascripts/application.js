@@ -3,16 +3,17 @@
 
 
 /**
- * 
+ *
  * Added here to avoid InvalidAuthenticityToken error - refer to
  * http://henrik.nyh.se/2008/05/rails-authenticity-token-with-jquery
- * 
+ *
  */
-jQuery(document).ajaxSend(function(event, request, settings) {
-  if (typeof(AUTH_TOKEN) == "undefined") return;
-  // settings.data is a serialized string like "foo=bar&baz=boink" (or null)
-  settings.data = settings.data || "";
-  settings.data += (settings.data ? "&" : "") + "authenticity_token=" + encodeURIComponent(AUTH_TOKEN);
+jQuery(document).ajaxSend(function(event, request, settings){
+    if (typeof(AUTH_TOKEN) == "undefined") 
+        return;
+    // settings.data is a serialized string like "foo=bar&baz=boink" (or null)
+    settings.data = settings.data || "";
+    settings.data += (settings.data ? "&" : "") + "authenticity_token=" + encodeURIComponent(AUTH_TOKEN);
 });
 
 
@@ -34,6 +35,27 @@ jQuery(function(){
     }).next().hide();
     
 });
+
+jQuery(document).ready(function(){
+    jQuery('#myhack div').hide(); // Hide all divs
+    jQuery('#myhack div:first').show(); // Show the first div
+    jQuery('#myhack ul li:first').addClass('active'); // Set the class for active state
+    jQuery('#myhack ul li a').click(function(){ // When link is clicked
+        jQuery('#myhack ul li').removeClass('active'); // Remove active class from links
+        jQuery(this).parent().addClass('active'); //Set parent of clicked link class to active
+        var currentTab = jQuery(this).attr('href'); // Set currentTab to value of href attribute
+        jQuery('#myhack div').hide(); // Hide all divs
+        jQuery(currentTab).show(); // Show div with id equal to variable currentTab
+        return false;
+    });
+});
+
+function showTab(id){
+    jQuery('#myhack ul li').removeClass('active');
+    jQuery(this).parent().addClass('active');
+    jQuery('#myhack div').hide();
+    jQuery(id).show();
+}
 
 function bindDialogs(){
     jQuery(".jquery-dialog").dialog({
@@ -67,26 +89,28 @@ function bindDialog(id){
 }
 
 function openDialog(id){
-    jQuery("#" + id).dialog('open');
+    //    jQuery("#" + id).dialog('open');
     jQuery("#" + id).addClass("open-dialog")
+    Modalbox.show($(id));
 }
 
 function closeDialogs(){
-    jQuery(".jquery-dialog.open-dialog").dialog('close');
-    $$(".jquery-dialog form").each(function(element){
-        element.reset();
-    });
+    //    jQuery(".jquery-dialog.open-dialog").dialog('close');
+    //    $$(".jquery-dialog form").each(function(element){
+    //        element.reset();
+    //    });
+    Modalbox.hide();
 }
 
 function collectSelectedIndices(selectable, field){
-	jQuery("#"+selectable).bind('selectablestop', function(event, ui){
-            subject_indices = "";
-            jQuery("#"+selectable+" .selectFilter.ui-selected").each(function(i){
-                id = this.id;
-                subject_indices += id +",";
-                jQuery("#"+field).val(subject_indices)
-            });
+    jQuery("#" + selectable).bind('selectablestop', function(event, ui){
+        subject_indices = "";
+        jQuery("#" + selectable + " .selectFilter.ui-selected").each(function(i){
+            id = this.id;
+            subject_indices += id + ",";
+            jQuery("#" + field).val(subject_indices)
         });
+    });
 }
 
 function hideShowDivs(hide_id, show_id){

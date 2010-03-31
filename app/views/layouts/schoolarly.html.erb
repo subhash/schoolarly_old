@@ -3,88 +3,66 @@
     <head>
         <title>Welcome to Schoolarly</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <%= stylesheet_link_tag  'my_layout', 'patch_my_layout', 'jquery','schoolarly' %>
+        <%= stylesheet_link_tag  'schoolarly','my_hacks','my_layout_hacks' %>
         <%= javascript_include_tag 'prototype' %>
         <%= javascript_include_tag 'jquery' %>
         <%= include_jquery_grid_javascript %>
         <%= include_jquery_grid_css %>
         <%= javascript_include_tag :all %>
         <%= javascript_include_tag :defaults %>
+        <%= javascript_include_tag 'builder' %>
+        <%= javascript_include_tag 'modalbox' %>
+        <%= stylesheet_link_tag 'modalbox' %>
         <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
     </head>
     <body>
-        <div class="page_margins">
-            <div id="border-top">
-                <div id="edge-tl">
-                </div>
-                <div id="edge-tr">
-                </div>
+        <!-- Missing: Header with home, logout etc., Footer with about, contact etc,. Flash message box, Breadcrumbs-->
+        <div id="my-main">
+            <div id="my-header">
+                <ul>
+                    <li>
+                        <a href="">Home</a>
+                    </li>
+                    <li>
+                        <a href="">Login</a>
+                    </li>
+                    <li>
+                        <a href="">About</a>
+                    </li>
+                </ul>
             </div>
-            <div class="page">
-                <div id="header">
-                    <div id="topnav">
-                        <a class="skip" title="skip link" href="#navigation">Skip to the navigation</a>
-                        <span class="hideme">.</span>
-                        <a class="skip" title="skip link" href="#content">Skip to the content</a>
-                        <span class="hideme">.</span>
-                        <a href="#">Home</a>
-                        | <% if current_user %>
-                        <%= link_to "Logout, #{current_user.email}", user_session_path,  :method => :delete, :confirm => 'Are you sure you want to logout?' %>
-                        <% else %>
-                        <%= link_to 'Login', new_user_session_path %>
+            <div id="my-contents">
+                <div id="my-breadcrumbs">
+                    <ul id="crumbs">
+                        <% @breadcrumbs ||= [] %>
+                        <% @breadcrumbs.each do |a| %>
+                        <li>
+                            <%= if(a[1]) then link_to(a[0], a[1]) else link_to(a[0],"") end %>
+                        </li>
                         <% end %>
-                    </div>
-                    <%= render :partial => "/layouts/navigation" %>
+                    </ul>
                 </div>
-                <div id="main">
-                    <p style="color: green">
-                        <div id="notice">
-                            <%= flash[:notice] %>
-                        </div>
-                    </p>
-                    <%if @details %>
-                    <div id="col1">
-                        <div id="details_box" class="ui-state-default">
-                        </div>
-                    </div>
-                    <%end %>
-                    <div id="col2">
-                        <%= yield %>
-                    </div>
-                    <div id="col3" class="ui-state-default">
-                        <div id="action_box">
-                            <% @page_actions ||= [] %>
-                            <% @page_actions.each do |action| %>
-                            <div class= "button ui-state-focus center">
-                                <%= link_to *action %>
-                            </div>
-                            <% end %>
-                            <% @js_page_actions ||= [] %>
-                            <% @js_page_actions.each do |action| %>
-                            <% if action[:id]
-                            id = action[:id]
-                            else
-                            id = action[:title].parameterize+"-dialog"
-                            end %>
-                            <div id="<%= id %>" class="jquery-dialog" style ="display: none;">
-                                <%= render action[:render] %>
-                            </div>
-                            <div class= "button ui-state-focus center">
-                                <%= link_to_function action[:title],  "openDialog('#{id}')" %>
-                            </div>
-                            <% end %>
-                        </div>
-                    </div>
-                </div>
-                <div id="footer">
-                    <a href="#">About Schoolarly</a>
-                    | <a href="#">Contact Us</a>
-                </div>
+                <%= yield %>
             </div>
-            <div id="border-bottom">
-                <div id="edge-bl">
-                </div>
-                <div id="edge-br">
+            <div id="my-right-bar">
+                <div id="action_box">
+                    <% @page_actions ||= [] %>
+                    <% @page_actions.each do |action| %>
+                    <div class= "button ui-state-focus center">
+                        <%= link_to *action %>
+                    </div>
+                    <% end %>
+                    <% @js_page_actions ||= [] %>
+                    <% @js_page_actions.each do |action| %>
+                    <% if action[:id]
+                    id = action[:id]
+                    else
+                    id = action[:title].parameterize+"-dialog"
+                    end %>
+                    <div class= "button ui-state-focus center">
+                        <%= link_to_function action[:title],  "Modalbox.show('#{escape_javascript(render action[:render])}', {title: '#{action[:title]}'})" %>
+                    </div>
+                    <% end %>
                 </div>
             </div>
         </div>

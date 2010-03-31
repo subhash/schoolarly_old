@@ -15,4 +15,9 @@ class School < ActiveRecord::Base
     self.papers.collect{|paper| (paper.klass.id==klass_id) ?  paper.subject : nil}
   end
   
+    
+  def name
+    return !(user.user_profile.nil?) ? user.user_profile.name : user.email
+  end
+  
 end
