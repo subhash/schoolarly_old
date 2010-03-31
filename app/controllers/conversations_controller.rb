@@ -1,6 +1,8 @@
 class ConversationsController < ApplicationController
   def show
     @mail=Mail.find(params[:id])
+    #@mails = @mail.conversation.mails.select{|mail| mail.user == @mail.user} - [@mail]
+    @mails = @mail.conversation.mails.select{|mail| mail.user == @mail.user && (@mail.trashed ? true : !mail.trashed)} - [@mail]
   end
   
   def create
