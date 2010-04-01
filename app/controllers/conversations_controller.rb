@@ -7,11 +7,15 @@ class ConversationsController < ApplicationController
   
   def create
     sender=User.find(params[:sender])
-    receiver=User.find(params[:mail][:user_id])
+    if params[:receiver]
+      @receiver = User.find(params[:receiver])
+      @sentMail = sender.send_message(@receiver, params[:message][:body], params[:message][:subject])
+    else
+      receivers=User.find(params[:mail][:user_ids].compact.reject(&:blank?))
+      @sentMail=sender.send_message(receivers, params[:message][:body], params[:message][:subject])
+      if receivers.include?(sender) then @inMail = sender.mailbox[:inbox].latest_mail.first end
+    end
     if params[:message][:body].blank? then raise end 
-    @sentMail=sender.send_message(receiver, params[:message][:body], params[:message][:subject])
-    #@sentMail = sender.mailbox[:sentbox].latest_mail.first
-    if sender==receiver then @inMail = sender.mailbox[:inbox].latest_mail.first end
     respond_to do |format|
       flash[:notice] = 'Message was successfully sent.'
       format.js {render :template => 'conversations/create_success'}
@@ -25,18 +29,17 @@ class ConversationsController < ApplicationController
   def destroy
     @mail=Mail.find(params[:id])
     @mailbox=@mail.mailbox
-    if @mail.mailbox != 'trash'
+    if !@mail.trashed
       convo = @mail.conversation
       @mail.user.mailbox.move_to(:trash, :conversation => convo)
       #c = 'id = ' + @mail.id.to_s
       #@mail.user.mailbox.move_to(:trash, :conditions => c)
     else
-  #      @mail.destroy
-  #      puts "deleting the mail"
-  end
-      respond_to do |format|
-        format.js {render :template => 'conversations/destroy'}
-      end 
+      @mail.delete
+    end
+    respond_to do |format|
+      format.js {render :template => 'conversations/destroy'}
+    end 
   #    @message = Message.find(params[:id])
   #    @message.destroy
   #
