@@ -129,6 +129,14 @@ class ApplicationController < ActionController::Base
      end
      return users
   # end
- end
+end
+
+  def render_javascript(args)
+    if(args[:refresh_dialog]) 
+      render :template => '/refresh_dialog', :locals => {:refresh_dialog => args[:refresh_dialog]}
+    elsif (args[:close_dialog])
+      render :inline => 'Modalbox.close()'
+    end
+  end
  
 end

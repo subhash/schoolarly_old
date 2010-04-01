@@ -14,12 +14,18 @@ class UsersController < ApplicationController
       respond_to do |format|
         flash[:notice] = 'User was successfully created.'
         format.html { redirect_back_or_default account_url }
-        format.js {render :template => 'users/create_success'}
+        format.js {
+          #render :template => 'users/create_success'}
+          render_javascript :close_dialog => true
+        }
       end     
     else
       respond_to do |format|          
-        format.html { render :action => "new" }
-        format.js {render :template => 'users/create_error'}
+        format.html { render :action => "new" }        
+        format.js {
+          #{render :template => 'users/create_error'}
+          render_javascript :refresh_dialog => {:partial => 'users/new_user', :locals => {:user => @user, :person_type => @person_type}}
+        }
       end
     end
   end
@@ -63,7 +69,7 @@ class UsersController < ApplicationController
     @students = Student.find(:all)
     @teachers = Teacher.find(:all)
   end
-
+  
   def remove_student
     @student = Student.find(params[:id])
     Student.transaction do
