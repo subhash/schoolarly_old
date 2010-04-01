@@ -1,8 +1,9 @@
 <% tabs = {} %>
+<% tabs['Home'] = { :partial => '/home', :locals => {:user => @school.user} } %>
 <% tabs['Classes'] = { :partial => 'klasses/klasses', :object => @klasses } %>
 <% tabs['Students'] = { :partial => 'students/students', :object => @students } %>
 <% tabs['Teachers'] = { :partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects} } %>
-<% tabs['Teachers'] = {:partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:school => @school}} %>
+<% tabs['Exams'] = {:partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:school => @school}} %>
 <%= render :partial => '/tabs', :object => tabs %>
 <!--<div class="tab-box">
 <ul class="tab-bar">
