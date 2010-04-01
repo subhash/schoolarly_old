@@ -4,6 +4,8 @@
         <title>Welcome to Schoolarly</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <%= stylesheet_link_tag  'layout', 'modalbox' %>
+        <%= javascript_include_tag 'prototype' %>
+        <%= javascript_include_tag 'jquery' %>
         <%= javascript_include_tag :all %>
         <%= javascript_include_tag :defaults, 'modalbox' %>
         <%= include_jquery_grid_javascript %>
@@ -52,15 +54,15 @@
                     <%= link_to_function action[:title],  "Modalbox.show('#{escape_javascript(render action[:render])}', {title: '#{action[:title]}'})" %>
                 </li>
                 <% end %>
-				<%if is_messageable? %>
-				<li>
-					<br />
-					Post an instant message...
-					<div id="post-message">
-						<%=render :partial => 'messages/new_form'%>
-					</div>
-				</li>
-				<%end%>
+                <%if is_messageable? %>
+                <li>
+                    <br/>
+                    Post an instant message...
+                    <div id="post-message">
+                        <%=render :partial => 'messages/new_form' %>
+                    </div>
+                </li>
+                <%end %>
             </ul>
         </div>
     </body>
