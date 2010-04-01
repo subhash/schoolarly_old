@@ -1,16 +1,23 @@
-page << "closeDialogs();"
-page << "jQuery('.tabs').tabs('select','#home-tab')"
-div_sent = 'sentbox'
-div_inbox = 'inbox'
-if @sentMail.message.sender.mailbox[:sentbox].mail.size == 1
-  page.replace_html("sentbox-area", :partial => 'mails/mails', :object => [@sentMail], :locals => {:is_latest => true, :mailbox => 'sentbox'})
+if @receiver #&& if he is the current_user
+  page.replace_html("inbox-area", :partial => 'mails/mails', :object => @receiver.mailbox[:inbox].latest_mail, :locals => {:is_latest => true, :mailbox => 'inbox'})
+  page.replace_html("post-message", :partial => 'messages/new_form')
+  if @receiver == current_user
+    page.replace_html("sentbox-area", :partial => 'mails/mails', :object => @receiver.mailbox[:sentbox].latest_mail, :locals => {:is_latest => true, :mailbox => 'sentbox'})
+  end
 else
-  page.insert_html(:top, div_sent, :partial => "mails/mail", :object => @sentMail, :locals => {:is_latest => true})
-end
-if !@inMail.nil?
-  if @sentMail.message.sender.mailbox[:inbox].mail.size == 1
-    page.replace_html("inbox-area", :partial => 'mails/mails', :object => [@inMail], :locals => {:is_latest => true, :mailbox => 'inbox'})
+  page << "closeDialogs();"
+  div_sent = 'sentbox'
+  div_inbox = 'inbox'
+  if @sentMail.message.sender.mailbox[:sentbox].mail.size == 1
+    page.replace_html("sentbox-area", :partial => 'mails/mails', :object => [@sentMail], :locals => {:is_latest => true, :mailbox => 'sentbox'})
   else
-    page.insert_html(:top, div_inbox, :partial => 'mails/mail', :object => @inMail, :locals => {:is_latest => true})
+    page.insert_html(:top, div_sent, :partial => "mails/mail", :object => @sentMail, :locals => {:is_latest => true})
+  end
+  if !@inMail.nil?
+    if @sentMail.message.sender.mailbox[:inbox].mail.size == 1
+      page.replace_html("inbox-area", :partial => 'mails/mails', :object => [@inMail], :locals => {:is_latest => true, :mailbox => 'inbox'})
+    else
+      page.insert_html(:top, div_inbox, :partial => 'mails/mail', :object => @inMail, :locals => {:is_latest => true})
+    end
   end
 end

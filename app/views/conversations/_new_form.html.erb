@@ -2,13 +2,13 @@
 		<table class="center">
 			<tr>
 				<th>
-                	<label for="user_id">To</label>
+                	<label for="user_ids">To</label>
             	</th>
 	            <td>
-	                <%= f.select(:user_id, options_from_collection_for_select(users,:id,:email) ) %>
+					<%= collection_multiple_select(:mail, 'user_ids', users, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox'}) %>
 	            </td>
 			</tr>
-			<%=render :partial => 'messages/new_form', :locals => {:message => Message.new()}%>
+			<%=render :partial => 'messages/message_form', :locals => {:message => Message.new()}%>
 		</table>
 		<div class="center">
 			<%= submit_tag "Send" %>
