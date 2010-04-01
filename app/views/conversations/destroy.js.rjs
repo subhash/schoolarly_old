@@ -1,13 +1,21 @@
+puts @mail.inspect
+puts "hiiiiii"
 div_trash = 'trash'
-div_mail = 'mail-row-' + @mail.id.to_s
-div_body='body-' + @mail.id.to_s
+#div_mail = 'mail-row-' + @mail.id.to_s
+#div_body='body-' + @mail.id.to_s
+div_inbox = '.conv-inbox-' + @mail.conversation.id.to_s
+div_sentbox='.conv-sentbox-' + @mail.conversation.id.to_s
 mailboxes=[:inbox, :sentbox]
 mailboxes.each do |mbox|
   if @mail.user.mailbox[mbox].mail.size==0
     page.replace_html(mbox.to_s + '-area', :partial => "mails/mails", :object => @mail.user.mailbox[mbox].latest_mail, :locals => {:is_latest => true})
   else
-    page.remove div_body
-    page.remove div_mail
+#    page.remove div_body
+#    page.remove div_mail
+#    page.remove div_inbox
+#    page.remove div_sentbox
+    page.select("#{div_inbox}" ).each { |div| div.hide }
+    page.select("#{div_sentbox}" ).each { |div| div.hide }
   end
 end
 if @mail.user.mailbox[:trash].mail.size == 1
@@ -15,3 +23,6 @@ if @mail.user.mailbox[:trash].mail.size == 1
 else
   page.insert_html(:top, div_trash, :partial => "mails/mail", :object => @mail, :locals => {:is_latest => true})
 end
+#if @mail.trashed
+  
+#end
