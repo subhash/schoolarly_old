@@ -1,7 +1,9 @@
 		<tr id="<%='mail-row-' + mail.id.to_s%>" class="<%='conv-' + mail.mailbox + '-' + mail.conversation.id.to_s%>">
-			<%if mail.mailbox == 'inbox' then title=mail.message.sender.email; label=mail.message.sender.name; else title=mail.message.recipients.collect{|r| r.email}; label=mail.message.recipients.collect{|r| r.name}; end%>
-			<td title="<%=title%>"><%=link_to label %></td>
-			<td><%=link_to_remote mail.message.subject + ' - ' + '<i>' + mail.message.body.slice(0,9) + '... </i>', :url =>{:controller => 'mails', :action => :mark_and_show, :id => mail}%></td>
+			<%if mail.mailbox == 'inbox' then users_list=[mail.message.sender]; else users_list=mail.message.recipients; end%>
+			<td>
+				<%= users_list.collect {|u| link_to u.person.name, {:controller => u.person_type.pluralize, :action => 'show', :id => u.person}, :title => u.email }.join(', ')%>
+			</td>
+			<td><%=link_to_remote mail.message.subject + ' - ' + '<i>' + mail.message.body.slice(0,9) + '... </i>', :url =>{:controller => 'mails', :action => :mark_and_show, :id => mail}, :html => {:title => 'Click here to view the message'}%></td>
 			<td title="<%=mail.message.created_at.strftime('%a, %b %d, %Y at %I:%M %p')%>"><%=mail.message.created_at.strftime('%b %d')%></td>
 			<%if local_assigns[:is_latest] && is_latest%>
 				<td class="ui-state-focus">
