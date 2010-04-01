@@ -29,24 +29,17 @@ class ConversationsController < ApplicationController
   def destroy
     @mail=Mail.find(params[:id])
     @mailbox=@mail.mailbox
+    conv = @mail.conversation
     if !@mail.trashed
-      convo = @mail.conversation
-      @mail.user.mailbox.move_to(:trash, :conversation => convo)
+      @mail.user.mailbox.move_to(:trash, :conversation => conv)
       #c = 'id = ' + @mail.id.to_s
       #@mail.user.mailbox.move_to(:trash, :conditions => c)
     else
-      @mail.delete
+      Mail.delete(@mail.user.mailbox[:trash].mail(:conversation => conv))
     end
     respond_to do |format|
       format.js {render :template => 'conversations/destroy'}
     end 
-  #    @message = Message.find(params[:id])
-  #    @message.destroy
-  #
-  #    respond_to do |format|
-  #      format.html { redirect_to(messages_url) }
-  #      format.xml  { head :ok }
-  #    end
   end
   
 end
