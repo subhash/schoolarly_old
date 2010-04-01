@@ -14,7 +14,7 @@ class TeachersController < ApplicationController
     end
     if @user == current_user then label = 'Edit Profile'; action = 'edit' else label = 'View Profile'; action = 'show' end
     add_page_action(label, {:controller => :user_profiles, :action => action, :id => @teacher.user})
-    @users=get_users_for_composing(@user,@teacher)
+    @users=get_users_for_composing(@teacher)
     if !@users.nil? 
       add_js_page_action(:title => 'Compose Message', :render => {:partial => 'conversations/new_form', :locals => {:users => @users.flatten, :sender => @user, :mail => Mail.new()}})
     end
