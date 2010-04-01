@@ -1,30 +1,74 @@
-<h1>Listing events</h1>
+<p>
+  <%=link_to_remote 'Create Event', :url => {:action => :new} %>
+</p>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Start time</th>
-    <th>End time</th>
-    <th>All day</th>
-    <th>Event series</th>
-  </tr>
-
-<% @events.each do |event| %>
-  <tr>
-    <td><%=h event.title %></td>
-    <td><%=h event.description %></td>
-    <td><%=h event.start_time %></td>
-    <td><%=h event.end_time %></td>
-    <td><%=h event.all_day %></td>
-    <td><%=h event.event_series_id %></td>
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New event', new_event_path %>
+<script>
+  
+  
+ jQuery(document).ready(function(){
+      // page is now ready, initialize the calendar...
+      jQuery('#calendar').fullCalendar({
+          editable: true,
+          header: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'month,agendaWeek,agendaDay'
+          },
+          defaultView: 'agendaWeek',
+          height: 500,
+          slotMinutes: 15,
+          loading: function(bool){
+              if (bool) 
+                  $('#loading').show();
+              else 
+                  $('#loading').hide();
+          },
+          events: "/events/get_events",
+          timeFormat: 'h:mm t{ - h:mm t} ',
+          dragOpacity: "0.5",
+          eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
+//              if (confirm("Are you sure about this change?")) {
+                  moveEvent(event, dayDelta, minuteDelta, allDay);
+//              }
+//              else {
+//                  revertFunc();
+//              }
+          },
+          
+          eventResize: function(event, dayDelta, minuteDelta, revertFunc){
+//              if (confirm("Are you sure about this change?")) {
+                  resizeEvent(event, dayDelta, minuteDelta);
+//              }
+//              else {
+//                  revertFunc();
+//              }
+          },
+          
+          eventClick: function(event, jsEvent, view){
+              showEventDetails(event);
+          },
+      
+      
+      
+      
+      });
+  });
+</script>
+<div>
+  <div id='calendar'>
+  </div>
+</div>
+<div id = "desc_dialog" style ="display:none;">
+  <div id = "event_desc">
+  </div>
+  <br/>
+  <br/>
+  <div id = "event_actions">
+    <span id = "edit_event"></span>
+    <span id = "delete_event"></span>
+  </div>
+</div>
+<div id = "create_event_dialog" style ="display:none;">
+  <div id = "create_event">
+  </div>
+</div>
