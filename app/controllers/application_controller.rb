@@ -117,7 +117,7 @@ class ApplicationController < ActionController::Base
 #  end
  
  def get_users_for_composing(user,person)
-   if user == current_user 
+  # if user == current_user 
      school =  person.is_a?(School) ? person : person.school  
      if school
        users = User.find_all_by_person_type_and_person_id('Teacher',school.teacher_ids) 
@@ -128,7 +128,7 @@ class ApplicationController < ActionController::Base
   #    users << User.find_all_by_person_type_and_person_id('Parent',parent_ids)
      end
      return users
-   end
+  # end
  end
  
 end
