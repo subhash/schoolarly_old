@@ -2,7 +2,6 @@
 	<div id="home-info" class="ui-state-default">
 		<blockquote><br /><br />Home page content goes here...<br /><br /><br /></blockquote>
     </div>
-	<%if user==current_user%>
 		<div id="mail-boxes">
 			<%mailboxes={:inbox => 'Inbox', :sentbox => 'Sent Items', :trash => 'Trash'}%>
 			<div class="accordion" style="font-size:1em;">
@@ -12,5 +11,5 @@
 			<%end%>
 			</div>
     	</div>
-	<%end%>
+
  </div>
