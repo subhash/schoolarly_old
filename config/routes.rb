@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :events
+
   map.resources :scores, :collection => {:grid_data => :get, :row_edit => :post}
 
   map.resources :leave_requests

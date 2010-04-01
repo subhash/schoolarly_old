@@ -9,12 +9,45 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100318054750) do
+ActiveRecord::Schema.define(:version => 20100331145851) do
 
   create_table "conversations", :force => true do |t|
     t.string   "subject",    :default => ""
     t.datetime "created_at",                 :null => false
   end
+
+  create_table "event_series", :force => true do |t|
+    t.integer  "frequency"
+    t.string   "period"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.boolean  "all_day"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.boolean  "all_day"
+    t.integer  "event_series_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["event_series_id"], :name => "event_series_id"
+
+  create_table "events_users", :id => false, :force => true do |t|
+    t.integer  "event_id",   :null => false
+    t.integer  "user_id",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events_users", ["event_id", "user_id"], :name => "index_events_users_on_event_id_and_user_id", :unique => true
+  add_index "events_users", ["user_id"], :name => "user_id"
 
   create_table "exam_groups", :force => true do |t|
     t.string   "description"
@@ -131,6 +164,24 @@ ActiveRecord::Schema.define(:version => 20100318054750) do
 
   add_index "parents", ["student_id"], :name => "student_id"
 
+  create_table "roles", :force => true do |t|
+    t.string   "name",              :limit => 40
+    t.string   "authorizable_type", :limit => 40
+    t.integer  "authorizable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles_users", :id => false, :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roles_users", ["user_id"], :name => "user_id"
+  add_index "roles_users", ["role_id"], :name => "role_id"
+
   create_table "schoolarly_admins", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -230,6 +281,11 @@ ActiveRecord::Schema.define(:version => 20100318054750) do
     t.datetime "updated_at"
   end
 
+  add_foreign_key "events", ["event_series_id"], "event_series", ["id"], :name => "events_ibfk_1"
+
+  add_foreign_key "events_users", ["event_id"], "events", ["id"], :name => "events_users_ibfk_1"
+  add_foreign_key "events_users", ["user_id"], "users", ["id"], :name => "events_users_ibfk_2"
+
   add_foreign_key "exam_groups", ["exam_type_id"], "exam_types", ["id"], :name => "exam_groups_ibfk_1"
   add_foreign_key "exam_groups", ["klass_id"], "klasses", ["id"], :name => "exam_groups_ibfk_2"
 
@@ -250,6 +306,9 @@ ActiveRecord::Schema.define(:version => 20100318054750) do
   add_foreign_key "papers_students", ["paper_id"], "papers", ["id"], :name => "papers_students_ibfk_2"
 
   add_foreign_key "parents", ["student_id"], "students", ["id"], :name => "parents_ibfk_1"
+
+  add_foreign_key "roles_users", ["user_id"], "users", ["id"], :name => "roles_users_ibfk_1"
+  add_foreign_key "roles_users", ["role_id"], "roles", ["id"], :name => "roles_users_ibfk_2"
 
   add_foreign_key "schools_subjects", ["school_id"], "schools", ["id"], :name => "schools_subjects_ibfk_1"
   add_foreign_key "schools_subjects", ["subject_id"], "subjects", ["id"], :name => "schools_subjects_ibfk_2"

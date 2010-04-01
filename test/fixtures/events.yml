@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  description: MyText
+  start_time: 2010-03-31 20:24:15
+  end_time: 2010-03-31 20:24:15
+  all_day: false
+  event_series_id: 
+
+two:
+  title: MyString
+  description: MyText
+  start_time: 2010-03-31 20:24:15
+  end_time: 2010-03-31 20:24:15
+  all_day: false
+  event_series_id: 
