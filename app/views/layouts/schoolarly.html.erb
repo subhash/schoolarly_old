@@ -52,6 +52,13 @@
                     <%= link_to_function action[:title],  "Modalbox.show('#{escape_javascript(render action[:render])}', {title: '#{action[:title]}'})" %>
                 </li>
                 <% end %>
+				<li>
+					<br />
+					Post an instant message...
+					<div id="post-message">
+						<%=render :partial => 'messages/new_form'%>
+					</div>
+				</li>
             </ul>
         </div>
     </body>
