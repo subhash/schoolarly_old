@@ -74,7 +74,9 @@ class StudentsController < ApplicationController
         @user.invite!
         respond_to do |format|
           format.html { redirect_to(edit_password_reset_url(@user.perishable_token)) }
-          format.js {render :template => 'students/create_success'}
+          format.js {
+            render_success :tab => :students, :append => {:partial => 'students/student', :object => @student}
+          }
         end     
       end      
     rescue Exception => e
@@ -84,7 +86,9 @@ class StudentsController < ApplicationController
       @student.user = @user      
       respond_to do |format|          
         format.html { render :action => "new" }
-        format.js {render :template => 'students/create_error'}
+        format.js {
+          render_failure :refresh => {:partial => 'invite_student_form', :locals => {:student => @student, :school => @school}} 
+        }
       end           
     end
   end

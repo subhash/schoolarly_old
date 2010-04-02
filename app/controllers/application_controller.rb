@@ -132,7 +132,7 @@ class ApplicationController < ActionController::Base
  	end
 
   def render_failure(args)
-    render :template => '/render_failure', :locals => {:refresh_dialog => args}
+    render :template => '/render_failure', :locals => args
   end
   
   def render_success(args)

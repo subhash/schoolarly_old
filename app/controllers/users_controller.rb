@@ -16,7 +16,9 @@ class UsersController < ApplicationController
         format.html { redirect_back_or_default account_url }
         format.js {
           #render :template => 'users/create_success'}
-          render_success
+          name = @person_type.underscore.pluralize
+          partial_name = "#{name}/#{@person_type.underscore}"
+          render_success :tab => name, :append => {:partial => partial_name, :object => @user.person}
         }
       end     
     else
@@ -24,7 +26,7 @@ class UsersController < ApplicationController
         format.html { render :action => "new" }        
         format.js {
           #{render :template => 'users/create_error'}
-          render_failure :partial => 'users/new_user', :locals => {:user => @user, :person_type => @person_type}
+          render_failure :refresh => {:partial => 'users/new_user', :locals => {:user => @user, :person_type => @person_type}}
         }
       end
     end

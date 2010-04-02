@@ -17,7 +17,7 @@ class KlassesController < ApplicationController
     else
       respond_to do |format|          
         format.js {
-          render_failure :partial => 'new_klass_form', :locals => {:klass => @klass, :school => @school}
+          render_failure :refresh => {:partial => 'new_klass_form', :locals => {:klass => @klass, :school => @school}}
         }
       end  
     end    
