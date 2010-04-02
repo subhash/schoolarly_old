@@ -131,12 +131,12 @@ class ApplicationController < ActionController::Base
   # end
  	end
 
-  def render_javascript(args)
-    if(args[:refresh_dialog]) 
-      render :template => '/refresh_dialog', :locals => {:refresh_dialog => args[:refresh_dialog]}
-    elsif (args[:close_dialog])
-      render :inline => 'Modalbox.close()'
-    end
+  def render_failure(args)
+    render :template => '/render_failure', :locals => {:refresh_dialog => args}
+  end
+  
+  def render_success(args)
+    render :template => '/render_success', :locals => args
   end
  
 end

@@ -16,7 +16,7 @@ class UsersController < ApplicationController
         format.html { redirect_back_or_default account_url }
         format.js {
           #render :template => 'users/create_success'}
-          render_javascript :close_dialog => true
+          render_success
         }
       end     
     else
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
         format.html { render :action => "new" }        
         format.js {
           #{render :template => 'users/create_error'}
-          render_javascript :refresh_dialog => {:partial => 'users/new_user', :locals => {:user => @user, :person_type => @person_type}}
+          render_failure :partial => 'users/new_user', :locals => {:user => @user, :person_type => @person_type}
         }
       end
     end

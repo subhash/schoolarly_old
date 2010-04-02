@@ -1,9 +1,9 @@
-<% tabs = {} %>
-<% tabs['Home'] = { :partial => '/home', :locals => {:user => @school.user} } %>
-<% tabs['Classes'] = { :partial => 'klasses/klasses', :object => @klasses } %>
-<% tabs['Students'] = { :partial => 'students/students', :object => @students } %>
-<% tabs['Teachers'] = { :partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects} } %>
-<% tabs['Exams'] = {:partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:school => @school}} %>
+<% tabs = ActiveSupport::OrderedHash.new %>
+<% tabs[:home] = { :partial => '/home', :locals => {:user => @school.user} } %>
+<% tabs[:classes] = { :partial => 'klasses/klasses', :object => @klasses } %>
+<% tabs[:students] = { :partial => 'students/students', :object => @students } %>
+<% tabs[:teachers] = { :partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects} } %>
+<% tabs[:exams] = {:partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:school => @school}} %>
 <%= render :partial => '/tabs', :object => tabs %>
 <!--<div class="tab-box">
 <ul class="tab-bar">

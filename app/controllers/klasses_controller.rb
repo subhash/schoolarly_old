@@ -10,11 +10,15 @@ class KlassesController < ApplicationController
     @klass = Klass.new(params[:klass])
     if (@school.klasses << @klass)
       respond_to do |format|
-        format.js {render :template => 'klasses/create_success'}
+        format.js {
+          render_success :tab => :classes, :append => {:partial => 'klasses/klass', :object => @klass }
+        }
       end 
     else
       respond_to do |format|          
-        format.js {render :template => 'klasses/create_error'}
+        format.js {
+          render_failure :partial => 'new_klass_form', :locals => {:klass => @klass, :school => @school}
+        }
       end  
     end    
   end
