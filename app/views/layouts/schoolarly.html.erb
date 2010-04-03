@@ -52,7 +52,7 @@
                 <% @js_page_actions ||= [] %>
                 <% @js_page_actions.each do |action| %>
                 <li>
-                    <%= link_to_function action[:title],  "Modalbox.show('#{escape_javascript(render action[:render])}', {title: '#{action[:title]}'})" %>
+                    <%= link_to_function action[:title],  "Modalbox.show('#{escape_javascript(render action[:render])}', {title: '#{action[:title]}', slideDownDuration: .10, slideUpDuration: .10, overlayDuration: .25 })" %>
                 </li>
                 <% end %>
                 <%if is_messageable? %>
