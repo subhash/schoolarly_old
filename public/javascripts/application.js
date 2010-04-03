@@ -92,7 +92,15 @@ function bindDialog(id){
 function openDialog(id){
     //    jQuery("#" + id).dialog('open');
     jQuery("#" + id).addClass("open-dialog")
-    Modalbox.show($(id));
+    Modalbox.show($(id), { title: t, slideDownDuration: .10, slideUpDuration: .10, overlayDuration: .25 });
+}
+
+function openModalbox(html, t){
+	Modalbox.show(html, { title: t, slideDownDuration: .10, slideUpDuration: .10, overlayDuration: .25 });
+}
+
+function refreshModalbox(html){
+	Modalbox.show(html);
 }
 
 function closeDialogs(){
@@ -101,6 +109,10 @@ function closeDialogs(){
     //        element.reset();
     //    });
     Modalbox.hide();
+}
+
+function closeModalbox(){
+	Modalbox.hide();
 }
 
 function collectSelectedIndices(selectable, field){
