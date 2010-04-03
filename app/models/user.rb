@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   belongs_to :person, :polymorphic => true
   has_one :user_profile 
   
+  has_and_belongs_to_many :events
+  
   def name
     user_profile ? user_profile.name : email
   end
