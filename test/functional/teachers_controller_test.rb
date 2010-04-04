@@ -20,6 +20,7 @@ class TeachersControllerTest < ActionController::TestCase
     @tamil = subjects(:tamil)
     @oneATamilPaper=papers(:one_A_tamil)
     @twoBSanskritPaper=papers(:two_B_sanskrit)
+    @no_school_teacher=teachers(:no_school_teacher)
     UserSession.create(@sboa.user)
   end
   
@@ -86,9 +87,12 @@ class TeachersControllerTest < ActionController::TestCase
     assert !@antony.subjects.include?(@eng)
     assert @antony.subjects.include?(@mal)
   end
-  
-#  test "add teacher to school" do
-#    TODO
-#  end
+    
+  test "add teacher to school" do
+    session[:redirect]=teacher_path(@no_school_teacher)
+    xhr :post, :add_to_school, {:id => @no_school_teacher, :entity => {:school_id => @stTeresasSchool.to_param}}
+      assert_response :success
+      assert :template => teacher_path(@no_school_teacher)
+  end
   
 end

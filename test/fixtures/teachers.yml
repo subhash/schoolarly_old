@@ -12,4 +12,7 @@ treasa:
 
 teacher_antony:
   school: st_antonys
+  
+no_school_teacher:
+  qualifications: 'MA in English from my Uty'
 
