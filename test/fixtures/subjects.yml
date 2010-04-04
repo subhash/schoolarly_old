@@ -17,3 +17,9 @@ physics:
   
 chemistry:
   name: Chemistry
+
+tamil:
+  name: Tamil
+  
+sanskrit:
+  name: Sanskrit

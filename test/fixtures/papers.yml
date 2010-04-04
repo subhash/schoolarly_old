@@ -23,3 +23,11 @@ four_D_english_antony:
 unallotted_paper:
   klass: one_A_of_sboa
   subject: english
+
+one_A_tamil:
+  klass: one_A
+  subject: tamil
+  
+two_B_sanskrit:
+  klass: two_B
+  subject: sanskrit

@@ -6,13 +6,20 @@ class TeachersControllerTest < ActionController::TestCase
   def setup
     activate_authlogic
     @sboa = schools(:sboa)
-    @stTeresasSchool=schools(:st_teresas)
+    @stTeresasSchool = schools(:st_teresas)
     @subbu = teachers(:v_subramaniam)
-    @sunil=teachers(:sunil)
+    @sunil = teachers(:sunil)
     @one_A = klasses(:one_A)
     @two_B = klasses(:two_B)
     @mal = subjects(:malayalam)
     @eng = subjects(:english)
+    @antony = teachers(:teacher_antony)
+    @fourDEng_antony=papers(:four_D_english_antony)
+    @fourDMal_antony=papers(:four_D_malayalam_antony)
+    @sanskrit = subjects(:sanskrit)
+    @tamil = subjects(:tamil)
+    @oneATamilPaper=papers(:one_A_tamil)
+    @twoBSanskritPaper=papers(:two_B_sanskrit)
     UserSession.create(@sboa.user)
   end
   
@@ -63,18 +70,25 @@ class TeachersControllerTest < ActionController::TestCase
     assert_template "teachers/create_error"
   end
   
-#  test "add subjects thru xhr" do
-#    xhr :post, :add_subjects, {:id => @sunil, :teacher => {:subject_ids => [@eng.to_param ,@mal.to_param]}}
-#    assert @sunil.current_subjects.include?(@eng)
-#    assert @sunil.current_subjects.include?(@mal)
-#    assert_response :success
-#  end
-#  
-#  test "update klass allotments thru xhr" do
-#    xhr :post, :add_klasses, {:id => @sunil_physics, :teacher_subject_allotment => { :klass_ids => [@one_A.to_param ,@two_B.to_param]}}
-#    assert @sunil_physics.current_klasses.include?(@one_A)
-#    assert @sunil_physics.current_klasses.include?(@two_B)
-#    assert_response :success
+  test "add papers thru xhr" do
+    session[:redirect]=teachers_path(@sunil)
+    xhr :post, :update_papers, {:id => @sunil, :klass => {:paper_ids => [@oneATamilPaper.to_param ,@twoBSanskritPaper.to_param]}}
+    assert @sunil.subjects.include?(@tamil)
+    assert @sunil.subjects.include?(@sanskrit)
+    assert_response :success
+  end
+  
+  test "remove paper thru xhr" do
+    xhr :post, :remove_paper, {:id => @fourDEng_antony.to_param}
+    assert_response :success
+    assert !@antony.papers.include?(@fourDEng_antony)
+    assert @antony.papers.include?(@fourDMal_antony)
+    assert !@antony.subjects.include?(@eng)
+    assert @antony.subjects.include?(@mal)
+  end
+  
+#  test "add teacher to school" do
+#    TODO
 #  end
   
 end
