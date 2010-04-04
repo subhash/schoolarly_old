@@ -1,11 +1,21 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  klass_id: 1
-  subject_id: 
-  teacher_id: 1
+one_A_english_sunil:
+  klass: one_A
+  subject: english
+  teacher: sunil
+  
+one_A_malayalam_sunil:
+  klass: one_A
+  subject: malayalam
+  teacher: sunil
 
-two:
-  klass_id: 1
-  subject_id: 
-  teacher_id: 1
+four_D_malayalam_antony:
+  klass_id: four_D
+  subject: malayalam
+  teacher: teacher_antony
+  
+four_D_english_antony:
+  klass_id: four_D
+  subject: english
+  teacher: teacher_antony
