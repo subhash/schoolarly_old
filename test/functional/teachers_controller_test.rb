@@ -57,6 +57,21 @@ class TeachersControllerTest < ActionController::TestCase
     assert_tab("Exams", "exams-tab")  
   end
   
+    test "teacher without a school should show breadcrumbs with teacher name/email and 2 actions" do
+    UserSession.create(@no_school_teacher.user)
+    get :show, :id => @no_school_teacher.to_param
+    assert_response :success
+    assert_breadcrumb(@no_school_teacher.name, "", 1)
+    assert_action_count(2)
+    assert_action('Edit Profile', :url => edit_user_profile_path(@no_school_teacher.user), :index => 1)
+    assert_action('Add to school', :index => 2)
+    assert_select "ul#right-bar li div#post-message", "Subject"
+    assert_tab_count(3)
+    assert_tab("Home", "home-tab")
+    assert_tab("Papers", "papers-tab")
+    assert_tab("Exams", "exams-tab")   
+  end
+  
   test "create teacher success thru xhr" do
     assert_difference('Teacher.count') do
       xhr :post, :create,{ :user => {:email => "sboateacher@gmail.com"}, :school_id =>@sboa.id }
