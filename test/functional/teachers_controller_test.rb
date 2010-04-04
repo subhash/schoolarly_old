@@ -13,7 +13,6 @@ class TeachersControllerTest < ActionController::TestCase
     @two_B = klasses(:two_B)
     @mal = subjects(:malayalam)
     @eng = subjects(:english)
-    #@sunil_physics = teacher_subject_allotments(:sunil_physics)
     UserSession.create(@sboa.user)
   end
   
@@ -21,15 +20,13 @@ class TeachersControllerTest < ActionController::TestCase
     UserSession.create(@subbu.user)
     get :show, :id => @subbu.to_param
     assert_response :success
-    assert_select 'div#breadcrumbs ul#crumbs li a[href=?]', school_path(@sboa), :text => @sboa.name
-    assert_select 'div#breadcrumbs ul#crumbs li a[href=?]', "", :text => @subbu.name
-    assert_select "ul#right-bar" do
-      assert_select "li a", :count => 3
-      assert_select "li a[href=?]" , edit_user_profile_path(@subbu.user), :text => 'Edit Profile'
-      assert_select "li:nth-of-type(2) a[href=?]" , "#", :text => 'Compose Message'
-      assert_select "li:nth-of-type(3) a[href=?]" , "#", :text => 'Add/Remove Papers'
-      assert_select "li div#post-message", "Subject"
-    end
+    assert_breadcrumb(@sboa.name, school_path(@sboa),1)
+    assert_breadcrumb(@subbu.name, "",2)
+    assert_action_count(3)
+    assert_action('Edit Profile', :url => edit_user_profile_path(@subbu.user), :index => 1)
+    assert_action('Compose Message', :index => 2)
+    assert_action('Add/Remove Papers', :index => 3)
+    assert_select "ul#right-bar li div#post-message", "Subject"
     assert_tab_count(3)
     assert_tab("Home", "home-tab")
     assert_tab("Papers", "papers-tab")
@@ -39,19 +36,13 @@ class TeachersControllerTest < ActionController::TestCase
   test "Others should only view & not edit teacher profile. Rest of the breadcrumbs & actions should be the same" do
     get :show, :id => @subbu.to_param
     assert_response :success
-    assert_select 'div#breadcrumbs ul#crumbs li a[href=?]', school_path(@sboa), :text => @sboa.name
-    assert_select 'div#breadcrumbs ul#crumbs li a[href=?]', "", :text => @subbu.name
-    assert_select "ul#right-bar" do
-      assert_select "li a", :count => 3 #will be changed to 2 later
-      assert_select "li a[href=?]" , user_profile_path(@subbu.user), :text => 'View Profile'
-      assert_select "li:nth-of-type(2)" do
-        assert_select "a[href=?]" , "#", :text => 'Compose Message'
-      end
-      assert_select "li:nth-of-type(3)" do
-        assert_select "a[href=?]" , "#", :text => 'Add/Remove Papers'
-      end
-      assert_select "li div#post-message", "Subject"
-    end
+    assert_breadcrumb(@sboa.name, school_path(@sboa),1)
+    assert_breadcrumb(@subbu.name, "",2)
+    assert_action_count(3) #will be changed to 2 later
+    assert_action('View Profile', :url => user_profile_path(@subbu.user), :index => 1)
+    assert_action('Compose Message', :index => 2)
+    assert_action('Add/Remove Papers', :index => 3)
+    assert_select "ul#right-bar li div#post-message", "Subject"
     assert_tab_count(3)
     assert_tab("Home", "home-tab")
     assert_tab("Papers", "papers-tab")
