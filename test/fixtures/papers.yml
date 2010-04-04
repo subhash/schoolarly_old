@@ -11,11 +11,15 @@ one_A_malayalam_sunil:
   teacher: sunil
 
 four_D_malayalam_antony:
-  klass_id: four_D
+  klass: four_D
   subject: malayalam
   teacher: teacher_antony
   
 four_D_english_antony:
-  klass_id: four_D
+  klass: four_D
   subject: english
   teacher: teacher_antony
+  
+unallotted_paper:
+  klass: one_A_of_sboa
+  subject: english

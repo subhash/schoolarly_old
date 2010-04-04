@@ -55,4 +55,9 @@ paru_school_2B:
   division: B
   school: paru_school
   #year: 2009
+  
+one_A_of_sboa:
+  level: "1"
+  division: "A"
+  school: sboa
  
