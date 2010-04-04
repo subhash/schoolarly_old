@@ -33,6 +33,7 @@ admitted_with_profile:
   
 enrolled_with_profile:
   school: paru_school
+  klass: paru_school_2B
   #current_enrollment: enrolled_with_profile
   
 student_without_school:

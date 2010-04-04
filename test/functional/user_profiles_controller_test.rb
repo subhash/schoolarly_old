@@ -67,7 +67,7 @@ class UserProfilesControllerTest < ActionController::TestCase
     assert_response :success
     assert_template 'user_profiles/show'
     assert_breadcrumb(@enrolled_student.school.name, school_path(@enrolled_student.school),1)
-    assert_breadcrumb(@enrolled_student.current_klass.name, klass_path(@enrolled_student.current_klass), 2)
+    assert_breadcrumb(@enrolled_student.klass.name, klass_path(@enrolled_student.klass), 2)
     assert_breadcrumb(@enrolled_student.name, student_path(@enrolled_student), 3)
     assert_breadcrumb('Profile')
     assert_breadcrumb_count(4)
