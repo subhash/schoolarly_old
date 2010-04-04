@@ -47,18 +47,18 @@ class ActiveSupport::TestCase
   
   
   def assert_breadcrumb(label,url = nil, index = nil)
-    assert_select 'ul#breadcrumbs li' , :text => label 
+    assert_select 'div#breadcrumbs ul#crumbs li' , :text => label 
     if url
-      assert_select 'ul#breadcrumbs li' do
+      assert_select 'div#breadcrumbs ul#crumbs li' do
         assert_select 'a[href=?]', url, :text => label
       end
     else
-      assert_select 'ul#breadcrumbs li:last-of-type' do
-        assert_select 'strong', :text => label
+      assert_select 'div#breadcrumbs ul#crumbs li:last-of-type' do
+        assert_select 'a[href=?]', "", :text => label
       end
     end
     if index
-      assert_select "ul#breadcrumbs li:nth-of-type(" + index.to_s + ")" do
+      assert_select "div#breadcrumbs ul#crumbs li:nth-of-type(" + index.to_s + ")" do
         assert_select 'a[href=?]', url, :text => label
       end
     end
@@ -67,14 +67,14 @@ class ActiveSupport::TestCase
   
   def assert_breadcrumb_count(count)
     if !count
-      assert_select 'ul#breadcrumbs li', :count => count
+      assert_select 'div#breadcrumbs ul#crumbs li', :count => count
     end
   end
   
   def assert_action_count(count)
     if !count
-      assert_select "#action_box" do
-        assert_select ".button a", :count => count
+      assert_select "ul#right-bar" do
+        assert_select "li a", :count => count
       end 
     end
   end  
@@ -87,17 +87,17 @@ class ActiveSupport::TestCase
       if !options.empty?
         url = !(options[:url].nil?) ? options[:url] : '#'
         index = options[:index]
-        assert_select "#action_box" do
+        assert_select "ul#right-bar" do
           if !index
-            assert_select ".button a[href=?]" , url, :text => label
+            assert_select "li a[href=?]", url, :text => label
           else
-            assert_select ".button:nth-of-type(" + index.to_s + ")" do
+            assert_select "li:nth-of-type(" + index.to_s + ")" do
               assert_select 'a[href=?]' , url, :text => label
             end
           end
         end
       else
-        assert_select ".button", :text => label
+        assert_select "li a[href=?]", :text => label
       end
     end
   end
