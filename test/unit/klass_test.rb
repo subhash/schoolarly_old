@@ -11,17 +11,16 @@ class KlassTest < ActiveSupport::TestCase
   end
   
   test "klass-crud" do
-    three_c = Klass.new(:level => 3, :division =>'C', :year =>2009)
+    three_c = Klass.new(:level => 3, :division =>'C')
     three_c.school = @stTheresas
     three_c.save!
-    assert_equal 3, @stTheresas.klasses.in_year(2009).size
+    assert_equal 4, @stTheresas.klasses.size
     three_c.destroy
-    assert_equal 2, @stTheresas.klasses.in_year(2009).size
     assert_equal 3, @stTheresas.klasses.size
   end
   
   test "klass-can-be-destroyed" do
-    three_c = Klass.new(:level => 3, :division =>'C', :year =>2009)
+    three_c = Klass.new(:level => 3, :division =>'C')
     three_c.school = @stTheresas
     three_c.save!
     assert three_c.can_be_destroyed
@@ -36,16 +35,14 @@ class KlassTest < ActiveSupport::TestCase
   
   test "klass-student relationship" do
     assert_equal 2, @oneA.students.size    
-    assert_equal 1, @oneA.current_students.size
     shenu = students(:shenu)    
-    assert_equal @oneA, shenu.current_enrollment.klass
-    assert_equal @oneA, shenu.current_klass    
+    assert_equal @oneA, shenu.klass    
   end
   
-  test "historical klass membership" do    
-    assert_equal 1, @twoB.students.size
-    assert_equal 0, @twoB.current_students.size
-  end
+#  test "historical klass membership" do    
+#    assert_equal 1, @twoB.students.size
+#    assert_equal 0, @twoB.current_students.size
+#  end
   
   test "teacher_allotments" do
     #    TODO
