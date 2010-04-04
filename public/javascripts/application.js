@@ -92,6 +92,7 @@ function bindDialog(id){
 function openDialog(id){
     //    jQuery("#" + id).dialog('open');
     jQuery("#" + id).addClass("open-dialog")
+	t='Schoolarly'
     Modalbox.show($(id), { title: t, slideDownDuration: .10, slideUpDuration: .10, overlayDuration: .25 });
 }
 
