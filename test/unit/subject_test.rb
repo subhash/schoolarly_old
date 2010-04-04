@@ -17,10 +17,10 @@ class SubjectTest < ActiveSupport::TestCase
   test "klass-subject-relationship" do
     @klass.subjects << @mal
     assert_equal 1,@klass.subjects.size
-    @klass.subjects << @eng
-    assert @klass.save
-    eng_klasses = @eng.klasses
-    assert eng_klasses.include?(@klass)
-    assert @klass.subjects.include?(@mal)
+#    @klass.subjects << @eng
+#    assert @klass.save
+#    eng_klasses = @eng.klasses
+#    assert eng_klasses.include?(@klass)
+#    assert @klass.subjects.include?(@mal)
   end
 end
