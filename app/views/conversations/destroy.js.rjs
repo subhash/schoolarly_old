@@ -1,25 +1,13 @@
+page << "closeDialogs();"
 div_trash = 'trash'
-div_inbox = '.conv-inbox-' + @mail.conversation.id.to_s
-div_sentbox='.conv-sentbox-' + @mail.conversation.id.to_s
-if @mail.trashed
-  if @mail.user.mailbox[:trash].mail.size == 0
-    page.replace_html('trash-area', :partial => "mails/mails", :object => @mail.user.mailbox[:trash].mail, :locals => {:is_latest => true, :mailbox => 'trash'})
-  else
-    page.remove 'mail-row-'+@mail.id.to_s
-    page.remove 'body-'+@mail.id.to_s
-  end
-else
-  page.select(div_inbox).each { |div| div.remove }
-  page.select(div_sentbox).each { |div| div.remove }
-  mailboxes=[:inbox, :sentbox]
-  mailboxes.each do |mbox|
-    if @mail.user.mailbox[mbox].mail.size==0
-      page.replace_html(mbox.to_s + '-area', :partial => "mails/mails", :object => @mail.user.mailbox[mbox].latest_mail, :locals => {:is_latest => true})
-    end
-  end
-  if @mail.user.mailbox[:trash].mail.size == 1
-    page.replace_html('trash-area', :partial => "mails/mails", :object => [@mail], :locals => {:is_latest => true, :mailbox => 'trash'})
-  else
-    page.insert_html(:top, div_trash, :partial => "mails/mail", :object => @mail, :locals => {:is_latest => true})
+div_inbox = '.conv-inbox-' + @conversation.id.to_s
+div_sentbox = '.conv-sentbox-' + @conversation.id.to_s
+  
+page.select(div_inbox).each { |div| div.remove }
+page.select(div_sentbox).each { |div| div.remove }
+mailboxes=[:inbox, :sentbox, :trash]
+mailboxes.each do |mbox|
+  if @mail.user.mailbox[mbox].mail.size==0 || !@mail.trashed
+    page.replace_html(mbox.to_s + '-area', :partial => "mails/mails", :object => @mail.user.mailbox[mbox].mail, :locals => {:is_latest => true, :mailbox => mbox})
   end
 end

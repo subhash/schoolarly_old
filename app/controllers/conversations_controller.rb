@@ -2,7 +2,7 @@ class ConversationsController < ApplicationController
   def show
     @mail=Mail.find(params[:id])
     #@mails = @mail.conversation.mails.select{|mail| mail.user == @mail.user} - [@mail]
-    @mails = @mail.conversation.mails.select{|mail| mail.user == @mail.user && (@mail.trashed ? true : !mail.trashed)} - [@mail]
+    @mails = @mail.conversation.mails.select{|mail| mail.user == @mail.user && (@mail.trashed ? true : !mail.trashed)} #- [@mail]
   end
   
   def create
@@ -27,15 +27,14 @@ class ConversationsController < ApplicationController
   end
   
   def destroy
-    @mail=Mail.find(params[:id])
-    @mailbox=@mail.mailbox
-    conv = @mail.conversation
+    @conversation = Conversation.find(params[:id])
+    @mail = Mail.find(params[:base_mail])
     if !@mail.trashed
-      @mail.user.mailbox.move_to(:trash, :conversation => conv)
+      @mail.user.mailbox.move_to(:trash, :conversation => @conversation)
       #c = 'id = ' + @mail.id.to_s
       #@mail.user.mailbox.move_to(:trash, :conditions => c)
     else
-      Mail.delete(@mail.user.mailbox[:trash].mail(:conversation => conv))
+      Mail.delete(@mail.user.mailbox.mail(:conversation => @conversation))
     end
     respond_to do |format|
       format.js {render :template => 'conversations/destroy'}

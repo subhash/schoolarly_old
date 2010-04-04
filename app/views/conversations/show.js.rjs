@@ -1,2 +1,2 @@
-page.replace_html("main-dialog", :partial =>'mails/mails', :object => @mails, :locals => {:is_latest => false})
+page.replace_html("main-dialog", :partial =>'mails/mails', :object => @mails, :locals => {:is_latest => false, :base_mail => @mail})
 page << "openDialog('main-dialog');"  
