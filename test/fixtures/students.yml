@@ -16,7 +16,7 @@ shenu:
   admission_number: 2
   school: st_teresas
   roll_number: 52
-  current_enrollment: shenu_one
+  #current_enrollment: shenu_one
   
 reeny:
   admission_number: 3
@@ -31,7 +31,7 @@ admitted_with_profile:
   
 enrolled_with_profile:
   school: paru_school
-  current_enrollment: enrolled_with_profile
+  #current_enrollment: enrolled_with_profile
   
 student_without_school:
   school: 
