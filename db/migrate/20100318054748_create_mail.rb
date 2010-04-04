@@ -8,6 +8,11 @@ class CreateMail < ActiveRecord::Migration
       t.column :trashed, :boolean, :default => false
       t.column :mailbox, :string, :limit => 25
       t.column :created_at, :datetime, :null => false
+      
+      #t.foreign_key :message_id, :messages, :id
+      t.foreign_key :user_id, :users, :id
+      t.foreign_key :conversation_id, :conversations, :id
+      
     end
     #i use foreign keys but its a custom method, so i'm leaving it up to you want them.
   end
