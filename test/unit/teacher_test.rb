@@ -15,7 +15,7 @@ class TeacherTest < ActiveSupport::TestCase
   end
   
   test "teacher antony can be the class teacher of more than one class" do
-    assert_equal 4, @antony.currently_owned_klasses.size
+    assert_equal 4, @antony.owned_klasses.size
   end
   
 end
