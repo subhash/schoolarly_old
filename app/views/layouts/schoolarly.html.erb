@@ -55,15 +55,15 @@
                     <%= link_to_function action[:title],  "openModalbox('#{escape_javascript(render action[:render])}', '#{action[:title]}')" %>
                 </li>
                 <% end %>
-                <%if is_messageable? %>
-                <li>
-                    <br/>
-                    Post an instant message...
-                    <div id="post-message">
-                        <%=render :partial => 'messages/new_form' %>
-                    </div>
-                </li>
-                <%end %>
+				<%if is_messageable? %>
+				<li>
+					<br />
+					Post an instant message...
+					<div id="post-message">
+						<%=render :partial => 'messages/new_form', :locals => {:user => User.find_by_person_type_and_person_id(controller.controller_name.singularize.camelcase, params[:id])}%>
+					</div>
+				</li>
+				<%end%>
             </ul>
         </div>
     </body>
