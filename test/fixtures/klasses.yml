@@ -4,55 +4,55 @@ one_A:
   level: "1"
   division: A
   school: st_teresas
-  year: 2009
+  #year: 2009
   class_teacher: sunil
-  subjects: english, malayalam, hindi, physics, maths, chemistry
+  #subjects: english, malayalam, hindi, physics, maths, chemistry
 
 two_B:
   level: "2"
   division: B
   school: st_teresas
-  year: 2009
+  #year: 2009
   teacher_id: 2
 
 historical_two_B:
   level: "2"
   division: B
   school: st_teresas
-  year: 2007
+  #year: 2007
   teacher_id: 2
 
 four_D:
   level: "4"
   division: D
   school: st_antonys
-  year: 2009
+  #year: 2009
   class_teacher: teacher_antony
   
 five_E:
   level: "5"
   division: E
   school: st_antonys
-  year: 2009
+  #year: 2009
   class_teacher: teacher_antony
   
 six_D_without_eg:
   level: "6"
   division: D
   school: st_antonys
-  year: 2009
+  #year: 2009
   class_teacher: teacher_antony
   
 six_E_with_egs:
   level: "6"
   division: E
   school: st_antonys
-  year: 2009
+  #year: 2009
   class_teacher: teacher_antony
   
 paru_school_2B:
   level: "2"
   division: B
   school: paru_school
-  year: 2009
+  #year: 2009
  
