@@ -7,6 +7,7 @@ mary:
 paru:
   admission_number: 1
   school: st_teresas
+  klass: one_A
   
 sboa_student:
   admission_number: 1
@@ -16,6 +17,7 @@ shenu:
   admission_number: 2
   school: st_teresas
   roll_number: 52
+  klass: one_A
   #current_enrollment: shenu_one
   
 reeny:
