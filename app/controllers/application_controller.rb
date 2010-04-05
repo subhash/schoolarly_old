@@ -158,12 +158,13 @@ class ApplicationController < ActionController::Base
       if(args[:delete])
         page.delete_html object_id
       end
-      if block_given?
-        yield page
-      end
+      yield page if block_given?
     end
-    
-    
   end
+  
+
+  
+  
+  
   
 end

@@ -1,38 +1,7 @@
-<% tabs = ActiveSupport::OrderedHash.new %>
-<% tabs[:home] = { :partial => '/home', :locals => {:user => @school.user} } %>
-<% tabs[:classes] = { :partial => 'klasses/klasses', :object => @klasses } %>
-<% tabs[:students] = { :partial => 'students/students', :object => @students } %>
-<% tabs[:teachers] = { :partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects} } %>
-<% tabs[:exams] = {:partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:school => @school}} %>
-<%= render :partial => '/tabs', :object => tabs %>
-<!--<div class="tab-box">
-<ul class="tab-bar">
-<li>
-<a href="#classes-tab">Classes</a>
-</li>
-<li>
-<a href="#students-tab">Students</a>
-</li>
-<li>
-<a href="#teachers-tab">Teachers</a>
-</li>
-<li>
-<a href="#exams-tab">Exams</a>
-</li>
-</ul>
-<div id="main-dialog" title="Schoolarly" class="jquery-dialog" style ="display: none;"></div>
-<div id="classes-tab" class ="tab">
-<%= render :partial => 'klasses/klasses', :object => @klasses %>
-</div>
-<div id="students-tab" class ="tab">
-<%= render :partial => 'students/students', :object => @students %>
-</div>
-<div id="teachers-tab" class ="tab">
-<%=render :partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects} %>
-</div>
-<div id="exams-tab" class ="tab">
-<div id="exam_groups">
-<%=render :partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:school => @school} %>
-</div>
-</div>
-</div>-->
+<% render_tabs do |t| %>
+<% t.tab :home, :render => {:partial => '/home', :locals => {:user => @school.user} } %>
+<% t.tab :klasses, :title => 'Haha', :render => {:partial => 'klasses/klasses', :object => @klasses} %>
+<% t.tab :students, :render => {:partial => 'students/students', :object => @students } %>
+<% t.tab :teachers, :render => {:partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects} } %>
+<% t.tab :exams, :render => {:partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:school => @school}} %>
+<% end %>

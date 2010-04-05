@@ -1,0 +1,17 @@
+<div class="tab-box">
+    <ul class="tab-bar">
+        <% tabs.each do |t| %>
+        <li>
+            <% tab = t[:tab] %>
+            <% title = t[:title] %>
+            <% title ||= tab.to_s.humanize %>
+            <a href="#<%= tab %>-tab" id="<%= tab %>-tab-link"><%= title %></a>
+        </li>
+        <% end %>
+    </ul>
+    <% tabs.each do |t| %>
+    <div id="<%= t[:tab] %>-tab" class ="tab">
+        <%= render t[:render] %>
+    </div>
+    <% end %>
+</div>

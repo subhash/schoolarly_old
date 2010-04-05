@@ -17,4 +17,19 @@ module ApplicationHelper
     persons=['schools','teachers','students']
     return controller.action_name == 'show' && persons.include?(controller.controller_name)
   end
+  
+  def render_tabs    
+    tabbifier = Object.new  
+    
+    class <<tabbifier
+      attr_accessor :tabs
+      def tab(tab, args)
+        @tabs ||= []
+        args[:tab] = tab
+        @tabs << args
+      end
+    end
+    yield tabbifier if block_given?
+    concat(render :partial => "/common/tabs", :object => tabbifier.tabs)
+  end
 end
