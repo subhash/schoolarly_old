@@ -33,11 +33,13 @@ ActiveRecord::Schema.define(:version => 20100331145851) do
     t.datetime "end_time"
     t.boolean  "all_day"
     t.integer  "event_series_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "events", ["event_series_id"], :name => "event_series_id"
+  add_index "events", ["user_id"], :name => "user_id"
 
   create_table "events_users", :id => false, :force => true do |t|
     t.integer  "event_id",   :null => false
@@ -119,6 +121,9 @@ ActiveRecord::Schema.define(:version => 20100331145851) do
     t.datetime "created_at",                                       :null => false
   end
 
+  add_index "mail", ["user_id"], :name => "user_id"
+  add_index "mail", ["conversation_id"], :name => "conversation_id"
+
   create_table "messages", :force => true do |t|
     t.text     "body"
     t.string   "subject",         :default => ""
@@ -129,10 +134,15 @@ ActiveRecord::Schema.define(:version => 20100331145851) do
     t.datetime "created_at",                         :null => false
   end
 
+  add_index "messages", ["sender_id"], :name => "sender_id"
+  add_index "messages", ["conversation_id"], :name => "conversation_id"
+
   create_table "messages_recipients", :id => false, :force => true do |t|
     t.integer "message_id",   :null => false
     t.integer "recipient_id", :null => false
   end
+
+  add_index "messages_recipients", ["recipient_id"], :name => "recipient_id"
 
   create_table "papers", :force => true do |t|
     t.integer  "klass_id"
@@ -163,24 +173,6 @@ ActiveRecord::Schema.define(:version => 20100331145851) do
   end
 
   add_index "parents", ["student_id"], :name => "student_id"
-
-  create_table "roles", :force => true do |t|
-    t.string   "name",              :limit => 40
-    t.string   "authorizable_type", :limit => 40
-    t.integer  "authorizable_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "roles_users", :id => false, :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "roles_users", ["user_id"], :name => "user_id"
-  add_index "roles_users", ["role_id"], :name => "role_id"
 
   create_table "schoolarly_admins", :force => true do |t|
     t.datetime "created_at"
@@ -282,6 +274,7 @@ ActiveRecord::Schema.define(:version => 20100331145851) do
   end
 
   add_foreign_key "events", ["event_series_id"], "event_series", ["id"], :name => "events_ibfk_1"
+  add_foreign_key "events", ["user_id"], "users", ["id"], :name => "events_ibfk_2"
 
   add_foreign_key "events_users", ["event_id"], "events", ["id"], :name => "events_users_ibfk_1"
   add_foreign_key "events_users", ["user_id"], "users", ["id"], :name => "events_users_ibfk_2"
@@ -298,6 +291,14 @@ ActiveRecord::Schema.define(:version => 20100331145851) do
 
   add_foreign_key "leave_requests", ["parent_id"], "users", ["id"], :name => "leave_requests_ibfk_1"
 
+  add_foreign_key "mail", ["user_id"], "users", ["id"], :name => "mail_ibfk_1"
+  add_foreign_key "mail", ["conversation_id"], "conversations", ["id"], :name => "mail_ibfk_2"
+
+  add_foreign_key "messages", ["sender_id"], "users", ["id"], :name => "messages_ibfk_1"
+  add_foreign_key "messages", ["conversation_id"], "conversations", ["id"], :name => "messages_ibfk_2"
+
+  add_foreign_key "messages_recipients", ["recipient_id"], "users", ["id"], :name => "messages_recipients_ibfk_1"
+
   add_foreign_key "papers", ["klass_id"], "klasses", ["id"], :name => "papers_ibfk_1"
   add_foreign_key "papers", ["subject_id"], "subjects", ["id"], :name => "papers_ibfk_2"
   add_foreign_key "papers", ["teacher_id"], "teachers", ["id"], :name => "papers_ibfk_3"
@@ -306,9 +307,6 @@ ActiveRecord::Schema.define(:version => 20100331145851) do
   add_foreign_key "papers_students", ["paper_id"], "papers", ["id"], :name => "papers_students_ibfk_2"
 
   add_foreign_key "parents", ["student_id"], "students", ["id"], :name => "parents_ibfk_1"
-
-  add_foreign_key "roles_users", ["user_id"], "users", ["id"], :name => "roles_users_ibfk_1"
-  add_foreign_key "roles_users", ["role_id"], "roles", ["id"], :name => "roles_users_ibfk_2"
 
   add_foreign_key "schools_subjects", ["school_id"], "schools", ["id"], :name => "schools_subjects_ibfk_1"
   add_foreign_key "schools_subjects", ["subject_id"], "subjects", ["id"], :name => "schools_subjects_ibfk_2"
