@@ -15,10 +15,7 @@ class UsersController < ApplicationController
         flash[:notice] = 'User was successfully created.'
         format.html { redirect_back_or_default account_url }
         format.js {
-          #render :template => 'users/create_success'}
-          name = @person_type.underscore.pluralize
-          partial_name = "#{name}/#{@person_type.underscore}"
-          render_success :tab => name, :append => {:partial => partial_name, :object => @user.person}
+          render_success :object => @user.person, :insert => {:partial => "#{@person_type.underscore.pluralize}/#{@person_type.underscore}", :object => @user.person} 
         }
       end     
     else

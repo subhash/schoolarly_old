@@ -75,7 +75,9 @@ class StudentsController < ApplicationController
         respond_to do |format|
           format.html { redirect_to(edit_password_reset_url(@user.perishable_token)) }
           format.js {
-            render_success :tab => :students, :append => {:partial => 'students/student', :object => @student}
+            render_success :object => @student, :insert => {:partial => 'students/student', :object => @student} do |page|
+              page << "alert('And I am here')";
+            end
           }
         end     
       end      

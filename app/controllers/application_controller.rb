@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
   
   before_filter :require_user
-   
+  
   def set_active_user(user_id)
     session[:active_user] = user_id
   end
@@ -95,48 +95,75 @@ class ApplicationController < ActionController::Base
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
-
+  
   #Exception Handlers
   
-#  rescue_from Exception do |exception|
-#    case  exception
-#      when ActiveRecord::RecordNotFound 
-#        then flash_and_redirect_back(exception)
-#      when ActiveRecord::StatementInvalid 
-#        then flash_and_redirect_back(exception)
-#      when ActiveRecord::RecordInvalid 
-#        then flash_and_redirect_back(exception)
-#    else
-#      flash_and_redirect_back(exception)
-#    end
-#  end
-#  
-#  def flash_and_redirect_back(exception)
-#    flash[:notice]="Error Occurred: <br /> #{exception.message}"
-#    redirect_to(session[:parent_url] ? session[:parent_url] : request.request_uri)
-#  end
- 
-	def get_users_for_composing(person)
-  # if user == current_user 
+  #  rescue_from Exception do |exception|
+  #    case  exception
+  #      when ActiveRecord::RecordNotFound 
+  #        then flash_and_redirect_back(exception)
+  #      when ActiveRecord::StatementInvalid 
+  #        then flash_and_redirect_back(exception)
+  #      when ActiveRecord::RecordInvalid 
+  #        then flash_and_redirect_back(exception)
+  #    else
+  #      flash_and_redirect_back(exception)
+  #    end
+  #  end
+  #  
+  #  def flash_and_redirect_back(exception)
+  #    flash[:notice]="Error Occurred: <br /> #{exception.message}"
+  #    redirect_to(session[:parent_url] ? session[:parent_url] : request.request_uri)
+  #  end
+  
+  def get_users_for_composing(person)
+    # if user == current_user 
     school =  person.is_a?(School) ? person : person.school
-   	if school
-    	users = User.find_all_by_person_type_and_person_id('Teacher',school.teacher_ids) 
-     	users << User.find_all_by_person_type_and_person_id('Student',school.student_ids)
-  #  	parent_ids = person.school.students.collect do |student|
-  #   	student.parent.id
-  #  	end
-  #  	users << User.find_all_by_person_type_and_person_id('Parent',parent_ids)
-	 	end
-   	return users
-  # end
- 	end
-
+    if school
+      users = User.find_all_by_person_type_and_person_id('Teacher',school.teacher_ids) 
+      users << User.find_all_by_person_type_and_person_id('Student',school.student_ids)
+      #  	parent_ids = person.school.students.collect do |student|
+      #   	student.parent.id
+      #  	end
+      #  	users << User.find_all_by_person_type_and_person_id('Parent',parent_ids)
+    end
+    return users
+    # end
+  end
+  
   def render_failure(args)
     render :template => '/render_failure', :locals => args
   end
   
-  def render_success(args)
+  def render_success_old(args)
     render :template => '/render_success', :locals => args
   end
- 
+  
+  def render_success(args)
+    if(args[:object])
+      obj = args[:object]
+      object_id = "#{obj.class.name.downcase}-#{obj.id}"
+      class_id = "#{obj.class.name.downcase.pluralize}"
+    end
+    render(:update) do |page|
+      page << 'closeModalbox();'
+      page << "jQuery('##{class_id}-tab-link').click();"
+      if(args[:insert])
+        page.insert_html :bottom, class_id, args[:insert]
+        page[class_id].show
+      end
+      if(args[:replace])
+        page.replace_html object_id, args[:replace]
+      end
+      if(args[:delete])
+        page.delete_html object_id
+      end
+      if block_given?
+        yield page
+      end
+    end
+    
+    
+  end
+  
 end

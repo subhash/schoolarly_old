@@ -11,7 +11,10 @@ class KlassesController < ApplicationController
     if (@school.klasses << @klass)
       respond_to do |format|
         format.js {
-          render_success :tab => :classes, :append => {:partial => 'klasses/klass', :object => @klass }
+          render_success :object => @klass, :insert => {:partial => 'klasses/klass', :object => @klass} do |page|
+            # XXX Hack fix after tab is named correctly
+            page << "jQuery('#classes-tab-link').click();"
+          end
         }
       end 
     else
