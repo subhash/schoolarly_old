@@ -6,7 +6,8 @@ class ConversationsController < ApplicationController
   end
   
   def create
-    sender=User.find(params[:sender])
+    #sender=User.find(params[:sender])
+    sender=current_user
     if params[:receiver]
       @receiver = User.find(params[:receiver])
       @sentMail = sender.send_message(@receiver, params[:message][:body], params[:message][:subject])
