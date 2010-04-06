@@ -1,6 +1,6 @@
 <% render_tabs do |t| %>
 <% t.tab :home, :render => {:partial => '/home', :locals => {:user => @school.user} } %>
-<% t.tab :klasses, :title => 'Haha', :render => {:partial => 'klasses/klasses', :object => @klasses} %>
+<% t.tab :klasses, :title => 'Classes', :render => {:partial => 'klasses/klasses', :object => @klasses} %>
 <% t.tab :students, :render => {:partial => 'students/students', :object => @students } %>
 <% t.tab :teachers, :render => {:partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects} } %>
 <% t.tab :exams, :render => {:partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:school => @school}} %>
