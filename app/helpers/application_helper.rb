@@ -76,6 +76,11 @@ module ApplicationHelper
         tab new_args.merge(args)
       end
       
+      def scores_tab(args={})
+        new_args = {:tab => :scores, :title => 'Scores', :partial => 'scores/scores'} 
+        tab new_args.merge(args)
+      end
+      
     end
     yield tabbifier if block_given?
     concat(render :partial => "/common/tabs", :object => tabbifier.tabs)
