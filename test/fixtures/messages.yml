@@ -1,0 +1,5 @@
+sboa_message:
+  body: sboa_message_body
+  subject: sboa_message_subject
+  sender: sboa
+  conversation: sboa_mail_conv
