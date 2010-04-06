@@ -1,47 +1,43 @@
 <tr id="student_<%= student.id%>">
     <td>
-        <%if student.name %>
-        <%= link_to student.name, student_path(student) %>
-        <%else %>
-        <%= link_to "Profile not created", {:controller => 'user_profiles', :action => 'new', :id => student.user}, {:class => "profile"} %>
-        <%end %>
+        <%= profile_link(student) %>
     </td>
     <td>
-        <%= student.user.email %>
+        <%= student.email %>
     </td>
     <td>
-        <% if student.school %>
-        <input type="button" id="edit_no_<%= student.id %>" class="ui-state-default float_right" value="edit"/><strong id=<%="admission_number_#{student.id}" %>><%=student.admission_number %></strong>
-        <%= in_place_editor "admission_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_admission_number', :id => student},:external_control => "edit_no_#{student.id}"} %>
-        <% end %>
+   		<% if student.school %>
+     		<input type="button" id="edit_no_<%= student.id %>" class="ui-state-default float_right" value="edit"/><strong id=<%="admission_number_#{student.id}" %>><%=student.admission_number %></strong>
+        	<%= in_place_editor "admission_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_admission_number', :id => student},:external_control => "edit_no_#{student.id}"} %>
+   		<% end %>
     </td>
     <% if student.klass %>
-    <td>
-        <%= link_to student.klass.name , klass_path(student.klass) %>
-    </td>
-    <td>
-        <input type="button" id="edit_roll_no_<%= student.id %>" class="ui-state-default float_right" value="edit"/><strong id=<%="roll_number_#{student.id}" %>><%=student.roll_number %></strong>
-        <%= in_place_editor "roll_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_roll_number', :id => student},:external_control => "edit_roll_no_#{student.id}"} %>
-    </td>
-    <td class="ui-state-focus">
-        <%= link_to_remote  student.papers.size, :url => {:controller => 'students', :action => 'edit_papers', :id => student} %>
-    </td>
+    	<td>
+        	<%= link_to student.klass.name , klass_path(student.klass) %>
+    	</td>
+    	<td>
+        	<input type="button" id="edit_roll_no_<%= student.id %>" class="ui-state-default float_right" value="edit"/><strong id=<%="roll_number_#{student.id}" %>><%=student.roll_number %></strong>
+        	<%= in_place_editor "roll_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_roll_number', :id => student},:external_control => "edit_roll_no_#{student.id}"} %>
+    	</td>
+    	<td class="ui-state-focus">
+        	<%= link_to_remote  student.papers.size, :url => {:controller => 'students', :action => 'edit_papers', :id => student} %>
+    	</td>
     <%elsif student.school %>
-    <td class="ui-state-focus">
-        <%= link_to_remote 'Assign Class', :url => edit_student_url(student), :method => :get %>
-    </td>
-    <td>
-    </td>
-    <td>
-    </td>
+    	<td class="ui-state-focus">
+        	<%= link_to_remote 'Assign Class', :url => edit_student_url(student), :method => :get %>
+    	</td>
+    	<td>
+    	</td>
+    	<td>
+    	</td>
     <% else %>
-    <td>
-        Allot to school
-    </td>
-    <td>
-    </td>
-    <td>
-    </td>
+    	<td>
+        	Allot to school
+    	</td>
+    	<td>
+    	</td>
+    	<td>
+    	</td>
     <%end %>
     <td>
         <%= link_to_remote 'Delete', :url => {:controller => 'students',:action => 'remove',:id => student}, :html => {:class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' %>

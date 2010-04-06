@@ -1,8 +1,4 @@
 <% form_remote_tag  :url => {:action => 'update_papers', :id => entity} do |f| %>
-<%if entity.class.name == 'Student'%>
-	<%= collection_multiple_select(:klass, 'paper_ids', papers, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox', :selected_items => entity.paper_ids}) %>
-<%elsif entity.class.name == 'Teacher'%>
-	<%= collection_multiple_select(:klass, 'paper_ids', papers, :id, :desc, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox', :selected_items => entity.paper_ids}) %>
-<%end%>
+	<%= collection_multiple_select(:klass, 'paper_ids', papers, :id, text_method_for(entity), {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox', :selected_items => entity.paper_ids}) %>
 <%= submit_tag "Save" %>
 <%end %>

@@ -29,7 +29,7 @@ module ApplicationHelper
   end
   
   def profile_link(entity)
-    if entity.name
+    if entity.user.user_profile
       return link_to entity.name, entity
     else
       return link_to "Profile not created", {:controller => 'user_profiles', :action => 'new', :id => entity.user}, {:class => "profile"} 

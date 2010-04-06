@@ -125,9 +125,9 @@ class StudentsController < ApplicationController
   def edit_papers
     @student  = Student.find(params[:id])  
     @klass = @student.klass
-    respond_to do |format|          
-      format.js {render :template => 'students/edit_papers'}
-    end  
+    render :update do |page|
+      page.open_dialog("Add/Remove Subjects",:partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @klass.papers })
+    end
   end
   
   def update_papers
