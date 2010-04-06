@@ -1,7 +1,0 @@
-closeModalbox();
-<% if tab %>
-	jQuery("#<%= tab %>-tab-link").click();
-<% end %>
-<% if append %>
-	jQuery("#<%= tab %>").append("<%= escape_javascript(render append) %>").show();
-<% end %>
