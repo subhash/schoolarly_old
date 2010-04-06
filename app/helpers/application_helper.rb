@@ -18,6 +18,16 @@ module ApplicationHelper
     return controller.action_name == 'show' && persons.include?(controller.controller_name)
   end
   
+  def active_controller
+    contexts = ['schools', 'users', 'teachers', 'students', 'klasses']
+    contexts.each do |context|
+      if session[:redirect].include?(context)
+        return context 
+      end
+    end
+    return nil
+  end
+  
   def render_tabs    
     tabbifier = Object.new  
     
