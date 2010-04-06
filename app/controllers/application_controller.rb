@@ -147,7 +147,7 @@ class ApplicationController < ActionController::Base
     end
     render(:update) do |page|
       page << 'closeModalbox();'
-      page << "jQuery('##{class_id}-tab-link').click();"
+      page << "openTab('#{class_id}');"
       if(args[:insert])
         page.insert_html :bottom, class_id, args[:insert]
         page[class_id].show
