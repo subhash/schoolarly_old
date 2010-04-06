@@ -140,29 +140,36 @@ class ApplicationController < ActionController::Base
   end
   
   def render_success(args)
+    collection = args[:collection]
+    collection ||= []
     if(args[:object])
-      obj = args[:object]
-      object_id = "#{obj.class.name.downcase}-#{obj.id}"
-      class_id = "#{obj.class.name.downcase.pluralize}"
+      collection << args[:object]      
     end
     render(:update) do |page|
-      page << 'closeModalbox();'
-      page << "openTab('#{class_id}');"
-      if(args[:insert])
-        page.insert_html :bottom, class_id, args[:insert]
-        page[class_id].show
+      collection.each do |obj|
+        object_id = "#{obj.class.name.downcase}-#{obj.id}"
+        class_id = "#{obj.class.name.downcase.pluralize}"
+        page << 'closeModalbox();'
+        page << "openTab('#{class_id}');"
+        if(args[:insert])
+          args[:insert][:object] = obj
+          page.insert_html :bottom, class_id, args[:insert]
+          page[class_id].show
+        end
+        if(args[:replace])
+          args[:replace][:object] = obj
+          page.replace_html object_id, args[:replace]
+        end
+        if(args[:delete])
+          args[:delete][:object] = obj
+          page.delete_html object_id
+        end
       end
-      if(args[:replace])
-        page.replace_html object_id, args[:replace]
-      end
-      if(args[:delete])
-        page.delete_html object_id
-      end
-      yield page if block_given?
+      yield page if block_given?      
     end
   end
   
-
+  
   
   
   
