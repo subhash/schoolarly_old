@@ -158,7 +158,7 @@ class ApplicationController < ActionController::Base
         end
         if(args[:replace])
           args[:replace][:object] = obj
-          page.replace_html object_id, args[:replace]
+          page.replace object_id, args[:replace]
         end
         if(args[:delete])
           args[:delete][:object] = obj

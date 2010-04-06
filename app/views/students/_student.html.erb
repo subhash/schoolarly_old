@@ -1,4 +1,4 @@
-<tr id="student_<%= student.id%>">
+<tr id="student-<%= student.id%>">
     <td>
         <%= profile_link(student) %>
     </td>
@@ -7,7 +7,7 @@
     </td>
     <td>
    		<% if student.school %>
-     		<input type="button" id="edit_no_<%= student.id %>" class="ui-state-default float_right" value="edit"/><strong id=<%="admission_number_#{student.id}" %>><%=student.admission_number %></strong>
+     		<input type="button" id="edit_no_<%= student.id %>" value="edit"/><strong id=<%="admission_number_#{student.id}" %>><%=student.admission_number %></strong>
         	<%= in_place_editor "admission_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_admission_number', :id => student},:external_control => "edit_no_#{student.id}"} %>
    		<% end %>
     </td>

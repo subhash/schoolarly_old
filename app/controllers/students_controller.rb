@@ -97,8 +97,8 @@ class StudentsController < ApplicationController
   
   def edit
     @student = Student.find(params[:id])
-    respond_to do |format|          
-      format.js {render :template => 'students/edit'}
+    render :update do |page|          
+      page.open_dialog "Add #{@student.name} to class", :partial => 'students/add_to_klass_form', :locals => {:student => @student}
     end  
   end
   
@@ -112,12 +112,16 @@ class StudentsController < ApplicationController
         end
       else
         respond_to do |format|
-          format.js {render :template => 'students/update_success'}
+          format.js {
+            render_success :object => @student, :replace => {:partial => 'students/student'}
+          }
         end 
       end
     else
       respond_to do |format|          
-        format.js {render :template => 'students/update_error'}
+        format.js {
+          render_failure :refresh => {:partial => 'add_to_klass_form', :locals => {:student => @student}}
+        }
       end  
     end
   end
