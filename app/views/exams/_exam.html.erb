@@ -23,7 +23,7 @@
 	    </td>
 		<%if options.include?(:show_score)%>
 			<td class="ui-state-default">
-				<% score = exam.scores.select{|score| score.student == entity.student}.first %>
+				<% score = exam.scores.select{|score| score.student == entity}.first %>
 				<%= score.nil? ? '<i>Unavailable</i>' :  score.score %>
 			</td>
 		<%end%>
