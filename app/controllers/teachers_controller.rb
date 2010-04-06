@@ -38,9 +38,6 @@ class TeachersController < ApplicationController
     if(params[:school_id])
       @school = School.find(params[:school_id])
       @teacher.school = @school
-      @active_cntrlr = 'schools'
-    else
-      @active_cntrlr = 'users'
     end
     begin
       Teacher.transaction do
