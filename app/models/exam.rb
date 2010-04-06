@@ -3,7 +3,7 @@ class Exam < ActiveRecord::Base
   belongs_to :subject
   belongs_to :teacher
   has_many :scores, :dependent => :destroy
-  
+  has_many :students_with_scores, :through => :scores, :source => :student
   has_one :klass, :through => :exam_group
   has_one :exam_type, :through => :exam_group
   
@@ -12,7 +12,7 @@ class Exam < ActiveRecord::Base
   end
   
   def students
-    klass.students.for_subject(subject)
+    students_with_scores + klass.students.for_paper(klass.papers.for_subject(subject.id).id)
   end
   
   def is_destroyable?

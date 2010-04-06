@@ -1,13 +1,17 @@
 class Klass < ActiveRecord::Base
   
-  has_many :papers, :include => :subject, :order => "subjects.name"
+  has_many :papers, :include => :subject, :order => "subjects.name" do
+    def for_subject(subject_id)
+      find :first, :conditions => {:subject_id => subject_id}
+    end
+  end
   has_many :subjects, :through => :papers, :order => "name"
   has_many :teachers, :through => :papers, :uniq => true 
   belongs_to :school
   belongs_to :class_teacher, :class_name => 'Teacher', :foreign_key => 'teacher_id'
   has_many :students  do
-    def for_subject(subject_id)
-      find :all, :include => [:subjects] , :conditions => ['students_subjects.subject_id = ?',subject_id]
+    def for_paper(paper_id)
+      find :all, :include => [:papers] , :conditions => ['papers_students.paper_id = ?',paper_id]
     end  
   end
   has_many :exam_groups
