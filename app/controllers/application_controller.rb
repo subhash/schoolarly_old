@@ -146,7 +146,7 @@ class ApplicationController < ActionController::Base
       collection << args[:object]      
     end
     render(:update) do |page|
-      page << 'closeModalbox();'
+      page << 'closeModalbox();' if args[:insert] or args[:replace]
       class_id = collection.first.class.name.downcase.pluralize        
       page << "openTab('#{class_id}');"
       collection.each do |obj|
@@ -162,16 +162,11 @@ class ApplicationController < ActionController::Base
         end
         if(args[:delete])
           args[:delete][:object] = obj
-          page.delete_html object_id
+          page.remove object_id
         end
       end
       yield page if block_given?      
     end
   end
-  
-  
-  
-  
-  
   
 end
