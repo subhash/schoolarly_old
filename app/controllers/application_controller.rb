@@ -146,11 +146,11 @@ class ApplicationController < ActionController::Base
       collection << args[:object]      
     end
     render(:update) do |page|
+      page << 'closeModalbox();'
+      class_id = collection.first.class.name.downcase.pluralize        
+      page << "openTab('#{class_id}');"
       collection.each do |obj|
-        object_id = "#{obj.class.name.downcase}-#{obj.id}"
-        class_id = "#{obj.class.name.downcase.pluralize}"
-        page << 'closeModalbox();'
-        page << "openTab('#{class_id}');"
+        object_id = "#{obj.class.name.downcase}-#{obj.id}"        
         if(args[:insert])
           args[:insert][:object] = obj
           page.insert_html :bottom, class_id, args[:insert]
