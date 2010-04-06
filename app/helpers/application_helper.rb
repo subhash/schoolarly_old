@@ -23,11 +23,44 @@ module ApplicationHelper
     
     class <<tabbifier
       attr_accessor :tabs
-      def tab(tab, args)
+      def tab(args)
+        if(args[:tab])
+          tab = args[:tab]
+        elsif(args[:title])
+          tab = args[:title].parameterize
+        else
+          raise Error.new
+        end
         @tabs ||= []
-        args[:tab] = tab
-        @tabs << args
+        tab_args = {}
+        tab_args[:tab] = tab
+        tab_args[:title] = args[:title]
+        args.delete(:tab)
+        args.delete(:title)
+        tab_args[:render] = args        
+        @tabs << tab_args
       end
+      
+      def students_tab(args={})
+        new_args = {:tab => :students, :title => 'Students', :partial => 'students/students', :object => @students } 
+        tab new_args.merge(args)
+      end
+      
+      def klasses_tab(args={})
+        new_args = {:tab => :klasses, :title => 'Classes', :partial => 'klasses/klasses', :object => @klasses } 
+        tab new_args.merge(args)
+      end
+      
+      def teachers_tab(args={})
+        new_args = {:tab => :teachers, :title => 'Teachers', :partial => 'teachers/teachers', :object => @teachers } 
+        tab new_args.merge(args)
+      end
+      
+      def exams_tab(args={})
+        new_args = {:tab => :exams, :title => 'Exams', :partial => 'exam_groups/exam_groups', :object => @exam_groups } 
+        tab new_args.merge(args)
+      end
+      
     end
     yield tabbifier if block_given?
     concat(render :partial => "/common/tabs", :object => tabbifier.tabs)
