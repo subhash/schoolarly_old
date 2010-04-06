@@ -1,4 +1,4 @@
-<% remote_form_for :message, :url => {:controller => :conversations, :action => 'create', :sender => current_user, :receiver => user } do |f| %>
+<% remote_form_for :message, :url => {:controller => :conversations, :action => 'create', :receiver => user } do |f| %>
 <table>
     <tr>
         <th>
