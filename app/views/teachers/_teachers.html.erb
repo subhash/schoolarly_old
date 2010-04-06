@@ -24,7 +24,7 @@
         </tr>
     <tbody id="teachers">
         <% teachers.each do |teacher| %>
-			<%= render :partial => 'teachers/teacher', :object => teacher, :locals => {:active_cntrlr => (@active_cntrlr.nil?) ? controller.controller_name : @active_cntrlr} %>
+			<%= render :partial => 'teachers/teacher', :object => teacher %>
          <%end %>
     </tbody>
 </table>
