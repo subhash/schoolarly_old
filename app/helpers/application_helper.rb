@@ -65,6 +65,11 @@ module ApplicationHelper
         new_args = {:tab => :teachers, :title => 'Teachers', :partial => 'teachers/teachers', :object => @teachers } 
         tab new_args.merge(args)
       end
+
+      def papers_tab(args={})
+        new_args = {:tab => :papers, :title => 'Subjects', :partial => 'papers/papers', :object => @papers } 
+        tab new_args.merge(args)
+      end     
       
       def exams_tab(args={})
         new_args = {:tab => :exams, :title => 'Exams', :partial => 'exam_groups/exam_groups', :object => @exam_groups } 
