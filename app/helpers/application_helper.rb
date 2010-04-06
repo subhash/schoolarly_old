@@ -28,6 +28,15 @@ module ApplicationHelper
     return nil
   end
   
+  def profile_link(entity)
+    if entity.name
+      return link_to entity.name, entity
+    else
+      return link_to "Profile not created", {:controller => 'user_profiles', :action => 'new', :id => entity.user}, {:class => "profile"} 
+    end
+  end
+  
+  
   def render_tabs    
     tabbifier = Object.new  
     
@@ -76,13 +85,23 @@ module ApplicationHelper
         tab new_args.merge(args)
       end
       
-      def scores_tab(args={})
-        new_args = {:tab => :scores, :title => 'Scores', :partial => 'scores/scores'} 
-        tab new_args.merge(args)
-      end
-      
     end
     yield tabbifier if block_given?
     concat(render :partial => "/common/tabs", :object => tabbifier.tabs)
   end
+end
+
+module ActionView
+  module Helpers
+    
+    module PrototypeHelper
+      class JavaScriptGenerator
+        module GeneratorMethods         
+          def open_dialog(title, args)
+           call "openModalbox", render(args), title
+          end
+      end
+    end
+  end
+end
 end
