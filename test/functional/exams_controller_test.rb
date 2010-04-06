@@ -20,8 +20,9 @@ class ExamsControllerTest < ActionController::TestCase
   end
   
 #  test "should create exam" do
-#    assert_difference ('@eg.reload.exams.size', 1) do
-#      post :create, :exam_group_id => @eg.to_param, :exam => {:subject_id => @mal.to_param, :venue => 'at klass'}, :entity_class => 'Klass', :entity_id => @one_A
+#    assert_difference('@eg.reload.exams.size', 1) do
+##      post :create, :exam_group_id => @eg.to_param, :exam => {:subject_id => @mal.to_param, :venue => 'at klass'}, :entity_class => 'Klass', :entity_id => @one_A
+#      post :create, :exam_group_id => @eg.to_param, :exam => {:subject_id => @mal.to_param, :venue => 'at klass'}, :entity_class => 'Klass', :entity_id => @eg.klass.id, :subjects=>[{@mal.to_param.to_s => nil}, {@eng.to_param.to_s => nil}]
 #    end
 #    assert_response :success
 #  end
@@ -31,8 +32,8 @@ class ExamsControllerTest < ActionController::TestCase
     assert_response :success
     assert_template 'exams/show'
     assert_breadcrumb(@stTeresas.name, school_path(@stTeresas), 1)
-    assert_breadcrumb( @one_A.name, klass_path(@one_A), 2)
-    assert_breadcrumb( @exam.to_s)
+    assert_breadcrumb(@one_A.name, klass_path(@one_A), 2)
+    assert_breadcrumb(@exam.to_s)
     assert_action_count(0)
   end
 
