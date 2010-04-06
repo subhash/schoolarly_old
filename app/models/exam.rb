@@ -11,6 +11,11 @@ class Exam < ActiveRecord::Base
     return exam_group.exam_type.description + ' for ' + subject.name
   end
   
+  def score_of(student)
+    score = scores.select{|score| score.student == student}.first
+    if score then return score.score end
+  end
+  
   def students
     students_with_scores + klass.students.for_paper(klass.papers.for_subject(subject.id).id)
   end

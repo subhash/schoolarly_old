@@ -23,8 +23,7 @@
 	    </td>
 		<%if options.include?(:show_score)%>
 			<td class="ui-state-default">
-				<% score = exam.scores.select{|score| score.student == entity}.first %>
-				<%= score.nil? ? '<i>Unavailable</i>' :  score.score %>
+				<%=exam.score_of(entity) || '<i>Unavailable</i>'%>
 			</td>
 		<%end%>
 		<%if options.include?(:edit_exam)%>
