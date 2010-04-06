@@ -1,4 +1,3 @@
-<%active_cntrlr=local_assigns[:active_cntrlr] || controller.controller_name%>
 <tr id="teacher_<%= teacher.id%>">
     <td>
         <%= link_to teacher.name, {:controller => :teachers, :action => 'show', :id => teacher} %>
@@ -6,7 +5,7 @@
     <td>
         <%= link_to teacher.user.email, {:controller => 'user_profiles', :action => 'show', :id => teacher.user} %>
     </td>
-	<%if active_cntrlr=='users'%>
+	<%if active_controller != 'schools'%>
     	<%if teacher.school %> 
 			<td><%= link_to teacher.school.name, school_path(teacher.school)%> </td>
 		<%else%>
@@ -25,7 +24,7 @@
 			<%=teacher.subjects.index_by{|subject| subject.name}.keys.join(", ")%>
 		<%end%>
     </td>
-	<%if active_cntrlr != 'users'%>
+	<%if active_controller != 'users'%>
     <td class="ui-state-focus">
 	    <% if teacher.school %>
 	  		<%= link_to_remote 'Add/Remove Papers', :url => {:controller => :teachers, :action => 'edit', :id => teacher}, :method => :get, :html => {:class => "ui-icon ui-icon-pencil", :title => 'Add/Remove Papers'} %>
@@ -33,6 +32,6 @@
     </td>
 	<%end%>
     <td class="ui-state-focus">
-        <%= link_to_remote 'Delete', :url => {:controller => active_cntrlr, :action => 'remove_teacher',:id => teacher}, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'Are you sure?' %>
+        <%= link_to_remote 'Delete', :url => {:controller => active_controller, :action => 'remove_teacher',:id => teacher}, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'Are you sure?' %>
     </td>
 </tr>

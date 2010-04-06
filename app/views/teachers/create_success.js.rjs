@@ -2,7 +2,7 @@ page << "closeDialogs();"
 page << "jQuery('.tabs').tabs('select','#teachers-tab')"
 
 if @teacher.school.teachers.size == 1
-  page.replace_html('teachers-tab', :partial => 'teachers/teachers', :object => @teacher.school.teachers, :locals => {:active_cntrlr => @active_cntrlr})
+  page.replace_html('teachers-tab', :partial => 'teachers/teachers', :object => @teacher.school.teachers)
 else
-  page.insert_html :top, "teachers", :partial => 'teachers/teacher', :object => @teacher, :locals => {:active_cntrlr => @active_cntrlr}  
+  page.insert_html :top, "teachers", :partial => 'teachers/teacher', :object => @teacher 
 end
