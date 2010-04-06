@@ -68,6 +68,7 @@ class TeachersController < ApplicationController
         add_js_page_action(:title => 'Add/Remove Papers',:render => {:partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers}})
       end
       @exam_groups = @teacher.exams.collect{|exam| exam.exam_group}.uniq.group_by{|eg| eg.klass}
+      @teacher_allotments = @teacher.papers.group_by{|p| Subject.find(p.subject_id)}
     else
       add_js_page_action(:title => 'Add to school', :render => {:partial =>'schools/add_to_school_form', :locals => {:entity => @teacher, :schools => School.all}})
     end
