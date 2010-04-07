@@ -86,7 +86,9 @@ class UsersController < ApplicationController
     end
     @teachers=Teacher.all
     respond_to do |format|
-      format.js {render :template => 'teachers/remove'}
+      format.js {
+        render_success :object => @teacher, :delete => {}, :close_modal_box => false, :open_tab => false
+      }
     end 
   end
   
