@@ -11,12 +11,7 @@ class KlassesController < ApplicationController
     if (@school.klasses << @klass)
       respond_to do |format|
         format.js {
-          render_success :object => @klass, :insert => {:partial => 'klasses/klass'} do |page|
-            # XXX Hack fix after tab is named correctly
-            page.replace_html 'exams-tab', :partial => 'exam_groups/exam_groups', :object => @klass.school.exam_groups, :locals => {:school => @klass.school }
-            page << "bindAccordion();"
-            page << "jQuery('#classes-tab-link').click();"
-          end
+          render_success :object => @klass, :insert => {:partial => 'klasses/klass'} 
         }
       end 
     else
