@@ -15,14 +15,6 @@ two_B:
   #year: 2009
   teacher_id: 2
 
-# not valid anymore
-#historical_two_B:
-#  level: "2"
-#  division: B
-#  school: st_teresas
-#  #year: 2007
-#  teacher_id: 2
-
 four_D:
   level: "4"
   division: D
