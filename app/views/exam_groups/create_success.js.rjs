@@ -1,8 +1,0 @@
-page << "closeDialogs();"
-page << "jQuery('.tabs').tabs('select','#exams-tab')"
-div_name="exams-tab"
-if @klass.exam_groups.size == 1
-  page.replace_html(div_name, :partial => 'exam_groups/exam_group', :object => @exam_group, :locals => {:options => get_show_options(@klass), get_symbol_for_local(@klass) => @klass})
-else
-  page.insert_html(:top, div_name, :partial => 'exam_groups/exam_group', :object => @exam_group, :locals => {:options => get_show_options(@klass), get_symbol_for_local(@klass) => @klass})
-end

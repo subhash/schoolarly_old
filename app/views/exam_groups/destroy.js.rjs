@@ -1,6 +1,0 @@
-div_name='eg_'+params[:id].to_s
-if @klass.exams.empty?
-  page.replace(div_name, :text => "<blockquote> No exam available.</blockquote>")
-else
-  page.remove div_name
-end

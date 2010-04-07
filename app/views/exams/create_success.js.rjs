@@ -1,9 +1,0 @@
-page << "closeDialogs();"
-page << "jQuery('.tabs').tabs('select','#exams-tab')"
-div_name='eg_' + @exam.exam_group.id.to_s
-entity=Object.const_get(params[:entity_class]).find(params[:entity_id])
-if get_entity_exams(entity, @exam.exam_group).select{|exam| exam.exam_group == @exam.exam_group}.size == 1
-  page.replace(div_name, :partial => "exam_groups/exam_group", :object => @exam.exam_group, :locals => {:options => get_show_options(entity), get_symbol_for_local(entity) => entity})
-else
-  page.insert_html(:bottom, div_name, :partial => 'exams/exam', :object => @exam, :locals => { :options => get_show_options(entity), get_symbol_for_local(entity) => entity})
-end

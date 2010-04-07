@@ -1,2 +1,0 @@
-page.replace_html("main-dialog", :partial =>'exams/edit', :locals => {:exam => @exam, :entity => Object.const_get(params[:entity_class]).find(params[:entity_id])})
-page << "openDialog('main-dialog');"

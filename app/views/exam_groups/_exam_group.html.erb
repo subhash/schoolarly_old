@@ -1,19 +1,14 @@
 <%entity = local_assigns[:school] || local_assigns[:klass] || local_assigns[:student] || local_assigns[:teacher] || local_assigns[:exam]%>
-<%if !render_message_if_empty(exam_group.klass.exam_groups, message_if_empty_exams).nil?%>
-	<%=	render :text => render_message_if_empty(exam_group.klass.exam_groups, message_if_empty_exams)%>
-<%else%>
-	<table id="<%='eg_'+exam_group.id.to_s%>" class="ui-state-default">
+	<table id="<%='examgroup-'+exam_group.id.to_s%>" class="ui-state-default">
 		<%if options.include?(:edit_exam_group) && options.include?(:delete_exam_group)%>
 			<td class="ui-state-focus" style="width:auto;" colspan="9">
 		       	<%=exam_group.exam_type.description + ": " %>
-				<div id="edit_description_<%= exam_group.id %>" class="ui-icon ui-icon-pencil float_right", title='Edit'></div><strong id=<%="description_#{exam_group.id}" %>><%=exam_group.description %></strong>
+				<span id="edit_description_<%= exam_group.id %>" title='Edit'></span><span id=<%="description_#{exam_group.id}" %>><%=exam_group.description %></span>
 	       		<%= in_place_editor "description_#{exam_group.id}" ,{:url => {:controller => 'exam_groups', :action => 'set_exam_group_description', :id => exam_group},:external_control => "edit_description_#{exam_group.id}"} %>
 		   	</td>
 			<td class="ui-state-focus">
 				<% if exam_group.is_destroyable?%>
 					<%= link_to_remote 'Delete', :url => {:controller => :exam_groups, :action => 'destroy', :id => exam_group, :context => entity.class.name.pluralize}, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'All the exams under this will be deleted. Are you sure?' %>
-				<%else%>
-					<span class="ui-icon ui-icon-locked" title = "Delete Not Allowed"></span>
 				<%end%>
 		    </td>
 		<%else%>
@@ -31,5 +26,5 @@
 		<%else %>
 	   		<%= render :partial => 'exams/exams', :object => get_entity_exams(entity, exam_group), :locals => {:exam_group => exam_group, :options => options, get_symbol_for_local(entity) => entity } %>
 		<%end %>
-	<%end%>
+
 </table>

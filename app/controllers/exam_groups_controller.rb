@@ -21,25 +21,28 @@ class ExamGroupsController < ApplicationController
       exam.teacher=Paper.find_by_klass_id_and_subject_id(@klass.id, exam.subject_id).teacher
       exam.save!
     end
+    options = params[:options].collect{|p| p.to_sym}
     respond_to do |format|
-      flash[:notice] = 'Exams were successfully created.'
-      format.js {render :template => 'exam_groups/create_success'}
+      format.js {render_success :object => @exam_group, :insert => {:partial => 'exam_groups/exam_group', :locals => {:options => options, :klass => @klass}}}
     end 
-  rescue Exception => e
-    respond_to do |format|
-      format.js {render :template => 'exam_groups/create_error'}
-    end 
-  end 
+    rescue Exception => e
+      @exam_group=ExamGroup.new(params[:exam_group])
+      @klass=@exam_group.klass
+      @exam_group.subject_ids = params[:exam][:subject_ids]
+      respond_to do |format|          
+        format.js {
+          render_failure :refresh => {:partial => 'exam_groups/new', :locals => {:exam_group => @exam_group, :subjects => @klass.subjects, :klass => @klass, :exam_types => ExamType.all}}
+        }
+      end           
+    end
  
   def destroy
-    @active_tab = :Exams
     exam_group=ExamGroup.find(params[:id])
     @klass=exam_group.klass
     exam_group.destroy
-    respond_to do |format|
-      flash[:notice] = 'Exam group was successfully removed.'
-      format.js {render :template => 'exam_groups/destroy'}
-    end 
+    render :update do |page|
+      page.remove_object(exam_group)
+    end
   end
   
 end

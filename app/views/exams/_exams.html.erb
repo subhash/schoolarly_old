@@ -6,7 +6,7 @@
 	    </td>
 		<%if options.include?(:add_exam)%>
 			<td class="ui-state-focus" >
-				<%= link_to_remote 'Add Exam', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group, :entity_class => entity.class.name, :entity_id => entity}, :html => {:title => 'Add Exam', :class => "ui-icon ui-icon-plus" }%>
+				<%= link_to_remote 'Add Exam', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group, :entity_class => entity.class.name, :entity_id => entity}, :html => {:title => 'Add Exam'}%>
 			</td>
 		<%end%>
 	</tr>		

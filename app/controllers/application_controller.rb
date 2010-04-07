@@ -171,4 +171,19 @@ class ApplicationController < ActionController::Base
     # end
   end
   
+#  def get_dialog_content(args)
+#    collection = args[:collection]
+#    message = get_message_text(args[:message]) || 'No action allowed'
+#    render = args[:render]
+#    return (collection.empty? || render.nil?) ? {:text =>'<blockquote>' + message + '</blockquote>'} : render
+#  end
+#  
+#  def get_message_text(message)
+#    case message
+#      when :message_if_empty_unallotted_papers then 'No more papers to add' 
+#      when :message_if_empty_papers then 'No paper available'
+#      else message
+#    end
+#  end
+  
 end

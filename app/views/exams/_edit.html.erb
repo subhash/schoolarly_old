@@ -1,4 +1,4 @@
-<% remote_form_for exam, :url => {:controller => :exams, :action => 'update', :id => exam, :entity_class => entity.class.name, :entity_id => entity} do |f| %>
+<% remote_form_for exam, :url => {:controller => :exams, :action => 'update', :id => exam, :entity_class => entity.class.name, :entity_id => entity, :options => get_show_options(entity)} do |f| %>
 	<table class="center">
 		<tr>
         	<th><label for="subject">Subject</label></th>
