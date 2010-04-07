@@ -7,7 +7,7 @@ class School < ActiveRecord::Base
       find :all, :conditions => {:klass_id => nil}
     end
   end
-  has_many :exam_groups, :through => :klasses
+  #has_many :exam_groups, :through => :klasses
   has_many :papers, :through => :klasses
   has_many :unallotted_papers, :source => :papers, :through => :klasses, :conditions => ['papers.teacher_id IS NULL']
 
@@ -19,4 +19,10 @@ class School < ActiveRecord::Base
     read_attribute(:name) || user.name
   end
   
+  def exam_groups
+    return  klasses.each_with_object({}) do |klass, hash|
+              hash[klass] = klass.exam_groups
+            end
+  end
+
 end

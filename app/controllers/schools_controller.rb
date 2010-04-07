@@ -29,7 +29,7 @@ class SchoolsController < ApplicationController
       add_js_page_action(:title => 'Compose Message', :render => {:partial => 'conversations/new_form', :locals => {:users => @users.flatten, :mail => Mail.new()}})
     end
     @klasses = @school.klasses.group_by{|klass|klass.level}
-    @exam_groups = @school.exam_groups.group_by{|eg| Klass.find(eg.klass_id)}
+    @exam_groups = @school.exam_groups
     @students = @school.students
     @teachers = @school.teachers
     session[:redirect] = request.request_uri
