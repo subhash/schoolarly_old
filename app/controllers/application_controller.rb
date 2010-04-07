@@ -68,16 +68,25 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  
+  # :object or :collection
+  # :insert or :replace or :delete
+  # (optional, default - true) :close_modal_box => false
+  # {optional, default - true} :open_tab => false
+  #
+  
   def render_success(args)
+    args[:close_modal_box] ||= true
+    args[:open_tab] ||= true
     collection = args[:collection]
     collection ||= []
     if(args[:object])
       collection << args[:object]      
     end
     render(:update) do |page|
-      page << 'closeModalbox();' if args[:insert] or args[:replace]
-      class_id = collection.first.class.name.downcase.pluralize        
-      page << "openTab('#{class_id}');"
+      class_id = collection.first.class.name.downcase.pluralize
+      page << 'closeModalbox();' if args[:close_modal_box]
+      page << "openTab('#{class_id}');" if args[:open_tab]
       collection.each do |obj|
         object_id = "#{obj.class.name.downcase}-#{obj.id}"        
         if(args[:insert])
@@ -93,7 +102,7 @@ class ApplicationController < ActionController::Base
           args[:delete][:object] = obj
           page.remove object_id
         end
-      end
+      end      
       yield page if block_given?      
     end
   end
