@@ -79,7 +79,7 @@ class KlassesController < ApplicationController
     end
     @klass.save!
     render_success :collection => @new_students, :insert => {:position => :top , :partial => 'students/student'} do |page|
-      page.replace_html 'add-students-dialog', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @klass.school.students.not_enrolled}
+      page.replace_action 'Add Students', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @klass.school.students.not_enrolled}
     end
   end
   

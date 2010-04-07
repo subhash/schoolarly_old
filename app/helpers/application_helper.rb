@@ -124,6 +124,10 @@ module ActionView
            replace css_id(obj), args   
          end
          
+         def replace_action(title, args)
+           replace "add-students", :partial => '/common/action', :locals => {:title => title, :args => args}
+         end
+         
          private
          def css_id(obj)
            "#{obj.class.name.downcase}-#{obj.id}"

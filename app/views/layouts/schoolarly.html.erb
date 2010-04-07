@@ -56,7 +56,7 @@
                 <% @js_page_actions ||= [] %>
                 <% @js_page_actions.each do |action| %>
                 <li>
-                    <%= link_to_function action[:title],  "openModalbox('#{escape_javascript(render action[:render])}', '#{action[:title]}')" %>
+                    <%= render :partial => '/common/action', :locals => {:title => action[:title], :args => action[:render]}%>
                 </li>
                 <% end %>
                 <%if is_messageable? %>
