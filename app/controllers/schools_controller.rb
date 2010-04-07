@@ -119,7 +119,9 @@ class SchoolsController < ApplicationController
     @school.save!
     @teachers=@school.teachers
     respond_to do |format|
-      format.js {render :template => 'teachers/remove'}
+      format.js {
+        render_success :object => @teacher, :delete => {}
+      }
     end 
   end
   
