@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
   
   def render_failure(args)
     render :update do |page|
-      refreshModalbox("#{ escape_javascript(render refresh) }")
+      page << "refreshModalbox('#{ escape_javascript(render args[:refresh]) }')"
     end
   end
   
