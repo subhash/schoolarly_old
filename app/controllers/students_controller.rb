@@ -75,9 +75,7 @@ class StudentsController < ApplicationController
         respond_to do |format|
           format.html { redirect_to(edit_password_reset_url(@user.perishable_token)) }
           format.js {
-            render_success :object => @student, :insert => {:partial => 'students/student', :object => @student} do |page|
-              page << "alert('And I am here')";
-            end
+            render_success :object => @student, :insert => {:partial => 'students/student', :object => @student} 
           }
         end     
       end      
@@ -150,23 +148,23 @@ class StudentsController < ApplicationController
     end
   end
   
-  def remove
-    @student = Student.find(params[:id])
-    @klass = @student.klass
-    @school = @student.school
-    @student.papers.delete_all
-    @student.klass = nil
-    @student.save!
-    if session[:redirect].include?('school')
-      @student.school = nil
-      @student.save!
-      respond_to do |format|
-        format.js {render :template => 'schools/remove_student'}
-      end 
-    else    
-      respond_to do |format|
-        format.js {render :template => 'klasses/remove_student'}
-      end 
-    end
-  end
+#  def remove
+#    @student = Student.find(params[:id])
+#    @klass = @student.klass
+#    @school = @student.school
+#    @student.papers.delete_all
+#    @student.klass = nil
+#    @student.save!
+#    if session[:redirect].include?('school')
+#      @student.school = nil
+#      @student.save!
+#      respond_to do |format|
+#        format.js {render :template => 'schools/remove_student'}
+#      end 
+#    else    
+#      respond_to do |format|
+#        format.js {render :template => 'klasses/remove_student'}
+#      end 
+#    end
+#  end
 end

@@ -80,4 +80,15 @@ class KlassesController < ApplicationController
     @klass.save!
   end
   
+  def remove_student
+    @student = Student.find(params[:id])
+    @klass = @student.klass
+    @student.papers.delete_all
+    @student.klass = nil
+    @student.save!
+    respond_to do |format|
+      format.js {render :template => 'klasses/remove_student'}
+    end 
+  end
+  
 end

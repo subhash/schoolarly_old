@@ -1,7 +1,7 @@
 class SchoolsController < ApplicationController
   skip_before_filter :require_user, :only => [:new, :create]
   #permit "creator of Student", :except => :index
-
+  
   
   # GET /schools
   # GET /schools.xml
@@ -105,7 +105,7 @@ class SchoolsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-
+  
   def remove_teacher
     @teacher = Teacher.find(params[:id])
     @school = @teacher.school
@@ -122,6 +122,18 @@ class SchoolsController < ApplicationController
       format.js {
         render_success :object => @teacher, :delete => {}
       }
+    end 
+  end
+  
+  def remove_student
+    @student = Student.find(params[:id])
+    @school = @student.school
+    @student.papers.delete_all
+    @student.klass = nil
+    @student.school = nil
+    @student.save!
+    respond_to do |format|
+      format.js {render :template => 'schools/remove_student'}
     end 
   end
   
