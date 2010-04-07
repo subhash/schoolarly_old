@@ -3,7 +3,7 @@
         <%= profile_link(student) %>
     </td>
     <td>
-        <%= student.email %>
+        <%= link_to student.email, student_path(student)%>
     </td>
     <td>
    		<% if student.school %>
