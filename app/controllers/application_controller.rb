@@ -88,7 +88,8 @@ class ApplicationController < ActionController::Base
       page.open_tab collection.first if args[:open_tab]
       collection.each do |obj|     
         if(args[:insert])
-          page.insert_object obj, args[:insert]
+          args[:insert][:position] ||= :bottom
+          page.insert_object args[:insert][:position], obj, args[:insert]
         end
         if(args[:replace])
           page.replace_object obj, args[:replace]

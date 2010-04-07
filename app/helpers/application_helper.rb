@@ -109,9 +109,9 @@ module ActionView
            call 'openTab', css_class_id(obj)
          end
          
-         def insert_object(obj, args)
+         def insert_object(position, obj, args)
            args[:object] = obj
-           insert_html :bottom, css_class_id(obj), args
+           insert_html position, css_class_id(obj), args
            show css_class_id(obj)
          end
          

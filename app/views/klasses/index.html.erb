@@ -6,9 +6,6 @@
         <th>
             School
         </th>
-        <th>
-            Year
-        </th>
     </tr>
     <% @klasses.each do |klass| %>
     <tr>
@@ -17,9 +14,6 @@
         </td>
         <td>
             <%=link_to klass.school.name, klass.school %>
-        </td>
-        <td>
-            <%=klass.year %>
         </td>
 		<td>
 			<%= link_to "Delete", klass, :method => :delete, :confirm => "Are you sure?" %>
