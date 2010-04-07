@@ -62,6 +62,42 @@ class ApplicationController < ActionController::Base
     @js_page_actions << options
   end
   
+  def render_failure(args)
+    render :update do |page|
+      refreshModalbox("#{ escape_javascript(render refresh) }")
+    end
+  end
+  
+  def render_success(args)
+    collection = args[:collection]
+    collection ||= []
+    if(args[:object])
+      collection << args[:object]      
+    end
+    render(:update) do |page|
+      page << 'closeModalbox();' if args[:insert] or args[:replace]
+      class_id = collection.first.class.name.downcase.pluralize        
+      page << "openTab('#{class_id}');"
+      collection.each do |obj|
+        object_id = "#{obj.class.name.downcase}-#{obj.id}"        
+        if(args[:insert])
+          args[:insert][:object] = obj
+          page.insert_html :bottom, class_id, args[:insert]
+          page[class_id].show
+        end
+        if(args[:replace])
+          args[:replace][:object] = obj
+          page.replace object_id, args[:replace]
+        end
+        if(args[:delete])
+          args[:delete][:object] = obj
+          page.remove object_id
+        end
+      end
+      yield page if block_given?      
+    end
+  end
+  
   private
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
@@ -129,44 +165,6 @@ class ApplicationController < ActionController::Base
     end
     return users
     # end
-  end
-  
-  def render_failure(args)
-    render :template => '/render_failure', :locals => args
-  end
-  
-  def render_success_old(args)
-    render :template => '/render_success', :locals => args
-  end
-  
-  def render_success(args)
-    collection = args[:collection]
-    collection ||= []
-    if(args[:object])
-      collection << args[:object]      
-    end
-    render(:update) do |page|
-      page << 'closeModalbox();' if args[:insert] or args[:replace]
-      class_id = collection.first.class.name.downcase.pluralize        
-      page << "openTab('#{class_id}');"
-      collection.each do |obj|
-        object_id = "#{obj.class.name.downcase}-#{obj.id}"        
-        if(args[:insert])
-          args[:insert][:object] = obj
-          page.insert_html :bottom, class_id, args[:insert]
-          page[class_id].show
-        end
-        if(args[:replace])
-          args[:replace][:object] = obj
-          page.replace object_id, args[:replace]
-        end
-        if(args[:delete])
-          args[:delete][:object] = obj
-          page.remove object_id
-        end
-      end
-      yield page if block_given?      
-    end
   end
   
 end
