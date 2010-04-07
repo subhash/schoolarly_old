@@ -15,7 +15,7 @@ class Teacher < ActiveRecord::Base
   end
 
   has_many :owned_klasses, :class_name => 'Klass'
-  has_many :exams
+  has_many :owned_exams, :class_name => 'Exam'
   
   def name
     return !(user.user_profile.nil?) ? user.user_profile.name : user.email
@@ -23,6 +23,14 @@ class Teacher < ActiveRecord::Base
   
   def email
     return user.email
+  end
+  
+  def exams
+    owned_exams.select{|e| e.klass.school == self.school}  
+  end
+  
+  def exam_groups
+    exams.collect{|exam| exam.exam_group}.uniq.group_by{|eg| eg.klass}
   end
   
 end
