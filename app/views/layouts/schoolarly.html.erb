@@ -11,7 +11,7 @@
         <%= include_jquery_grid_css %>
         <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
         <%=javascript_include_tag 'fullcalendar', 'gcal', 'calendar' %>
-        <%=stylesheet_link_tag "style", 'fullcalendar'%>
+        <%=stylesheet_link_tag "style", 'fullcalendar' %>
     </head>
     <body>
         <!-- Missing: Header with home, logout etc., Footer with about, contact etc,. Flash message box, Breadcrumbs-->
@@ -22,7 +22,11 @@
                         <a href="">Home</a>
                     </li>
                     <li>
-                        <a href="">Login</a>
+                        <% if current_user %>
+                        <%= link_to "Logout, #{current_user.email}", user_session_path,  :method => :delete, :confirm => 'Are you sure you want to logout?' %>
+                        <% else %>
+                        <%= link_to 'Login', new_user_session_path %>
+                        <% end %>
                     </li>
                     <li>
                         <a href="">About</a>
@@ -51,19 +55,19 @@
                 <% end %>
                 <% @js_page_actions ||= [] %>
                 <% @js_page_actions.each do |action| %>
-                <li>                	 
+                <li>
                     <%= link_to_function action[:title],  "openModalbox('#{escape_javascript(render action[:render])}', '#{action[:title]}')" %>
                 </li>
                 <% end %>
-				<%if is_messageable? %>
-				<li>
-					<br />
-					Post an instant message...
-					<div id="post-message">
-						<%=render :partial => 'messages/new_form', :locals => {:user => User.find_by_person_type_and_person_id(controller.controller_name.singularize.camelcase, params[:id])}%>
-					</div>
-				</li>
-				<%end%>
+                <%if is_messageable? %>
+                <li>
+                    <br/>
+                    Post an instant message...
+                    <div id="post-message">
+                        <%=render :partial => 'messages/new_form', :locals => {:user => User.find_by_person_type_and_person_id(controller.controller_name.singularize.camelcase, params[:id])} %>
+                    </div>
+                </li>
+                <%end %>
             </ul>
         </div>
     </body>
