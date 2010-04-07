@@ -1,2 +1,0 @@
-page << "closeDialogs();"
-page.replace 'teacher_' + params[:id].to_s, :partial => 'teachers/teacher', :object => Teacher.find(params[:id]) 

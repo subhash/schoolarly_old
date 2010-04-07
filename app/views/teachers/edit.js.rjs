@@ -1,6 +1,0 @@
-if @papers.empty?
-  args = {:text =>'<blockquote>' + message_if_empty_unallotted_papers + '</blockquote>'}
-else
-  args = {:partial =>'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers}}
-end
-page.open_dialog('Add/Remove Papers', args)
