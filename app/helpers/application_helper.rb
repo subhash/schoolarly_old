@@ -92,16 +92,49 @@ module ApplicationHelper
 end
 
 module ActionView
-  module Helpers
-    
+  module Helpers    
     module PrototypeHelper
       class JavaScriptGenerator
         module GeneratorMethods         
-          def open_dialog(title, args)
-           call "openModalbox", render(args), title
-          end
+          
+         def open_dialog(title, args)
+             call "openModalbox", render(args), title
+         end
+         
+         def close_modal_box
+           call "closeModalbox"
+         end
+         
+         def open_tab(obj)
+           call 'openTab', class_id(obj)
+         end
+         
+         def insert_object(obj, args)
+           args[:object] = obj
+           insert_html :bottom, class_id(obj), args
+           show class_id(obj)
+         end
+         
+         def remove_object(obj)           
+           remove object_id(obj) 
+         end
+         
+         def replace_object(obj, args) 
+           args[:object] = obj
+           replace object_id(obj), args   
+         end
+         
+         private
+         def object_id(obj)
+           "#{obj.class.name.downcase}-#{obj.id}"
+         end
+         
+         def class_id(obj)
+           obj.class.name.downcase.pluralize
+         end
+       
+        end
       end
     end
   end
-end
 end

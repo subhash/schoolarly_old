@@ -84,23 +84,17 @@ class ApplicationController < ActionController::Base
       collection << args[:object]      
     end
     render(:update) do |page|
-      class_id = collection.first.class.name.downcase.pluralize
-      page << 'closeModalbox();' if args[:close_modal_box]
-      page << "openTab('#{class_id}');" if args[:open_tab]
-      collection.each do |obj|
-        object_id = "#{obj.class.name.downcase}-#{obj.id}"        
+      page.close_modal_box if args[:close_modal_box]
+      page.open_tab collection.first if args[:open_tab]
+      collection.each do |obj|     
         if(args[:insert])
-          args[:insert][:object] = obj
-          page.insert_html :bottom, class_id, args[:insert]
-          page[class_id].show
+          page.insert_object obj, args[:insert]
         end
         if(args[:replace])
-          args[:replace][:object] = obj
-          page.replace object_id, args[:replace]
+          page.replace_object obj, args[:replace]
         end
-        if(args[:delete])
-          args[:delete][:object] = obj
-          page.remove object_id
+        if(args[:delete])          
+          page.remove_object obj
         end
       end      
       yield page if block_given?      
