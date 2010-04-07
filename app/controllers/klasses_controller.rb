@@ -11,7 +11,10 @@ class KlassesController < ApplicationController
     if (@school.klasses << @klass)
       respond_to do |format|
         format.js {
-          render_success :object => @klass, :insert => {:partial => 'klasses/klass'} 
+          render_success :object => @klass, :insert => {:partial => 'klasses/klass'} do |page|
+            page.replace_html 'exams-tab', :partial => 'exam_groups/exam_groups', :object => @klass.school.exam_groups, :locals => {:school => @klass.school }
+            page << "bindAccordion();"
+          end
         }
       end 
     else
@@ -36,8 +39,8 @@ class KlassesController < ApplicationController
     else
       @deleted_klass = @klass
       @klass.destroy
-      respond_to do |format|
-        format.js {render :template => 'klasses/delete'}
+      render :update do |page|
+        page.remove_object(@deleted_klass)
       end
     end
   end

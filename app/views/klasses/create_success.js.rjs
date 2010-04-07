@@ -1,6 +1,0 @@
-page << "closeDialogs();"
-page << "jQuery('.tabs').tabs('select','#classes-tab')"
-page.insert_html :bottom, "klasses", :partial => 'klasses/klass', :object => @klass
-page.replace_html 'exams-tab', :partial => 'exam_groups/exam_groups', :object => @klass.school.exam_groups, :locals => {:school => @klass.school }
-page << "bindAccordion();"
-page[:klasses].show

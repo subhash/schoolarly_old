@@ -106,30 +106,30 @@ module ActionView
          end
          
          def open_tab(obj)
-           call 'openTab', class_id(obj)
+           call 'openTab', css_class_id(obj)
          end
          
          def insert_object(obj, args)
            args[:object] = obj
-           insert_html :bottom, class_id(obj), args
-           show class_id(obj)
+           insert_html :bottom, css_class_id(obj), args
+           show css_class_id(obj)
          end
          
          def remove_object(obj)           
-           remove object_id(obj) 
+           self[css_id(obj)].remove 
          end
          
          def replace_object(obj, args) 
            args[:object] = obj
-           replace object_id(obj), args   
+           replace css_id(obj), args   
          end
          
          private
-         def object_id(obj)
+         def css_id(obj)
            "#{obj.class.name.downcase}-#{obj.id}"
          end
          
-         def class_id(obj)
+         def css_class_id(obj)
            obj.class.name.downcase.pluralize
          end
        
