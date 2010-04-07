@@ -10,9 +10,13 @@
 		            <a href="#"><%=klass.name %></a>
 		        </p>
 				<div id = "<%='exams_of_' + klass.id.to_s%>" >
-					<% egs.each do |exam_group| %>
-						<%= render :partial => 'exam_groups/exam_group', :object => exam_group, :locals => {:options => options, get_symbol_for_local(entity) => entity} %>
-					<% end %>
+					<%if !render_message_if_empty(egs, message_if_empty_exam_groups).nil?%>
+						<%=	render :text => render_message_if_empty(egs, message_if_empty_exam_groups)%>
+					<%else%>
+						<% egs.each do |exam_group| %>
+							<%= render :partial => 'exam_groups/exam_group', :object => exam_group, :locals => {:options => options, get_symbol_for_local(entity) => entity} %>
+						<% end %>
+					<%end%>
 				</div>
 	        <% end %>
 	    </div>
