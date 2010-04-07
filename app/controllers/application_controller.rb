@@ -76,8 +76,8 @@ class ApplicationController < ActionController::Base
   #
   
   def render_success(args)
-    args[:close_modal_box] ||= true
-    args[:open_tab] ||= true
+    args[:close_modal_box] = true if args[:close_modal_box].nil? 
+    args[:open_tab] = true if args[:open_tab].nil?
     collection = args[:collection]
     collection ||= []
     if(args[:object])
