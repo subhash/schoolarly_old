@@ -120,7 +120,7 @@ class SchoolsController < ApplicationController
     @teachers=@school.teachers
     respond_to do |format|
       format.js {
-        render_success :object => @teacher, :delete => {}
+        render_success :object => @teacher, :delete => {}, :close_modal_box => false, :open_tab => false
       }
     end 
   end
