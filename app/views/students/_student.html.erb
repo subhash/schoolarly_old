@@ -32,6 +32,6 @@
     	</td>
     <%end %>
     <td>
-        <%= link_to_remote 'Delete', :url => {:controller => 'students',:action => 'remove',:id => student}, :html => {:class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' %>
+        <%= link_to_remote 'Delete', :url => {:controller => active_controller,:action => 'remove_student',:id => student}, :html => {:class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' %>
     </td>
 </tr>
