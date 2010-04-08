@@ -1,0 +1,25 @@
+<% remote_form_for exam_group, :url => {:controller => :exam_groups, :action => 'create', :options => get_show_options(klass)} do |f| %>
+<%= f.error_messages%>
+	<table class="center">
+		<tbody>
+			<tr>
+    	        <th><label for="exam_type">Exam Type</label></th>
+            	<td>
+                	<%= f.select(:exam_type_id, options_from_collection_for_select(exam_types,:id,:name) ) %>
+            	</td>
+        	</tr>
+            <tr>
+            	<th><label for="subject">Subject</label></th>
+				<td align="left">
+					<%= collection_multiple_select(:exam, 'subject_ids', subjects, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox', :disabled => []}) %>
+				</td>				
+            </tr>
+		</tbody>
+	</table>
+
+	<%=f.hidden_field :klass_id, :value => klass.id%>
+
+	<div class="center">
+		<%= submit_tag "Add" %>
+	</div>
+<%end %>
