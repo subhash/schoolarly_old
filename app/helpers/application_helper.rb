@@ -36,7 +36,6 @@ module ApplicationHelper
     end
   end
   
-  
   def render_tabs    
     tabbifier = Object.new  
     
