@@ -8,14 +8,8 @@ class PaperTest < ActiveSupport::TestCase
     @klass = klasses(:two_B)
   end
   
-  test "school-paper-relationship" do
-    #    @klass.papers << Paper.new(:subject => @mal)
-    #    @klass.subjects <<  Paper.new(:subject => @eng)
-    #    assert_equal 2,@school.papers.size
-  end
-  
   test "klass-paper-relationship" do
-    assert_difference('@klass.papers.size') do
+    assert_difference '@klass.papers.size' do
       @klass.papers << Paper.new(:subject => @mal)
     end
     @klass.papers <<  Paper.new(:subject => @eng)
@@ -23,6 +17,16 @@ class PaperTest < ActiveSupport::TestCase
     assert @klass.subjects.include?(@mal)
     @klass.papers << Paper.new(:subject => @eng)
     assert_raise ActiveRecord::RecordInvalid do
+      @klass.save!
+    end
+  end
+  
+  test "invalid papers" do
+    assert_raise ActiveRecord::RecordInvalid do
+      Paper.new.save!
+    end        
+    assert_raise ActiveRecord::RecordInvalid do
+      @klass.papers << Paper.new
       @klass.save!
     end
   end
