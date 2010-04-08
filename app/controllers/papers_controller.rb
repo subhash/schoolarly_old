@@ -12,9 +12,6 @@ class PapersController < ApplicationController
   def edit_students
     @paper  = Paper.find(params[:id])  
     @klass = @paper.klass
-    respond_to do |format|          
-      format.js {render :template => 'papers/edit_students'}
-    end  
   end
   
   def add_students
