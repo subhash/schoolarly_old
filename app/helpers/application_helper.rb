@@ -101,8 +101,12 @@ module ActionView
              call "openModalbox", render(args), title
          end
          
-         def close_modal_box
+         def close_dialog
            call "closeModalbox"
+         end
+         
+         def refresh_dialog(args)
+           call "refreshModalbox", render(args)
          end
          
          def open_tab(obj)
@@ -125,7 +129,7 @@ module ActionView
          end
          
          def replace_action(title, args)
-           replace "add-students", :partial => '/common/action', :locals => {:title => title, :args => args}
+           replace title.parameterize.to_s, :partial => '/common/action', :locals => {:title => title, :args => args}
          end
          
          private

@@ -1,1 +1,1 @@
-<%= link_to_function title,  "openModalbox('#{escape_javascript(render args)}', '#{title}')", :id => title.parameterize %>
+<%= link_to_function (title, nil, :id => title.parameterize) { |page|  page.open_dialog(title, args) } %>

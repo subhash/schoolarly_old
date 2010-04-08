@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
   
   def render_failure(args)
     render :update do |page|
-      page << "refreshModalbox('#{ escape_javascript(render args[:refresh]) }')"
+      page.refresh_dialog args[:refresh]
     end
   end
   
@@ -84,7 +84,7 @@ class ApplicationController < ActionController::Base
       collection << args[:object]      
     end
     render(:update) do |page|
-      page.close_modal_box if args[:close_modal_box]
+      page.close_dialog if args[:close_modal_box]
       page.open_tab collection.first if args[:open_tab]
       collection.each do |obj|     
         if(args[:insert])
