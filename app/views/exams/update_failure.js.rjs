@@ -1,0 +1,2 @@
+args = {:partial => 'exams/edit_exam_form', :locals => {:exam => @exam, :entity => @entity}}
+page.refresh_dialog(args)

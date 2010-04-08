@@ -1,0 +1,2 @@
+args = {:partial => 'exams/new_exam_form', :locals => {:exam => @exam, :subjects => @subjects, :entity => @entity}}
+page.open_dialog('Add Exam', args)
