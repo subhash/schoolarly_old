@@ -1,7 +1,7 @@
-page << "closeDialogs();"
-page << "jQuery('.tabs').tabs('select','#students-tab')"
+page.close_dialog
+page.open_tab(@new_students.first)
 @new_students.each do |student|
-  page.insert_html :top, "students", :partial => 'students/student', :object => student
+  page.insert_object :top, student, :partial => 'students/student'
 end
-page.replace_html 'add-students-dialog', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @klass.school.students.not_enrolled}
+page.replace_action 'Add Students', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @klass.school.students.not_enrolled}
 

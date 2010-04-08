@@ -28,9 +28,6 @@ class KlassesController < ApplicationController
     else
       @deleted_klass = @klass
       @klass.destroy
-      render :update do |page|
-        page.remove_object(@deleted_klass)
-      end
     end
   end
   
@@ -67,10 +64,6 @@ class KlassesController < ApplicationController
       student.save!      
     end
     @klass.save!
-    render_success :collection => @new_students, :insert => {:position => :top , :partial => 'students/student'} do |page|      
-      page.replace_action 'Add Students', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @klass.school.students.not_enrolled}
-    end
-    
   end
   
   def remove_student
@@ -79,9 +72,6 @@ class KlassesController < ApplicationController
     @student.papers.delete_all
     @student.klass = nil
     @student.save!
-    respond_to do |format|
-      format.js {render :template => 'klasses/remove_student'}
-    end 
   end
   
 end
