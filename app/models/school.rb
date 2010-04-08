@@ -12,7 +12,8 @@ class School < ActiveRecord::Base
   has_many :unallotted_papers, :source => :papers, :through => :klasses, :conditions => ['papers.teacher_id IS NULL']
 
   def subjects_for_klass(klass_id)
-    self.papers.collect{|paper| (paper.klass.id==klass_id) ?  paper.subject : nil}
+    #self.papers.collect{|paper| (paper.klass.id==klass_id) ?  paper.subject : nil}.compact
+    self.papers.select{|paper| (paper.klass.id==klass_id) }.collect{|p| p.subject}
   end
     
   def name
