@@ -113,7 +113,7 @@ module ActionView
          end
          
          def replace_tab(obj, args)
-           replace css_class_id + "-tab", args
+           replace_html css_class_id(obj) + "-tab", args
            open_tab(obj)
          end
          
