@@ -1,4 +1,4 @@
-<% remote_form_for exam, :url => {:controller => :exams, :action => 'create', :exam_group_id => exam.exam_group_id, :entity_class => entity.class.name, :entity_id => entity, :subjects => subjects, :options => get_show_options(entity) } do |f| %>
+<% remote_form_for exam, :url => {:controller => :exams, :action => 'create', :exam_group_id => exam.exam_group_id, :entity_class => entity.class.name, :entity_id => entity, :subjects => subjects } do |f| %>
 <%= f.error_messages%>
 	<table class="center">
 		<tbody>

@@ -16,7 +16,6 @@ class ExamGroupsController < ApplicationController
     @klass=@exam_group.klass
     @exam_group.description = @exam_group.exam_type.description + ' for ' + @klass.name
     @exam_group.subject_ids = params[:exam][:subject_ids]
-    @options = params[:options].collect{|p| p.to_sym}
     ExamGroup.transaction do
       @exam_group.save!
       @exam_group.exams.each do |exam|
