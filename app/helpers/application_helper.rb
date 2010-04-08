@@ -112,6 +112,11 @@ module ActionView
            call 'openTab', css_class_id(obj)
          end
          
+         def replace_tab(obj, args)
+           replace css_class_id + "-tab", args
+           open_tab(obj)
+         end
+         
          def insert_object(position, obj, args)
            args[:object] = obj
            insert_html position, css_class_id(obj), args
