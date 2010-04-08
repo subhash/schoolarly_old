@@ -9,20 +9,9 @@ class KlassesController < ApplicationController
   def create
     @klass = Klass.new(params[:klass])
     if (@school.klasses << @klass)
-      respond_to do |format|
-        format.js {
-          render_success :object => @klass, :insert => {:partial => 'klasses/klass'} do |page|
-            page.replace_html 'exams-tab', :partial => 'exam_groups/exam_groups', :object => @klass.school.exam_groups, :locals => {:school => @klass.school }
-            page << "bindAccordion();"
-          end
-        }
-      end 
+      render :template => 'klasses/create_success'
     else
-      respond_to do |format|          
-        format.js {
-          render_failure :refresh => {:partial => 'new_klass_form', :locals => {:klass => @klass, :school => @school}}
-        }
-      end  
+      render :template => 'klasses/create_failure'  
     end    
   end
   
