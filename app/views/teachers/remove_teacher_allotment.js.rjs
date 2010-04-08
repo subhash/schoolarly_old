@@ -1,0 +1,3 @@
+page.remove_object(@paper)
+args = {:partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers}}
+page.replace_action('Add/Remove Papers', args)

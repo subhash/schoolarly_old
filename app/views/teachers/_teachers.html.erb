@@ -1,7 +1,5 @@
-<%if !render_message_if_empty(teachers, message_if_empty_teachers).nil?%>
-	<%=	render :text => render_message_if_empty(teachers, message_if_empty_teachers)%>
-<%else%>
-	<table class="ui-state-default" border="1px">
+<table class="ui-state-default" border="1px">
+	<thead>
         <tr>
             <th>
                 Name
@@ -21,10 +19,10 @@
 				Subjects
 			</th>
         </tr>
+	</thead>
     <tbody id="teachers">
         <% teachers.each do |teacher| %>
 			<%= render :partial => 'teachers/teacher', :object => teacher %>
          <%end %>
     </tbody>
 </table>
-<%end%>

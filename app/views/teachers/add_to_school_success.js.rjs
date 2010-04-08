@@ -1,3 +1,2 @@
 page.close_dialog
-page.open_tab(Paper)
 page.replace_object(@teacher, :partial => 'teachers/teacher')

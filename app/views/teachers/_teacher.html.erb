@@ -3,21 +3,21 @@
     	<%= profile_link(teacher) %>
     </td>
     <td>
-        <%= link_to teacher.email, teacher_path(teacher) %>
+        <%= link_to teacher.email, teacher %>
     </td>
 	<%if active_controller != 'schools'%>
     	<%if teacher.school %> 
-			<td><%= link_to teacher.school.name, school_path(teacher.school)%> </td>
+			<td><%= link_to teacher.school.name, teacher.school%> </td>
 		<%else%>
 			<td align="center" class="ui-state-focus" colspan=3>
-				<%= link_to_remote 'Allot to School', :url => {:controller => 'teachers', :action => 'show_add_to_school_form', :entity_class => 'Teacher', :entity_id => teacher}, :html => {:class => ""}%>
+				<%= link_to_remote 'Allot to School', :url => {:controller => 'teachers', :action => 'show_add_to_school_form', :entity_class => 'Teacher', :entity_id => teacher}, :html => {:title => 'Allot to School'}%>
 			</td>
 		<%end%>
 	<%end%>
 	<%if teacher.school %>
 		<td>
        		<%teacher.owned_klasses.each do |klass| %>
-       			<%= link_to klass.name + "  ", {:controller => :klasses, :action => 'show', :id=>klass} %>
+       			<%= link_to klass.name + "  ", klass %>
        		<%end %>
     	</td>
 		<td>
@@ -27,12 +27,11 @@
     	</td>
 		<%if active_controller != 'users'%>
     		<td class="ui-state-focus">
-	      		<%= link_to_remote 'Add/Remove Papers', :url => {:controller => :teachers, :action => 'edit', :id => teacher}, :method => :get, :html => {:class => "ui-icon ui-icon-pencil", :title => 'Add/Remove Papers'} %>
+	      		<%= link_to_remote 'Add/Remove Papers', :url => {:controller => 'teachers', :action => 'edit_papers', :id => teacher}, :method => :get, :html => {:title => 'Add/Remove Papers'} %>
 			</td>
 		<% end %>
-
 	<%end%>
     <td class="ui-state-focus">
-        <%= link_to_remote 'Delete', :url => {:controller => active_controller, :action => 'remove_teacher',:id => teacher}, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'Are you sure?' %>
+        <%= link_to_remote 'Delete', :url => {:controller => active_controller, :action => 'remove_teacher',:id => teacher}, :html => {:title => 'Delete'}, :confirm => 'Are you sure?' %>
     </td>
 </tr>

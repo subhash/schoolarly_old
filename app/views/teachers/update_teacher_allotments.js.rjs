@@ -1,0 +1,5 @@
+page.close_dialog
+page.replace_tab(Exam, :partial => 'exam_groups/exam_groups', :object => @exam_groups, :locals => {:teacher => @teacher})
+page.replace_tab(Paper, :partial => 'teacher_allotments/teacher_allotments', :object => @teacher_allotments)
+args = {:partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers}}
+page.replace_action('Add/Remove Papers', args)

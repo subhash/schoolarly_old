@@ -6,6 +6,6 @@
         <%= teacher_allotment.students.size%>
     </td>
 	<td class="ui-state-focus">
-        <%= link_to_remote "Delete", :url => {:controller => 'teachers', :action => 'remove_paper', :id => teacher_allotment}, :html => {:class => "ui-icon ui-icon-trash", :title => 'Remove Allotment'}, :confirm => 'Are you sure?' %>
+        <%= link_to_remote "Delete", :url => {:controller => 'teachers', :action => 'remove_teacher_allotment', :id => teacher_allotment}, :html => {:title => 'Remove Allotment'}, :confirm => 'Are you sure?' %>
     </td>
 </tr>

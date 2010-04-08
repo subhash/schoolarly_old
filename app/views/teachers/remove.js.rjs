@@ -1,5 +1,1 @@
-div_name='teacher_' + @teacher.id.to_s
-page.remove div_name
-if @teachers.empty?
-  page.replace_html('teachers-tab', :partial => 'teachers/teachers', :object => @teachers, :locals => {:subjects => @subjects})
-end
+page.remove_object(@teacher)
