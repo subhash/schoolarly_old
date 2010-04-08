@@ -1,9 +1,8 @@
 <%entity = local_assigns[:school] || local_assigns[:klass] || local_assigns[:student] || local_assigns[:teacher] || local_assigns[:exam]%>
-<%if !render_message_if_empty(exams, message_if_empty_exams).nil?%>
+
+<%if exams.nil? || exams.empty?%>
 	<tr>
-	    <td class="ui-state-default" style="width:auto;" colspan="8">
-            <%=	render :text => render_message_if_empty(exams, message_if_empty_exams)%>
-	    </td>
+	    <td class="ui-state-default" style="width:auto;" colspan="8"></td>
 		<%if options.include?(:add_exam)%>
 			<td class="ui-state-focus" >
 				<%= link_to_remote 'Add Exam', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group, :entity_class => entity.class.name, :entity_id => entity}, :html => {:title => 'Add Exam'}%>
