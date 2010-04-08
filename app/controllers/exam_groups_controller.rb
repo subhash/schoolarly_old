@@ -30,12 +30,8 @@ class ExamGroupsController < ApplicationController
   end
  
   def destroy
-    exam_group=ExamGroup.find(params[:id])
-    @klass=exam_group.klass
-    exam_group.destroy
-    render :update do |page|
-      page.remove_object(exam_group)
-    end
+    @exam_group=ExamGroup.find(params[:id])
+    @exam_group.destroy
   end
   
 end
