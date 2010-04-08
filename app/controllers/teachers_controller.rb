@@ -1,8 +1,9 @@
 class TeachersController < ApplicationController
+
   skip_before_filter :require_user, :only => [:new, :create]
   protect_from_forgery :only => [:destroy]
    
-  before_filter :find_teacher, :only => [:show, :edit, :update_papers, :add_to_school]
+  before_filter :find_teacher, :only => [:show, :edit_papers, :update_papers, :add_to_school]
   
   def set_up
     session[:redirect] = request.request_uri
@@ -15,7 +16,7 @@ class TeachersController < ApplicationController
     if @user == current_user then label = 'Edit Profile'; action = 'edit' else label = 'View Profile'; action = 'show' end
     add_page_action(label, {:controller => :user_profiles, :action => action, :id => @teacher.user})
     @users=get_users_for_composing(@teacher)
-    if !@users.nil? # && @user==current_user
+    if !@users.nil? # && @user==current_user TODO
       add_js_page_action(:title => 'Compose Message', :render => {:partial => 'conversations/new_form', :locals => {:users => @users.flatten, :mail => Mail.new()}})
     end
   end
@@ -26,11 +27,6 @@ class TeachersController < ApplicationController
     end
   end  
      
-  def new
-    @teacher = Teacher.new
-    @user = User.new
-  end 
-  
   def create
     @teacher = Teacher.new(params[:teacher])
     @user = User.new(params[:user])
@@ -43,19 +39,10 @@ class TeachersController < ApplicationController
       Teacher.transaction do
         @teacher.save!
         @user.invite!
-        respond_to do |format|
-          flash[:notice] = 'Teacher was successfully created.'
-          format.html { redirect_to(edit_password_reset_url(@user.perishable_token)) }
-          format.js {render :template => 'teachers/create_success'}
-        end 
+        render :template => 'teachers/create_success'
       end       
     rescue Exception => e
-      @teacher = Teacher.new(params[:teacher])
-      @teacher.user = @user      
-      respond_to do |format|          
-        format.html { render :action => 'new' }
-        format.js {render :template => 'teachers/create_error'}
-      end
+      render :template => 'teachers/create_failure'     
     end
   end
     
@@ -64,58 +51,54 @@ class TeachersController < ApplicationController
     add_breadcrumb(@teacher.name)
     if @teacher.school
       @papers=@teacher.school.unallotted_papers + @teacher.papers
-      if !@papers.empty?
-        add_js_page_action(:title => 'Add/Remove Papers',:render => {:partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers}})
-      end
-      @exam_groups = @teacher.exams.collect{|exam| exam.exam_group}.uniq.group_by{|eg| eg.klass}
+      add_js_page_action(:title => 'Add/Remove Papers',:render => {:partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers}})
       @teacher_allotments = @teacher.papers.group_by{|p| Subject.find(p.subject_id)}
     else
       add_js_page_action(:title => 'Add to school', :render => {:partial =>'schools/add_to_school_form', :locals => {:entity => @teacher, :schools => School.all}})
     end
+    @exam_groups = @teacher.exams.collect{|exam| exam.exam_group}.uniq.group_by{|eg| eg.klass}
   end
   
   def add_to_school
     @school = School.find(params[:entity][:school_id])
     @school.teachers << @teacher
     @school.save!
-    if session[:redirect].include?('teacher')
+    if session[:redirect].include?('teachers')
       render :update do |page|
         page.redirect_to teacher_path(@teacher)
       end
-    end
-  end  
-  
-  def edit
+    else
+      render :template => 'teachers/add_to_school_success'
+  end
+  rescue Exception => e
+    render :template => 'teachers/add_to_school_failure'
+  end
+      
+  def edit_papers
     @papers=@teacher.school.unallotted_papers + @teacher.papers
-    respond_to do |format|
-      format.js {render :template => 'teachers/edit'}
-    end  
   end
   
   def update_papers
     @teacher.paper_ids = params[:klass][:paper_ids]
-    @teacher.save!
     papers=Paper.find(@teacher.paper_ids)
-    papers.each{|p| p.orphan_exams.each{|oe| oe.teacher=@teacher; oe.save!}}
-    if session[:redirect].include?('school')
-      respond_to do |format|
-        format.js {render :template => 'schools/update_papers'}
-      end 
-    else    
-      respond_to do |format|
-        format.js {render :template => 'teachers/update_papers'}
-      end
+    Paper.transaction do
+      @teacher.save!
+      papers.each{|p| p.orphan_exams.each{|oe| oe.teacher=@teacher; oe.save!}}      
+    end
+    if session[:redirect].include?('teachers')
+      @teacher_allotments = @teacher.papers.group_by{|paper| paper.subject} 
+      @papers = @teacher.school.unallotted_papers + @teacher.papers
+      @exam_groups = @teacher.exams.collect{|exam| exam.exam_group}.uniq.group_by{|eg| eg.klass}
+      render :template => 'teachers/update_teacher_allotments'
     end
   end
   
-  def remove_paper
+  def remove_teacher_allotment
     @paper=Paper.find(params[:id])
     @teacher=@paper.teacher
     @paper.teacher=nil
     @paper.save!
-    respond_to do |format|
-      format.js {render :template => 'teachers/remove_paper'}
-    end 
+    @papers=@teacher.school.unallotted_papers + @teacher.papers
   end
   
 end
