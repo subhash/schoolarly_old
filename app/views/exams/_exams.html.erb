@@ -32,6 +32,9 @@
 		<th>
             Pass Score
         </th>
+		<%if options.include?(:show_teacher)%>
+			<th>Teacher</th>
+		<%end%>
 		<%if options.include?(:show_score)%>
 			<th>Score</th>
 		<%elsif options.include?(:add_exam)%>

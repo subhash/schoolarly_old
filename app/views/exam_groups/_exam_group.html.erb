@@ -1,8 +1,8 @@
 <%entity = local_assigns[:school] || local_assigns[:klass] || local_assigns[:student] || local_assigns[:teacher] || local_assigns[:exam]%>
 
-<table id="<%='examgroup-'+exam_group.id.to_s%>" class="ui-state-default">
+<table id="<%='examgroup-'+exam_group.id.to_s%>" class="ui-state-default" border="1px">
 	<%if options.include?(:edit_exam_group) && options.include?(:delete_exam_group)%>
-		<td class="ui-state-focus" style="width:auto;" colspan="9">
+		<td class="ui-state-focus" style="width:auto;" colspan="10">
 	       	<%=exam_group.exam_type.description + ": " %>
 			<span id="edit_description_<%= exam_group.id %>" title='Edit'></span><span id=<%="description_#{exam_group.id}" %>><%=exam_group.description %></span>
        		<%= in_place_editor "description_#{exam_group.id}" ,{:url => {:controller => 'exam_groups', :action => 'set_exam_group_description', :id => exam_group},:external_control => "edit_description_#{exam_group.id}"} %>
@@ -13,7 +13,7 @@
 			<%end%>
 	    </td>
 	<%else%>
-		<td colspan="10"><%=exam_group.exam_type.description + ": " + exam_group.description%></td>
+		<td colspan="11"><%=exam_group.exam_type.description + ": " + exam_group.description%></td>
 	<%end%>
 	<%if exam_group.exams.nil? || exam_group.exams.empty? %>
 		<tr>

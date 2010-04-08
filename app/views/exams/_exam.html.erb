@@ -22,6 +22,11 @@
 	<td class="ui-state-default">
     	<%=exam.pass_score%>
     </td>
+	<%if options.include?(:show_teacher)%>
+	<td class="ui-state-default">
+    	<%=link_to exam.teacher.name, exam.teacher if !exam.teacher.nil?%>
+    </td>
+	<%end%>
 	<%if options.include?(:show_score)%>
 		<td class="ui-state-default">
 			<%=exam.score_of(entity) || '<i>Unavailable</i>'%>
