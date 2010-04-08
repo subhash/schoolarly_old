@@ -136,8 +136,9 @@ module ActionView
            "#{obj.class.name.downcase}-#{obj.id}"
          end
          
-         def css_class_id(obj)
-           obj.class.name.downcase.pluralize
+         def css_class_id(class_obj)
+           class_obj = class_obj.class unless class_obj.kind_of? Class
+           class_obj.name.downcase.pluralize
          end
        
         end
