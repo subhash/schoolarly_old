@@ -1,9 +1,11 @@
-page << "closeDialogs();"
-if session[:redirect].include?('student')
-  page << "jQuery('.tabs').tabs('select','#subjects-tab')"
-  page.replace_html 'subjects-tab', :partial => 'papers/papers', :object => @student.papers
-  page.replace_html 'add-remove-subjects-dialog', :partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @student.klass.papers,:disabled => @student.paper_ids }
+page.close_dialog
+if active_controller == 'students'
+  page.open_tab(@student.papers.first)
+  @new_papers.each do |paper|
+    page.insert_object(:bottom, paper, :partial => 'papers/paper')
+  end
+  page.replace_action 'Add Subjects', :partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @student.klass.papers}
 else
-  page.replace "student_#{@student.id}", :partial => 'students/student', :object => @student
+  page.replace_object @student, :partial => 'students/student'
 end
 

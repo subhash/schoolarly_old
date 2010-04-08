@@ -11,7 +11,7 @@ class KlassesController < ApplicationController
     if (@school.klasses << @klass)
       render :template => 'klasses/create_success'
     else
-      render :template => 'klasses/create_failure'  
+      render :template => 'klasses/create_error'  
     end    
   end
   

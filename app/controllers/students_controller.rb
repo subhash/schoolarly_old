@@ -75,7 +75,7 @@ class StudentsController < ApplicationController
         respond_to do |format|
           format.html { redirect_to(edit_password_reset_url(@user.perishable_token)) }
           format.js {
-            render_success :object => @student, :insert => {:partial => 'students/student', :object => @student} 
+            render :template => 'students/create_success'
           }
         end     
       end      
@@ -87,17 +87,14 @@ class StudentsController < ApplicationController
       respond_to do |format|          
         format.html { render :action => "new" }
         format.js {
-          render_failure :refresh => {:partial => 'invite_student_form', :locals => {:student => @student, :school => @school}} 
+          render :template => 'students/create_failure'
         }
       end           
     end
   end
   
   def edit
-    @student = Student.find(params[:id])
-    render :update do |page|          
-      page.open_dialog "Add #{@student.name} to class", :partial => 'students/add_to_klass_form', :locals => {:student => @student}
-    end  
+    @student = Student.find(params[:id]) 
   end
   
   def update
@@ -109,27 +106,16 @@ class StudentsController < ApplicationController
           page.redirect_to session[:redirect]
         end
       else
-        respond_to do |format|
-          format.js {
-            render_success :object => @student, :replace => {:partial => 'students/student'}
-          }
-        end 
+        render :template => 'students/update_success'
       end
     else
-      respond_to do |format|          
-        format.js {
-          render_failure :refresh => {:partial => 'add_to_klass_form', :locals => {:student => @student}}
-        }
-      end  
+     render :template => 'students/update_failure'
     end
   end
   
   def edit_papers
     @student  = Student.find(params[:id])  
     @klass = @student.klass
-    render :update do |page|
-      page.open_dialog("Add/Remove Subjects",:partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @klass.papers })
-    end
   end
   
   def update_papers

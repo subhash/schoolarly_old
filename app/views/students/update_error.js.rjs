@@ -1,0 +1,1 @@
+page.refresh_dialog :partial => 'add_to_klass_form', :locals => {:student => @student}

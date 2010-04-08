@@ -1,0 +1,1 @@
+page.refresh_dialog :partial => 'invite_student_form', :locals => {:student => @student, :school => @school}

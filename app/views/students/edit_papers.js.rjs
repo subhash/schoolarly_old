@@ -1,0 +1,2 @@
+ page.open_dialog("Add/Remove Subjects",:partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @klass.papers})
+
