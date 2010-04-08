@@ -1,0 +1,1 @@
+page.refresh_dialog :partial => 'exam_groups/new', :locals => {:exam_group => @exam_group, :subjects => @klass.subjects, :klass => @klass, :exam_types => ExamType.all}

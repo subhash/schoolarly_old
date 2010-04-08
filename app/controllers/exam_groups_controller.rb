@@ -16,25 +16,18 @@ class ExamGroupsController < ApplicationController
     @klass=@exam_group.klass
     @exam_group.description = @exam_group.exam_type.description + ' for ' + @klass.name
     @exam_group.subject_ids = params[:exam][:subject_ids]
-    @exam_group.save!
-    @exam_group.exams.each do |exam|
-      exam.teacher=Paper.find_by_klass_id_and_subject_id(@klass.id, exam.subject_id).teacher
-      exam.save!
+    @options = params[:options].collect{|p| p.to_sym}
+    ExamGroup.transaction do
+      @exam_group.save!
+      @exam_group.exams.each do |exam|
+        exam.teacher=Paper.find_by_klass_id_and_subject_id(@klass.id, exam.subject_id).teacher
+        exam.save!
+      end
     end
-    options = params[:options].collect{|p| p.to_sym}
-    respond_to do |format|
-      format.js {render_success :object => @exam_group, :insert => {:partial => 'exam_groups/exam_group', :locals => {:options => options, :klass => @klass}}}
-    end 
-    rescue Exception => e
-      @exam_group=ExamGroup.new(params[:exam_group])
-      @klass=@exam_group.klass
-      @exam_group.subject_ids = params[:exam][:subject_ids]
-      respond_to do |format|          
-        format.js {
-          render_failure :refresh => {:partial => 'exam_groups/new', :locals => {:exam_group => @exam_group, :subjects => @klass.subjects, :klass => @klass, :exam_types => ExamType.all}}
-        }
-      end           
-    end
+    render :template => 'exam_groups/create_success'
+  rescue Exception => e
+    render :template => 'exam_groups/create_failure'
+  end
  
   def destroy
     exam_group=ExamGroup.find(params[:id])

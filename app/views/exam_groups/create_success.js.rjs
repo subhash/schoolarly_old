@@ -1,0 +1,3 @@
+page.close_dialog
+page.insert_object(:bottom, @exam_group, :partial => 'exam_groups/exam_group', :locals => {:options => @options, :klass => @klass})
+page.open_tab(Exam.new()) #TODO Have to change the parameter
