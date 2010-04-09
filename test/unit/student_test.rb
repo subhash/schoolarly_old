@@ -3,21 +3,12 @@ require 'test_helper'
 class StudentTest < ActiveSupport::TestCase
   def setup
     @school = schools(:st_teresas)
-    @user = users(:mary)
     @paru = students(:paru)
     @shenu = students :shenu
     @klass = klasses(:two_B)
     @mal = papers(:one_A_malayalam_sunil)
     @eng = papers(:one_A_english_sunil)
-  end
-  
-  test "student-user association" do
-    student = Student.new
-    student.user = @user
-    student.school = @school
-    assert student.save
-    assert_equal @user.person, student        
-  end  
+  end 
   
   test "student-school association" do 
     assert_equal @paru.school, @school
