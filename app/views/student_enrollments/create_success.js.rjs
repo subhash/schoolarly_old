@@ -1,8 +1,0 @@
-page << "closeDialogs();"
-page.replace "student_#{@student.id}", :partial => 'students/student', :object => @student
-
-
-
-# jQuery(".students").append("
-#<%= escape_javascript(render :partial => 'students/student', :object => @student ) %>");
-# jQuery(".students-tab a").click(); 

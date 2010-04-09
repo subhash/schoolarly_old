@@ -1,2 +1,0 @@
-page << "closeDialogs();"
-page["subject-#{@teacher_klass_allotment.teacher_subject_allotment.subject.id}"].replace :partial => 'subjects/subject', :object => @teacher_klass_allotment.teacher_subject_allotment.subject, :locals => {:klass => @teacher_klass_allotment.klass, :teacher_klass_allotment => @teacher_klass_allotment, :entity_klass => params[:entity_klass]}

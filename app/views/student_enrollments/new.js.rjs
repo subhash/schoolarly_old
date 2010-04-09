@@ -1,2 +1,0 @@
-page.replace_html "main-dialog", :partial => 'student_enrollments/new_enrollment_form', :locals => {:student_enrollment => @student_enrollment, :klasses => @klasses}
-page << "openDialog('main-dialog')"

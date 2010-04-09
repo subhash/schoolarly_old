@@ -1,1 +1,0 @@
-page["subject-#{@subject.id}"].replace :partial => 'subjects/subject', :object => @subject, :locals => {:klass => @klass, :teacher_klass_allotment => nil, :entity_klass => params[:entity_klass]}

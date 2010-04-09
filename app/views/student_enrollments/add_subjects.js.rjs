@@ -1,3 +1,0 @@
-page << "closeDialogs();"
-page.replace "student_#{@student.id}", :partial => 'students/student', :object => @student
-
