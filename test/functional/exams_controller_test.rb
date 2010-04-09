@@ -6,6 +6,7 @@ class ExamsControllerTest < ActionController::TestCase
   def setup
     activate_authlogic
     @mal = subjects(:malayalam)
+    @san = subjects(:sanskrit)
     @eg = exam_groups(:half_yearly_two_B)
     @exam_group = exam_groups(:class_test_1_one_A)
     @exam = exams(:english_class_test_1)
@@ -17,15 +18,16 @@ class ExamsControllerTest < ActionController::TestCase
   test "should get ajax new" do
     xhr :get, :new, :exam_group => @exam_group.to_param, :entity_class => 'Klass', :entity_id => @one_A
     assert_response :success
+    assert_template :new
   end
   
-#  test "should create exam" do
-#    assert_difference('@eg.reload.exams.size', 1) do
-##      post :create, :exam_group_id => @eg.to_param, :exam => {:subject_id => @mal.to_param, :venue => 'at klass'}, :entity_class => 'Klass', :entity_id => @one_A
-#      post :create, :exam_group_id => @eg.to_param, :exam => {:subject_id => @mal.to_param, :venue => 'at klass'}, :entity_class => 'Klass', :entity_id => @eg.klass.id, :subjects=>[{@mal.to_param.to_s => nil}, {@eng.to_param.to_s => nil}]
-#    end
-#    assert_response :success
-#  end
+  test "should create exam" do
+    assert_difference('@eg.reload.exams.size') do
+      post :create, :exam_group_id => @eg.to_param, :exam => {:subject_id => @mal.to_param, :venue => 'at klass'}, :entity_class => 'School', :entity_id => @eg.klass.school.id, :subjects=>[@mal.to_param.to_s, @san.to_param.to_s]
+    end
+    assert_response :success
+    assert_template :create_success
+  end
 
   test "should show exam" do
     get :show, :id => @exam.to_param
@@ -40,18 +42,22 @@ class ExamsControllerTest < ActionController::TestCase
   test "should get edit" do
     xhr :get, :edit, :id => @exam.to_param, :entity_class => 'Klass', :entity_id => @one_A
     assert_response :success
+    assert_template :edit
   end
 
   test "should update exam" do
     put :update, :id => @exam.to_param, :exam => {:venue => 'new venue' }, :entity_class => 'Klass', :entity_id => @one_A
     assert_equal 'new venue',  @exam.reload.venue
     assert_response :success
+    assert_template :update_success
   end
 
   test "should destroy exam" do
     assert_difference('Exam.count', -1) do
       delete :destroy, :id => @exam.to_param, :entity_class => 'Klass', :entity_id => @one_A
     end
+    assert_response :success
+    assert_template :destroy
   end
   
 end
