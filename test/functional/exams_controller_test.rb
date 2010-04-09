@@ -23,7 +23,7 @@ class ExamsControllerTest < ActionController::TestCase
   
   test "should create exam" do
     assert_difference('@eg.reload.exams.size') do
-      post :create, :exam_group_id => @eg.to_param, :exam => {:subject_id => @mal.to_param, :venue => 'at klass'}, :entity_class => 'School', :entity_id => @eg.klass.school.id, :subjects=>[@mal.to_param.to_s, @san.to_param.to_s]
+      post :create, :exam_group_id => @eg.to_param, :exam => {:subject_id => @mal.to_param, :venue => 'at klass'}, :entity_class => 'School', :entity_id => @eg.klass.school.id, :subjects=>[@mal.to_param, @san.to_param]
     end
     assert_response :success
     assert_template :create_success
