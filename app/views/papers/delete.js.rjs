@@ -1,2 +1,0 @@
-page.remove "paper_#{@deleted_paper.id}"
-page.replace_html 'add-subjects-dialog', :partial => 'papers/create_papers_form', :locals => {:klass => @klass, :subjects => Subject.find(:all)}

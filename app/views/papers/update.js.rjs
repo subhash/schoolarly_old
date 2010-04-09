@@ -1,8 +1,4 @@
-page << "closeDialogs();"
-page.replace "paper_#{@paper.id}", :partial => 'papers/paper', :object => @paper
 
+page.close_dialog
+page.replace_object(@paper, :partial => 'papers/paper')
 
-
-# jQuery(".students").append("
-#<%= escape_javascript(render :partial => 'students/student', :object => @student ) %>");
-# jQuery(".students-tab a").click(); 

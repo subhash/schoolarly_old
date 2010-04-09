@@ -37,8 +37,5 @@ class PapersController < ApplicationController
     @deleted_paper = @paper
     @klass = @paper.klass
     @paper.destroy
-    respond_to do |format|
-      format.js {render :template => 'papers/delete'}
-    end
   end
 end
