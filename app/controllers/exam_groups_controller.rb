@@ -23,14 +23,15 @@ class ExamGroupsController < ApplicationController
         exam.save!
       end
     end
-    render :template => 'exam_groups/create_success'
+    render :template => 'exam_groups/create_success.js.rjs'
   rescue Exception => e
-    render :template => 'exam_groups/create_failure'
+    render :template => 'exam_groups/create_failure.js.rjs'
   end
  
   def destroy
     @exam_group=ExamGroup.find(params[:id])
     @exam_group.destroy
+    render :template => 'exam_groups/destroy.js.rjs'
   end
   
 end
