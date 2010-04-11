@@ -24,7 +24,6 @@ class ExamsController < ApplicationController
     else
       @subjects = @entity.subjects - @exam_group.subjects      
     end
-    render :template => 'exams/new.js.rjs'
   end
   
   def create
@@ -34,16 +33,15 @@ class ExamsController < ApplicationController
     @exam.teacher=Paper.find_by_klass_id_and_subject_id(@exam_group.klass.id, @exam.subject_id).teacher
     @entity = get_entity(params[:entity_class],params[:entity_id])
     @exam.save!
-    render :template => 'exams/create_success.js.rjs'
+    render :template => 'exams/create_success'
   rescue Exception => e
     @subjects = Subject.find(params[:subjects])
-    render :template => 'exams/create_failure.js.rjs'
+    render :template => 'exams/create_failure'
   end
   
   def edit
     @exam = Exam.find(params[:id])
     @entity = get_entity(params[:entity_class],params[:entity_id])
-    render :template => 'exams/edit.js.rjs'
   end
   
   def update
@@ -52,15 +50,14 @@ class ExamsController < ApplicationController
     if params
       @exam.update_attributes!(params[:exam])
     end
-    render :template => 'exams/update_success.js.rjs'
+    render :template => 'exams/update_success'
   rescue Exception => e
-    render :template => 'exams/update_failure.js.rjs'
+    render :template => 'exams/update_failure'
   end
   
   def destroy
     @exam = Exam.find(params[:id])
     @exam.destroy
-    render :template => 'exams/destroy.js.rjs'
   end  
   
 end
