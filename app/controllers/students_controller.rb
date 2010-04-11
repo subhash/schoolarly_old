@@ -87,7 +87,7 @@ class StudentsController < ApplicationController
       respond_to do |format|          
         format.html { render :action => "new" }
         format.js {
-          render :template => 'students/create_failure'
+          render :template => 'students/create_error'
         }
       end           
     end

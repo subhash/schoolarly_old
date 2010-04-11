@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'authlogic/test_case'
 
 class StudentsControllerTest < ActionController::TestCase  
   
@@ -42,7 +43,7 @@ class StudentsControllerTest < ActionController::TestCase
   end
   
   test "create student failure thru xhr" do
-    xhr :post, :create , {:student => {:admission_number => "1" }, :user => {:email => students(:paru).user.email}, :school_id =>@sboa.id}
+    xhr :post, :create , {:student => {:admission_number => "111222333" }, :user => {:email => students(:paru).user.email}, :school_id =>@sboa.id}
     assert_response :success
     assert_template "students/create_error"
   end

@@ -32,6 +32,6 @@ two_B_sanskrit:
   klass: two_B
   subject: sanskrit
   
-two_B_malayalam:
-  klass: two_B
-  subject: malayalam
+#two_B_malayalam:
+#  klass: two_B
+#  subject: malayalam
