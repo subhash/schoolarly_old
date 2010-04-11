@@ -37,11 +37,11 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
   
   def assert_tab_count(count)
-    assert_select '.tabs > ul > li > a',count
+    assert_select 'div.tab-box > ul.tab-bar > li > a',count
   end
   
   def assert_tab(label, id)
-    assert_select '.tabs > ul > li > a', label
+    assert_select 'div.tab-box > ul.tab-bar > li > a', label
     assert_select "#"+id, 1
   end
   
