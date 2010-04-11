@@ -36,9 +36,9 @@ class TeachersControllerTest < ActionController::TestCase
     assert_action('Add/Remove Papers', :index => 3)
     assert_select "ul#right-bar li div#post-message", "Subject"
     assert_tab_count(3)
-    assert_tab("Home", "home-tab")
-    assert_tab("Subjects", "papers-tab")
-    assert_tab("Exams", "exams-tab")   
+    assert_tab('Home', 'home-tab')
+    assert_tab('Subjects', 'papers-tab')
+    assert_tab('Exams', 'exams-tab') 
   end
   
   test "Others should only view & not edit teacher profile. Rest of the breadcrumbs & actions should be the same" do
@@ -52,9 +52,9 @@ class TeachersControllerTest < ActionController::TestCase
     assert_action('Add/Remove Papers', :index => 3)
     assert_select "ul#right-bar li div#post-message", "Subject"
     assert_tab_count(3)
-    assert_tab("Home", "home-tab")
-    assert_tab("Subjects", "papers-tab")
-    assert_tab("Exams", "exams-tab")  
+    assert_tab('Home', 'home-tab')
+    assert_tab('Subjects', 'papers-tab')
+    assert_tab('Exams', 'exams-tab')  
   end
   
   test "teacher without a school should show breadcrumbs with teacher name/email and 2 actions" do
@@ -67,9 +67,9 @@ class TeachersControllerTest < ActionController::TestCase
     assert_action('Add to school', :index => 2)
     assert_select "ul#right-bar li div#post-message", "Subject"
     assert_tab_count(3)
-    assert_tab("Home", "home-tab")
-    assert_tab("Subjects", "papers-tab")
-    assert_tab("Exams", "exams-tab")   
+    assert_tab('Home', 'home-tab')
+    assert_tab('Subjects', 'papers-tab')
+    assert_tab('Exams', 'exams-tab')   
   end
   
   test "create teacher success thru xhr" do
@@ -77,13 +77,33 @@ class TeachersControllerTest < ActionController::TestCase
       xhr :post, :create, { :user => {:email => 'sboa_teacher@gmail.com'}, :school_id =>@sboa.to_param }
 #    end    
     assert_response :success
-    assert_template "teachers/create_success"
+    assert_template 'teachers/create_success'
   end
   
   test "create teacher failure thru xhr" do
-    xhr :post, :create , {:user => {:email => @sunil.user.email}, :school_id =>@sboa.id}
+    xhr :post, :create , {:user => {:email => @subbu.email}, :school_id =>@sboa.to_param}
     assert_response :success
-    assert_template "teachers/create_failure"
+    assert_template 'teachers/create_failure'
+  end
+  
+  test "add teacher to school from teachers page" do
+    session[:redirect]=teacher_path(@no_school_teacher)
+    xhr :post, :add_to_school, {:id => @no_school_teacher, :entity => {:school_id => @stTeresasSchool.to_param}}
+      assert_response :success
+      assert :template => teacher_path(@no_school_teacher)
+  end
+  
+  test "add teacher to school from schools page" do
+    session[:redirect]=school_path(@stTeresasSchool)
+    xhr :post, :add_to_school, {:id => @no_school_teacher, :entity => {:school_id => @stTeresasSchool.to_param}}
+      assert_response :success
+      assert :template => 'teachers/add_to_school_success'
+  end
+  
+  test "edit papers" do
+    xhr :get, :edit_papers , {:id => @sunil}
+    assert_response :success
+    assert_template 'teachers/edit_papers'
   end
   
   test "add papers thru xhr" do
@@ -101,13 +121,6 @@ class TeachersControllerTest < ActionController::TestCase
     assert @antony.papers.include?(@fourDMal_antony)
     assert !@antony.subjects.include?(@eng)
     assert @antony.subjects.include?(@mal)
-  end
-    
-  test "add teacher to school" do
-    session[:redirect]=teacher_path(@no_school_teacher)
-    xhr :post, :add_to_school, {:id => @no_school_teacher, :entity => {:school_id => @stTeresasSchool.to_param}}
-      assert_response :success
-      assert :template => teacher_path(@no_school_teacher)
   end
   
 end
