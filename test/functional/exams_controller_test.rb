@@ -23,7 +23,7 @@ class ExamsControllerTest < ActionController::TestCase
   
   test "should create exam" do
     assert_difference('@eg.reload.exams.size') do
-      post :create, :exam_group_id => @eg.to_param, :exam => {:subject_id => @mal.to_param, :venue => 'at klass'}, :entity_class => 'School', :entity_id => @eg.klass.school.id, :subjects=>[@mal.to_param, @san.to_param]
+      xhr :post, :create, :exam_group_id => @eg.to_param, :exam => {:subject_id => @mal.to_param, :venue => 'at klass'}, :entity_class => 'School', :entity_id => @eg.klass.school.id, :subjects=>[@mal.to_param, @san.to_param]
     end
     assert_response :success
     assert_template :create_success
@@ -46,7 +46,7 @@ class ExamsControllerTest < ActionController::TestCase
   end
 
   test "should update exam" do
-    put :update, :id => @exam.to_param, :exam => {:venue => 'new venue' }, :entity_class => 'Klass', :entity_id => @one_A
+    xhr :put, :update, :id => @exam.to_param, :exam => {:venue => 'new venue' }, :entity_class => 'Klass', :entity_id => @one_A
     assert_equal 'new venue',  @exam.reload.venue
     assert_response :success
     assert_template :update_success
@@ -54,7 +54,7 @@ class ExamsControllerTest < ActionController::TestCase
 
   test "should destroy exam" do
     assert_difference('Exam.count', -1) do
-      delete :destroy, :id => @exam.to_param, :entity_class => 'Klass', :entity_id => @one_A
+      xhr :delete, :destroy, :id => @exam.to_param, :entity_class => 'Klass', :entity_id => @one_A
     end
     assert_response :success
     assert_template :destroy

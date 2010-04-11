@@ -39,10 +39,10 @@ class TeachersController < ApplicationController
       Teacher.transaction do
         @teacher.save!
         @user.invite!
-        render :template => 'teachers/create_success'
+        render :template => 'teachers/create_success.js.rjs'
       end       
     rescue Exception => e
-      render :template => 'teachers/create_failure'     
+      render :template => 'teachers/create_failure.js.rjs'     
     end
   end
     
@@ -68,10 +68,10 @@ class TeachersController < ApplicationController
         page.redirect_to teacher_path(@teacher)
       end
     else
-      render :template => 'teachers/add_to_school_success'
+      render :template => 'teachers/add_to_school_success.js.rjs'
   end
   rescue Exception => e
-    render :template => 'teachers/add_to_school_failure'
+    render :template => 'teachers/add_to_school_failure.js.rjs'
   end
       
   def edit_papers
@@ -89,7 +89,7 @@ class TeachersController < ApplicationController
       @teacher_allotments = @teacher.papers.group_by{|paper| paper.subject} 
       @papers = @teacher.school.unallotted_papers + @teacher.papers
       @exam_groups = @teacher.exams.collect{|exam| exam.exam_group}.uniq.group_by{|eg| eg.klass}
-      render :template => 'teachers/update_teacher_allotments'
+      render :template => 'teachers/update_teacher_allotments.js.rjs'
     end
   end
   

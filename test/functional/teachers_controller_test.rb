@@ -37,7 +37,7 @@ class TeachersControllerTest < ActionController::TestCase
     assert_select "ul#right-bar li div#post-message", "Subject"
     assert_tab_count(3)
     assert_tab("Home", "home-tab")
-    assert_tab("Papers", "papers-tab")
+    assert_tab("Subjects", "papers-tab")
     assert_tab("Exams", "exams-tab")   
   end
   
@@ -53,11 +53,11 @@ class TeachersControllerTest < ActionController::TestCase
     assert_select "ul#right-bar li div#post-message", "Subject"
     assert_tab_count(3)
     assert_tab("Home", "home-tab")
-    assert_tab("Papers", "papers-tab")
+    assert_tab("Subjects", "papers-tab")
     assert_tab("Exams", "exams-tab")  
   end
   
-    test "teacher without a school should show breadcrumbs with teacher name/email and 2 actions" do
+  test "teacher without a school should show breadcrumbs with teacher name/email and 2 actions" do
     UserSession.create(@no_school_teacher.user)
     get :show, :id => @no_school_teacher.to_param
     assert_response :success
@@ -68,14 +68,14 @@ class TeachersControllerTest < ActionController::TestCase
     assert_select "ul#right-bar li div#post-message", "Subject"
     assert_tab_count(3)
     assert_tab("Home", "home-tab")
-    assert_tab("Papers", "papers-tab")
+    assert_tab("Subjects", "papers-tab")
     assert_tab("Exams", "exams-tab")   
   end
   
   test "create teacher success thru xhr" do
-    assert_difference('Teacher.count') do
-      xhr :post, :create,{ :user => {:email => "sboateacher@gmail.com"}, :school_id =>@sboa.id }
-    end    
+#    assert_difference('@sboa.teachers.size', 1) do
+      xhr :post, :create, { :user => {:email => 'sboa_teacher@gmail.com'}, :school_id =>@sboa.to_param }
+#    end    
     assert_response :success
     assert_template "teachers/create_success"
   end
@@ -83,7 +83,7 @@ class TeachersControllerTest < ActionController::TestCase
   test "create teacher failure thru xhr" do
     xhr :post, :create , {:user => {:email => @sunil.user.email}, :school_id =>@sboa.id}
     assert_response :success
-    assert_template "teachers/create_error"
+    assert_template "teachers/create_failure"
   end
   
   test "add papers thru xhr" do
@@ -95,7 +95,7 @@ class TeachersControllerTest < ActionController::TestCase
   end
   
   test "remove paper thru xhr" do
-    xhr :post, :remove_paper, {:id => @fourDEng_antony.to_param}
+    xhr :post, :remove_teacher_allotment, {:id => @fourDEng_antony.to_param}
     assert_response :success
     assert !@antony.papers.include?(@fourDEng_antony)
     assert @antony.papers.include?(@fourDMal_antony)

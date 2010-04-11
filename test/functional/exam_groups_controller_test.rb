@@ -16,7 +16,7 @@ class ExamGroupsControllerTest < ActionController::TestCase
   
   test "should create exam group" do
     assert_difference('ExamGroup.count', 1) do
-      post :create, :exam_group => {:exam_type_id => @exam_type.to_param, :klass_id => @one_A.to_param}, :exam => {:subject_ids => [@eng.to_param, @mal.to_param]}, :entity_class => 'Klass', :entity_id => @one_A
+      xhr :post, :create, :exam_group => {:exam_type_id => @exam_type.to_param, :klass_id => @one_A.to_param}, :exam => {:subject_ids => [@eng.to_param, @mal.to_param]}, :entity_class => 'Klass', :entity_id => @one_A
     end
     assert_response :success
     assert_template :create_success
@@ -24,7 +24,7 @@ class ExamGroupsControllerTest < ActionController::TestCase
   
   test "should destroy exam_group" do
     assert_difference('ExamGroup.count', -1) do
-      delete :destroy, :id => @eg.to_param
+      xhr :delete, :destroy, :id => @eg.to_param
     end
     assert_response :success
     assert_template :destroy
