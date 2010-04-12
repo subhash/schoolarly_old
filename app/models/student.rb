@@ -27,4 +27,8 @@ class Student < ActiveRecord::Base
     return user.email
   end
   
+  def exam_groups
+    klass.exam_groups.select{|eg| (eg.subjects & self.subjects).any?}.group_by{|eg| eg.klass} if self.klass
+  end
+  
 end
