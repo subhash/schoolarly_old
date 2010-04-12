@@ -1,5 +1,5 @@
 page.close_dialog
 page.insert_object(:bottom, @klass, :partial => 'klasses/klass')
 page.open_tab(@klass)
-page.replace_html 'exams-tab', :partial => 'exam_groups/exam_groups', :object => @klass.school.exam_groups, :locals => {:school => @klass.school }
-page << "bindAccordion();"
+page.replace_tab(Exam, :partial => 'exam_groups/exam_groups', :object => @klass.school.exam_groups, :locals => {:school => @klass.school})
+#page << "bindAccordion();"
