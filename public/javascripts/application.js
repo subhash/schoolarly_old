@@ -89,24 +89,14 @@ function bindDialog(id){
     });
 }
 
-function openDialog(id){
-    //    jQuery("#" + id).dialog('open');
-    jQuery("#" + id).addClass("open-dialog")
-    t = 'Schoolarly'
-    Modalbox.show($(id), {
-        title: t,
-        slideDownDuration: .10,
-        slideUpDuration: .10,
-        overlayDuration: .25
-    });
-}
 
 function openModalbox(html, t){
     Modalbox.show(html, {
         title: t,
         slideDownDuration: .10,
         slideUpDuration: .10,
-        overlayDuration: .25
+        overlayDuration: .25,
+		overlayOpacity: .50
     });
 }
 

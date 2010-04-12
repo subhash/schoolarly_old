@@ -1,6 +1,5 @@
 class Event < ActiveRecord::Base
   
-  
   validates_presence_of :title, :description
   
   belongs_to :initiator , :class_name => :user
@@ -20,7 +19,7 @@ class Event < ActiveRecord::Base
   ]
   
   def validate
-    if (starttime >= endtime) and !all_day
+    if (start_time >= end_time) and !all_day
       errors.add_to_base("Start Time must be less than End Time")
     end
   end
@@ -28,14 +27,14 @@ class Event < ActiveRecord::Base
   def update_events(events, event)
     events.each do |e|
       begin 
-        st, et = e.starttime, e.endtime
+        st, et = e.start_time, e.end_time
         e.attributes = event
         if event_series.period.downcase == 'monthly' or event_series.period.downcase == 'yearly'
-          nst = DateTime.parse("#{e.starttime.hour}:#{e.starttime.min}:#{e.starttime.sec}, #{e.starttime.day}-#{st.month}-#{st.year}")  
-          net = DateTime.parse("#{e.endtime.hour}:#{e.endtime.min}:#{e.endtime.sec}, #{e.endtime.day}-#{et.month}-#{et.year}")
+          nst = DateTime.parse("#{e.start_time.hour}:#{e.start_time.min}:#{e.start_time.sec}, #{e.start_time.day}-#{st.month}-#{st.year}")  
+          net = DateTime.parse("#{e.end_time.hour}:#{e.end_time.min}:#{e.end_time.sec}, #{e.end_time.day}-#{et.month}-#{et.year}")
         else
-          nst = DateTime.parse("#{e.starttime.hour}:#{e.starttime.min}:#{e.starttime.sec}, #{st.day}-#{st.month}-#{st.year}")  
-          net = DateTime.parse("#{e.endtime.hour}:#{e.endtime.min}:#{e.endtime.sec}, #{et.day}-#{et.month}-#{et.year}")
+          nst = DateTime.parse("#{e.start_time.hour}:#{e.start_time.min}:#{e.start_time.sec}, #{st.day}-#{st.month}-#{st.year}")  
+          net = DateTime.parse("#{e.end_time.hour}:#{e.end_time.min}:#{e.end_time.sec}, #{et.day}-#{et.month}-#{et.year}")
         end
         #puts "#{nst}           :::::::::          #{net}"
       rescue
@@ -43,7 +42,7 @@ class Event < ActiveRecord::Base
       end
       if nst and net
         #          e.attributes = event
-        e.starttime, e.endtime = nst, net
+        e.start_time, e.end_time = nst, net
         e.save
       end
     end

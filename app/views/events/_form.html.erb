@@ -1,4 +1,4 @@
-<%remote_form_for @event, :url => {:action => :create}, :before => "$('#creating_events').show();", :complete => "$('#creating_events').hide();" do |f| %>
+<%remote_form_for @event, :url => {:controller => 'events', :action => 'create', :id => @event} , :before => "jQuery('#creating_events').show();", :complete => "jQuery('#creating_events').hide();" do |f| %>
 <p>
   <%=f.label :title %>
   <br/>
@@ -10,14 +10,14 @@
   <%=f.text_area :description, :rows => 4, :cols => 30 %>
 </p>
 <p>
-  <%=f.label :starttime, 'Start Time' %>
+  <%=f.label :start_time, 'Start Time' %>
   <br/>
-  <%=f.datetime_select :starttime %>
+  <%=f.datetime_select :start_time %>
 </p>
 <p>
-  <%=f.label :endtime, 'End Time' %>
+  <%=f.label :end_time, 'End Time' %>
   <br/>
-  <%=f.datetime_select :endtime %>
+  <%=f.datetime_select :end_time %>
 </p>
 <p>
   <%=f.label :all_day %>

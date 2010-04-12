@@ -1,0 +1,8 @@
+
+if @event
+  page.alert @event.errors.full_messages(',').join("\n")
+end
+
+if @event_series
+  page.alert @event_series.errors.full_messages(',').join("\n")
+end
