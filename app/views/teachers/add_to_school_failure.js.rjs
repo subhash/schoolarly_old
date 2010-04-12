@@ -1,2 +1,0 @@
-args = {:partial =>'schools/add_to_school_form', :locals => {:entity => @teacher, :schools => School.all}}
-page.refresh_dialog(args)
