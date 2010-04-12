@@ -2,22 +2,24 @@
     <td class="ui-state-default">
         <%= paper.subject.name %>
     </td>
-	<td class="ui-state-focus">
+    <td class="ui-state-focus">
         <%= link_to_remote  paper.students.size, :url => {:controller => 'papers', :action => 'edit_students', :id => paper} %>
     </td>
     <% if paper.teacher %>
-	    <td>
-	        <%=link_to paper.teacher.name, teacher_path(paper.teacher) %>
-	    </td>
-	    <td class="ui-state-focus">
-	        <%= link_to_remote 'Change Teacher', :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper}, :confirm => 'Are you sure?' %>
-	    </td>
+    <td>
+        <%=link_to paper.teacher.name, teacher_path(paper.teacher) %>
+    </td>
+    <td class="ui-state-focus">
+        <%= link_to_remote 'Change Teacher', :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper}, :confirm => 'Are you sure?' %>
+    </td>
     <%else %>
-	    <td class="ui-state-focus">
-	    	<%= link_to_remote 'Allot Teacher', :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper} %>
-	    </td>
+    <td class="ui-state-focus">
+        <%= link_to_remote 'Allot Teacher', :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper} %>
+    </td>
     <%end %>
-	<td>
-		<%= link_to_remote "Delete", :url => paper_url(paper), :method => :delete, :html => {:class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' %>
-	</td>
+    <%if active_controller == 'klasses' %>
+    <td>
+        <%= link_to_remote "Delete", :url => paper_url(paper), :method => :delete, :html => {:class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' %>
+    </td>
+    <%end %>
 </tr>
