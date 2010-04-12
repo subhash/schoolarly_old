@@ -1,24 +1,28 @@
-<% remote_form_for :message, :url => {:controller => :conversations, :action => 'create', :receiver => user } do |f| %>
-<table>
-    <tr>
-        <th>
-            <label for="subject">
-                Subject
-            </label>
-        </th>
-        <td>
-            <%= f.text_field :subject, :size => 25 %>
-        </td>
-    </tr>
-    <tr>
-        <td colspan=2>
-            <%= f.text_area :body, :rows => 3, :cols => 27 %>
-        </td>
-    </tr>
-    <tr>
-        <td colspan=2 align="right">
-            <%= submit_tag "Post" %>
-        </td>
-    </tr>
-</table>
-<%end %>
+<br/>
+Post an instant message...
+<div id="post-message">
+	<% remote_form_for :message, :url => {:controller => :conversations, :action => 'create', :receiver => user } do |f| %>
+	<table>
+	    <tr>
+	        <th>
+	            <label for="subject">
+	                Subject
+	            </label>
+	        </th>
+	        <td>
+	            <%= f.text_field :subject, :size => 25 %>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td colspan=2>
+	            <%= f.text_area :body, :rows => 3, :cols => 27 %>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td colspan=2 align="right">
+	            <%= submit_tag "Post" %>
+	        </td>
+	    </tr>
+	</table>
+	<%end %>
+</div>
