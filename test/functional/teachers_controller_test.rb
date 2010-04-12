@@ -73,9 +73,9 @@ class TeachersControllerTest < ActionController::TestCase
   end
   
   test "create teacher success thru xhr" do
-#    assert_difference('@sboa.teachers.size', 1) do
-      xhr :post, :create, { :user => {:email => 'sboa_teacher@gmail.com'}, :school_id =>@sboa.to_param }
-#    end    
+    #assert_difference('@sboa.reload.teachers.size', 1) do
+      xhr :post, :create, { :user => {:email => 'new_sboa_teacher@gmail.com'}, :school_id =>@sboa.to_param }
+    #end
     assert_response :success
     assert_template 'teachers/create_success'
   end
