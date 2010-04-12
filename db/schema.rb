@@ -17,11 +17,11 @@ ActiveRecord::Schema.define(:version => 20100331145851) do
   end
 
   create_table "event_series", :force => true do |t|
-    t.integer  "frequency"
-    t.string   "period"
+    t.integer  "frequency",  :default => 1
+    t.string   "period",     :default => "monthly"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.boolean  "all_day"
+    t.boolean  "all_day",    :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20100331145851) do
     t.text     "description"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.boolean  "all_day"
+    t.boolean  "all_day",         :default => false
     t.integer  "event_series_id"
     t.integer  "user_id"
     t.datetime "created_at"

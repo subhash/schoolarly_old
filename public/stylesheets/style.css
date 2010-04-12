@@ -1,7 +1,16 @@
-body{
+/*
+
+#calendar {
+  font-size 12px;
+  font-family: "Comic Sans MS", verdana, Arial;
+}
+*/
+
+#calendar {
   font-size: 12px;
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
 }
+
 
 #loading{
   position: absolute; 
