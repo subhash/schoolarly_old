@@ -136,6 +136,10 @@ module ActionView
            replace title.parameterize.to_s, :partial => '/common/action', :locals => {:title => title, :args => args}
          end
          
+         def replace_header
+           replace "header", :partial => '/common/header'
+         end
+         
          private
          def css_id(obj)
            "#{obj.class.name.downcase}-#{obj.id}"

@@ -1,0 +1,17 @@
+<div id="header">
+    <ul>
+        <li>
+            <a href="">Home</a>
+        </li>
+        <li>
+            <% if current_user %>
+            <%= link_to_remote "Logout, #{current_user.email}", :url => user_session_path,  :method => :delete, :confirm => 'Are you sure you want to logout?' %>
+            <% else %>
+            <%= link_to_remote  'Login', :url => new_user_session_path, :method => :get %>
+            <% end %>
+        </li>
+        <li>
+            <a href="">About</a>
+        </li>
+    </ul>
+</div>

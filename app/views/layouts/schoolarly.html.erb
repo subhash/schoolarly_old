@@ -16,23 +16,7 @@
     <body>
         <!-- Missing: Header with home, logout etc., Footer with about, contact etc,. Flash message box, Breadcrumbs-->
         <div id="main">
-            <div id="header">
-                <ul>
-                    <li>
-                        <a href="">Home</a>
-                    </li>
-                    <li>
-                        <% if current_user %>
-                        <%= link_to "Logout, #{current_user.email}", user_session_path,  :method => :delete, :confirm => 'Are you sure you want to logout?' %>
-                        <% else %>
-                        <%= link_to 'Login', new_user_session_path %>
-                        <% end %>
-                    </li>
-                    <li>
-                        <a href="">About</a>
-                    </li>
-                </ul>
-            </div>
+            <%= render :partial => '/common/header' %>
             <div id="contents">
                 <div id="breadcrumbs">
                     <ul id="crumbs">

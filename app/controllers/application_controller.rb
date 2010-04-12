@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
   
-  before_filter :require_user
+  #before_filter :require_user
   
   def set_active_user(user_id)
     session[:active_user] = user_id

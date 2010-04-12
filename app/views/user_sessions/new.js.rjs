@@ -1,0 +1,1 @@
+page.open_dialog('Login', :partial => 'new')
