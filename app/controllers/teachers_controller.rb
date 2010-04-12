@@ -69,9 +69,7 @@ class TeachersController < ApplicationController
       end
     else
       render :template => 'teachers/add_to_school_success'
-  end
-  rescue Exception => e
-    render :template => 'teachers/add_to_school_failure'
+    end
   end
       
   def edit_papers
