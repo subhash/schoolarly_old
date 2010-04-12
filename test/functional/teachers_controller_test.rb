@@ -93,8 +93,8 @@ class TeachersControllerTest < ActionController::TestCase
       assert :template => teacher_path(@no_school_teacher)
   end
   
-  test "add teacher to school from schools page" do
-    session[:redirect]=school_path(@stTeresasSchool)
+  test "add teacher to school from users page" do
+    session[:redirect]=users_path
     xhr :post, :add_to_school, {:id => @no_school_teacher, :entity => {:school_id => @stTeresasSchool.to_param}}
       assert_response :success
       assert :template => 'teachers/add_to_school_success'
