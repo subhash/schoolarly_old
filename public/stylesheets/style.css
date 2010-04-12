@@ -1,6 +1,6 @@
 body{
-  font-size 12px;
-  font-family: "Comic Sans MS", verdana, Arial;
+  font-size: 12px;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
 }
 
 #loading{
@@ -16,4 +16,8 @@ body{
 
 span > div#loading {
   position: fixed;
+}
+
+h1{
+font-size: 16px;
 }

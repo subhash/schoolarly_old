@@ -5,7 +5,7 @@ class CreateEvents < ActiveRecord::Migration
       t.text :description
       t.datetime :start_time
       t.datetime :end_time
-      t.boolean :all_day
+      t.boolean :all_day, :default => false
       t.integer :event_series_id
       t.integer :user_id
 
