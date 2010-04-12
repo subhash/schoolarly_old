@@ -35,13 +35,17 @@ class TeachersController < ApplicationController
       @school = School.find(params[:school_id])
       @teacher.school = @school
     end
+    #puts @school.teachers.size
     begin
       Teacher.transaction do
         @teacher.save!
         @user.invite!
+    #    puts @school.teachers.size
         render :template => 'teachers/create_success'
-      end       
+      end     
     rescue Exception => e
+      @teacher = Teacher.new(params[:teacher])
+      @teacher.user = @user  
       render :template => 'teachers/create_failure.js.rjs'     
     end
   end
