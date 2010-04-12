@@ -1,4 +1,4 @@
-page.replace_tab(Exam, :partial => 'exam_groups/exam_groups', :object => @deleted_klass.school.reload.exam_groups, :locals => {:school => @deleted_klass.school})
 page.remove_object(@deleted_klass)
-page << "bindAccordion();"
+page.replace_tab(Exam, :partial => 'exam_groups/exam_groups', :object => @deleted_klass.school.reload.exam_groups, :locals => {:school => @deleted_klass.school})
+page << "bindAccordion();"  #TODO To be changed
 page.open_tab(@deleted_klass)
