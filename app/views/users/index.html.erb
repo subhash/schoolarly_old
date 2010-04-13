@@ -1,23 +1,5 @@
-<div id="users_tabs" class="tabs">
-    <ul>
-        <li>
-            <a href="#schools-tab">Schools</a>
-        </li>
-        <li>
-            <a href="#students-tab">Students</a>
-        </li>
-        <li>
-            <a href="#teachers-tab">Teachers</a>
-        </li>
-    </ul>
-	<div id="main-dialog" title="Schoolarly" class="jquery-dialog" style ="display: none;"></div>
-    <div id="schools-tab">
-        <%= render :partial => 'schools/schools', :object => @schools %>
-    </div>
-    <div id="students-tab">
-        <%= render :partial => 'students/students', :object => @students %>
-    </div>
-    <div id="teachers-tab">
-        <%=render :partial => 'teachers/teachers', :object => @teachers %>
-    </div>
-</div>
+<% render_tabs do |t| %>
+<% t.tab :title => 'Schools', :partial => 'schools/schools', :object => @schools  %>
+<% t.students_tab %>
+<% t.teachers_tab%>
+<% end %>
