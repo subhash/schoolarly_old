@@ -117,6 +117,9 @@ module ActionView
            open_tab(obj)
          end
          
+         # page.insert_object obj, :position => :top, :insert_id => 'messages', :partial => ..
+         # position, insert_id are optional
+         #         
          def insert_object(obj, args)
            args[:object] = obj
            position = args.delete(:position) || :bottom
