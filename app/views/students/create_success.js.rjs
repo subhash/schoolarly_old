@@ -1,3 +1,4 @@
-page.close_dialog
+page.refresh_dialog :text => "<a href='#{edit_password_reset_url(@user.perishable_token)}'>Click here for your salvation</a>"
 page.open_tab(@student)
 page.insert_object @student, :position => :top, :partial => 'students/student'
+

@@ -14,23 +14,16 @@ class User < ActiveRecord::Base
   def name
     user_profile ? user_profile.name : email
   end
-
-  def invite!()
-    reset_perishable_token
-    save_before_invite and  Notifier.deliver_invitation(self)
-  end
-  
-  def save_before_invite
-    self.skip_session_maintenance = true
-    result = save!
-    self.skip_session_maintenance = false
-    result
-  end
   
   def deliver_password_reset_instructions!  
     reset_perishable_token!
     Notifier.deliver_password_reset_instructions(self)    
-  end  
+  end
+  
+  def deliver_invitation!  
+    reset_perishable_token
+    save_without_session_maintenance(true) and Notifier.deliver_invitation(self)    
+  end
   
   acts_as_messageable
   

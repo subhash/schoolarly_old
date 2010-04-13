@@ -18,8 +18,6 @@ class StudentsController < ApplicationController
   in_place_edit_for :student, :roll_number
   
   
-  # GET /students/1
-  # GET /students/1.xml
   def show
     session[:redirect] = request.request_uri
     @student = Student.find(params[:id])
@@ -48,54 +46,34 @@ class StudentsController < ApplicationController
     end
   end
   
-  # GET /students/new
-  # GET /students/new.xml
+  
   def new
     @student = Student.new
     @user = User.new
   end 
   
-  # POST /students
-  # POST /students.xml
+
   def create
-    #    TODO - if the user already exists, with school not assigned, 
-    #we should let that be added to school after enough warnings
-    
+    #    TODO - if the user already exists, with school not assigned, we should let that be added to school after enough warnings    
     @student = Student.new(params[:student])
-    @user = User.new(params[:user])
-    @student.user = @user
     if(params[:school_id])
       @school = School.find(params[:school_id])
       @student.school = @school
-    end
-    begin
-      Student.transaction do
-        @student.save!
-        @user.invite!
-        respond_to do |format|
-          format.html { redirect_to(edit_password_reset_url(@user.perishable_token)) }
-          format.js {
-            render :template => 'students/create_success'
-          }
-        end     
-      end      
-    rescue Exception => e
-      puts e.inspect
-      # handle error
-      @student = Student.new(params[:student])
-      @student.user = @user      
-      respond_to do |format|          
-        format.html { render :action => "new" }
-        format.js {
-          render :template => 'students/create_error'
-        }
-      end           
+    end    
+    @user = User.new(params[:user])
+    @user.person = @student
+    if @user.deliver_invitation!
+      render :template => 'students/create_success'
+    else  
+      render :template => 'students/create_error'      
     end
   end
+  
   
   def edit
     @student = Student.find(params[:id]) 
   end
+  
   
   def update
     @student = Student.find(params[:id])
@@ -109,7 +87,7 @@ class StudentsController < ApplicationController
         render :template => 'students/update_success'
       end
     else
-     render :template => 'students/update_failure'
+      render :template => 'students/update_failure'
     end
   end
   
@@ -134,23 +112,4 @@ class StudentsController < ApplicationController
     end
   end
   
-#  def remove
-#    @student = Student.find(params[:id])
-#    @klass = @student.klass
-#    @school = @student.school
-#    @student.papers.delete_all
-#    @student.klass = nil
-#    @student.save!
-#    if session[:redirect].include?('school')
-#      @student.school = nil
-#      @student.save!
-#      respond_to do |format|
-#        format.js {render :template => 'schools/remove_student'}
-#      end 
-#    else    
-#      respond_to do |format|
-#        format.js {render :template => 'klasses/remove_student'}
-#      end 
-#    end
-#  end
 end
