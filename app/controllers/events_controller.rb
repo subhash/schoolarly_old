@@ -7,11 +7,11 @@ class EventsController < ApplicationController
   def create
     if params[:event][:period] == "Does not repeat"
       @event = Event.new(params[:event])
-          if @event.save!
-            render :template => 'events/create'
-          else
-            render :template => 'events/create_failure'
-          end
+      if @event.save!
+        render :template => 'events/create'
+      else
+        render :template => 'events/create_failure'
+      end
     else
       #      @event_series = EventSeries.new(:frequency => params[:event][:frequency], :period => params[:event][:repeats], :start_time => params[:event][:start_time], :end_time => params[:event][:end_time], :all_day => params[:event][:all_day])
       @event_series = EventSeries.new(params[:event])
@@ -76,8 +76,8 @@ class EventsController < ApplicationController
     end
     
     render :update do |page|
-      page<<"$('#calendar').fullCalendar( 'refetchEvents' )"
-      page<<"$('#desc_dialog').dialog('destroy')" 
+      page.close_dialog
+      page<<"jQuery('#calendar').fullCalendar( 'refetchEvents' )"
     end
     
   end  
@@ -94,8 +94,8 @@ class EventsController < ApplicationController
     end
     
     render :update do |page|
-      page<<"$('#calendar').fullCalendar( 'refetchEvents' )"
-      page<<"$('#desc_dialog').dialog('destroy')" 
+      page.close_dialog
+      page<<"jQuery('#calendar').fullCalendar( 'refetchEvents' )" 
     end
     
   end

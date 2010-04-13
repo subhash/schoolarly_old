@@ -1,1 +1,2 @@
-page.replace_html 'event_desc', :partial => 'edit_form'
+#page.replace_html 'event_desc', :partial => 'edit_form'
+page.open_dialog @event.title, :partial => 'events/edit_form'
