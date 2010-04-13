@@ -117,9 +117,11 @@ module ActionView
            open_tab(obj)
          end
          
-         def insert_object(position, obj, args)
+         def insert_object(obj, args)
            args[:object] = obj
-           insert_html position, css_class_id(obj), args
+           position = args.delete(:position) || :bottom
+           insert_id = args.delete(:insert_id) || css_class_id(obj) 
+           insert_html position, insert_id, args
            show css_class_id(obj)
          end
          
