@@ -5,10 +5,11 @@ class User < ActiveRecord::Base
     c.validates_length_of_password_field_options =  validates_length_of_password_field_options.merge(option)
     c.validates_length_of_password_confirmation_field_options = validates_length_of_password_confirmation_field_options.merge(option)
   end
+ 
+  acts_as_messageable
   
   belongs_to :person, :polymorphic => true
-  has_one :user_profile 
-  
+  has_one :user_profile
   has_and_belongs_to_many :events
   
   def name
@@ -24,7 +25,5 @@ class User < ActiveRecord::Base
     reset_perishable_token
     save_without_session_maintenance(true) and Notifier.deliver_invitation(self)    
   end
-  
-  acts_as_messageable
   
 end

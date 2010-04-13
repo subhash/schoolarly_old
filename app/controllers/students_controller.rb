@@ -75,6 +75,8 @@ class StudentsController < ApplicationController
   end
   
   
+  # TODO page context
+  # Called from students/show and klass/student. Need to update breadcrumbs for the first
   def update
     @student = Student.find(params[:id])
     if(@student.update_attributes(params[:student]))    
