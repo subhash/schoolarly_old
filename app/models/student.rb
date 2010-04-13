@@ -1,6 +1,6 @@
 class Student < ActiveRecord::Base
   
-  validates_uniqueness_of :admission_number, :scope => [:school_id]
+#  validates_uniqueness_of :admission_number, :scope => [:school_id]
 #  validation cannot be activated in the current multiple add students to class scenario
 #  validates_uniqueness_of :roll_number , :scope => [:klass_id]
   named_scope :not_enrolled, lambda {
