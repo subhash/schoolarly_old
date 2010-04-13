@@ -2,10 +2,10 @@ class Event < ActiveRecord::Base
   
   validates_presence_of :title, :description
   
-  belongs_to :initiator , :class_name => :user
+  belongs_to :owner , :class_name => 'User'
   belongs_to :event_series
   
-  has_and_belongs_to_many :invitees , :class_name => :user, :association_foreign_key => 'user_id'
+  has_and_belongs_to_many :users
   
   attr_accessor :period, :frequency, :commit_button
   
@@ -22,6 +22,10 @@ class Event < ActiveRecord::Base
     if (start_time >= end_time) and !all_day
       errors.add_to_base("Start Time must be less than End Time")
     end
+  end
+  
+  def before_create
+    users << owner
   end
   
   def update_events(events, event)
@@ -51,5 +55,8 @@ class Event < ActiveRecord::Base
     event_series.save
   end  
   
+  def recurring
+    event_series ? true : false
+  end
   
 end

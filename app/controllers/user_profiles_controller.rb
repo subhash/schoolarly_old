@@ -13,23 +13,7 @@ class UserProfilesController < ApplicationController
   
   def set_up
     set_active_user(@user.id)
-    case 
-      when @person.is_a?(Teacher)  
-        if @person.school
-          add_breadcrumb(@person.school.name, @person.school)
-        end
-        add_breadcrumb(@person.name, @person)
-      when @person.is_a?(Student)
-        if @person.school
-          add_breadcrumb(@person.school.name, @person.school)
-          if @person.klass
-            add_breadcrumb(@person.klass.name, @person.klass)
-          end
-        end
-        add_breadcrumb(@person.name, @person)
-      when @person.is_a?(School)
-        add_breadcrumb((@person.name.nil?)? @user.email : @person.name, @person)
-    end
+    add_breadcrumbs_for_user(@person)
   end
   
   def store_parent_url

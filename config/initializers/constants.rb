@@ -1,0 +1,1 @@
+END_TIME_EVENT_SERIES = Date.parse("1 Jan, 2011").to_time

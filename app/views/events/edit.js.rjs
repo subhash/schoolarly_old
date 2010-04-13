@@ -1,2 +1,6 @@
-#page.replace_html 'event_desc', :partial => 'edit_form'
-page.open_dialog @event.title, :partial => 'events/edit_form'
+if @event.recurring 
+  title = @event.title + "(Recurring)"
+else 
+  title = @event.title
+end
+page.open_dialog title, :partial => 'events/edit_form'

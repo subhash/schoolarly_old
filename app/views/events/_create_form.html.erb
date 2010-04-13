@@ -25,7 +25,7 @@
 </p>
 <p>
   <%=f.label :period, "Repeats" %>
-  <%=f.select :period, Event::REPEATS,{}, :onchange => "showPeriodAndFrequency(this.value);" %>
+  <%=f.select :period, Event::REPEATS,{}, :onchange => "showPeriodAndFrequency(this.value);Modalbox.resizeToContent();" %>
 </p>
 <p id = "frequency" style = "display:none;">
   <%=f.label :frequency, "Repeat every" %>

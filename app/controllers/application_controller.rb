@@ -101,6 +101,26 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def add_breadcrumbs_for_user(person)
+    case 
+      when person.is_a?(Teacher)  
+      if person.school
+        add_breadcrumb(person.school.name, person.school)
+      end
+      add_breadcrumb(person.name, person)
+      when person.is_a?(Student)
+      if person.school
+        add_breadcrumb(person.school.name, person.school)
+        if person.klass
+          add_breadcrumb(person.klass.name, person.klass)
+        end
+      end
+      add_breadcrumb(person.name, person)
+      when person.is_a?(School)
+      add_breadcrumb(person.name, person)
+    end
+  end
+  
   private
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
@@ -170,19 +190,19 @@ class ApplicationController < ActionController::Base
     # end
   end
   
-#  def get_dialog_content(args)
-#    collection = args[:collection]
-#    message = get_message_text(args[:message]) || 'No action allowed'
-#    render = args[:render]
-#    return (collection.empty? || render.nil?) ? {:text =>'<blockquote>' + message + '</blockquote>'} : render
-#  end
-#  
-#  def get_message_text(message)
-#    case message
-#      when :message_if_empty_unallotted_papers then 'No more papers to add' 
-#      when :message_if_empty_papers then 'No paper available'
-#      else message
-#    end
-#  end
+  #  def get_dialog_content(args)
+  #    collection = args[:collection]
+  #    message = get_message_text(args[:message]) || 'No action allowed'
+  #    render = args[:render]
+  #    return (collection.empty? || render.nil?) ? {:text =>'<blockquote>' + message + '</blockquote>'} : render
+  #  end
+  #  
+  #  def get_message_text(message)
+  #    case message
+  #      when :message_if_empty_unallotted_papers then 'No more papers to add' 
+  #      when :message_if_empty_papers then 'No paper available'
+  #      else message
+  #    end
+  #  end
   
 end
