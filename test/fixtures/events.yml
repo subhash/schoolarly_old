@@ -1,17 +1,23 @@
+# == Schema Information
+# Schema version: 20100330111833
+#
+# Table name: events
+#
+#  id              :integer(4)      not null, primary key
+#  title           :string(255)
+#  starttime       :datetime
+#  endtime         :datetime
+#  all_day         :boolean(1)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  description     :text
+#  event_series_id :integer(4)
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  title: MyString
-  description: MyText
-  start_time: 2010-03-31 20:24:15
-  end_time: 2010-03-31 20:24:15
-  all_day: false
-  event_series_id: 
-
-two:
-  title: MyString
-  description: MyText
-  start_time: 2010-03-31 20:24:15
-  end_time: 2010-03-31 20:24:15
-  all_day: false
-  event_series_id: 
+# one:
+#   column: value
+#
+# two:
+#   column: value
