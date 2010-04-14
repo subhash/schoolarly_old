@@ -60,7 +60,7 @@ class TeachersController < ApplicationController
     else
       add_js_page_action(:title => 'Add to school', :render => {:partial =>'schools/add_to_school_form', :locals => {:entity => @teacher, :schools => School.all}})
     end
-    @exam_groups = @teacher.exams.collect{|exam| exam.exam_group}.uniq.group_by{|eg| eg.klass}
+    @exams = @teacher.exams
   end
   
   def add_to_school

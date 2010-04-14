@@ -7,12 +7,11 @@ class School < ActiveRecord::Base
       find :all, :conditions => {:klass_id => nil}
     end
   end
-  #has_many :exam_groups, :through => :klasses
+  has_many :exam_groups, :through => :klasses
   has_many :papers, :through => :klasses
   has_many :unallotted_papers, :source => :papers, :through => :klasses, :conditions => ['papers.teacher_id IS NULL']
 
   def subjects_for_klass(klass_id)
-    #self.papers.collect{|paper| (paper.klass.id==klass_id) ?  paper.subject : nil}.compact
     self.papers.select{|paper| (paper.klass.id==klass_id) }.collect{|p| p.subject}
   end
     
@@ -20,10 +19,8 @@ class School < ActiveRecord::Base
     read_attribute(:name) || user.name
   end
   
-  def exam_groups
-    return  klasses.each_with_object({}) do |klass, hash|
-              hash[klass] = klass.exam_groups
-            end
+  def exams
+    self.exam_groups.collect{|eg| eg.exams}.flatten
   end
 
 end

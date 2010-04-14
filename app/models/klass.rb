@@ -15,12 +15,8 @@ class Klass < ActiveRecord::Base
     end  
   end
   has_many :exam_groups
-  
+  has_many :exams, :through => :exam_groups
   validates_uniqueness_of :division, :scope => [:school_id, :level]
-  
-  def exams
-    return (self.exam_groups).collect{|eg| (!eg.exams.empty?)?(eg.exams):(Exam.new(:exam_group_id => eg.id))}.flatten
-  end    
   
   def name
     return level.to_s+" "+division

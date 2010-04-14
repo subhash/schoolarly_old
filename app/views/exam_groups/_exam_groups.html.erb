@@ -1,22 +1,7 @@
-<%entity = local_assigns[:school] || local_assigns[:klass] || local_assigns[:student] || local_assigns[:teacher] || local_assigns[:exam]%>
-<%options = get_show_options(entity)%>
-
-<%if options.include?(:show_klass) then class_name = "accordion" end%> 
-
 <div id="examgroups" style="display: none;"></div>
-
-<div class=<%=class_name%> style="font-size:1em;">
-    <% exam_groups.each do |klass, egs| %>
-		<%if options.include?(:show_klass)%>
-			<p id=<%='p_' + klass.id.to_s%>>
-			    <a href="#"><%=klass.name %></a>
-			</p>
-		<%end%>
+<%exam_groups = exams.group_by{|e| e.exam_group}%>
+    <% exam_groups.each do |eg, exams| %>
 		<div>
-			<% egs.each do |exam_group| %>
-				<%= render :partial => 'exam_groups/exam_group', :object => exam_group, :locals => {:options => options, get_symbol_for_local(entity) => entity} %>
-			<% end %>
+			<%= render :partial => 'exams/exams', :object => exams, :locals => {:entity => entity} %>
 		</div>
     <% end %>
-</div>
-

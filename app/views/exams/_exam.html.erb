@@ -1,52 +1,42 @@
-<%entity = local_assigns[:school] || local_assigns[:klass] || local_assigns[:student] || local_assigns[:teacher] || local_assigns[:exam] %>
-
 <tr id="exam-<%=exam.id%>">
-	<td class="ui-state-default">
+	<td>
     	<%=link_to exam.subject.name, exam%>
     </td>
-	<td class="ui-state-default">
+	<td>
     	<%=!exam.exam_date.nil? ? exam.exam_date.strftime('%d-%b-%y') : exam.exam_date%>
     </td>
-    <td class="ui-state-default">
+    <td>
     	<%=!exam.start_time.nil? ? exam.start_time.strftime('%I:%M %p') : exam.start_time%>
     </td>
-    <td class="ui-state-default">
+    <td>
     	<%=!exam.end_time.nil? ? exam.end_time.strftime('%I:%M %p') : exam.end_time%>
     </td>
-	<td class="ui-state-default">
+	<td>
     	<%=exam.venue%>
     </td>
-	<td class="ui-state-default">
+	<td>
     	<%=exam.max_score%>
     </td>
-	<td class="ui-state-default">
+	<td>
     	<%=exam.pass_score%>
     </td>
-	<%if options.include?(:show_teacher)%>
-	<td class="ui-state-default">
+	<td>
     	<%=link_to exam.teacher.name, exam.teacher if !exam.teacher.nil?%>
     </td>
-	<%end%>
-	<%if options.include?(:show_score)%>
-		<td class="ui-state-default">
+	<%if entity.class == Student%>
+		<td>
 			<%=exam.score_of(entity) || '<i>Unavailable</i>'%>
 		</td>
 	<%end%>
-	<%if options.include?(:edit_exam)%>
-		<td class="ui-state-focus">
-			<%= link_to_remote 'Edit', :url =>  {:controller => :exams, :action => 'edit', :id => exam, :entity_class => entity.class.name, :entity_id => entity}, :method => :get, :html => {:title => 'Edit', :class => "ui-icon ui-icon-pencil" }%>
-    	</td>
-	<%end%>
-   	<%if options.include?(:delete_exam)%>
-		<td class="ui-state-focus">
-    		<%if exam.is_destroyable? %>
-				<%= link_to_remote 'Delete', :url => {:controller => :exams, :action => 'destroy', :id => exam, :entity_class => entity.class.name, :entity_id => entity}, :method => :delete, :html => {:class => "ui-icon ui-icon-trash", :title => 'Delete'}, :confirm => 'Are you sure?' %>
-			<%end%>
-   		</td>
-	<%end%>
-	<%if options.include?(:view_scores)%>
-		<td class="ui-state-focus">
-       		<%=link_to 'View/Edit Scores', exam%>
-    	</td>
+	<td>
+    	<%=link_to 'View/Edit Scores', exam, :title => 'View/Edit Scores'%>
+    </td>
+	<td>
+		<%= link_to_remote 'Edit', :url =>  {:controller => :exams, :action => 'edit', :id => exam, :entity_class => entity.class.name, :entity_id => entity}, :method => :get, :html => {:title => 'Edit'}%>
+   	</td>
+	<%if exam.is_destroyable? %>
+		<td>
+			<%= link_to_remote 'Delete', :url => {:controller => :exams, :action => 'destroy', :id => exam, :entity_class => entity.class.name, :entity_id => entity}, :method => :delete, :html => {:title => 'Delete'}, :confirm => 'Are you sure?' %>
+		</td>
 	<%end%>
 </tr>

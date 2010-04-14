@@ -40,7 +40,7 @@ class KlassesController < ApplicationController
     add_js_page_action(:title => 'Add Students', :render => {:partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled}})
     add_js_page_action(:title => 'Add Subjects', :render => {:partial => 'papers/create_papers_form', :locals => {:klass => @klass, :subjects => Subject.find(:all)}})
     add_js_page_action(:title => 'Add Exams', :render => {:partial =>'exam_groups/new_exam_group_form', :locals => {:exam_group => ExamGroup.new(), :subjects => @subjects, :klass => @klass, :exam_types => ExamType.all}})        
-    @exam_groups = @klass.exam_groups.group_by{|eg| eg.klass}
+    @exams = @klass.exams
     session[:redirect] = request.request_uri
     respond_to do |format|
       format.html # show.html.erb

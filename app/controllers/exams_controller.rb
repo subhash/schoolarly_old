@@ -11,7 +11,7 @@ class ExamsController < ApplicationController
     add_breadcrumb(@exam.klass.school.name, @exam.klass.school)
     add_breadcrumb(@exam.klass.name, @exam.klass)
     add_breadcrumb(@exam.to_s)
-    @exam_groups = [@exam.exam_group].group_by{|eg| eg.klass}
+    @exams = [@exam]
   end
   
   def new

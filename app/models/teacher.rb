@@ -29,8 +29,4 @@ class Teacher < ActiveRecord::Base
     owned_exams.select{|e| e.klass.school == self.school}  
   end
   
-  def exam_groups
-    exams.collect{|exam| exam.exam_group}.uniq.group_by{|eg| eg.klass}
-  end
-  
 end
