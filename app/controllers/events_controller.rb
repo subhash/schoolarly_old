@@ -11,7 +11,7 @@ class EventsController < ApplicationController
       if @event.save!
         render :template => 'events/create'
       else
-        render :template => 'events/create_failure'
+        render :template => 'events/create_error'
       end
     else
       #      @event_series = EventSeries.new(:frequency => params[:event][:frequency], :period => params[:event][:repeats], :start_time => params[:event][:start_time], :end_time => params[:event][:end_time], :all_day => params[:event][:all_day])
@@ -20,7 +20,7 @@ class EventsController < ApplicationController
       if @event_series.save!
         render :template => 'events/create'
       else
-        render :template => 'events/create_failure'
+        render :template => 'events/create_error'
       end
     end
   end

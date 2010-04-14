@@ -17,6 +17,7 @@
         <%= link_to_remote 'Allot Teacher', :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper} %>
     </td>
     <%end %>
+	<!-- TODO page context -->
     <%if active_controller == 'klasses' %>
     <td>
         <%= link_to_remote "Delete", :url => paper_url(paper), :method => :delete, :html => {:class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' %>
