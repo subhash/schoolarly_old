@@ -180,6 +180,7 @@ class ApplicationController < ActionController::Base
     if school
       users = User.find_all_by_person_type_and_person_id('Teacher',school.teacher_ids) 
       users << User.find_all_by_person_type_and_person_id('Student',school.student_ids)
+      users << school.user
       #TODO parents
       #  	parent_ids = person.school.students.collect do |student|
       #   	student.parent.id
