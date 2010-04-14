@@ -3,5 +3,5 @@
 <% t.klasses_tab %>
 <% t.students_tab %>
 <% t.teachers_tab%>
-<% t.exams_tab :locals => {:school => @school} %>
+<% t.exams_tab :partial => 'exam_groups/klasses', :locals => {:entity => @school, :exams => @exams} %>
 <% end %>

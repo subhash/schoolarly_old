@@ -1,4 +1,4 @@
 <% render_tabs do |t| %>
 <% t.tab :title => 'Scores', :partial => 'scores/scores', :locals => {:exam => @exam}  %>
-<% t.exams_tab :title => 'Exam Details', :locals => {:exam => @exam} %>
+<% t.exams_tab :title => 'Exam Details', :partial => 'exams/exams', :locals => {:exams => @exams, :entity => @exam} %>
 <% end %>
