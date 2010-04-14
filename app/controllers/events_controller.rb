@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     if params[:event][:period] == "Does not repeat"
       @event = Event.new(params[:event])
       @event.owner = current_user
-      if @event.save!
+      if @event.save
         render :template => 'events/create'
       else
         render :template => 'events/create_error'
@@ -17,7 +17,7 @@ class EventsController < ApplicationController
       #      @event_series = EventSeries.new(:frequency => params[:event][:frequency], :period => params[:event][:repeats], :start_time => params[:event][:start_time], :end_time => params[:event][:end_time], :all_day => params[:event][:all_day])
       @event_series = EventSeries.new(params[:event])
       @event_series.owner = current_user
-      if @event_series.save!
+      if @event_series.save
         render :template => 'events/create'
       else
         render :template => 'events/create_error'

@@ -1,6 +1,14 @@
+#
+#if @event
+#  page.alert @event.errors.full_messages(',').join("\n")
+#end
+#
+#if @event_series
+#  page.alert @event_series.errors.full_messages(',').join("\n")
+#end
 
 if @event
-  page.alert @event.errors.full_messages(',').join("\n")
+  page.refresh_dialog :partial => 'create_form'
 end
 
 if @event_series

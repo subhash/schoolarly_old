@@ -1,4 +1,5 @@
 <%remote_form_for @event, :url => {:action => :update} , :before => "jQuery('#updating_events').show();", :complete => "jQuery('#updating_events').hide();" do |f| %>
+<%= f.error_messages %>
 <p>
     <%=f.label :title %>
     <br/>
