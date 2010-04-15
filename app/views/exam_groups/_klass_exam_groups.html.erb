@@ -1,15 +1,13 @@
 <!--TODO Check if this can be handled somewhere else !-->
-<%exam_groups = exams.group_by{|e| e.exam_group}.group_by{|eg, ex| eg.klass}%>
+<%exam_groups = exams.group_by{|e| e.exam_group.klass}%>
 
 <div class="accordion">
-    <% exam_groups.each do |klass, egs| %>
+    <% exam_groups.each do |klass, exams| %>
 		<p id=<%='p_' + klass.id.to_s%>>
 		    <a href="#"><%=klass.name %></a>
 		</p>
 		<div>
-			<% egs.each do |exam_group, exams| %>
-				<%= render :partial => 'exam_groups/exam_groups', :locals => {:exams => exams, :entity => entity} %>
-			<% end %>
+			<%= render :partial => 'exam_groups/exam_groups', :locals => {:exams => exams, :entity => entity} %>
 		</div>
     <% end %>
 </div>
