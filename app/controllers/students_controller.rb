@@ -29,7 +29,7 @@ class StudentsController < ApplicationController
         @all_subjects = Subject.find(:all, :order => 'name')
         add_breadcrumb(@klass.name,@klass)
         add_js_page_action(:title => 'Add/Remove Subjects',:render => {:partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @klass.papers}})
-        @exams = @student.klass.exams.select{|e| @student.subjects.include?(e.subject)}
+        @exams = @student.exams
       else
         @klasses = @school.klasses
         add_js_page_action(:title => 'Assign Class', :render => {:partial => 'students/add_to_klass_form', :locals => {:student => @student}})
