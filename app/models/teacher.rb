@@ -11,7 +11,7 @@ class Teacher < ActiveRecord::Base
   has_many :subjects, :through => :papers, :uniq => true, :order => 'name'
   
   def subjects_for_klass(klass_id)
-    self.papers.collect{|paper| (paper.klass.id==klass_id) ?  paper.subject : nil}
+    self.papers.select{|paper| (paper.klass.id==klass_id) }.collect{|p| p.subject}
   end
 
   has_many :owned_klasses, :class_name => 'Klass'
