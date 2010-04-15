@@ -19,18 +19,20 @@ class ExamsController < ApplicationController
     @exam = Exam.new(:exam_group => @exam_group)
     entity_class = params[:entity_class]
     @entity = get_entity(entity_class,params[:entity_id])
+    #TODO page context
     if entity_class == 'Teacher' || entity_class == 'School'
       @subjects = @entity.subjects_for_klass(@exam_group.klass.id) - @exam_group.subjects
     else
       @subjects = @entity.subjects - @exam_group.subjects      
     end
+    #TODO page context
+    @teachers = (entity_class == 'School')? @entity.teachers : @entity.school.teachers
   end
   
   def create
     @exam = Exam.new(params[:exam])
     @exam_group=ExamGroup.find(params[:exam_group_id])
     @exam.exam_group=@exam_group
-    @exam.teacher=Paper.find_by_klass_id_and_subject_id(@exam_group.klass.id, @exam.subject_id).teacher
     @entity = get_entity(params[:entity_class],params[:entity_id])
     @exam.save!
     render :template => 'exams/create_success'
@@ -41,7 +43,10 @@ class ExamsController < ApplicationController
   
   def edit
     @exam = Exam.find(params[:id])
+    #TODO page context
     @entity = get_entity(params[:entity_class],params[:entity_id])
+    @teachers = (params[:entity_class] == 'School')? @entity.teachers : @entity.school.teachers
+    @teacher_suggestion = @exam.teacher || Paper.find_by_klass_id_and_subject_id(@exam.exam_group.klass.id, @exam.subject_id).teacher
   end
   
   def update

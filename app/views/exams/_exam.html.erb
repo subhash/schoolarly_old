@@ -23,6 +23,7 @@
 	<td>
     	<%=link_to exam.teacher.name, exam.teacher if !exam.teacher.nil?%>
     </td>
+	<!-- TODO page context -->
 	<%if entity.class == Student%>
 		<td>
 			<%=exam.score_of(entity) || '<i>Unavailable</i>'%>

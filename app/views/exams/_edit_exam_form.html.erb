@@ -28,6 +28,10 @@
           	<th><label for="pass_score">Pass Score</label></th>
             <td><%= f.text_field(:pass_score, :size => 27)%></td>
         </tr>
+		<tr>
+          	<th><label for="teacher">Teacher</label></th>
+            <td><%= f.select(:teacher_id, options_from_collection_for_select(teachers,:id,:name, :selected => teacher)) %></td>
+        </tr>
 	</table>
 	<div class="center">
 		<%= submit_tag "Update" %>

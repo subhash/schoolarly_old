@@ -1,3 +1,3 @@
 page.close_dialog
-args = {:partial => 'exam_groups/exam_group', :locals => {:options => get_show_options(@entity), get_symbol_for_local(@entity) => @entity}}
-page.replace_object(@exam_group, args)
+args = {:insert_id => 'examgroup-' + @exam.exam_group.id.to_s, :partial => 'exams/exam', :locals => {:entity => @entity, :exams => [@exam]}}
+page.insert_object @exam, args

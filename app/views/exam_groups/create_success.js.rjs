@@ -1,3 +1,3 @@
 page.close_dialog
-page.insert_object(@exam_group, :position => :bottom, :partial => 'exam_groups/exam_group', :locals => {:options => get_show_options(@klass), :klass => @klass})
+page.insert_object(@exam_group.exams, :insert_id => 'examgroups-of-' + @exam_group.klass.id.to_s, :position => :top, :partial => 'exam_groups/exam_groups', :locals => {:entity => @klass, :exams => @exam_group.exams})
 page.open_tab(Exam)

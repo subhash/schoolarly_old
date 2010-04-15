@@ -1,7 +1,54 @@
-<div id="examgroups" style="display: none;"></div>
+<!--TODO The recently added div to be reviewed !-->
+<div id="<%='examgroups-of-' + exams.first.exam_group.klass.id.to_s%>" style="display: none;"></div>
+
 <%exam_groups = exams.group_by{|e| e.exam_group}%>
-    <% exam_groups.each do |eg, exams| %>
-		<div>
-			<%= render :partial => 'exams/exams', :object => exams, :locals => {:entity => entity} %>
-		</div>
-    <% end %>
+<%exam_groups.each do |exam_group, exams| %>
+	<table id="<%='examgroup-'+exam_group.id.to_s%>" border="1px">
+		<td colspan="10">
+		   	<%=exam_group.exam_type.description + ": " %>
+			<span id="edit_description_<%= exam_group.id %>" title='Edit'></span><span id=<%="description_#{exam_group.id}" %>><%=exam_group.description %></span>
+	       	<%= in_place_editor "description_#{exam_group.id}" ,{:url => {:controller => 'exam_groups', :action => 'set_exam_group_description', :id => exam_group},:external_control => "edit_description_#{exam_group.id}"} %>
+		</td>
+		<% if exam_group.is_destroyable?%>
+			<td>
+				<%= link_to_remote 'Delete', :url => {:controller => :exam_groups, :action => 'destroy', :id => exam_group, :context => entity.class.name.pluralize}, :html => {:title => 'Delete'}, :confirm => 'All the exams under this will be deleted. Are you sure?' %>
+			</td>
+		<%end%>
+		    <tr>
+		        <th>
+	            Subject
+	        </th>
+			<th>
+				Exam Date
+			</th>
+	        <th>
+	            Start Time
+	        </th>
+	        <th>
+	            End Time
+	        </th>
+			<th>
+	            Venue
+	        </th>
+			<th>
+	            Max. Score
+	        </th>
+			<th>
+	            Pass Score
+	        </th>
+			<th>
+				Teacher
+			</th>
+			<!-- TODO page context -->
+			<%if entity.class == Student%>
+				<th>Score</th>
+			<%end%>
+			<td colspan="3">
+				<%= link_to_remote 'Add Exam', :url =>  {:controller => 'exams', :action => 'new', :exam_group => exam_group, :entity_class => entity.class.name, :entity_id => entity}, :html => {:title => 'Add Exam'}%>
+			</td>
+		</tr>
+		<% exams.each do |exam| %>
+			<%= render :partial => 'exams/exam', :object => exam, :locals => {:entity => entity } %>
+		<% end %>
+	</table>
+<% end %>

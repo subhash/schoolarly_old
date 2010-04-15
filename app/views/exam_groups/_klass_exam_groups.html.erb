@@ -1,4 +1,6 @@
+<!--TODO Check if this can be handled somewhere else !-->
 <%exam_groups = exams.group_by{|e| e.exam_group}.group_by{|eg, ex| eg.klass}%>
+
 <div class="accordion">
     <% exam_groups.each do |klass, egs| %>
 		<p id=<%='p_' + klass.id.to_s%>>
