@@ -1,5 +1,5 @@
 page.close_dialog
-page.replace_tab Paper, :partial => 'papers/papers', :object => @klass.papers
 page.replace_action 'Add Subjects', :partial => 'papers/create_papers_form', :locals => {:klass => @klass, :subjects => Subject.find(:all)}
-#page.replace_html 'add-exams-dialog', :partial =>'exam_groups/new_exam_group_form', :locals => {:exam_group => ExamGroup.new(), :subjects => @klass.subjects, :klass => @klass, :exam_types => ExamType.all}
-#page.replace_html 'exams-tab', :partial => 'exam_groups/exam_groups', :object => @klass.exam_groups, :locals => {:options => get_show_options(@klass), get_symbol_for_local(@klass) => @klass}
+page.replace_action 'Add Exams', :partial => 'exam_groups/new_exam_group_form', :locals => {:exam_group => ExamGroup.new(), :subjects => @klass.subjects, :klass => @klass, :exam_types => ExamType.all}
+page.replace_tab Exam, :partial => 'exam_groups/exam_groups', :locals => {:entity => @klass, :exams => @klass.exams}
+page.replace_tab Paper, :partial => 'papers/papers', :object => @klass.papers
