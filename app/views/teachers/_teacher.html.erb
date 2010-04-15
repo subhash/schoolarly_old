@@ -5,6 +5,7 @@
     <td>
         <%= link_to teacher.email, teacher %>
     </td>
+	<!-- TODO page context -->
 	<%if active_controller != 'schools'%>
     	<%if teacher.school %> 
 			<td><%= link_to teacher.school.name, teacher.school%> </td>
