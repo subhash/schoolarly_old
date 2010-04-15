@@ -30,7 +30,7 @@
         </tr>
 		<tr>
           	<th><label for="teacher">Teacher</label></th>
-            <td><%= f.select(:teacher_id, options_from_collection_for_select(teachers,:id,:name, :selected => teacher)) %></td>
+            <td><%= f.select(:teacher_id, options_from_collection_for_select(teachers,:id,:name,teacher.id)) %></td>
         </tr>
 	</table>
 	<div class="center">
