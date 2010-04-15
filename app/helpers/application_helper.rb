@@ -70,7 +70,7 @@ module ApplicationHelper
       end
       
       def teachers_tab(args={})
-        new_args = {:tab => :teachers, :title => 'Teachers', :partial => 'teachers/teachers', :object => @teachers } 
+        new_args = {:tab => :teachers, :partial => 'teachers/teachers', :object => @teachers } 
         tab new_args.merge(args)
       end
 
@@ -80,7 +80,7 @@ module ApplicationHelper
       end     
       
       def exams_tab(args={})
-        new_args = {:tab => :exams, :title => 'Exams', :partial => 'exam_groups/exam_groups', :object => @exam_groups } 
+        new_args = {:tab => :exams, :partial => 'exam_groups/exam_groups' }
         tab new_args.merge(args)
       end
       
@@ -125,7 +125,7 @@ module ActionView
            position = args.delete(:position) || :bottom
            insert_id = args.delete(:insert_id) || css_class_id(obj) 
            insert_html position, insert_id, args
-           show css_class_id(obj)
+           show insert_id
          end
          
          def remove_object(obj)           
