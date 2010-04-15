@@ -3,18 +3,18 @@ require 'authlogic/test_case'
 
 class SchoolsControllerTest < ActionController::TestCase
   
-#  def setup
-#    activate_authlogic
-#    @sboa = schools(:sboa)
-#    @stAntonys=schools(:st_antonys)
-#    @stTeresas=schools(:st_teresas)
-#    @subbu = teachers(:v_subramaniam)
-#    @sboa_student = students(:sboa_student)
+  def setup
+    activate_authlogic
+    @sboa = schools(:sboa)
+    @stAntonys=schools(:st_antonys)
+    @stTeresas=schools(:st_teresas)
+    @subbu = teachers(:v_subramaniam)
+    @sboa_student = students(:sboa_student)
 #    @current_year=Klass.current_academic_year(@stAntonys)
-#    @six_D_without_eg=klasses(:six_D_without_eg).id.to_s + '_content_table'
-#    @six_E_with_egs=klasses(:six_E_with_egs).id.to_s + '_content_table'
-#    UserSession.create(@sboa.user)
-#  end
+    @six_D_without_eg=klasses(:six_D_without_eg).id.to_s + '_content_table'
+    @six_E_with_egs=klasses(:six_E_with_egs).id.to_s + '_content_table'
+    UserSession.create(@sboa.user)
+  end
   
   test "login" do
     #    TODO
@@ -69,12 +69,12 @@ class SchoolsControllerTest < ActionController::TestCase
 #    assert_template "teachers/remove"
 #  end
 #  
-#  test "remove student" do
-#    assert_difference '@sboa.students.size', -1 do
-#      xhr :get, "remove_student", :id => @sboa_student.to_param 
-#    end
-#    assert_response :success
+  test "remove student" do
+    assert_difference '@sboa.students.size', -1 do
+      xhr :get, "remove_student", :id => @sboa_student.to_param 
+    end
+    assert_response :success
 #    assert_template "schools/remove_student"   
-#  end
+  end
   
 end

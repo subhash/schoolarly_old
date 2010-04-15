@@ -102,12 +102,39 @@ class ActiveSupport::TestCase
     end
   end
   
-  def assert_tabs(count)
-    assert_select 'div.tabs li', count
-  end
-  
   def assert_tab_rows(type, count)    
     assert_select "div##{type.downcase.pluralize}-tab tr[id*=#{type.downcase}_]", count
+  end
+  
+  def assert_tabs
+    tab_tester = self
+    
+    class <<tab_tester
+      
+      def assert_schools_tab(position = nil)
+        assert_tab_id 'schools', position
+      end
+      
+      def assert_students_tab(position = nil)
+        assert_tab_id 'students', position
+      end
+      
+      def assert_teachers_tab(position = nil)
+        assert_tab_id 'teachers', position
+      end
+      
+      private
+      def assert_tab_id(id, position)
+        if(position)
+          assert_select "div##{id}-tab:nth-child(#{position + 1})"
+        else
+          assert_select "div##{id}-tab"
+        end
+      end
+    end
+    assert_select 'div.tab-box' do
+      yield tab_tester
+    end
   end
   
 end
