@@ -1,5 +1,7 @@
 <!--TODO The recently added div to be reviewed !-->
-<div id="<%='examgroups-of-' + exams.first.exam_group.klass.id.to_s%>" style="display: none;"></div>
+<%if entity.class == Klass %>
+	<div id="<%='examgroups-of-' + entity.id.to_s%>" style="display: none;"></div>
+<%end%>
 
 <%exam_groups = exams.group_by{|e| e.exam_group}%>
 <%exam_groups.each do |exam_group, exams| %>
