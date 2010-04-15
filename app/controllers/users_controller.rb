@@ -64,10 +64,12 @@ class UsersController < ApplicationController
     add_js_page_action(:title => 'Add Student',:render => {:partial => 'users/new_user', :locals => {:user => User.new, :person_type => 'Student'}})
     add_js_page_action(:title => 'Add Teacher',:render => {:partial => 'users/new_user', :locals => {:user => User.new, :person_type => 'Teacher'}})
     add_js_page_action(:title => 'Add School',:render => {:partial => 'users/new_user', :locals => {:user => User.new, :person_type => 'School'}})
+    add_js_page_action(:title => 'Add Schoolarly Admin',:render => {:partial => 'users/new_user', :locals => {:user => User.new, :person_type => 'SchoolarlyAdmin'}})
     
     @schools = School.find(:all)
     @students = Student.find(:all)
     @teachers = Teacher.find(:all)
+    @schoolarly_admins = SchoolarlyAdmin.find(:all)
   end
   
   def remove_student
