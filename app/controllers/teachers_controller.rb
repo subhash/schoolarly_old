@@ -82,15 +82,9 @@ class TeachersController < ApplicationController
   
   def update_papers
     @teacher.paper_ids = params[:klass][:paper_ids]
-    papers=Paper.find(@teacher.paper_ids)
-    Paper.transaction do
-      @teacher.save!
-      papers.each{|p| p.orphan_exams.each{|oe| oe.teacher=@teacher; oe.save!}}      
-    end
     if session[:redirect].include?('teachers')
       @teacher_allotments = @teacher.papers.group_by{|paper| paper.subject} 
       @papers = @teacher.school.unallotted_papers + @teacher.papers
-      @exam_groups = @teacher.exams.collect{|exam| exam.exam_group}.uniq.group_by{|eg| eg.klass}
       render :template => 'teachers/update_teacher_allotments'
     end
   end
