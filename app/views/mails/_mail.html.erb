@@ -1,25 +1,28 @@
-		<tr id="<%='mail-row-' + mail.id.to_s%>" class="<%='conv-' + mail.mailbox + '-' + mail.conversation.id.to_s%>">
-			<%if mail.mailbox == 'inbox' then users_list=[mail.message.sender]; else users_list=mail.message.recipients; end%>
-			<td>
-				<%= users_list.collect {|u| link_to u.person.name, {:controller => u.person_type.pluralize, :action => 'show', :id => u.person}, :title => u.email }.join(', ')%>
-			</td>
-			<td><%=link_to_remote mail.message.subject + ' - ' + '<i>' + mail.message.body.slice(0,9) + '... </i>', :url =>{:controller => 'mails', :action => :mark_and_show, :id => mail}, :html => {:title => 'Click here to view the message'}%></td>
-			<td title="<%=mail.message.created_at.strftime('%a, %b %d, %Y at %I:%M %p')%>"><%=mail.message.created_at.strftime('%b %d')%></td>
-			<%if local_assigns[:is_latest] && is_latest%>
-				<td class="ui-state-focus">
-		        	<%= link_to_remote 'View Conversation', :url =>{:controller => 'conversations', :action => 'show', :id => mail}, :html => {:class => "ui-icon ui-icon-comment", :title => 'View Conversation'} %>
-		    	</td>
-				<td class="ui-state-focus">
-		        	<%= link_to_remote 'Reply', :url =>{:controller => 'mails', :action => 'reply_new', :id => mail}, :html => {:class => "ui-icon ui-icon-arrowreturnthick-1-w", :title => 'Reply'} %>
-		    	</td>
-				<td class="ui-state-focus">
-		        	<%= link_to_remote 'Delete', :url =>{:controller => 'mails', :action => 'destroy', :id => mail, :is_latest => is_latest}, :html => {:class => "ui-icon ui-icon-trash", :title => mail.trashed ? 'Permanently Remove' : 'Sent to Trash'}, :confirm => 'Are you sure?' %>
-		    	</td>
-			<%end%>
-		</tr>
-		<tr class="<%='conv-' + mail.mailbox + '-' + mail.conversation.id.to_s%>">
-			<td class="ui-state-active" id="<%='body-' + mail.id.to_s%>" style ="display: none;" colspan=6>
-				<i><%=mail.message.body%></i>
-			</td>
-		</tr>
+<tr id="<%='mail-' + mail.id.to_s%>" class="<%='conversation-' + mail.conversation.id.to_s%> <%='mail-' + mail.id.to_s%>">
+	<td>
+		<%=list_sender_or_receivers(mail)%>
+	</td>
+	
+	<% subject_label = mail.message.subject + ' - ' + '<i>' + mail.message.body.slice(0,9) + '... </i>'%>
+	<td><%=link_to_remote subject_label, :url =>{:controller => 'mails', :action => :mark_and_show, :id => mail}, :html => {:title => 'Click here to view the message'}%></td>
+	
+	<td><%=mail.message.created_at.strftime('%b %d')%></td>
+	
+	<%if !local_assigns[:base_mail]%>
+		<td>
+        	<%= link_to_remote 'View Conversation', :url =>{:controller => 'conversations', :action => 'show', :id => mail}, :html => {:title => 'View Conversation'} %>
+    	</td>
+		<td>
+        	<%= link_to_remote 'Reply', :url =>{:controller => 'mails', :action => 'reply_new', :id => mail}, :html => {:title => 'Reply'} %>
+    	</td>
+		<td>
+        	<%= link_to_remote 'Delete', :url =>{:controller => 'mails', :action => 'destroy', :id => mail}, :html => {:title => mail.trashed ? 'Permanently Remove' : 'Sent to Trash'}, :confirm => 'Are you sure?' %>
+    	</td>
+	<%end%>
 
+</tr>
+<tr class="<%='conversation-' + mail.conversation.id.to_s%> <%='mail-' + mail.id.to_s%>">
+	<td id="<%='body-' + mail.id.to_s%>" style ="display: none;" colspan=6>
+		<%=mail.message.body%>
+	</td>
+</tr>

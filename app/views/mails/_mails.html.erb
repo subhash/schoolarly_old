@@ -1,13 +1,7 @@
-<%if !render_message_if_empty(mails, message_if_empty_mails).nil?%>
-	<%=	render :text => render_message_if_empty(mails, message_if_empty_mails)%>
-<%else%>
-<table id="<%=local_assigns[:mailbox]%>" class="ui-state-default" border="1px">
+<table id="<%=local_assigns[:mailbox]%>" border="1px">
 	<% mails.each do |mail|%>
-		<%= render :partial => 'mails/mail', :object => mail, :locals => {:is_latest => local_assigns[:is_latest] ? is_latest : false} %>
+		<%= render :partial => 'mails/mail', :object => mail, :locals => {:base_mail => local_assigns[:base_mail]} %>
 	<%end%>
 </table>
-<%if !local_assigns[:is_latest]%>
-	<%= link_to_remote 'Delete Conversation', :url =>{:controller => 'conversations', :action => 'destroy', :id => mails.first.conversation, :base_mail => local_assigns[:base_mail]}, :html => {:class => "ui-icon ui-icon-trash", :title => local_assigns[:base_mail].trashed ? 'Permanently Remove' : 'Sent all items to trash'}, :confirm => 'Are you sure?' %>
-<%end%>
-<%end%>
 
+<%= link_to_remote 'Delete Conversation', :url =>{:controller => 'conversations', :action => 'destroy', :id => mails.first.conversation, :base_mail => local_assigns[:base_mail]}, :html => {:class => "ui-icon ui-icon-trash", :title => local_assigns[:base_mail].trashed ? 'Permanently Remove' : 'Sent all items to trash'}, :confirm => 'Are you sure?' if local_assigns[:base_mail]%>
