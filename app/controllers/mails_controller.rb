@@ -9,26 +9,16 @@ class MailsController < ApplicationController
     @sentMail=@mail.user.reply_to_sender(@mail, params[:body], params[:subject])
     sender=@sentMail.user
     receiver=@mail.message.sender
-    #if sender==receiver then @inMail = sender.mailbox[:inbox].latest_mail.first end
-    if sender==receiver then @inMail = sender.mailbox[:inbox].latest_mail(:conversation => @sentMail.conversation).first end
-      puts "inmaiiiiiiiiiiiiiiiiiiiiil="
-      puts sender.mailbox[:inbox].mail(:conversation => @sentMail.conversation).inspect
-    respond_to do |format|
-      flash[:notice] = 'Message was successfully sent.'
-      format.js {render :template => 'mails/reply_create_success'}
-    end 
+    if sender==receiver then @inMail = sender.mailbox[:inbox].latest_mail(:conversation => @sentMail.conversation, :conditions => 'message_id = ' + @sentMail.message.id.to_s).first end
+    render :template => 'conversations/create_success'
   rescue Exception => e
-    respond_to do |format|
-      format.js {render :template => 'mails/reply_create_error'}
-    end 
+    render :template => 'mails/send_reply_error'
   end
   
   def mark_and_show
     @mail=Mail.find(params[:id])
     @mail.mark_as_read()
-    respond_to do |format|
-      format.js {render :template => 'messages/show'}
-    end 
+    render :template => 'messages/show'
   end
   
   def destroy
@@ -38,9 +28,7 @@ class MailsController < ApplicationController
     else
       Mail.delete(@mail)
     end
-    respond_to do |format|
-      format.js {render :template => 'mails/destroy'}
-    end 
+    render :template => 'mails/destroy'
   end
   
 end
