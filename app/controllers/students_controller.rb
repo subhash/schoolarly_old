@@ -63,6 +63,7 @@ class StudentsController < ApplicationController
     @user = User.new(params[:user])
     @user.person = @student
     if @user.deliver_invitation!
+      @users = get_users_for_composing(@student.school).flatten if @student.school
       render :template => 'students/create_success'
     else  
       render :template => 'students/create_error'      
