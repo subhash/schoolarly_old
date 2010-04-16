@@ -45,7 +45,8 @@
                 <% end %>
                 <%if is_messageable? %>
                 <li>
-                	<%=render :partial => 'messages/new_form', :locals => {:user => User.find_by_person_type_and_person_id(controller.controller_name.singularize.camelcase, params[:id])} %>
+                	<!-- TODO page context -->
+                	<%=render :partial => 'messages/new_form', :locals => {:user => User.find_by_person_type_and_person_id(active_controller.singularize.camelcase, params[:id])} %>
                 </li>
                 <%end %>
             </ul>
