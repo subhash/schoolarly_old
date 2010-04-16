@@ -1,13 +1,3 @@
-page << "closeDialogs();"
-div_trash = 'trash'
-div_inbox = '.conv-inbox-' + @conversation.id.to_s
-div_sentbox = '.conv-sentbox-' + @conversation.id.to_s
-  
-page.select(div_inbox).each { |div| div.remove }
-page.select(div_sentbox).each { |div| div.remove }
-mailboxes=[:inbox, :sentbox, :trash]
-mailboxes.each do |mbox|
-  if @mail.user.mailbox[mbox].mail.size==0 || !@mail.trashed
-    page.replace_html(mbox.to_s + '-area', :partial => "mails/mails", :object => @mail.user.mailbox[mbox].mail, :locals => {:is_latest => true, :mailbox => mbox})
-  end
-end
+page.close_dialog
+page.select('.conversation-' + @conversation.id.to_s).each { |div| div.remove }
+page.replace_html('trash-area', :partial => 'mails/mails', :object => @mail.user.mailbox[:trash].mail, :locals => {:mailbox => :trash} ) if !@mail.trashed

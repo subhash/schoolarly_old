@@ -1,3 +1,0 @@
-<%msg_text = params[:body].blank? ? 'Message does not have a body.' : 'Message could not be sent. Try again.'%>
-jQuery(".jquery-dialog.open-dialog").html("<%= escape_javascript(render :text => '<blockquote>' + msg_text + '</blockquote>') %>");
-jQuery(".jquery-dialog.open-dialog").append("<%= escape_javascript(render :partial => 'mails/reply_new_form', :locals => {:mail => Mail.find(params[:mail])})%>");

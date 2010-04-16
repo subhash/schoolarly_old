@@ -1,2 +1,1 @@
-page.replace_html("main-dialog", :partial =>'mails/reply_new_form', :locals => {:mail => Mail.find(params[:id])})
-page << "openDialog('main-dialog');"  
+page.open_dialog("Reply", :partial =>'mails/reply_new_form', :locals => {:mail => Mail.find(params[:id])})

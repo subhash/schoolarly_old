@@ -1,0 +1,3 @@
+page.insert_object(@receiver.mailbox[:inbox].mail(:conversation => @sentMail.conversation).first, :insert_id => 'inbox', :position => :top, :partial => 'mails/mail')
+page.insert_object(@sentMail, :insert_id => 'sentbox', :position => :top, :partial => 'mails/mail') if @receiver == current_user
+page.replace_html('post-message', :partial => 'messages/new_form', :locals => {:user => @receiver})

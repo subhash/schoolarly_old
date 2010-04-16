@@ -1,31 +1,3 @@
-div_sent = 'sentbox'
-div_inbox = 'inbox'
-if @receiver #&& if he is the current_user
-  if @receiver.mailbox[:inbox].mail.size==1
-    page.replace_html("inbox-area", :partial => 'mails/mails', :object => @receiver.mailbox[:inbox].mail, :locals => {:is_latest => true, :mailbox => 'inbox'})
-  else
-    page.insert_html(:top, div_inbox, :partial => 'mails/mail', :object => @receiver.mailbox[:inbox].mail(:conversation => @sentMail.conversation).first, :locals => {:is_latest => true})
-  end
-  page.replace_html("post-message", :partial => 'messages/new_form', :locals => {:user => @receiver})
-  if @receiver == current_user
-    if @receiver.mailbox[:inbox].mail.size==1
-      page.replace_html("sentbox-area", :partial => 'mails/mails', :object => @receiver.mailbox[:sentbox].mail, :locals => {:is_latest => true, :mailbox => 'sentbox'})
-    else
-      page.insert_html(:top, div_sent, :partial => 'mails/mail', :object => @sentMail, :locals => {:is_latest => true})
-    end
-  end
-else
-  page << "closeDialogs();"
-  if @sentMail.message.sender.mailbox[:sentbox].mail.size == 1
-    page.replace_html("sentbox-area", :partial => 'mails/mails', :object => [@sentMail], :locals => {:is_latest => true, :mailbox => 'sentbox'})
-  else
-    page.insert_html(:top, div_sent, :partial => "mails/mail", :object => @sentMail, :locals => {:is_latest => true})
-  end
-  if !@inMail.nil?
-    if @sentMail.message.sender.mailbox[:inbox].mail.size == 1
-      page.replace_html("inbox-area", :partial => 'mails/mails', :object => [@inMail], :locals => {:is_latest => true, :mailbox => 'inbox'})
-    else
-      page.insert_html(:top, div_inbox, :partial => 'mails/mail', :object => @inMail, :locals => {:is_latest => true})
-    end
-  end
-end
+page.close_dialog
+page.insert_object(@sentMail, :insert_id => 'sentbox', :position => :top, :partial => 'mails/mail')
+page.insert_object(@inMail, :insert_id => 'inbox', :position => :top, :partial => 'mails/mail') if @inMail
