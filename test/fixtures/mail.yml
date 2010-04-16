@@ -10,3 +10,4 @@ trashed_mail:
   message: sboa_message
   conversation: sboa_mail_conv
   trashed: 1
+  mailbox: inbox
