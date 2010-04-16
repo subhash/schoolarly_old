@@ -16,8 +16,7 @@ class MailsControllerTest < ActionController::TestCase
     assert_difference('Mail.count',0) do
       xhr :get, :destroy, :id => @mail.to_param
     end
-    assert_kind_of Mail, assigns(:mail)
-    #TODO assert_equal true, assigns(:mail).trashed
+    assert_equal true, @mail.reload.trashed
     assert_response :success
     assert_template 'mails/destroy'
   end
@@ -32,11 +31,23 @@ class MailsControllerTest < ActionController::TestCase
   end
   
   test "click on subject should show the message body & mark the mail as read" do
-    #TODO  
+    xhr :get, :mark_and_show, :id => @mail.to_param
+    assert_response :success
+    assert_template 'messages/show'
+  end
+  
+  test "reply should open a reply message form in the dialog box" do
+    xhr :get, :reply_new, :id => @mail.to_param
+    assert_response :success
+    assert_template 'mails/reply_new'
   end
   
   test "reply should send a mail to the sender of the current mail with the same conversation id" do
-    #TODO
+    assert_difference('@mail.user.mailbox[:sentbox].mail.size',1) do
+      xhr :post, :send_reply, :mail => @mail.to_param, :subject => 'RE: Apple', :body => 'An apple a day keeps the doctor away'  
+    end
+    assert_response :success
+    assert_template 'conversations/create_success'
   end
   
 end
