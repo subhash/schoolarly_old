@@ -25,9 +25,7 @@ class SchoolsController < ApplicationController
     add_js_page_action(:title => 'Invite Teacher',:render => {:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :school => @school}})
     @user=@school.user
     @users=get_users_for_composing(@school)
-    if !@users.nil? 
-      add_js_page_action(:title => 'Compose Message', :render => {:partial => 'conversations/new_form', :locals => {:users => @users.flatten, :mail => Mail.new()}})
-    end
+    add_js_page_action(:title => 'Compose Message', :render => {:partial => 'conversations/new_form', :locals => {:users => @users.flatten, :mail => Mail.new()}}) if @users
     @klasses = @school.klasses.group_by{|klass|klass.level}
     @exams = @school.exams
     @students = @school.students
