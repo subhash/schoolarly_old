@@ -15,7 +15,7 @@ module ApplicationHelper
   
   def is_messageable?
     persons=['schools','teachers','students']
-    return controller.action_name == 'show' && persons.include?(controller.controller_name)
+    return controller.action_name == 'show' && persons.include?(controller.controller_name) #TODO && current_user.school == active_user.school
   end
   
   def active_controller
