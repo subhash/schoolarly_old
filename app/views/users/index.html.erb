@@ -2,5 +2,5 @@
 <% t.tab :title => 'Schools', :partial => 'schools/schools', :object => @schools  %>
 <% t.students_tab %>
 <% t.teachers_tab%>
-<% t.tab :title => 'Schoolarly Admin', :partial => 'schoolarly_admins/schoolarly_admins', :object => @schoolarly_admins %>
+<% t.tab :tab => :schoolarlyadmins, :title => 'Schoolarly Admin', :partial => 'schoolarly_admins/schoolarly_admins', :object => @schoolarly_admins %>
 <% end %>

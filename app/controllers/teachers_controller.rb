@@ -1,8 +1,8 @@
 class TeachersController < ApplicationController
-
+  
   skip_before_filter :require_user, :only => [:new, :create]
   protect_from_forgery :only => [:destroy]
-   
+  
   before_filter :find_teacher, :only => [:show, :edit_papers, :update_papers, :add_to_school]
   
   def set_up
@@ -32,15 +32,15 @@ class TeachersController < ApplicationController
       @teacher.school = @school
     end
     @user = User.new(params[:user])
-    @user.person  = @teacher
+    @user.person = @teacher
     if @user.deliver_invitation!
       @users = get_users_for_composing(@teacher.school).flatten if @teacher.school
       render :template => 'teachers/create_success'
     else  
-      render :template => 'teachers/create_failure'      
+      render :template => 'teachers/create_failure'        
     end
   end
-    
+
   def show
     set_up
     add_breadcrumb(@teacher.name)
@@ -66,7 +66,7 @@ class TeachersController < ApplicationController
       render :template => 'teachers/add_to_school_success'
     end
   end
-      
+  
   def edit_papers
     @papers=@teacher.school.unallotted_papers + @teacher.papers
   end

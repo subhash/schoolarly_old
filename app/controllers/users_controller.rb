@@ -11,13 +11,18 @@ class UsersController < ApplicationController
     person_class = Object.const_get(@person_type)
     @user.person = person_class.new
     if @user.save
-      respond_to do |format|
+      render :update do |page|
+        page.close_dialog
+        page.open_tab @user.person
+        page.insert_object @user.person, :partial => "#{@person_type.underscore.pluralize}/#{@person_type.underscore}"
+      end
+#      respond_to do |format|
         flash[:notice] = 'User was successfully created.'
-        format.html { redirect_back_or_default account_url }
-        format.js {
-          render_success :object => @user.person, :insert => {:partial => "#{@person_type.underscore.pluralize}/#{@person_type.underscore}", :object => @user.person} 
-        }
-      end     
+#        format.html { redirect_back_or_default account_url }
+#        format.js {
+#          render_success :object => @user.person, :insert => {:partial => "#{@person_type.underscore.pluralize}/#{@person_type.underscore}", :object => @user.person} 
+#        }
+#      end     
     else
       respond_to do |format|          
         format.html { render :action => "new" }        
