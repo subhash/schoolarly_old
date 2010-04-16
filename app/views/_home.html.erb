@@ -7,7 +7,7 @@
 		<div class="accordion" style="font-size:1em;">
 			<%mailboxes.each do |mbox|%>
 				<p><a href="#"><%=mbox[1]%></a></p>
-				<div><div id="<%=mbox[0].to_s + '-area'%>"><%= render :partial => 'mails/mails', :object => user.mailbox[mbox[0]].mail, :locals => {:is_latest => true, :mailbox => mbox[0]} %></div></div>
+				<div><div id="<%=mbox[0].to_s + '-area'%>"><%= render :partial => 'mails/mails', :object => user.mailbox[mbox[0]].mail, :locals => {:mailbox => mbox[0]} %></div></div>
 			<%end%>
 		</div>
 	</div>
