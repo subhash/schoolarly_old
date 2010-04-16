@@ -16,9 +16,7 @@ class TeachersController < ApplicationController
     if @user == current_user then label = 'Edit Profile'; action = 'edit' else label = 'View Profile'; action = 'show' end
     add_page_action(label, {:controller => :user_profiles, :action => action, :id => @teacher.user})
     @users=get_users_for_composing(@teacher)
-    if !@users.nil? # && @user==current_user TODO
-      add_js_page_action(:title => 'Compose Message', :render => {:partial => 'conversations/new_form', :locals => {:users => @users.flatten, :mail => Mail.new()}})
-    end
+    add_js_page_action(:title => 'Compose Message', :render => {:partial => 'conversations/new_form', :locals => {:users => @users.flatten, :mail => Mail.new()}}) if @users
   end
   
   def find_teacher    
@@ -26,27 +24,20 @@ class TeachersController < ApplicationController
       @teacher = Teacher.find(params[:id])
     end
   end  
-     
+
   def create
     @teacher = Teacher.new(params[:teacher])
-    @user = User.new(params[:user])
-    @teacher.user = @user
     if(params[:school_id])
       @school = School.find(params[:school_id])
       @teacher.school = @school
     end
-    #puts @school.teachers.size
-    begin
-      Teacher.transaction do
-        @teacher.save!
-        @user.invite!
-    #    puts @school.teachers.size
-        render :template => 'teachers/create_success'
-      end     
-    rescue Exception => e
-      @teacher = Teacher.new(params[:teacher])
-      @teacher.user = @user  
-      render :template => 'teachers/create_failure.js.rjs'     
+    @user = User.new(params[:user])
+    @user.person  = @teacher
+    if @user.deliver_invitation!
+      @users = get_users_for_composing(@teacher.school).flatten if @teacher.school
+      render :template => 'teachers/create_success'
+    else  
+      render :template => 'teachers/create_failure'      
     end
   end
     
