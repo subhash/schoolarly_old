@@ -1,3 +1,4 @@
 page.close_dialog
 page.insert_object(@teacher, :partial => 'teachers/teacher')
+page.replace_action 'Compose Message', :partial => 'conversations/new_form', :locals => {:users => @users, :mail => Mail.new()} if @users
 page.open_tab(@teacher)
