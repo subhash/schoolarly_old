@@ -123,6 +123,18 @@ class ActiveSupport::TestCase
         assert_tab_id 'teachers', position
       end
       
+      def assert_papers_tab(position = nil)
+        assert_tab_id 'papers', position
+      end
+      
+      def assert_exams_tab(position = nil)
+        assert_tab_id 'exams', position
+      end
+      
+      def assert_home_tab(position = nil)
+        assert_tab_id 'home', position
+      end
+      
       private
       def assert_tab_id(id, position)
         if(position)
