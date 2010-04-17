@@ -1,4 +1,5 @@
 <% remote_form_for :mail, :url => {:controller => :conversations, :action => 'create', :users => users } do |f| %>
+<%= f.error_messages %>
 	<table class="center">
 		<tr>
 			<th>
