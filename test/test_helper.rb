@@ -53,8 +53,8 @@ class ActiveSupport::TestCase
         assert_select 'a[href=?]', url, :text => label
       end
     else
-      assert_select 'div#breadcrumbs ul#crumbs li:last-of-type' do
-        assert_select 'a[href=?]', "", :text => label
+      assert_select 'div#breadcrumbs ul#crumbs' do
+        assert_select 'li:last-of-type', :text => label
       end
     end
     if index
