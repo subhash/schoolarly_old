@@ -29,56 +29,63 @@ class TeachersControllerTest < ActionController::TestCase
     get :show, :id => @subbu.to_param
     assert_response :success
     assert_breadcrumb(@sboa.name, school_path(@sboa),1)
-    assert_breadcrumb(@subbu.name, "",2)
+    assert_breadcrumb(@subbu.name)
     assert_action_count(3)
     assert_action('Edit Profile', :url => edit_user_profile_path(@subbu.user), :index => 1)
     assert_action('Compose Message', :index => 2)
     assert_action('Add/Remove Papers', :index => 3)
-    #assert_select "ul#right-bar li div#post-message", 'Post an instant message...'
+    assert_select "ul#right-bar li div#post-message", /Post an instant message.../
     assert_tab_count(3)
-    assert_tab('Home', 'home-tab')
-    assert_tab('Subjects', 'papers-tab')
-    assert_tab('Exams', 'exams-tab') 
+    assert_tabs do |t|
+      t.assert_home_tab 
+      t.assert_papers_tab 2
+      t.assert_exams_tab 3
+    end
   end
   
   test "Others should only view & not edit teacher profile. Rest of the breadcrumbs & actions should be the same" do
     get :show, :id => @subbu.to_param
     assert_response :success
     assert_breadcrumb(@sboa.name, school_path(@sboa),1)
-    assert_breadcrumb(@subbu.name, "",2)
+    assert_breadcrumb(@subbu.name)
     assert_action_count(3) #will be changed to 2 later
     assert_action('View Profile', :url => user_profile_path(@subbu.user), :index => 1)
     assert_action('Compose Message', :index => 2)
     assert_action('Add/Remove Papers', :index => 3)
-    #assert_select "ul#right-bar li div#post-message", 'Post an instant message...'
+    assert_select "ul#right-bar li div#post-message", /Post an instant message.../
     assert_tab_count(3)
-    assert_tab('Home', 'home-tab')
-    assert_tab('Subjects', 'papers-tab')
-    assert_tab('Exams', 'exams-tab')  
+    assert_tabs do |t|
+      t.assert_home_tab 
+      t.assert_papers_tab 2
+      t.assert_exams_tab 3
+    end
   end
   
   test "teacher without a school should show breadcrumbs with teacher name/email and 2 actions" do
     UserSession.create(@no_school_teacher.user)
     get :show, :id => @no_school_teacher.to_param
     assert_response :success
-    assert_breadcrumb(@no_school_teacher.name, "", 1)
+    assert_breadcrumb(@no_school_teacher.name)
     assert_action_count(2)
     assert_action('Edit Profile', :url => edit_user_profile_path(@no_school_teacher.user), :index => 1)
     assert_action('Add to school', :index => 2)
-    #assert_select "ul#right-bar li div#post-message", 'Post an instant message...'
+    assert_select "ul#right-bar li div#post-message", /Post an instant message.../
     assert_tab_count(3)
-    assert_tab('Home', 'home-tab')
-    assert_tab('Subjects', 'papers-tab')
-    assert_tab('Exams', 'exams-tab')   
+    assert_tabs do |t|
+      t.assert_home_tab 
+      t.assert_papers_tab 2
+      t.assert_exams_tab 3
+    end
   end
   
-#  test "create teacher success thru xhr" do
-#    #assert_difference('@sboa.reload.teachers.size', 1) do
-#      xhr :post, :create, { :user => {:email => 'new_sboa_teacher@gmail.com'}, :school_id =>@sboa.to_param }
-#    #end
-#    assert_response :success
-#    assert_template 'teachers/create_success'
-#  end
+  test "create teacher success thru xhr" do
+    assert_difference('@sboa.teachers.size') do
+      session[:redirect] = 'schools/' + @sboa.to_param
+      xhr :post, :create, { :user => {:email => 'new_sboa_teacher@gmail.com'}, :school_id =>@sboa.to_param }
+    end
+    assert_response :success
+    assert_template 'teachers/create_success'
+  end
   
   test "create teacher failure thru xhr" do
     xhr :post, :create , {:user => {:email => @subbu.email}, :school_id =>@sboa.to_param}
