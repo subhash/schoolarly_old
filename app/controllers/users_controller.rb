@@ -63,7 +63,6 @@ class UsersController < ApplicationController
   
   def index
     session[:redirect] = request.request_uri
-    add_breadcrumb('Home')
     
     @schools = School.find(:all)
     @students = Student.find(:all)

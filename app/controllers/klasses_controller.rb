@@ -34,8 +34,6 @@ class KlassesController < ApplicationController
   def show
     @klass = Klass.find(params[:id])
     @school = @klass.school
-    add_breadcrumb(@school.name, @school)
-    add_breadcrumb(@klass.name)
     @subjects=@klass.subjects
     @exams = @klass.exams
     session[:redirect] = request.request_uri

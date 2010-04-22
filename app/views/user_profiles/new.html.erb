@@ -1,3 +1,8 @@
+<% render_breadcrumbs do |add| %>
+<% add.crumb_for @person %>
+<% add.crumb 'Profile' %>
+<% end %>
+
 <% form_for @user_profile, :url => {:controller => :user_profiles, :action => :create, :method => :post, :id => @user} do |user_profile|%>
 <%= user_profile.error_messages %>
 <div>

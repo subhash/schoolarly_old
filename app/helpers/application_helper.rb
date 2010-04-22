@@ -102,6 +102,27 @@ module ApplicationHelper
     concat(render :partial => '/common/actions', :locals => {:block => block, :collector => collector })
   end
   
+  def render_breadcrumbs(&block)
+    collector = self
+    class <<collector
+      def crumb(label, url = nil)
+        concat(render :partial => '/common/crumb', :locals => {:url => url, :label => label})
+      end
+      
+      def crumb_for(person)
+        case
+          when person.is_a?(Teacher)
+            self.crumb(person.school.name, person.school) if person.school
+          when person.is_a?(Student)
+            self.crumb(person.school.name, person.school) if person.school
+            self.crumb(person.klass.name, person.klass)if person.school and person.klass              
+        end
+        self.crumb(person.name, person)
+      end
+    end
+    concat(render :partial => '/common/crumbs', :locals => {:block => block, :collector => collector})
+  end
+  
 end
 
 module ActionView

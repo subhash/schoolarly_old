@@ -13,7 +13,6 @@ class UserProfilesController < ApplicationController
   
   def set_up
     set_active_user(@user.id)
-    add_breadcrumbs_for_user(@person)
   end
   
   def store_parent_url
@@ -27,7 +26,6 @@ class UserProfilesController < ApplicationController
       if !@user.user_profile.nil?
         redirect_to(url_for( :controller => :user_profiles, :action => 'edit', :id=>@user))
       end
-      add_breadcrumb('Profile')
       @user_profile = UserProfile.new
     end
   end
@@ -47,8 +45,7 @@ class UserProfilesController < ApplicationController
   def show
     if @user.user_profile.nil? and @user == current_user 
       redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
-    end
-    add_breadcrumb('Profile')
+    end    
     @user_profile=@user.user_profile
   end
   
@@ -59,8 +56,6 @@ class UserProfilesController < ApplicationController
       if @user.user_profile.nil? 
         redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
       else
-        add_breadcrumb('Profile', {:controller => :user_profiles, :action => 'show', :id => @user})
-        add_breadcrumb('Edit')
         @user_profile=@user.user_profile
       end
     end

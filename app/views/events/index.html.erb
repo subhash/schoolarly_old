@@ -1,3 +1,8 @@
+<% render_breadcrumbs do |add| %>
+<% add.crumb_for current_user.person %>
+<% add.crumb "Calendar Events" %>
+<% end %>
+
 <p>
     <%=link_to_remote 'Create Event', :url => {:action => :new} %>
 </p>

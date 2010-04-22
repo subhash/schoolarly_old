@@ -43,12 +43,6 @@ class ApplicationController < ActionController::Base
     current_user and (current_user.is_editor_of?(object) or current_user.is_editor_of?(object.class))
   end
   
-  def add_breadcrumb(name, url = nil)
-    @breadcrumbs ||= []
-    @breadcrumbs << [name, url]
-  end
-  
-  
   def add_details(options)
     @details = options
   end
@@ -90,26 +84,6 @@ class ApplicationController < ActionController::Base
         end
       end      
       yield page if block_given?      
-    end
-  end
-  
-  def add_breadcrumbs_for_user(person)
-    case 
-      when person.is_a?(Teacher)  
-      if person.school
-        add_breadcrumb(person.school.name, person.school)
-      end
-      add_breadcrumb(person.name, person)
-      when person.is_a?(Student)
-      if person.school
-        add_breadcrumb(person.school.name, person.school)
-        if person.klass
-          add_breadcrumb(person.klass.name, person.klass)
-        end
-      end
-      add_breadcrumb(person.name, person)
-      when person.is_a?(School)
-      add_breadcrumb(person.name, person)
     end
   end
   

@@ -1,3 +1,8 @@
+<% render_breadcrumbs do |add| %>
+<% add.crumb 'Profile', {:controller => :user_profiles, :action => 'show', :id => @user} %>
+<% add.crumb 'Edit' %>
+<% end %>
+
 <% form_for @user_profile, :url => {:controller => :user_profiles, :action => :update, :id => @user} do |user_profile| %>
 <%= user_profile.error_messages %>
 <div>

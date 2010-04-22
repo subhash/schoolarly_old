@@ -23,17 +23,14 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
     @school = @student.school
     @klass = @student.klass
-    if @school
-      add_breadcrumb(@school.name, @school)    
+    if @school    
       if @klass
         @all_subjects = Subject.find(:all, :order => 'name')
-        add_breadcrumb(@klass.name,@klass)
         @exams = @student.exams
       else
         @klasses = @school.klasses
       end
     end
-    add_breadcrumb(@student.name)
     @user=@student.user
     @users=get_users_for_composing(@student)
   end

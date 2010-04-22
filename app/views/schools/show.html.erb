@@ -5,6 +5,11 @@
 <% add.dialog 'Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :school => @school} %>
 <% add.dialog 'Compose Message', :partial => 'conversations/new_form', :locals => {:users => @users.flatten, :mail => Mail.new()} if @users %>
 <% end %>
+
+<% render_breadcrumbs do |add| %>
+<% add.crumb @school.name %>
+<% end %>
+
 <% render_tabs do |add| %>
 <% add.tab :title => 'Home', :partial => '/home', :locals => {:user => @school.user} %>
 <% add.klasses_tab %>

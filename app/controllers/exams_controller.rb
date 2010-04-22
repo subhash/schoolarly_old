@@ -1,16 +1,13 @@
 class ExamsController < ApplicationController
   
   protect_from_forgery :only => [:create, :update, :destroy]
-
+  
   def get_entity(entity_class,entity_id)
     Object.const_get(entity_class).find(entity_id)
   end
-
+  
   def show
     @exam=Exam.find(params[:id])
-    add_breadcrumb(@exam.klass.school.name, @exam.klass.school)
-    add_breadcrumb(@exam.klass.name, @exam.klass)
-    add_breadcrumb(@exam.to_s)
     @exams = [@exam]
   end
   

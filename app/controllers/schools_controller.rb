@@ -18,7 +18,6 @@ class SchoolsController < ApplicationController
   # GET /schools/1.xml
   def show    
     @school=School.find(params[:id])
-    add_breadcrumb(@school.name)
     @user=@school.user
     @users=get_users_for_composing(@school)
     @klasses = @school.klasses.group_by{|klass|klass.level}

@@ -1,10 +1,16 @@
+<% render_actions do |add| %>
+<% add.dialog 'Add Students', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled} %>
+<% add.dialog 'Add Subjects', :partial => 'papers/create_papers_form', :locals => {:klass => @klass, :subjects => Subject.find(:all)} %>
+<% add.dialog 'Add Exams', :partial =>'exam_groups/new_exam_group_form', :locals => {:exam_group => ExamGroup.new(), :subjects => @subjects, :klass => @klass, :exam_types => ExamType.all} %>
+<% end %>
+
+<% render_breadcrumbs do |add| %>
+<% add.crumb @school.name, @school %>
+<% add.crumb @klass.name %>
+<% end %>
+
 <% render_tabs do |t| %>
 <% t.students_tab :object => @klass.students %>
 <% t.papers_tab :object => @klass.papers %>
 <% t.exams_tab :partial => 'exam_groups/exam_groups', :locals => {:entity => @klass, :exams => @exams} %>
 <% end %>
-<% render_actions do |add| %>
-<% add.dialog 'Add Students', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled} %>
-<% add.dialog 'Add Subjects', :partial => 'papers/create_papers_form', :locals => {:klass => @klass, :subjects => Subject.find(:all)} %>
-<% add.dialog 'Add Exams', :partial =>'exam_groups/new_exam_group_form', :locals => {:exam_group => ExamGroup.new(), :subjects => @subjects, :klass => @klass, :exam_types => ExamType.all} %>
-<% end %> 

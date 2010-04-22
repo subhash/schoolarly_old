@@ -26,8 +26,6 @@ class EventsController < ApplicationController
   end
   
   def index
-    add_breadcrumbs_for_user(current_user.person)
-    add_breadcrumb("Calendar Events")
   end
   
   

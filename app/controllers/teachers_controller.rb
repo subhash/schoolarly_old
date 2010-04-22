@@ -11,7 +11,6 @@ class TeachersController < ApplicationController
     set_active_user(@user.id)
     if @teacher.school
       @school=@teacher.school
-      add_breadcrumb(@school.name, @school)
     end
     @users=get_users_for_composing(@teacher)
 
@@ -41,7 +40,6 @@ class TeachersController < ApplicationController
 
   def show
     set_up
-    add_breadcrumb(@teacher.name)
     if @teacher.school
       @papers=@teacher.school.unallotted_papers + @teacher.papers
       @teacher_allotments = @teacher.papers.group_by{|p| Subject.find(p.subject_id)}      

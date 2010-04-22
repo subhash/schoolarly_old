@@ -20,12 +20,7 @@
             <div id="contents">
                 <div id="breadcrumbs">
                     <ul id="crumbs">
-                        <% @breadcrumbs ||= [] %>
-                        <% @breadcrumbs.each do |a| %>
-                        <li>
-                            <%= if(a[1]) then link_to(a[0], a[1]) else a[0] end %>
-                        </li>
-                        <% end %>
+                        <%= yield :crumbs %>
                     </ul>
                 </div>
                 <%= yield %>
