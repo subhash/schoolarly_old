@@ -22,7 +22,9 @@ shenu:
   
 reeny:
   admission_number: 3
-  school: st_teresas  
+  klass: two_B
+  school: st_teresas
+  papers: two_B_sanskrit
   
 subhash:
   admission_number: 2
