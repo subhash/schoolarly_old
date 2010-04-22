@@ -28,22 +28,15 @@ class StudentsController < ApplicationController
       if @klass
         @all_subjects = Subject.find(:all, :order => 'name')
         add_breadcrumb(@klass.name,@klass)
-        add_js_page_action(:title => 'Add/Remove Subjects',:render => {:partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @klass.papers}})
         @exams = @student.exams
       else
         @klasses = @school.klasses
-        add_js_page_action(:title => 'Assign Class', :render => {:partial => 'students/add_to_klass_form', :locals => {:student => @student}})
       end
-    else
-      add_js_page_action(:title => 'Add to school', :render => {:partial =>'students/add_to_school_form', :locals => {:student => @student, :schools => School.find(:all)}})
     end
     add_breadcrumb(@student.name)
     add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @student.user})
     @user=@student.user
     @users=get_users_for_composing(@student)
-    if !@users.nil? 
-      add_js_page_action(:title => 'Compose Message', :render => {:partial => 'conversations/new_form', :locals => {:users => @users.flatten, :mail => Mail.new()}})
-    end
   end
   
   

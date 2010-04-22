@@ -16,7 +16,7 @@ class TeachersController < ApplicationController
     if @user == current_user then label = 'Edit Profile'; action = 'edit' else label = 'View Profile'; action = 'show' end
     add_page_action(label, {:controller => :user_profiles, :action => action, :id => @teacher.user})
     @users=get_users_for_composing(@teacher)
-    add_js_page_action(:title => 'Compose Message', :render => {:partial => 'conversations/new_form', :locals => {:users => @users.flatten, :mail => Mail.new()}}) if @users
+
   end
   
   def find_teacher    
@@ -46,10 +46,7 @@ class TeachersController < ApplicationController
     add_breadcrumb(@teacher.name)
     if @teacher.school
       @papers=@teacher.school.unallotted_papers + @teacher.papers
-      add_js_page_action(:title => 'Add/Remove Papers',:render => {:partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers}})
-      @teacher_allotments = @teacher.papers.group_by{|p| Subject.find(p.subject_id)}
-    else
-      add_js_page_action(:title => 'Add to school', :render => {:partial =>'schools/add_to_school_form', :locals => {:entity => @teacher, :schools => School.all}})
+      @teacher_allotments = @teacher.papers.group_by{|p| Subject.find(p.subject_id)}      
     end
     @exams = @teacher.exams
   end

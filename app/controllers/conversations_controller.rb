@@ -6,6 +6,7 @@ class ConversationsController < ApplicationController
   end
   
   def create
+    puts 'current user'+current_user.inspect
     sender=current_user     #TODO Once the compose message action is displayed only when current_user is the same as active user, the confusion goes. i.e., when the authorisation is in place
     raise if params[:message][:body].blank?  #TODO Move to form validation
     if params[:receiver]

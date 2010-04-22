@@ -1,5 +1,10 @@
 <% render_tabs do |t| %>
-<% t.tab :title => 'Home', :partial => '/home', :locals => {:user => @teacher.user}  %>
+<% t.tab :title => 'Home', :partial => '/home', :locals => {:user => @teacher.user} %>
 <% t.papers_tab :partial => 'teacher_allotments/teacher_allotments', :object => @teacher_allotments %>
 <% t.exams_tab :partial => 'exam_groups/klass_exam_groups', :locals => {:exams => @exams, :entity => @teacher} %>
+<% end %>
+<% render_actions do |add| %>
+<% add.dialog 'Compose Message',:partial => 'conversations/new_form', :locals => {:users => @users.flatten, :mail => Mail.new()} if @users %>
+<% add.dialog 'Add/Remove Papers', :partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers} if @school %>
+<% add.dialog 'Add to school', :partial =>'schools/add_to_school_form', :locals => {:entity => @teacher, :schools => School.all} unless @school %>
 <% end %>

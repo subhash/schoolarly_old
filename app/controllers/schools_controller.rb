@@ -19,13 +19,8 @@ class SchoolsController < ApplicationController
   def show    
     @school=School.find(params[:id])
     add_breadcrumb(@school.name)
-    add_page_action('Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @school.user})    
-    add_js_page_action(:title => 'Add class',:render => {:partial => 'klasses/new_klass_form', :locals => {:klass => Klass.new, :school => @school}})
-    add_js_page_action(:title => 'Invite Student',:render => {:partial => 'students/invite_student_form', :locals => {:student => Student.new, :school => @school}})
-    add_js_page_action(:title => 'Invite Teacher',:render => {:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :school => @school}})
     @user=@school.user
     @users=get_users_for_composing(@school)
-    add_js_page_action(:title => 'Compose Message', :render => {:partial => 'conversations/new_form', :locals => {:users => @users.flatten, :mail => Mail.new()}}) if @users
     @klasses = @school.klasses.group_by{|klass|klass.level}
     @exams = @school.exams
     @students = @school.students

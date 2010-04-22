@@ -37,9 +37,6 @@ class KlassesController < ApplicationController
     add_breadcrumb(@school.name, @school)
     add_breadcrumb(@klass.name)
     @subjects=@klass.subjects
-    add_js_page_action(:title => 'Add Students', :render => {:partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled}})
-    add_js_page_action(:title => 'Add Subjects', :render => {:partial => 'papers/create_papers_form', :locals => {:klass => @klass, :subjects => Subject.find(:all)}})
-    add_js_page_action(:title => 'Add Exams', :render => {:partial =>'exam_groups/new_exam_group_form', :locals => {:exam_group => ExamGroup.new(), :subjects => @subjects, :klass => @klass, :exam_types => ExamType.all}})        
     @exams = @klass.exams
     session[:redirect] = request.request_uri
     respond_to do |format|

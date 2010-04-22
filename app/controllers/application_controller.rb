@@ -48,19 +48,11 @@ class ApplicationController < ActionController::Base
     @breadcrumbs << [name, url]
   end
   
-  def add_page_action(*options)
-    @page_actions ||=[]
-    @page_actions << [*options]
-  end
   
   def add_details(options)
     @details = options
   end
   
-  def add_js_page_action(options)    
-    @js_page_actions ||=[]
-    @js_page_actions << options
-  end
   
   def render_failure(args)
     render :update do |page|

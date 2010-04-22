@@ -1,6 +1,14 @@
 <% render_tabs do |t| %>
-<% t.tab :title => 'Schools', :partial => 'schools/schools', :object => @schools  %>
+<% t.tab :title => 'Schools', :partial => 'schools/schools', :object => @schools %>
 <% t.students_tab %>
-<% t.teachers_tab%>
+<% t.teachers_tab %>
 <% t.tab :tab => :schoolarlyadmins, :title => 'Schoolarly Admin', :partial => 'schoolarly_admins/schoolarly_admins', :object => @schoolarly_admins %>
+<% end %>
+<% render_actions do |add| %>
+<% add.dialog 'Invite Student',:partial => 'students/invite_student_form', :locals => {:student => Student.new, :school => @school} %>
+<% add.dialog 'Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :school => @school} %>
+<% add.dialog 'Add Student',:partial => 'users/new_user', :locals => {:user => User.new, :person_type => 'Student'} %>
+<% add.dialog 'Add Teacher',:partial => 'users/new_user', :locals => {:user => User.new, :person_type => 'Teacher'} %>
+<% add.dialog  'Add School',:partial => 'users/new_user', :locals => {:user => User.new, :person_type => 'School'} %>
+<% add.dialog  'Add Schoolarly Admin',:partial => 'users/new_user', :locals => {:user => User.new, :person_type => 'SchoolarlyAdmin'} %>
 <% end %>

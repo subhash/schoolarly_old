@@ -88,6 +88,20 @@ module ApplicationHelper
     yield tabbifier if block_given?
     concat(render :partial => "/common/tabs", :object => tabbifier.tabs)
   end
+  
+  def render_actions(&block)
+    collector = self
+    class <<collector
+      def link(title, args)
+        concat(render :partial => "/common/action_link", :locals => {:title => title, :args => args})
+      end
+      def dialog(title, args)
+        concat(render :partial => '/common/action', :locals => {:title => title, :args => args})
+      end
+    end
+    concat(render :partial => '/common/actions', :locals => {:block => block, :collector => collector })
+  end
+  
 end
 
 module ActionView

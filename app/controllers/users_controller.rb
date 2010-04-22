@@ -64,12 +64,6 @@ class UsersController < ApplicationController
   def index
     session[:redirect] = request.request_uri
     add_breadcrumb('Home')
-    add_js_page_action(:title => 'Invite Student',:render => {:partial => 'students/invite_student_form', :locals => {:student => Student.new, :school => @school}})
-    add_js_page_action(:title => 'Invite Teacher',:render => {:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :school => @school}})
-    add_js_page_action(:title => 'Add Student',:render => {:partial => 'users/new_user', :locals => {:user => User.new, :person_type => 'Student'}})
-    add_js_page_action(:title => 'Add Teacher',:render => {:partial => 'users/new_user', :locals => {:user => User.new, :person_type => 'Teacher'}})
-    add_js_page_action(:title => 'Add School',:render => {:partial => 'users/new_user', :locals => {:user => User.new, :person_type => 'School'}})
-    add_js_page_action(:title => 'Add Schoolarly Admin',:render => {:partial => 'users/new_user', :locals => {:user => User.new, :person_type => 'SchoolarlyAdmin'}})
     
     @schools = School.find(:all)
     @students = Student.find(:all)
