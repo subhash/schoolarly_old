@@ -49,9 +49,6 @@ class UserProfilesController < ApplicationController
       redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
     end
     add_breadcrumb('Profile')
-    if @user == current_user
-      add_page_action('Edit', {:controller => :user_profiles, :action => 'edit', :id => @user})
-    end
     @user_profile=@user.user_profile
   end
   

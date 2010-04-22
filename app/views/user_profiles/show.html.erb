@@ -7,3 +7,7 @@
 <div>
     <%= render :partial => "user_profiles/user", :object => @user %>
 </div>
+
+<% render_actions do |add| %>
+<% add.link 'Edit', {:controller => :user_profiles, :action => 'edit', :id => @user} if @user == current_user %>
+<% end %>

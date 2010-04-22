@@ -13,8 +13,6 @@ class TeachersController < ApplicationController
       @school=@teacher.school
       add_breadcrumb(@school.name, @school)
     end
-    if @user == current_user then label = 'Edit Profile'; action = 'edit' else label = 'View Profile'; action = 'show' end
-    add_page_action(label, {:controller => :user_profiles, :action => action, :id => @teacher.user})
     @users=get_users_for_composing(@teacher)
 
   end
