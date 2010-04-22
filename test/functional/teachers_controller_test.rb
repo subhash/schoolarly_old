@@ -35,7 +35,6 @@ class TeachersControllerTest < ActionController::TestCase
     assert_action('Compose Message', :index => 2)
     assert_action('Add/Remove Papers', :index => 3)
     assert_select "ul#right-bar li div#post-message", /Post an instant message.../
-    assert_tab_count(3)
     assert_tabs do |t|
       t.assert_home_tab 
       t.assert_papers_tab 2
@@ -53,7 +52,6 @@ class TeachersControllerTest < ActionController::TestCase
     assert_action('Compose Message', :index => 2)
     assert_action('Add/Remove Papers', :index => 3)
     assert_select "ul#right-bar li div#post-message", /Post an instant message.../
-    assert_tab_count(3)
     assert_tabs do |t|
       t.assert_home_tab 
       t.assert_papers_tab 2
@@ -70,7 +68,6 @@ class TeachersControllerTest < ActionController::TestCase
     assert_action('Edit Profile', :url => edit_user_profile_path(@no_school_teacher.user), :index => 1)
     assert_action('Add to school', :index => 2)
     assert_select "ul#right-bar li div#post-message", /Post an instant message.../
-    assert_tab_count(3)
     assert_tabs do |t|
       t.assert_home_tab 
       t.assert_papers_tab 2

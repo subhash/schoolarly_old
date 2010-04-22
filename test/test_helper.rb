@@ -34,18 +34,6 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   fixtures :all
   
-  # Add more helper methods to be used by all tests here...
-  
-  def assert_tab_count(count)
-    assert_select 'div.tab-box > ul.tab-bar > li > a',count
-  end
-  
-  def assert_tab(label, id)
-    assert_select 'div.tab-box > ul.tab-bar > li > a', label
-    assert_select "#"+id, 1
-  end
-  
-  
   def assert_breadcrumb(label,url = nil, index = nil)
     assert_select 'div#breadcrumbs ul#crumbs li' , :text => label 
     if url
@@ -100,10 +88,6 @@ class ActiveSupport::TestCase
         assert_select "li a[href=?]", :text => label
       end
     end
-  end
-  
-  def assert_tab_rows(type, count)    
-    assert_select "div##{type.downcase.pluralize}-tab tr[id*=#{type.downcase}_]", count
   end
   
   def assert_tabs

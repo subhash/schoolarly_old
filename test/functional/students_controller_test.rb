@@ -86,13 +86,11 @@ class StudentsControllerTest < ActionController::TestCase
   
   test "show student with subjects and exams tabs" do
     get :show, :id => @enrolled_student.to_param
-    assert_tab_count 3
     assert_tabs do |t|
       t.assert_home_tab 
       t.assert_papers_tab 2
       t.assert_exams_tab 3
-    end 
-    assert_tab_rows 'paper', @enrolled_student.papers.size    
+    end     
   end
   
 end
