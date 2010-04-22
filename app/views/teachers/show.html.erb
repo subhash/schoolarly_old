@@ -7,7 +7,7 @@
 <% end %>
 
 <% render_breadcrumbs do |add| %>
-<% add.crumb @school.name, @school %>
+<% add.crumb @school.name, @school if @school %>
 <% add.crumb @teacher.name %>
 <% end %>
 
