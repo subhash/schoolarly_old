@@ -4,7 +4,7 @@
 	</td>
 	
 	<% subject_label = mail.message.subject + ' - ' + '<i>' + mail.message.body.slice(0,9) + '... </i>'%>
-	<td><%=link_to_remote subject_label, :url =>{:controller => 'mails', :action => :mark_and_show, :id => mail}, :html => {:title => 'Click here to view the message'}%></td>
+	<td><%=link_to_remote subject_label, :url =>{:controller => 'mails', :action => :mark_and_show, :id => mail, :base_mail => local_assigns[:base_mail]}, :html => {:title => 'Click here to view the message'}%></td>
 	
 	<td><%=mail.message.created_at.strftime('%b %d')%></td>
 	
