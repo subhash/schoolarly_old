@@ -1,5 +1,5 @@
 class EventSeries < ActiveRecord::Base
-  attr_accessor :title, :description, :commit_button, :owner
+  attr_accessor :title, :description, :commit_button, :owner, :user_ids
   
   validates_presence_of :frequency, :period, :start_time, :end_time
   validates_presence_of :title, :description
@@ -18,7 +18,9 @@ class EventSeries < ActiveRecord::Base
     
     while frequency.send(p).from_now(st) <= end_time_event_series
 #      puts "#{nst}           :::::::::          #{net}" if nst and net
-      self.events.create(:title => title, :description => description, :all_day => all_day, :start_time => nst, :end_time => net, :owner => owner)
+      e = self.events.create(:title => title, :description => description, :all_day => all_day, :start_time => nst, :end_time => net, :owner => owner)
+      e.user_ids = user_ids
+      e.save!
       nst = st = frequency.send(p).from_now(st)
       net = et = frequency.send(p).from_now(et)
       

@@ -30,7 +30,7 @@ class School < ActiveRecord::Base
   end
   
   def users
-    return teacher_users + student_users + user
+    return teacher_users + student_users + [user]
   end
 
 end

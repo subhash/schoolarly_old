@@ -1,4 +1,4 @@
-<%remote_form_for @event, :url => {:action => :update} , :before => "jQuery('#updating_events').show();", :complete => "jQuery('#updating_events').hide();" do |f| %>
+<%remote_form_for @event, :url => {:action => :update, :id => @event} , :before => "jQuery('#updating_events').show();", :complete => "jQuery('#updating_events').hide();" do |f| %>
 <%= f.error_messages %>
 <p>
     <%=f.label :title %>
@@ -36,24 +36,19 @@
     <%=f.select :frequency, (1..30).to_a, {:selected => frequency} %><span id = "period"></span>
 </p>
 <%end %>
-<%=f.hidden_field :id, :value => @event.id %>
 <%=f.hidden_field :commit_button, :value => "" %>
 <p>
     <%if @event.event_series -%>
-    <%=f.submit 'Update Only This Occurrence', :onclick => "document.getElementById('event_commit_button').value = this.value" %>
-    <%=f.submit 'Update All Occurrence', :onclick => "document.getElementById('event_commit_button').value = this.value" %>
-    <%=f.submit 'Update All Following Occurrence', :onclick => "document.getElementById('event_commit_button').value = this.value" %>
+    <%=f.submit 'Update Only This Event', :onclick => "document.getElementById('event_commit_button').value = this.value" %>
+    <%=f.submit 'Update All Future Events', :onclick => "document.getElementById('event_commit_button').value = this.value" %>
     <%else -%>
     <%=f.submit 'Update', :onclick => "document.getElementById('event_commit_button').value = this.value" %>
     <%end -%>
     <span id = "updating_events" style ="display:none;">Updating, Please wait...</span>
 </p>
 <%end %>
-
-
 <% if (@event.recurring) %>
-<%= link_to_function "Delete Only This Occurrence", "deleteEvent('#{@event.id}',false)" %>
-<%= link_to_function "Delete All In Series", "deleteEvent('#{@event.id}',true)" %>
+<%= link_to_function "Delete Only This Event", "deleteEvent('#{@event.id}',false)" %>
 <%= link_to_function "Delete All Future Events", "deleteEvent('#{@event.id}','future')" %>
 <% else %>
 <%= link_to_function "Delete", "deleteEvent('#{@event.id}',false)" %>

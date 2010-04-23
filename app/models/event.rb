@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   
   validates_presence_of :title, :description
   
-  belongs_to :owner , :class_name => 'User'
+  belongs_to :owner , :class_name => 'User', :foreign_key => 'user_id'
   belongs_to :event_series
   
   has_and_belongs_to_many :users
@@ -24,19 +24,17 @@ class Event < ActiveRecord::Base
     end
   end
   
-  def before_create
-    users << owner
-  end
-  
   def update_events(events, event)
     events.each do |e|
       begin 
         st, et = e.start_time, e.end_time
         e.attributes = event
         if event_series.period.downcase == 'monthly' or event_series.period.downcase == 'yearly'
+#          ignore the change in month & year
           nst = DateTime.parse("#{e.start_time.hour}:#{e.start_time.min}:#{e.start_time.sec}, #{e.start_time.day}-#{st.month}-#{st.year}")  
           net = DateTime.parse("#{e.end_time.hour}:#{e.end_time.min}:#{e.end_time.sec}, #{e.end_time.day}-#{et.month}-#{et.year}")
         else
+#          ignore the change in day 
           nst = DateTime.parse("#{e.start_time.hour}:#{e.start_time.min}:#{e.start_time.sec}, #{st.day}-#{st.month}-#{st.year}")  
           net = DateTime.parse("#{e.end_time.hour}:#{e.end_time.min}:#{e.end_time.sec}, #{et.day}-#{et.month}-#{et.year}")
         end

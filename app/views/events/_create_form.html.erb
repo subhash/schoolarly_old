@@ -32,7 +32,12 @@
   <%=f.label :frequency, "Repeat every" %>
   <%=f.select :frequency, (1..30).to_a %> <span id = "period"></span>
 </p>
-<%=f.hidden_field :id, :value => @event.id %>
+<% if !@users.blank? %>
+<p>
+    <%= f.label :users, "Participants" %>
+    <%= collection_multiple_select(:event, 'user_ids', @users, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox'}) %>
+</p>
+<% end %>
 <p>
   <%=f.submit 'Create' %> <span id = "creating_events" style = "display:none;">Creating, Please wait...</span>
 </p>
