@@ -2,11 +2,11 @@ class EventsController < ApplicationController
   before_filter :set_up
   
   def set_up
-    @users = current_user.person.school ? (current_user.person.school.users - [current_user]) : nil
+    @users = current_user.person.school ? current_user.person.school.users : nil
   end
   
   def new
-    @event = Event.new(:end_time => 1.hour.from_now, :period => "Does not repeat")
+    @event = Event.new(:end_time => 1.hour.from_now, :period => "Does not repeat", :owner => current_user)
   end
   
   def create

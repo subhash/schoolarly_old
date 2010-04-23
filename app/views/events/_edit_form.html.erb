@@ -40,7 +40,7 @@
 <% if !@users.blank? %>
 <p>
     <%= f.label :users, "Participants" %>
-    <%= collection_multiple_select(:event, 'user_ids', @users, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox'}) %>
+    <%= collection_multiple_select(:event, 'user_ids', @users, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox', :selected_items => @event.user_ids+[@event.owner.id], :disabled => [@event.owner.id]}) %>
 </p>
 <% end %>
 <p>
