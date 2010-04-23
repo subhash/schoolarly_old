@@ -37,6 +37,12 @@
 </p>
 <%end %>
 <%=f.hidden_field :commit_button, :value => "" %>
+<% if !@users.blank? %>
+<p>
+    <%= f.label :users, "Participants" %>
+    <%= collection_multiple_select(:event, 'user_ids', @users, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox'}) %>
+</p>
+<% end %>
 <p>
     <%if @event.event_series -%>
     <%=f.submit 'Update Only This Event', :onclick => "document.getElementById('event_commit_button').value = this.value" %>
