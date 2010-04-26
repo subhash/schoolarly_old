@@ -41,7 +41,11 @@ div.wrapper {
 } .Left .col {
     padding: 0 8px 0 0;
     background: #fff url(/images/right-bg.gif) right repeat-y;
-} .Left .bottom {
+} .Left .innercol {
+  padding: 15px 60px 20px 23px;
+} 
+
+.Left .bottom {
     background: url(/images/bottom-bg.gif) top right no-repeat;
     font-size: 8px;
     padding: 12px 0 20px 20px;
@@ -76,7 +80,7 @@ div.wrapper {
     font-weight: normal;
     padding: 3px 8px 5px 8px;
     margin: 0;
-} #Tabs ul.standard {
+} #Tabs ul#header {
     float: right;
 } #Tabs li.active a {
     border: 1px solid #036;
