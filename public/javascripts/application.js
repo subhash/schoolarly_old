@@ -38,14 +38,14 @@ jQuery(function(){
 
 // Bind tabs
 jQuery(document).ready(function(){
-    jQuery('.tab-box div.tab').hide(); // Hide all divs
-    jQuery('.tab-box div.tab:first').show(); // Show the first div
-    jQuery('.tab-box ul li:first').addClass('active'); // Set the class for active state
-    jQuery('.tab-box ul li a').click(function(){ // When link is clicked
-        jQuery('.tab-box ul li').removeClass('active'); // Remove active class from links
+    jQuery('div.tab').hide(); // Hide all divs
+    jQuery('div.tab:first').show(); // Show the first div
+    jQuery('#Tabs ul li:first').addClass('active'); // Set the class for active state
+    jQuery('#Tabs ul li a').click(function(){ // When link is clicked
+        jQuery('#Tabs ul li').removeClass('active'); // Remove active class from links
         jQuery(this).parent().addClass('active'); //Set parent of clicked link class to active
         var currentTab = jQuery(this).attr('href'); // Set currentTab to value of href attribute
-        jQuery('.tab-box div.tab').hide(); // Hide all divs
+        jQuery('div.tab').hide(); // Hide all divs
         jQuery(currentTab).show(); // Show div with id equal to variable currentTab
         return false;
     });

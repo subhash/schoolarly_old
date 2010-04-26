@@ -51,40 +51,13 @@
 	border: 1px solid;
 }
 
-/*
- * Breadcrumbs
- */
-ul, li {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-} #breadcrumbs {
-    padding-bottom: 10px;
-} #crumbs {
-    height: 1.5em;
-    border: 1px solid #dedede;
-} #crumbs li {
-    float: left;
-    line-height: 1.5em;
-    color: #777;
-    padding-left: .75em;
-} #crumbs li a {
-    background: url(../images/crumbs.gif) no-repeat right center;
-    display: block;
-    padding: 0 15px 0 0;
-    font-weight: bold;
-} #crumbs li a:link, #crumbs li a:visited {
-    color: #777;
-    text-decoration: none;
-}
+
 
 /*
  * Tabs
  */
-a:link, a:visited, #crumbs li a:hover, #crumbs li a:focus {
-    color: #dd2c0d;
-} .tab-bar {
-    border-bottom: 1px solid #ccc;
+ .tab-bar {
+    border-bottom: 1px solid #FFD324;
     margin: 0;
     padding-bottom: 35px;
     padding-left: 10px;
@@ -95,8 +68,8 @@ a:link, a:visited, #crumbs li a:hover, #crumbs li a:focus {
     padding: 0;
 } .tab-bar a:link, .tab-bar a:visited {
     background: #E8EBF0;
-    border: 1px solid #ccc;
-    color: #666;
+    border: 1px solid #FFD324;
+    color: #817134;
     float: left;
     font-size: medium;
     font-weight: bold;
@@ -105,16 +78,16 @@ a:link, a:visited, #crumbs li a:hover, #crumbs li a:focus {
     padding: 10px 20px 10px 20px;
     text-decoration: none;
 } .tab-bar li.active a {
-    background: #fff;
-    border-bottom: 1px solid #fff;
+    background: #FFF6BF;
+    border-bottom: 1px solid #FFF6BF;
     color: #000;
 } .tab-bar a:hover {
     color: #f00;
 } .tab-bar ul a:hover {
     color: #f00 !important;
 } .tab {
-    background: #fff;
-    border: 1px solid #ccc;
+    background: #FFF6BF;
+    border: 1px solid #FFD324;
     border-top: none;
     clear: both;
     margin: 0px;

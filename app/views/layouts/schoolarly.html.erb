@@ -3,7 +3,7 @@
     <head>
         <title>Welcome to Schoolarly</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <%= stylesheet_link_tag  'layout', 'modalbox' %>
+        <%= stylesheet_link_tag  '37layout', 'crumbs', 'modalbox' %>
         <%= javascript_include_tag 'prototype' ,'scriptaculous' %>
         <%= javascript_include_tag 'jquery', 'jquery-ui', 'application' %>
         <%= javascript_include_tag 'modalbox' %>
@@ -16,24 +16,42 @@
     <body>
         <!-- Missing: Header with home, logout etc., Footer with about, contact etc,. Flash message box, Breadcrumbs-->
         <div id="main">
-            <%= render :partial => '/common/header' %>
-            <div id="contents">
-                <div id="breadcrumbs">
-                    <ul id="crumbs">
-                        <%= yield :crumbs %>
+            <div id="Header">
+                <div id="Tabs">
+                    <%= yield :tab_links %>
+                    <%= render :partial => '/common/header' %>
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="Left">
+                    <div class="col">
+                        <div id="breadcrumbs">
+                            <ul id="crumbs">
+                                <%= yield :crumbs %>
+                            </ul>
+                        </div>
+                        <%= yield :tabs %>
+                    </div>
+                    <div class="bottom">
+                    </div>
+                </div>
+                <div class="Right">
+                    <ul id="right-bar">
+                        <%= yield :actions %>
+                        <%if is_messageable? %>
+                        <li>
+                            <!-- TODO page context -->
+                            <%=render :partial => 'messages/new_form', :locals => {:user => User.find_by_person_type_and_person_id(active_controller.singularize.camelcase, params[:id])} %>
+                        </li>
+                        <%end %>
                     </ul>
                 </div>
-                <%= yield %>
             </div>
-            <ul id="right-bar">
-                <%= yield :actions %>
-                <%if is_messageable? %>
-                <li>
-                    <!-- TODO page context -->
-                    <%=render :partial => 'messages/new_form', :locals => {:user => User.find_by_person_type_and_person_id(active_controller.singularize.camelcase, params[:id])} %>
-                </li>
-                <%end %>
-            </ul>
+            <!--
+            <div id="contents">
+            -->
+            <%= yield %>
+            <!--</div>-->
         </div>
     </body>
 </html>
