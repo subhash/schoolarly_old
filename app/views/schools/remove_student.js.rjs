@@ -1,1 +1,1 @@
-page.remove "student_#{@student.id}"
+page.remove_object @student

@@ -1,29 +1,14 @@
-<table class="ui-state-default" border="1px">
-    <thead>
+<% students.group_by { |s| s.klass}.each do |klass, s| %>
+<table class="students">
+    <tbody id="students" class="students">
         <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Email
-            </th>
-            <th>
-                Admission Number
-            </th>
-            <th>
-                Class (Level-Division)
-            </th>
-			<th>
-				Roll Number
-			</th>
-			 <th>
-                Subjects
+            <th colspan="2">
+                <h2><%= if klass then link_to(klass.name, klass_path(klass)) else 'Unassigned' end  %></h2>
             </th>
         </tr>
-    </thead>
-    <tbody id="students" class="students">
-        <% students.each do |student| %>
+        <% s.each do |student| %>
         <%= render :partial => 'students/student', :object => student %>
-        <%end %>
+        <% end %>
     </tbody>
 </table>
+<% end %>

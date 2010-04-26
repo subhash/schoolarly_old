@@ -42,10 +42,8 @@ div.wrapper {
     padding: 0 8px 0 0;
     background: #fff url(/images/right-bg.gif) right repeat-y;
 } .Left .innercol {
-  padding: 15px 60px 20px 23px;
-} 
-
-.Left .bottom {
+    padding: 15px 60px 20px 23px;
+} .Left .bottom {
     background: url(/images/bottom-bg.gif) top right no-repeat;
     font-size: 8px;
     padding: 12px 0 20px 20px;
@@ -86,7 +84,7 @@ div.wrapper {
     border: 1px solid #036;
     border-bottom: 1px solid #1A4F85;
     font-size: 12px;
-    background: #e5e5e5 url(/images/tab-bg.gif) top repeat-x;
+    background: #e5e5e5;
     border-bottom: 1px solid #e5e5e5;
     padding: 3px 8px 5px 8px;
     color: #090;
@@ -97,4 +95,66 @@ div.wrapper {
     color: #fff;
     background: #010a4b;
     border-bottom: 1px solid #010a4b;
+}
+
+table.students {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+table.students tr {
+    padding-bottom: 5px;
+}
+
+table.students td.left {
+    font-size: 20px;
+    width: 40%;
+}
+
+table.students td.right * {
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
+table.students td.left .detail {
+    font-size: 9px;
+    margin-bottom: 4px;
+    padding-left: 20px;
+}
+
+table.students td.left .detail h4 {
+    margin: 0px;
+    font-weight: normal;
+}
+
+table.students .subject {
+    background-color: black;
+    color: white;
+    padding: 2px 4px;
+}
+
+/*
+ table.students input {
+ height: 15px;
+ width: 40px;
+ font-size: 8px;
+ }
+ */
+table.students th {
+    border-bottom: 1px solid #dcdcdc;
+    border-bottom: 1px solid #bbb;
+    background: #e8e8e8;
+    padding: 3px 5px;
+}
+
+table.students th h2 {
+    display: block;
+    padding: 0px;
+    font-size: 11px;
+    margin: 0px;
+}
+
+/* Baseline */
+table {
+    border-collapse: collapse;
 }
