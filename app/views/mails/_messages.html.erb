@@ -1,0 +1,12 @@
+<div>
+	<%= link_to_remote 'Compose Message', :url => {:controller => 'mails', :action => 'new'} if current_user==user && current_user.person.school %>
+	<div id="mail-boxes">
+		<%mailboxes={:trash => 'Trash', :inbox => 'Inbox', :sentbox => 'Sent Items'}%>
+		<div class="accordion">
+			<%mailboxes.each do |key,value|%>
+				<p><a href="#"><%=value%></a></p>
+				<div><div id="<%=key.to_s + '-area'%>"><%= render :partial => 'mails/mails', :object => user.mailbox[key].mail, :locals => {:mailbox => key} %></div></div>
+			<%end%>
+		</div>
+	</div>
+</div>
