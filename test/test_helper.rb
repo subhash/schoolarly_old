@@ -115,20 +115,20 @@ class ActiveSupport::TestCase
         assert_tab_id 'exams', position
       end
       
-      def assert_home_tab(position = nil)
-        assert_tab_id 'home', position
+      def assert_messages_tab(position = nil)
+        assert_tab_id 'messages', position
       end
       
       private
       def assert_tab_id(id, position)
         if(position)
-          assert_select "div##{id}-tab:nth-child(#{position + 1})"
+          assert_select "div##{id}-tab:nth-child(#{position})"
         else
           assert_select "div##{id}-tab"
         end
       end
     end
-    assert_select 'div.tab-box' do
+    assert_select 'div.innercol' do
       yield tab_tester
     end
   end
