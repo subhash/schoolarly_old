@@ -2,8 +2,8 @@
 <% add.dialog 'Add/Remove Subjects',:partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @klass.papers} if @school and @klass %>
 <% add.dialog 'Assign Class',:partial => 'students/add_to_klass_form', :locals => {:student => @student} if @school and not @klass %>
 <% add.dialog 'Add to school',:partial =>'students/add_to_school_form', :locals => {:student => @student, :schools => School.find(:all)} unless @school %>
-<% add.link 'Edit Profile', {:controller => :user_profiles, :action => 'edit', :id => @student.user}%>
-<% add.dialog 'Compose Message', :partial => 'conversations/new_form', :locals => {:users => @users.flatten, :mail => Mail.new()} if @users %>
+<% add.link 'Profile', {:controller => :user_profiles, :action => (@user == current_user) ? :edit : :show , :id => @student.user} %>
+<% add.dialog 'Post Message', :partial => 'mails/post_message_new_form', :locals => {:user => @student.user} if (current_user && @school && @school == current_user.person.school)%>
 <% end %>
 
 <% render_breadcrumbs do |add| %>
@@ -13,7 +13,7 @@
 <% end %>
 
 <% render_tabs do |t| %>
-<% t.tab :title => 'Home', :partial => '/home', :locals => {:user => @student.user} %>
+<% t.messages_tab :locals => {:user => @student.user} %>
 <% t.papers_tab :object => @student.papers if @klass%>
 <% t.exams_tab :title => 'Scores', :partial => 'exam_groups/exam_groups', :locals => {:exams => @exams, :entity => @student} if @klass %>
 <% end %>

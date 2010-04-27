@@ -1,9 +1,8 @@
 <% render_actions do |add| %>
-<% add.dialog 'Compose Message',:partial => 'conversations/new_form', :locals => {:users => @users.flatten, :mail => Mail.new()} if @users %>
 <% add.dialog 'Add/Remove Papers', :partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers} if @school %>
 <% add.dialog 'Add to school', :partial =>'schools/add_to_school_form', :locals => {:entity => @teacher, :schools => School.all} unless @school %>
-<% if @user == current_user then label = 'Edit Profile'; action = 'edit' else label = 'View Profile'; action = 'show' end %>
-<% add.link label, {:controller => :user_profiles, :action => action, :id => @teacher.user} %>
+<% add.link 'Profile', {:controller => :user_profiles, :action => (@user == current_user) ? 'edit' : 'show' , :id => @teacher.user} %>
+<% add.dialog 'Post Message',:partial => 'mails/post_message_new_form', :locals => {:user => @teacher.user} if (current_user && @school && @school == current_user.person.school) %>
 <% end %>
 
 <% render_breadcrumbs do |add| %>
@@ -12,7 +11,7 @@
 <% end %>
 
 <% render_tabs do |t| %>
-<% t.tab :title => 'Home', :partial => '/home', :locals => {:user => @teacher.user} %>
+<% t.messages_tab :locals => {:user => @teacher.user} %>
 <% t.papers_tab :partial => 'teacher_allotments/teacher_allotments', :object => @teacher_allotments %>
 <% t.exams_tab :partial => 'exam_groups/klass_exam_groups', :locals => {:exams => @exams, :entity => @teacher} %>
 <% end %>
