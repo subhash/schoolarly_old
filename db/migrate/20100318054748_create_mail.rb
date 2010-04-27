@@ -9,7 +9,7 @@ class CreateMail < ActiveRecord::Migration
       t.column :mailbox, :string, :limit => 25
       t.column :created_at, :datetime, :null => false
       
-      #t.foreign_key :message_id, :messages, :id
+      t.foreign_key :message_id, :messages, :id
       t.foreign_key :user_id, :users, :id
       t.foreign_key :conversation_id, :conversations, :id
       
