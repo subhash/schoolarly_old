@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
     t.datetime "created_at",                                       :null => false
   end
 
+  add_index "mail", ["message_id"], :name => "message_id"
   add_index "mail", ["user_id"], :name => "user_id"
   add_index "mail", ["conversation_id"], :name => "conversation_id"
 
@@ -141,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
     t.integer "recipient_id", :null => false
   end
 
+  add_index "messages_recipients", ["message_id"], :name => "message_id"
   add_index "messages_recipients", ["recipient_id"], :name => "recipient_id"
 
   create_table "papers", :force => true do |t|
@@ -291,13 +293,15 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
 
   add_foreign_key "leave_requests", ["parent_id"], "users", ["id"], :name => "leave_requests_ibfk_1"
 
-  add_foreign_key "mail", ["user_id"], "users", ["id"], :name => "mail_ibfk_1"
-  add_foreign_key "mail", ["conversation_id"], "conversations", ["id"], :name => "mail_ibfk_2"
+  add_foreign_key "mail", ["message_id"], "messages", ["id"], :name => "mail_ibfk_1"
+  add_foreign_key "mail", ["user_id"], "users", ["id"], :name => "mail_ibfk_2"
+  add_foreign_key "mail", ["conversation_id"], "conversations", ["id"], :name => "mail_ibfk_3"
 
   add_foreign_key "messages", ["sender_id"], "users", ["id"], :name => "messages_ibfk_1"
   add_foreign_key "messages", ["conversation_id"], "conversations", ["id"], :name => "messages_ibfk_2"
 
-  add_foreign_key "messages_recipients", ["recipient_id"], "users", ["id"], :name => "messages_recipients_ibfk_1"
+  add_foreign_key "messages_recipients", ["message_id"], "messages", ["id"], :name => "messages_recipients_ibfk_1"
+  add_foreign_key "messages_recipients", ["recipient_id"], "users", ["id"], :name => "messages_recipients_ibfk_2"
 
   add_foreign_key "papers", ["klass_id"], "klasses", ["id"], :name => "papers_ibfk_1"
   add_foreign_key "papers", ["subject_id"], "subjects", ["id"], :name => "papers_ibfk_2"
