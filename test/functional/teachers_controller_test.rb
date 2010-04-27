@@ -31,12 +31,11 @@ class TeachersControllerTest < ActionController::TestCase
     assert_breadcrumb(@sboa.name, school_path(@sboa),1)
     assert_breadcrumb(@subbu.name)
     assert_action_count(3)
-    assert_action('Edit Profile', :url => edit_user_profile_path(@subbu.user), :index => 3)
-    assert_action('Compose Message', :index => 1)
-    assert_action('Add/Remove Papers', :index => 2)
-    assert_select "ul#right-bar li div#post-message", /Post an instant message.../
+    assert_action('Profile', :url => edit_user_profile_path(@subbu.user), :index => 2)
+    assert_action('Post Message', :index => 3)
+    assert_action('Add/Remove Papers', :index => 1)
     assert_tabs do |t|
-      t.assert_home_tab 
+      t.assert_messages_tab 1
       t.assert_papers_tab 2
       t.assert_exams_tab 3
     end
@@ -48,12 +47,11 @@ class TeachersControllerTest < ActionController::TestCase
     assert_breadcrumb(@sboa.name, school_path(@sboa),1)
     assert_breadcrumb(@subbu.name)
     assert_action_count(3)
-    assert_action('View Profile', :url => user_profile_path(@subbu.user), :index => 3)
-    assert_action('Compose Message', :index => 1)
-    assert_action('Add/Remove Papers', :index => 2)
-    assert_select "ul#right-bar li div#post-message", /Post an instant message.../
+    assert_action('Profile', :url => user_profile_path(@subbu.user), :index => 2)
+    assert_action('Post Message', :index => 3)
+    assert_action('Add/Remove Papers', :index => 1)
     assert_tabs do |t|
-      t.assert_home_tab 
+      t.assert_messages_tab 1
       t.assert_papers_tab 2
       t.assert_exams_tab 3
     end
@@ -65,11 +63,10 @@ class TeachersControllerTest < ActionController::TestCase
     assert_response :success
     assert_breadcrumb(@no_school_teacher.name)
     assert_action_count(2)
-    assert_action('Edit Profile', :url => edit_user_profile_path(@no_school_teacher.user), :index => 2)
+    assert_action('Profile', :url => edit_user_profile_path(@no_school_teacher.user), :index => 2)
     assert_action('Add to school', :index => 1)
-    assert_select "ul#right-bar li div#post-message", /Post an instant message.../
     assert_tabs do |t|
-      t.assert_home_tab 
+      t.assert_messages_tab 1
       t.assert_papers_tab 2
       t.assert_exams_tab 3
     end
