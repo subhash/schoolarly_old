@@ -1,7 +1,7 @@
 class ExamGroupsController < ApplicationController
   
   protect_from_forgery :only => [:create, :update, :destroy] 
- 
+  
   def self.in_place_loader_for(object, attribute, options = {})
     define_method("get_#{object}_#{attribute}") do
       @item = object.to_s.camelize.constantize.find(params[:id])
@@ -19,13 +19,14 @@ class ExamGroupsController < ApplicationController
     @exam_group=ExamGroup.new(params[:exam_group])
     @klass=@exam_group.klass
     @exam_group.description = christen(@exam_group)
-    @exam_group.subject_ids = params[:exam][:subject_ids]
-    @exam_group.save!
-    render :template => 'exam_groups/create_success'
-  rescue Exception => e
-    render :template => 'exam_groups/create_failure'
+    @exam_group.subject_ids = params[:exam][:subject_ids]    
+    if  @exam_group.save!
+      render :template => 'exam_groups/create_success'
+    else
+      render :template => 'exam_groups/create_failure'
+    end
   end
- 
+  
   def destroy
     @exam_group=ExamGroup.find(params[:id])
     @exam_group.destroy

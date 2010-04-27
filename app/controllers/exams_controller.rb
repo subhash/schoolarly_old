@@ -14,6 +14,8 @@ class ExamsController < ApplicationController
   def new
     @exam_group = ExamGroup.find(params[:exam_group])
     @exam = Exam.new(:exam_group => @exam_group)
+    @event = Event.new(:start_time => Time.now, :end_time => 1.hour.from_now, :period => "Does not repeat")
+    @exam.event = @event
     entity_class = params[:entity_class]
     @entity = get_entity(entity_class,params[:entity_id])
     #TODO page context
@@ -30,12 +32,20 @@ class ExamsController < ApplicationController
     @exam = Exam.new(params[:exam])
     @exam_group=ExamGroup.find(params[:exam_group_id])
     @exam.exam_group=@exam_group
+    @event = Event.new( :title => @exam.to_s, :description => @exam.to_s, :owner => current_user)
+    @event.attributes = params[:event]
+    @exam.students.each do |student|
+      @event.users << student.user
+    end
+    @exam.event = @event
+    @event.save!
     @entity = get_entity(params[:entity_class],params[:entity_id])
-    @exam.save!
-    render :template => 'exams/create_success'
-  rescue Exception => e
-    @subjects = Subject.find(params[:subjects])
-    render :template => 'exams/create_failure'
+    if @exam.save!
+      render :template => 'exams/create_success'
+    else
+      @subjects = Subject.find(params[:subjects])
+      render :template => 'exams/create_failure'
+    end
   end
   
   def edit

@@ -1,8 +1,5 @@
 class AddDefaultExamTypesData < ActiveRecord::Migration
   def self.up
-    ExamType.create(:name => "Daily", :description => "Daily Test")
-    ExamType.create(:name => "Weekly", :description => "Weekly Test")
-    ExamType.create(:name => "Monthly", :description => "Monthly Test")
     ExamType.create(:name => "Quarterly", :description => "Quarterly Test")
     ExamType.create(:name => "Annual", :description => "Annual Exam")
     ExamType.create(:name => "First Term", :description => "First Term Test")

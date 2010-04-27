@@ -6,6 +6,7 @@ class Exam < ActiveRecord::Base
   has_many :students_with_scores, :through => :scores, :source => :student
   has_one :klass, :through => :exam_group
   has_one :exam_type, :through => :exam_group
+  belongs_to :event
   
   def to_s
     return exam_group.exam_type.description + ' for ' + subject.name
@@ -17,11 +18,23 @@ class Exam < ActiveRecord::Base
   end
   
   def students
-    students_with_scores + klass.students.for_paper(klass.papers.for_subject(subject.id).id)
+    students_with_scores + exam_group.klass.students.for_paper(exam_group.klass.papers.for_subject(subject.id).id)
   end
   
   def is_destroyable?
     return self.scores.empty? 
+  end
+  
+  def date
+    event ? event.start_time.to_date : nil
+  end
+
+  def time
+    event ? event.start_time.to_time : nil
+  end
+  
+  def duration
+    event ? ((event.end_time.to_time - event.start_time.to_time)/1.hour).round: 0
   end
   
 end

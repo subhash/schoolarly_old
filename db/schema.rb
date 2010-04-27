@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100331145851) do
+ActiveRecord::Schema.define(:version => 20100426035317) do
 
   create_table "conversations", :force => true do |t|
     t.string   "subject",    :default => ""
@@ -70,14 +70,12 @@ ActiveRecord::Schema.define(:version => 20100331145851) do
   end
 
   create_table "exams", :force => true do |t|
-    t.date     "exam_date"
-    t.time     "start_time"
-    t.time     "end_time"
     t.string   "venue"
     t.integer  "max_score"
     t.integer  "pass_score"
     t.integer  "exam_group_id", :null => false
     t.integer  "subject_id",    :null => false
+    t.integer  "event_id"
     t.integer  "teacher_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -85,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20100331145851) do
 
   add_index "exams", ["exam_group_id"], :name => "exam_group_id"
   add_index "exams", ["subject_id"], :name => "subject_id"
+  add_index "exams", ["event_id"], :name => "event_id"
   add_index "exams", ["teacher_id"], :name => "teacher_id"
 
   create_table "klasses", :force => true do |t|
@@ -284,7 +283,8 @@ ActiveRecord::Schema.define(:version => 20100331145851) do
 
   add_foreign_key "exams", ["exam_group_id"], "exam_groups", ["id"], :on_delete => :cascade, :name => "exams_ibfk_1"
   add_foreign_key "exams", ["subject_id"], "subjects", ["id"], :name => "exams_ibfk_2"
-  add_foreign_key "exams", ["teacher_id"], "teachers", ["id"], :name => "exams_ibfk_3"
+  add_foreign_key "exams", ["event_id"], "events", ["id"], :name => "exams_ibfk_3"
+  add_foreign_key "exams", ["teacher_id"], "teachers", ["id"], :name => "exams_ibfk_4"
 
   add_foreign_key "klasses", ["school_id"], "schools", ["id"], :name => "klasses_ibfk_1"
   add_foreign_key "klasses", ["teacher_id"], "teachers", ["id"], :name => "klasses_ibfk_2"

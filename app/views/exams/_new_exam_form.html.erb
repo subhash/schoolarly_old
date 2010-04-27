@@ -1,45 +1,70 @@
 <% remote_form_for exam, :url => {:controller => :exams, :action => 'create', :exam_group_id => exam.exam_group_id, :entity_class => entity.class.name, :entity_id => entity, :subjects => subjects } do |f| %>
-<%= f.error_messages%>
-	<table class="center">
-		<tbody>
-            <tr>
-            	<th><label for=:"subject">Subject</label></th>
-				<td><%= f.select(:subject_id, options_from_collection_for_select(subjects,:id,:name)) %></td>
-            </tr>
-			<tr>
-           		<th><label for="exam_date">Exam Date</label></th>
-                <td><%= f.date_select(:exam_date, :order => [:day, :month, :year], :use_short_month => true)%></td>
-            </tr>
-            <tr>
-           		<th><label for="start_time">Start Time</label></th>
-				<td><%= f.time_select(:start_time)%></td>
-            </tr>
-            <tr>
-            	<th><label for="end_time">End Time</label></th>
-                <td><%= f.time_select(:end_time)%></td>
-            </tr>
-            <tr>
-            	<th><label for="venue">Venue</label></th>
-                <td><%= f.text_field(:venue, :size => 27)%></td>
-            </tr>
-			<tr>
-            	<th><label for="max_score">Max Score</label></th>
-                <td><%= f.text_field(:max_score, :size => 27)%></td>
-            </tr>
-			<tr>
-            	<th><label for="pass_score">Pass Score</label></th>
-                <td><%= f.text_field(:pass_score, :size => 27)%></td>
-            </tr>
-			<!-- TODO This select box should get a default selected value when the subject is changed. May be subject to be made an observe field !-->
-			<tr>
-          		<th><label for="teacher">Teacher</label></th>
-            	<td><%= f.select(:teacher_id, options_from_collection_for_select(teachers,:id,:name)) %></td>
-        	</tr>
-		</tbody>
-	</table>
-	<div class="center">
-		<%= submit_tag "Add" %>
-	</div>
+<%= f.error_messages %>
+<table class="center">
+    <tbody>
+        <tr>
+            <th>
+                <%= f.label :subject %>
+            </th>
+            <td>
+                <%= f.select(:subject_id, options_from_collection_for_select(subjects,:id,:name)) %>
+            </td>
+        </tr>
+        <% fields_for :event do |event_form| %>
+        <tr>
+            <th>
+                <%= event_form.label :start_time %>
+            </th>
+            <td>
+                <%= event_form.datetime_select :start_time %>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <%= event_form.label :end_time %>
+            </th>
+            <td>
+                <%= event_form.datetime_select :end_time %>
+            </td>
+        </tr>
+        <%end %>
+        <tr>
+            <th>
+                <%= f.label :venue %>
+            </th>
+            <td>
+                <%= f.text_field(:venue, :size => 27) %>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <%= f.label :max_score %>
+            </th>
+            <td>
+                <%= f.text_field(:max_score, :size => 27) %>
+            </td>
+        </tr>
+        <tr>
+            <th>
+            <%= f.label :pass_score %>
+            </label>
+        </th>
+        <td>
+            <%= f.text_field(:pass_score, :size => 27) %>
+        </td>
+        </tr>
+        <!-- TODO This select box should get a default selected value when the subject is changed. May be subject to be made an observe field !-->
+        <tr>
+            <th>
+                <%= f.label :teacher %>
+            </th>
+            <td>
+                <%= f.select(:teacher_id, options_from_collection_for_select(teachers,:id,:name)) %>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="center">
+    <%= submit_tag "Add" %>
+</div>
 <%end %>
-
-
