@@ -1,1 +1,1 @@
-page.open_dialog("View Conversation", :partial =>'mails/mails', :object => @mails, :locals => {:base_mail => @mail})
+page.open_dialog('View Conversation', :partial =>'mails/mails', :object => @mails, :locals => {:dialog_view => true})

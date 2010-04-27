@@ -1,5 +1,0 @@
-if params[:receiver]
-  page.alert params[:message][:body].blank? ? 'Could not post as the message does not have a body.' : 'Could not post'
-else
-  page.refresh_dialog :partial => 'conversations/new_form', :locals => {:users => User.find(params[:users]), :mail => Mail.new()}
-end

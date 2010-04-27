@@ -1,3 +1,0 @@
-page.close_dialog
-page.insert_object(@sentMail, :insert_id => 'sentbox', :position => :top, :partial => 'mails/mail')
-page.insert_object(@inMail, :insert_id => 'inbox', :position => :top, :partial => 'mails/mail') if @inMail
