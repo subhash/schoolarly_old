@@ -21,8 +21,7 @@
         </div>
         <div>
             <%teacher.papers.each do |paper| %>
-            <span class="klass"><%= paper.klass.name %></span>
-            <span class="subject"><%= paper.name %></span>
+            <span class="klass"><%= paper.klass.name %><span class="subject"><%= paper.name %></span></span>
             <%end %>
             <span><%= link_to_remote 'Add/Remove Papers', :url => {:controller => 'teachers', :action => 'edit_papers', :id => teacher}, :method => :get, :html => {:title => 'Add/Remove Papers'} %>
             </span>
