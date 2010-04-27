@@ -1,0 +1,2 @@
+page << toggle_div('body-' + @mail.id.to_s)
+page << "if (Modalbox.initialized) {Modalbox.resizeToContent()} ;"
