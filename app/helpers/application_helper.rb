@@ -84,6 +84,11 @@ module ApplicationHelper
         tab new_args.merge(args)
       end
       
+      def messages_tab(args={})
+        new_args = {:tab => :messages, :partial => 'mails/messages' }
+        tab new_args.merge(args)
+      end
+      
     end
     yield tabbifier if block_given?
     concat(render :partial => "/common/tabs", :object => tabbifier.tabs)
