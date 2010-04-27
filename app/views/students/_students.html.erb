@@ -1,9 +1,16 @@
+<table class="students" id="students" style="display:none;">
+    <tr>
+        <th colspan="2">
+            <h2>Recently added</h2>
+        </th>
+    </tr>
+</table>
 <% students.group_by { |s| s.klass}.each do |klass, s| %>
 <table class="students">
     <tbody id="students" class="students">
         <tr>
             <th colspan="2">
-                <h2><%= if klass then link_to(klass.name, klass_path(klass)) else 'Unassigned' end  %></h2>
+                <h2><%= if klass then link_to(klass.name, klass_path(klass)) else 'Unassigned' end %></h2>
             </th>
         </tr>
         <% s.each do |student| %>
