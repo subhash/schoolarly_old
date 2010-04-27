@@ -1,7 +1,7 @@
 <table id="<%=local_assigns[:mailbox]%>" border="1px">
 	<% mails.each do |mail|%>
-		<%= render :partial => 'mails/mail', :object => mail, :locals => {:base_mail => local_assigns[:base_mail]} %>
+		<%= render :partial => 'mails/mail', :object => mail, :locals => {:dialog_view => local_assigns[:dialog_view]} %>
 	<%end%>
 </table>
 
-<%= link_to_remote 'Delete Conversation', :url =>{:controller => 'conversations', :action => 'destroy', :id => mails.first.conversation, :base_mail => local_assigns[:base_mail]}, :html => {:title => local_assigns[:base_mail].trashed ? 'Permanently Remove' : 'Sent all items to trash'}, :confirm => 'Are you sure?' if local_assigns[:base_mail]%>
+<%= link_to_remote 'Delete Conversation', :url =>{:controller => 'conversations', :action => 'destroy', :mail => mails.first}, :html => {:title => 'Delete Conversation'} if local_assigns[:dialog_view]%>
