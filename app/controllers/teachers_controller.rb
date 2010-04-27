@@ -11,9 +11,8 @@ class TeachersController < ApplicationController
     set_active_user(@user.id)
     if @teacher.school
       @school=@teacher.school
+      @users=@school.users
     end
-    @users=get_users_for_composing(@teacher)
-
   end
   
   def find_teacher    
