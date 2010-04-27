@@ -1,1 +1,1 @@
-page.open_dialog("Reply", :partial =>'mails/reply_new_form', :locals => {:mail => Mail.find(params[:id])})
+page.open_dialog('Reply', :partial =>'mails/reply_new_form', :locals => {:mail => Mail.find(params[:id])})

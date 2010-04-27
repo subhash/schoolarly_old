@@ -1,0 +1,10 @@
+<% form_remote_tag :url => {:controller => :mails, :action => 'create', :receiver => user} do %>
+<table>
+	<%=render :partial => 'mails/message_form', :locals => {:message => Message.new()}%> 
+    <tr>
+        <td colspan=2>
+            <%= submit_tag 'Post' %>
+        </td>
+    </tr>
+</table>
+<%end %>

@@ -1,0 +1,16 @@
+<% fields_for message do |f| %>
+<%= flash.now[:notice]%>
+	<tr>
+    	<th>
+        	Subject
+        </th>
+        <td>
+            <%= f.text_field :subject, :size => 25  %>
+        </td>
+   	</tr>
+	<tr>
+    	<td colspan=2>
+        	<%= f.text_area :body, :rows => 3, :cols => 27 %>
+        </td>
+   	</tr>
+<%end%>

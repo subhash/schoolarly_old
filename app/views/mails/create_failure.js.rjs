@@ -1,0 +1,2 @@
+page.refresh_dialog :partial => 'mails/post_message_new_form', :locals => {:user => User.find(params[:receiver])} if params[:receiver] 
+page.refresh_dialog :partial => 'mails/new_form', :locals => {:users => current_user.person.school.users, :mail => Mail.new()} unless params[:receiver]

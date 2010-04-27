@@ -1,2 +1,2 @@
 page.select('.mail-' + @mail.id.to_s).each { |div| div.remove }
-page.insert_object(@mail, :position => :top, :insert_id => 'trash', :partial => 'mails/mail') if !@mail.trashed
+page.insert_object(@mail, :position => :top, :insert_id => 'trash', :partial => 'mails/mail') unless @mail.trashed

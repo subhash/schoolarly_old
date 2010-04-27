@@ -1,0 +1,16 @@
+<% form_remote_tag :url => {:controller => :mails, :action => 'create', :users => users } do%>
+	<table>
+		<tr>
+			<th>
+				To
+           	</th>
+	        <td>
+				<%= collection_multiple_select(:mail, 'user_ids', users, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox'}) %>
+	        </td>
+		</tr>
+		<%= render :partial => 'mails/message_form', :locals => {:message => Message.new()}%>
+	</table>
+	<div>
+		<%= submit_tag 'Post' %>
+	</div>
+<%end %>
