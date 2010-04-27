@@ -133,13 +133,6 @@ table.students .subject {
     padding: 2px 4px;
 }
 
-/*
- table.students input {
- height: 15px;
- width: 40px;
- font-size: 8px;
- }
- */
 table.students th {
     border-bottom: 1px solid #dcdcdc;
     border-bottom: 1px solid #bbb;
@@ -148,6 +141,63 @@ table.students th {
 }
 
 table.students th h2 {
+    display: block;
+    padding: 0px;
+    font-size: 11px;
+    margin: 0px;
+}
+
+table.teachers {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+table.teachers tr {
+    padding-bottom: 5px;
+}
+
+table.teachers td.left {
+    font-size: 18px;
+    width: 30%;
+}
+
+table.teachers td.left .detail {
+    font-size: 9px;
+    margin-bottom: 4px;
+    padding-left: 20px;
+}
+
+table.teachers td.left .detail h4 {
+    margin: 0px;
+    font-weight: normal;
+}
+
+table.teachers td.right * {
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
+table.teachers .klass {
+    background-color: grey;
+    color: white;
+    padding: 2px 4px;
+}
+
+table.teachers .subject {
+    background-color: black;
+    color: white;
+    padding: 2px 4px;
+	margin-right: 8px;
+}
+
+table.teachers th {
+    border-bottom: 1px solid #dcdcdc;
+    border-bottom: 1px solid #bbb;
+    background: #e8e8e8;
+    padding: 3px 5px;
+}
+
+table.teachers th h2 {
     display: block;
     padding: 0px;
     font-size: 11px;

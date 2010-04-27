@@ -1,26 +1,4 @@
-<table class="ui-state-default" border="1px">
-	<thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Email
-            </th>
-			<!-- TODO page context -->
-			<%if active_controller != 'schools'%>
-				<th>
-                	School
-            	</th>
-			<%end%>
-            <th>
-                Owns
-            </th>
-			<th>
-				Subjects
-			</th>
-        </tr>
-	</thead>
+<table class="teachers">
     <tbody id="teachers">
         <% teachers.each do |teacher| %>
 			<%= render :partial => 'teachers/teacher', :object => teacher %>

@@ -1,17 +1,16 @@
 <tr id="student-<%= student.id%>">
     <td class="left">
-        <div class="identity">
-            <span class="primary"><%= link_to student.name, student_path(student) %>
-            </span>
+        <div>
+            <%= link_to student.name, student_path(student) %>
         </div>
         <% if student.school %>
         <div class="detail">
-        	<% if student.school %>
+            <% if student.school %>
             <h4>Admission no: <span id=<%="admission_number_#{student.id}" %>><%=student.admission_number.blank? ? '(Click to enter)': student.admission_number %></span><%= in_place_editor "admission_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_admission_number', :id => student},:external_control => "edit_no_#{student.id}"} %></h4>
-			<% end %>
-			<% if student.klass %>
+            <% end %>
+            <% if student.klass %>
             <h4>Roll no: <span id=<%="roll_number_#{student.id}" %>><%=student.roll_number.blank? ? '(Click to enter)' : student.roll_number %></span><%= in_place_editor "roll_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_roll_number', :id => student},:external_control => "edit_roll_no_#{student.id}"} %></h4>
-			<% end %>
+            <% end %>
         </div>
         <% end %>
     </td>
@@ -20,7 +19,7 @@
             <% student.papers.each do |paper| %>
             <span class="subject"><%= paper.subject.name %></span>
             <% end %>
-            <%= link_to_remote 'Add/Remove subjects', :url => {:controller => 'students', :action => 'edit_papers', :id => student} if student.klass%>
+            <%= link_to_remote 'Add/Remove subjects', :url => {:controller => 'students', :action => 'edit_papers', :id => student} if student.klass %>
         </p>
         <%= link_to_remote 'Delete', :url => {:controller => active_controller,:action => 'remove_student',:id => student}, :html => {:class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' %>
     </td>
