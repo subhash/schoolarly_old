@@ -61,10 +61,17 @@ class ExamsController < ApplicationController
     @exam=Exam.find(params[:id])
     @entity = get_entity(params[:entity_class],params[:entity_id])
     @exam.attributes  = params[:exam]
-    @exam.event.attributes = params[:event]
-    if(params[:exam][:teacher_id])
-      @exam.event.users << @exam.teacher.user
+    if @exam.event.nil?
+      @exam.event = Event.new( :title => @exam.to_s, :description => @exam.to_s, :owner => current_user)
+      @exam.participants.each do |participant|
+        @exam.event.users << participant.user
+      end
+    else
+      if(params[:exam][:teacher_id])
+        @exam.event.users << @exam.teacher.user
+      end
     end
+    @exam.event.attributes = params[:event]
     if (@exam.save! and @exam.event.save!)
       render :template => 'exams/update_success'
     else
