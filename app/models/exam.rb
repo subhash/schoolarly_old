@@ -30,11 +30,11 @@ class Exam < ActiveRecord::Base
   end
 
   def time
-    event ? event.start_time.to_time : nil
+    event ? event.start_time.to_s(:time) : nil
   end
   
   def duration
-    event ? ((event.end_time.to_time - event.start_time.to_time)/1.hour).round: 0
+    event ? ((event.end_time.to_time - event.start_time.to_time)/1.hour): 0
   end
   
 end
