@@ -2,9 +2,7 @@
 
 stTeresas:
   user: admin_st_teresas
-  first_name: admin
-  middle_name: of
-  last_name: stTeresas
+  name: St. Teresas
   address_line_1: St Teresas Convent
   address_line_2: Convent Junction
   city: Kochi
@@ -16,23 +14,17 @@ stTeresas:
 
 teacher_antony:
   user: teacher_antony
-  first_name: Antony
-  last_name: Sir
+  name: Antony
   
 admitted_with_profile:
   user: admitted_with_profile
-  first_name: admitted
-  middle_name: with
-  last_name: profile
+  name: Admitted
   
 enrolled_with_profile:
   user: enrolled_with_profile
-  first_name: enrolled
-  middle_name: with
-  last_name: profile
+  name: Enrolled
   
 student_without_school:
   user: student_without_school
-  first_name: student
-  last_name: without_school
+  name: NoSchool
  

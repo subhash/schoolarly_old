@@ -1,7 +1,7 @@
 <% render_actions do |add| %>
 <% add.dialog 'Add class',:partial => 'klasses/new_klass_form', :locals => {:klass => Klass.new, :school => @school} %>
-<% add.dialog 'Invite Student',:partial => 'students/invite_student_form', :locals => {:student => Student.new, :school => @school} %>
-<% add.dialog 'Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :school => @school} %>
+<% add.dialog 'Invite Student',:partial => 'students/invite_student_form', :locals => {:student => Student.new, :user_profile => UserProfile.new, :school => @school} %>
+<% add.dialog 'Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :user_profile => UserProfile.new, :school => @school} %>
 <% add.link 'Profile', {:controller => :user_profiles, :action => (@user == current_user) ? :edit : :show , :id => @school.user} %>
 <% add.dialog 'Post Message',:partial => 'mails/post_message_new_form', :locals => {:user => @school.user} if (current_user && @school && @school == current_user.person.school) %>
 <% end %>
@@ -11,7 +11,7 @@
 <% end %>
 
 <% render_tabs do |add| %>
-<% add.messages_tab :locals => {:user => @school.user} %>
+<% add.messages_tab :locals => {:user => @school.user} if current_user %>
 <% add.klasses_tab %>
 <% add.students_tab %>
 <% add.teachers_tab %>

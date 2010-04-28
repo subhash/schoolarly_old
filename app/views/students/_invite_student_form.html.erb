@@ -3,6 +3,9 @@
 <p>
     <%= render :partial => 'users/invite_input', :locals => {:user => student.user} %>
 </p>
+<br />
+<%= render :partial => 'user_profiles/form', :locals => {:user_profile => user_profile} %>
+<br />
 <p>
     <%= render :partial => 'students/invite_input', :locals => {:student => student, :school => school} %>
 </p>

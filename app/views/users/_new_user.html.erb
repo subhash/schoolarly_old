@@ -3,6 +3,8 @@
 <%= form.label :email %><br />
 <%= form.text_field :email %><br />
 <br />
+<%= render :partial => 'user_profiles/form', :locals => {:user_profile => :user_profile} %>
+<br />
 <%= form.label :password, form.object.new_record? ? nil : "Change password" %><br />
 <%= form.password_field :password %><br />
 <br />

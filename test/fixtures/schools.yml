@@ -1,17 +1,15 @@
 sboa:
-  name: SBOA
+  board: State
   
 st_teresas:
-  name: St. Teresa's Convent GHS
   board: State
   fax: 
   website: http://www.stteresas.com
 
 st_antonys:
-  name: St. Antonys GHS
   board: State
   fax: 123
   website: http://www.stantonys.com
   
 paru_school:
-  name: School of Paru
+  board: State

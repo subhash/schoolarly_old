@@ -181,7 +181,6 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   end
 
   create_table "schools", :force => true do |t|
-    t.string   "name"
     t.enum     "board",      :limit => [:cbse, :icse, :state, :others], :default => :cbse
     t.string   "fax"
     t.string   "website"
@@ -237,9 +236,7 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
 
   create_table "user_profiles", :force => true do |t|
     t.integer  "user_id",        :null => false
-    t.string   "first_name"
-    t.string   "middle_name"
-    t.string   "last_name"
+    t.string   "name"
     t.string   "address_line_1"
     t.string   "address_line_2"
     t.string   "city"

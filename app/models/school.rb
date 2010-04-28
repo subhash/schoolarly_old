@@ -18,7 +18,7 @@ class School < ActiveRecord::Base
   end
     
   def name
-    read_attribute(:name) || user.name
+    user.name
   end
   
   def exams

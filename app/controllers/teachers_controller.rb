@@ -29,6 +29,7 @@ class TeachersController < ApplicationController
     end
     @user = User.new(params[:user])
     @user.person = @teacher
+    @user.user_profile = UserProfile.new(params[:user_profile])
     if @user.deliver_invitation!
       @users = get_users_for_composing(@teacher.school).flatten if @teacher.school
       render :template => 'teachers/create_success'
