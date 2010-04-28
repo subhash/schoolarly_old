@@ -6,7 +6,7 @@ class Exam < ActiveRecord::Base
   has_many :students_with_scores, :through => :scores, :source => :student
   has_one :klass, :through => :exam_group
   has_one :exam_type, :through => :exam_group
-  belongs_to :event
+  belongs_to :event, :dependent => :destroy
   
   def to_s
     return exam_group.exam_type.description + ' for ' + subject.name
@@ -18,7 +18,8 @@ class Exam < ActiveRecord::Base
   end
   
   def students
-    students_with_scores + exam_group.klass.students.for_paper(exam_group.klass.papers.for_subject(subject.id).id)
+#    cannot use klass here, since an exam which is not saved in ExamController.create will also need to use the same method
+    students_with_scores + exam_group.klass.students.for_paper(exam_group.klass.papers.find_by_subject_id(subject.id).id)
   end
   
   def is_destroyable?
@@ -35,6 +36,10 @@ class Exam < ActiveRecord::Base
   
   def duration
     event ? ((event.end_time.to_time - event.start_time.to_time)/1.hour): 0
+  end
+  
+  def participants
+    teacher ? (students + [teacher]) : students
   end
   
 end

@@ -15,7 +15,7 @@ class ExamsController < ApplicationController
     @exam_group = ExamGroup.find(params[:exam_group])
     @exam = Exam.new(:exam_group => @exam_group)
     @event = Event.new(:start_time => Time.now, :end_time => 1.hour.from_now, :period => "Does not repeat")
-    @exam.event = @event
+    @exam.event = @event   
     entity_class = params[:entity_class]
     @entity = get_entity(entity_class,params[:entity_id])
     #TODO page context
@@ -32,10 +32,11 @@ class ExamsController < ApplicationController
     @exam = Exam.new(params[:exam])
     @exam_group=ExamGroup.find(params[:exam_group_id])
     @exam.exam_group=@exam_group
+    @exam.teacher = @exam_group.klass.papers.find_by_subject_id(@exam.subject.id).teacher
     @event = Event.new( :title => @exam.to_s, :description => @exam.to_s, :owner => current_user)
     @event.attributes = params[:event]
-    @exam.students.each do |student|
-      @event.users << student.user
+    @exam.participants.each do |participant|
+      @event.users << participant.user
     end
     @exam.event = @event
     @event.save!
@@ -50,21 +51,25 @@ class ExamsController < ApplicationController
   
   def edit
     @exam = Exam.find(params[:id])
+    @event = @exam.event
     #TODO page context
     @entity = get_entity(params[:entity_class],params[:entity_id])
-    @teachers = (params[:entity_class] == 'School')? @entity.teachers : @entity.school.teachers
-    @teacher_suggestion = @exam.teacher || Paper.find_by_klass_id_and_subject_id(@exam.exam_group.klass.id, @exam.subject_id).teacher
+    @teachers = (params[:entity_class] == 'School')? @entity.teachers : @entity.school.teachers   
   end
   
   def update
     @exam=Exam.find(params[:id])
     @entity = get_entity(params[:entity_class],params[:entity_id])
-    if params
-      @exam.update_attributes!(params[:exam])
+    @exam.attributes  = params[:exam]
+    @exam.event.attributes = params[:event]
+    if(params[:exam][:teacher_id])
+      @exam.event.users << @exam.teacher.user
     end
-    render :template => 'exams/update_success'
-  rescue Exception => e
-    render :template => 'exams/update_failure'
+    if (@exam.save! and @exam.event.save!)
+      render :template => 'exams/update_success'
+    else
+      render :template => 'exams/update_failure'
+    end
   end
   
   def destroy

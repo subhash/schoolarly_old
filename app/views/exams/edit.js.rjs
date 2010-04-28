@@ -1,2 +1,2 @@
-args = {:partial =>'exams/edit_exam_form', :locals => {:exam => @exam, :entity => @entity, :teachers => @teachers, :teacher => @teacher_suggestion}}
+args = {:partial =>'exams/edit_exam_form', :locals => {:exam => @exam, :entity => @entity, :teachers => @teachers}}
 page.open_dialog('Modify Exam', args)

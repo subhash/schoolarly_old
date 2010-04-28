@@ -1,10 +1,6 @@
 class Klass < ActiveRecord::Base
   
-  has_many :papers, :include => :subject, :order => "subjects.name" do
-    def for_subject(subject_id)
-      find :first, :conditions => {:subject_id => subject_id}
-    end
-  end
+  has_many :papers, :include => :subject, :order => "subjects.name"
   has_many :subjects, :through => :papers, :order => "name"
   has_many :teachers, :through => :papers, :uniq => true 
   belongs_to :school

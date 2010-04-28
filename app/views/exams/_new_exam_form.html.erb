@@ -53,15 +53,7 @@
             <%= f.text_field(:pass_score, :size => 27) %>
         </td>
         </tr>
-        <!-- TODO This select box should get a default selected value when the subject is changed. May be subject to be made an observe field !-->
-        <tr>
-            <th>
-                <%= f.label :teacher %>
-            </th>
-            <td>
-                <%= f.select(:teacher_id, options_from_collection_for_select(teachers,:id,:name)) %>
-            </td>
-        </tr>
+        <!-- TODO A div which displays teacher for each subject as the subject is selected !-->
     </tbody>
 </table>
 <div class="center">
