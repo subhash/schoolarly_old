@@ -178,17 +178,17 @@ table.teachers td.right * {
 }
 
 table.teachers .klass {
-    background-color: grey;
+    background-color: black;
     color: white;
     padding: 2px 0px 2px 4px;
-	margin-right: 2px;
+    margin-right: 2px;
 }
 
 table.teachers .subject {
-    background-color: black;
+    background-color: grey;
     color: white;
     padding: 2px 4px;
-	margin-left: 2px;
+    margin-left: 4px;
 }
 
 table.teachers th {
@@ -203,6 +203,49 @@ table.teachers th h2 {
     padding: 0px;
     font-size: 11px;
     margin: 0px;
+}
+
+table.klasses {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+table.klasses tr {    
+	padding-bottom: 4px;
+}
+
+table.klasses td.left {
+    font-size: 28px;
+    width: 15%;
+}
+
+table.klasses td.left a {
+	text-decoration: none;
+}
+
+table.klasses .level {
+    background-color: black;
+    color: white;
+    padding: 2px 0px 2px 4px;
+    margin-right: 2px;
+}
+
+table.klasses .division {
+    background-color: grey;
+    color: white;
+    padding: 2px 4px;
+    margin-left: 4px;
+}
+
+table.klasses .subject {
+    background-color: grey;
+    color: white;
+    padding: 2px 4px;
+}
+
+table.klasses td.right * {
+    font-size: 11px;
+    margin-bottom: 4px;
 }
 
 /* Baseline */

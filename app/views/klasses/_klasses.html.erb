@@ -20,8 +20,8 @@
 </table>
 <br/>
 <% klasses.each do |level, level_klasses| %>
-<table id="<%=level%>">
-    <tr>
+<table id="<%=level%>" class="klasses">
+    <!--<tr>
         <th>
         </th>
         <th>
@@ -40,7 +40,7 @@
         <th>
             Students
         </th>
-    </tr>
+    </tr>-->
     <%level_klasses.each do |klass| %>
     <%= render :partial => 'klasses/klass', :object => klass %>
     <%end %>

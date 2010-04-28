@@ -1,20 +1,15 @@
 <tr id="klass-<%=klass.id%>">
-    <td class="ui-state-default">
+    <td class="left">
         <% url = klass_path(klass) %>
-        <%if ['Pre-school', 'L.K.G','U.K.G','Mont1','Mont2','Mont3'].include?(klass.level.to_s) %>
-        <%=link_to "#{klass.level} - #{klass.division}",url %>
-        <%else %>
-        <%=link_to "#{klass.level}#{klass.division}",url %>
-        <%end %>
+        <a href="<%= url %>"><span class="level"><%= klass.level %><span class="division"><%= klass.division %></span></span></a>
     </td>
-    <td class="ui-state-default">
-    </td>
-	<td class="ui-state-focus">
-        <%= link_to  klass.students.size, klass %>
-    </td>
-    <% if klass.can_be_destroyed %>
-    <th>
+    <td class="right">        
+        <p>
+            <% klass.subjects.each do |subject| %>
+            <span class="subject"><%= subject.name %></span>
+            <% end %>
+			<span><%= pluralize(klass.students.size, 'student') %>  <%= link_to 'Add more', klass %></span>
+        </p>
         <%= link_to_remote 'Delete', :url => klass_url(klass), :method => :delete, :confirm => 'Are you sure?' %>
-    </th>
-    <% end %>
+    </td>
 </tr>
