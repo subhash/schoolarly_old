@@ -68,6 +68,7 @@ class EventsController < ApplicationController
   
   def edit
     @event = Event.find_by_id(params[:id])
+    @exam = Exam.find_by_event_id(@event.id)
   end
   
   def update
