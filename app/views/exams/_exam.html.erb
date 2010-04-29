@@ -5,7 +5,7 @@
     <td class="right">
         <% if exam.event %>
         <span class="date"><%= exam.event.start_time.to_s(:short) %>
-            <span class="time"><%= distance_of_time_in_words(exam.event.start_time, exam.event.end_time) %>
+            <span class="time"><%= exam.duration %> hours
          </span></span>
         <%end %>
         <span><%=exam.venue %>
