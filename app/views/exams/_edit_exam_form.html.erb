@@ -14,7 +14,7 @@
             <%= event_form.label :start_time %>
         </th>
         <td>
-            <%= event_form.datetime_select :start_time, {:minute_step => 15} %>
+            <%= event_form.datetime_select :start_time, {:minute_step => 5} %>
         </td>
     </tr>
     <tr>
@@ -22,7 +22,7 @@
             <%= event_form.label :end_time %>
         </th>
         <td>
-            <%= event_form.datetime_select :end_time , {:minute_step => 15}%>
+            <%= event_form.datetime_select :end_time , {:minute_step => 5}%>
         </td>
     </tr>
     <%end %>
