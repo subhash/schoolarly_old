@@ -1,26 +1,19 @@
 <tr id="paper-<%= paper.id%>">
-    <td class="ui-state-default">
-        <%= paper.subject.name %>
+    <td class="left">
+        <div>
+            <%= paper.subject.name %>
+        </div>
+        <div class="detail">
+            <span><%=pluralize(paper.students.size, 'students') %></span>
+            <%= link_to_remote  '(Edit)', :url => {:controller => 'papers', :action => 'edit_students', :id => paper} %>
+        </div>
     </td>
-    <td class="ui-state-focus">
-        <%= link_to_remote  paper.students.size, :url => {:controller => 'papers', :action => 'edit_students', :id => paper} %>
-    </td>
-    <% if paper.teacher %>
-    <td>
-        <%=link_to paper.teacher.name, teacher_path(paper.teacher) %>
-    </td>
-    <td class="ui-state-focus">
-        <%= link_to_remote 'Change Teacher', :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper}, :confirm => 'Are you sure?' %>
-    </td>
-    <%else %>
-    <td class="ui-state-focus">
-        <%= link_to_remote 'Allot Teacher', :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper} %>
-    </td>
-    <%end %>
-	<!-- TODO page context -->
-    <%if active_controller == 'klasses' %>
-    <td>
+    <td class="right">
+        <%= link_to paper.teacher.name, teacher_path(paper.teacher) if paper.teacher %>
+        <%= link_to_remote (paper.teacher ? '(Edit)' : 'Allot teacher' ), :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper} %>
+        <!-- TODO page context -->
+        <%if active_controller == 'klasses' %>
         <%= link_to_remote "Delete", :url => paper_url(paper), :method => :delete, :html => {:class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' %>
+        <%end %>
     </td>
-    <%end %>
 </tr>

@@ -8,6 +8,22 @@ body {
     text-align: center;
 }
 
+/* Baseline */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table .left {
+    font-size: 28px;
+    width: 20%;
+}
+
+table .right * {
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
 div#Header {
     background: #036;
     padding: 10px 23px 0 30px;
@@ -210,11 +226,11 @@ table.klasses {
     width: 100%;
 }
 
-table.klasses tr {    
-	padding-bottom: 4px;
-	border-bottom: grey;
-	border-bottom-style: dashed;
-	border-bottom-width: thin;
+table.klasses tr {
+    padding-bottom: 4px;
+    border-bottom: grey;
+    border-bottom-style: dashed;
+    border-bottom-width: thin;
 }
 
 table.klasses td.left {
@@ -223,7 +239,7 @@ table.klasses td.left {
 }
 
 table.klasses td.left a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 table.klasses .level {
@@ -256,15 +272,15 @@ table.exams {
     width: 100%;
 }
 
-table.exams tr {    
-	padding-bottom: 4px;
+table.exams tr {
+    padding-bottom: 4px;
 }
 
 table.exams .heading * {
-	font-size: 11px;
-	background: grey;
-	color: white;
-	vertical-align: middle;
+    font-size: 11px;
+    background: grey;
+    color: white;
+    vertical-align: middle;
 }
 
 table.exams td.left {
@@ -297,8 +313,58 @@ table.exams .time {
     margin-left: 4px;
 }
 
-
-/* Baseline */
-table {
-    border-collapse: collapse;
+table.papers {
+    margin-bottom: 30px;
+    width: 100%;
 }
+
+table.papers tr {
+    padding-bottom: 4px;
+}
+
+table.papers td.left {
+    font-size: 18px;
+    width: 20%;
+}
+
+table.papers td.right, table.papers td.left {
+    border-width: 1px;
+    border-style: dotted;
+    border-color: #E5E5E5;
+}
+
+table.papers td.right * {
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
+table.papers td.left .detail {
+    font-size: 9px;
+    margin-bottom: 4px;
+    padding-left: 20px;
+    background-color: #E5E5E5;
+}
+
+table.klass-exams tr {
+    border-bottom: solid 1px;
+}
+
+table.klass-exams .level {
+    background-color: black;
+    color: white;
+    padding: 2px 0px 2px 4px;
+    margin-right: 2px;
+}
+
+table.klass-exams .division {
+    background-color: grey;
+    color: white;
+    padding: 2px 4px;
+    margin-left: 4px;
+}
+
+table.klass-exams td.left a {
+    text-decoration: none;
+}
+
+

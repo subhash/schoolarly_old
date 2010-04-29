@@ -21,26 +21,6 @@
 <br/>
 <% klasses.each do |level, level_klasses| %>
 <table id="<%=level%>" class="klasses">
-    <!--<tr>
-        <th>
-        </th>
-        <th>
-            <%=level %>
-        </th>
-        <th>
-        </th>
-    </tr>
-    <tr>
-        <th>
-            Class
-        </th>
-        <th>
-            ClassTeacher
-        </th>
-        <th>
-            Students
-        </th>
-    </tr>-->
     <%level_klasses.each do |klass| %>
     <%= render :partial => 'klasses/klass', :object => klass %>
     <%end %>
