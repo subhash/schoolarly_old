@@ -212,6 +212,9 @@ table.klasses {
 
 table.klasses tr {    
 	padding-bottom: 4px;
+	border-bottom: grey;
+	border-bottom-style: dashed;
+	border-bottom-width: thin;
 }
 
 table.klasses td.left {
@@ -247,6 +250,53 @@ table.klasses td.right * {
     font-size: 11px;
     margin-bottom: 4px;
 }
+
+table.exams {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+table.exams tr {    
+	padding-bottom: 4px;
+}
+
+table.exams .heading * {
+	font-size: 11px;
+	background: grey;
+	color: white;
+	vertical-align: middle;
+}
+
+table.exams td.left {
+    font-size: 18px;
+    width: 30%;
+}
+
+table.exams .subject {
+    background-color: grey;
+    color: white;
+    padding: 2px 4px;
+}
+
+table.exams td.right * {
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
+table.exams .date {
+    background-color: green;
+    color: white;
+    padding: 2px 0px 2px 4px;
+    margin-right: 2px;
+}
+
+table.exams .time {
+    background-color: red;
+    color: white;
+    padding: 2px 4px;
+    margin-left: 4px;
+}
+
 
 /* Baseline */
 table {
