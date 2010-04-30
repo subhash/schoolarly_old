@@ -1,25 +1,7 @@
-<% remote_form_for exam_group, :url => {:controller => :exam_groups, :action => 'create'} do |f| %>
-<%= f.error_messages%>
-	<table class="center">
-		<tbody>
-			<tr>
-    	        <th><label for="exam_type">Exam Type</label></th>
-            	<td>
-                	<%= f.select(:exam_type_id, options_from_collection_for_select(exam_types,:id,:name) ) %>
-            	</td>
-        	</tr>
-            <tr>
-            	<th><label for="subject">Subject</label></th>
-				<td align="left">
-					<%= collection_multiple_select(:exam, 'subject_ids', subjects, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox', :disabled => []}) %>
-				</td>				
-            </tr>
-		</tbody>
-	</table>
-
-	<%=f.hidden_field :klass_id, :value => klass.id%>
-
-	<div class="center">
-		<%= submit_tag "Add" %>
-	</div>
-<%end %>
+<% semantic_remote_form_for exam_group, :url => {:controller => :exam_groups, :action => 'create'} do |f| %>
+<%= f.semantic_errors %>
+<%= f.input :exam_type, :as => :select, :collection => exam_types %>
+<%= f.input :subjects, :as => :check_boxes , :collection => subjects %>
+<%= f.hidden_field :klass_id, :value => klass.id %>
+<%= f.commit_button %>
+<% end %>

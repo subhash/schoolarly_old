@@ -5,11 +5,11 @@ class ExamGroup < ActiveRecord::Base
   has_many :exams , :dependent => :destroy
   has_many :subjects, :through => :exams
   
-#  validates_presence_of :description, :message => "cannot be blank."
+  validates_presence_of :exam_type
 #  validates_uniqueness_of :description, :scope => [:klass_id], :message => "of exam group cannot be repeated for the same class."
 
   def to_s
-    return exam_type.description + ' for ' + klass.name
+   exam_type ? (exam_type.description + ' for ' + klass.name) : nil
   end
   
   def is_destroyable?
