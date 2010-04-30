@@ -41,7 +41,8 @@ class MailsController < ApplicationController
   
   def destroy
     @mail=Mail.find(params[:id])
-    @mail.user.mailbox.move_to(:trash, :conditions => 'id = ' + @mail.id.to_s) unless @mail.trashed
+    @user = @mail.user
+    @user.mailbox.move_to(:trash, :conditions => 'id = ' + @mail.id.to_s) unless @mail.trashed
     Mail.delete(@mail) if @mail.trashed
   end
   
