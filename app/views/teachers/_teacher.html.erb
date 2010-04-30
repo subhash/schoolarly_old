@@ -4,7 +4,7 @@
             <%= link_to teacher.name, teacher %>
         </div>
         <div class="detail">
-            <%= profile_link(teacher) %>
+            <%= link_to teacher.user.email, teacher %>
         </div>
         <%if teacher.school %>
         <div class="detail">
