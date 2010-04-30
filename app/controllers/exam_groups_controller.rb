@@ -29,7 +29,11 @@ class ExamGroupsController < ApplicationController
   
   def destroy
     @exam_group=ExamGroup.find(params[:id])
-    @exam_group.destroy
+    if  @exam_group.destroy
+      render :template => 'exam_groups/destroy_success'
+    else
+      render :template => 'exam_groups/destroy_failure'
+    end
   end
   
 end
