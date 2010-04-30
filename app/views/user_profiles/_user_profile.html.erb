@@ -1,14 +1,11 @@
-   <table class="ui-state-default center">
-        <caption>
-            User Details
-        </caption>
+   <table>
         <% if !user_profile.nil? %>
         <tr>
             <td>
-                <b>User Name:</b>
+                <b>Name:</b>
             </td>
             <td>
-                <%=h user_profile.name.to_s %>
+                <%=h user_profile.name %>
             </td>
         </tr>
         <tr>

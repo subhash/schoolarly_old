@@ -1,15 +1,6 @@
 <% fields_for :person do |school| %>
 	<%= school.error_messages %>
-	 <table class="ui-state-default center">
-		<caption>School Details</caption>
-	    <tr>
-	        <td>
-	            <b><%= school.label :name %>:</b>
-	        </td>
-	        <td>
-	            <%= school.text_field :name %>
-	        </td>
-	    </tr>
+	 <table>
 	    <tr>
 	        <td>
 	            <b><%= school.label :board %>:</b>

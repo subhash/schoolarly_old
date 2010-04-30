@@ -1,9 +1,6 @@
 <% fields_for :user do |user| %>
 <%= user.error_messages %>
-<table class="ui-state-default center">
-    <caption>
-        Login Details
-    </caption>
+<table>
     <tr>
         <td>
             <b><%= user.label :email %>:</b>

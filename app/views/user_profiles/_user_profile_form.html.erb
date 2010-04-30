@@ -1,17 +1,12 @@
 <% fields_for :user_profile do |user_profile| %>
 	<%= user_profile.error_messages %>
-	<table class="ui-state-default center">
-	    <caption>
-	        User Details
-	    </caption>
+	<table>
 	    <tr>
 	        <td>
-	            <b>User Name:</b>
+	            <b>Name:</b>
 	        </td>
 	        <td>
-	            <%= user_profile.text_field :first_name %>
-	            <%= user_profile.text_field :middle_name %>
-	            <%= user_profile.text_field :last_name %>
+	            <%= user_profile.text_field :name %>
 	        </td>
 	    </tr>
 	    <tr>
