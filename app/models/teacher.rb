@@ -18,7 +18,7 @@ class Teacher < ActiveRecord::Base
   has_many :owned_exams, :class_name => 'Exam'
   
   def name
-    return !(user.user_profile.nil?) ? user.user_profile.name : user.email
+    user.name
   end
   
   def email

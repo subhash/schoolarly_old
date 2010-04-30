@@ -20,7 +20,7 @@ class Student < ActiveRecord::Base
   end
   
   def name
-    return !(user.user_profile.nil?) ? user.user_profile.name : user.email
+    user.name
   end
   
   def email

@@ -61,15 +61,13 @@ a.pane-link {
     line-height: 20px;
     margin-top: 0px;
     white-space: nowrap;
-} 
-
-a.pane-link.active {
-	text-decoration: none;
-	font-weight: bold;
-	color: black;
 }
 
-.Left {
+a.pane-link.active {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+} .Left {
     margin: 0;
     padding: 0;
     text-align: left;
@@ -388,4 +386,37 @@ table.klass-exams td.left a {
     text-decoration: none;
 }
 
+div.message {
+    margin-bottom: 40px;
+    border-width: 1px;
+    border-color: #ccc;
+    border-style: solid;
+}
+
+div.message .heading {
+    font-size: 10px;
+    margin: 5px 0px;
+    color: #666;
+}
+
+div.message .subject {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    background: #e5e5e5;
+}
+
+div.message .body {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+div.message .actions {
+    font-size: 10px;
+    margin: 4px 0px;
+}
+
+div.message .actions a {
+    padding: 0px 4px;
+}
 

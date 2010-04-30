@@ -46,24 +46,28 @@ jQuery(document).ready(function(){
         jQuery('div.tab').hide(); // Hide all divs
         jQuery('div.tab-header').hide();
         jQuery(currentTab).show(); // Show div with id equal to variable currentTab
-        jQuery(currentTab+'-header').show();
+        jQuery(currentTab + '-header').show();
         return false;
     });
-	jQuery('#Tabs ul li a:first').click();
+    jQuery('#Tabs ul li a:first').click();
 });
 
 jQuery(document).ready(function(){
-    jQuery('div.pane').hide();    
-	jQuery('a.pane-link').click(function(){
-		jQuery('a.pane-link').removeClass('active');
+    initPanes();
+});
+
+function initPanes(){
+    jQuery('div.pane').hide();
+    jQuery('a.pane-link').click(function(){
+        jQuery('a.pane-link').removeClass('active');
         jQuery(this).addClass('active');
         var currentPane = jQuery(this).attr('href');
         jQuery('div.pane').hide();
         jQuery(currentPane).show();
         return false;
     });
-	jQuery('a.pane-link:first').click();
-});
+    jQuery('a.pane-link:first').click();
+}
 
 function showTab(id){
     jQuery('#myhack ul li').removeClass('active');

@@ -1,5 +1,4 @@
 <div>
-    <%= link_to_remote 'Compose Message', :url => {:controller => 'mails', :action => 'new'} if current_user==user && current_user.person.school %>
     <div id="mail-boxes">
         <%mailboxes={:trash => 'Trash', :inbox => 'Inbox', :sentbox => 'Sent Items'} %>
         <div>
@@ -12,4 +11,5 @@
             <%end %>
         </div>
     </div>
+	    <%= link_to_remote 'Compose Message', :url => {:controller => 'mails', :action => 'new'} if current_user==user && current_user.person.school %>
 </div>

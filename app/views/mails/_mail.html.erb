@@ -1,28 +1,15 @@
-<tr id="<%='mail-' + mail.id.to_s%>" class="<%='conversation-' + mail.conversation.id.to_s%> <%='mail-' + mail.id.to_s%>">
-	<td>
-		<%=list_sender_or_receivers(mail)%>
-	</td>
-	
-	<% subject_label = mail.message.subject + ' - ' + '<i>' + mail.message.body.slice(0,9) + '... </i>'%>
-	<td><%=link_to_remote subject_label, :url =>{:controller => 'mails', :action => :show, :id => mail}, :html => {:title => 'Click here to view the message'}%></td>
-	
-	<td><%=mail.message.created_at.strftime('%b %d')%></td>
-	
-	<%if !local_assigns[:dialog_view]%>
-		<td>
-        	<%= link_to_remote 'View Conversation', :url =>{:controller => 'conversations', :action => 'show', :id => mail}, :html => {:title => 'View Conversation'} %>
-    	</td>
-		<td>
-        	<%= link_to_remote 'Reply', :url =>{:controller => 'mails', :action => 'reply_new', :id => mail}, :html => {:title => 'Reply'} %>
-    	</td>
-		<td>
-        	<%= link_to_remote 'Delete', :url =>{:controller => 'mails', :action => 'destroy', :id => mail}, :html => {:title => mail.trashed ? 'Permanently Remove' : 'Sent to Trash'}, :confirm => 'Are you sure?' %>
-    	</td>
-	<%end%>
 
-</tr>
-<tr class="<%='conversation-' + mail.conversation.id.to_s%> <%='mail-' + mail.id.to_s%>">
-	<td id="<%='body-' + mail.id.to_s%>" style ="display: none;" colspan=6>
-		<%=mail.message.body%>
-	</td>
-</tr>
+<div id="<%='mail-' + mail.id.to_s%>" class="message  <%='conversation-' + mail.conversation.id.to_s%> <%='mail-' + mail.id.to_s%>" >
+    <div class="heading">
+        <span><strong><%= mail.message.sender.name %></strong> sent this message <%= time_ago_in_words(mail.message.created_at) %></span>
+    </div>
+    <div class="subject">
+        <%= mail.message.subject %>
+    </div>
+    <div class="body">
+        <%= mail.message.body %>
+    </div>
+    <div class="actions">
+        <%= link_to_remote 'View Conversation', :url =>{:controller => 'conversations', :action => 'show', :id => mail}, :html => {:title => 'View Conversation'} %>|<%= link_to_remote 'Reply', :url =>{:controller => 'mails', :action => 'reply_new', :id => mail}, :html => {:title => 'Reply'} %>|<%= link_to_remote 'Delete', :url =>{:controller => 'mails', :action => 'destroy', :id => mail}, :html => {:title => mail.trashed ? 'Permanently Remove' : 'Sent to Trash'}, :confirm => 'Are you sure?' %>
+    </div>
+</div>
