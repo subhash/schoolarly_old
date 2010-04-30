@@ -1,12 +1,4 @@
-<ul id="header">
-    <li>
-        <a href="">Home</a>
-    </li>
-    <%if current_user %>
-    <li>
-        <%= link_to "Calendar",:controller => 'events', :action => 'index' %>
-    </li>
-    <%end %>
+<ul id="header">    
     <li>
         <% if current_user %>
         <%= link_to_remote "Logout, #{current_user.email}", :url => user_session_path,  :method => :delete, :confirm => 'Are you sure you want to logout?' %>
@@ -18,3 +10,4 @@
         <a href="">About</a>
     </li>
 </ul>
+

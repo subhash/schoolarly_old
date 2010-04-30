@@ -39,17 +39,18 @@ jQuery(function(){
 jQuery(document).ready(function(){
     jQuery('div.tab').hide(); // Hide all divs
     jQuery('div.tab-header').hide();
-    jQuery('#Tabs ul li a').click(function(){ // When link is clicked
-        jQuery('#Tabs ul li').removeClass('active'); // Remove active class from links
-        jQuery(this).parent().addClass('active'); //Set parent of clicked link class to active
+    jQuery('a.tab-link').click(function(){ // When link is clicked
+        jQuery('a.tab-link').removeClass('current'); // Remove active class from links
+        jQuery(this).addClass('current'); //Set parent of clicked link class to active
         var currentTab = jQuery(this).attr('href'); // Set currentTab to value of href attribute
         jQuery('div.tab').hide(); // Hide all divs
         jQuery('div.tab-header').hide();
         jQuery(currentTab).show(); // Show div with id equal to variable currentTab
         jQuery(currentTab + '-header').show();
+		jQuery('#calendar').fullCalendar('render');
         return false;
     });
-    jQuery('#Tabs ul li a:first').click();
+    jQuery('a.tab-link:first').click();
 });
 
 jQuery(document).ready(function(){

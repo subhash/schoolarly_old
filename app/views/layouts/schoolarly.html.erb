@@ -18,6 +18,12 @@
         <div id="main">
             <div id="Header">
                 <div id="Tabs">
+                	<% if current_user %>
+                    <% render_tabs do |add| %>
+                    <% add.messages_tab :locals => {:user => current_user} %>
+					<% add.events_tab %>
+                    <% end %>
+					<% end %>
                     <%= yield :tab_links %>
                     <%= render :partial => '/common/header' %>
                 </div>
@@ -25,13 +31,13 @@
             <div class="wrapper">
                 <div class="Left">
                     <div class="col">
-                        <!--<div id="breadcrumbs">
-                        <ul id="crumbs">
-                        <%= yield :crumbs %>
-                        </ul>
-                        </div>-->
+                        <div id="breadcrumbs">
+                            <ul id="crumbs">
+                                <%= yield :crumbs %>
+                            </ul>
+                        </div>
                         <div class="page_header">
-                        	<%= yield :tab_headers %>
+                            <%= yield :tab_headers %>
                         </div>
                         <div class="innercol">
                             <%= yield :tabs %>

@@ -115,7 +115,7 @@ a.pane-link.active {
     margin: 0;
 } #Tabs ul#header {
     float: right;
-} #Tabs li.active a {
+} #Tabs li a.current {
     border: 1px solid #036;
     border-bottom: 1px solid #1A4F85;
     font-size: 12px;

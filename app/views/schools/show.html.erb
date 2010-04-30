@@ -11,7 +11,6 @@
 <% end %>
 
 <% render_tabs do |add| %>
-<% add.messages_tab :locals => {:user => @school.user} if current_user %>
 <% add.klasses_tab %>
 <% add.students_tab %>
 <% add.teachers_tab %>

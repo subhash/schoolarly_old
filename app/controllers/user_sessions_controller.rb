@@ -14,8 +14,14 @@ class UserSessionsController < ApplicationController
     end
   end
   
-  def destroy
-    current_user_session.destroy
-    flash[:notice] = "Logout successful!"    
+  def destroy    
+    render :update do |page|
+      if current_user_session.destroy
+        flash[:notice] = "Logout successful!"
+        page.refresh
+      else
+        page.error_dialog 'Error! Could not logout' 
+      end
+    end
   end
 end

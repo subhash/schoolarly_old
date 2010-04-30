@@ -5,7 +5,7 @@
         <% tab = t[:tab] %>
         <% title = t[:title] %>
         <% title ||= tab.to_s.humanize %>
-        <a href="#<%= tab %>-tab" id="<%= tab %>-tab-link"><%= title %></a>
+        <a href="#<%= tab %>-tab" id="<%= tab %>-tab-link" class="tab-link"><%= title %></a>
     </li>
     <% end %>
 </ul>

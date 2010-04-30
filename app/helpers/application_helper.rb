@@ -43,18 +43,17 @@ module ApplicationHelper
       attr_accessor :tabs
       def tab(args)
         if(args[:tab])
-          tab = args[:tab]
+          tab = args.delete(:tab)
         elsif(args[:title])
-          tab = args[:title].parameterize
+          title = args.delete(:title)
+          tab = title.parameterize
         else
           raise Error.new
         end
         @tabs ||= []
         tab_args = {}
         tab_args[:tab] = tab
-        tab_args[:title] = args[:title]
-        args.delete(:tab)
-        args.delete(:title)
+        tab_args[:title] = title        
         tab_args[:header] = args.delete(:header)
         tab_args[:render] = args        
         @tabs << tab_args
@@ -86,13 +85,19 @@ module ApplicationHelper
       end
       
       def messages_tab(args={})
-        new_args = {:tab => :messages, :partial => 'mails/messages', :header => {:partial => 'mails/messages_header'} }
+        new_args = {:title => 'My Messages', :partial => 'mails/messages', :header => {:partial => 'mails/messages_header'} }
         tab new_args.merge(args)
       end
+
+      def events_tab(args={})
+        new_args = {:title => 'My Events', :partial => 'events/calendar'} 
+        tab new_args.merge(args)
+      end
+
       
     end
     yield tabbifier if block_given?
-    concat(render :partial => "/common/tabs", :object => tabbifier.tabs)
+    concat(render :partial => "/common/tabs", :object => tabbifier.tabs) if tabbifier.tabs
   end
   
   def render_actions(&block)
@@ -137,6 +142,10 @@ module ActionView
       class JavaScriptGenerator
         module GeneratorMethods         
           
+         def refresh
+           call 'window.location.reload'
+         end
+         
          def open_dialog(title, args)
              call "openModalbox", render(args), title
          end
@@ -147,6 +156,10 @@ module ActionView
          
          def refresh_dialog(args)
            call "refreshModalbox", render(args)
+         end
+         
+         def error_dialog(error)
+           call "refreshModalbox", "<html><body><h3>#{error}</h3></body></html>"
          end
          
          def open_tab(obj)
