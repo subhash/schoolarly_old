@@ -55,6 +55,7 @@ module ApplicationHelper
         tab_args[:title] = args[:title]
         args.delete(:tab)
         args.delete(:title)
+        tab_args[:header] = args.delete(:header)
         tab_args[:render] = args        
         @tabs << tab_args
       end
@@ -85,7 +86,7 @@ module ApplicationHelper
       end
       
       def messages_tab(args={})
-        new_args = {:tab => :messages, :partial => 'mails/messages' }
+        new_args = {:tab => :messages, :partial => 'mails/messages', :header => {:partial => 'mails/messages_header'} }
         tab new_args.merge(args)
       end
       

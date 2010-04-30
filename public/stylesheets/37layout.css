@@ -48,7 +48,28 @@ div.wrapper {
     padding: 12px 23px 0 30px;
     margin: 0 auto;
     min-width: 800px;
-} .Left {
+}
+
+div.page_header {
+    padding: 13px 30px 13px 24px;
+    background-color: #edf3fe;
+    margin: 0px 0px 5px;
+}
+
+a.pane-link {
+    font-size: 11px;
+    line-height: 20px;
+    margin-top: 0px;
+    white-space: nowrap;
+} 
+
+a.pane-link.active {
+	text-decoration: none;
+	font-weight: bold;
+	color: black;
+}
+
+.Left {
     margin: 0;
     padding: 0;
     text-align: left;

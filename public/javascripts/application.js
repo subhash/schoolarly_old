@@ -21,7 +21,6 @@ jQuery.noConflict();
 
 jQuery(function(){
     bindDialogs();
-    jQuery(".tabs").tabs();
     jQuery(".selectable").selectable({
         filter: '.selectFilter'
     });
@@ -39,16 +38,31 @@ jQuery(function(){
 // Bind tabs
 jQuery(document).ready(function(){
     jQuery('div.tab').hide(); // Hide all divs
-    jQuery('div.tab:first').show(); // Show the first div
-    jQuery('#Tabs ul li:first').addClass('active'); // Set the class for active state
+    jQuery('div.tab-header').hide();
     jQuery('#Tabs ul li a').click(function(){ // When link is clicked
         jQuery('#Tabs ul li').removeClass('active'); // Remove active class from links
         jQuery(this).parent().addClass('active'); //Set parent of clicked link class to active
         var currentTab = jQuery(this).attr('href'); // Set currentTab to value of href attribute
         jQuery('div.tab').hide(); // Hide all divs
+        jQuery('div.tab-header').hide();
         jQuery(currentTab).show(); // Show div with id equal to variable currentTab
+        jQuery(currentTab+'-header').show();
         return false;
     });
+	jQuery('#Tabs ul li a:first').click();
+});
+
+jQuery(document).ready(function(){
+    jQuery('div.pane').hide();    
+	jQuery('a.pane-link').click(function(){
+		jQuery('a.pane-link').removeClass('active');
+        jQuery(this).addClass('active');
+        var currentPane = jQuery(this).attr('href');
+        jQuery('div.pane').hide();
+        jQuery(currentPane).show();
+        return false;
+    });
+	jQuery('a.pane-link:first').click();
 });
 
 function showTab(id){
@@ -96,7 +110,7 @@ function openModalbox(html, t){
         slideDownDuration: .10,
         slideUpDuration: .10,
         overlayDuration: .25,
-		overlayOpacity: .50
+        overlayOpacity: .50
     });
 }
 

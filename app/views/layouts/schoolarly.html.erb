@@ -25,10 +25,13 @@
             <div class="wrapper">
                 <div class="Left">
                     <div class="col">
-                        <div id="breadcrumbs">
-                            <ul id="crumbs">
-                                <%= yield :crumbs %>
-                            </ul>
+                        <!--<div id="breadcrumbs">
+                        <ul id="crumbs">
+                        <%= yield :crumbs %>
+                        </ul>
+                        </div>-->
+                        <div class="page_header">
+                        	<%= yield :tab_headers %>
                         </div>
                         <div class="innercol">
                             <%= yield :tabs %>
