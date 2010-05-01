@@ -80,7 +80,7 @@ module ApplicationHelper
       end
       
       def messages_tab(args={})
-        new_args = {:title => 'My Messages', :partial => 'mails/messages', :header => {:partial => 'mails/messages_header'} }
+        new_args = {:tab => :messages, :title => 'My Messages', :partial => 'mails/messages', :header => {:partial => 'mails/messages_header'} }
         tab new_args.merge(args)
       end
 
@@ -88,7 +88,6 @@ module ApplicationHelper
         new_args = {:title => 'My Events', :partial => 'events/calendar'} 
         tab new_args.merge(args)
       end
-
       
     end
     yield tabbifier if block_given?
