@@ -42,20 +42,15 @@ module ApplicationHelper
     class <<tabbifier
       attr_accessor :tabs
       def tab(args)
-        if(args[:tab])
-          tab = args.delete(:tab)
-        elsif(args[:title])
-          title = args.delete(:title)
-          tab = title.parameterize
-        else
-          raise Error.new
-        end
-        @tabs ||= []
+        tab = args.delete(:tab)
+        title = args.delete(:title)
+        tab = title.parameterize unless tab
         tab_args = {}
         tab_args[:tab] = tab
         tab_args[:title] = title        
         tab_args[:header] = args.delete(:header)
         tab_args[:render] = args        
+        @tabs ||= []
         @tabs << tab_args
       end
       
