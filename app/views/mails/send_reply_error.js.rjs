@@ -1,1 +1,1 @@
-page.refresh_dialog :partial => 'mails/reply_new_form', :locals => {:mail => Mail.find(params[:id])}
+page.refresh_dialog :partial => 'mails/new_form', :locals => {:mail => @mail, :action => 'send_reply'}

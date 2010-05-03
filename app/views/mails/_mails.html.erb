@@ -1,4 +1,0 @@
-<% mails.each do |mail| %>
-<%= render :partial => 'mails/mail', :object => mail, :locals => {:dialog_view => local_assigns[:dialog_view]} %>
-<%end %>
-<%= link_to_remote 'Delete Conversation', :url =>{:controller => 'conversations', :action => 'destroy', :mail => mails.first}, :html => {:title => 'Delete Conversation'} if local_assigns[:dialog_view] %>

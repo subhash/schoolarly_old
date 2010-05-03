@@ -1,3 +1,4 @@
-<a href="#inbox-area" class="pane-link">Inbox</a>
-| <a href="#sentbox-area" class="pane-link">Sent</a>
-| <a href="#trash-area" class="pane-link">Trash</a>
+<%mailboxes.each do |mailbox|%>
+	<a href="<%='#' + mailbox + '-area'%>" class="pane-link"><%=mailbox.humanize%></a>
+<%end%>
+

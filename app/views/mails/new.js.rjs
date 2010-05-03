@@ -1,1 +1,1 @@
-page.open_dialog('Compose', :partial =>'mails/new_form', :locals => {:users => @users.flatten, :mail => Mail.new()})
+page.open_dialog('Compose Message', :partial =>'mails/new_form', :locals => {:action => 'create'})

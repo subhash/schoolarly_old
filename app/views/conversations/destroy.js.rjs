@@ -1,3 +1,3 @@
 page.close_dialog
-page.select('.conversation-' + @conversation.id.to_s).each { |div| div.remove }
-page.replace_html('trash-area', :partial => 'mails/mails', :object => @user.mailbox[:trash].mail, :locals => {:mailbox => :trash} )
+page.replace_tab(Message, :partial => 'mails/mailboxes', :object => ['inbox', 'sentbox', 'trash'], :locals => {:user => @user})
+page.call 'initPanes'

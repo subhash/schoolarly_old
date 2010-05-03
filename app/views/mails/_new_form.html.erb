@@ -1,16 +1,31 @@
-<% form_remote_tag :url => {:controller => :mails, :action => 'create', :users => users } do%>
-	<table>
-		<tr>
-			<th>
-				To
-           	</th>
-	        <td>
-				<%= collection_multiple_select(:mail, 'user_ids', users, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox'}) %>
-	        </td>
-		</tr>
-		<%= render :partial => 'mails/message_form', :locals => {:message => Message.new()}%>
-	</table>
-	<div>
-		<%= submit_tag 'Post' %>
-	</div>
-<%end %>
+<% form_remote_tag :url => {:controller => :mails, :action => action, :user => local_assigns[:user], :mail => local_assigns[:mail] } do  %>
+<%= flash.now[:notice]%>
+		<table>
+			<tr>
+				<th>
+					To
+            	</th>
+	            <td>
+					<% selected = local_assigns[:user] || (mail.message.sender if local_assigns[:mail]); selected_id = selected.id if selected %>
+					<%= collection_multiple_select(nil, 'user_ids', current_user.person.school.users, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox', :selected_items => [selected_id]})%>
+	        	</td>
+			</tr>
+			<tr>
+				<th>
+					<%= label :subject, 'Subject' %>
+            	</th>
+				<%subject = 'RE:' + mail.message.subject if local_assigns[:mail]%>
+	            <td>
+	                <%= text_field_tag :subject, subject%>
+	            </td>
+			</tr>
+			<tr>
+            	<td colspan=2>
+                	<%= text_area_tag :body, nil, :size => "33x12"%>
+            	</td>
+        	</tr>
+		</table>
+		<div>
+			<%= submit_tag 'Post' %>
+		</div>
+	<%end %>

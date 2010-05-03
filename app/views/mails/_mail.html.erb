@@ -1,7 +1,6 @@
-
 <div id="<%='mail-' + mail.id.to_s%>" class="message  <%='conversation-' + mail.conversation.id.to_s%> <%='mail-' + mail.id.to_s%>" >
     <div class="heading">
-        <span><strong><%= mail.message.sender.name %></strong> sent this message <%= time_ago_in_words(mail.message.created_at) %></span>
+        <span><strong><%= mail.message.sender.name %></strong> sent this message <%= time_ago_in_words(mail.message.created_at) %> ago to <strong><%=mail.message.recipients.collect{|r| r.person.name}.join(', ')%></strong></span>
     </div>
     <div class="subject">
         <%= mail.message.subject %>

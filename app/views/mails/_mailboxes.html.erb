@@ -1,0 +1,7 @@
+<%mailboxes.each do |mailbox| %>
+	<div class="pane" id="<%=mailbox + '-area'%>">
+		<%= render :partial => 'mails/mail', :collection => current_user.mailbox[mailbox].mail, :locals => {:mailbox => mailbox} %>
+	</div>
+<%end %>
+
+<%= link_to_remote 'Compose Message', :url => {:controller => 'mails', :action => 'new'}%>

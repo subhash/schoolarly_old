@@ -2,7 +2,7 @@
 <% add.dialog 'Add/Remove Papers', :partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers} if @school %>
 <% add.dialog 'Add to school', :partial =>'schools/add_to_school_form', :locals => {:entity => @teacher, :schools => School.all} unless @school %>
 <% add.link 'Profile', {:controller => :user_profiles, :action => (@user == current_user) ? 'edit' : 'show' , :id => @teacher.user} %>
-<% add.dialog 'Post Message',:partial => 'mails/post_message_new_form', :locals => {:user => @teacher.user} if (current_user && @school && @school == current_user.person.school) %>
+<% add.dialog 'Post Message', :partial => 'mails/new_form', :locals => {:user => @teacher.user, :action => 'create'} if (current_user && @school && @school == current_user.person.school) %>
 <% end %>
 
 <% render_breadcrumbs do |add| %>
@@ -11,7 +11,6 @@
 <% end %>
 
 <% render_tabs do |t| %>
-<% t.messages_tab :locals => {:user => @teacher.user} if current_user%>
 <% t.papers_tab :partial => 'teacher_allotments/teacher_allotments', :object => @teacher_allotments %>
 <% t.exams_tab :partial => 'exam_groups/klass_exam_groups', :locals => {:exams => @exams, :entity => @teacher} %>
 <% end %>

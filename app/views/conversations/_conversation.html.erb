@@ -1,0 +1,4 @@
+<% mails.each do |mail| %>
+	<%= render :partial => 'conversations/mail', :object => mail %>
+<%end %>
+<%= link_to_remote 'Delete Conversation', :url => { :controller => 'conversations', :action => 'destroy', :mail => mails.first}, :html => {:title => 'Delete Conversation'} %>
