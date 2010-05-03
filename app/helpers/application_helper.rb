@@ -80,7 +80,8 @@ module ApplicationHelper
       end
       
       def messages_tab(args={})
-        new_args = {:tab => :messages, :title => 'My Messages', :partial => 'mails/mailboxes', :object => ['inbox', 'sentbox', 'trash'], :header => {:partial => 'mails/messages_header', :locals => {:mailboxes => mailboxes} } }
+        mailboxes = ['inbox', 'sentbox', 'trash']
+        new_args = {:tab => :messages, :title => 'My Messages', :partial => 'mails/mailboxes', :object => mailboxes, :header => {:partial => 'mails/messages_header', :locals => {:mailboxes => mailboxes} } }
         tab new_args.merge(args)
       end
 
