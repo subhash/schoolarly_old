@@ -3,10 +3,12 @@ class MailsController < ApplicationController
   def create
     sender=current_user
     @user = User.find(params[:user]) if params[:user]
+    @mail = Mail.find(params[:mail]) if params[:mail]
     receivers = [User.find(params[:user_ids].compact.reject(&:blank?))].flatten
     raise if receivers.empty? || params[:body].blank?
     Mail.transaction do
-        sentMail=sender.send_message(receivers, params[:body], params[:subject])
+      sender.send_message(receivers, params[:body], params[:subject]) unless @mail
+      sender.reply(@mail.conversation, receivers, params[:body], params[:subject]) if @mail
     end
     render :template => 'mails/create_success'
   rescue Exception => e
@@ -14,21 +16,8 @@ class MailsController < ApplicationController
     render :template => 'mails/create_failure'  
   end
   
-  def reply_new
-    @mail=Mail.find(params[:id])
-  end
-  
-  def send_reply
-    @mail=Mail.find(params[:mail])
-    receivers = [User.find(params[:user_ids].compact.reject(&:blank?))].flatten
-    raise if receivers.empty? || params[:body].blank?
-    Mail.transaction do
-      @sentMail=@mail.user.reply(@mail.conversation, receivers, params[:body], params[:subject])
-    end
-    render :template => 'mails/create_success'
-  rescue Exception => e
-    flash.now[:notice] = 'Error occured during posting. Try again...'
-    render :template => 'mails/send_reply_error'
+  def new
+    @mail = Mail.find(params[:id]) if params[:id]
   end
   
   def destroy
