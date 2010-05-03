@@ -1,3 +1,5 @@
+require 'activesupport'
+
 class ExamGroupsController < ApplicationController
   
   protect_from_forgery :only => [:create, :update, :destroy] 
@@ -30,7 +32,8 @@ class ExamGroupsController < ApplicationController
         paper = @klass.papers.find_by_subject_id(id)
         teacher =  paper ? paper.teacher : nil
         exam = Exam.new(:subject_id => id, :teacher => teacher) 
-        event = Event.new(:start_time => Time.now, :end_time => 1.hour.from_now, :period => "Does not repeat", :title => @exam_group.description, :description => @exam_group.description )
+        rounding_for_minutes = (Time.now.min % 5).minutes
+        event = Event.new(:start_time => Time.now - rounding_for_minutes, :end_time => 1.hour.from_now - rounding_for_minutes, :period => "Does not repeat", :title => @exam_group.description, :description => @exam_group.description )
         exam.event = event  
         @exam_group.exams << exam
       end
