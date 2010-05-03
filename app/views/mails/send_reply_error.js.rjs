@@ -1,1 +1,0 @@
-page.refresh_dialog :partial => 'mails/new_form', :locals => {:mail => @mail, :action => 'send_reply'}

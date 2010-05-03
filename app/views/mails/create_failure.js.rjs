@@ -1,1 +1,1 @@
-page.refresh_dialog :partial => 'mails/new_form', :locals => {:user => @user, :action => 'create'}
+page.refresh_dialog :partial => 'mails/new_form', :locals => {:user => @user, :mail => @mail}

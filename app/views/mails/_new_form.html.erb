@@ -1,4 +1,4 @@
-<% form_remote_tag :url => {:controller => :mails, :action => action, :user => local_assigns[:user], :mail => local_assigns[:mail] } do  %>
+<% form_remote_tag :url => {:controller => :mails, :action => :create, :user => local_assigns[:user], :mail => local_assigns[:mail] } do  %>
 <%= flash.now[:notice]%>
 		<table>
 			<tr>
