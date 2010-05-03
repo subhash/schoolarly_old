@@ -4,8 +4,11 @@ class ExamGroup < ActiveRecord::Base
   
   has_many :exams , :dependent => :destroy
   has_many :subjects, :through => :exams
+  has_many :events, :through => :exams
   
-  validates_presence_of :exam_type
+  accepts_nested_attributes_for :exams
+  
+  validates_presence_of :exam_type, :exams
 #  validates_uniqueness_of :description, :scope => [:klass_id], :message => "of exam group cannot be repeated for the same class."
 
   def to_s

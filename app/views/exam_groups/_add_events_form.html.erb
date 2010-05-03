@@ -1,0 +1,17 @@
+<% semantic_remote_form_for exam_group, :url => {:controller => :exam_groups, :action => 'create'} do |f| %>
+	<%= f.hidden_field :klass_id %>
+	<%= f.hidden_field :exam_type_id %>
+	<%= f.input :description %>
+	<% f.semantic_fields_for :exams do |exam| %>
+		<%= exam.hidden_field :subject_id %>
+		<%= exam.input :subject, :input_html => {:disabled => true} %>
+		<%= exam.inputs :venue, :max_score, :pass_score %>
+		<% exam.semantic_fields_for :event do |event| %>
+			<%= event.datetime_select :start_time, {:minute_step => 5} %>
+			<%= event.datetime_select :end_time, {:minute_step => 5} %>
+			<%= event.hidden_field :title %>
+			<%= event.hidden_field :description %>
+		<%end %>
+	<%end %>
+<%= f.buttons %>
+<% end %>
