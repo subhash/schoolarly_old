@@ -20,7 +20,7 @@
                 <div id="Tabs">
                 	<% if current_user %>
                     <% render_tabs do |add| %>
-                    <% add.messages_tab :locals => {:user => current_user} %>
+                    <% add.messages_tab %>
 					<% add.events_tab %>
                     <% end %>
 					<% end %>
