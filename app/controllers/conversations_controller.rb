@@ -7,10 +7,8 @@ class ConversationsController < ApplicationController
    
   def destroy
     mail = Mail.find(params[:mail])
-    @user = mail.user
-    @conversation = mail.conversation
-    Mail.delete(@user.mailbox[:trash].mail(:conversation => @conversation))
-    @user.mailbox.move_to(:trash, :conversation => @conversation)
+    Mail.delete(mail.user.mailbox[:trash].mail(:conversation => mail.conversation))
+    mail.user.mailbox.move_to(:trash, :conversation => mail.conversation)
   end
 
 end
