@@ -1,7 +1,7 @@
 class Conversation < ActiveRecord::Base
   attr_reader :originator, :original_message, :last_sender, :last_message, :users
   has_many :messages
-  has_many :mails, :order => 'created_at DESC'
+  has_many :mails
   before_create :clean
   #looks like shit but isnt too bad
   #has_many :users, :through :messages, :source => :recipients, :uniq => true doesnt work due to recipients being a habtm association
