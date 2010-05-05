@@ -2,7 +2,7 @@ class ConversationsController < ApplicationController
   
   def show
     @mail=Mail.find(params[:id])
-    @mails = @mail.conversation.mails.select{|mail| mail.user == @mail.user && (@mail.trashed ? true : !mail.trashed)}
+    @mails = @mail.user.mailbox.mail(:conversation => @mail.conversation).select{|mail| !mail.trashed || @mail.trashed}
   end
    
   def destroy
