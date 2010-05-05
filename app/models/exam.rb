@@ -9,6 +9,7 @@ class Exam < ActiveRecord::Base
   belongs_to :event, :dependent => :destroy
   
   accepts_nested_attributes_for :event
+  accepts_nested_attributes_for :teacher
   
   def to_s
     return exam_group.exam_type.description + ' for ' + subject.name

@@ -17,6 +17,11 @@ class ExamGroupsController < ApplicationController
   def create
     @exam_group=ExamGroup.new(params[:exam_group])  
     if  @exam_group.save!
+      @exam_group.exams.each do |exam|
+        exam.participants.each do |participant|
+          exam.event.users << participant.user
+        end
+      end
       render :template => 'exam_groups/create_success'
     else
       render :template => 'exam_groups/create_failure'
@@ -39,8 +44,7 @@ class ExamGroupsController < ApplicationController
       end
     end    
     if  @exam_group.valid?
-      puts render_to_string(:partial => 'exam_groups/add_events_form', :locals => {:exam_group => @exam_group})
-      #      render :template => 'exam_groups/add_events'
+      render :template => 'exam_groups/add_events'
     else
       render :template => 'exam_groups/create_failure'
     end

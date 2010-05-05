@@ -2,16 +2,23 @@
 	<%= f.hidden_field :klass_id %>
 	<%= f.hidden_field :exam_type_id %>
 	<%= f.input :description %>
-	<% f.semantic_fields_for :exams do |exam| %>
-		<%= exam.hidden_field :subject_id %>
-		<%= exam.input :subject, :input_html => {:disabled => true} %>
-		<%= exam.inputs :venue, :max_score, :pass_score %>
-		<% exam.semantic_fields_for :event do |event| %>
-			<%= event.input :start_time, :minute_step => 5 %>
-			<%= event.input :end_time, :minute_step => 5 %>
-			<%= event.hidden_field :title %>
-			<%= event.hidden_field :description %>
+	<% exam_group.exams.each do |exam| %>
+		<% f.semantic_fields_for :exams, exam do |exam_form| %>
+			<%= exam_form.hidden_field :subject_id %>
+			<%= exam_form.input :subject, :input_html => {:disabled => true} %>			
+			<% if exam.teacher %>
+				Teacher: <strong><%=exam.teacher.name %></strong>
+			<% else %>
+				<%= exam_form.input :teacher, :as => :select, :collection => exam_group.klass.school.teachers , :include_blank  => true %>
+			<% end %>
+			<%= exam_form.inputs :venue, :max_score, :pass_score %>
+			<% exam_form.semantic_fields_for :event do |event_form| %>
+				<%= event_form.input :start_time, :minute_step => 5 %>
+				<%= event_form.input :end_time, :minute_step => 5 %>
+				<%= event_form.hidden_field :title %>
+				<%= event_form.hidden_field :description %>
+			<%end %>
 		<%end %>
-	<%end %>
+	<% end %>
 <%= f.buttons %>
 <% end %>
