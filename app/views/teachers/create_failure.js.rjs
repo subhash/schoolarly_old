@@ -1,1 +1,1 @@
-page.refresh_dialog :partial => 'teachers/invite_teacher_form', :locals => {:teacher => @teacher, :school => @school}
+page.refresh_dialog :partial => 'teachers/invite_teacher_form', :locals => {:teacher => @teacher, :user_profile => UserProfile.new, :school => @school}
