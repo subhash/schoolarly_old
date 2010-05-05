@@ -1,1 +1,1 @@
-page << "alert('Error occurred while deleting...');"
+page.error_dialog('Error occurred while removing the exam.')
