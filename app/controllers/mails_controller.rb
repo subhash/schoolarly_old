@@ -5,6 +5,7 @@ class MailsController < ApplicationController
     @user = User.find(params[:user]) if params[:user]
     @mail = Mail.find(params[:mail]) if params[:mail]
     receivers = [User.find(params[:user_ids].compact.reject(&:blank?))].flatten
+    receivers << @user if @user
     raise if receivers.empty? || params[:body].blank?
     Mail.transaction do
       sender.send_message(receivers, params[:body], params[:subject]) unless @mail
@@ -18,6 +19,7 @@ class MailsController < ApplicationController
   
   def new
     @mail = Mail.find(params[:id]) if params[:id]
+    @user = @mail.message.sender if params[:id]
   end
   
   def destroy

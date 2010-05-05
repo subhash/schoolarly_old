@@ -6,8 +6,7 @@
 					To
             	</th>
 	            <td>
-					<% selected = local_assigns[:user] || (mail.message.sender if local_assigns[:mail]); selected_id = selected.id if selected %>
-					<%= collection_multiple_select(nil, 'user_ids', current_user.person.school.users, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox', :selected_items => [selected_id]})%>
+					<%= collection_multiple_select(nil, 'user_ids', current_user.person.school.users, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox', :selected_items => [local_assigns[:user] ? local_assigns[:user].id : nil], :disabled => [local_assigns[:user] ? local_assigns[:user].id : nil] })%>
 	        	</td>
 			</tr>
 			<tr>
