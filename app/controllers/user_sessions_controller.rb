@@ -8,7 +8,11 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
-      flash[:notice] = "Login successful!"      
+      flash[:notice] = "Login successful!" 
+      render :update do |page|
+        page.close_dialog
+        page.redirect_to current_user.person
+      end      
     else
       render :action => :new
     end
