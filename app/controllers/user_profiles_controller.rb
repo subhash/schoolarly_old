@@ -50,15 +50,15 @@ class UserProfilesController < ApplicationController
   end
   
   def edit
-    if @user != current_user
-      redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user))
-    else    
+#    if @user != current_user
+#      redirect_to(url_for( :controller => :user_profiles, :action => 'show', :id=>@user))
+#    else    
       if @user.user_profile.nil? 
         redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
       else
         @user_profile=@user.user_profile
       end
-    end
+#    end
   end
   
   def update
