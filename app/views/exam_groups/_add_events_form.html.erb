@@ -5,21 +5,30 @@
 	<% exam_group.exams.each do |exam| %>
 		<% f.semantic_fields_for :exams, exam do |exam_form| %>
 			<%= exam_form.hidden_field :subject_id %>
-			<%= exam_form.input :subject, :input_html => {:disabled => true} %>			
+			<%= exam_form.input :subject, :input_html => {:disabled => true} %>
 			<% if exam.teacher %>
 				<%= exam_form.hidden_field :teacher_id %>
 				Teacher: <strong><%=exam.teacher.name %></strong>
 			<% else %>
 				<%= exam_form.input :teacher, :as => :select, :collection => exam_group.klass.school.teachers , :include_blank  => true %>
 			<% end %>
-			<%= exam_form.inputs :venue, :max_score, :pass_score %>
-			<% exam_form.semantic_fields_for :event do |event_form| %>
-				<%= event_form.input :start_time, :minute_step => 5 %>
-				<%= event_form.input :end_time, :minute_step => 5 %>
-				<%= event_form.hidden_field :title %>
-				<%= event_form.hidden_field :description %>
-			<%end %>
+		<%= exam_form.inputs :venue, :max_score, :pass_score %>
+		<% exam_form.semantic_fields_for :event do |event_form| %>
+			<%= event_form.hidden_field :user_id %>
+			<%= event_form.input :start_time, :minute_step => 5 %>
+			<%= event_form.input :end_time, :minute_step => 5 %>
+			<%= event_form.hidden_field :title %>
+			<%= event_form.hidden_field :description %>
+			<p>
+    		<%= event_form.label :period, "Repeats" %>
+    		<%= event_form.select :period, Event::REPEATS,{}, :onchange => "showPeriodAndFrequency(this.value);Modalbox.resizeToContent();" %>
+			</p>
+			<p id = "frequency" style ="display:none;">
+    		<%= event_form.label :frequency, "Repeat every" %>
+    		<%= event_form.select :frequency, (1..30).to_a %><span id = "period"></span>
+			</p>
 		<%end %>
-	<% end %>
-<%= f.buttons %>
+	<%end %>
+<% end %>
+	<%= f.buttons %>
 <% end %>

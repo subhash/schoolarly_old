@@ -38,7 +38,7 @@ class ExamGroupsController < ApplicationController
         teacher =  paper ? paper.teacher : nil
         exam = Exam.new(:subject_id => id, :teacher => teacher) 
         rounding_for_minutes = (Time.now.min % 5).minutes
-        event = Event.new(:start_time => Time.now - rounding_for_minutes, :end_time => 1.hour.from_now - rounding_for_minutes, :period => "Does not repeat", :title => (@exam_group.description+" : "+exam.subject.name), :description => (@exam_group.description+" : "+exam.subject.name))
+        event = Event.new(:start_time => Time.now - rounding_for_minutes, :end_time => 1.hour.from_now - rounding_for_minutes, :period => "Does not repeat", :title => (@exam_group.description+" : "+exam.subject.name), :description => (@exam_group.description+" : "+exam.subject.name), :owner => current_user)
         exam.event = event  
         @exam_group.exams << exam
       end
