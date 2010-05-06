@@ -1,7 +1,7 @@
 class CreateSchools < ActiveRecord::Migration
   def self.up
     create_table :schools do |t|
-      t.enum :board, :limit => [:cbse, :icse, :state, :others], :default => :cbse
+      t.string :board
       t.string :fax
       t.string :website
       

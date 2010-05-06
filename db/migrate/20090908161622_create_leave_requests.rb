@@ -5,7 +5,7 @@ class CreateLeaveRequests < ActiveRecord::Migration
       t.date :start_date
       t.date :end_date
       t.string :reason
-      t.enum :status, :limit => ['requested', 'confirmed', 'rejected', 'pending']
+      t.string :status
       
       t.timestamps
       

@@ -87,9 +87,9 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   add_index "exams", ["teacher_id"], :name => "teacher_id"
 
   create_table "klasses", :force => true do |t|
-    t.enum     "level",      :limit => [:"Pre-school", :"L.K.G", :"U.K.G", :Mont1, :Mont2, :Mont3, :"1", :"2", :"3", :"4", :"5", :"6", :"7", :"8", :"9", :"10", :"11", :"12"]
+    t.string   "level"
     t.string   "division"
-    t.integer  "school_id",                                                                                                                                                    :null => false
+    t.integer  "school_id",  :null => false
     t.integer  "teacher_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -181,7 +181,7 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   end
 
   create_table "schools", :force => true do |t|
-    t.enum     "board",      :limit => [:cbse, :icse, :state, :others], :default => :cbse
+    t.string   "board"
     t.string   "fax"
     t.string   "website"
     t.datetime "created_at"
