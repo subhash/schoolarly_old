@@ -7,6 +7,7 @@
 			<%= exam_form.hidden_field :subject_id %>
 			<%= exam_form.input :subject, :input_html => {:disabled => true} %>			
 			<% if exam.teacher %>
+				<%= exam_form.hidden_field :teacher_id %>
 				Teacher: <strong><%=exam.teacher.name %></strong>
 			<% else %>
 				<%= exam_form.input :teacher, :as => :select, :collection => exam_group.klass.school.teachers , :include_blank  => true %>

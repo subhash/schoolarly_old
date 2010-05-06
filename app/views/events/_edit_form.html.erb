@@ -53,7 +53,7 @@
 	<% end %>
 <% else %>
 	<p>
-		Teacher: <strong><%= @exam.teacher.name %></strong> <br />
+		Teacher: <strong><%= @exam.teacher ? @exam.teacher.name : "" %></strong> <br />
 		Students: 
 		<ul>
 			<% @exam.students.each do |student| %>
