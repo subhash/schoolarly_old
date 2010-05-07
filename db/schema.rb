@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   add_index "exams", ["teacher_id"], :name => "teacher_id"
 
   create_table "klasses", :force => true do |t|
-    t.string   "level"
+    t.integer  "level_id",   :null => false
     t.string   "division"
     t.integer  "school_id",  :null => false
     t.integer  "teacher_id"
@@ -97,18 +97,26 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
 
   add_index "klasses", ["school_id"], :name => "school_id"
   add_index "klasses", ["teacher_id"], :name => "teacher_id"
+  add_index "klasses", ["level_id"], :name => "level_id"
 
   create_table "leave_requests", :force => true do |t|
-    t.integer  "parent_id",                                                           :null => false
+    t.integer  "parent_id",  :null => false
     t.date     "start_date"
     t.date     "end_date"
     t.string   "reason"
-    t.enum     "status",     :limit => [:requested, :confirmed, :rejected, :pending]
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "leave_requests", ["parent_id"], :name => "parent_id"
+
+  create_table "levels", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "mail", :force => true do |t|
     t.integer  "user_id",                                          :null => false
@@ -280,13 +288,14 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   add_foreign_key "exam_groups", ["exam_type_id"], "exam_types", ["id"], :name => "exam_groups_ibfk_1"
   add_foreign_key "exam_groups", ["klass_id"], "klasses", ["id"], :name => "exam_groups_ibfk_2"
 
-  add_foreign_key "exams", ["exam_group_id"], "exam_groups", ["id"], :on_delete => :cascade, :name => "exams_ibfk_1"
+  add_foreign_key "exams", ["exam_group_id"], "exam_groups", ["id"], :name => "exams_ibfk_1"
   add_foreign_key "exams", ["subject_id"], "subjects", ["id"], :name => "exams_ibfk_2"
   add_foreign_key "exams", ["event_id"], "events", ["id"], :name => "exams_ibfk_3"
   add_foreign_key "exams", ["teacher_id"], "teachers", ["id"], :name => "exams_ibfk_4"
 
   add_foreign_key "klasses", ["school_id"], "schools", ["id"], :name => "klasses_ibfk_1"
   add_foreign_key "klasses", ["teacher_id"], "teachers", ["id"], :name => "klasses_ibfk_2"
+  add_foreign_key "klasses", ["level_id"], "levels", ["id"], :name => "klasses_ibfk_3"
 
   add_foreign_key "leave_requests", ["parent_id"], "users", ["id"], :name => "leave_requests_ibfk_1"
 
