@@ -1,29 +1,9 @@
-<table id="klasses" style="display: none;">
-    <th>
-    </th>
-    <th>
-        Recently Added
-    </th>
-    <th>
-    </th>
-    <tr>
-        <th>
-            Class
-        </th>
-        <th>
-            ClassTeacher
-        </th>
-        <th>
-            Students
-        </th>
-    </tr>
-</table>
+<table id="klasses" class="klasses" style="display: none;"></table>
 <br/>
 <% klasses.each do |level, level_klasses| %>
 <table id="<%=level%>" class="klasses">
     <%level_klasses.each do |klass| %>
-    <%= render :partial => 'klasses/klass', :object => klass %>
+    	<%= render :partial => 'klasses/klass', :object => klass %>
     <%end %>
 </table>
-<br/>
 <% end %>

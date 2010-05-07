@@ -1,5 +1,4 @@
 page.close_dialog
-page.insert_object(@klass, :partial => 'klasses/klass')
+page.insert_object(@klass, :position => :top, :partial => 'klasses/klass')
 page.replace_tab(Exam, :partial => 'exam_groups/klass_exam_groups', :locals => {:entity => @klass.school, :exams => @klass.school.exams})
-page << "bindAccordion();"  #TODO To be changed
 page.open_tab(@klass)

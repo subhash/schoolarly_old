@@ -4,6 +4,7 @@ class Klass < ActiveRecord::Base
   has_many :subjects, :through => :papers, :order => "name"
   has_many :teachers, :through => :papers, :uniq => true 
   belongs_to :school
+  belongs_to :level
   belongs_to :class_teacher, :class_name => 'Teacher', :foreign_key => 'teacher_id'
   has_many :students  do
     def for_paper(paper_id)
@@ -12,10 +13,10 @@ class Klass < ActiveRecord::Base
   end
   has_many :exam_groups
   has_many :exams, :through => :exam_groups
-  validates_uniqueness_of :division, :scope => [:school_id, :level]
+  validates_uniqueness_of :division, :scope => [:school_id, :level_id]
   
   def name
-    return level.to_s+" "+division
+    return level.name + ' ' + division
   end
   
   def can_be_destroyed

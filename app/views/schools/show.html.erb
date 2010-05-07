@@ -1,5 +1,5 @@
 <% render_actions do |add| %>
-<% add.dialog 'Add class',:partial => 'klasses/new_klass_form', :locals => {:klass => Klass.new, :school => @school} %>
+<% add.dialog 'Add class',:partial => 'klasses/new_klass_form', :locals => {:klass => Klass.new, :school => @school, :levels => Level.all} %>
 <% add.dialog 'Invite Student',:partial => 'students/invite_student_form', :locals => {:student => Student.new, :user_profile => UserProfile.new, :school => @school} %>
 <% add.dialog 'Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :user_profile => UserProfile.new, :school => @school} %>
 <% add.link 'Profile', {:controller => :user_profiles, :action => (@user == current_user) ? :edit : :edit , :id => @school.user} %>

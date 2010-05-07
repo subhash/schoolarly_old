@@ -1,18 +1,7 @@
-<!-- TODO this is done 'coz 'input' method assumes @klass object. Have to checkup whether select will suffice -->
-<% @klass = klass %>
-<% remote_form_for klass, :url => {:controller => 'klasses', :action => 'create', :school_id => school} do |f| %>
+<% semantic_remote_form_for klass, :url => {:controller => :klasses, :action => 'create', :school_id => school} do |f| %>
 <%= f.error_messages %>
-<p>
-    <%= f.label :level %>
-    <br/>
-    <%= input 'klass', 'level' %>
-</p>
-<p>
-    <%= f.label :division %>
-    <br/>
-    <%= f.text_field :division %>
-</p>
-<p>
-    <%= f.submit 'Create' %>
-</p>
+	<%= f.input :level, :as => :select, :collection => levels %>
+	<%= f.input :division%>
+	<%= f.commit_button :label => 'Create' %>
 <% end %>
+
