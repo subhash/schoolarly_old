@@ -2,7 +2,7 @@ class Exam < ActiveRecord::Base
   belongs_to :exam_group
   belongs_to :subject
   belongs_to :teacher
-  has_many :scores, :dependent => :destroy
+  has_many :scores
   has_many :students_with_scores, :through => :scores, :source => :student
   has_one :klass, :through => :exam_group
   has_one :exam_type, :through => :exam_group
