@@ -11,7 +11,7 @@ class CreateExams < ActiveRecord::Migration
       t.integer :teacher_id
       t.timestamps
       
-      t.foreign_key :exam_group_id, :exam_groups, :id, :on_delete => :cascade
+      t.foreign_key :exam_group_id, :exam_groups, :id
       t.foreign_key :subject_id, :subjects, :id  
       t.foreign_key :event_id, :events, :id
       t.foreign_key :teacher_id, :teachers, :id
