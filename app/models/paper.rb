@@ -16,9 +16,5 @@ class Paper < ActiveRecord::Base
   def desc
     klass.name + ' - ' + subject.name
   end
-
-  def orphan_exams
-    return self.klass.exams.select { |e| e.teacher == nil && e.subject == self.subject}  
-  end
   
 end
