@@ -47,7 +47,7 @@ jQuery(document).ready(function(){
         jQuery('div.tab-header').hide();
         jQuery(currentTab).show(); // Show div with id equal to variable currentTab
         jQuery(currentTab + '-header').show();
-		jQuery('#calendar').fullCalendar('render');
+        jQuery('#calendar').fullCalendar('render');
         return false;
     });
     jQuery('a.tab-link:first').click();
@@ -119,8 +119,15 @@ function openModalbox(html, t){
     });
 }
 
-function refreshModalbox(html){
-    Modalbox.show(html);
+function refreshModalbox(html, height){
+    if (height) {
+        Modalbox.show(html, {
+            height: height
+        });
+    }
+    else {
+        Modalbox.show(html);
+    }
 }
 
 function closeModalbox(){

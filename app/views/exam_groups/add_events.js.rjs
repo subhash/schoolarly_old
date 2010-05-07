@@ -1,1 +1,1 @@
-page.refresh_dialog (:title => @exam_group.to_s, :partial => 'exam_groups/add_events_form', :locals => {:exam_group => @exam_group})
+page.refresh_dialog ({:title => @exam_group.to_s, :partial => 'exam_groups/add_events_form', :locals => {:exam_group => @exam_group}}, 500)

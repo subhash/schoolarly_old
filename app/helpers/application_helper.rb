@@ -149,8 +149,12 @@ module ActionView
            call "closeModalbox"
          end
          
-         def refresh_dialog(args)
-           call "refreshModalbox", render(args)
+         def refresh_dialog(args, height = nil)
+           if(height)
+              call "refreshModalbox", render(args), height
+           else
+              call "refreshModalbox", render(args)
+           end
          end
          
          def error_dialog(error)
