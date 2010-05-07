@@ -420,3 +420,18 @@ div.message .actions a {
     padding: 0px 4px;
 }
 
+
+.inputs li {
+	width: 30%;
+	display: inline;
+	padding-right: 10px;
+}
+
+.inputs li input {
+	width: 30px;
+}
+
+li.datetime li {
+	width: 20%;
+	display: inline;
+}

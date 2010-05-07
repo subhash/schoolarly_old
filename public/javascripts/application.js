@@ -115,7 +115,8 @@ function openModalbox(html, t){
         slideDownDuration: .10,
         slideUpDuration: .10,
         overlayDuration: .25,
-        overlayOpacity: .50
+        overlayOpacity: .50,
+		overlayClose: false
     });
 }
 
