@@ -1,5 +1,5 @@
 class Notifier < ActionMailer::Base
-  default_url_options[:host] = "localhost:3004"
+  default_url_options[:host] = "www.schoolarly.com"
   
   def password_reset_instructions(user)
     subject       "Password Reset Instructions"
