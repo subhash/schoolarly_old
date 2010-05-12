@@ -1,4 +1,11 @@
+<script type="text/javascript">
+jQuery(function(){
+  // choose either the full version
+  jQuery(".multiselect").multiselect();
+});
+</script>
+
 <% form_remote_tag  :url => {:action => 'update_papers', :id => entity} do |f| %>
-	<%= collection_multiple_select(:klass, 'paper_ids', papers, :id, text_method_for(entity), {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox', :selected_items => entity.paper_ids}) %>
+	<%= select_tag  'paper_ids', options_from_collection_for_select(papers, :id, text_method_for(entity), entity.paper_ids), :multiple => true, :class => "multiselect" %>
 <%= submit_tag "Save" %>
 <%end %>

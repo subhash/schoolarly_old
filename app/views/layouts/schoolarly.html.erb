@@ -4,14 +4,16 @@
         <title>Welcome to Schoolarly</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <%= stylesheet_link_tag  '37layout', 'crumbs', 'multiselect', 'modalbox' %>
+		<%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/ui.all.css",'ui.multiselect'%>
         <%= javascript_include_tag 'prototype' ,'scriptaculous' %>
-        <%= javascript_include_tag 'jquery', 'jquery-ui', 'application' %>
+        <%= javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.custom.min', 'ui.multiselect', 'application' %>
         <%= javascript_include_tag 'modalbox' %>
         <%= include_jquery_grid_javascript %>
         <%= include_jquery_grid_css %>
         <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
         <%=javascript_include_tag 'fullcalendar', 'gcal', 'calendar' %>
         <%=stylesheet_link_tag "style", 'fullcalendar' %>
+
     </head>
     <body>
         <!-- Missing: Header with home, logout etc., Footer with about, contact etc,. Flash message box, Breadcrumbs-->

@@ -51,11 +51,17 @@ jQuery(document).ready(function(){
         return false;
     });
     jQuery('a.tab-link:first').click();
+	initMultiSelect();
 });
 
 jQuery(document).ready(function(){
     initPanes();
+    initMultiSelect();
 });
+
+function initMultiSelect(){
+    jQuery(".multiselect").multiselect();
+}
 
 function initPanes(){
     jQuery('div.pane').hide();
@@ -116,7 +122,7 @@ function openModalbox(html, t){
         slideUpDuration: .10,
         overlayDuration: .25,
         overlayOpacity: .50,
-		overlayClose: false
+        overlayClose: false
     });
 }
 

@@ -91,7 +91,7 @@ class StudentsController < ApplicationController
   
   def update_papers
     @student = Student.find(params[:id])
-    @student.paper_ids = params[:klass][:paper_ids]
+    @student.paper_ids = params[:paper_ids]
     @student.save!
   end
   
