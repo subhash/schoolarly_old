@@ -24,6 +24,8 @@ jquery plugins/widgets used
 3) jquery plugin - tablesorter - http://tablesorter.com/docs/ (uninstalled now)
 
 4) jqGrid plugin for scores - http://www.rubyrailways.com/add-a-powerful-ajax-table-to-your-rails-application-in-5-minutes/
+5) jQuery multi-select - http://github.com/michael/multiselect/
+
 Installed gems
 --------------
 
