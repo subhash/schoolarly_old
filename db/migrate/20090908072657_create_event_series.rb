@@ -1,8 +1,8 @@
 class CreateEventSeries < ActiveRecord::Migration
   def self.up
     create_table :event_series do |t|
-      t.integer :frequency
-      t.string :period      
+      t.integer :frequency, :default => 0
+      t.string :period, :default => 'once'
       t.integer :user_id
       
       t.timestamps

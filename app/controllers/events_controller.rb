@@ -14,8 +14,8 @@ class EventsController < ApplicationController
     @event.event_series.owner = current_user
     @event.event_series.period = params[:repeat] unless params[:repeat] == 'once'
     @event.event_series.frequency = 1
-    @event.propagate
     if @event.save
+      @event.propagate
       render :template => 'events/create'
     else
       render :template => 'events/create_error'
@@ -57,23 +57,26 @@ class EventsController < ApplicationController
   
   def update
     e = Event.new(params[:event])
-    @event = Event.find(params[:id])    
-    @events = @event.event_series.events.find(:all, :conditions => ["start_time > '#{@event.start_time.to_formatted_s(:db)}' "])
-    st = e.start_time-@event.start_time
+    @event = Event.find(params[:id])
+    @event_series = @event.event_series
+    st = e.start_time - @event.start_time
     et = e.end_time - @event.end_time  
     
-    @event.copy_attr(e)
-    @event.start_time += st
-    @event.end_time += et
-    @event.save
-    
     if (params[:update_scope] == "2")
+      @events = @event_series.events.find(:all, :conditions => ["start_time >= '#{@event.start_time.to_formatted_s(:db)}' "])
       @events.each do |event|
         event.copy_attr(e)
         event.start_time += st
         event.end_time += et      
         event.save
       end
+    else
+      @event.copy_attr(e)
+      @event.start_time += st
+      @event.end_time += et
+      @event.event_series = EventSeries.new(:owner => @event_series.owner, :users => @event_series.users)
+      @event.save      
+      @event_series.destroy if @event_series.events.size == 0   
     end    
     
     render :update do |page|
