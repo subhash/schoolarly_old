@@ -32,7 +32,6 @@ class StudentsController < ApplicationController
       end
     end
     @user=@student.user
-    @users=get_users_for_composing(@student)
   end
   
   

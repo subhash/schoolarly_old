@@ -2,6 +2,7 @@
 <% add.dialog 'Add Students', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled} %>
 <% add.dialog 'Add Subjects', :partial => 'papers/create_papers_form', :locals => {:klass => @klass, :subjects => Subject.find(:all)} %>
 <% add.dialog 'Add Exams', :partial =>'exam_groups/new_exam_group_form', :locals => {:exam_group => ExamGroup.new(), :subjects => @subjects, :klass => @klass, :exam_types => ExamType.all} %>
+<% add.dialog 'Post Message to ' + @klass.name, :partial => 'mails/new_form', :locals => {:users => @klass.users, :selected_users => @klass_user_ids} if is_messageable?(@school)%>
 <% end %>
 
 <% render_breadcrumbs do |add| %>

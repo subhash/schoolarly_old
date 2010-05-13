@@ -3,7 +3,7 @@
 <% add.dialog 'Assign Class',:partial => 'students/add_to_klass_form', :locals => {:student => @student} if @school and not @klass %>
 <% add.dialog 'Add to school',:partial =>'students/add_to_school_form', :locals => {:student => @student, :schools => School.find(:all)} unless @school %>
 <% add.link 'Profile', {:controller => :user_profiles, :action => (@user == current_user) ? :edit : :edit , :id => @student.user} %>
-<% add.dialog 'Post Message to ' + @student.name, :partial => 'mails/new_form', :locals => {:user => @student.user} if (current_user && @school && @school == current_user.person.school)%>
+<% add.dialog 'Post Message to ' + @student.name, :partial => 'mails/new_form', :locals => {:users => [@student.user], :selected_users => [@student.user.id]} if is_messageable?(@student)%> 
 <% end %>
 
 <% render_breadcrumbs do |add| %>

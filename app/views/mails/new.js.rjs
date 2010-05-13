@@ -1,1 +1,1 @@
-page.open_dialog('Message', :partial =>'mails/new_form', :locals => {:mail => @mail, :user =>@user})
+page.open_dialog 'Message', :partial =>'mails/new_form', :locals => {:mail => @mail, :selected_users => @selected_user_ids, :users => @users}

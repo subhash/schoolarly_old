@@ -39,6 +39,7 @@ class KlassesController < ApplicationController
     @school = @klass.school
     @subjects=@klass.subjects
     @exams = @klass.exams
+    @klass_user_ids=@klass.users.collect{|u| u.id}
     session[:redirect] = request.request_uri
     respond_to do |format|
       format.html # show.html.erb
@@ -54,9 +55,7 @@ class KlassesController < ApplicationController
   
   def add_students
     @klass = Klass.find(params[:id])  
-    new_ids = params[:klass][:student_ids]
-    #    have to do this since multi-select always returns one empty selection - TODO explore why
-    @new_students = Student.find(new_ids.to(-2))
+    @new_students = Student.find(params[:student_ids])
     @new_students.each do |student|
       student.klass = @klass
       student.save!      

@@ -31,7 +31,6 @@ class TeachersController < ApplicationController
     @user.person = @teacher
     @user.user_profile = UserProfile.new(params[:user_profile])
     if @user.deliver_invitation!
-      @users = get_users_for_composing(@teacher.school).flatten if @teacher.school
       render :template => 'teachers/create_success'
     else  
       render :template => 'teachers/create_failure'        
@@ -65,7 +64,9 @@ class TeachersController < ApplicationController
   end
   
   def update_papers
-    @teacher.paper_ids = params[:klass][:paper_ids]
+    @teacher.paper_ids = params[:paper_ids]
+    puts "paper iddddddddddds"
+    puts @teacher.paper_ids.inspect
     if session[:redirect].include?('teachers')
       @teacher_allotments = @teacher.papers.group_by{|paper| paper.subject} 
       @papers = @teacher.school.unallotted_papers + @teacher.papers

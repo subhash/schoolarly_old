@@ -2,10 +2,8 @@ class MailsController < ApplicationController
    
   def create
     sender=current_user
-    @user = User.find(params[:user]) if params[:user]
     @mail = Mail.find(params[:mail]) if params[:mail]
-    receivers = [User.find(params[:user_ids].compact.reject(&:blank?))].flatten
-    receivers << @user if @user
+    receivers = User.find(params[:user_ids])
     raise if receivers.empty? || params[:body].blank?
     Mail.transaction do
       sender.send_message(receivers, params[:body], params[:subject]) unless @mail
@@ -19,7 +17,9 @@ class MailsController < ApplicationController
   
   def new
     @mail = Mail.find(params[:id]) if params[:id]
-    @user = @mail.message.sender if params[:id]
+    selected_users = @mail.conversation.users if params[:id]
+    @selected_user_ids = selected_users.collect{|u| u.id} if params[:id]
+    @users = !selected_users.nil? ? selected_users : current_user.person.is_a?(SchoolarlyAdmin) ? User.all : (!current_user.person.school.nil? ? current_user.person.school.users : nil)
   end
   
   def destroy

@@ -1,4 +1,4 @@
-<% form_remote_tag :url => {:controller => :mails, :action => :create, :user => local_assigns[:user], :mail => local_assigns[:mail] } do  %>
+<% form_remote_tag :url => {:controller => :mails, :action => :create, :mail => local_assigns[:mail] } do  %>
 <%= flash.now[:notice]%>
 		<table>
 			<tr>
@@ -6,7 +6,7 @@
 					To
             	</th>
 	            <td>
-					<%= collection_multiple_select(nil, 'user_ids', current_user.person.school.users, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox', :selected_items => [local_assigns[:user] ? local_assigns[:user].id : nil], :disabled => [local_assigns[:user] ? local_assigns[:user].id : nil] })%>
+					<%= select_tag  'user_ids', options_from_collection_for_select(users, :id, :name, {:selected => local_assigns[:selected_users]}), :multiple => true, :class => "multiselect" %>
 	        	</td>
 			</tr>
 			<tr>
@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
             	<td colspan=2>
-                	<%= text_area_tag :body, nil, :size => "33x12"%>
+                	<%= text_area_tag :body, nil, :size => "39x9"%>
             	</td>
         	</tr>
 		</table>
