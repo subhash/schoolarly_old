@@ -12,6 +12,8 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
     @event.event_series.owner = current_user
+    @event.event_series.period = params[:repeat] unless params[:repeat] == 'once'
+    @event.event_series.frequency = 1
     @event.propagate
     if @event.save
       render :template => 'events/create'

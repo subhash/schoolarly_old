@@ -6,8 +6,7 @@
 <%= f.input :end_time %>
 <% f.semantic_fields_for :event_series do |es| %>
 <%= es.input :users, :as => :check_boxes, :collection => @users %>
-Every <%= es.input :frequency %>
-<%= es.input :period, :as => :select, :collection => @periods %>
+Repeats <%= select_tag :repeat, options_for_select([['Only once', 'once'],['Every day', 'days'],['Every week', 'weeks'],['Every month', 'months']]) %>
 <% end %>
 <%=f.commit_button :label => 'Create' %>
 <%end %>
