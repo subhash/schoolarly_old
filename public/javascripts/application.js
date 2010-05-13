@@ -58,7 +58,9 @@ jQuery(document).ready(function(){
 });
 
 function initMultiSelect(){
-    jQuery(".multiselect").multiselect({sortable: false});
+    jQuery(".multiselect").multiselect({
+        sortable: false
+    });
 }
 
 function initPanes(){
@@ -113,16 +115,30 @@ function bindDialog(id){
 }
 
 
-function openModalbox(html, t){
-    Modalbox.show(html, {
-        title: t,
-        slideDownDuration: .10,
-        slideUpDuration: .10,
-        overlayDuration: .25,
-        overlayOpacity: .50,
-        overlayClose: false,
-		afterLoad: initMultiSelect
-    });
+function openModalbox(html, t, height){
+    if (height) {
+        Modalbox.show(html, {
+            title: t,
+            slideDownDuration: .10,
+            slideUpDuration: .10,
+            overlayDuration: .25,
+            overlayOpacity: .50,
+            overlayClose: false,
+            height: height,
+            afterLoad: initMultiSelect
+        });
+    }
+    else {
+        Modalbox.show(html, {
+            title: t,
+            slideDownDuration: .10,
+            slideUpDuration: .10,
+            overlayDuration: .25,
+            overlayOpacity: .50,
+            overlayClose: false,
+            afterLoad: initMultiSelect
+        });
+    }    
 }
 
 function refreshModalbox(html, height){
