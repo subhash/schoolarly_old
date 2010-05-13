@@ -14,7 +14,7 @@ class Event < ActiveRecord::Base
     puts 'template - '+template.start_time.inspect
     puts 'last day - '+Event.last_day.inspect
     puts 'results - '+(template.start_time < Event.last_day).inspect
-    while (template.start_time < Event.last_day) and !period.blank? 
+    while (template.start_time < Event.last_day) and period != 'once' 
       event = Event.new
       event.copy_attr(self)
       event.start_time = template.start_time.advance(period.to_sym => frequency)

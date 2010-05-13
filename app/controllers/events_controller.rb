@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   
   def new
     @users = current_user.person.school ? current_user.person.school.users : nil
-    @event = Event.new(:end_time => 1.hour.from_now)
+    @event = Event.new(:start_time => 1.hour.from_now, :end_time => 2.hour.from_now)
     @event.event_series = EventSeries.new( :owner => current_user)
     @periods = ['', 'days', 'weeks', 'months']
   rescue Exception => e
@@ -12,7 +12,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
     @event.event_series.owner = current_user
-    @event.event_series.period = params[:repeat] unless params[:repeat] == 'once'
+    @event.event_series.period = params[:repeat]
     @event.event_series.frequency = 1
     if @event.save
       @event.propagate
