@@ -46,7 +46,9 @@ class EventsController < ApplicationController
     if @event
       @event.start_time = @event.start_time.advance(:minutes => params[:minute_delta].to_i, :days => params[:day_delta].to_i)
       @event.end_time = @event.end_time.advance(:minutes => params[:minute_delta].to_i, :days => params[:day_delta].to_i)
+      @event.event_series = EventSeries.new(:owner => @event_series.owner, :users => @event_series.users)
       @event.save
+      @event_series.destroy if @event_series.events.size == 0
     end
   end
   

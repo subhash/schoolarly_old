@@ -3,7 +3,6 @@ class Event < ActiveRecord::Base
   validates_presence_of :title, :description
   
   belongs_to :event_series
-  acts_as_list :scope => :event_series
   
   accepts_nested_attributes_for :event_series
   

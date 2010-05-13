@@ -17,39 +17,36 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   end
 
   create_table "event_series", :force => true do |t|
-    t.integer  "frequency",  :default => 1
-    t.string   "period",     :default => "monthly"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.boolean  "all_day",    :default => false
+    t.integer  "frequency",  :default => 0
+    t.string   "period",     :default => "once"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "event_series", ["user_id"], :name => "user_id"
+
+  create_table "event_series_users", :id => false, :force => true do |t|
+    t.integer  "event_series_id", :null => false
+    t.integer  "user_id",         :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_series_users", ["event_series_id", "user_id"], :name => "index_event_series_users_on_event_series_id_and_user_id", :unique => true
+  add_index "event_series_users", ["user_id"], :name => "user_id"
 
   create_table "events", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.boolean  "all_day",         :default => false
     t.integer  "event_series_id"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "events", ["event_series_id"], :name => "event_series_id"
-  add_index "events", ["user_id"], :name => "user_id"
-
-  create_table "events_users", :id => false, :force => true do |t|
-    t.integer  "event_id",   :null => false
-    t.integer  "user_id",    :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "events_users", ["event_id", "user_id"], :name => "index_events_users_on_event_id_and_user_id", :unique => true
-  add_index "events_users", ["user_id"], :name => "user_id"
 
   create_table "exam_groups", :force => true do |t|
     t.string   "description"
@@ -279,11 +276,12 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
     t.datetime "updated_at"
   end
 
-  add_foreign_key "events", ["event_series_id"], "event_series", ["id"], :name => "events_ibfk_1"
-  add_foreign_key "events", ["user_id"], "users", ["id"], :name => "events_ibfk_2"
+  add_foreign_key "event_series", ["user_id"], "users", ["id"], :name => "event_series_ibfk_1"
 
-  add_foreign_key "events_users", ["event_id"], "events", ["id"], :name => "events_users_ibfk_1"
-  add_foreign_key "events_users", ["user_id"], "users", ["id"], :name => "events_users_ibfk_2"
+  add_foreign_key "event_series_users", ["event_series_id"], "event_series", ["id"], :name => "event_series_users_ibfk_1"
+  add_foreign_key "event_series_users", ["user_id"], "users", ["id"], :name => "event_series_users_ibfk_2"
+
+  add_foreign_key "events", ["event_series_id"], "event_series", ["id"], :name => "events_ibfk_1"
 
   add_foreign_key "exam_groups", ["exam_type_id"], "exam_types", ["id"], :name => "exam_groups_ibfk_1"
   add_foreign_key "exam_groups", ["klass_id"], "klasses", ["id"], :name => "exam_groups_ibfk_2"
