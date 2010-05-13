@@ -1,9 +1,12 @@
 class PapersController < ApplicationController
   def create
     @klass = Klass.find(params[:id])
-    #    have to do this since multi-select always returns one empty selection - TODO explore why
-    subject_ids = params[:klass][:subject_ids].to(-2)
-    subject_ids.each do |subject_id|
+    new_sids = params[:subject_ids] || []
+    old_sids = @klass.subject_ids || []
+    to_be_deleted = @klass.subject_ids - new_sids
+    to_be_added =  new_sids - @klass.subject_ids
+    Paper.destroy_all(:klass_id => @klass.id, :subject_id =>  to_be_deleted)
+    to_be_added.each do |subject_id|
       @klass.papers << Paper.create(:subject_id => subject_id)
     end
     @klass.save!
