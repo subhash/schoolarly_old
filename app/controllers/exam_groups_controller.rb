@@ -16,7 +16,21 @@ class ExamGroupsController < ApplicationController
   
   def create
     @exam_group=ExamGroup.new(params[:exam_group])  
-    if  @exam_group.save!
+    @recurrent_event = params[:recurrent_event]
+    unless(@recurrent_event.period == "Does not repeat")
+      
+    else
+      exam = @exam_group.exams.first 
+      event = exam.event
+      @recurrent_event.start_time = event.start_time
+      @recurrent_event.end_time = event.end_time
+      event_series = EventSeries.create(@recurrent_event)
+      event_series.events.each do |e|
+        
+      end
+    end
+    
+    if @exam_group.save!
       @exam_group.exams.each do |exam|
         exam.participants.each do |participant|
           exam.event.users << participant.user

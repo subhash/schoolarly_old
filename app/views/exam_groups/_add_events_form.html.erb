@@ -2,6 +2,16 @@
 	<%= f.hidden_field :klass_id %>
 	<%= f.hidden_field :exam_type_id %>
 	<%= f.input :description %>
+	<% semantic_fields_for :recurrent_event do |e| %>
+		<p>
+		  <%=e.label :period, "Repeats" %>
+		  <%=e.select :period, Event::REPEATS,{}, :onchange => "showPeriodAndFrequency(this.value);Modalbox.resizeToContent();" %>
+		</p>
+		<p id = "frequency" style = "display:none;">
+		  <%=e.label :frequency, "Repeat every" %>
+		  <%=e.select :frequency, (1..30).to_a %> <span id = "period"></span>
+		</p>	
+	<% end %>
 	<% exam_group.exams.each do |exam| %>
 		<% f.semantic_fields_for :exams, exam do |exam_form| %>
 			<%= exam_form.hidden_field :subject_id %>
@@ -19,14 +29,6 @@
 			<%= event_form.input :end_time, :minute_step => 5 %>
 			<%= event_form.hidden_field :title %>
 			<%= event_form.hidden_field :description %>
-			<p>
-    		<%= event_form.label :period, "Repeats" %>
-    		<%= event_form.select :period, Event::REPEATS,{}, :onchange => "showPeriodAndFrequency(this.value);Modalbox.resizeToContent();" %>
-			</p>
-			<p id = "frequency" style ="display:none;">
-    		<%= event_form.label :frequency, "Repeat every" %>
-    		<%= event_form.select :frequency, (1..30).to_a %><span id = "period"></span>
-			</p>
 		<%end %>
 	<%end %>
 <% end %>

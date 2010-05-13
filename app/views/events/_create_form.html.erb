@@ -1,44 +1,13 @@
-<%remote_form_for @event, :url => {:controller => 'events', :action => 'create', :id => @event} , :before => "jQuery('#creating_events').show();", :complete => "jQuery('#creating_events').hide();" do |f| %>
+<% semantic_remote_form_for @event, :url => {:controller => 'events', :action => 'create', :id => @event} , :before => "jQuery('#creating_events').show();", :complete => "jQuery('#creating_events').hide();" do |f| %>
 <%= f.error_messages %>
-<p>
-  <%=f.label :title %>
-  <br/>
-  <%=f.text_field :title %>
-</p>
-<p>
-  <%=f.label :description %>
-  <br/>
-  <%=f.text_area :description, :rows => 4, :cols => 30 %>
-</p>
-<p>
-  <%=f.label :start_time, 'Start Time' %>
-  <br/>
-  <%=f.datetime_select :start_time %>
-</p>
-<p>
-  <%=f.label :end_time, 'End Time' %>
-  <br/>
-  <%=f.datetime_select :end_time %>
-</p>
-<p>
-  <%=f.label :all_day %>
-  <%=f.check_box :all_day %>
-</p>
-<p>
-  <%=f.label :period, "Repeats" %>
-  <%=f.select :period, Event::REPEATS,{}, :onchange => "showPeriodAndFrequency(this.value);Modalbox.resizeToContent();" %>
-</p>
-<p id = "frequency" style = "display:none;">
-  <%=f.label :frequency, "Repeat every" %>
-  <%=f.select :frequency, (1..30).to_a %> <span id = "period"></span>
-</p>
-<% if !@users.blank? %>
-<p>
-    <%= f.label :users, "Participants" %>
-    <%= collection_multiple_select(:event, 'user_ids', @users, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox', :selected_items => [@event.owner.id], :disabled => [@event.owner.id]}) %>
-</p>
+<%= f.input :title %>
+<%= f.input :description %>
+<%= f.input :start_time %>
+<%= f.input :end_time %>
+<% f.semantic_fields_for :event_series do |es| %>
+<%= es.input :users, :as => :check_boxes, :collection => @users %>
+Every <%= es.input :frequency %>
+<%= es.input :period, :as => :select, :collection => @periods %>
 <% end %>
-<p>
-  <%=f.submit 'Create' %> <span id = "creating_events" style = "display:none;">Creating, Please wait...</span>
-</p>
+<%=f.commit_button :label => 'Create' %>
 <%end %>

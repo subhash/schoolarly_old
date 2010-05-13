@@ -1,11 +1,2 @@
-
-if @event
-    page.close_dialog
-    page<<"jQuery('#calendar').fullCalendar( 'refetchEvents' );"
-
-end
-
-if @event_series
-    page.close_dialog
-    page<<"jQuery('#calendar').fullCalendar( 'refetchEvents' );"
-end
+page.close_dialog
+page<<"jQuery('#calendar').fullCalendar( 'refetchEvents' );"

@@ -8,9 +8,6 @@
 #end
 
 if @event
+  page.alert 'Failed!'
   page.refresh_dialog :partial => 'create_form'
-end
-
-if @event_series
-  page.alert @event_series.errors.full_messages(',').join("\n")
 end

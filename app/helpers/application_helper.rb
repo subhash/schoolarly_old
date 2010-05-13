@@ -141,8 +141,12 @@ module ActionView
            call 'window.location.reload'
          end
          
-         def open_dialog(title, args)
+         def open_dialog(title, args, height = nil)
+           if(height)
+             call "openModalbox", render(args), title, height
+           else
              call "openModalbox", render(args), title
+           end
          end
          
          def close_dialog

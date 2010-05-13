@@ -1,0 +1,16 @@
+<% semantic_remote_form_for @event, :url => {:controller => 'events', :action => 'update', :id => @event} , :before => "jQuery('#creating_events').show();", :complete => "jQuery('#creating_events').hide();" do |f| %>
+<%= f.error_messages %>
+<%= f.input :title %>
+<%= f.input :description %>
+<%= f.input :start_time %>
+<%= f.input :end_time %>
+<!-- f.input :users, :as => :check_boxes, :collection => @users -->
+Update this event <%= select_tag 'update_scope', options_for_select([['only',1],['and future occurences',2]], :selected => 'only') %>
+<%= f.commit_button :label => 'Update' %>
+<% if @event.event_series.events.size > 1 %>
+<%= link_to_remote 'Delete only this event', :url => {:action => 'destroy', :id => @event} %>
+<%= link_to_remote 'Delete this event and all future occurences', :url => {:action => 'destroy', :id => @event, :delete_all => 'future'} %>
+<% else %>
+<%= link_to_remote 'Delete this event', :url => {:action => 'destroy', :id => @event} %>
+<% end %>
+<%end %>

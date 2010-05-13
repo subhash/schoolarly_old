@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
   
   belongs_to :person, :polymorphic => true
   has_one :user_profile
-  has_and_belongs_to_many :events
-  has_many :owned_events, :class_name => 'Event'
+  has_and_belongs_to_many :event_series
+  has_many :owned_event_series, :class_name => 'EventSeries'
   
   def name
     user_profile ? user_profile.name : email
