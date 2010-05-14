@@ -67,7 +67,7 @@ class EventsController < ApplicationController
     
     new_event_series = EventSeries.new(:owner => current_user, :users => users.collect {|id| User.find(id)})
     
-    if (params[:update_scope] == "2")
+    if (params[:update_scope] == "future")
       @events = old_event_series.events.find(:all, :conditions => ["start_time > '#{@event.start_time.to_formatted_s(:db)}' "])
       @events.each do |event|
         event.title = @event.title
