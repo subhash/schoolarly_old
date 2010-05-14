@@ -3,6 +3,7 @@
         <div>
             <%= link_to student.name, student_path(student) %>
         </div>
+		<span><%=message_to(student)%></span>
         <% if student.school %>
         <div class="detail">
             <% if student.school %>

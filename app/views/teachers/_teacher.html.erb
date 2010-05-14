@@ -3,8 +3,9 @@
         <div>
             <%= link_to teacher.name, teacher %>
         </div>
+		<span><%=message_to(teacher)%></span>
         <div class="detail">
-            <%= link_to teacher.user.email, teacher %>
+			<%= link_to teacher.user.email, teacher %>
         </div>
         <%if teacher.school %>
         <div class="detail">

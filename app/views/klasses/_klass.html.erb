@@ -2,6 +2,7 @@
     <td class="left">
         <% url = klass_path(klass) %>
         <a href="<%= url %>"><span class="level"><%= klass.level.name %><span class="division"><%= klass.division %></span></span></a>
+		<span><%=message_to(klass)%></span>
     </td>
     <td class="right">        
         <p>
