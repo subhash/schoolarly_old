@@ -3,6 +3,7 @@
         <div>
             <%= paper.subject.name %>
         </div>
+		<span><%=message_to(paper)%></span>
         <div class="detail">
             <span><%=pluralize(paper.students.size, 'students') %></span>
             <%= link_to_remote  '(Edit)', :url => {:controller => 'papers', :action => 'edit_students', :id => paper} %>

@@ -17,4 +17,10 @@ class Paper < ActiveRecord::Base
     klass.name + ' - ' + subject.name
   end
   
+  def users
+    u = students.collect{|s| s.user}
+    u << teacher.user if teacher 
+    return u
+  end
+  
 end
