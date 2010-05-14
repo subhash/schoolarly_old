@@ -1,14 +1,7 @@
 class PapersController < ApplicationController
   def create
     @klass = Klass.find(params[:id])
-    new_sids = params[:subject_ids] || []
-    old_sids = @klass.subject_ids || []
-    to_be_deleted = @klass.subject_ids - new_sids
-    to_be_added =  new_sids - @klass.subject_ids
-    Paper.destroy_all(:klass_id => @klass.id, :subject_id =>  to_be_deleted)
-    to_be_added.each do |subject_id|
-      @klass.papers << Paper.create(:subject_id => subject_id)
-    end
+    @klass.subject_ids = params[:subject_ids]
     @klass.save!
   end
   
