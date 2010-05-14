@@ -4,7 +4,7 @@
 <%= f.input :description %>
 <%= f.input :start_time %>
 <%= f.input :end_time %>
-<!-- f.input :users, :as => :check_boxes, :collection => @users -->
+<%= select_tag :users, options_from_collection_for_select(@users, 'id', 'name', @event.event_series.users.collect {|u|u.id}), :multiple => true, :class => 'multiselect' %>
 Update this event <%= select_tag 'update_scope', options_for_select([['only',1],['and future occurences',2]], :selected => 'only') %>
 <%= f.commit_button :label => 'Update' %>
 <% if @event.event_series.events.size > 1 %>
