@@ -1,9 +1,10 @@
 class EventsController < ApplicationController
   
-  def new
-    @users = current_user.person.school ? current_user.person.school.users : nil
+  def new    
     @event = Event.new(:start_time => 1.hour.from_now, :end_time => 2.hour.from_now)
     @event.event_series = EventSeries.new( :owner => current_user)
+    @users = current_user.person.school ? current_user.person.school.users : nil
+    @users -= [current_user] if @users
     @periods = ['', 'days', 'weeks', 'months']
   rescue Exception => e
     puts e.backtrace
