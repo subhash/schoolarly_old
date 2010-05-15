@@ -1,12 +1,11 @@
-<% semantic_remote_form_for @event, :url => {:controller => 'events', :action => 'create', :id => @event} , :before => "jQuery('#creating_events').show();", :complete => "jQuery('#creating_events').hide();" do |f| %>
+<% semantic_remote_form_for @event_series, :url => {:controller => 'events', :action => 'create'} , :before => "jQuery('#creating_events').show();", :complete => "jQuery('#creating_events').hide();" do |f| %>
 <%= f.error_messages %>
+<%= text_field_tag 'start_time', 1.hour.from_now %>
+<%= text_field_tag 'end_time', 2.hour.from_now %>
+<%= select_datetime @event.end_time %>
+<%= f.input :users, :as => :select, :collection => @users, :input_html => {:class => 'multiselect'} %>
 <%= f.input :title %>
 <%= f.input :description %>
-<%= f.input :start_time %>
-<%= f.input :end_time %>
-<% f.semantic_fields_for :event_series do |es| %>
-<%= es.input :users, :as => :select, :collection => @users, :input_html => {:class => 'multiselect'} %>
-Repeats <%= select_tag :repeat, options_for_select([['Only once', 'once'],['Every day', 'days'],['Every week', 'weeks'],['Every month', 'months']]) %>
-<% end %>
+Repeats <%= select_tag :recurrence, options_for_select([['Only once', 'once'],['Every day', 'days'],['Every week', 'weeks'],['Every month', 'months']]) %>
 <%=f.commit_button :label => 'Create' %>
 <%end %>

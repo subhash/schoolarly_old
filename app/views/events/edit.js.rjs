@@ -1,1 +1,1 @@
-page.open_dialog @event.title, {:partial => 'events/edit_form_new'}, 500
+page.open_dialog @event_series.title, {:partial => 'events/edit_form_new'}, 500

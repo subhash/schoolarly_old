@@ -17,8 +17,10 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   end
 
   create_table "event_series", :force => true do |t|
-    t.integer  "frequency",  :default => 0
-    t.string   "period",     :default => "once"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "frequency",   :default => 0
+    t.string   "period",      :default => "once"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -37,8 +39,6 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   add_index "event_series_users", ["user_id"], :name => "user_id"
 
   create_table "events", :force => true do |t|
-    t.string   "title"
-    t.text     "description"
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer  "event_series_id"
