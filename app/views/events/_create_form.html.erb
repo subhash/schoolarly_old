@@ -1,8 +1,9 @@
 <% semantic_remote_form_for @event_series, :url => {:controller => 'events', :action => 'create'} , :before => "jQuery('#creating_events').show();", :complete => "jQuery('#creating_events').hide();" do |f| %>
 <%= f.error_messages %>
-<%= text_field_tag 'start_time', 1.hour.from_now %>
-<%= text_field_tag 'end_time', 2.hour.from_now %>
-<%= select_datetime @event.end_time %>
+<% semantic_fields_for @event do |e| %>
+<%= e.calendar_date_select :start_time, :time => true %>
+<%= e.calendar_date_select :end_time, :time => true %>
+<% end %>
 <%= f.input :users, :as => :select, :collection => @users, :input_html => {:class => 'multiselect'} %>
 <%= f.input :title %>
 <%= f.input :description %>

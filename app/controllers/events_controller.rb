@@ -7,10 +7,10 @@ class EventsController < ApplicationController
   end
   
   def create
-    @event_series = EventSeries.new(params[:event_series])
+    @event_series = EventSeries.new(params[:event_series])    
     @event_series.owner = current_user
-    # TODO Use actual start time and end time
-    @event_series.create_events(1.hour.from_now, 2.hours.from_now, params[:recurrence])
+    @event = Event.new(params[:event])
+    @event_series.create_events(@event.start_time, @event.end_time, params[:recurrence])
     if @event_series.save!
       render :template => 'events/create'
     else
