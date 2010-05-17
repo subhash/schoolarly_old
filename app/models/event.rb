@@ -1,9 +1,15 @@
-class Event < ActiveRecord::Base
+class Event < ActiveRecord::Base 
   
+  belongs_to :event_series  
   
-  belongs_to :event_series
+  validates_presence_of :end_time
+#  validate :start_time_before_end_time
   
-  accepts_nested_attributes_for :event_series
+  def start_time_before_end_time
+    puts 'self.start_time < self.end_time = '+(self.start_time < self.end_time).inspect
+    self.start_time < self.end_time
+  end
+  
   
   def propagate
     period = event_series.period

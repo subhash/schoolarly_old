@@ -1,80 +1,20 @@
-<%remote_form_for @event, :url => {:action => :update, :id => @event} , :before => "jQuery('#updating_events').show();", :complete => "jQuery('#updating_events').hide();" do |f| %>
+<% semantic_remote_form_for @event_series, :url => {:controller => 'events', :action => 'update', :id => @event} , :before => "jQuery('#creating_events').show();", :complete => "jQuery('#creating_events').hide();" do |f| %>
 <%= f.error_messages %>
-<p>
-    <%=f.label :title %>
-    <br/>
-    <%=f.text_field :title , :disabled => @exam %>
-</p>
-<p>
-    <%=f.label :description %>
-    <br/>
-    <%=f.text_area :description, :rows => 4, :cols => 30 ,:disabled => @exam %>
-</p>
-<p>
-    <%=f.label :start_time, 'Start Time' %>
-    <br/>
-    <%=f.datetime_select :start_time %>
-</p>
-<p>
-    <%=f.label :end_time, 'End Time' %>
-    <br/>
-    <%=f.datetime_select :end_time %>
-</p>
-
-<% unless @exam %>
-<p>
-    <%=f.label :all_day %>
-    <%=f.check_box :all_day %>
-</p>
+<%= f.input :title %>
+<%= f.input :description %>
+<%= f.input :users, :as => :select, :collection => @users, :input_html => {:class => 'multiselect'} %>
+<% semantic_fields_for @event do |e| %>
+<%= e.calendar_date_select :start_time, :time => true %>
+<%= e.calendar_date_select :end_time, :time => true %>
 <% end %>
-
- <!-- for now don't let the user change frequency -->
-<%if false %>
-	<%period = (@event.event_series)?@event.event_series.period : nil -%>
-	<p>
-    	<%=f.label :period, "Repeats" %>
-    	<%=f.select :period, Event::REPEATS,{:selected => period}, :onchange => "showPeriodAndFrequency(this.value);" %>
-	</p>
-	<%frequency = (@event.event_series)?@event.event_series.frequency : nil -%>
-	<p id = "frequency" style ="display:<%(period)? '' : 'none'%>;">
-    	<%=f.label :frequency, "Repeat every" %>
-    	<%=f.select :frequency, (1..30).to_a, {:selected => frequency} %><span id = "period"></span>
-	</p>
+<% if @event_series.events.size > 1 %>
+Update this event <%= select_tag 'update_scope', options_for_select([['only', 'instance'],['and future occurences', 'future']], :selected => 'only') %>
+<% end %>
+<%= f.commit_button :label => 'Update' %>
+<% if @event_series.events.size > 1 %>
+<%= link_to_remote 'Delete only this event', :url => {:action => 'destroy', :id => @event} %>
+<%= link_to_remote 'Delete this event and all future occurences', :url => {:action => 'destroy', :id => @event, :delete_all => 'future'} %>
+<% else %>
+<%= link_to_remote 'Delete this event', :url => {:action => 'destroy', :id => @event} %>
+<% end %>
 <%end %>
-
-<%=f.hidden_field :commit_button, :value => "" %>
-
-<% unless @exam %>
-	<% if !@users.blank? %>
-		<p>
-    		<%= f.label :users, "Participants" %>
-    		<%= collection_multiple_select(:event, 'user_ids', @users, :id, :name, {:outer_class => 'multiple_select', :inner_class => 'multiple_select_checkbox', :selected_items => @event.user_ids+[@event.owner.id], :disabled => [@event.owner.id]}) %>
-		</p>
-	<% end %>
-<% else %>
-	<p>
-		Teacher: <strong><%= @exam.teacher ? @exam.teacher.name : "" %></strong> <br />
-		Students: 
-		<ul>
-			<% @exam.students.each do |student| %>
-			<li> <%= student.name %></li>
-			<% end %>
-		</ul>
-	</p>		
-<% end %>
-<p>
-	<%if @event.event_series -%>
-    	<%=f.submit 'Update Only This Event', :onclick => "document.getElementById('event_commit_button').value = this.value" %>
-    	<%=f.submit 'Update All Future Events', :onclick => "document.getElementById('event_commit_button').value = this.value" %>
-    <%else -%>
-    	<%=f.submit 'Update', :onclick => "document.getElementById('event_commit_button').value = this.value" %>
-    <%end -%>
-    <span id = "updating_events" style ="display:none;">Updating, Please wait...</span>
-</p>
-<% if (@event.recurring) %>
-	<%= link_to_function "Delete Only This Event", "deleteEvent('#{@event.id}',false)" %>
-	<%= link_to_function "Delete All Future Events", "deleteEvent('#{@event.id}','future')" %>
-<% else %>
-	<%= link_to_function "Delete", "deleteEvent('#{@event.id}',false)" %>
-<% end %>
-<% end %>

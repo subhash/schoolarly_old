@@ -11,12 +11,52 @@ class EventsController < ApplicationController
     @event_series.owner = current_user
     @event = Event.new(params[:event])
     @event_series.create_events(@event.start_time, @event.end_time, params[:recurrence])
-    if @event_series.save!
+    if @event_series.save
       render :template => 'events/create'
     else
-      render :template => 'events/create_error'
+      render :update do
+        page.refresh_dialog :partial => 'create_form'
+      end
     end
   end
+  
+  def edit
+    @event = Event.find_by_id(params[:id])
+    @event_series = @event.event_series
+    @exam = Exam.find_by_event_id(@event.id)
+    @users = current_user.person.school ? current_user.person.school.users - [current_user] : nil
+    render :update do |page|
+      page.open_dialog @event_series.title, {:partial => 'events/edit_form'}, 500
+    end
+  end
+  
+  def update    
+    @event = Event.find(params[:id])
+    old_event_series = @event.event_series
+    new_event_series = old_event_series.clone
+    new_event_series.attributes = params[:event_series]    
+    event_input = Event.new(params[:event])
+    st = event_input.start_time - @event.start_time
+    et = event_input.end_time - @event.end_time    
+    
+    new_event_series.add_event(@event, st, et)    
+    if (params[:update_scope] == "future")
+      @events = old_event_series.events.find(:all, :conditions => ["start_time > '#{@event.start_time.to_formatted_s(:db)}' "])
+      @events.each do |event|
+        new_event_series.add_event(event, st, et)
+      end
+    end
+    
+    if new_event_series.save
+      old_event_series.destroy if old_event_series.events.size == 0
+      render :template => 'events/update'
+    else
+      render :update do |page|
+        page.refresh_dialog :partial => 'edit_form'
+      end
+    end
+  end  
+  
   
   def index
     respond_to do |wants|
@@ -43,45 +83,6 @@ class EventsController < ApplicationController
     end
   end
   
-  def edit
-    @event = Event.find_by_id(params[:id])
-    @event_series = @event.event_series
-    @exam = Exam.find_by_event_id(@event.id)
-    @users = current_user.person.school ? current_user.person.school.users - [current_user] : nil
-  rescue Exception => e
-    puts e.inspect
-    puts e.backtrace
-  end
-  
-  def update    
-    @event = Event.find(params[:id])
-    old_event_series = @event.event_series
-    new_event_series = old_event_series.clone
-    new_event_series.attributes = params[:event_series]
-    
-    # TODO Use actual start and end times
-    start_time = @event.start_time.advance(:hours => 2)
-    end_time = @event.end_time.advance(:hours => 2)
-    st = start_time - @event.start_time
-    et = end_time - @event.end_time    
-    
-    new_event_series.add_event(@event, st, et)
-    
-    if (params[:update_scope] == "future")
-      @events = old_event_series.events.find(:all, :conditions => ["start_time > '#{@event.start_time.to_formatted_s(:db)}' "])
-      @events.each do |event|
-        new_event_series.add_event(event, st, et)
-      end
-    end   
-    
-    new_event_series.save
-    old_event_series.destroy if old_event_series.events.size == 0   
-    
-    render :update do |page|
-      page.close_dialog
-      page<<"jQuery('#calendar').fullCalendar( 'refetchEvents' )"
-    end
-  end  
   
   def destroy
     @event = Event.find_by_id(params[:id])
