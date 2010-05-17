@@ -63,6 +63,14 @@ function initMultiSelect(){
     });
 }
 
+function initDateTimePicker(){
+    jQuery('.datetimepicker').datetimepicker({
+        ampm: true,
+        stepMinute: 5,
+        dateFormat: 'M dd, yy'
+    });
+}
+
 function initPanes(){
     jQuery('div.pane').hide();
     jQuery('a.pane-link').click(function(){
@@ -125,7 +133,10 @@ function openModalbox(html, t, height){
             overlayOpacity: .50,
             overlayClose: false,
             height: height,
-            afterLoad: initMultiSelect
+            afterLoad: function(){
+                initMultiSelect();
+                initDateTimePicker();
+            }
         });
     }
     else {
@@ -136,9 +147,12 @@ function openModalbox(html, t, height){
             overlayDuration: .25,
             overlayOpacity: .50,
             overlayClose: false,
-            afterLoad: initMultiSelect
+            afterLoad: function(){
+                initMultiSelect();
+                initDateTimePicker();
+            }
         });
-    }    
+    }
 }
 
 function refreshModalbox(html, height){

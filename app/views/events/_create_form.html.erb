@@ -1,12 +1,12 @@
 <% semantic_remote_form_for @event_series, :url => {:controller => 'events', :action => 'create'} , :before => "jQuery('#creating_events').show();", :complete => "jQuery('#creating_events').hide();" do |f| %>
-<%= f.error_messages %>
-<% semantic_fields_for @event do |e| %>
-<%= e.calendar_date_select :start_time, :time => true %>
-<%= e.calendar_date_select :end_time, :time => true %>
-<% end %>
-<%= f.input :users, :as => :select, :collection => @users, :input_html => {:class => 'multiselect'} %>
-<%= f.input :title %>
-<%= f.input :description %>
-Repeats <%= select_tag :recurrence, options_for_select([['Only once', 'once'],['Every day', 'days'],['Every week', 'weeks'],['Every month', 'months']]) %>
-<%=f.commit_button :label => 'Create' %>
+	<%= f.error_messages %>
+	<% semantic_fields_for @event do |e| %>
+		<%= e.calendar_date_select :start_time, :time => true %>
+		<%= e.input  :end_time, :as => :string, :input_html => {:class => 'datetimepicker'} %>
+		<% end %>
+	<%= f.input :users, :as => :select, :collection => @users, :input_html => {:class => 'multiselect'} %>
+	<%= f.input :title %>
+	<%= f.input :description %>
+	Repeats <%= select_tag :recurrence, options_for_select([['Only once', 'once'],['Every day', 'days'],['Every week', 'weeks'],['Every month', 'months']]) %>
+	<%=f.commit_button :label => 'Create' %>
 <%end %>

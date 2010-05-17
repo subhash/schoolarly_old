@@ -25,6 +25,7 @@ jquery plugins/widgets used
 
 4) jqGrid plugin for scores - http://www.rubyrailways.com/add-a-powerful-ajax-table-to-your-rails-application-in-5-minutes/
 5) jQuery multi-select - http://github.com/michael/multiselect/
+6) jQuery DateTimePicker - http://trentrichardson.com/examples/timepicker/
 
 Installed gems
 --------------

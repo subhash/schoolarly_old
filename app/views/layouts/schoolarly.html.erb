@@ -8,14 +8,14 @@
         <%= javascript_include_tag 'prototype' ,'scriptaculous' %>
 		<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
 		<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js" %>
-        <%= javascript_include_tag 'ui.multiselect', 'application' %>
+        <%= javascript_include_tag 'jquery-ui-timepicker-addon-0.3','ui.multiselect', 'application' %>
         <%= javascript_include_tag 'modalbox' %>
         <%= include_jquery_grid_javascript %>
         <%= include_jquery_grid_css %>
         <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
         <%= javascript_include_tag 'fullcalendar', 'gcal', 'calendar'  %>
         <%= stylesheet_link_tag "style", 'fullcalendar' %>
-		<%= calendar_date_select_includes 'silver' %>
+		<%= calendar_date_select_includes 'default' %>
 
     </head>
     <body>
