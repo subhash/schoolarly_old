@@ -4,6 +4,9 @@ class EventsController < ApplicationController
     @event = Event.new(:start_time => 1.hour.from_now, :end_time => 2.hour.from_now)
     @event_series = EventSeries.new( :owner => current_user)
     @users = current_user.person.school ? current_user.person.school.users - [current_user] : nil
+    render :update do |page|      
+      page.open_dialog 'New Event', {:partial => 'create_form'}, 500
+    end
   end
   
   def create

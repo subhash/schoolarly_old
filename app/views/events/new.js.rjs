@@ -1,2 +1,0 @@
-
-page.open_dialog 'New Event', {:partial => 'create_form'}, 500
