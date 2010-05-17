@@ -66,7 +66,6 @@ function initMultiSelect(){
 function initDateTimePicker(){
     jQuery('.datetimepicker').datetimepicker({
         ampm: true,
-        stepMinute: 5,
         dateFormat: 'M dd, yy'
     });
 }
