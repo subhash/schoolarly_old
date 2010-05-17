@@ -108,12 +108,11 @@ module ApplicationHelper
   end
   
   def message_to(person)
-    users = (person.is_a?(Klass)|| person.is_a?(Paper))? person.users : [person.user]
-    title = person.name
-    person = person.school if (person.is_a?(Klass)|| person.is_a?(Paper))
+    users = person.respond_to?(:user) ? [person.user] : person.users
     selected_user_ids = users.collect{|u| u.id}
+    title = 'Post Message to ' + person.name
     #TODO Have to change <span> to <ul> tags in the person partials once a proper class is given for it. Right now no <ul> for <li> tags.
-    render :partial => '/common/action', :locals => {:title => 'Post Message to ' + person.name, :html => {:class => "ui-icon ui-icon-mail-closed", :title => 'Post Message to ' + title}, :args => {:partial => 'mails/new_form', :locals => {:users => users, :selected_users => selected_user_ids} }} if is_messageable?(person)
+    render :partial => '/common/action', :locals => {:title => title, :html => {:class => "ui-icon ui-icon-mail-closed", :title => title}, :args => {:partial => 'mails/new_form', :locals => {:users => users, :selected_users => selected_user_ids} }} if is_messageable?(person)
   end
   
   def render_breadcrumbs(&block)
