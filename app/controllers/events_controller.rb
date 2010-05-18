@@ -77,6 +77,7 @@ class EventsController < ApplicationController
   
   def alter
     @event = Event.find(params[:id])
+    @event_series = @event.event_series
     if @event
       @event.start_time = @event.start_time.advance(:minutes => params[:minute_delta].to_i, :days => params[:day_delta].to_i)
       @event.end_time = @event.end_time.advance(:minutes => params[:minute_delta].to_i, :days => params[:day_delta].to_i)
