@@ -11,15 +11,15 @@
         <div class="detail">
             <%= link_to teacher.school.name, teacher.school %>
         </div>
+		<div class="detail">
+            <%teacher.owned_klasses.each do |klass| %>
+            <%= link_to klass.name, klass %>
+            <%end %>
+        </div>
         <% end %>
     </td>
     <td class="right">
         <%if teacher.school %>
-        <div class="owns">
-            <%teacher.owned_klasses.each do |klass| %>
-            <%= link_to klass.name + "  ", klass %>
-            <%end %>
-        </div>
         <div>
             <%teacher.papers.each do |paper| %>
             <span class="klass"><%= paper.klass.name %><span class="subject"><%= paper.name %></span></span>

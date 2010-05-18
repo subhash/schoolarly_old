@@ -65,13 +65,6 @@ class TeachersController < ApplicationController
   
   def update_papers
     @teacher.paper_ids = params[:paper_ids]
-    puts "paper iddddddddddds"
-    puts @teacher.paper_ids.inspect
-    if session[:redirect].include?('teachers')
-      @teacher_allotments = @teacher.papers.group_by{|paper| paper.subject} 
-      @papers = @teacher.school.unallotted_papers + @teacher.papers
-      render :template => 'teachers/update_teacher_allotments'
-    end
   end
   
   def remove_teacher_allotment

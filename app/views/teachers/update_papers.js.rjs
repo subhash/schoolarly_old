@@ -1,3 +1,8 @@
 page.close_dialog
-page.replace_object(@teacher, :partial => 'teachers/teacher')
-page.open_tab(Paper)
+if active_controller == 'teachers'
+  page.replace_tab(Paper, :partial => 'teachers/papers', :object => @teacher.papers.group_by{|paper| paper.subject})
+  args = {:partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @teacher.school.unallotted_papers + @teacher.papers}}
+  page.replace_action('Add/Remove Papers', args)
+else
+  page.replace_object(@teacher, :partial => 'teachers/teacher')
+end

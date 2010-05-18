@@ -1,0 +1,5 @@
+	<p id="paper-<%= paper.id%>">
+		<span class="klasses"><%= link_to paper.klass.name, klass_path(paper.klass) %></span>
+		<span><%= pluralize(paper.students.size, 'student')%></span>
+		<span><%= link_to_remote "Delete", :url => {:controller => 'teachers', :action => 'remove_teacher_allotment', :id => paper}, :html => {:title => 'Remove Allotment'}, :confirm => 'Are you sure?' %></span>
+	</p>

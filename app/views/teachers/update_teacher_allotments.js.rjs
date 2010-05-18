@@ -1,4 +1,0 @@
-page.close_dialog
-page.replace_tab(Paper, :partial => 'teacher_allotments/teacher_allotments', :object => @teacher_allotments)
-args = {:partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers}}
-page.replace_action('Add/Remove Papers', args)

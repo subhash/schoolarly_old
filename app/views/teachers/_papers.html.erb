@@ -1,0 +1,14 @@
+<table id="papers" class="papers">
+<% papers.each do |subject, allotments| %>
+	<tr id="<%=subject%>" class="papers <%= cycle('papers-odd', 'papers-even') -%>">
+		<td class="left">
+			<div class="subjects"><%=subject.name %></div>
+		</td>
+		<td class="right">
+		<% allotments.each do |paper| %>
+			<%= render :partial => 'teachers/paper', :object => paper %>
+		<% end %>
+		</td>
+	</tr>
+<% end %>
+</table>
