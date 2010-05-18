@@ -3,7 +3,6 @@ class Klass < ActiveRecord::Base
   has_many :papers, :include => :subject, :order => "subjects.name"
   has_many :subjects, :through => :papers, :order => "name"
   has_many :teachers, :through => :papers, :uniq => true 
-  #has_many :teacher_users, :through => :teachers, :source => :user, :source_type => 'Person'
   belongs_to :school
   belongs_to :level
   belongs_to :class_teacher, :class_name => 'Teacher', :foreign_key => 'teacher_id'
@@ -27,7 +26,7 @@ class Klass < ActiveRecord::Base
   
   def teacher_users
     teachers=self.teachers
-    teachers << class_teacher if class_teacher && !teachers.include?(class_teacher)
+    teachers += [class_teacher] if class_teacher && !teachers.include?(class_teacher)
     return teachers.collect{|t| t.user}
   end
   
