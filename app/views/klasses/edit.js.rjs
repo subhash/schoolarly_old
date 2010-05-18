@@ -1,0 +1,2 @@
+args = {:partial =>'klasses/klass_teacher_form', :locals => {:klass => @klass, :teachers => @klass.school.teachers}}
+page.open_dialog('Assign Class Teacher', args)

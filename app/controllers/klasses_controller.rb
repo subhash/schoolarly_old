@@ -71,4 +71,16 @@ class KlassesController < ApplicationController
     @student.save!
   end
   
+  def edit
+    @klass = Klass.find(params[:id])
+  end
+  
+  def update
+    @klass = Klass.find(params[:id])
+    @old_teacher = @klass.class_teacher
+    @teacher = Teacher.find(params[:klass][:teacher_id])
+    @klass.class_teacher = @teacher
+    @klass.save!
+  end
+  
 end

@@ -1,0 +1,6 @@
+page.close_dialog
+if active_controller == 'schools'
+  page.replace_object(@klass, :partial => 'klasses/klass')
+  page.replace_object(@teacher, :partial => 'teachers/teacher')
+  page.replace_object(@old_teacher, :partial => 'teachers/teacher') if @old_teacher
+end
