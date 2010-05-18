@@ -285,6 +285,15 @@ table.klasses td.left a {
     text-decoration: none;
 }
 
+table.klasses td.left .detail {
+    font-size: 9px;
+    padding-left: 20px;
+}
+
+table.klasses td.left .detail a{
+	text-decoration: underline;
+}
+
 table.klasses .level {
     background-color: black;
     color: white;
@@ -386,6 +395,20 @@ table.papers td.left .detail {
     margin-bottom: 4px;
     padding-left: 20px;
     background-color: #E5E5E5;
+}
+
+table.papers .klasses a{
+	text-decoration: none;
+	color:white;
+	padding:2px 4px;
+}
+
+table.papers .papers-odd .klasses a{
+	background-color:black;
+}
+
+table.papers .papers-even .klasses a{
+	background-color:grey;
 }
 
 table.klass-exams tr {
