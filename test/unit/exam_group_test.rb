@@ -16,7 +16,7 @@ class ExamGroupTest < ActiveSupport::TestCase
   end
   
   test "exam_group.to_s should return a readable description of exam group" do
-    assert_equal 'Half-yearly examination for 2 B', @examGroup.to_s
+    assert_equal 'Half-yearly examination for II B', @examGroup.to_s
   end
   
 end

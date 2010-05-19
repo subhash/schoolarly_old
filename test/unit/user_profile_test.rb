@@ -3,25 +3,17 @@ require 'test_helper'
 class UserProfileTest < ActiveSupport::TestCase
   
   def setup
-    @paru=users(:paru)
-    @stTeresas=user_profiles(:stTeresas)
-  end
-  
-  test "cannot create a profile without first & last names" do
-    assert_nil @paru.user_profile
-    paru_profile = UserProfile.new(:middle_name =>'Middle')
-    paru_profile.user = @paru
-    paru_profile.save
-    assert !paru_profile.valid?
+    @paru = users(:paru)
+    @stTeresas = user_profiles(:stTeresas)
   end
   
   test "profile-create" do
     assert_nil @paru.user_profile
-    paru_profile = UserProfile.new(:first_name =>'First', :last_name =>'Last', :user => @paru)
+    paru_profile = UserProfile.new(:name =>'Name', :user => @paru)
     assert paru_profile.valid?
     paru_profile.save!
     assert paru_profile.valid?
-    assert_equal 'First Last', paru_profile.name.to_s
+    assert_equal 'Name', paru_profile.name.to_s
   end
   
   test "address should give the entire address of the profile seperated by comma" do
@@ -29,6 +21,6 @@ class UserProfileTest < ActiveSupport::TestCase
   end
   
   test "name should give the entire name of the user seperated by space" do
-    assert_equal 'admin of stTeresas', @stTeresas.name.to_s
+    assert_equal 'St. Teresas', @stTeresas.name.to_s
   end
 end

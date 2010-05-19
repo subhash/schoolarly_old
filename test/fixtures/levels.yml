@@ -5,3 +5,11 @@
 #
 # two:
 #   column: value
+
+two:
+    name: 'II'
+    description: 'class two'
+    
+three:
+    name: 'III'
+    description: 'class three'

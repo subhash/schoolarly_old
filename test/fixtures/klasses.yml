@@ -9,7 +9,7 @@ one_A:
   #subjects: english, malayalam, hindi, physics, maths, chemistry
 
 two_B:
-  level: "2"
+  level: two
   division: B
   school: st_teresas
   #year: 2009

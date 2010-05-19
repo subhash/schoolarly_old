@@ -11,7 +11,7 @@ class KlassTest < ActiveSupport::TestCase
   end
   
   test "klass-crud" do
-    three_c = Klass.new(:level => 3, :division =>'C')
+    three_c = Klass.new(:level => levels(:three), :division =>'C')
     assert_difference('@stTheresas.klasses.size') do 
       three_c.school = @stTheresas
       three_c.save!
@@ -22,7 +22,7 @@ class KlassTest < ActiveSupport::TestCase
   end
   
   test "klass-can-be-destroyed" do
-    three_c = Klass.new(:level => 3, :division =>'C')
+    three_c = Klass.new(:level => levels(:three), :division =>'C')
     three_c.school = @stTheresas
     three_c.save!
     assert three_c.can_be_destroyed

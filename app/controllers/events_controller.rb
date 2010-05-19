@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   def new    
     @event = Event.new(:start_time => 1.hour.from_now, :end_time => 2.hour.from_now)
     @event_series = EventSeries.new( :owner => current_user)
-    @users = current_user.person.school ? current_user.person.school.users - [current_user] : nil
+    @users = current_user.person.school ? current_user.person.school.users - [@event_series.owner] : nil
     render :update do |page|      
       page.open_dialog 'New Event', {:partial => 'create_form'}, 500
     end
@@ -17,17 +17,19 @@ class EventsController < ApplicationController
     if @event_series.save
       render :template => 'events/create'
     else
-      render :update do
+      render :update do |page|
         page.refresh_dialog :partial => 'create_form'
       end
     end
+  rescue Exception => e
+    puts e.inspect
+    puts e.backtrace
   end
   
   def edit
     @event = Event.find_by_id(params[:id])
     @event_series = @event.event_series
-    @exam = Exam.find_by_event_id(@event.id)
-    @users = current_user.person.school ? current_user.person.school.users - [current_user] : nil
+    @users = current_user.person.school ? current_user.person.school.users - [@event_series.owner] : nil
     render :update do |page|
       page.open_dialog @event_series.title, {:partial => 'events/edit_form'}, 500
     end

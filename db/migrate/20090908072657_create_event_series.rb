@@ -5,7 +5,7 @@ class CreateEventSeries < ActiveRecord::Migration
       t.text :description
       t.integer :frequency, :default => 0
       t.string :period, :default => 'once'
-      t.integer :user_id
+      t.integer :user_id, :null => false
       
       t.timestamps
       
