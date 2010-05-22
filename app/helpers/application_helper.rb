@@ -35,6 +35,22 @@ module ApplicationHelper
     end
   end
   
+  def add_exam_link(f, exam)
+    css_id = exam.class.name.downcase + '-' + exam.id.to_s
+    link_to_function 'Add', {:title => 'Add Once', :class => "ui-icon ui-icon-circle-plus"} do |page|
+    partial = render :partial => 'exams/form', :locals => {:f => f, :teachers => exam.klass.school.teachers, :exam => exam.clone}
+       page.insert_html :after, css_id, partial 
+       page.replace_html 'add-exam-' + exam.id.to_s, :text => ''
+    end
+  end
+
+#  def remove_exam_link(id)
+#    css_id = id.to_s
+#    link_to_function 'Remove', {:title => 'Remove', :class => "ui-icon ui-icon-circle-minus"} do |page|
+#       page.remove "#{css_id}"
+#    end
+#  end
+  
   def render_tabs    
     tabbifier = Object.new  
     
@@ -74,7 +90,8 @@ module ApplicationHelper
       end     
       
       def exams_tab(args={})
-        new_args = {:tab => :exams, :partial => 'exam_groups/exam_groups' }
+        subjects = Subject.all
+        new_args = {:tab => :exams, :title => 'Exams', :header => {:partial => 'exams/exams_header', :locals => {:subjects => subjects} } }
         tab new_args.merge(args)
       end
       

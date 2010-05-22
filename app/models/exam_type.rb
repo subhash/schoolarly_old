@@ -1,3 +1,3 @@
 class ExamType < ActiveRecord::Base
-  has_many :exam_groups
+  has_many :exams
 end

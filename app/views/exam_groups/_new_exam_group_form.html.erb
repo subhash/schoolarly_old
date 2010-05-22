@@ -1,7 +1,0 @@
-<% semantic_remote_form_for exam_group, :url => {:controller => :exam_groups, :action => 'add_events'} do |f| %>
-<%= f.error_messages %>
-<%= f.input :exam_type, :as => :select, :collection => exam_types %>
-<%= f.input :subjects, :as => :check_boxes , :collection => subjects %>
-<%= f.hidden_field :klass_id, :value => klass.id %>
-<%= f.commit_button :label => "Next" %>
-<% end %>

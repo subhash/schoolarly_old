@@ -41,9 +41,9 @@ class TeachersController < ApplicationController
     set_up
     if @teacher.school
       @papers=@teacher.school.unallotted_papers + @teacher.papers
-      @teacher_allotments = @teacher.papers.group_by{|p| Subject.find(p.subject_id)}      
+      @teacher_allotments = @teacher.papers.group_by{|p| Subject.find(p.subject_id)}
+      @exams = @teacher.exams.select{|e| e.klass.school == @teacher.school} #TODO to fetch only those exams that falls in the current academic year
     end
-    @exams = @teacher.exams
   end
   
   def add_to_school

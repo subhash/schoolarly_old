@@ -15,7 +15,10 @@ class Teacher < ActiveRecord::Base
   end
 
   has_many :owned_klasses, :class_name => 'Klass'
-  has_many :owned_exams, :class_name => 'Exam'
+#  has_many :owned_exams, :class_name => 'Exam'
+  has_many :exams, :order => "exams.klass_id, exams.exam_type_id"
+  
+  accepts_nested_attributes_for :exams
   
   def name
     user.name
@@ -25,8 +28,8 @@ class Teacher < ActiveRecord::Base
     return user.email
   end
   
-  def exams
-    owned_exams.select{|e| e.klass.school == self.school}  
-  end
+#  def exams
+#    owned_exams.select{|e| e.klass.school == self.school}  
+#  end
   
 end

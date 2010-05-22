@@ -1,0 +1,31 @@
+<tr id="<%=!exam.new_record? ? 'exam-' + exam.id.to_s : exam.object_id.to_s%>">					
+	<% f.semantic_fields_for :exams, exam do |exam_form| %>
+		<%= exam_form.hidden_field :subject_id %>
+		<%= exam_form.hidden_field :exam_type_id %>
+		<%= exam_form.hidden_field :klass_id %>
+		<%= exam_form.hidden_field :description %>
+		<td><%=link_to exam.exam_type.name, exam%></td>
+		<td><%=link_to exam.klass.name, exam.klass%></td>
+		<td>
+			<% if exam.teacher %>
+				<%= exam_form.hidden_field :teacher_id %>
+				<strong><%=link_to exam.teacher.name, exam.teacher %></strong>
+			<% else %>
+				<%= exam_form.input :teacher, :as => :select, :collection => teachers , :include_blank  => true, :label => false%>
+			<% end %>
+		</td>
+		<!--
+		<%@event = exam.event ? exam.event : Event.new(:event_series => EventSeries.new())%>
+		<% semantic_fields_for :event do |event_form| %>
+			<td><%= event_form.calendar_date_select :start_time, :time => true %></td>
+			<td><%= event_form.calendar_date_select :end_time, :time => true %></td>
+			<%= event_form.hidden_field :event_series_id %>
+		<%end %>
+		!-->
+	<%end %>
+	<%if !exam.new_record?%>
+		<td id="<%='add-exam-' + exam.id.to_s%>"><%= add_exam_link(f, exam)%></td>
+		<!--<td><%= link_to_remote 'Add', :url => {:controller => :exams, :action => :new, :id => exam }, :method => :get, :html => {:class => "ui-icon ui-icon-circle-plus", :title => 'Add'}%> </td>!-->
+		<td><%= link_to_remote 'Remove', :url => {:controller => :exams, :action => :destroy, :id => exam }, :method => :delete, :html => {:class => "ui-icon ui-icon-circle-minus", :title => 'Remove'}, :confirm => 'Are you sure?'%> </td>
+	<%end%>
+</tr>

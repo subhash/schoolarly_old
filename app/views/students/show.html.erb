@@ -14,5 +14,5 @@
 
 <% render_tabs do |t| %>
 <% t.papers_tab :object => @student.papers if @klass%>
-<% t.exams_tab :title => 'Scores', :partial => 'exam_groups/exam_groups', :locals => {:exams => @exams, :entity => @student} if @klass %>
+<% t.exams_tab :partial => 'exams/edit_form', :locals => {:entity => @student, :exams => @exams} if @klass%>
 <% end %>

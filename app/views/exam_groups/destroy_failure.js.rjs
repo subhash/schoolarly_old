@@ -1,1 +1,0 @@
-page << "alert('Error occurred while deleting...');"

@@ -9,7 +9,7 @@ class School < ActiveRecord::Base
     end
   end
   has_many :student_users, :through => :students, :source => :user
-  has_many :exam_groups, :through => :klasses
+  has_many :exams, :through => :klasses
   has_many :papers, :through => :klasses
   has_many :unallotted_papers, :source => :papers, :through => :klasses, :conditions => ['papers.teacher_id IS NULL']
 
@@ -21,9 +21,9 @@ class School < ActiveRecord::Base
     user.name
   end
   
-  def exams
-    self.exam_groups.collect{|eg| eg.exams}.flatten
-  end
+#  def exams
+#    self.exam_groups.collect{|eg| eg.exams}.flatten
+#  end
   
   def school
     return self

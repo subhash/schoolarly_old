@@ -15,6 +15,8 @@ class Student < ActiveRecord::Base
   has_many :scores   
   has_many :exams, :through => :scores
 
+  accepts_nested_attributes_for :exams
+
   def subjects
     return self.papers.collect{|paper| paper.subject}  
   end
@@ -27,8 +29,8 @@ class Student < ActiveRecord::Base
     return user.email
   end
   
-  def exam_groups
-    klass.exam_groups.select{|eg| (eg.subjects & self.subjects).any?}.group_by{|eg| eg.klass} if self.klass
-  end
+#  def exam_groups
+#    klass.exam_groups.select{|eg| (eg.subjects & self.subjects).any?}.group_by{|eg| eg.klass} if self.klass
+#  end
   
 end

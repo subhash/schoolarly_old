@@ -20,7 +20,6 @@ class SchoolsController < ApplicationController
     @school=School.find(params[:id])
     @user=@school.user
     @klasses = @school.klasses.group_by{|klass|klass.level_id}
-    @exams = @school.exams
     @students = @school.students
     @teachers = @school.teachers
     @school_user_ids = @school.users.collect{|u| u.id}
