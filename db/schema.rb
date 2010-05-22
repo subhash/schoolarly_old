@@ -48,17 +48,6 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
 
   add_index "events", ["event_series_id"], :name => "event_series_id"
 
-  create_table "exam_groups", :force => true do |t|
-    t.string   "description"
-    t.integer  "exam_type_id", :null => false
-    t.integer  "klass_id",     :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "exam_groups", ["exam_type_id"], :name => "exam_type_id"
-  add_index "exam_groups", ["klass_id"], :name => "klass_id"
-
   create_table "exam_types", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -285,9 +274,6 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   add_foreign_key "event_series_users", ["user_id"], "users", ["id"], :name => "event_series_users_ibfk_2"
 
   add_foreign_key "events", ["event_series_id"], "event_series", ["id"], :name => "events_ibfk_1"
-
-  add_foreign_key "exam_groups", ["exam_type_id"], "exam_types", ["id"], :name => "exam_groups_ibfk_1"
-  add_foreign_key "exam_groups", ["klass_id"], "klasses", ["id"], :name => "exam_groups_ibfk_2"
 
   add_foreign_key "exams", ["exam_type_id"], "exam_types", ["id"], :name => "exams_ibfk_1"
   add_foreign_key "exams", ["subject_id"], "subjects", ["id"], :name => "exams_ibfk_2"
