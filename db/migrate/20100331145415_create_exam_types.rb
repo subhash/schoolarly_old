@@ -3,7 +3,9 @@ class CreateExamTypes < ActiveRecord::Migration
     create_table :exam_types do |t|
       t.string :name
       t.string :description
-
+      t.string :assessment_type
+      t.string :term
+      t.string :fa_type
       t.timestamps
     end
   end

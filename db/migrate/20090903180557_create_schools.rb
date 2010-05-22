@@ -1,7 +1,7 @@
 class CreateSchools < ActiveRecord::Migration
   def self.up
     create_table :schools do |t|
-      t.string :board
+      t.string :board, :default => 'cbse'
       t.string :fax
       t.string :website
       
