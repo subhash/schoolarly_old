@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
     t.text     "description"
     t.integer  "frequency",   :default => 0
     t.string   "period",      :default => "once"
-    t.integer  "user_id"
+    t.integer  "user_id",                         :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   create_table "events", :force => true do |t|
     t.datetime "start_time"
     t.datetime "end_time"
-    t.integer  "event_series_id"
+    t.integer  "event_series_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -62,25 +62,28 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   create_table "exam_types", :force => true do |t|
     t.string   "name"
     t.string   "description"
+    t.string   "assessment_type"
+    t.string   "term"
+    t.string   "fa_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "exams", :force => true do |t|
-    t.string   "venue"
-    t.integer  "max_score"
-    t.integer  "pass_score"
-    t.integer  "exam_group_id", :null => false
-    t.integer  "subject_id",    :null => false
+    t.string   "description"
+    t.integer  "exam_type_id", :null => false
+    t.integer  "subject_id",   :null => false
     t.integer  "event_id"
+    t.integer  "klass_id",     :null => false
     t.integer  "teacher_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "exams", ["exam_group_id"], :name => "exam_group_id"
+  add_index "exams", ["exam_type_id"], :name => "exam_type_id"
   add_index "exams", ["subject_id"], :name => "subject_id"
   add_index "exams", ["event_id"], :name => "event_id"
+  add_index "exams", ["klass_id"], :name => "klass_id"
   add_index "exams", ["teacher_id"], :name => "teacher_id"
 
   create_table "klasses", :force => true do |t|
@@ -186,7 +189,7 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   end
 
   create_table "schools", :force => true do |t|
-    t.string   "board"
+    t.string   "board",      :default => "cbse"
     t.string   "fax"
     t.string   "website"
     t.datetime "created_at"
@@ -286,10 +289,11 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   add_foreign_key "exam_groups", ["exam_type_id"], "exam_types", ["id"], :name => "exam_groups_ibfk_1"
   add_foreign_key "exam_groups", ["klass_id"], "klasses", ["id"], :name => "exam_groups_ibfk_2"
 
-  add_foreign_key "exams", ["exam_group_id"], "exam_groups", ["id"], :name => "exams_ibfk_1"
+  add_foreign_key "exams", ["exam_type_id"], "exam_types", ["id"], :name => "exams_ibfk_1"
   add_foreign_key "exams", ["subject_id"], "subjects", ["id"], :name => "exams_ibfk_2"
   add_foreign_key "exams", ["event_id"], "events", ["id"], :name => "exams_ibfk_3"
-  add_foreign_key "exams", ["teacher_id"], "teachers", ["id"], :name => "exams_ibfk_4"
+  add_foreign_key "exams", ["klass_id"], "klasses", ["id"], :name => "exams_ibfk_4"
+  add_foreign_key "exams", ["teacher_id"], "teachers", ["id"], :name => "exams_ibfk_5"
 
   add_foreign_key "klasses", ["school_id"], "schools", ["id"], :name => "klasses_ibfk_1"
   add_foreign_key "klasses", ["teacher_id"], "teachers", ["id"], :name => "klasses_ibfk_2"
