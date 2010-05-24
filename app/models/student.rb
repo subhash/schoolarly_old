@@ -13,7 +13,20 @@ class Student < ActiveRecord::Base
   has_and_belongs_to_many :papers
   has_one :parent
   has_many :scores   
-  has_many :exams, :through => :scores
+ 
+  has_many :exams, :through => :scores do
+    def of_year(academic_year)
+      find :all, :include => :event, :conditions => ['exams.academic_year_id = ?', academic_year.id], :order => "exams.exam_type_id"
+    end
+  end
+  
+  def current_academic_year
+    self.school.academic_year if self.school
+  end
+  
+  def current_exams
+    self.exams.of_year(self.current_academic_year) if self.school
+  end
 
   accepts_nested_attributes_for :exams
 
@@ -28,9 +41,5 @@ class Student < ActiveRecord::Base
   def email
     return user.email
   end
-  
-#  def exam_groups
-#    klass.exam_groups.select{|eg| (eg.subjects & self.subjects).any?}.group_by{|eg| eg.klass} if self.klass
-#  end
   
 end

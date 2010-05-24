@@ -8,11 +8,24 @@ class Klass < ActiveRecord::Base
   belongs_to :class_teacher, :class_name => 'Teacher', :foreign_key => 'teacher_id'
   has_many :students  do
     def for_paper(paper_id)
-      find :all, :include => [:papers] , :conditions => ['papers_students.paper_id = ?',paper_id]
+      find :all, :include => [:papers], :conditions => ['papers_students.paper_id = ?',paper_id]
     end  
   end
   has_many :student_users, :through => :students, :source => :user
-  has_many :exams, :include => :event, :order => "exams.exam_type_id"
+  has_many :exams, :order => "exams.exam_type_id" do
+    def of_year(academic_year)
+      find :all, :include => :event, :conditions => ['exams.academic_year_id = ?', academic_year.id]
+    end
+  end
+  
+  def current_academic_year
+    self.school.academic_year
+  end
+  
+  def current_exams
+    self.exams.of_year(self.current_academic_year)
+  end
+  
   validates_uniqueness_of :division, :scope => [:school_id, :level_id]
   
   accepts_nested_attributes_for :exams
@@ -36,7 +49,7 @@ class Klass < ActiveRecord::Base
   end
   
   def create_exams(subjects = nil)
-    subjects.each{|s| ExamType.all.each {|et| self.exams << Exam.new(:exam_type => et, :description => et.description + ' for ' + self.name, :subject => s)}} if subjects
+    subjects.each{|s| ExamType.all.each {|et| self.exams << Exam.new(:exam_type => et, :academic_year => self.current_academic_year, :description => et.description + ' for ' + self.name, :subject => s)}} if subjects
   end
   
 end

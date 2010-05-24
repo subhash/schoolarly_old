@@ -7,6 +7,7 @@ class CreateExams < ActiveRecord::Migration
       t.integer :event_id
       t.integer :klass_id, :null => false
       t.integer :teacher_id
+      t.integer :academic_year_id
       t.timestamps
       
       t.foreign_key :exam_type_id, :exam_types, :id
@@ -14,6 +15,7 @@ class CreateExams < ActiveRecord::Migration
       t.foreign_key :event_id, :events, :id
       t.foreign_key :klass_id, :klasses, :id
       t.foreign_key :teacher_id, :teachers, :id
+      t.foreign_key :academic_year_id, :academic_years, :id
     end
   end
 

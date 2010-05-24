@@ -11,6 +11,13 @@
 
 ActiveRecord::Schema.define(:version => 20100426035317) do
 
+  create_table "academic_years", :force => true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "conversations", :force => true do |t|
     t.string   "subject",    :default => ""
     t.datetime "created_at",                 :null => false
@@ -60,11 +67,12 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
 
   create_table "exams", :force => true do |t|
     t.string   "description"
-    t.integer  "exam_type_id", :null => false
-    t.integer  "subject_id",   :null => false
+    t.integer  "exam_type_id",     :null => false
+    t.integer  "subject_id",       :null => false
     t.integer  "event_id"
-    t.integer  "klass_id",     :null => false
+    t.integer  "klass_id",         :null => false
     t.integer  "teacher_id"
+    t.integer  "academic_year_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -74,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   add_index "exams", ["event_id"], :name => "event_id"
   add_index "exams", ["klass_id"], :name => "klass_id"
   add_index "exams", ["teacher_id"], :name => "teacher_id"
+  add_index "exams", ["academic_year_id"], :name => "academic_year_id"
 
   create_table "klasses", :force => true do |t|
     t.integer  "level_id",   :null => false
@@ -178,12 +187,15 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   end
 
   create_table "schools", :force => true do |t|
-    t.string   "board",      :default => "cbse"
+    t.string   "board",            :default => "CBSE"
     t.string   "fax"
     t.string   "website"
+    t.integer  "academic_year_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "schools", ["academic_year_id"], :name => "academic_year_id"
 
   create_table "schools_subjects", :id => false, :force => true do |t|
     t.integer "school_id",  :null => false
@@ -280,6 +292,7 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   add_foreign_key "exams", ["event_id"], "events", ["id"], :name => "exams_ibfk_3"
   add_foreign_key "exams", ["klass_id"], "klasses", ["id"], :name => "exams_ibfk_4"
   add_foreign_key "exams", ["teacher_id"], "teachers", ["id"], :name => "exams_ibfk_5"
+  add_foreign_key "exams", ["academic_year_id"], "academic_years", ["id"], :name => "exams_ibfk_6"
 
   add_foreign_key "klasses", ["school_id"], "schools", ["id"], :name => "klasses_ibfk_1"
   add_foreign_key "klasses", ["teacher_id"], "teachers", ["id"], :name => "klasses_ibfk_2"
@@ -305,6 +318,8 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   add_foreign_key "papers_students", ["paper_id"], "papers", ["id"], :name => "papers_students_ibfk_2"
 
   add_foreign_key "parents", ["student_id"], "students", ["id"], :name => "parents_ibfk_1"
+
+  add_foreign_key "schools", ["academic_year_id"], "academic_years", ["id"], :name => "schools_ibfk_1"
 
   add_foreign_key "schools_subjects", ["school_id"], "schools", ["id"], :name => "schools_subjects_ibfk_1"
   add_foreign_key "schools_subjects", ["subject_id"], "subjects", ["id"], :name => "schools_subjects_ibfk_2"

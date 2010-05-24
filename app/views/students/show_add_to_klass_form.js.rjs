@@ -1,0 +1,1 @@
+page.open_dialog("Allot Class", :partial =>'students/add_to_klass_form', :locals => {:student => Student.find(params[:id])})

@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @person_type = params[:person_type]
     person_class = Object.const_get(@person_type)
     @user.person = person_class.new
+    @user.person.set_academic_year if @user.person.is_a?(School)
     @user.user_profile = UserProfile.new(params[:user_profile])
     if @user.save
       render :update do |page|

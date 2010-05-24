@@ -1,6 +1,2 @@
-#page.close_dialog
-#args = {:partial => 'exams/exam', :locals => {:entity => @entity}}
-#page.replace_object(@exam, args)
-
-page.replace_tab Exam, :partial => 'exams/edit_form', :locals => {:entity => @entity, :exams => @entity.exams(force_reload=true)}
+page.replace_tab Exam, :partial => 'exams/edit_form', :locals => {:entity => @entity, :exams => @entity.current_exams}
 page << "initPanes();"

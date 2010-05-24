@@ -20,9 +20,7 @@ class KlassesController < ApplicationController
 #    @klass_exams = @klass.school.klasses.each_with_object({}) do |klass, hash|
 #      hash[klass.id] = klass.exams.group_by{|e| e.exam_group}
 #    end
-    puts "destroying class"
     if(current_user.person.is_a?(SchoolarlyAdmin))
-    puts 'schoolarly admin'
       @klass.papers.destroy_all
       #@klass.exam_groups.destroy_all
       @klass.exams.destroy_all
@@ -39,7 +37,7 @@ class KlassesController < ApplicationController
     @klass = Klass.find(params[:id])
     @school = @klass.school
     @subjects=@klass.subjects
-    @exams = @klass.exams #TODO have to select only those exams that fall in the current academic year
+    @exams = @klass.current_exams
     @klass_user_ids=@klass.users.collect{|u| u.id}
     session[:redirect] = request.request_uri
     respond_to do |format|

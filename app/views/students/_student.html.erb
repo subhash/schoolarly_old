@@ -4,16 +4,18 @@
             <%= link_to student.name, student_path(student) %>
         </div>
 		<span><%=message_to(student)%></span>
-        <% if student.school %>
-        <div class="detail">
-            <% if student.school %>
-            <h4>Admission no: <span id=<%="admission_number_#{student.id}" %>><%=student.admission_number.blank? ? '(Click to enter)': student.admission_number %></span><%= in_place_editor "admission_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_admission_number', :id => student},:external_control => "edit_no_#{student.id}"} %></h4>
-            <% end %>
-            <% if student.klass %>
-            <h4>Roll no: <span id=<%="roll_number_#{student.id}" %>><%=student.roll_number.blank? ? '(Click to enter)' : student.roll_number %></span><%= in_place_editor "roll_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_roll_number', :id => student},:external_control => "edit_roll_no_#{student.id}"} %></h4>
-            <% end %>
-        </div>
-        <% end %>
+		<div class="detail">
+        	<% if student.school %>
+            	<h4>Admission no: <span id=<%="admission_number_#{student.id}" %>><%=student.admission_number.blank? ? '(Click to enter)': student.admission_number %></span><%= in_place_editor "admission_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_admission_number', :id => student},:external_control => "edit_no_#{student.id}"} %></h4>
+            	<% if student.klass %>
+            		<h4>Roll no: <span id=<%="roll_number_#{student.id}" %>><%=student.roll_number.blank? ? '(Click to enter)' : student.roll_number %></span><%= in_place_editor "roll_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_roll_number', :id => student},:external_control => "edit_roll_no_#{student.id}"} %></h4>
+				<% else%>
+					<h4><%= link_to_remote 'Assign Class', :url => {:controller => 'students', :action => 'show_add_to_klass_form', :id => student}, :html => {:title => 'Assign Class'} %></h4>
+            	<% end %>
+			<% else %>
+				<h4><%= link_to_remote 'Allot to School', :url => {:controller => 'students', :action => 'show_add_to_school_form', :entity_class => 'Student', :entity_id => student}, :html => {:title => 'Allot to School'} %></h4>
+        	<% end %>
+		</div>
     </td>
     <td class="right">
         <p>

@@ -11,21 +11,28 @@
 				<%= exam_form.hidden_field :teacher_id %>
 				<strong><%=link_to exam.teacher.name, exam.teacher %></strong>
 			<% else %>
-				<%= exam_form.input :teacher, :as => :select, :collection => teachers , :include_blank  => true, :label => false%>
+				<%= exam_form.input :teacher, :as => :select, :collection => teachers, :include_blank => true, :label => false%>
 			<% end %>
 		</td>
 		<!--
+		<% @paper = Paper.find_by_subject_id_and_klass_id(exam.subject_id, exam.klass_id) %>
+		<% @student_ids = @paper.student_ids %>
+		<% exam_form.semantic_fields_for :scores, exam.scores do |score_form| %>
+			<%= score_form.hidden_field :student_id %>
+		<%end %>
+		!-->
 		<%@event = exam.event ? exam.event : Event.new(:event_series => EventSeries.new())%>
 		<% semantic_fields_for :event do |event_form| %>
 			<td><%= event_form.calendar_date_select :start_time, :time => true %></td>
 			<td><%= event_form.calendar_date_select :end_time, :time => true %></td>
 			<%= event_form.hidden_field :event_series_id %>
 		<%end %>
-		!-->
 	<%end %>
 	<%if !exam.new_record?%>
 		<td id="<%='add-exam-' + exam.id.to_s%>"><%= add_exam_link(f, exam)%></td>
 		<!--<td><%= link_to_remote 'Add', :url => {:controller => :exams, :action => :new, :id => exam }, :method => :get, :html => {:class => "ui-icon ui-icon-circle-plus", :title => 'Add'}%> </td>!-->
 		<td><%= link_to_remote 'Remove', :url => {:controller => :exams, :action => :destroy, :id => exam }, :method => :delete, :html => {:class => "ui-icon ui-icon-circle-minus", :title => 'Remove'}, :confirm => 'Are you sure?'%> </td>
+		<td><%= exam.score_of(entity) || '<i>Unavailable</i>' if entity.class == Student%></td>
+		<td><%= link_to 'Add/Edit Scores', exam, {:class => "ui-icon ui-icon-pencil", :title => 'Add/Edit Scores'} unless entity.class == Student%></td>
 	<%end%>
 </tr>

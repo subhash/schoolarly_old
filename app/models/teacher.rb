@@ -15,8 +15,20 @@ class Teacher < ActiveRecord::Base
   end
 
   has_many :owned_klasses, :class_name => 'Klass'
-#  has_many :owned_exams, :class_name => 'Exam'
-  has_many :exams, :order => "exams.klass_id, exams.exam_type_id"
+  
+  has_many :exams do
+    def of_year(academic_year)
+      find :all, :include => :event, :conditions => ['exams.academic_year_id = ?', academic_year.id], :order => "exams.klass_id, exams.exam_type_id"
+    end
+  end
+  
+  def current_academic_year
+    self.school.academic_year if self.school
+  end
+  
+  def current_exams
+    self.exams.of_year(self.current_academic_year) if self.school
+  end
   
   accepts_nested_attributes_for :exams
   
@@ -27,9 +39,5 @@ class Teacher < ActiveRecord::Base
   def email
     return user.email
   end
-  
-#  def exams
-#    owned_exams.select{|e| e.klass.school == self.school}  
-#  end
   
 end

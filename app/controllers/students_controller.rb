@@ -26,14 +26,13 @@ class StudentsController < ApplicationController
     if @school    
       if @klass
         @all_subjects = Subject.find(:all, :order => 'name')
-        @exams = @student.exams.select{|e| e.klass == @klass}
+        @exams = @student.current_exams	#TODO .select{|e| e.klass == @klass}
       else
         @klasses = @school.klasses
       end
     end
     @user=@student.user
   end
-  
   
   def new
     @student = Student.new
@@ -58,11 +57,9 @@ class StudentsController < ApplicationController
     end
   end
   
-  
   def edit
     @student = Student.find(params[:id]) 
   end
-  
   
   # TODO page context
   # Called from students/show and klass/student. Need to update breadcrumbs for the first
@@ -89,17 +86,24 @@ class StudentsController < ApplicationController
   
   def update_papers
     @student = Student.find(params[:id])
+    new_subjects = (Paper.find(params[:paper_ids]) - @student.papers).collect{|p| p.subject} if params[:paper_ids]
     @student.paper_ids = params[:paper_ids]
+    exams = (@student.klass.current_exams - @student.current_exams).select{|e| new_subjects.include?(e.subject)}
+    #TODO exams.each{|e| @student.scores << Score.new(:exam => e)}
     @student.save!
   end
   
   def add_to_school
     @student = Student.find(params[:id])
-    @school = School.find(params[:student][:school_id])
+    @school = School.find(params[:entity][:school_id])
     @school.students << @student
     @school.save!
-    render :update do |page|
-      page.redirect_to student_path(@student)
+    if session[:redirect].include?('students')
+      render :update do |page|
+        page.redirect_to student_path(@student)
+      end
+    else
+      render :template => 'students/add_to_school_success'
     end
   end
   

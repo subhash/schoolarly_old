@@ -65,7 +65,7 @@ class ExamsController < ApplicationController
       render :template => 'exams/update_success'
     else
       render :template => 'exams/update_failure'
-    end
+    end 
   end
   
   def destroy

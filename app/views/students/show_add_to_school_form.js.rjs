@@ -1,0 +1,1 @@
+page.open_dialog("Add to School", :partial =>'schools/add_to_school_form', :locals => {:entity => Object.const_get(params[:entity_class]).find(params[:entity_id]), :schools => School.all})  

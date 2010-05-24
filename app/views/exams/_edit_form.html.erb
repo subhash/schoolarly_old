@@ -2,9 +2,10 @@
 	<% entity.exams.group_by{|e| e.subject}.each do |subject, exams| %>
 		<div class="pane" id="<%=subject.name + '-area'%>">
 			<table class="center">
-				<tr><th>Exam</th><th>Class</th><th>Teacher</th><th>Start Time</th><th>End Time</th></tr>
+				<tr><th>Exam</th><th>Class</th><th>Teacher</th><th>Start Time</th><th colspan=3>End Time</th>
+				<%if entity.class == Student%><th>Scores</th><%end%></tr>
 				<%exams.each do |exam|%>
-					<%=render :partial => 'exams/form', :locals => {:f => f, :teachers => entity.school.teachers, :exam => exam}%>
+					<%=render :partial => 'exams/form', :locals => {:f => f, :entity => entity, :teachers => entity.school.teachers, :exam => exam}%>
 				<%end%>
 			</table>
 		</div>
