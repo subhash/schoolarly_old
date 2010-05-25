@@ -10,7 +10,9 @@
 <% add.crumb @teacher.name %>
 <% end %>
 
-<% render_tabs do |t| %>
-<% t.papers_tab :partial => 'teachers/papers', :object => @teacher_allotments if @school %>
-<% t.exams_tab :partial => 'exams/edit_form', :locals => {:entity => @teacher, :exams => @exams} if @school%>
+<% render_tabs do |add| %>
+<% add.papers_tab :partial => 'teachers/papers', :object => @teacher_allotments if @school %>
+<% add.exams_tab :partial => 'exams/edit_form', :locals => {:entity => @teacher, :exams => @exams} if @school%>
+<% add.messages_tab if current_user == @teacher.user %>
+<% add.events_tab if current_user == @teacher.user %>
 <% end %>

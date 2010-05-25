@@ -54,6 +54,8 @@ jQuery(document).ready(function(){
 });
 
 jQuery(document).ready(function(){
+    var tab = window.location.hash;
+    if (tab) jQuery(tab).click();
     initPanes();
 });
 

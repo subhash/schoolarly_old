@@ -3,7 +3,7 @@
 <% add.dialog 'Assign Class',:partial => 'students/add_to_klass_form', :locals => {:student => @student} if @school and not @klass %>
 <% add.dialog 'Add to school',:partial =>'schools/add_to_school_form', :locals => {:entity => @student, :schools => School.find(:all)} unless @school %>
 <% add.link 'Profile', {:controller => :user_profiles, :action => (@user == current_user) ? :edit : :edit , :id => @student.user} %>
-<% add.dialog 'Post Message to ' + @student.name, :partial => 'mails/new_form', :locals => {:users => [@student.user], :selected_users => [@student.user.id]} if is_messageable?(@student)%> 
+<% add.dialog 'Post Message to ' + @student.name, :partial => 'mails/new_form', :locals => {:users => [@student.user], :selected_users => [@student.user.id]} if is_messageable?(@student) %>
 <% end %>
 
 <% render_breadcrumbs do |add| %>
@@ -12,7 +12,9 @@
 <% add.crumb @student.name %>
 <% end %>
 
-<% render_tabs do |t| %>
-<% t.papers_tab :object => @student.papers if @klass%>
-<% t.exams_tab :partial => 'exams/edit_form', :locals => {:entity => @student, :exams => @exams} if @klass%>
+<% render_tabs do |add| %>
+<% add.papers_tab :object => @student.papers if @klass %>
+<% add.exams_tab :partial => 'exams/edit_form', :locals => {:entity => @student, :exams => @exams} if @klass %>
+<% add.messages_tab if current_user == @student.user %>
+<% add.events_tab if current_user == @student.user %>
 <% end %>

@@ -23,12 +23,6 @@
         <div id="main">
             <div id="Header">
                 <div id="Tabs">
-                	<% if current_user %>
-                    <% render_tabs do |add| %>
-                    <% add.messages_tab %>
-					<% add.events_tab %>
-                    <% end %>
-					<% end %>
                     <%= yield :tab_links %>
                     <%= render :partial => '/common/header' %>
                 </div>
