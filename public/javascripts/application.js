@@ -48,14 +48,15 @@ jQuery(document).ready(function(){
         jQuery(currentTab).show(); // Show div with id equal to variable currentTab
         jQuery(currentTab + '-header').show();
         jQuery('#calendar').fullCalendar('render');
-        return false;
+        return true;
     });
     jQuery('a.tab-link:first').click();
 });
 
 jQuery(document).ready(function(){
     var tab = window.location.hash;
-    if (tab) jQuery(tab).click();
+    if (tab) 
+        jQuery(tab + '-link').click();
     initPanes();
 });
 
