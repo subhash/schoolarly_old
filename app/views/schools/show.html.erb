@@ -12,9 +12,9 @@
 <% end %>
 
 <% render_tabs do |add| %>
+<% add.messages_tab if current_user == @school.user %>
+<% add.events_tab if current_user == @school.user %>
 <% add.klasses_tab %>
 <% add.students_tab %>
 <% add.teachers_tab %>
-<% add.messages_tab if current_user == @school.user %>
-<% add.events_tab if current_user == @school.user %>
 <% end %>
