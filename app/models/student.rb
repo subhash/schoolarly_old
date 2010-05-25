@@ -13,21 +13,13 @@ class Student < ActiveRecord::Base
   has_and_belongs_to_many :papers
   has_one :parent
   has_many :scores   
- 
-  has_many :exams, :through => :scores do
-    def of_year(academic_year)
-      find :all, :include => :event, :conditions => ['exams.academic_year_id = ?', academic_year.id], :order => "exams.exam_type_id"
-    end
-  end
-  
-  def current_academic_year
-    self.school.academic_year if self.school
-  end
+  has_one :academic_year, :through => :school
+  has_many :exams, :through => :scores
   
   def current_exams
-    self.exams.of_year(self.current_academic_year) if self.school
+    self.exams.find_by_academic_year_id(self.academic_year.id) #if self.school
   end
-
+  
   accepts_nested_attributes_for :exams
 
   def subjects

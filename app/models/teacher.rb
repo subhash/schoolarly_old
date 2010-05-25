@@ -15,19 +15,11 @@ class Teacher < ActiveRecord::Base
   end
 
   has_many :owned_klasses, :class_name => 'Klass'
-  
-  has_many :exams do
-    def of_year(academic_year)
-      find :all, :include => :event, :conditions => ['exams.academic_year_id = ?', academic_year.id], :order => "exams.klass_id, exams.exam_type_id"
-    end
-  end
-  
-  def current_academic_year
-    self.school.academic_year if self.school
-  end
+  has_one :academic_year, :through => :school
+  has_many :exams
   
   def current_exams
-    self.exams.of_year(self.current_academic_year) if self.school
+    self.exams.find_by_academic_year_id(self.academic_year.id) #if self.school
   end
   
   accepts_nested_attributes_for :exams

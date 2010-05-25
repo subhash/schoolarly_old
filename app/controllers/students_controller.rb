@@ -88,7 +88,7 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
     new_subjects = (Paper.find(params[:paper_ids]) - @student.papers).collect{|p| p.subject} if params[:paper_ids]
     @student.paper_ids = params[:paper_ids]
-    exams = (@student.klass.current_exams - @student.current_exams).select{|e| new_subjects.include?(e.subject)}
+    #exams = (@student.klass.current_exams - @student.current_exams).select{|e| new_subjects.include?(e.subject)}
     #TODO exams.each{|e| @student.scores << Score.new(:exam => e)}
     @student.save!
   end
