@@ -37,7 +37,7 @@ class KlassesController < ApplicationController
     @klass = Klass.find(params[:id])
     @school = @klass.school
     @subjects=@klass.subjects
-    @exams = @klass.current_exams
+    @exams = @klass.exams.find_all_by_academic_year_id(@klass.academic_year.id)
     @klass_user_ids=@klass.users.collect{|u| u.id}
     session[:redirect] = request.request_uri
     respond_to do |format|

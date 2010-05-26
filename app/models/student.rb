@@ -15,11 +15,6 @@ class Student < ActiveRecord::Base
   has_many :scores   
   has_one :academic_year, :through => :school
   has_many :exams, :through => :scores
-  
-  def current_exams
-    self.exams.find_by_academic_year_id(self.academic_year.id) #if self.school
-  end
-  
   accepts_nested_attributes_for :exams
 
   def subjects

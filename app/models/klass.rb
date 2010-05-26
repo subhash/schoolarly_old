@@ -14,11 +14,6 @@ class Klass < ActiveRecord::Base
   has_many :student_users, :through => :students, :source => :user
   has_many :exams, :include => [:exam_type],  :order => "exam_types.name, exam_types.activity" 
   has_one :academic_year, :through => :school
-
-  
-  def current_exams
-    exams.find_all_by_academic_year_id(academic_year.id)
-  end
   
   validates_uniqueness_of :division, :scope => [:school_id, :level_id]
   

@@ -3,7 +3,7 @@ class Exam < ActiveRecord::Base
   belongs_to :subject
   belongs_to :teacher
   has_many :scores
-  has_many :students, :through => :scores
+  has_many :students_with_scores, :through => :scores, :source => :student
   belongs_to :event, :dependent => :destroy
   belongs_to :klass
   belongs_to :academic_year
@@ -50,6 +50,11 @@ class Exam < ActiveRecord::Base
   
   def duration
     event ? ((event.end_time.to_time - event.start_time.to_time)/1.hour): 0
+  end
+  
+    
+  def students
+    students_with_scores + klass.students.for_paper(klass.papers.find_by_subject_id(subject.id).id)
   end
   
   def participants
