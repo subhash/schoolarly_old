@@ -9,14 +9,15 @@ class Klass < ActiveRecord::Base
   has_many :students  do
     def for_paper(paper_id)
       find :all, :include => [:papers], :conditions => ['papers_students.paper_id = ?',paper_id]
-    end
+    end  
   end
   has_many :student_users, :through => :students, :source => :user
-  has_one :academic_year, :through => :school 
-  has_many :exams
+  has_many :exams, :include => [:exam_type],  :order => "exam_types.name, exam_types.activity" 
+  has_one :academic_year, :through => :school
+
   
   def current_exams
-    self.exams.find_by_academic_year_id(self.academic_year.id)
+    exams.find_all_by_academic_year_id(academic_year.id)
   end
   
   validates_uniqueness_of :division, :scope => [:school_id, :level_id]
@@ -39,10 +40,6 @@ class Klass < ActiveRecord::Base
   
   def users
     return teacher_users + student_users
-  end
-  
-  def create_exams(subjects = nil)
-    subjects.each{|s| ExamType.all.each {|et| self.exams << Exam.new(:exam_type => et, :academic_year => self.academic_year, :description => et.description + ' for ' + self.name, :subject => s)}} if subjects
   end
   
 end
