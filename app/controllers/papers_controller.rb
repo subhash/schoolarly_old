@@ -1,13 +1,7 @@
 class PapersController < ApplicationController
   def create
     @klass = Klass.find(params[:id])
-    new_subjects = Subject.find(params[:subject_ids]) - @klass.subjects if params[:subject_ids]
-    #TODO deletion to be discussed
-    #old_subjects = params[:subject_ids].nil? ? @klass.subjects : @klass.subjects - Subject.find(params[:subject_ids])
-    #@old_exams =@klass.exams.select(|e| old_subjects.include?(e.subject)) #TODO that falls within the current academic year
-    #@klass.exams.delete(@old_exams)
     @klass.subject_ids = params[:subject_ids]
-    @klass.create_exams(new_subjects)
     @klass.save!
   end
   

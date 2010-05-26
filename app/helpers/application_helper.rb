@@ -90,8 +90,7 @@ module ApplicationHelper
       end     
       
       def exams_tab(args={})
-        subjects = Subject.all
-        new_args = {:tab => :exams, :title => 'Exams', :header => {:partial => 'exams/exams_header', :locals => {:subjects => subjects} } }
+        new_args = {:tab => :exams, :title => 'Exams'}
         tab new_args.merge(args)
       end
       

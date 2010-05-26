@@ -57,10 +57,10 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
 
   create_table "exam_types", :force => true do |t|
     t.string   "name"
-    t.string   "description"
     t.string   "assessment_type"
     t.string   "term"
-    t.string   "fa_type"
+    t.string   "activity"
+    t.boolean  "extendable"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

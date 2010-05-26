@@ -1,3 +1,3 @@
-
 page.remove_object(@deleted_paper)
 page.replace_action "Add Subjects", :partial => 'papers/create_papers_form', :locals => {:klass => @klass, :subjects => Subject.find(:all)}
+page.replace_tab Exam, :partial => 'exams/klass_exams', :locals => {:klass => @klass, :exams => @klass.current_exams}
