@@ -28,7 +28,7 @@ class Paper < ActiveRecord::Base
   
   def create_exams
     ExamType.all.each do |et|
-      klass.exams << Exam.new(:exam_type => et, :academic_year => klass.academic_year, :description => et.activity, :subject => subject) 
+      klass.exams << Exam.new(:exam_type => et, :academic_year => klass.academic_year, :description => "", :subject => subject) 
     end
   end
   

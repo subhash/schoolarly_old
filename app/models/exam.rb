@@ -24,8 +24,8 @@ class Exam < ActiveRecord::Base
     exam_type.term
   end
   
-  def long_desc
-    name + " "+ description + " - "+ subject.name
+  def title
+    name + " " + activity + " - "+ subject.name
   end
   
   def activity

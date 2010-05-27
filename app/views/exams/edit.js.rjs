@@ -1,2 +1,2 @@
-args = {:partial =>'exams/edit', :locals => {:exam => @exam, :entity => @entity, :teachers => @teachers}}
-page.open_dialog('Modify '+ @exam.long_desc, args)
+args = {:partial =>'exams/edit', :locals => {:exam => @exam, :teachers => @teachers}}
+page.open_dialog('Modify '+ @exam.title, args)

@@ -1,5 +1,5 @@
 <% semantic_remote_form_for exam do |f| %>
-<table class="center">
+<table>
     <tr>
         <th>
             <%= f.label :subject %>
@@ -27,21 +27,20 @@
     </tr>
     <%end %>
     <tr>
+        <%if exam.teacher %>
         <th>
             <%=f.label :teacher %>
         </th>
-        <%if exam.teacher %>
         <td>
             <strong><%=exam.teacher.name %></strong>
         </td>
         <%else %>
-        <td>
-            <%= f.input :teacher_id, :as => :select, :collection => teachers , :label => "" %>
-        </td>
+       		<%= f.input :teacher_id, :as => :select, :collection => teachers , :label => "" %>
         <%end %>
     </tr>
+    <tr>
+        <%= f.input :description, :as => :text, :label => "Notes", :input_html => {:rows => 5} %>
+    </tr>
 </table>
-<div class="center">
     <%= f.commit_button :label => 'Update' %>
-</div>
 <%end %>

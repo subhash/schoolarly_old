@@ -16,5 +16,4 @@
 <% add.messages_tab if current_user == @student.user %>
 <% add.events_tab if current_user == @student.user %>
 <% add.papers_tab :object => @student.papers if @klass %>
-<% add.exams_tab :partial => 'exams/edit_form', :locals => {:entity => @student, :exams => @exams} if @klass %>
 <% end %>

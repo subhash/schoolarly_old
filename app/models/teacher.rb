@@ -19,7 +19,7 @@ class Teacher < ActiveRecord::Base
   has_many :exams
   
   def current_exams
-    self.exams.find_by_academic_year_id(self.academic_year.id) #if self.school
+    self.exams.find_all_by_academic_year_id(self.academic_year.id) #if self.school
   end
   
   accepts_nested_attributes_for :exams

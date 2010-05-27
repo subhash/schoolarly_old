@@ -27,11 +27,18 @@ class EventsController < ApplicationController
   end
   
   def edit
+    session[:redirect] = request.request_uri
     @event = Event.find_by_id(params[:id])
     @event_series = @event.event_series
-    @users = current_user.person.school ? current_user.person.school.users - [@event_series.owner] : nil
-    render :update do |page|
-      page.open_dialog @event_series.title, {:partial => 'events/edit_form'}, 500
+    @exam = @event.exam
+    if @exam
+       @teachers = @exam.school.teachers
+       render :template => "exams/edit"
+    else
+      @users = current_user.person.school ? current_user.person.school.users - [@event_series.owner] : nil
+      render :update do |page|
+        page.open_dialog @event_series.title, {:partial => 'events/edit_form'}, 500
+      end
     end
   end
   
@@ -70,7 +77,7 @@ class EventsController < ApplicationController
         @events = [] 
         current_user.event_series.each {|es| @events += es.events.find(:all, :conditions => ["start_time >= '#{Time.at(params['start'].to_i).to_formatted_s(:db)}' and end_time <= '#{Time.at(params['end'].to_i).to_formatted_s(:db)}'"] )}
         current_user.owned_event_series.each {|es| @events += es.events.find(:all, :conditions => ["start_time >= '#{Time.at(params['start'].to_i).to_formatted_s(:db)}' and end_time <= '#{Time.at(params['end'].to_i).to_formatted_s(:db)}'"] )}
-        events = @events.collect { |e| {:id => e.id, :title => e.event_series.title, :description => e.event_series.description || "Some cool description here...", :allDay => false, :start => "#{e.start_time.iso8601}", :end => "#{e.end_time.iso8601}"}}
+        events = @events.collect { |e| {:id => e.id, :title => e.event_series.title, :description => e.event_series.description || "Some cool description here...", :allDay => false, :editable => e.editable, :start => "#{e.start_time.iso8601}", :end => "#{e.end_time.iso8601}"}}
         render :text => events.to_json
       }
     end

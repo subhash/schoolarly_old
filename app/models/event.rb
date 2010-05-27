@@ -27,4 +27,12 @@ class Event < ActiveRecord::Base
     time.advance(:minutes => (5 - time.min % 5))
   end
   
+  def exam
+    Exam.find_by_event_id(id)
+  end
+  
+  def editable
+    exam ? false : true
+  end
+  
 end

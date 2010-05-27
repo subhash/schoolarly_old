@@ -2,6 +2,7 @@
     <td class="left">
         <%= exam.assessment_type == "SA" ? exam.subject.name : exam.activity %>
     </td>
+	<td><%= exam.description%></td>
     <td class="right">
         <% if exam.event %>
         <span class="date"><%= exam.event.start_time.to_s(:short) %>

@@ -18,7 +18,7 @@ module ApplicationHelper
   end
   
   def active_controller
-    contexts = ['schools', 'users', 'teachers', 'students', 'klasses']
+    contexts = ['schools', 'users', 'teachers', 'students', 'klasses', 'events', 'exams']
     contexts.each do |context|
       if session[:redirect].include?(context)
         return context 

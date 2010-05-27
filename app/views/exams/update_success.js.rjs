@@ -1,2 +1,8 @@
 page.close_dialog
-page.replace_tab Exam, :partial => 'exams/klass_exams', :locals =>  {:exams => @exam.klass.current_exams}
+if active_controller == 'events'
+  puts "in events"
+  page<<"jQuery('#calendar').fullCalendar( 'refetchEvents' );"
+else
+  puts "in exams"
+  page.replace_tab Exam, :partial => 'exams/klass_exams', :locals =>  {:exams => @exam.klass.current_exams}
+end

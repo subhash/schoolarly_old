@@ -51,6 +51,7 @@ class ExamsController < ApplicationController
   #  end
   
   def edit
+    session[:redirect] = request.request_uri
     @exam = Exam.find(params[:id])
     @exam.event = Event.new( :start_time => Event.now, :end_time => Event.now.advance(:hours => 1 )) unless @exam.event
     @teachers = @exam.school.teachers
@@ -60,7 +61,7 @@ class ExamsController < ApplicationController
     @exam = Exam.find(params[:id])
     @exam.attributes = params[:exam]
     if @exam.event.new_record?
-      @event_series = EventSeries.new(:title => @exam.long_desc, :description => @exam.description, :owner => current_user)
+      @event_series = EventSeries.new(:title => @exam.title, :description => @exam.description, :owner => current_user)
       @exam.participants.each do |participant|
         @event_series.users << participant.user
       end
