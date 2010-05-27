@@ -22,4 +22,9 @@ class Event < ActiveRecord::Base
     Time.now.next_year
   end
   
+  def self.now
+    time = Time.now
+    time.advance(:minutes => (5 - time.min % 5))
+  end
+  
 end

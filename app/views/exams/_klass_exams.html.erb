@@ -9,7 +9,7 @@
     <% if ex.first.assessment_type == "SA" %>
     <% ex.each do |e| %>
     <tr>
-        <%= render :partial => 'exams/exam',:locals => {:entity => klass, :exam => e} %>
+        <%= render :partial => 'exams/exam',:locals => {:exam => e} %>
     </tr>
     <% end %>
     <%else %>
@@ -23,7 +23,7 @@
         <tbody>
             <% s_exams.each do |e| %>
             <tr>
-                <%= render :partial => 'exams/exam',:locals => {:entity => klass, :exam => e} %>
+                <%= render :partial => 'exams/exam',:locals => {:exam => e} %>
             </tr>
             <% end %>
         </tbody>

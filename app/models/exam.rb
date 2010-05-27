@@ -6,6 +6,7 @@ class Exam < ActiveRecord::Base
   has_many :students_with_scores, :through => :scores, :source => :student
   belongs_to :event, :dependent => :destroy
   belongs_to :klass
+  has_one :school, :through => :klass
   belongs_to :academic_year
   
   accepts_nested_attributes_for :event

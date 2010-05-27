@@ -1,2 +1,2 @@
-page.replace_tab Exam, :partial => 'exams/edit_form', :locals => {:entity => @entity, :exams => @entity.current_exams}
-page << "initPanes();"
+page.close_dialog
+page.replace_tab Exam, :partial => 'exams/klass_exams', :locals =>  {:exams => @exam.klass.current_exams}

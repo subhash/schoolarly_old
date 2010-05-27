@@ -1,0 +1,47 @@
+<% semantic_remote_form_for exam do |f| %>
+<table class="center">
+    <tr>
+        <th>
+            <%= f.label :subject %>
+        </th>
+        <td>
+            <strong><%=exam.subject.name %></strong>
+        </td>
+    </tr>
+    <% f.semantic_fields_for :event do |event_form| %>
+    <tr>
+        <th>
+            <strong>From</strong>
+        </th>
+        <td>
+            <%= event_form.calendar_date_select :start_time, :time => true, :popup => 'force', :minute_interval => 5 %>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <strong>To</strong>
+        </th>
+        <td>
+            <%= event_form.calendar_date_select :end_time, :time => true, :popup => 'force', :minute_interval => 5 %>
+        </td>
+    </tr>
+    <%end %>
+    <tr>
+        <th>
+            <%=f.label :teacher %>
+        </th>
+        <%if exam.teacher %>
+        <td>
+            <strong><%=exam.teacher.name %></strong>
+        </td>
+        <%else %>
+        <td>
+            <%= f.input :teacher_id, :as => :select, :collection => teachers , :label => "" %>
+        </td>
+        <%end %>
+    </tr>
+</table>
+<div class="center">
+    <%= f.commit_button :label => 'Update' %>
+</div>
+<%end %>

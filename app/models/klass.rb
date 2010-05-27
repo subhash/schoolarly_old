@@ -27,6 +27,10 @@ class Klass < ActiveRecord::Base
     students.empty? and papers.empty? and exams.empty?    
   end
   
+  def current_exams
+    exams.find_all_by_academic_year_id(academic_year.id)
+  end
+  
   def teacher_users
     teachers=self.teachers
     teachers += [class_teacher] if class_teacher && !teachers.include?(class_teacher)
