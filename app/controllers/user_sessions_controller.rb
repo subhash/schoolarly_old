@@ -19,13 +19,28 @@ class UserSessionsController < ApplicationController
   end
   
   def destroy    
-    render :update do |page|
-      if current_user_session.destroy
-        flash[:notice] = "Logout successful!"
-        page.refresh
-      else
-        page.error_dialog 'Error! Could not logout' 
-      end
+    destroyed = current_user_session.destroy
+    respond_to do |wants|
+      wants.js {
+        render :update do |page|
+          if(destroyed)
+            flash[:notice] = "Logout successful!"
+            page.refresh
+          else
+            page.error_dialog 'Error! Could not logout'
+          end
+        end
+      }
+      wants.html {
+        if(destroyed)
+          flash[:notice] = "Logout successful!"
+          redirect_to :root
+        else
+          flash[:notice] = "Logout successful!"
+          redirect_to request.request_uri
+        end
+      }
     end
   end
+  
 end

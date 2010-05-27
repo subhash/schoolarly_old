@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :require_user, :except => [:show, :edit, :update]
+  skip_before_filter :require_user
   
   def new
     @user = User.new

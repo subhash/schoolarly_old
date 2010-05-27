@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
     option = {:if => Proc.new {|user| user.perishable_token.nil? }}
     c.validates_length_of_password_field_options =  validates_length_of_password_field_options.merge(option)
     c.validates_length_of_password_confirmation_field_options = validates_length_of_password_confirmation_field_options.merge(option)
+    c.perishable_token_valid_for(0)
   end
   
   acts_as_messageable

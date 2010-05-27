@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
   
-  #before_filter :require_user
+  before_filter :require_user
   
   def set_active_user(user_id)
     session[:active_user] = user_id
@@ -53,37 +53,7 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  # :object or :collection
-  # :insert or :replace or :delete
-  # (optional, default - true) :close_modal_box => false
-  # {optional, default - true} :open_tab => false
-  #
   
-  def render_success(args)
-    args[:close_modal_box] = true if args[:close_modal_box].nil? 
-    args[:open_tab] = true if args[:open_tab].nil?
-    collection = args[:collection]
-    collection ||= []
-    if(args[:object])
-      collection << args[:object]      
-    end
-    render(:update) do |page|
-      page.close_dialog if args[:close_modal_box]
-      page.open_tab collection.first if args[:open_tab]
-      collection.each do |obj|     
-        if(args[:insert])          
-          page.insert_object  obj, args[:insert]
-        end
-        if(args[:replace])
-          page.replace_object obj, args[:replace]
-        end
-        if(args[:delete])          
-          page.remove_object obj
-        end
-      end      
-      yield page if block_given?      
-    end
-  end
   
   private
   def current_user_session
