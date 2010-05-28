@@ -77,7 +77,6 @@ class ExamsController < ApplicationController
   def add
      @old_exam = Exam.find(params[:id])
      @exam = Exam.new(@old_exam.attributes)
-     @exam.description = "#{@old_exam.activity}#{@old_exam.similar.size}"
      @exam.save
   end
   

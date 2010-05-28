@@ -62,8 +62,5 @@ class Exam < ActiveRecord::Base
   def participants
     teacher ? (students + [teacher]) : students
   end
-  
-  def similar
-    exam_type.exams.find_all_by_klass_id_and_academic_year_id(klass.id, klass.academic_year.id)
-  end
+
 end
