@@ -77,6 +77,8 @@ class ExamsController < ApplicationController
   def add
      @old_exam = Exam.find(params[:id])
      @exam = Exam.new(@old_exam.attributes)
+     @exam.description = ""
+     @exam.event = nil
      @exam.save
   end
   

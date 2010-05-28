@@ -29,6 +29,10 @@ class Exam < ActiveRecord::Base
     name + " " + activity + " - "+ subject.name
   end
   
+  def long_desc
+    description.empty? ? title : title + "["+description+"]"
+  end
+  
   def activity
     exam_type.activity
   end
@@ -61,6 +65,10 @@ class Exam < ActiveRecord::Base
   
   def participants
     teacher ? (students + [teacher]) : students
+  end
+  
+  def similar
+    klass.exams.find_all_by_exam_type_id_and_academic_year_id_and_subject_id(exam_type.id, academic_year.id, subject.id)
   end
 
 end
