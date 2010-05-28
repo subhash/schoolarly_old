@@ -211,9 +211,10 @@ module ActionView
          def insert_after(obj, after, args)
            args[:object] = obj
            insert_html :after, css_id(after), args
+           visual_effect(:highlight, css_id(obj), :duration => 1)
          end
          
-         def remove_object(obj)           
+         def remove_object(obj)      
            self[css_id(obj)].remove 
          end
          
