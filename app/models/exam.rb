@@ -4,11 +4,12 @@ class Exam < ActiveRecord::Base
   belongs_to :teacher
   has_many :scores
   has_many :students_with_scores, :through => :scores, :source => :student
-  belongs_to :event, :dependent => :destroy
+  belongs_to :event
   belongs_to :klass
   has_one :school, :through => :klass
   belongs_to :academic_year
   
+  accepts_nested_attributes_for :exam_type
   accepts_nested_attributes_for :event
   accepts_nested_attributes_for :scores
   
@@ -62,4 +63,7 @@ class Exam < ActiveRecord::Base
     teacher ? (students + [teacher]) : students
   end
   
+  def similar
+    exam_type.exams.find_all_by_klass_id_and_academic_year_id(klass.id, klass.academic_year.id)
+  end
 end

@@ -74,9 +74,18 @@ class ExamsController < ApplicationController
     end 
   end
   
+  def add
+     @old_exam = Exam.find(params[:id])
+     @exam = Exam.new(@old_exam.attributes)
+     @exam.description = "#{@old_exam.activity}#{@old_exam.similar.size}"
+     @exam.save
+  end
+  
   def destroy
     @exam = Exam.find(params[:id])
+    event = @exam.event
     if  @exam.destroy
+      event.event_series.destroy
       render :template => 'exams/destroy_success'
     else
       render :template => 'exams/destroy_failure'

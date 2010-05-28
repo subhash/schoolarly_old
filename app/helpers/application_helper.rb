@@ -201,11 +201,16 @@ module ActionView
          # position, insert_id are optional
          #         
          def insert_object(obj, args)
-           args[:object] = obj
+           args[:object] ||= obj
            position = args.delete(:position) || :bottom
            insert_id = args.delete(:insert_id) || css_class_id(obj) 
            insert_html position, insert_id, args
            show insert_id
+         end
+         
+         def insert_after(obj, after, args)
+           args[:object] = obj
+           insert_html :after, css_id(after), args
          end
          
          def remove_object(obj)           
