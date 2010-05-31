@@ -1,6 +1,0 @@
-args = {:partial => 'exams/new_exam_form', :locals => {:exam => @exam, :subjects => @subjects, :entity => @entity, :teachers => @teachers}}
-page.open_dialog('Add Exam', args)
-
-#exam = Exam.find(params[:id])
-#args = {:position => :after, :partial => 'exams/form', :locals => {:f => params[:f], :teachers => exam.klass.school.teachers, :exam => exam.clone}}
-#page.insert_object exam, args

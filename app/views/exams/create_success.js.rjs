@@ -1,3 +1,0 @@
-page.close_dialog
-args = {:insert_id => 'examgroup-' + @exam.exam_group.id.to_s, :partial => 'exams/exam', :locals => {:entity => @entity, :exams => [@exam]}}
-page.insert_object @exam, args
