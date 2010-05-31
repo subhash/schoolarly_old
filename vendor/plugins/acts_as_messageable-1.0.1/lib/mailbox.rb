@@ -291,7 +291,7 @@ module Sergi #:nocdoc:
           return add_conditions!(options, "mail.trashed = ?", true)
         end
         def add_conversation_condition!(options, conversation)
-          #options.merge!({:order => 'created_at ASC'})
+          options.merge!({:order => 'created_at ASC'})
           if(conversation.is_a?(Array))
             conversation.map! {|c| c.is_a?(Integer) ? c : c.id}
           else
