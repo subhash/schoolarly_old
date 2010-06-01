@@ -96,16 +96,10 @@ class ApplicationController < ActionController::Base
 #  rescue_from ActiveRecord::StatementInvalid, :with => :show_errors
 #  rescue_from NoMethodError, :with => :show_errors
   
-  protected
+#  protected
   
-  def notify_me
-    Exceptional.rescue do
-      raise
-    end
-  end
-  
-  def show_errors(exception)
-    render :text => exception.message
-  end
+#  def notify_me(exception)
+#    render :file => "#{RAILS_ROOT}/public/error_page.html"
+#  end
   
 end
