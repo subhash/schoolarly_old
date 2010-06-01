@@ -1,4 +1,3 @@
 authlogic --version 2.1.3
 calendar_date_select
 formtastic --ignore-dependencies
-exceptional
