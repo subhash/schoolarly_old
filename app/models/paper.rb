@@ -5,6 +5,7 @@ class Paper < ActiveRecord::Base
   
   has_one :school, :through => :klass
   has_and_belongs_to_many :students
+  has_many :exams, :through => :subject
   
   validates_presence_of :klass_id, :subject_id
   validates_uniqueness_of :subject_id, :scope => [:klass_id]

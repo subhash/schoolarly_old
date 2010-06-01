@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
   end
   
   def self.now
-    time = Time.now
+    time = Time.zone.now
     time.advance(:minutes => (5 - time.min % 5))
   end
   

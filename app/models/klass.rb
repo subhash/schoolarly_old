@@ -12,7 +12,11 @@ class Klass < ActiveRecord::Base
     end  
   end
   has_many :student_users, :through => :students, :source => :user
-  has_many :exams, :include => [:exam_type],  :order => "exam_types.name, exam_types.activity" 
+  has_many :exams, :include => [:exam_type, :event],  :order => "exam_types.name, exam_types.activity" do
+    def future_for(subject_id)
+      find :all, :conditions => ["event_id IS NOT NULL AND events.end_time > ? AND subject_id = ?", Time.zone.now, subject_id]
+    end
+  end
   has_one :academic_year, :through => :school
   
   validates_uniqueness_of :division, :scope => [:school_id, :level_id]

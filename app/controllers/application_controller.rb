@@ -90,11 +90,11 @@ class ApplicationController < ActionController::Base
   
   #Exception Handlers
 
-  rescue_from Exception, :with => :notify_me
-  rescue_from ActiveRecord::RecordNotFound, :with => :show_errors
-  rescue_from ActiveRecord::RecordInvalid, :with => :show_errors
-  rescue_from ActiveRecord::StatementInvalid, :with => :show_errors
-  rescue_from NoMethodError, :with => :show_errors
+#  rescue_from Exception, :with => :notify_me
+#  rescue_from ActiveRecord::RecordNotFound, :with => :show_errors
+#  rescue_from ActiveRecord::RecordInvalid, :with => :show_errors
+#  rescue_from ActiveRecord::StatementInvalid, :with => :show_errors
+#  rescue_from NoMethodError, :with => :show_errors
   
   protected
   

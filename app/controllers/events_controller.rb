@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   
   def new    
-    @event = Event.new(:start_time => 1.hour.from_now, :end_time => 2.hour.from_now)
+    @event = Event.new(:start_time => Event.now, :end_time => Event.now.advance(:hours => 1))
     @event_series = EventSeries.new( :owner => current_user)
     @users = current_user.person.school ? current_user.person.school.users - [@event_series.owner] : nil
     render :update do |page|      

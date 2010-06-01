@@ -11,6 +11,7 @@ class Student < ActiveRecord::Base
   belongs_to :school
   belongs_to :klass
   has_and_belongs_to_many :papers
+  has_many :subjects, :through => :papers
   has_one :parent
   has_many :scores   
   has_one :academic_year, :through => :school
