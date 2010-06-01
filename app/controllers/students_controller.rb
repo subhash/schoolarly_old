@@ -96,7 +96,6 @@ class StudentsController < ApplicationController
     @student.save
 #     add again
     @student.subjects.each do |subject|
-      puts "subjects = "+ @student.klass.exams.future_for(subject.id).inspect
       @student.klass.exams.future_for(subject.id).each do |exam|
         exam.event.event_series.users << @student.user
       end

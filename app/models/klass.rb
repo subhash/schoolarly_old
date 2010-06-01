@@ -6,7 +6,7 @@ class Klass < ActiveRecord::Base
   belongs_to :school
   belongs_to :level
   belongs_to :class_teacher, :class_name => 'Teacher', :foreign_key => 'teacher_id'
-  has_many :students  do
+  has_many :students , :dependent => :nullify do
     def for_paper(paper_id)
       find :all, :include => [:papers], :conditions => ['papers_students.paper_id = ?',paper_id]
     end  

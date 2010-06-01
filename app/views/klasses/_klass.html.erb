@@ -16,6 +16,8 @@
             <% end %>
 			<span><%= pluralize(klass.students.size, 'student') %>  <%= link_to 'Add more', klass %></span>
         </p>
-        <%= link_to_remote 'Delete', :url => klass_url(klass), :method => :delete, :confirm => 'Are you sure?' %>
+		 <% if klass.can_be_destroyed %>
+        	<%= link_to_remote 'Delete', :url => klass_url(klass), :method => :delete, :confirm => 'Are you sure?' %>
+		<% end %>
     </td>
 </tr>

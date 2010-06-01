@@ -193,8 +193,9 @@ module ActionView
          end
          
          def replace_tab(obj, args)
+           show = args.delete(:show)
            replace_html css_class_id(obj) + "-tab", args
-           open_tab(obj)
+           open_tab(obj) unless (show || (show == false))
          end
          
          # page.insert_object obj, :position => :top, :insert_id => 'messages', :partial => ..

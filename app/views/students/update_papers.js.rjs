@@ -2,6 +2,7 @@ page.close_dialog
 if active_controller == 'students'
   page.replace_tab Paper, :partial => 'papers/papers', :object => @student.papers
   page.replace_action 'Add/Remove Subjects', :partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @student.klass.papers}
+  page.replace_tab Event, :partial => 'events/calendar', :show => false
 #  page.replace_tab Exam, :partial => 'exams/edit_form', :locals => {:entity => @student, :exams => @student.exams}
 else
   page.replace_object @student, :partial => 'students/student'

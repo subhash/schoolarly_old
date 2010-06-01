@@ -45,9 +45,8 @@ class ExamsController < ApplicationController
   
   def destroy
     @exam = Exam.find(params[:id])
-    event = @exam.event
     if  @exam.destroy
-      event.event_series.destroy if event
+      @exam.event.event_series.destroy if event
       render :template => 'exams/destroy_success'
     else
       render :template => 'exams/destroy_failure'

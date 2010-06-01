@@ -1,6 +1,12 @@
 class PapersController < ApplicationController
   def create
     @klass = Klass.find(params[:id])
+    removed_subjects = @klass.subject_ids - params[:subject_ids].collect{|s|s.to_i}
+    @students = []
+    removed_subjects.each do |id|
+      @students += @klass.papers.find_by_subject_id(id).students
+      @klass.papers.find_by_subject_id(id).students.clear
+    end
     @klass.subject_ids = params[:subject_ids]
     @klass.save!
   end
@@ -30,8 +36,9 @@ class PapersController < ApplicationController
   
   def destroy
     @paper = Paper.find(params[:id])
-    @deleted_paper = @paper
     @klass = @paper.klass
+    @students = @paper.students.dup
+    @paper.students.clear
     @paper.destroy
   end
 end
