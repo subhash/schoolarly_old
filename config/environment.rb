@@ -23,7 +23,6 @@ Rails::Initializer.run do |config|
   config.gem 'formtastic'
   config.gem 'authlogic'
   config.gem 'calendar_date_select'
-  config.gem 'exceptional'
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
