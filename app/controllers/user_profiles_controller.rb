@@ -3,6 +3,40 @@ class UserProfilesController < ApplicationController
   before_filter :find_user_and_person
   before_filter :set_up, :only => [:show, :new, :edit]
   after_filter :store_parent_url, :only => [:show, :new, :edit]
+ 
+   def self.in_place_loader_for(object, attribute, options = {})
+    define_method("get_#{object}_#{attribute}") do
+      @item = object.to_s.camelize.constantize.find(params[:id])
+      render :text => (@item.send(attribute).blank? ? "[No Name]" : @item.send(attribute))
+    end
+  end  
+  
+  in_place_loader_for :user_profile, :name
+  in_place_edit_for :user_profile, :name
+  
+  in_place_loader_for :user_profile, :address_line_1
+  in_place_edit_for :user_profile, :address_line_1
+  
+  in_place_loader_for :user_profile, :address_line_2
+  in_place_edit_for :user_profile, :address_line_2
+  
+  in_place_loader_for :user_profile, :city
+  in_place_edit_for :user_profile, :city
+
+  in_place_loader_for :user_profile, :state
+  in_place_edit_for :user_profile, :state
+  
+  in_place_loader_for :user_profile, :country
+  in_place_edit_for :user_profile, :country
+  
+  in_place_loader_for :user_profile, :pincode
+  in_place_edit_for :user_profile, :pincode
+  
+  in_place_loader_for :user_profile, :phone_landline
+  in_place_edit_for :user_profile, :phone_landline
+  
+  in_place_loader_for :user_profile, :phone_mobile
+  in_place_edit_for :user_profile, :phone_mobile
   
   def find_user_and_person    
     if(params[:id])
@@ -43,9 +77,9 @@ class UserProfilesController < ApplicationController
   end
   
   def show
-    if @user.user_profile.nil? and @user == current_user 
-      redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
-    end    
+#    if @user.user_profile.nil? and @user == current_user 
+#      redirect_to(url_for( :controller => :user_profiles, :action => 'new', :id=>@user))
+#    end    
     @user_profile=@user.user_profile
   end
   

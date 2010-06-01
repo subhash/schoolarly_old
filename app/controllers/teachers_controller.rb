@@ -5,6 +5,16 @@ class TeachersController < ApplicationController
   
   before_filter :find_teacher, :only => [:show, :edit_papers, :update_papers, :add_to_school]
   
+  def self.in_place_loader_for(object, attribute, options = {})
+    define_method("get_#{object}_#{attribute}") do
+      @item = object.to_s.camelize.constantize.find(params[:id])
+      render :text => (@item.send(attribute).blank? ? "[No Name]" : @item.send(attribute))
+    end
+  end  
+  
+  in_place_loader_for :teacher, :qualifications
+  in_place_edit_for :teacher, :qualifications
+  
   def set_up
     session[:redirect] = request.request_uri
     @user=@teacher.user

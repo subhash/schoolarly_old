@@ -1,0 +1,34 @@
+<table class="profile">
+    <tr class="heading">
+        <th colspan="3">
+            <h1>About Me</h1>
+        </th>
+    </tr>
+    <tr>
+        <td class="left">
+            Board:
+        </td>
+		<td class="middle"><span id=<%="edit_board_#{edit_school.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
+        <td class="right">
+        	<span id=<%="board_#{edit_school.id}" %>><%=edit_school.board.blank? ? '(Click to enter)': edit_school.board %></span><%= in_place_editor "board_#{edit_school.id}" ,{:url => {:controller => 'schools', :action => 'set_school_board', :id => edit_school}, :external_control => "edit_board_#{edit_school.id}"} %>
+        </td>
+    </tr>
+    <tr>
+        <td class="left">
+            Fax:
+        </td>
+		<td class="middle"><span id=<%="edit_fax_#{edit_school.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
+        <td class="right">
+        	<span id=<%="fax_#{edit_school.id}" %>><%=edit_school.fax.blank? ? '(Click to enter)': edit_school.fax %></span><%= in_place_editor "fax_#{edit_school.id}" ,{:url => {:controller => 'schools', :action => 'set_school_fax', :id => edit_school}, :external_control => "edit_fax_#{edit_school.id}"} %>
+        </td>
+    </tr>
+    <tr>
+        <td class="left">
+            Website:
+        </td>
+		<td class="middle"><span id=<%="edit_website_#{edit_school.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
+        <td class="right">
+        	<span id=<%="website_#{edit_school.id}" %>><%=edit_school.website.blank? ? '(Click to enter)': edit_school.website %></span><%= in_place_editor "website_#{edit_school.id}" ,{:url => {:controller => 'schools', :action => 'set_school_website', :id => edit_school}, :external_control => "edit_website_#{edit_school.id}"} %>
+        </td>
+    </tr>
+</table>

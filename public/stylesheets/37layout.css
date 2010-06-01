@@ -467,6 +467,38 @@ div.message .actions a {
     padding: 0px 4px;
 }
 
+table.profile {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+table.profile tr {
+    padding-bottom: 4px;
+}
+
+table.profile .heading *{
+    font-size: 11px;
+    background: grey;
+    color: white;
+    vertical-align: middle;
+}
+
+table.profile td.left {
+    font-size: 12px;
+    width: 30%;
+	font-weight: bold;
+	color: grey;
+}
+
+table.profile td.right *{
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+table.profile td.middle{
+    width: 0;
+}
+
 .inputs li {
     width: 30%;
     display: inline;

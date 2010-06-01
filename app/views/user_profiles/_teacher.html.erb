@@ -1,14 +1,15 @@
-<table>
-	<%if teacher.qualifications.nil? || teacher.qualifications.empty?%>
-		<tr><td><blockquote>Teacher Details Unavailable</blockquote></td></tr>
-	<%else%>
+<table class="profile">
+	<tr class="heading">
+        <th colspan="2">
+            <h1>About Me</h1>
+        </th>
+    </tr>
     <tr>
-        <td>
-            <b>Qualifications:</b>
+        <td class="left">
+            Qualifications:
         </td>
-        <td>
+        <td class="right">
             <%=h teacher.qualifications %>
         </td>
     </tr>
-	<%end%>
 </table>

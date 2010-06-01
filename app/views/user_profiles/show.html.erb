@@ -3,16 +3,11 @@
 <% add.crumb 'Profile' %>
 <% end %>
 
-<div>
-    <%= render :partial => "user_profiles/user_profile", :object => @user_profile %>
-</div>
-<div>
-    <%= render :partial => "user_profiles/" + @user.person_type.downcase, :object => @person %>
-</div>
-<div>
-    <%= render :partial => "user_profiles/user", :object => @user %>
-</div>
+<% render_tabs do |t| %>
+<% t.profile_tab :object => @user_profile %>
+<% end %>
 
 <% render_actions do |add| %>
-<% add.link 'Edit', {:controller => :user_profiles, :action => 'edit', :id => @user} if @user == current_user %>
+<% add.dialog 'Change Password', {} if @user == current_user %>
+<% add.dialog 'Post Message to ' + @person.name, :partial => 'mails/new_form', :locals => {:users => [@person.user], :selected_users => [@person.user.id]} if is_messageable?(@person) %>
 <% end %>

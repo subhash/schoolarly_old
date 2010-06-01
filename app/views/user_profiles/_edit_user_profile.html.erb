@@ -1,0 +1,76 @@
+<table class="profile">
+    <tr class="heading">
+        <th colspan="3">
+            <h1>Contact Information</h1>
+        </th>
+    </tr>
+    <tr>
+        <td class="left">
+            Name:
+        </td>
+		<td class="middle"><span id=<%="edit_no_#{edit_user_profile.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
+        <td class="right">
+        	<span id=<%="name_#{edit_user_profile.id}" %>><%=edit_user_profile.name.blank? ? '(Click to enter)': edit_user_profile.name %></span><%= in_place_editor "name_#{edit_user_profile.id}" ,{:url => {:controller => 'user_profiles', :action => 'set_user_profile_name', :id => edit_user_profile}, :external_control => "edit_no_#{edit_user_profile.id}"} %>
+        </td>
+		
+    </tr>
+    <tr>
+        <td class="left" rowspan=5>
+            Address:
+        </td>
+		<td class="middle"><span id=<%="edit_address_line_1_#{edit_user_profile.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
+        <td class="right"><span id=<%="address_line_1_#{edit_user_profile.id}" %>><%=edit_user_profile.address.address_line_1.blank? ? '(Click here to enter the Building Number)': edit_user_profile.address.address_line_1 %></span><%= in_place_editor "address_line_1_#{edit_user_profile.id}" ,{:url => {:controller => 'user_profiles', :action => 'set_user_profile_address_line_1', :id => edit_user_profile}, :external_control => "edit_address_line_1_#{edit_user_profile.id}"} %></td>
+	</tr>
+	<tr>
+		<td class="middle"><span id=<%="edit_address_line_2_#{edit_user_profile.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
+		<td class="right"><span id=<%="address_line_2_#{edit_user_profile.id}" %>><%=edit_user_profile.address.address_line_2.blank? ? '(Click here to enter the Road)': edit_user_profile.address.address_line_2 %></span><%= in_place_editor "address_line_2_#{edit_user_profile.id}" ,{:url => {:controller => 'user_profiles', :action => 'set_user_profile_address_line_2', :id => edit_user_profile}, :external_control => "edit_address_line_2_#{edit_user_profile.id}"} %></td>
+	</tr>
+	<tr>
+		<td class="middle"><span id=<%="edit_city_#{edit_user_profile.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
+		<td class="right"><span id=<%="city_#{edit_user_profile.id}" %>><%=edit_user_profile.address.city.blank? ? '(Click here to enter the City)': edit_user_profile.address.city %></span><%= in_place_editor "city_#{edit_user_profile.id}" ,{:url => {:controller => 'user_profiles', :action => 'set_user_profile_city', :id => edit_user_profile}, :external_control => "edit_city_#{edit_user_profile.id}"} %></td>
+	</tr>
+	<tr>
+		<td class="middle"><span id=<%="edit_state_#{edit_user_profile.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
+		<td class="right"><span id=<%="state_#{edit_user_profile.id}" %>><%=edit_user_profile.address.state.blank? ? '(Click here to enter the State)': edit_user_profile.address.state %></span><%= in_place_editor "state_#{edit_user_profile.id}" ,{:url => {:controller => 'user_profiles', :action => 'set_user_profile_state', :id => edit_user_profile}, :external_control => "edit_state_#{edit_user_profile.id}"} %></td>
+	</tr>
+	<tr>
+		<td class="middle"><span id=<%="edit_country_#{edit_user_profile.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
+		<td class="right"><span id=<%="country_#{edit_user_profile.id}" %>><%=edit_user_profile.address.country.blank? ? '(Click here to enter the Country)': edit_user_profile.address.country %></span><%= in_place_editor "country_#{edit_user_profile.id}" ,{:url => {:controller => 'user_profiles', :action => 'set_user_profile_country', :id => edit_user_profile}, :external_control => "edit_country_#{edit_user_profile.id}"} %></td>
+	</tr>
+    <tr>
+        <td class="left">
+            Pincode:
+        </td>
+		<td class="middle"><span id=<%="edit_pincode_#{edit_user_profile.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
+        <td class="right">
+        	<span id=<%="pincode_#{edit_user_profile.id}" %>><%=edit_user_profile.pincode.blank? ? '(Click to enter)': edit_user_profile.pincode %></span><%= in_place_editor "pincode_#{edit_user_profile.id}" ,{:url => {:controller => 'user_profiles', :action => 'set_user_profile_pincode', :id => edit_user_profile}, :external_control => "edit_pincode_#{edit_user_profile.id}"} %>
+        </td>
+    </tr>
+    <tr>
+        <td class="left">
+            Phone Landline:
+        </td>
+		<td class="middle"><span id=<%="edit_phone_landline_#{edit_user_profile.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
+        <td class="right">
+        	<span id=<%="phone_landline_#{edit_user_profile.id}" %>><%=edit_user_profile.phone_landline.blank? ? '(Click to enter)': edit_user_profile.phone_landline %></span><%= in_place_editor "phone_landline_#{edit_user_profile.id}" ,{:url => {:controller => 'user_profiles', :action => 'set_user_profile_phone_landline', :id => edit_user_profile}, :external_control => "edit_phone_landline_#{edit_user_profile.id}"} %>
+        </td>
+    </tr>
+    <tr>
+        <td class="left">
+            Phone Mobile:
+        </td>
+		<td class="middle"><span id=<%="edit_phone_mobile_#{edit_user_profile.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
+        <td class="right">
+        	<span id=<%="phone_mobile_#{edit_user_profile.id}" %>><%=edit_user_profile.phone_mobile.blank? ? '(Click to enter)': edit_user_profile.phone_mobile %></span><%= in_place_editor "phone_mobile_#{edit_user_profile.id}" ,{:url => {:controller => 'user_profiles', :action => 'set_user_profile_phone_mobile', :id => edit_user_profile}, :external_control => "edit_phone_mobile_#{edit_user_profile.id}"} %>
+        </td>
+    </tr>
+    <tr>
+        <td class="left">
+            Email:
+        </td>
+		<td class-"middle"></td>
+        <td class="right">
+            <%=h edit_user_profile.user.email %>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,14 @@
+<table class="profile">
+	<tr class="heading">
+        <th colspan="3">
+            <h1>About Me</h1>
+        </th>
+    </tr>
+    <tr>
+        <td class="left">
+            Qualifications:
+        </td>
+		<td class="middle"><span id=<%="edit_qualifications_#{edit_teacher.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
+        <td class="right"><span id=<%="qualifications_#{edit_teacher.id}" %>><%=edit_teacher.qualifications.blank? ? '(Click to enter)': edit_teacher.qualifications %></span><%= in_place_editor "qualifications_#{edit_teacher.id}", {:url => {:controller => 'teachers', :action => 'set_teacher_qualifications', :id => edit_teacher}, :external_control => "edit_qualifications_#{edit_teacher.id}", :rows => 18, :cols => 63} %></td>
+    </tr>
+</table>

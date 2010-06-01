@@ -1,7 +1,7 @@
 <% render_actions do |add| %>
 <% add.dialog 'Add/Remove Papers', :partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers} if @school %>
 <% add.dialog 'Add to school', :partial =>'schools/add_to_school_form', :locals => {:entity => @teacher, :schools => School.all} unless @school %>
-<% add.link 'Profile', {:controller => :user_profiles, :action => (@user == current_user) ? 'edit' : 'show' , :id => @teacher.user} %>
+<% add.link 'Profile', {:controller => :user_profiles, :action => :show , :id => @teacher.user} %>
 <% add.dialog 'Post Message to ' + @teacher.name, :partial => 'mails/new_form', :locals => {:users => [@teacher.user], :selected_users => [@teacher.user.id]} if is_messageable?(@teacher) %>
 <% end %>
 
@@ -14,5 +14,4 @@
 <% add.messages_tab if current_user == @teacher.user %>
 <% add.events_tab if current_user == @teacher.user %>
 <% add.papers_tab :partial => 'teachers/papers', :object => @teacher_allotments if @school %>
-<% add.exams_tab :partial => 'exams/edit_form', :locals => {:entity => @teacher, :exams => @exams} if @school %>
 <% end %>

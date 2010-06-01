@@ -1,0 +1,7 @@
+<div>
+	<%if current_user == @user then user_profile_partial = 'user_profiles/edit_user_profile'; person_partial = 'user_profiles/edit_' + @user.person_type.downcase; else user_profile_partial = 'user_profiles/user_profile'; person_partial = 'user_profiles/' + @user.person_type.downcase; end%>
+    <%= render :partial => user_profile_partial, :object => @user_profile %>
+</div>
+<div>
+    <%= render :partial => person_partial, :object => @user.person %>
+</div>
