@@ -1,3 +1,4 @@
 page.close_dialog
-page.replace_tab Message, :partial => 'mails/mailboxes', :object => ['inbox', 'sentbox', 'trash']
+#Hack to replace the tab only if it exists
+page.select('#messages-tab').each{|e| page.replace_tab Message, :partial => 'mails/mailboxes', :object => ['inbox', 'sentbox', 'trash']}
 page.call 'initPanes'
