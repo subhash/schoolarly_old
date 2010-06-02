@@ -8,6 +8,6 @@
 <% end %>
 
 <% render_actions do |add| %>
-<% add.dialog 'Change Password', {} if @user == current_user %>
-<% add.dialog 'Post Message to ' + @person.name, :partial => 'mails/new_form', :locals => {:users => [@person.user], :selected_users => [@person.user.id]} if is_messageable?(@person) %>
+<% add.dialog 'Change Password', :partial => 'user_profiles/change_password_form', :locals => {:user => @user} if @user == current_user %>
+<% add.dialog 'Post Message to ' + @person.name, :partial => 'mails/new_form', :locals => {:users => [@user], :selected_users => [@user.id]} if is_messageable?(@person) %>
 <% end %>
