@@ -36,9 +36,8 @@ class Paper < ActiveRecord::Base
   def destroy_exams
     subject.exams.find_all_by_klass_id(klass.id).each do |exam|
       if exam.destroyable? 
-          event = exam.event
           exam.destroy 
-          event.event_series.destroy if event
+          exam.event.event_series.destroy if exam.event
         end
       end
     end
