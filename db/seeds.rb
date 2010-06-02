@@ -5,3 +5,20 @@ unless User.find_by_email('admin@schoolarly.com')
   user.person = SchoolarlyAdmin.new()
   user.save!
 end
+
+#Master data loading from yml/rb fixtures. rb fixtures take care of validation too...
+namespace :db do
+  desc "Load seed fixtures (from db/fixtures) into the current environment's database." 
+  require 'active_record/fixtures'
+  task :seed => :environment do
+    Dir.glob(RAILS_ROOT + "/db/fixtures/*.{yml,rb}").each do |file|
+      if File.extname(file) == '.yml'
+        puts "Running yml data fixture #{file}"
+        Fixtures.create_fixtures('db/fixtures', File.basename(file, '.*'))
+      else
+        puts "Running ruby data fixture #{file}" 
+        load file
+      end
+    end
+  end
+end
