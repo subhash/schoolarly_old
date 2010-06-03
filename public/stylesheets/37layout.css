@@ -534,14 +534,14 @@ table.scores td.right * {
 }
 
 table.scores .activity {
-    background-color: green;
-    color: white;
+    background-color: orange;
+    color: black;
     padding: 2px 0px 2px 4px;
     margin-right: 2px;
 }
 
 table.scores .score {
-    background-color: red;
+    background-color: grey;
     color: white;
     padding: 2px 4px;
     margin-left: 4px;
