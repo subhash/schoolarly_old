@@ -19,6 +19,7 @@
         <% end %>
     </td>
     <td class="right">
+    	<% permitted_to? :manage, teacher do %>
         <%if teacher.school %>
         <div>
             <%teacher.papers.each do |paper| %>
@@ -35,5 +36,6 @@
         <div>
             <%= link_to_remote 'Delete', :url => {:controller => active_controller, :action => 'remove_teacher',:id => teacher}, :html => {:title => 'Delete'}, :confirm => 'Are you sure?' %>
         </div>
+		<% end %>
     </td>
 </tr>

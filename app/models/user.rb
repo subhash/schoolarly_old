@@ -28,4 +28,7 @@ class User < ActiveRecord::Base
     save_without_session_maintenance(true) and Notifier.deliver_invitation(self)    
   end
   
+  def role_symbols
+    [person.class.name.underscore.to_sym]
+  end
 end

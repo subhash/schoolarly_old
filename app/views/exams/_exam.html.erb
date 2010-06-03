@@ -2,26 +2,37 @@
     <td class="left">
         <%= exam.assessment_type == "SA" ? exam.subject.name : exam.activity %>
     </td>
-	<td><%= exam.description%></td>
+    <td>
+        <%= exam.description %>
+    </td>
     <td class="right">
         <% if exam.event %>
         <span class="date"><%= exam.event.start_time.to_s(:short) %>
-            <span class="time"><%= exam.duration %> hours
-         </span></span>
+            <span class="time"><%= exam.duration %>hours</span></span>
         <%end %>
         <span><%=link_to exam.teacher.name, exam.teacher if !exam.teacher.nil? %>
         </span>
-        <span><%=link_to 'View/Edit Scores', exam, :title => 'View/Edit Scores' %>
+        <% permitted_to? :read, exam do %>
+        <span><%=link_to 'View Scores', exam, :title => 'View Scores' %>
+        </span>
+        <% end %>
+        <% permitted_to? :edit, exam do %>
+        <span><%=link_to 'Edit Scores', exam, :title => 'Edit Scores' %>
         </span>
         <span><%= link_to_remote 'Edit', :url =>  {:controller => :exams, :action => 'edit', :id => exam }, :method => :get, :html => {:title => 'Edit'} %>
         </span>
-		<% if exam.exam_type.extendable %>
-		<span><%= link_to_remote 'Add', :url => {:controller => :exams, :action => 'add', :id => exam }, :html => {:title => 'Add'} %>
-		</span>	
-		<% end %>
+        <% end %>
+        <% permitted_to? :add, :exams do %>
+        <% if exam.exam_type.extendable %>
+        <span><%= link_to_remote 'Add', :url => {:controller => :exams, :action => 'add', :id => exam }, :html => {:title => 'Add'} %>
+        </span>
+        <% end %>
+        <% end %>
+        <% permitted_to? :delete, exam do %>
         <%if exam.destroyable? %>
         <span><%= link_to_remote 'Delete', :url => {:controller => :exams, :action => 'destroy', :id => exam }, :method => :delete, :html => {:title => 'Delete'}, :confirm => 'Are you sure?' %>
         </span>
         <%end %>
+        <% end %>
     </td>
 </tr>
