@@ -1,5 +1,5 @@
 page.replace_action 'Add Subjects', :partial => 'papers/create_papers_form', :locals => {:klass => @klass, :subjects => Subject.find(:all)}
-page.replace_tab Exam, :show => false, :partial => 'exams/exams', :locals => {:klass => @klass, :exams => @klass.current_exams}
+page.replace_tab Exam, :show => false, :partial => 'exams/exams', :object => @klass.current_exams
 page.replace_tab Paper, :partial => 'papers/papers', :object => @klass.papers
 @students.each {|student| page.replace_object student, :partial =>'students/student' } if @students
 page.close_dialog

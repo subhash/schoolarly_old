@@ -13,5 +13,5 @@
 <% render_tabs do |t| %>
 <% t.students_tab :object => @klass.students %>
 <% t.papers_tab :object => @klass.papers %>
-<% t.exams_tab :partial => 'exams/exams', :locals => {:klass => @klass, :exams => @exams} %>
+<% t.exams_tab :object => @exams %>
 <% end %>

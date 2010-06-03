@@ -365,6 +365,7 @@ table.exams .time {
     margin-left: 4px;
 }
 
+
 table.papers {
     margin-bottom: 30px;
     width: 100%;
@@ -497,6 +498,53 @@ table.profile td.right *{
 
 table.profile td.middle{
     width: 0;
+}
+
+
+table.scores {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+table.scores tr {
+    padding-bottom: 4px;
+}
+
+table.scores .heading * {
+    font-size: 11px;
+    background: grey;
+    color: white;
+    vertical-align: middle;
+}
+
+table.scores td.left {
+    font-size: 18px;
+    width: 30%;
+}
+
+table.scores .subject {
+    background-color: grey;
+    color: white;
+    padding: 2px 4px;
+}
+
+table.scores td.right * {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+table.scores .activity {
+    background-color: green;
+    color: white;
+    padding: 2px 0px 2px 4px;
+    margin-right: 2px;
+}
+
+table.scores .score {
+    background-color: red;
+    color: white;
+    padding: 2px 4px;
+    margin-left: 4px;
 }
 
 .inputs li {

@@ -1,8 +1,23 @@
-<%= jquery_grid :scores, {:url => grid_data_scores_url(:exam => exam.id), :editurl => row_edit_scores_url(:exam => exam.id) } %>
-<center>
-    <div style="background :black; color:white; width:518px;">
-        Scores for <%= exam.long_desc %> 
-    </div>
-    <%= jquery_grid_table %>
-    <%= jquery_grid_pager %>
-</center>
+<% scores.group_by{|score| score.exam.name}.each do |name, e_scores| %>
+<table class = "scores">
+    <tr class="heading">
+        <th colspan="2">
+            <h1><%= name %></h1>
+        </th>
+    </tr>
+    <% e_scores.group_by{|score| score.exam.subject}.each do |subject, s_scores| %>
+    <tr>
+        <td class="left">
+            <%=subject.name %>
+        </td>
+        <% s_scores.each do |a_score| %>
+        <td class="right">
+            <span class="activity"><%= a_score.exam.activity %>
+                <span class="score"><%= a_score.score %>
+                </span></span>
+        </td>
+        <% end %>
+    </tr>
+    <%end %>
+</table>
+<% end %>
