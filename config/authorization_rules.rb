@@ -15,7 +15,7 @@ authorization do
     has_permission_on :students, :to => :read, &same_user
     has_permission_on [:schools, :klasses, :teachers], :to => :read, &same_school
     has_permission_on :exams, :to => :read do
-      if_attribute :students_with_scores => contains {user.person}
+      if_attribute :students => contains {user.person}
     end
   end
   
