@@ -12,7 +12,6 @@
         <td class="right">
         	<span id=<%="name_#{edit_user_profile.id}" %>><%=edit_user_profile.name.blank? ? '(Click to enter)': edit_user_profile.name %></span><%= in_place_editor "name_#{edit_user_profile.id}" ,{:url => {:controller => 'user_profiles', :action => 'set_user_profile_name', :id => edit_user_profile}, :external_control => "edit_no_#{edit_user_profile.id}"} %>
         </td>
-		
     </tr>
     <tr>
         <td class="left" rowspan=5>

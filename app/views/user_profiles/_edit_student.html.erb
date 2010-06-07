@@ -1,1 +1,46 @@
-<%=render :partial => 'user_profiles/student', :object => edit_student%>
+<table class="profile">
+	<tr class="heading">
+        <th colspan="3">
+            <h1>About Me</h1>
+        </th>
+    </tr>
+	<%if edit_student.school %>
+	    <tr>
+	        <td class="left">
+	            School:
+	        </td>
+			<td class="middle"></td>
+	        <td class="right">
+	            <%=link_to edit_student.school.name, school_path(edit_student.school) %>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td class="left">
+	            Admission Number:
+	        </td>
+			<td class="middle"><span id=<%="edit_no_#{edit_student.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
+	        <td class="right">
+				<span id=<%="admission_number_#{edit_student.id}" %>><%=edit_student.admission_number.blank? ? '(Click to enter)': edit_student.admission_number %></span><%= in_place_editor "admission_number_#{edit_student.id}" ,{:url => {:controller => 'students', :action => 'set_student_admission_number', :id => edit_student},:external_control => "edit_no_#{edit_student.id}"}%>
+	        </td>
+	    </tr>
+		<tr>
+	        <td class="left">
+	            Class:
+	        </td>
+			<td class="middle"><%= link_to_remote 'Change Class', :url => {:controller => 'students', :action => 'show_add_to_klass_form', :id => edit_student}, :html => {:class => 'ui-icon ui-icon-pencil', :title => 'Change Class'} %></td>
+	        <td class="right">
+	        	<%if edit_student.klass %>
+	            	<%=link_to edit_student.klass.name, klass_path(edit_student.klass) %>
+				<%else%>
+	            	<%= link_to_remote 'Assign Class', :url => {:controller => 'students', :action => 'show_add_to_klass_form', :id => edit_student}, :html => {:title => 'Assign Class'} %>
+				<%end %>
+	        </td>
+	    </tr>
+	<%else%>
+		<tr>
+			<td colspan=2>
+				Not yet admitted to any school
+			</td>
+		</tr>
+	<%end %>
+</table>

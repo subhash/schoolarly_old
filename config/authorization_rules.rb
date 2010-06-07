@@ -17,6 +17,7 @@ authorization do
     has_permission_on :exams, :to => :read do
       if_attribute :students => contains {user.person}
     end
+    has_permission_on :user_profiles, :to => :manage, &same_user
   end
   
   role :teacher do
@@ -30,12 +31,14 @@ authorization do
     has_permission_on :papers, :to => :manage do
       if_permitted_to :manage, :klass
     end
+    has_permission_on :user_profiles, :to => :manage, &same_user
   end
   
   role :school do
     includes :teacher
     has_permission_on :teachers, :to => :manage, &same_school
     has_permission_on :schools, :to => :manage, &same_user
+    has_permission_on :user_profiles, :to => :manage, &same_user
   end
   
   role :schoolarly_admin do
