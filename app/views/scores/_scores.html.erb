@@ -10,7 +10,6 @@
         <td class="left">
             <%=subject.name %>
         </td>
-        <% sum= 0 %><% size = 0 %>
         <% s_scores.group_by{|score| score.exam.activity}.each do |activity, a_scores| %>
         <td class="right">
             <span class="activity"><%= activity %>
@@ -18,18 +17,15 @@
                 <span class="score"><%= a_score.score %>
                 </span></span>
             <% end %>
-            <% avg = (a_scores.collect(&:score).sum.to_f/a_scores.size).round(2) %>
             <% if a_scores.size > 1 %>
-            <span class="average"><%= avg %>
+            <span class="average"><%=  Score.aggregate(a_scores) %>
             </span>
             <% end %>
         </td>
-        <% sum += avg %>
-        <% size += 1 %>
         <% end %>
         <% unless s_scores.first.exam.assessment_type == "SA" %>
         <td class="right">
-            <span class="label">Average<span class="gross"><%= (sum/size).round(2) %></span></span>
+            <span class="label">Average<span class="gross"><%= Score.aggregate(s_scores) %></span></span>
         </td>
         <% end %>
     </tr>
