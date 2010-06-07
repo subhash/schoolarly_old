@@ -1,4 +1,4 @@
-<%= link_to_remote 'Compose Message', :url => {:controller => 'mails', :action => 'new'}%>
+<%= link_to_remote 'Compose Message', :url => {:controller => 'mails', :action => 'new'} if current_user.person.school%>
 
 <%mailboxes.each do |mailbox| %>
 	<div class="pane" id="<%=mailbox + '-area'%>">
