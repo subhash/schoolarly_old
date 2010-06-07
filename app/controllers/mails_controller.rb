@@ -19,7 +19,7 @@ class MailsController < ApplicationController
     @mail = Mail.find(params[:id]) if params[:id]
     selected_users = @mail.conversation.users if params[:id]
     @selected_user_ids = selected_users.collect{|u| u.id} if params[:id]
-    @users = !selected_users.nil? ? selected_users : current_user.person.is_a?(SchoolarlyAdmin) ? User.all : (!current_user.person.school.nil? ? current_user.person.school.users : nil)
+    @users = !selected_users.nil? ? selected_users : current_user.person.is_a?(SchoolarlyAdmin) ? User.all : (!current_user.person.school.nil? ? current_user.person.school.users : [])
   end
   
   def destroy
