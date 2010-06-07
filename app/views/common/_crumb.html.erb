@@ -1,7 +1,10 @@
-<li>
+<!--<li>
 <% if url %>
 <%= link_to label, url%>
 <% else %>
 <%= label %>
 <% end %>
-</li>
+</li>-->
+<div class="crumb">
+    <%= link_to_if url,label, url %>
+</div>

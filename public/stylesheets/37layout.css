@@ -43,6 +43,25 @@ div#Header h1 {
     text-align: left;
 }
 
+
+div#Header .crumbs {
+    margin: 0px 30px;
+	display: inline;
+}
+
+div#Header .crumb {
+    margin-right: 20px;
+    display: inline;
+    font-size: 14px;
+	color: #EFEFEF;
+}
+
+div#Header .crumb a {
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
 div.wrapper {
     background: #e5e5e5;
     padding: 12px 23px 0 30px;
