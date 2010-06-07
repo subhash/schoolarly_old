@@ -22,7 +22,7 @@
         <span><%= link_to_remote 'Edit', :url =>  {:controller => :exams, :action => 'edit', :id => exam }, :method => :get, :html => {:title => 'Edit'} %>
         </span>
         <% end %>
-        <% permitted_to? :add, :exams do %>
+        <% permitted_to? :create, :exams do %>
         <% if exam.exam_type.extendable %>
         <span><%= link_to_remote 'Add', :url => {:controller => :exams, :action => 'add', :id => exam }, :html => {:title => 'Add'} %>
         </span>

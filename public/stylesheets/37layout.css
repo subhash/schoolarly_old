@@ -529,7 +529,7 @@ table.scores .subject {
 }
 
 table.scores td.right * {
-    font-size: 14px;
+    font-size: 17px;
     margin-bottom: 4px;
 }
 
@@ -546,6 +546,29 @@ table.scores .score {
     padding: 2px 4px;
     margin-left: 4px;
 }
+
+
+table.scores .average {
+    background-color: darkgrey;
+    color: white;
+    padding: 2px 4px;
+    margin-left: 4px;
+}
+
+table.scores .label{
+    background-color: white;
+    color: black;
+    padding: 2px 0px 2px 4px;
+	border-style: solid;
+}
+
+table.scores .gross{
+    background-color: darkblue;
+    color: white;
+	padding: 2px 4px;
+    margin-left: 0px;
+}
+
 
 .inputs li {
     width: 30%;
