@@ -1,0 +1,45 @@
+stteresas:
+ id: 1
+ fax: 0484-2351870
+ website: www.stteresas.com
+ academic_year_id: 1 
+stantonys:
+ id: 2
+ fax: 0484-2390431
+ website: www.stantonys.com
+ academic_year_id: 1 
+gps:
+ id: 3
+ fax: 080-2390431
+ website: www.gps.com
+ academic_year_id: 1 
+choice:
+ id: 4
+ fax: 0484-2779057
+ website: www.choice.com
+ academic_year_id: 1 
+vibgyor:
+ id: 5
+ fax: 080-2390431
+ website: www.vibgyor.com
+ academic_year_id: 1
+nhps:
+ id: 6
+ fax: 080-2390431
+ website: www.nhps.com
+ academic_year_id: 1 
+ryan:
+ id: 7
+ fax: 080-2390431
+ website: www.ryan.com
+ academic_year_id: 1
+gear:
+ id: 8
+ fax: 080-2390431
+ website: www.gear.com
+ academic_year_id: 1
+bvm:
+ id: 9
+ fax: 0484-2390431
+ website: www.bvm.com
+ academic_year_id: 1 

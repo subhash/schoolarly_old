@@ -1,0 +1,68 @@
+2:
+ id: 2
+ name: St Teresas 
+ address_line_1: 
+ address_line_2:
+ city: Kochi
+ state: Kerala
+ country: India
+ pincode: 682011
+ phone_landline: 
+ phone_mobile: 
+ user_id: 2
+3:
+ id: 3
+ name: St Antonys
+ address_line_1: 
+ address_line_2:
+ city: Kochi
+ state: Kerala
+ country: India
+ pincode:
+ phone_landline: 
+ phone_mobile: 
+ user_id: 3
+4:
+ id: 4
+ name: Global Public School 
+ address_line_1: 
+ address_line_2:
+ city: Bangalore
+ state: Karnataka
+ country: India
+ pincode:
+ phone_landline: 
+ phone_mobile: 
+ user_id: 4
+5:
+ id: 5
+ name: Choice International 
+ address_line_1: 
+ address_line_2:
+ city: Kochi
+ state: Kerala
+ country: India
+ pincode:
+ phone_landline: 
+ phone_mobile: 
+ user_id: 5
+6:
+ id: 6
+ name: VIBGYOR
+ user_id: 6
+7:
+ id: 7
+ name: New Horizon Public School 
+ user_id: 7
+8:
+ id: 8
+ name: Ryan International
+ user_id: 8
+9:
+ id: 9
+ name: Gear International
+ user_id: 9
+10:
+ id: 10
+ name: Bhavans Vidya Mandir
+ user_id: 10
