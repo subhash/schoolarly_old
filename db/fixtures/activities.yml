@@ -1,210 +1,150 @@
 1:
  id: 1
- name: SA1
- assessment_type: SA
- term: 1
- activity: Exam
- extendable: false
-2:
- id: 2
- name: SA2
- assessment_type: SA
- term: 2
- activity: Exam
- extendable: false
-3:
- id: 3
- name: FA1
- assessment_type: FA
- term: 1
+ assessment_id: 1
  activity: Class Test
  extendable: true
+2:
+ id: 2
+ assessment_id: 2
+ activity: Class Test
+ extendable: true
+3:
+ id: 3
+ assessment_id: 3
+ activity: Exam
+ extendable: false
 4:
  id: 4
- name: FA2
- assessment_type: FA
- term: 1
+ assessment_id: 4
  activity: Class Test
  extendable: true
 5:
  id: 5
- name: FA3
- assessment_type: FA
- term: 2
+ assessment_id: 5
  activity: Class Test
  extendable: true
 6:
  id: 6
- name: FA4
- assessment_type: FA
- term: 2
- activity: Class Test
- extendable: true
+ assessment_id: 6
+ activity: Exam
+ extendable: false
 7:
  id: 7
- name: FA1
- assessment_type: FA
- term: 1
+ assessment_id: 1
  activity: Project
  extendable: false
 8:
  id: 8
- name: FA2
- assessment_type: FA
- term: 1
+ assessment_id: 2
  activity: Project
  extendable: false
 9:
  id: 9
- name: FA3
- assessment_type: FA
- term: 2
+ assessment_id: 4
  activity: Project
  extendable: false
 10:
  id: 10
- name: FA4
- assessment_type: FA
- term: 2
+ assessment_id: 5
  activity: Project
  extendable: false
 11:
  id: 11
- name: FA1
- assessment_type: FA
- term: 1
+ assessment_id: 1
  activity: Assignment
  extendable: true
 12:
  id: 12
- name: FA2
- assessment_type: FA
- term: 1
+ assessment_id: 2
  activity: Assignment
  extendable: true
 13:
  id: 13
- name: FA3
- assessment_type: FA
- term: 2
+ assessment_id: 4
  activity: Assignment
  extendable: true
 14:
  id: 14
- name: FA4
- assessment_type: FA
- term: 2
+ assessment_id: 5
  activity: Assignment
  extendable: true
 15:
  id: 15
- name: FA1
- assessment_type: FA
- term: 1
+ assessment_id: 1
  activity: Seminar
  extendable: false
 16:
  id: 16
- name: FA2
- assessment_type: FA
- term: 1
+ assessment_id: 2
  activity: Seminar
  extendable: false
 17:
  id: 17
- name: FA3
- assessment_type: FA
- term: 2
+ assessment_id: 4
  activity: Seminar
  extendable: false
 18:
  id: 18
- name: FA4
- assessment_type: FA
- term: 2
+ assessment_id: 5
  activity: Seminar
  extendable: false
 19:
  id: 19
- name: FA1
- assessment_type: FA
- term: 1
+ assessment_id: 1
  activity: Practical
  extendable: false
 20:
  id: 20
- name: FA2
- assessment_type: FA
- term: 1
+ assessment_id: 2
  activity: Practical
  extendable: false
 21:
  id: 21
- name: FA3
- assessment_type: FA
- term: 2
+ assessment_id: 4
  activity: Practical
  extendable: false
 22:
  id: 22
- name: FA4
- assessment_type: FA
- term: 2
+ assessment_id: 5
  activity: Practical
  extendable: false
 23:
  id: 23
- name: FA1
- assessment_type: FA
- term: 1
+ assessment_id: 1
  activity: Record
  extendable: false
 24:
  id: 24
- name: FA2
- assessment_type: FA
- term: 1
+ assessment_id: 2
  activity: Record
  extendable: false
 25:
  id: 25
- name: FA3
- assessment_type: FA
- term: 2
+ assessment_id: 4
  activity: Record
  extendable: false
 26:
  id: 26
- name: FA4
- assessment_type: FA
- term: 2
+ assessment_id: 5
  activity: Record
  extendable: false
 27:
  id: 27
- name: FA1
- assessment_type: FA
- term: 1
+ assessment_id: 1
  activity: Collection
  extendable: false
 28:
  id: 28
- name: FA2
- assessment_type: FA
- term: 1
+ assessment_id: 2
  activity: Collection
  extendable: false
 29:
  id: 29
- name: FA3
- assessment_type: FA
- term: 2
+ assessment_id: 4
  activity: Collection
  extendable: false
 30:
  id: 30
- name: FA4
- assessment_type: FA
- term: 2
+ assessment_id: 5
  activity: Collection
  extendable: false

@@ -1,6 +1,6 @@
 <tr id="exam-<%=exam.id%>">
     <td class="left">
-        <%= exam.assessment_type == "SA" ? exam.subject.name : exam.activity %>
+        <%= exam.assessment_type == "SA" ? exam.subject.name : exam.activity_name %>
     </td>
     <td>
         <%= exam.description %>
@@ -23,7 +23,7 @@
         </span>
         <% end %>
         <% permitted_to? :create, :exams do %>
-        <% if exam.exam_type.extendable %>
+        <% if exam.activity.extendable %>
         <span><%= link_to_remote 'Add', :url => {:controller => :exams, :action => 'add', :id => exam }, :html => {:title => 'Add'} %>
         </span>
         <% end %>

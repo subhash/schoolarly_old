@@ -1,5 +1,5 @@
 class Exam < ActiveRecord::Base
-  belongs_to :exam_type
+  belongs_to :activity
   belongs_to :subject
   belongs_to :teacher
   has_many :scores
@@ -9,32 +9,31 @@ class Exam < ActiveRecord::Base
   has_one :school, :through => :klass
   belongs_to :academic_year
   
-  accepts_nested_attributes_for :exam_type
   accepts_nested_attributes_for :event
   accepts_nested_attributes_for :scores
   
   def name
-    exam_type.name
+    activity.assessment.name
   end
   
   def assessment_type
-    exam_type.assessment_type
+   activity.assessment.assessment_type
   end
   
   def term
-    exam_type.term
+    activity.assessment.term
   end
   
   def title
-    name + " " + activity + " - "+ subject.name
+    name + " " + activity_name + " - "+ subject.name
   end
   
   def long_desc
     description.empty? ? title : title + "["+description+"]"
   end
   
-  def activity
-    exam_type.activity
+  def activity_name
+    activity.activity
   end
   
   def score_of(student)
@@ -68,7 +67,7 @@ class Exam < ActiveRecord::Base
   end
   
   def similar
-    klass.exams.find_all_by_exam_type_id_and_academic_year_id_and_subject_id(exam_type.id, academic_year.id, subject.id)
+    klass.exams.find_all_by_activity_id_and_academic_year_id_and_subject_id(activity.id, academic_year.id, subject.id)
   end
 
 end

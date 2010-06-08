@@ -18,6 +18,26 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
     t.datetime "updated_at"
   end
 
+  create_table "activities", :force => true do |t|
+    t.string   "activity"
+    t.boolean  "extendable"
+    t.integer  "assessment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activities", ["assessment_id"], :name => "assessment_id"
+
+  create_table "assessments", :force => true do |t|
+    t.string   "assessment_type"
+    t.string   "name"
+    t.string   "term"
+    t.integer  "max_score"
+    t.integer  "weightage",       :limit => 10, :precision => 10, :scale => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "conversations", :force => true do |t|
     t.string   "subject",    :default => ""
     t.datetime "created_at",                 :null => false
@@ -55,19 +75,9 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
 
   add_index "events", ["event_series_id"], :name => "event_series_id"
 
-  create_table "exam_types", :force => true do |t|
-    t.string   "name"
-    t.string   "assessment_type"
-    t.string   "term"
-    t.string   "activity"
-    t.boolean  "extendable"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "exams", :force => true do |t|
     t.string   "description"
-    t.integer  "exam_type_id",     :null => false
+    t.integer  "activity_id",      :null => false
     t.integer  "subject_id",       :null => false
     t.integer  "event_id"
     t.integer  "klass_id",         :null => false
@@ -77,7 +87,7 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
     t.datetime "updated_at"
   end
 
-  add_index "exams", ["exam_type_id"], :name => "exam_type_id"
+  add_index "exams", ["activity_id"], :name => "activity_id"
   add_index "exams", ["subject_id"], :name => "subject_id"
   add_index "exams", ["event_id"], :name => "event_id"
   add_index "exams", ["klass_id"], :name => "klass_id"
@@ -280,6 +290,8 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
     t.datetime "updated_at"
   end
 
+  add_foreign_key "activities", ["assessment_id"], "assessments", ["id"], :name => "activities_ibfk_1"
+
   add_foreign_key "event_series", ["user_id"], "users", ["id"], :name => "event_series_ibfk_1"
 
   add_foreign_key "event_series_users", ["event_series_id"], "event_series", ["id"], :name => "event_series_users_ibfk_1"
@@ -287,7 +299,7 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
 
   add_foreign_key "events", ["event_series_id"], "event_series", ["id"], :name => "events_ibfk_1"
 
-  add_foreign_key "exams", ["exam_type_id"], "exam_types", ["id"], :name => "exams_ibfk_1"
+  add_foreign_key "exams", ["activity_id"], "activities", ["id"], :name => "exams_ibfk_1"
   add_foreign_key "exams", ["subject_id"], "subjects", ["id"], :name => "exams_ibfk_2"
   add_foreign_key "exams", ["event_id"], "events", ["id"], :name => "exams_ibfk_3"
   add_foreign_key "exams", ["klass_id"], "klasses", ["id"], :name => "exams_ibfk_4"

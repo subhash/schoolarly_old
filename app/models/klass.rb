@@ -12,7 +12,7 @@ class Klass < ActiveRecord::Base
     end  
   end
   has_many :student_users, :through => :students, :source => :user
-  has_many :exams, :include => [:exam_type, :event],  :order => "exam_types.name, exam_types.activity" do
+  has_many :exams, :include => [:activity, :event],  :order => "activity_id" do
     def future_for(subject_id)
       find :all, :conditions => ["event_id IS NOT NULL AND events.end_time > ? AND subject_id = ?", Time.zone.now, subject_id]
     end
