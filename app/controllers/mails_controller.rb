@@ -11,7 +11,10 @@ class MailsController < ApplicationController
     end
     render :template => 'mails/create_success'
   rescue Exception => e
-    flash.now[:notice] = e.message + 'Error occurred during posting. Try again...'
+    #flash.now[:notice] = e.message + 'Error occurred during posting. Try again...'
+    selected_users = @mail.conversation.users if @mail
+    @selected_user_ids = selected_users.collect{|u| u.id} if @mail
+    @users = !selected_users.nil? ? selected_users : current_user.person.is_a?(SchoolarlyAdmin) ? User.all : (!current_user.person.school.nil? ? current_user.person.school.users : [])
     render :template => 'mails/create_failure'  
   end
   
