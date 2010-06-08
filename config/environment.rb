@@ -46,3 +46,6 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
   require 'custom_in_place_editing'
 end
+
+  require 'my_active_record_extensions'
+  ActiveRecord::Base.send(:include, MyActiveRecordExtensions)
