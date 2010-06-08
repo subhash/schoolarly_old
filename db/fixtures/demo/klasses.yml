@@ -1,173 +1,144 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
 1A:
   id: 1
   level_id: 7
   division: A
   school_id: 1
 #  class_teacher: sunil
-
 1B:
   id: 2
   level_id: 7
   division: B
   school_id: 1
 #  teacher_id: 2
-
 1C:
   id: 3
   level_id: 7
   division: C
   school_id: 1
   #  class_teacher: teacher_antony
-  
 2A:
   id: 4
   level_id: 8
   division: A
   school_id: 1
   #  class_teacher: teacher_antony
-  
 2B:
   id: 5
   level_id: 8
   division: B
   school_id: 1
   #  class_teacher: teacher_antony
-  
 2C:
   id: 6
   level_id: 8
   division: C
   school_id: 1
   #  class_teacher: teacher_antony
-  
 3A:
   id: 7
   level_id: 9
   division: A
   school_id: 1
-  
 3B:
   id: 8
   level_id: 9
   division: B
   school_id: 1
-
 3C:
   id: 9
   level_id: 9
   division: C
   school_id: 1
-
 4A:
   id: 10
   level_id: 10
   division: A
   school_id: 1
-  
 4B:
   id: 11
   level_id: 10
   division: B
   school_id: 1
-
 4C:
   id: 12
   level_id: 10
   division: C
   school_id: 1
-  
 5A:
   id: 13
   level_id: 11
   division: A
   school_id: 1
-  
 5B:
   id: 14
   level_id: 11
   division: B
   school_id: 1
-
 6A:
   id: 15
   level_id: 12
   division: A
   school_id: 1
-  
 6B:
   id: 16
   level_id: 12
   division: B
   school_id: 1
-  
 7A:
   id: 17
   level_id: 13
   division: A
   school_id: 1
-
 7B:
   id: 18
   level_id: 13
   division: B
   school_id: 1
-
 8A:
   id: 19
   level_id: 14
   division: A
   school_id: 1
-
 8B:
   id: 20
   level_id: 14
   division: B
   school_id: 1
-
 9A:
   id: 21
   level_id: 15
   division: A
   school_id: 1
-
 9B:
   id: 22
   level_id: 15
   division: B
   school_id: 1
-
 10A:
   id: 23
   level_id: 16
   division: A
   school_id: 1
-
 10B:
   id: 24
   level_id: 16
   division: B
   school_id: 1
-
 11A:
   id: 25
   level_id: 17
   division: A
   school_id: 1
-
 11B:
   id: 26
   level_id: 17
   division: B
   school_id: 1
-
 12A:
   id: 27
   level_id: 18
   division: A
   school_id: 1
-
 12B:
   id: 28
   level_id: 18

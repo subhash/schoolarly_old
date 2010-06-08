@@ -8,7 +8,6 @@
  perishable_token: <%= Authlogic::Random.friendly_token %>
  person_id: 1
  person_type: SchoolarlyAdmin
- 
 2:
  id: 2
  email: stteresas@schoolarly.com
