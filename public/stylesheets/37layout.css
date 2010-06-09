@@ -588,6 +588,17 @@ table.scores .gross{
     margin-left: 0px;
 }
 
+#notice { 
+    position: fixed; 
+	bottom: 0; 
+	right: 0; 
+	left: 68%;
+	background-color: #003366;
+	color: grey;
+	font-weight: bolder;
+	padding: 12px;
+	text-align: center;
+}
 
 .inputs li {
     width: 30%;
