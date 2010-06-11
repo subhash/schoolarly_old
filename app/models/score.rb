@@ -28,6 +28,6 @@ class Score < ActiveRecord::Base
   
   # aggregate for scores for same subject in one subject & one term,  passed as a collection
   def self.total(scores)
-    scores.group_by{|s|s.exam.activity_name}.collect{|activity, a_scores| weighted_aggregate(a_scores)}.sum
+    scores.group_by{|s|s.exam.name}.collect{|activity, a_scores| weighted_aggregate(a_scores)}.sum
   end
 end

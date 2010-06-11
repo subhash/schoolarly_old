@@ -37,7 +37,6 @@
     <!-- header row end-->
     <!-- creating subject rows -->
     <% scores.select{|s|s.exam.term == term }.group_by{|s| s.exam.subject }.each do |subject, s_scores| %>
-	<% puts "scores = "+s_scores.inspect%>
     <tr>
         <td colspan="2">
             <%= subject.name %>
