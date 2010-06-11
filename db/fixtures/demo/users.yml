@@ -98,3 +98,403 @@
  perishable_token: <%= Authlogic::Random.friendly_token %>
  person_id: 9
  person_type: School
+11:
+ id: 11
+ email: marykkutty@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 1
+ person_type: Teacher
+12:
+ id: 12
+ email: subramaniam@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 2
+ person_type: Teacher
+13:
+ id: 13
+ email: sunil@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 3
+ person_type: Teacher
+14:
+ id: 14
+ email: treasa@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 4
+ person_type: Teacher
+15:
+ id: 15
+ email: antony@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 5
+ person_type: Teacher
+16:
+ id: 16
+ email: anitha@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 6
+ person_type: Teacher
+17:
+ id: 17
+ email: christabelle@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 7
+ person_type: Teacher
+18:
+ id: 18
+ email: catherine@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 8
+ person_type: Teacher
+19:
+ id: 19
+ email: anju@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 9
+ person_type: Teacher
+20:
+ id: 20
+ email: anna@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 10
+ person_type: Teacher
+21:
+ id: 21
+ email: alice@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 11
+ person_type: Teacher
+22:
+ id: 22
+ email: sudha@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 12
+ person_type: Teacher
+23:
+ id: 23
+ email: betty@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 13
+ person_type: Teacher
+24:
+ id: 24
+ email: shilpa@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 14
+ person_type: Teacher
+25:
+ id: 25
+ email: helen@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 15
+ person_type: Teacher
+26:
+ id: 26
+ email: usha@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 16
+ person_type: Teacher
+27:
+ id: 27
+ email: divya@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 17
+ person_type: Teacher
+28:
+ id: 28
+ email: raechal@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 18
+ person_type: Teacher
+29:
+ id: 29
+ email: roselin@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 19
+ person_type: Teacher
+30:
+ id: 30
+ email: preethi@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 20
+ person_type: Teacher
+31:
+ id: 31
+ email: annie@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 1
+ person_type: Student
+32:
+ id: 32
+ email: arti@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 2
+ person_type: Student
+33:
+ id: 33
+ email: coonie@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 3
+ person_type: Student
+34:
+ id: 34
+ email: reeny@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 4
+ person_type: Student
+35:
+ id: 35
+ email: shanthi@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 5
+ person_type: Student
+36:
+ id: 36
+ email: sareena@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 6
+ person_type: Student
+37:
+ id: 37
+ email: reshma@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 7
+ person_type: Student
+38:
+ id: 38
+ email: babitha@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 8
+ person_type: Student
+39:
+ id: 39
+ email: sumina@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 9
+ person_type: Student
+40:
+ id: 40
+ email: sheena@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 10
+ person_type: Student
+41:
+ id: 41
+ email: smitha@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 11
+ person_type: Student
+42:
+ id: 42
+ email: christina@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 12
+ person_type: Student
+43:
+ id: 43
+ email: cisy@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 13
+ person_type: Student
+44:
+ id: 44
+ email: teena@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 14
+ person_type: Student
+45:
+ id: 45
+ email: tarana@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 15
+ person_type: Student
+46:
+ id: 46
+ email: madhubala@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 16
+ person_type: Student
+47:
+ id: 47
+ email: priya@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 17
+ person_type: Student
+48:
+ id: 48
+ email: chithra@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 18
+ person_type: Student
+49:
+ id: 49
+ email: nithya@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 19
+ person_type: Student
+50:
+ id: 50
+ email: vidya@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_id: 20
+ person_type: Student

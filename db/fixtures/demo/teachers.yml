@@ -1,0 +1,62 @@
+marykkutty:
+  id: 1 
+  school_id: 1
+  qualifications: 'MPhil., MSc. Physics'
+subramaniam:
+  id: 2
+  school_id: 1
+  qualifications: 'PhD., MSc. Mathematics'
+sunil:
+  id: 3
+  school_id: 1
+treasa:
+  id: 4
+  school_id: 1
+antony:
+  id: 5
+  school_id: 1
+anitha:
+  id: 6
+  qualifications: 'MA in English from Kerala University'
+christabelle:
+  id: 7
+  school_id: 1
+catherine:
+  id: 8
+  school_id: 1
+anju:
+  id: 9
+  school_id: 1  
+anna:
+  id: 10
+  school_id: 1
+alice:
+  id: 11
+  school_id: 1  
+sudha:
+  id: 12
+  school_id: 1
+betty:
+  id: 13
+  school_id: 1
+shilpa:
+  id: 14
+  school_id: 1  
+helen:
+  id: 15
+  school_id: 1
+usha:
+  id: 16
+  school_id: 1
+divya:
+  id: 17
+  school_id: 1
+raechal:
+  id: 18
+  school_id: 1
+roselin:
+  id: 19
+  school_id: 1  
+preethi:
+  id: 20
+  school_id: 1
