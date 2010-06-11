@@ -1,8 +1,8 @@
 <% render_actions do |add| %>
-<% add.dialog 'Add/Remove Papers', :partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers} if @school %>
-<% add.dialog 'Add to school', :partial =>'schools/add_to_school_form', :locals => {:entity => @teacher, :schools => School.all} unless @school %>
+<% add.dialog 'Add/Remove Papers', :partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers} if @school && (permitted_to? :update, @teacher)%>
+<% add.dialog 'Add to school', :partial =>'schools/add_to_school_form', :locals => {:entity => @teacher, :schools => School.all} if !@school && (permitted_to? :update, @teacher)%>
 <% add.link 'Profile', {:controller => :user_profiles, :action => :show , :id => @teacher.user} %>
-<% add.dialog 'Post Message to ' + @teacher.name, :partial => 'mails/new_form', :locals => {:users => [@teacher.user], :selected_users => [@teacher.user.id]} if is_messageable?(@teacher) %>
+<% add.dialog 'Post Message to ' + @teacher.name, :partial => 'mails/new_form', :locals => {:users => [@teacher.user], :selected_users => [@teacher.user.id]} if permitted_to? :read, @teacher %>
 <% end %>
 
 <% render_breadcrumbs do |add| %>

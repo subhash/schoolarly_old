@@ -43,6 +43,7 @@ authorization do
   
   role :schoolarly_admin do
     has_permission_on [:schools, :teachers, :students, :klasses, :exams, :papers], :to => :manage
+    #has_permission_on :authorization_rules, :to => :manage
   end
   
 end
