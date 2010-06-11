@@ -99,6 +99,11 @@ module ApplicationHelper
         tab new_args.merge(args)
       end
       
+      def sep_tab(args={})
+        new_args = {:tab => :sep, :title => 'Student Evaluation Profile', :partial => 'scores/sep'}
+        tab new_args.merge(args)
+      end
+      
       def messages_tab(args={})
         mailboxes = ['inbox', 'sentbox', 'trash']
         new_args = {:tab => :messages, :title => 'Messages', :partial => 'mails/mailboxes', :object => mailboxes, :header => {:partial => 'mails/messages_header', :locals => {:mailboxes => mailboxes} } }

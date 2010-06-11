@@ -1,0 +1,63 @@
+<% Activity.all.group_by{|a| a.assessment.term }.each do |term, activities| %>
+<table class = "sep">
+    <tr class="heading">
+        <th>
+            <h1><%= "Term#{term}" %></h1>
+        </th>
+    </tr>
+    <!-- creating header row !-->
+    <!-- nested hash - FA => FA1 => [] -->
+    <% h = {} %>
+    <% activities.each do |a| %>
+    <% h[a.assessment.assessment_type] = {} unless h.has_key?(a.assessment.assessment_type) %>
+    <% h[a.assessment.assessment_type][a.assessment.name] = [] unless h[a.assessment.assessment_type].has_key?(a.assessment.name) %>
+    <% h[a.assessment.assessment_type][a.assessment.name] << a %>
+    <% end %>
+    <% activities = h.sort %>
+    <tr>
+        <th colspan="2">
+            Subject
+        </th>
+        <% activities.each do |type, t_acts| %>
+        <% t_acts.each do |name, n_acts| %>
+        <th>
+            <%="#{name}-#{n_acts.first.assessment.weightage * 100}%" %>
+        </th>
+        <% end %>
+        <% if t_acts.size > 1 %>
+        <th>
+            TOTAL(<%=type %>)
+        </th>
+        <%end %>
+        <% end %>
+        <th>
+            Total - Term<%=term %>
+        </th>
+    </tr>
+    <!-- header row end-->
+    <!-- creating subject rows -->
+    <% scores.select{|s|s.exam.term == term }.group_by{|s| s.exam.subject }.each do |subject, s_scores| %>
+	<% puts "scores = "+s_scores.inspect%>
+    <tr>
+        <td colspan="2">
+            <%= subject.name %>
+        </td>
+        <% activities.each do |type, t_acts| %>
+        <% t_acts.each do |name, n_acts| %>
+        <td>
+            <%=Score.weighted_aggregate(s_scores.select{|s|s.exam.name == name}) %>
+        </td>
+        <% end %>
+        <% if t_acts.size > 1 %>
+        <td>
+            <%=Score.total(s_scores.select{|s|s.exam.assessment_type == type}) %>
+        </td>
+        <%end %>
+        <% end %>
+        <td>
+            <%=Score.total(s_scores) %>
+        </td>
+    </tr>
+    <% end %>
+</table>
+<% end %>

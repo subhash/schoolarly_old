@@ -5,7 +5,7 @@ class CreateAssessments < ActiveRecord::Migration
       t.string :name
       t.string :term
       t.integer :max_score
-      t.decimal :weightage
+      t.decimal :weightage, :precision => 3, :scale => 2, :default =>  1
       t.timestamps
     end
   end
