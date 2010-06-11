@@ -17,6 +17,8 @@ class Klass < ActiveRecord::Base
       find :all, :conditions => ["event_id IS NOT NULL AND events.end_time > ? AND subject_id = ?", Time.zone.now, subject_id]
     end
   end
+  
+  has_many :activities, :through => :exams, :uniq => true
   has_one :academic_year, :through => :school
   
   validates_uniqueness_of :division, :scope => [:school_id, :level_id]

@@ -2,7 +2,7 @@
 <table class = "scores">
     <tr class="heading">
         <th colspan="2">
-            <h1><%= name %></h1>
+            <h1><%= "#{name}-Scores out of #{e_scores.first.max_score}" %></h1>
         </th>
     </tr>
     <% e_scores.group_by{|score| score.exam.subject}.each do |subject, s_scores| %>
@@ -18,12 +18,12 @@
                 </span></span>
             <% end %>
             <% if a_scores.size > 1 %>
-            <span class="average"><%=  Score.aggregate(a_scores) %>
+            <span class="average"><%=  Score.mean(a_scores) %>
             </span>
             <% end %>
         </td>
         <% end %>
-        <% unless s_scores.first.exam.assessment_type == "SA" %>
+        <% unless s_scores.first.exam.assessment_type == "SA" or  Score.aggregate(s_scores).nil? %>
         <td class="right">
             <span class="label">Average<span class="gross"><%= Score.aggregate(s_scores) %></span></span>
         </td>
