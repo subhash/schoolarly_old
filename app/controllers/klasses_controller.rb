@@ -3,7 +3,7 @@ class KlassesController < ApplicationController
   before_filter :find_school , :only => [:new, :create]
   
   def index
-    @klasses=Klass.all :order => "school_id, level, division"
+    @klasses=Klass.all :order => "school_id, level_id, division"
   end
   
   def create
