@@ -5,11 +5,6 @@ class ExamsController < ApplicationController
   def get_entity(entity_class,entity_id)
     Object.const_get(entity_class).find(entity_id)
   end
-  
-  def show
-    @exam=Exam.find(params[:id])
-    @exams = [@exam]
-  end
  
   def edit
     session[:redirect] = request.request_uri
@@ -52,5 +47,16 @@ class ExamsController < ApplicationController
       render :template => 'exams/destroy_failure'
     end
   end  
+  
+  def edit_scores
+    @exam  = Exam.find_by_id(params[:id])
+  end
+  
+    
+  def view_scores
+    @exam=Exam.find(params[:id])
+  end
+  
+  
   
 end

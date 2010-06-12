@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   
   #map.resources :messages
   
-  map.resources :exams
+  map.resources :exams, :member => {:edit_scores => :get, :view_scores => :get}
   
   map.resources :teachers
   

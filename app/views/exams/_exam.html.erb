@@ -13,11 +13,11 @@
         <span><%=link_to exam.teacher.name, exam.teacher if !exam.teacher.nil? %>
         </span>
         <% permitted_to? :read, exam do %>
-        <span><%=link_to 'View Scores', exam, :title => 'View Scores' %>
+        <span><%=link_to 'View Scores',view_scores_exam_path(exam) %>
         </span>
         <% end %>
         <% permitted_to? :edit, exam do %>
-        <span><%=link_to 'Edit Scores', exam, :title => 'Edit Scores' %>
+        <span><%=link_to 'Edit Scores',  edit_scores_exam_path(exam) %>
         </span>
         <span><%= link_to_remote 'Edit', :url =>  {:controller => :exams, :action => 'edit', :id => exam }, :method => :get, :html => {:title => 'Edit'} %>
         </span>
