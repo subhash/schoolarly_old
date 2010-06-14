@@ -32,7 +32,7 @@ class Score < ActiveRecord::Base
   # weighted aggregate for scores for same subject in one category (eg. FA1)
   def self.weighted_aggregate(scores)
     unless scores.blank? or aggregate(scores).nil?
-     (aggregate(scores)/scores.first.max_score) * scores.first.weightage * 100
+     (aggregate(scores)/scores.first.max_score) * scores.first.weightage
     else nil
     end
   end

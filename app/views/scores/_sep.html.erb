@@ -22,7 +22,7 @@
         <% activities.each do |type, t_acts| %>
         <% t_acts.each do |name, n_acts| %>
         <th>
-            <%="#{name}-#{n_acts.first.assessment.weightage * 100}%" %>
+            <%="#{name}-#{n_acts.first.assessment.weightage}%" %>
         </th>
         <% end %>
         <% if t_acts.size > 1 %>

@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
     t.string   "name"
     t.string   "term"
     t.integer  "max_score"
-    t.integer  "weightage",       :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "weightage",       :precision => 5, :scale => 2, :default => 100.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
