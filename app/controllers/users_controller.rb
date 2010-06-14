@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_filter :require_user
+  
+  before_filter :check_admin
   
   def new
     @user = User.new
@@ -88,6 +89,15 @@ class UsersController < ApplicationController
     end
     @teachers=Teacher.all
     render :template => 'teachers/remove'
+  end
+  
+  private
+  
+  def check_admin
+    unless current_user.person.kind_of? SchoolarlyAdmin
+      flash[:notice] = "You are not authorized to view admin pages" 
+      redirect_to current_user.person
+    end
   end
   
 end
