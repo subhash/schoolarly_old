@@ -1,0 +1,20 @@
+<% colNames = ["Student email", "Name"]+ exams.collect(&:activity_name) %>
+<% colModel = [{:width => 130,
+:index => 'email',
+:name => 'email',
+:editable =>  false},
+{:width => 130,
+:index => 'name',
+:name => 'name',
+:editable =>  false}] %>
+<% exams.each do |exam| %>
+<% colModel << {:width => 50, :index => exam.id, :name => exam.id, :editable => true} %>
+<% end %>
+<%= jquery_grid :scores_multiple, {:colNames => colNames, :colModel => colModel, :url => grid_data_multiple_scores_url(:exams => exams.collect(&:id)), :editurl => row_edit_multiple_scores_url(:exams => exams.collect(&:id)) } %>
+<center>
+    <div style="background :black; color:white">
+        Scores for <%= exams.first.title %>
+    </div>
+    <%= jquery_grid_table %>
+    <%= jquery_grid_pager %>
+</center>

@@ -8,13 +8,14 @@
             <h1><%= "Term#{term}" %></h1>
         </th>
     </tr>
-    <!-- creating header row !--><!-- nested hash - FA => FA1 => [] --><% h = {} %>
+    <!-- creating header row !--><!-- nested hash - FA => FA1 => [] -->
+	<% h = ActiveSupport::OrderedHash.new %>
     <% activities.each do |a| %>
-    <% h[a.assessment.assessment_type] = {} unless h.has_key?(a.assessment.assessment_type) %>
+    <% h[a.assessment.assessment_type] = ActiveSupport::OrderedHash.new unless h.has_key?(a.assessment.assessment_type) %>
     <% h[a.assessment.assessment_type][a.assessment.name] = [] unless h[a.assessment.assessment_type].has_key?(a.assessment.name) %>
     <% h[a.assessment.assessment_type][a.assessment.name] << a %>
     <% end %>
-    <% activities = h.sort %>
+    <% activities = h %>
     <tr class="sub-heading">
         <th colspan="2">
             Subject
@@ -35,7 +36,10 @@
             Total - Term<%=term %>
         </th>
     </tr>
-    <!-- header row end--><!-- creating subject rows --><% scores.select{|s|s.exam.term == term }.group_by{|s| s.exam.subject }.each do |subject, s_scores| %>
+    <!-- header row end-->
+	<!-- creating subject rows -->
+	
+	<% scores.select{|s|s.exam.term == term }.group_by{|s| s.exam.subject }.each do |subject, s_scores| %>
     <%term_totals[subject.name] = 0 %>
     <tr>
         <td colspan="2">

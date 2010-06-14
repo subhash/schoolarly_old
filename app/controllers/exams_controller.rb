@@ -5,7 +5,7 @@ class ExamsController < ApplicationController
   def get_entity(entity_class,entity_id)
     Object.const_get(entity_class).find(entity_id)
   end
- 
+  
   def edit
     session[:redirect] = request.request_uri
     @exam = Exam.find(params[:id])
@@ -31,11 +31,11 @@ class ExamsController < ApplicationController
   end
   
   def add
-     @old_exam = Exam.find(params[:id])
-     @exam = Exam.new(@old_exam.attributes)
-     @exam.description = ""
-     @exam.event = nil
-     @exam.save
+    @old_exam = Exam.find(params[:id])
+    @exam = Exam.new(@old_exam.attributes)
+    @exam.description = ""
+    @exam.event = nil
+    @exam.save
   end
   
   def destroy
@@ -52,7 +52,11 @@ class ExamsController < ApplicationController
     @exam  = Exam.find_by_id(params[:id])
   end
   
-    
+  def edit_scores_for_multiple
+    @exams = Exam.find_all_by_id(params[:ids])
+    @exam = @exams.first
+  end
+  
   def view_scores
     @exam=Exam.find(params[:id])
   end

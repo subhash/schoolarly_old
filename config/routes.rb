@@ -1,12 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.resources :scores, :collection => {:grid_data => :get, :row_edit => :post}
+  map.resources :scores, :collection => {:grid_data => :get, :row_edit => :post, :grid_data_multiple => :get, :row_edit_multiple => :post}
 
   map.resources :leave_requests
   
   #map.resources :messages
   
-  map.resources :exams, :member => {:edit_scores => :get, :view_scores => :get}
+  map.resources :exams, :member => {:edit_scores => :get, :view_scores => :get} , :collection => {:edit_scores_for_multiple => :get}
   
   map.resources :teachers
   
