@@ -16,6 +16,7 @@
         <%= javascript_include_tag 'fullcalendar', 'gcal', 'calendar' %>
         <%= stylesheet_link_tag "style", 'fullcalendar' %>
         <%= calendar_date_select_includes 'default' %>
+		<%= stylesheet_link_tag('print', :media => :print) %>
     </head>
     <body>
         <!-- Missing: Header with home, logout etc., Footer with about, contact etc,. Flash message box, Breadcrumbs-->

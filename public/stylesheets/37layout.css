@@ -568,6 +568,11 @@ table.sep .sub-heading {
 	background-color: #F5DFAC;
 }
 
+.print {
+    padding: 10px 10px;
+	text-align: right;
+}
+
 #notice {
     position: fixed;
     bottom: 0;
