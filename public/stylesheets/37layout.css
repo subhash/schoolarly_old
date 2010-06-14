@@ -550,7 +550,24 @@ table.scores .average {
 table.scores .emphasis {
 	font-weight: bolder;
 }
+
+table.sep {
+	background-color: #F6EFE1;
+}
+
+table.sep tr:even {
+	background-color: white;
+}
  
+table.sep .heading {
+	background-color: gray;
+	color: black;
+}
+
+table.sep .sub-heading {
+	background-color: #F5DFAC;
+}
+
 #notice {
     position: fixed;
     bottom: 0;

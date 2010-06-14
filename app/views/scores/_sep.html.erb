@@ -4,7 +4,7 @@
 <% terms << term %>
 <table class = "sep">
     <tr class="heading">
-        <th>
+        <th  colspan="7">
             <h1><%= "Term#{term}" %></h1>
         </th>
     </tr>
@@ -15,7 +15,7 @@
     <% h[a.assessment.assessment_type][a.assessment.name] << a %>
     <% end %>
     <% activities = h.sort %>
-    <tr>
+    <tr class="sub-heading">
         <th colspan="2">
             Subject
         </th>
@@ -64,7 +64,7 @@
 <!-- create grand total & grade table -->
 <table class = "sep">
     <tr class="heading">
-        <th>
+        <th colspan="7">
             <h1><%= "Term#{terms.first}#{terms.from(1).collect{|t|"+"+t}}" %></h1>
         </th>
     </tr>
