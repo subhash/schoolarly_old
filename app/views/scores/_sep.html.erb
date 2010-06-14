@@ -1,13 +1,14 @@
+<% term_totals = ActiveSupport::OrderedHash.new %>
+<%terms = [] %>
 <% Activity.all.group_by{|a| a.assessment.term }.each do |term, activities| %>
+<% terms << term %>
 <table class = "sep">
     <tr class="heading">
         <th>
             <h1><%= "Term#{term}" %></h1>
         </th>
     </tr>
-    <!-- creating header row !-->
-    <!-- nested hash - FA => FA1 => [] -->
-    <% h = {} %>
+    <!-- creating header row !--><!-- nested hash - FA => FA1 => [] --><% h = {} %>
     <% activities.each do |a| %>
     <% h[a.assessment.assessment_type] = {} unless h.has_key?(a.assessment.assessment_type) %>
     <% h[a.assessment.assessment_type][a.assessment.name] = [] unless h[a.assessment.assessment_type].has_key?(a.assessment.name) %>
@@ -34,9 +35,8 @@
             Total - Term<%=term %>
         </th>
     </tr>
-    <!-- header row end-->
-    <!-- creating subject rows -->
-    <% scores.select{|s|s.exam.term == term }.group_by{|s| s.exam.subject }.each do |subject, s_scores| %>
+    <!-- header row end--><!-- creating subject rows --><% scores.select{|s|s.exam.term == term }.group_by{|s| s.exam.subject }.each do |subject, s_scores| %>
+    <%term_totals[subject.name] = 0 %>
     <tr>
         <td colspan="2">
             <%= subject.name %>
@@ -54,9 +54,42 @@
         <%end %>
         <% end %>
         <td>
-            <%=Score.total(s_scores) %>
+            <%= (total = Score.total(s_scores)) %>
+            <% total ? term_totals[subject.name]+= total : term_totals[subject.name] = nil %>
         </td>
     </tr>
     <% end %>
 </table>
 <% end %>
+<!-- create grand total & grade table -->
+<table class = "sep">
+    <tr class="heading">
+        <th>
+            <h1><%= "Term#{terms.first}#{terms.from(1).collect{|t|"+"+t}}" %></h1>
+        </th>
+    </tr>
+    <tr>
+        <th colspan="2">
+            Subject
+        </th>
+        <th>
+            Grand TOTAL(All terms) 
+        </th>
+        <th>
+            Grade
+        </th>
+    </tr>
+    <% term_totals.each do |subject, total| %>
+    <tr>
+        <td colspan="2">
+            <%=subject %>
+        </td>
+        <td>
+            <%= total %>
+        </td>
+        <td>
+            <%= Score.grade(total) if total %>
+        </td>
+    </tr>
+    <% end %>
+</table>

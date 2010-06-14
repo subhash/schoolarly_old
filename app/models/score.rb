@@ -46,4 +46,28 @@ class Score < ActiveRecord::Base
       nil
     end
   end
+  
+  #  score as a number
+  def self.grade(score)
+    case score
+      when score >= 91
+      return :A1
+      when score >=81
+      return :A2
+      when score >=71
+      return :B1
+      when score >=61
+      return :B2
+      when score >=51
+      return :C1
+      when score >=41
+      return :C2
+      when score >=33
+      return :D
+      when score >=21
+      return :E1
+    else
+      return :E2      
+    end
+  end
 end
