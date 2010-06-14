@@ -1,6 +1,6 @@
 <tr id="exam-<%=exam.id%>">
     <td class="left">
-        <%= exam.assessment_type == "SA" ? exam.subject.name : exam.activity_name %>
+        <%= link_to_if (permitted_to? :read, exam), (exam.assessment_type == "SA" ? exam.subject.name : exam.activity_name), view_scores_exam_path(exam)  %>
     </td>
     <td>
         <%= exam.description %>
@@ -12,14 +12,10 @@
         <%end %>
         <span><%=link_to exam.teacher.name, exam.teacher if !exam.teacher.nil? %>
         </span>
-        <% permitted_to? :read, exam do %>
-        <span><%=link_to 'View Scores',view_scores_exam_path(exam) %>
-        </span>
-        <% end %>
         <% permitted_to? :edit, exam do %>
-        <span><%=link_to 'Edit Scores',  edit_scores_exam_path(exam) %>
+        <span><%=link_to 'Enter Scores',  edit_scores_exam_path(exam) %>
         </span>
-        <span><%= link_to_remote 'Edit', :url =>  {:controller => :exams, :action => 'edit', :id => exam }, :method => :get, :html => {:title => 'Edit'} %>
+        <span><%= link_to_remote 'Edit exam', :url =>  {:controller => :exams, :action => 'edit', :id => exam }, :method => :get, :html => {:title => 'Edit'} %>
         </span>
         <% end %>
         <% permitted_to? :create, :exams do %>
