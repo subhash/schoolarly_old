@@ -3,6 +3,8 @@ class Score < ActiveRecord::Base
   belongs_to :exam
   has_one :klass, :through => :exam
   
+  after_create :send_message
+  
   def max_score
     exam.activity.assessment.max_score
   end
@@ -11,6 +13,10 @@ class Score < ActiveRecord::Base
     exam.activity.assessment.weightage
   end
   
+  def send_message
+    str = "Score in #{exam.title} - #{score}/#{max_score} "
+    student.school.user.send_message([student.user], str, str) unless @mail
+  end  
   
   def self.mean(scores)
     Score.average(:score, :conditions => {:id => scores.collect(&:id)})
