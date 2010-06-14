@@ -1,4 +1,3 @@
-
 Level.create_or_update(:id => 1, :name => '1', :description => '1')
 Level.create_or_update(:id => 2, :name => '2', :description => '2')
 Level.create_or_update(:id => 3, :name => '3', :description => '3')
