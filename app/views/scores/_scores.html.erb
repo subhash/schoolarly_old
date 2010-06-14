@@ -10,24 +10,22 @@
         <td class="left">
             <%=subject.name %>
         </td>
-        <% s_scores.group_by{|score| score.exam.activity_name}.each do |activity, a_scores| %>
         <td class="right">
+            <% s_scores.group_by{|score| score.exam.activity_name}.each do |activity, a_scores| %>
             <span class="activity"><%= activity %>
                 <% a_scores.each do |a_score| %>
                 <span class="score"><%= a_score.score %>
-                </span></span>
-            <% end %>
-            <% if a_scores.size > 1 %>
-            <span class="average"><%=  Score.mean(a_scores) %>
+                </span>
+                <% end %>
+				<% if a_scores.size > 1 %>
+                <span class="average"><%= Score.mean(a_scores) %>
+                </span><% end %>
             </span>
             <% end %>
+            <% unless s_scores.first.exam.assessment_type == "SA" or  Score.aggregate(s_scores).nil? %>
+            <span class="activity emphasis">Average<span class="score emphasis"><%= Score.aggregate(s_scores) %></span></span>
+            <% end %>
         </td>
-        <% end %>
-        <% unless s_scores.first.exam.assessment_type == "SA" or  Score.aggregate(s_scores).nil? %>
-        <td class="right">
-            <span class="label">Average<span class="gross"><%= Score.aggregate(s_scores) %></span></span>
-        </td>
-        <% end %>
     </tr>
     <%end %>
 </table>
