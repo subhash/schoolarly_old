@@ -12,10 +12,12 @@ authorization do
   end
   
   role :student do
-    has_permission_on :students, :to => :read, &same_user
-    has_permission_on [:schools, :klasses, :teachers], :to => :read, &same_school
+    has_permission_on [:schools, :klasses, :teachers, :students], :to => :read, &same_school
     has_permission_on :exams, :to => :read do
       if_attribute :students => contains {user.person}
+    end
+    has_permission_on :scores, :to => :read do
+      if_permitted_to :read, :exam
     end
     has_permission_on :user_profiles, :to => :manage, &same_user
   end
