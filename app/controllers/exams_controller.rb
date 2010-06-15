@@ -49,7 +49,8 @@ class ExamsController < ApplicationController
   end  
   
   def edit_scores
-    @exam  = Exam.find_by_id(params[:id])
+    @exams = Exam.find_all_by_id(params[:ids])
+    @exam = @exams.first
   end
   
   def edit_scores_for_multiple
@@ -58,7 +59,8 @@ class ExamsController < ApplicationController
   end
   
   def view_scores
-    @exam=Exam.find(params[:id])
+    @exams = Exam.find_all_by_id(params[:ids])
+    @exam = @exams.first
   end
   
   

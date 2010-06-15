@@ -5,5 +5,5 @@
 <% end %>
 
 <% render_tabs do |t| %>
-<% t.tab :title => 'Scores', :partial => 'scores/view', :locals => {:exam => @exam}  %>
+<% t.tab :title => 'Scores', :partial => 'scores/edit', :locals => {:exams => @exams, :edit => false}  %>
 <% end %>

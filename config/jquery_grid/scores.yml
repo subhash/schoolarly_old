@@ -3,28 +3,10 @@
 :params: 
   :datatype: xml
   :mtype: GET
-  :colNames: 
-  - Student email
-  - Name
-  - Score
-  :colModel: 
-  - :width: 130
-    :index: email
-    :name: email
-    :editable: false    
-  - :width: 130
-    :index: name
-    :name: name
-    :editable: false
-  - :width: 75
-    :index: score
-    :name: score
-    :sorttype: int
-    :editable: true
   :pager: jQuery('#<grid_name>_pager')
   :function_onSelectRow: "(id)
    	if(id && id!==lastsel2) {
-	  jQuery('#<grid_name>').restoreRow(lastsel2);
+	  jQuery('#<grid_name>').saveRow(lastsel2, true);
 	  jQuery('#<grid_name>').editRow(id,true);
 	  lastsel2=id;
 	}"

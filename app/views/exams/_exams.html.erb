@@ -17,7 +17,7 @@
     <table class="exams">
         <tr>
             <th colspan="2">
-                <h2><%= link_to_if (permitted_to? :manage, s_exams.first), subject, edit_scores_for_multiple_exams_path(:ids => s_exams.collect(&:id)) %></h2>
+                <h2><%= link_to_if (permitted_to? :manage, s_exams.first), subject, edit_scores_exams_path(:ids => s_exams.collect(&:id)) %></h2>
             </th>
         </tr>
         <tbody>
