@@ -554,7 +554,7 @@ table.scores .activity {
     color: white;
     padding: 2px 0px 2px 4px;
     margin-right: 20px;
-    vertical-align: middle;
+
 }
 
 table.scores .score {
@@ -562,7 +562,7 @@ table.scores .score {
     color: black;
    padding: 2px 0px 2px 4px;
     margin-left: 4px;
-    vertical-align: middle;
+
 }
 
 table.scores .average {
@@ -570,7 +570,7 @@ table.scores .average {
     color: white;
     padding: 2px 4px;
     margin-left: 4px;
-    vertical-align: middle;
+
 }
 
 table.scores .emphasis {
