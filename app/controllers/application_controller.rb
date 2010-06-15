@@ -93,6 +93,7 @@ class ApplicationController < ActionController::Base
   rescue_from Exception, :with => :show_exception
   
   def show_exception(exception)
+    puts exception.inspect
     respond_to do |wants|
       flash[:notice] = exception.message
       wants.js { render :update do |page| page.error_dialog exception.message end }
