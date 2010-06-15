@@ -30,6 +30,9 @@ authorization do
     has_permission_on :exams, :to => :manage do
       if_permitted_to :manage, :klass
     end
+    has_permission_on :scores, :to => :manage do
+      if_permitted_to :manage, :exam
+    end
     has_permission_on :papers, :to => :manage do
       if_permitted_to :manage, :klass
     end
