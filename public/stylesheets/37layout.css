@@ -550,7 +550,7 @@ table.scores td.right * {
 }
 
 table.scores .activity {
-    background-color: grey;
+    background-color: darkgrey;
     color: white;
     padding: 2px 0px 2px 4px;
     margin-right: 20px;
@@ -566,7 +566,7 @@ table.scores .score {
 }
 
 table.scores .average {
-    background-color: darkgrey;
+    background-color: grey;
     color: white;
     padding: 2px 4px;
     margin-left: 4px;
