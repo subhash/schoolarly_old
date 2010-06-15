@@ -85,42 +85,60 @@ a.pane-link.active {
     text-decoration: none;
     font-weight: bold;
     color: black;
-} .Left {
+}
+
+.Left {
     margin: 0;
     padding: 0;
     text-align: left;
     width: 68%;
     float: left;
-} .Left .col {
+}
+
+.Left .col {
     padding: 0 8px 0 0;
     background: #fff url(/images/right-bg.gif) right repeat-y;
-} .Left .innercol {
+}
+
+.Left .innercol {
     padding: 15px 60px 20px 23px;
-} .Left .bottom {
+}
+
+.Left .bottom {
     background: url(/images/bottom-bg.gif) top right no-repeat;
     font-size: 8px;
     padding: 12px 0 20px 20px;
-} .Right {
+}
+
+.Right {
     margin: 0;
     padding: 0;
     text-align: left;
     float: left;
     width: 32%;
-} #Tabs {
+}
+
+#Tabs {
     clear: left;
     margin: 15px 0 0 0;
     padding: 0;
     height: 24px;
-} #Tabs ul {
+}
+
+#Tabs ul {
     margin: 0;
     padding: 0;
-} #Tabs li {
+}
+
+#Tabs li {
     margin: 0;
     padding: 0;
     display: inline;
     list-style: none;
     border: none;
-} #Tabs a:link, #Tabs a:visited {
+}
+
+#Tabs a:link, #Tabs a:visited {
     text-decoration: none;
     border: 1px solid #036;
     color: #fff;
@@ -131,9 +149,13 @@ a.pane-link.active {
     font-weight: normal;
     padding: 3px 8px 5px 8px;
     margin: 0;
-} #Tabs ul#header {
+}
+
+#Tabs ul#header {
     float: right;
-} #Tabs li a.current {
+}
+
+#Tabs li a.current {
     border: 1px solid #036;
     border-bottom: 1px solid #1A4F85;
     font-size: 12px;
@@ -144,7 +166,9 @@ a.pane-link.active {
     font-weight: bold;
     text-decoration: none;
     margin: 0;
-} #Tabs a:hover {
+}
+
+#Tabs a:hover {
     color: #fff;
     background: #010a4b;
     border-bottom: 1px solid #010a4b;
@@ -494,50 +518,51 @@ table.profile td.middle {
 }
 
 table.scores {
-    margin-bottom: 30px;
     width: 100%;
 }
 
 table.scores tr {
-    padding-bottom: 4px;
+    border-bottom-style: solid;
+	border-bottom-width: thin;
 }
 
 table.scores .heading * {
-    font-size: 11px;
-    background: grey;
+    font-size: 14px;
+    background: black;
     color: white;
     vertical-align: middle;
 }
 
 table.scores td.left {
-    font-size: 24px;
+    font-size: 14px;
     width: 20%;
 }
 
 table.scores .subject {
     background-color: grey;
     color: white;
-    padding: 2px 4px;
+    vertical-align: middle;
 }
 
 table.scores td.right * {
-    font-size: 9px;
-    margin-bottom: 4px;
+    font-size: 14px;
+    vertical-align: middle;
 }
 
 table.scores .activity {
-    background-color: black;
+    background-color: grey;
     color: white;
     padding: 2px 0px 2px 4px;
     margin-right: 20px;
-	margin-bottom: 2px;
+    vertical-align: middle;
 }
 
 table.scores .score {
     background-color: #F5DFAC;
     color: black;
-    padding: 2px 4px;
+   padding: 2px 0px 2px 4px;
     margin-left: 4px;
+    vertical-align: middle;
 }
 
 table.scores .average {
@@ -545,32 +570,33 @@ table.scores .average {
     color: white;
     padding: 2px 4px;
     margin-left: 4px;
+    vertical-align: middle;
 }
 
 table.scores .emphasis {
-	font-weight: bolder;
+    font-weight: bolder;
 }
 
 table.sep {
-	background-color: #F6EFE1;
+    background-color: #F6EFE1;
 }
 
 table.sep tr:even {
-	background-color: white;
+    background-color: white;
 }
- 
+
 table.sep .heading {
-	background-color: gray;
-	color: black;
+    background-color: gray;
+    color: black;
 }
 
 table.sep .sub-heading {
-	background-color: #F5DFAC;
+    background-color: #F5DFAC;
 }
 
 .print {
     padding: 10px 10px;
-	text-align: right;
+    text-align: right;
 }
 
 #notice {
@@ -583,11 +609,15 @@ table.sep .sub-heading {
     font-weight: bolder;
     padding: 12px;
     text-align: center;
-} .inputs li {
+}
+
+.inputs li {
     width: 30%;
     display: inline;
     padding-right: 10px;
-} .inputs li input {
+}
+
+.inputs li input {
     width: 30px;
 }
 
@@ -596,16 +626,22 @@ li.datetime li {
     display: inline;
 }
 
-/* multiselect styles */ .multiselect {
+/* multiselect styles */
+.multiselect {
     width: 460px;
     height: 200px;
 }
 
-/* css for timepicker */ #ui-timepicker-div dl {
+/* css for timepicker */
+#ui-timepicker-div dl {
     text-align: left;
-} #ui-timepicker-div dl dt {
+}
+
+#ui-timepicker-div dl dt {
     height: 25px;
-} #ui-timepicker-div dl dd {
+}
+
+#ui-timepicker-div dl dd {
     margin: -25px 0 10px 65px;
-} *
-/
+}
+* /
