@@ -19,7 +19,7 @@ class Score < ActiveRecord::Base
   end  
   
   def self.mean(scores)
-    Score.average(:score, :conditions => {:id => scores.collect(&:id)})
+   (scores.sum(&:score).to_f/scores.size).round(3)
   end
   
   # aggregate for scores for same subject in one category (eg. FA1)- hence no filtering for subject or exam name  
@@ -28,7 +28,7 @@ class Score < ActiveRecord::Base
     grouped_scores = scores.group_by{|s|s.exam.activity}
     if grouped_scores.size == scores.first.klass.activities.find_all_by_assessment_id(scores.first.exam.activity.assessment.id).size
       averages = grouped_scores.collect{|a, s| Score.mean(s)}
-       (averages.sum.to_f/averages.size).round(3)
+      (averages.sum.to_f/averages.size).round(3)
     else     
       nil
     end
