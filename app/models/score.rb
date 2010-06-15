@@ -15,7 +15,7 @@ class Score < ActiveRecord::Base
   
   def send_message
     str = "Score in #{exam.title} - #{score}/#{max_score} "
-    student.school.user.send_message([student.user], str, str) unless @mail
+    student.school.user.send_message(student.user, str, str)
   end  
   
   def self.mean(scores)
