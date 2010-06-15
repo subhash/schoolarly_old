@@ -3,7 +3,7 @@ class CreateScores < ActiveRecord::Migration
     create_table :scores do |t|
       t.integer :student_id, :null => false
       t.integer :exam_id, :null => false
-      t.decimal :score
+      t.decimal :score, :precision => 5, :scale => 2
 
       t.timestamps
       

@@ -34,7 +34,7 @@ module Hexagile
       		      <% unless params.keys.include?(key) %>
       		        _ss_<%= key %>: <%= value.to_json %>,
       		      <% end %>
-      		    <% end %> });
+      		    <% end %> }).navGrid("#<%= name %>_pager",{edit:false,add:false,del:false,search:false});
         	  });
           </script>
       CODE
