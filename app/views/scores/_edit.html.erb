@@ -13,7 +13,7 @@
 <%= jquery_grid :scores, {:colNames => colNames, :colModel => colModel, :url => grid_data_scores_url(:exams => exams.collect(&:id)), :editurl => row_edit_scores_url(:exams => exams.collect(&:id)) } %>
 <center>
     <div style="background :black; color:white">
-        Scores for <%= exams.first.title %>
+        Scores for <%= exams.first.name %> - <%=exams.first.subject.name%>
     </div>
     <%= jquery_grid_table %>
     <%= jquery_grid_pager %>
