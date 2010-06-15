@@ -19,13 +19,13 @@ class UsersController < ApplicationController
         page.open_tab @user.person
         page.insert_object @user.person, :partial => "#{@person_type.underscore.pluralize}/#{@person_type.underscore}"
       end
-#      respond_to do |format|
-        flash[:notice] = 'User was successfully created.'
-#        format.html { redirect_back_or_default account_url }
-#        format.js {
-#          render_success :object => @user.person, :insert => {:partial => "#{@person_type.underscore.pluralize}/#{@person_type.underscore}", :object => @user.person} 
-#        }
-#      end     
+      #      respond_to do |format|
+      flash[:notice] = 'User was successfully created.'
+      #        format.html { redirect_back_or_default account_url }
+      #        format.js {
+      #          render_success :object => @user.person, :insert => {:partial => "#{@person_type.underscore.pluralize}/#{@person_type.underscore}", :object => @user.person} 
+      #        }
+      #      end     
     else
       respond_to do |format|          
         format.html { render :action => "new" }        
@@ -95,8 +95,7 @@ class UsersController < ApplicationController
   
   def check_admin
     unless current_user.person.kind_of? SchoolarlyAdmin
-      flash[:notice] = "You are not authorized to view admin pages" 
-      redirect_to current_user.person
+      raise Exception.new "You are not authorized to view admin pages"
     end
   end
   

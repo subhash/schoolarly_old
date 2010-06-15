@@ -90,16 +90,14 @@ class ApplicationController < ActionController::Base
   
   #Exception Handlers
 
-#  rescue_from Exception, :with => :notify_me
-#  rescue_from ActiveRecord::RecordNotFound, :with => :show_errors
-#  rescue_from ActiveRecord::RecordInvalid, :with => :show_errors
-#  rescue_from ActiveRecord::StatementInvalid, :with => :show_errors
-#  rescue_from NoMethodError, :with => :show_errors
+  rescue_from Exception, :with => :show_exception
   
-#  protected
-  
-#  def notify_me(exception)
-#    render :file => "#{RAILS_ROOT}/public/error_page.html"
-#  end
+  def show_exception(exception)
+    respond_to do |wants|
+      flash[:notice] = exception.message
+      wants.js { render :update do |page| page.error_dialog exception.message end }
+      wants.html { render :template => '/common/exception'}
+    end
+  end
   
 end

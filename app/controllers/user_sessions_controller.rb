@@ -18,8 +18,8 @@ class UserSessionsController < ApplicationController
     end
   end
   
-  def destroy    
-    destroyed = current_user_session.destroy
+  def destroy   
+    destroyed = current_user_session.destroy    
     respond_to do |wants|
       wants.js {
         render :update do |page|
