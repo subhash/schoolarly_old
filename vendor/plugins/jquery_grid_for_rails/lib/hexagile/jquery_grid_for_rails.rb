@@ -62,8 +62,7 @@ module Hexagile
     end
     
     def include_jquery_grid_css
-      <<-CSS
-      <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
+      <<-CSS     
       <link href="/stylesheets/ui.jqgrid.css" media="screen" rel="stylesheet" type="text/css" />
       CSS
     end
