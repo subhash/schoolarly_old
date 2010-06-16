@@ -56,16 +56,15 @@ module Hexagile
     
     def include_jquery_grid_javascript
       <<-JS
-      <script src="/javascripts/jquery.jqGrid.js" type="text/javascript"></script>
-      <script src="/javascripts/js/jqModal.js" type="text/javascript"></script>
-      <script src="/javascripts/js/jqDnR.js" type="text/javascript"></script> 
+      <script src="/javascripts/i18n/grid.locale-en.js" type="text/javascript"></script>
+      <script src="/javascripts/jquery.jqGrid.min.js" type="text/javascript"></script>
       JS
     end
     
     def include_jquery_grid_css
       <<-CSS
-      <link href="/stylesheets/jqGrid-themes/basic/grid.css" media="screen" rel="stylesheet" type="text/css" />
-      <link href="/stylesheets/jqGrid-themes/jqModal.css" media="screen" rel="stylesheet" type="text/css" />
+      <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
+      <link href="/stylesheets/ui.jqgrid.css" media="screen" rel="stylesheet" type="text/css" />
       CSS
     end
   end
