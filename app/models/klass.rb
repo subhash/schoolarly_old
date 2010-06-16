@@ -37,6 +37,10 @@ class Klass < ActiveRecord::Base
     exams.find_all_by_academic_year_id(academic_year.id)
   end
   
+  def current_exams_for(assessment, subject)
+     exams.find_all_by_academic_year_id_and_subject_id(academic_year.id, subject.id).select{|e|e.assessment == assessment}
+  end
+  
   def teacher_users
     teachers=self.teachers
     teachers += [class_teacher] if class_teacher && !teachers.include?(class_teacher)

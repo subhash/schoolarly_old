@@ -1,5 +1,6 @@
 class Exam < ActiveRecord::Base
   belongs_to :activity
+  has_one :assessment, :through => :activity
   belongs_to :subject
   belongs_to :teacher
   has_many :scores
@@ -13,15 +14,15 @@ class Exam < ActiveRecord::Base
   accepts_nested_attributes_for :scores
   
   def name
-    activity.assessment.name
+    assessment.name
   end
   
   def assessment_type
-   activity.assessment.assessment_type
+   assessment.assessment_type
   end
   
   def term
-    activity.assessment.term
+    assessment.term
   end
   
   def title
@@ -64,6 +65,10 @@ class Exam < ActiveRecord::Base
   
   def participants
     teacher ? (students + [teacher]) : students
+  end
+  
+  def max_score
+    assessment.max_score
   end
 
 end

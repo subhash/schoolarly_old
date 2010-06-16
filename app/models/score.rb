@@ -1,7 +1,9 @@
 class Score < ActiveRecord::Base
   belongs_to :student
   belongs_to :exam
+  has_one :activity, :through => :exam
   has_one :klass, :through => :exam
+  has_one :subject, :through => :exam
   
   after_create :send_message
   
@@ -26,7 +28,7 @@ class Score < ActiveRecord::Base
   #  applicable only if all the scores are entered for all the activities in FA1
   def self.aggregate(scores)
     grouped_scores = scores.group_by{|s|s.exam.activity}
-    if grouped_scores.size == scores.first.klass.activities.find_all_by_assessment_id(scores.first.exam.activity.assessment.id).size
+    if grouped_scores.size == scores.first.klass.current_exams_for(scores.first.activity.assessment, scores.first.subject).group_by{|e|e.activity}.size
       averages = grouped_scores.collect{|a, s| Score.mean(s)}
       (averages.sum.to_f/averages.size).round(3)
     else     
