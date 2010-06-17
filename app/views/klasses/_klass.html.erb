@@ -13,14 +13,15 @@
             <% klass.subjects.each do |subject| %>
             <span class="subject"><%= subject.name %></span>
             <% end %>
+            <span><%= link_to_remote 'Add Subjects', :url =>{:controller => 'klasses', :action => 'add_subjects', :id => klass} if permitted_to? :update, klass %></span>
         </p>
-		<div>
-			<span><%= pluralize(klass.students.size, 'student') %></span>
-		</div>
-		<div>
-        <% if klass.can_be_destroyed %>
-        <%= link_to_remote 'Delete', :url => klass_url(klass), :method => :delete, :confirm => 'Are you sure?' if permitted_to? :delete, klass %>
-        <% end %>
-		</div>
+        <div>
+            <span><%= pluralize(klass.students.size, 'student') %></span>
+        </div>
+        <div>
+            <% if klass.can_be_destroyed %>
+            <%= link_to_remote 'Delete', :url => klass_url(klass), :method => :delete, :confirm => 'Are you sure?' if permitted_to? :delete, klass %>
+            <% end %>
+        </div>
     </td>
 </tr>

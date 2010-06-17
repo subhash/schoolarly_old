@@ -70,6 +70,13 @@ class KlassesController < ApplicationController
     @student.save!
   end
   
+  def add_subjects
+    @klass = Klass.find(params[:id]) 
+    render :update do |page|
+      page.open_dialog("Add subjects to #{@klass.name}", :partial => 'papers/create_papers_form', :locals => {:klass => @klass, :subjects => Subject.find(:all)})
+    end
+  end
+  
   def edit
     @klass = Klass.find(params[:id])
   end

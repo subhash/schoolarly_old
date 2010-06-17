@@ -216,9 +216,9 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   add_index "schools_subjects", ["subject_id"], :name => "subject_id"
 
   create_table "scores", :force => true do |t|
-    t.integer  "student_id",                                              :null => false
-    t.integer  "exam_id",                                                 :null => false
-    t.integer  "score",      :limit => 10, :precision => 10, :scale => 0
+    t.integer  "student_id",                               :null => false
+    t.integer  "exam_id",                                  :null => false
+    t.decimal  "score",      :precision => 5, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
