@@ -17,18 +17,11 @@ class KlassesController < ApplicationController
   
   def destroy    
     @klass= Klass.find(params[:id])
-    #    @klass_exams = @klass.school.klasses.each_with_object({}) do |klass, hash|
-    #      hash[klass.id] = klass.exams.group_by{|e| e.exam_group}
-    #    end
     if(current_user.person.is_a?(SchoolarlyAdmin))
       @klass.papers.destroy_all
-      #@klass.exam_groups.destroy_all
       @klass.exams.destroy_all
       @klass.destroy
-      redirect_to :action => 'index'
     else
-      puts "destroyed"
-      @deleted_klass = @klass
       @klass.destroy
     end
   end

@@ -157,13 +157,19 @@ function openModalbox(html, t, height){
     }
 }
 
-function refreshModalbox(html, height){
-    if (height) {
+function refreshModalbox(html, t, height){
+    if (height && t) {
+        Modalbox.show(html, {
+			title: t,
+            height: height
+        });
+    }
+    else if (height){
         Modalbox.show(html, {
             height: height
         });
     }
-    else {
+	else{
         Modalbox.show(html);
     }
 }
