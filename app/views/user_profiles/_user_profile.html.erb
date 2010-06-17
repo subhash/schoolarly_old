@@ -1,6 +1,6 @@
 <table class="profile">
     <tr class="heading">
-        <th colspan="2">
+        <th colspan="3">
             <h1>Contact Information</h1>
         </th>
     </tr>
@@ -8,7 +8,7 @@
         <td class="left">
             Name:
         </td>
-        <td class="right">
+        <td class="right" colspan="2">
             <%=h user_profile.name %>
         </td>
     </tr>
@@ -16,7 +16,7 @@
         <td class="left">
             Address:
         </td>
-        <td class="right">
+        <td class="right" colspan="2">
             <%=h user_profile.address.address_line_1 %>
             <br/>
             <%=h user_profile.address.address_line_2 %>
@@ -32,7 +32,7 @@
         <td class="left">
             Pincode:
         </td>
-        <td class="right">
+        <td class="right" colspan="2">
             <%=h user_profile.pincode %>
         </td>
     </tr>
@@ -40,7 +40,7 @@
         <td class="left">
             Phone Landline:
         </td>
-        <td class="right">
+        <td class="right" colspan="2">
             <%=h user_profile.phone_landline %>
         </td>
     </tr>
@@ -48,16 +48,8 @@
         <td class="left">
             Phone Mobile:
         </td>
-        <td class="right">
+        <td class="right" colspan="2">
             <%=h user_profile.phone_mobile %>
-        </td>
-    </tr>
-    <tr>
-        <td class="left">
-            Email:
-        </td>
-        <td class="right">
-            <%=h user_profile.user.email %>
         </td>
     </tr>
 </table>

@@ -63,13 +63,4 @@
         	<span id=<%="phone_mobile_#{edit_user_profile.id}" %>><%=edit_user_profile.phone_mobile.blank? ? '(Click to enter)': edit_user_profile.phone_mobile %></span><%= in_place_editor "phone_mobile_#{edit_user_profile.id}" ,{:url => {:controller => 'user_profiles', :action => 'set_user_profile_phone_mobile', :id => edit_user_profile}, :external_control => "edit_phone_mobile_#{edit_user_profile.id}"} %>
         </td>
     </tr>
-    <tr>
-        <td class="left">
-            Email:
-        </td>
-		<td class-"middle"></td>
-        <td class="right">
-            <%=h edit_user_profile.user.email %>
-        </td>
-    </tr>
 </table>

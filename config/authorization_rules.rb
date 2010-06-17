@@ -44,10 +44,12 @@ authorization do
     has_permission_on :teachers, :to => :manage, &same_school
     has_permission_on :schools, :to => :read_write, &same_user
     has_permission_on :user_profiles, :to => :manage, &same_user
+    has_permission_on [:schools, :teachers, :students], :to => :alter, &same_school
   end
   
   role :schoolarly_admin do
     has_permission_on [:schools, :teachers, :students, :klasses, :exams, :papers, :user_profiles], :to => :manage
+    has_permission_on [:schools, :teachers, :students], :to => :alter
     #has_permission_on :authorization_rules, :to => :manage
   end
   

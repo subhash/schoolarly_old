@@ -36,6 +36,9 @@ class UserProfilesController < ApplicationController
   in_place_loader_for :user_profile, :phone_mobile
   in_place_edit_for :user_profile, :phone_mobile
   
+  in_place_loader_for :user, :email
+  in_place_edit_for :user, :email
+  
   def find_user_and_person    
     if(params[:id])
       @user=User.find(params[:id])
