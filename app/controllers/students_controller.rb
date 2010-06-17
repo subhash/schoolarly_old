@@ -69,6 +69,7 @@ class StudentsController < ApplicationController
       #    TODO redesign this when we do wizard flows for right-bar actions
       if(session[:redirect]) and session[:redirect] == student_path(@student)
         render :update do |page|
+          page.open_dialog("Add/Remove Subjects",:partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @student.klass.papers})
           page.redirect_to session[:redirect]
         end
       else

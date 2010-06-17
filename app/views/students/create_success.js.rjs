@@ -1,3 +1,6 @@
-page.refresh_dialog :text => "<a href='#{edit_password_reset_url(@user.perishable_token)}'>Click here for your salvation</a>"
+#page.refresh_dialog :text => "<a href='#{edit_password_reset_url(@user.perishable_token)}'>Click here for your salvation</a>"
 page.open_tab(@student)
 page.insert_object @student, :partial => 'students/student'
+if active_controller == 'schools'
+  page.open_dialog("Assign class for #{@student.name}", :partial =>'students/add_to_klass_form', :locals => {:student => @student})
+end

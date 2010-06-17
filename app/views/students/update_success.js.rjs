@@ -1,3 +1,7 @@
-page.close_dialog
 page.open_tab(@student)
 page.replace_object @student, :partial => 'students/student'
+if @student.klass.papers.blank?
+  page.close_dialog
+else
+  page.open_dialog("Subjects taken by #{@student.name}",:partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @student.klass.papers})
+end
