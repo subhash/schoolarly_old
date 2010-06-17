@@ -8,7 +8,7 @@
 :name => 'name',
 :editable =>  false}] %>
 <% exams.each do |exam| %>
-<% colModel << {:width => 60, :index => exam.id, :name => exam.id, :editable => edit,:editrules => {:number => true, :minValue => 0, :maxValue => exam.max_score}} %>
+<% colModel << {:width => 70, :index => exam.id, :name => exam.id, :editable => edit,:editrules => {:number => true, :minValue => 0, :maxValue => exam.max_score}} %>
 <% end %>
 <%= jquery_grid :scores, {:colNames => colNames, :colModel => colModel, :url => grid_data_scores_url(:exams => exams.collect(&:id)), :editurl => row_edit_scores_url(:exams => exams.collect(&:id)) } %>
 <center>
