@@ -327,13 +327,14 @@ table.klasses .division {
 }
 
 table.klasses .subject {
+    display: inline-block;
     background-color: grey;
     color: white;
     padding: 2px 4px;
 }
 
 table.klasses td.right * {
-    font-size: 11px;
+    font-size: 13px;
     margin-bottom: 4px;
 }
 
@@ -350,7 +351,6 @@ table.exams .heading * {
     font-size: 11px;
     background: grey;
     color: white;
-    vertical-align: middle;
 }
 
 table.exams td.left {
@@ -523,14 +523,13 @@ table.scores {
 
 table.scores tr {
     border-bottom-style: solid;
-	border-bottom-width: thin;
+    border-bottom-width: thin;
 }
 
 table.scores .heading * {
     font-size: 14px;
-    background:  #3C3E47;
+    background: #3C3E47;
     color: white;
-    vertical-align: middle;
 }
 
 table.scores td.left {
@@ -541,12 +540,10 @@ table.scores td.left {
 table.scores .subject {
     background-color: grey;
     color: white;
-    vertical-align: middle;
 }
 
 table.scores td.right * {
     font-size: 14px;
-    vertical-align: middle;
 }
 
 table.scores .activity {
@@ -554,15 +551,14 @@ table.scores .activity {
     color: white;
     padding: 2px 0px 2px 4px;
     margin-right: 20px;
-
+    display: inline-block;
 }
 
 table.scores .score {
     background-color: #F5DFAC;
     color: black;
-   padding: 2px 0px 2px 4px;
+    padding: 2px 0px 2px 4px;
     margin-left: 4px;
-
 }
 
 table.scores .average {
@@ -570,7 +566,6 @@ table.scores .average {
     color: white;
     padding: 2px 4px;
     margin-left: 4px;
-
 }
 
 table.scores .emphasis {
