@@ -3,7 +3,7 @@
         <td class="left">
             Email:
         </td>
-		<td class-"middle"> <span id=<%="edit_email_#{edit_user.user_profile.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
+		<td class="middle"> <span id=<%="edit_email_#{edit_user.user_profile.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
         <td class="right">
 			<span id=<%="email_#{edit_user.user_profile.id}" %>><%=edit_user.email.blank? ? '(Click to enter)': edit_user.email %></span><%= in_place_editor "email_#{edit_user.user_profile.id}" ,{:url => {:controller => 'user_profiles', :action => 'set_user_email', :id => edit_user.user_profile}, :external_control => "edit_email_#{edit_user.user_profile.id}"} %>
         </td>
