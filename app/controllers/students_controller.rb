@@ -72,6 +72,10 @@ class StudentsController < ApplicationController
           page.open_dialog("Add/Remove Subjects",:partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @student.klass.papers})
           page.redirect_to session[:redirect]
         end
+      elsif session[:redirect] == user_profile_path(@student.user)
+        render :update do |page|
+          page.redirect_to session[:redirect]
+        end
       else
         render :template => 'students/update_success'
       end

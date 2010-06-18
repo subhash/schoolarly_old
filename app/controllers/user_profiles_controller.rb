@@ -47,6 +47,7 @@ class UserProfilesController < ApplicationController
   end  
   
   def show
+    session[:redirect] = request.request_uri
     @user_profile=@user.user_profile
   end
 
