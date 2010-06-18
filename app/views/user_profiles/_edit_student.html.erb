@@ -27,14 +27,13 @@
 	        <td class="left">
 	            Class:
 	        </td>
-			<td class="middle"><%= link_to_remote 'Change Class', :url => {:controller => 'students', :action => 'show_add_to_klass_form', :id => edit_student}, :html => {:class => 'ui-icon ui-icon-pencil', :title => 'Change Class'} %></td>
-	        <td class="right">
-	        	<%if edit_student.klass %>
-	            	<%=link_to edit_student.klass.name, klass_path(edit_student.klass) %>
-				<%else%>
-	            	<%= link_to_remote 'Assign Class', :url => {:controller => 'students', :action => 'show_add_to_klass_form', :id => edit_student}, :html => {:title => 'Assign Class'} %>
-				<%end %>
-	        </td>
+			<%if edit_student.klass %>
+				<td class="middle"></td>
+				<td class="right"><%=link_to edit_student.klass.name, klass_path(edit_student.klass) %></td>
+			<%else%>
+				<td class="middle"><%= link_to_remote 'Assign Class', :url => {:controller => 'students', :action => 'show_add_to_klass_form', :id => edit_student}, :html => {:class => 'ui-icon ui-icon-pencil', :title => 'Assign Class'} %></td>
+	           	<td class="right"><%= link_to_remote 'Assign Class', :url => {:controller => 'students', :action => 'show_add_to_klass_form', :id => edit_student}, :html => {:title => 'Assign Class'} %></td>
+			<%end %>
 	    </tr>
 	<%else%>
 		<tr>
