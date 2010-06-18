@@ -22,13 +22,13 @@ class ScoresController < ApplicationController
     @exams.each do |exam|
       score =  exam.scores.find_by_student_id(@student.id)
       if(score)
-        score.score = params[exam.id.to_s].to_i
+        params[exam.id.to_s].blank? ? score.destroy :  score.score = params[exam.id.to_s].to_i      
       else
         score = Score.new do |s|
-          s.score = params[exam.id]
+          s.score = params[exam.id.to_s].to_i
           s.student = @student
           s.exam = exam
-        end
+        end unless params[exam.id.to_s].blank?
       end  
       score.save!
     end

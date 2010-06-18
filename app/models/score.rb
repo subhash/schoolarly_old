@@ -57,7 +57,7 @@ class Score < ActiveRecord::Base
   
   #  score as a number
   def self.grade(score)
-    case score
+    case
       when score >= 91
       return :A1
       when score >=81
