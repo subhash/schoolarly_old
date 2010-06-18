@@ -528,7 +528,7 @@ table.scores tr {
 
 table.scores .heading * {
     font-size: 14px;
-    background: black;
+    background:  #3C3E47;
     color: white;
     vertical-align: middle;
 }
