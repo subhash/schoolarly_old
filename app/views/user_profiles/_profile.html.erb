@@ -1,5 +1,5 @@
-<% user_profile_partial = (permitted_to? :manage, profile) ? 'user_profiles/edit_user_profile' : 'user_profiles/user_profile' %>
-<% person_partial = (permitted_to? :manage, profile.user.person) ? 'user_profiles/edit_' + profile.user.person_type.downcase : 'user_profiles/' + profile.user.person_type.downcase %>
+<% user_profile_partial = (permitted_to? :read_write, profile) ? 'user_profiles/edit_user_profile' : 'user_profiles/user_profile' %>
+<% person_partial = (permitted_to? :read_write, profile.user.person) ? 'user_profiles/edit_' + profile.user.person_type.downcase : 'user_profiles/' + profile.user.person_type.downcase %>
 <% user_partial = (permitted_to? :alter, profile.user.person) ? 'user_profiles/edit_user' : 'user_profiles/user' %>
 <div>
     <%= render :partial => user_profile_partial, :object => profile %>

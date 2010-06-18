@@ -1,10 +1,10 @@
 <% render_actions do |add| %>
-<% add.dialog 'Invite Student',:partial => 'students/invite_student_form', :locals => {:student => Student.new, :user_profile => UserProfile.new, :school => @school} %>
-<% add.dialog 'Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :user_profile => UserProfile.new, :school => @school} %>
-<% add.dialog 'Add Student',:partial => 'users/new_user', :locals => {:user => User.new, :user_profile => UserProfile.new, :person_type => 'Student'} %>
-<% add.dialog 'Add Teacher',:partial => 'users/new_user', :locals => {:user => User.new, :user_profile => UserProfile.new, :person_type => 'Teacher'} %>
-<% add.dialog  'Add School',:partial => 'users/new_user', :locals => {:user => User.new, :user_profile => UserProfile.new, :person_type => 'School'} %>
-<% add.dialog  'Add Schoolarly Admin',:partial => 'users/new_user', :locals => {:user => User.new, :user_profile => UserProfile.new, :person_type => 'SchoolarlyAdmin'} %>
+<% add.dialog 'Invite Student',:partial => 'students/invite_student_form', :locals => {:student => Student.new, :user_profile => UserProfile.new, :school => @school} if permitted_to? :create, Student.new %>
+<% add.dialog 'Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :user_profile => UserProfile.new, :school => @school} if permitted_to? :create, Teacher.new %>
+<% add.dialog 'Add Student',:partial => 'users/new_user', :locals => {:user => User.new, :user_profile => UserProfile.new, :person_type => 'Student'} if permitted_to? :create, User.new %>
+<% add.dialog 'Add Teacher',:partial => 'users/new_user', :locals => {:user => User.new, :user_profile => UserProfile.new, :person_type => 'Teacher'} if permitted_to? :create, User.new %>
+<% add.dialog  'Add School',:partial => 'users/new_user', :locals => {:user => User.new, :user_profile => UserProfile.new, :person_type => 'School'} if permitted_to? :create, User.new %>
+<% add.dialog  'Add Schoolarly Admin',:partial => 'users/new_user', :locals => {:user => User.new, :user_profile => UserProfile.new, :person_type => 'SchoolarlyAdmin'} if permitted_to? :create, User.new %>
 <% end %>
 
 <% render_breadcrumbs do |add| %>
