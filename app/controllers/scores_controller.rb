@@ -30,7 +30,7 @@ class ScoresController < ApplicationController
           s.exam = exam
         end unless params[exam.id.to_s].blank?
       end  
-      score.save!
+      score.save! if score
     end
     respond_to do |format|
       format.js

@@ -10,6 +10,9 @@
 	  jQuery('#<grid_name>').editRow(id,true);
 	  lastsel2=id;
 	}"
+  :viewrecords: true
   :sortname: email
   :sortorder: asc	
+  :autowidth: true
   :rowNum: 10
+
