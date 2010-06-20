@@ -18,7 +18,7 @@ class Exam < ActiveRecord::Base
   end
   
   def assessment_type
-   assessment.assessment_type
+    assessment.assessment_type
   end
   
   def term
@@ -58,7 +58,7 @@ class Exam < ActiveRecord::Base
     event ? ((event.end_time.to_time - event.start_time.to_time)/1.hour): 0
   end
   
-    
+  
   def students
     students_with_scores + klass.students.for_paper(klass.papers.find_by_subject_id(subject.id).id)
   end
@@ -70,5 +70,5 @@ class Exam < ActiveRecord::Base
   def max_score
     assessment.max_score
   end
-
+  
 end

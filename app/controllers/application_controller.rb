@@ -90,7 +90,7 @@ class ApplicationController < ActionController::Base
   
   #Exception Handlers
 
-  rescue_from Exception, :with => :show_exception
+#  rescue_from Exception, :with => :show_exception
   
   def show_exception(exception)
     puts exception.inspect

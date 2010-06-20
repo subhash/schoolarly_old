@@ -2,15 +2,18 @@ class ScoresController < ApplicationController
   
   def grid_data
     @exams = Exam.find(params[:exams])
+    @total = @exams.first.students.length
     @students = @exams.first.students
-    @students_scores = @students.each_with_object({}) {|student, hash|
-      hash[student] = @exams.collect{|e|e.scores.find_by_student_id(student.id)}
-    }
-    if(params[:sidx] == 'name')
-      @students_scores = (params[:sord] == 'asc')? (@students_scores.sort {|a,b| a[0].name<=>b[0].name}) : (@students_scores.sort {|a,b| a[0].name<=>b[0].name}.reverse)
-    elsif(params[:sidx] == 'email')
-      @students_scores = (params[:sord] == 'asc')? (@students_scores.sort {|a,b| a[0].email<=>b[0].email}) : (@students_scores.sort {|a,b| a[0].email<=>b[0].email}.reverse)
+    if(params[:sord] == 'asc')
+      @students = @students.sort_by(&params[:sidx].to_sym)
+    else
+      @students = @students.sort_by(&params[:sidx].to_sym).reverse
     end
+    
+    @students = @students.paginate  :page => params[:page].to_i, :per_page => params[:rows].to_i  
+    @students_scores = @students.each_with_object(ActiveSupport::OrderedHash.new) {|student, hash|
+      hash[student] = @exams.collect{|e|e.scores.find_by_student_id(student.id)}
+    } 
     respond_to do |format|
       format.xml {render :partial => 'grid_data.xml.builder', :layout => false }
     end   

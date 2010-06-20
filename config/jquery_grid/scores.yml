@@ -14,5 +14,6 @@
   :sortname: email
   :sortorder: asc	
   :autowidth: true
-  :rowNum: 10
+  :rowNum: 20
+  :height: 'auto'
 
