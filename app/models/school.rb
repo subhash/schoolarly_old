@@ -27,7 +27,7 @@ class School < ActiveRecord::Base
   end
   
   def users
-    return teacher_users + student_users + [user]
+    return teacher_users | student_users | [user]
   end
 
   def set_academic_year

@@ -60,7 +60,7 @@ class Exam < ActiveRecord::Base
   
   
   def students
-    students_with_scores + klass.students.for_paper(klass.papers.find_by_subject_id(subject.id).id)
+    students_with_scores | klass.students.for_paper(klass.papers.find_by_subject_id(subject.id).id)
   end
   
   def participants
