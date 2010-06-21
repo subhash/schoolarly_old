@@ -1,3 +1,6 @@
-page.refresh_dialog :text => "<a href='#{edit_password_reset_url(@user.perishable_token)}'>Click here for your salvation</a>"
+#page.refresh_dialog :text => "<a href='#{edit_password_reset_url(@user.perishable_token)}'>Click here for your salvation</a>"
 page.open_tab(@teacher)
 page.insert_object @teacher, :position => :top, :partial => 'teachers/teacher'
+if active_controller == 'schools'
+  page.open_dialog("Subjects handled by #{@teacher.name}", :partial =>'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @school.unallotted_papers})
+end
