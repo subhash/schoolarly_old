@@ -22,7 +22,7 @@ class PapersController < ApplicationController
   def add_students
     @paper = Paper.find(params[:id])
     @old_students = Array.new(@paper.students)
-    @paper.student_ids = params[:paper][:student_ids]
+    @paper.student_ids = params[:student_ids]
     @paper.save!
     #    student rows to be updated with changes in subjects
     @students = (@old_students | @paper.students) - (@old_students & @paper.students)

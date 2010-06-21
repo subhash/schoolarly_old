@@ -6,12 +6,12 @@
 		<span><%=message_to(paper)%></span>
         <div class="detail">
             <span><%=pluralize(paper.students.size, 'students') %></span>
-            <%= link_to_remote  '(Edit)', :url => {:controller => 'papers', :action => 'edit_students', :id => paper} if permitted_to? :manage, paper%>
+            <%= link_to_remote  '(Edit)', :url => {:controller => 'papers', :action => 'edit_students', :id => paper} if (permitted_to? :manage, paper and permitted_to? :update, :students) %>
         </div>
     </td>
     <td class="right">
         <%= link_to paper.teacher.name, teacher_path(paper.teacher) if paper.teacher %>
-        <%= link_to_remote (paper.teacher ? '(Edit)' : 'Allot teacher' ), :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper} if permitted_to? :manage, paper%>
+        <%= link_to_remote (paper.teacher ? '(Edit)' : 'Allot teacher' ), :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper} if (permitted_to? :manage, paper and permitted_to? :update, :teachers)%>
         <!-- TODO page context -->
         <%if active_controller == 'klasses' %>
         <%= link_to_remote "Delete", :url => paper_url(paper), :method => :delete, :html => {:class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' if permitted_to? :delete, paper%>
