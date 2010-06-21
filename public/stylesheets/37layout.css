@@ -606,6 +606,13 @@ table.sep .sub-heading {
     text-align: center;
 }
 
+#spinner{
+  position: absolute; 
+  right: 36px; 
+  top: 9px; 
+  background-color: grey; 
+}
+
 .inputs li {
     width: 30%;
     display: inline;

@@ -1,4 +1,4 @@
-<% form_remote_tag  :url => {:controller => 'papers', :action => 'create', :id => klass}, :before => "Element.show('loading');", :complete => "Element.hide('loading');" do |f| %>
+<% form_remote_tag  :url => {:controller => 'papers', :action => 'create', :id => klass}, :before => "Element.show('spinner');", :complete => "Element.hide('spinner');" do |f| %>
 <%= select_tag  'subject_ids', options_from_collection_for_select(subjects, :id, :name, {:selected => klass.subject_ids, :disabled => klass.subject_ids}), :multiple => true, :class => "multiselect" %>
-<%= submit_tag "Save" %><%= image_tag 'loading.gif', :id=>'loading',:style=>"display:none;" %>
+<%= submit_tag "Save" %><%= image_tag 'spinner.gif', :id=>'spinner', :style=>"display:none;" %>
 <%end %>
