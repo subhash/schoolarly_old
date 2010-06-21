@@ -48,7 +48,7 @@ authorization do
   end
   
   role :schoolarly_admin do
-    has_permission_on [:schools, :teachers, :students, :klasses, :exams, :scores, :papers, :user_profiles], :to => :manage
+    has_permission_on [:schools, :teachers, :students, :schoolarly_admins, :klasses, :exams, :scores, :papers, :users, :user_profiles], :to => :manage
     has_permission_on [:schools, :teachers, :students], :to => :alter
     #has_permission_on :authorization_rules, :to => :manage
   end

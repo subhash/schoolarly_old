@@ -5,6 +5,7 @@
         </div>
         <span><%=message_to(student) %></span>
         <div class="detail">
+        	<%= link_to student.user.email, student%>
             <% if student.school %>
             <h4>Admission no: <span id=<%="admission_number_#{student.id}" %>><%= student.admission_number %></span><% if permitted_to? :manage, student %> <% if student.admission_number.blank? %><a href="#" id="edit_no_<%=student.id%>">Edit</a><% end %><%= in_place_editor "admission_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_admission_number', :id => student},:external_control => "edit_no_#{student.id}"} %><% end %></h4>
             <% if student.klass %>
