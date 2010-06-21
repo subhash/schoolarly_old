@@ -1,7 +1,9 @@
 <% render_actions do |add| %>
-	<% add.dialog 'Add Students', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled} if permitted_to? :update, @klass%>
-	<% add.dialog 'Add Subjects', :partial => 'papers/create_papers_form', :locals => {:klass => @klass, :subjects => Subject.find(:all)} if permitted_to? :update, @klass%>
-	<% add.dialog @klass.class_teacher.nil? ? 'Assign Class Teacher' : 'Change Class Teacher', :partial =>'klasses/klass_teacher_form', :locals => {:klass => @klass, :teachers => @school.teachers} if permitted_to? :update, @klass%>
+	<%  permitted_to? :update, @klass do %>
+		<% add.dialog 'Add Students', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled} if permitted_to? :add, :students %>
+		<% add.dialog 'Add Subjects', :partial => 'papers/create_papers_form', :locals => {:klass => @klass, :subjects => Subject.find(:all)} if permitted_to? :add, :papers %>
+		<% add.dialog @klass.class_teacher.nil? ? 'Assign Class Teacher' : 'Change Class Teacher', :partial =>'klasses/klass_teacher_form', :locals => {:klass => @klass, :teachers => @school.teachers} %>
+	<% end %>
 	<% add.dialog 'Post Message to ' + @klass.name, :partial => 'mails/new_form', :locals => {:users => @klass.users, :selected_users => @klass_user_ids} if permitted_to? :read, @klass%>
 <% end %>
 

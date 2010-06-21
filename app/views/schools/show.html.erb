@@ -1,7 +1,9 @@
 <% render_actions do |add| %>
-	<% add.dialog 'Add Class',:partial => 'klasses/new_klass_form', :locals => {:klass => Klass.new, :school => @school, :levels => Level.all} if permitted_to? :create, Klass.new(:school => @school)%>
-	<% add.dialog 'Invite Student',:partial => 'students/invite_student_form', :locals => {:student => Student.new, :user_profile => UserProfile.new, :school => @school} if permitted_to? :create, Student.new(:school => @school)%>
-	<% add.dialog 'Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :user_profile => UserProfile.new, :school => @school} if permitted_to? :create, Teacher.new(:school => @school)%>
+	<% permitted_to :update, @school do %>
+		<% add.dialog 'Add Class',:partial => 'klasses/new_klass_form', :locals => {:klass => Klass.new, :school => @school, :levels => Level.all} if permitted_to? :create, :klasses %>
+		<% add.dialog 'Invite Student',:partial => 'students/invite_student_form', :locals => {:student => Student.new, :user_profile => UserProfile.new, :school => @school} if permitted_to? :create, :students %>
+		<% add.dialog 'Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :user_profile => UserProfile.new, :school => @school} if permitted_to? :create, :teachers %>
+  	<%end%>
 	<% add.link 'Profile', {:controller => :user_profiles, :action => :show , :id => @school.user} if permitted_to? :read, @school %>
 	<% add.dialog 'Post Message to ' + @school.name + ' Admin', :partial => 'mails/new_form', :locals => {:users => [@school.user], :selected_users => [@school.user.id]} if permitted_to? :read, @school%>
 	<% add.dialog 'Post Message to ' + @school.name, :partial => 'mails/new_form', :locals => {:users => @school.users, :selected_users => @school_user_ids} if permitted_to? :read, @school%>
