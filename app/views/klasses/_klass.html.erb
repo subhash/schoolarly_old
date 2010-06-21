@@ -5,7 +5,7 @@
         <span><%=message_to(klass) %></span>
         <div class="detail">
             <%=link_to klass.class_teacher.name, klass.class_teacher if klass.class_teacher %>
-            <%= link_to_remote (klass.class_teacher ? '(Edit)' : 'Assign Class Teacher' ), :url => {:controller => 'klasses', :action => 'edit', :id => klass}, :method => :get if permitted_to? :edit, klass %>
+            <%= link_to_remote (klass.class_teacher ? '(Change)' : 'Assign Class Teacher' ), :url => {:controller => 'klasses', :action => 'edit', :id => klass}, :method => :get if permitted_to? :edit, klass %>
         </div>
     </td>
     <td class="right">
