@@ -4,7 +4,7 @@
 		<% add.dialog 'Add Subjects', :partial => 'papers/create_papers_form', :locals => {:klass => @klass, :subjects => Subject.find(:all)} if permitted_to? :add, :papers %>
 		<% add.dialog @klass.class_teacher.nil? ? 'Assign Class Teacher' : 'Change Class Teacher', :partial =>'klasses/klass_teacher_form', :locals => {:klass => @klass, :teachers => @school.teachers} %>
 	<% end %>
-	<% add.dialog 'Post Message to ' + @klass.name, :partial => 'mails/new_form', :locals => {:users => @klass.users, :selected_users => @klass_user_ids} if permitted_to? :read, @klass%>
+	<% add.dialog 'Post Message to ' + @klass.name, :partial => 'mails/new_form', :locals => {:users => @klass.users, :selected_users => @klass_user_ids} if permitted_to? :contact, @klass%>
 <% end %>
 
 <% render_breadcrumbs do |add| %>

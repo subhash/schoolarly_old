@@ -5,7 +5,7 @@ authorization do
   end
   
   same_school = proc do
-    if_attribute :school => is {user.person.school}
+    if_attribute :school => is {user.person.school}, :school => is_not {nil}
   end
   
   role :guest do
@@ -20,6 +20,7 @@ authorization do
       if_permitted_to :read, :exam
     end
     has_permission_on :user_profiles, :to => :manage, &same_user
+    has_permission_on [:schools, :teachers, :students, :klasses], :to => :contact, &same_school
   end
   
   role :teacher do
@@ -50,6 +51,7 @@ authorization do
   role :schoolarly_admin do
     has_permission_on [:schools, :teachers, :students, :schoolarly_admins, :klasses, :exams, :scores, :papers, :users, :user_profiles], :to => :manage
     has_permission_on [:schools, :teachers, :students], :to => :alter
+    has_permission_on [:schools, :teachers, :students, :klasses], :to => :contact
     #has_permission_on :authorization_rules, :to => :manage
   end
   
