@@ -1,5 +1,5 @@
 <% render_actions do |add| %>
-	<% permitted_to :update , @student do %>
+	<% permitted_to? :update , @student do %>
 		<% add.dialog 'Add/Remove Subjects',:partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @klass.papers} if @school and @klass and (permitted_to? :add, :papers)%>
 		<% add.dialog 'Assign Class',:partial => 'students/add_to_klass_form', :locals => {:student => @student} if @school and not @klass and (permitted_to? :update, :klasses)%>
 		<% (add.dialog 'Add to School',:partial =>'schools/add_to_school_form', :locals => {:entity => @student, :schools => School.find(:all)}) if !@school )%>
