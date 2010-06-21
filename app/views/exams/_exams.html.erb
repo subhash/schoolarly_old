@@ -2,30 +2,24 @@
 <% exams.group_by{|exam| exam.name}.each do |name, ex| %>
 <table class="exams">
     <tr class="heading">
-        <th>
+        <th colspan="3">
             <h1><%= name %></h1>
         </th>
     </tr>
     <% if ex.first.assessment_type == "SA" %>
-    <table class="exams">
         <% ex.each do |e| %>
         <%= render :partial => 'exams/exam',:locals => {:exam => e} %>
         <% end %>
-    </table>
     <%else %>
     <% ex.group_by {|e| e.subject.name}.each do |subject, s_exams| %>
-    <table class="exams">
         <tr>
             <th colspan="2">
                 <h2><%= link_to_if (permitted_to? :manage, s_exams.first), subject, edit_scores_exams_path(:ids => s_exams.collect(&:id)) %></h2>
             </th>
         </tr>
-        <tbody>
             <% s_exams.each do |e| %>
             <%= render :partial => 'exams/exam',:locals => {:exam => e} %>
             <% end %>
-        </tbody>
-    </table>
     <% end %>
     <% end %>
 </table>
