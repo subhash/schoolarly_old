@@ -1,9 +1,9 @@
 <% render_actions do |add| %>
-<% add.dialog 'Add/Remove Subjects',:partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @klass.papers} if permitted_to? :add_remove_papers, @student %>
-<% add.dialog 'Assign Class',:partial => 'students/add_to_klass_form', :locals => {:student => @student} if @school and not @klass and (permitted_to? :add_to_klass, @student)%>
-<% add.dialog 'Add to School',:partial =>'schools/add_to_school_form', :locals => {:entity => @student, :schools => School.find(:all)} if permitted_to? :add_to_school, @student%>
-<% add.link 'Profile', {:controller => :user_profiles, :action => :show , :id => @student.user} if permitted_to? :read, @student %>
-<% add.dialog 'Post Message to ' + @student.name, :partial => 'mails/new_form', :locals => {:users => [@student.user], :selected_users => [@student.user.id]} if (permitted_to? :contact, @student) %>
+<% add.dialog 'Add/Remove Subjects',:partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @klass.papers} if @school and @klass and (permitted_to? :update, @student)%>
+<% add.dialog 'Assign Class',:partial => 'students/add_to_klass_form', :locals => {:student => @student} if @school and not @klass and (permitted_to? :add, @student)%>
+<% add.dialog 'Add to School',:partial =>'schools/add_to_school_form', :locals => {:entity => @student, :schools => School.find(:all)} if !@school and (permitted_to? :add, @student)%>
+<% add.link 'Profile', {:controller => :user_profiles, :action => :show , :id => @student.user} %>
+<% add.dialog 'Post Message to ' + @student.name, :partial => 'mails/new_form', :locals => {:users => [@student.user], :selected_users => [@student.user.id]} if (permitted_to? :read, @student) %>
 <% end %>
 
 <% render_breadcrumbs do |add| %>
