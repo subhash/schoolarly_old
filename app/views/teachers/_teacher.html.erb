@@ -3,7 +3,10 @@
         <div>
             <%= link_to teacher.name, teacher %>
         </div>
-		<span><%=message_to(teacher)%></span>
+		<div class="icons">
+			<span><%=message_to(teacher)%></span>
+			<span><%= link_to_remote 'Delete', :url => {:controller => active_controller, :action => 'remove_teacher',:id => teacher}, :html => {:title => 'Remove', :class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' if permitted_to? :delete, teacher %></span>
+		</div>
         <div class="detail">
 			<%= link_to teacher.user.email, teacher %>
         </div>
@@ -19,23 +22,20 @@
         <% end %>
     </td>
     <td class="right">
-    	<% permitted_to? :manage, teacher do %>
         <%if teacher.school %>
         <div>
             <%teacher.papers.each do |paper| %>
-            <span class="klass"><%= paper.klass.name %><span class="subject"><%= paper.name %></span></span>
+            	<span class="klass"><%= paper.klass.name %>
+					<span class="subject"><%= paper.name %></span>
+				</span>
             <%end %>
-            <span><%= link_to_remote 'Add/Remove Papers', :url => {:controller => 'teachers', :action => 'edit_papers', :id => teacher}, :method => :get, :html => {:title => 'Add/Remove Papers'} %>
-            </span>
+            <span><%= link_to_remote 'Add/Remove Papers', :url => {:controller => 'teachers', :action => 'edit_papers', :id => teacher}, :method => :get, :html => {:title => 'Add/Remove Papers'} if permitted_to? :manage, teacher %></span>
         </div>
         <% else %>
         <div>
-            <%= link_to_remote 'Allot to School', :url => {:controller => 'teachers', :action => 'show_add_to_school_form', :entity_class => 'Teacher', :entity_id => teacher}, :html => {:title => 'Allot to School'} %>
+            <%= link_to_remote 'Allot to School', :url => {:controller => 'teachers', :action => 'show_add_to_school_form', :entity_class => 'Teacher', :entity_id => teacher}, :html => {:title => 'Allot to School'} if permitted_to? :add, teacher%>
         </div>
         <%end %>
-        <div>
-            <%= link_to_remote 'Delete', :url => {:controller => active_controller, :action => 'remove_teacher',:id => teacher}, :html => {:title => 'Delete'}, :confirm => 'Are you sure?' %>
-        </div>
-		<% end %>
+		
     </td>
 </tr>

@@ -3,7 +3,10 @@
         <div>
             <%= link_to student.name, student_path(student) %>
         </div>
-        <span><%=message_to(student) %></span>
+		<div class="icons">
+	        <span><%=message_to(student)%></span>
+			<span><%= link_to_remote 'Delete', :url => {:controller => active_controller,:action => 'remove_student',:id => student}, :html => {:title => 'Remove', :class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' if permitted_to? :delete, student%></span>
+		</div>
         <div class="detail">
         	<%= link_to student.user.email, student%>
             <% if student.school %>
@@ -28,11 +31,8 @@
             <span class="subject"><%= paper.subject.name %></span>
             <% end %>
             <% permitted_to? :manage, student  do %>
-            <%= link_to_remote 'Add/Remove subjects', :url => {:controller => 'students', :action => 'edit_papers', :id => student} if student.klass %>
+            <%= link_to_remote 'Add/Remove Subjects', :url => {:controller => 'students', :action => 'edit_papers', :id => student} if student.klass %>
             <% end %>
         </p>
-        <% permitted_to? :delete, student do %>
-        <%= link_to_remote 'Delete', :url => {:controller => active_controller,:action => 'remove_student',:id => student}, :html => {:class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' %>
-        <% end %>
     </td>
 </tr>

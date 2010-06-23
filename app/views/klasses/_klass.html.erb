@@ -1,8 +1,13 @@
 <tr id="klass-<%=klass.id%>">
     <td class="left">
-        <% url = klass_path(klass) %>
-        <a href="<%= url %>"><span class="level"><%= klass.level.name %><span class="division"><%= klass.division %></span></span></a>
-        <span><%=message_to(klass) %></span>
+		<div>
+			<% url = klass_path(klass) %>
+        	<a href="<%= url %>"><span class="level"><%= klass.level.name %><span class="division"><%= klass.division %></span></span></a>
+		</div>
+		<div class="icons">
+	        <span><%=message_to(klass)%></span>
+			<span><%= link_to_remote 'Delete', :url => klass_url(klass), :method => :delete, :html => {:title => 'Remove', :class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' if permitted_to? :delete, klass and klass.can_be_destroyed %></span>
+		</div>
         <div class="detail">
             <%=link_to klass.class_teacher.name, klass.class_teacher if klass.class_teacher %>
             <%= link_to_remote (klass.class_teacher ? '(Change)' : 'Assign Class Teacher' ), :url => {:controller => 'klasses', :action => 'edit', :id => klass}, :method => :get if permitted_to? :edit, klass %>
@@ -17,11 +22,6 @@
         </p>
         <div>
             <span><%= pluralize(klass.students.size, 'student') %></span>
-        </div>
-        <div>
-            <% if klass.can_be_destroyed %>
-            <%= link_to_remote 'Delete', :url => klass_url(klass), :method => :delete, :confirm => 'Are you sure?' if permitted_to? :delete, klass %>
-            <% end %>
         </div>
     </td>
 </tr>
