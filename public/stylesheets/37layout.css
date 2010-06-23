@@ -400,9 +400,14 @@ table.papers tr {
     padding-bottom: 4px;
 }
 
+table.papers td div{
+	margin-bottom:8px;
+}
+
+
 table.papers td.left {
-    font-size: 18px;
-    width: 20%;
+    font-size: 20px;
+    width: 50%;
 }
 
 table.papers td.right, table.papers td.left {
@@ -412,16 +417,21 @@ table.papers td.right, table.papers td.left {
 }
 
 table.papers td.right * {
-    font-size: 11px;
+    font-size: 13px;
     margin-bottom: 4px;
 }
 
 table.papers td.left .detail {
-    font-size: 9px;
+    font-size: 10px;
     margin-bottom: 4px;
     padding-left: 20px;
     background-color: #E5E5E5;
 }
+
+table.papers td span.icon{
+	display:inline-block;
+}
+
 
 table.papers .klasses a {
     text-decoration: none;
