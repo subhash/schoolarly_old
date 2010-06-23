@@ -1,6 +1,6 @@
 <tr id="exam-<%=exam.id%>">
     <td class="icons">
-        <% permitted_to? :create, :exams do %>
+        <% permitted_to? :create, exam do %>
         <% if exam.activity.extendable %>
         <span><%= link_to_remote 'Add', :url => {:controller => :exams, :action => 'add', :id => exam }, :html => {:title => "Add #{exam.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-plusthick"} %></span>
         <%else %>
@@ -27,7 +27,7 @@
     <td class="right">
         <% if exam.event %>
         <span class="date"><%= exam.event.start_time.to_s(:short) %>
-            <span class="time"><%= exam.duration %>hours</span></span>
+            <span class="time"><%= exam.duration %> hours</span></span>
         <%end %>
         <span><%=link_to exam.teacher.name, exam.teacher if !exam.teacher.nil? %></span>
         <% permitted_to? :edit, exam do %>
