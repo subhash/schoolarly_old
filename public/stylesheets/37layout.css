@@ -369,6 +369,14 @@ table.exams td.right * {
     margin-bottom: 4px;
 }
 
+table.exams td.icons span{
+	display:inline-block;
+}
+
+table.exams td.icons span.blank{
+	background-image: none;
+}
+
 table.exams .date {
     background-color: grey;
     color: white;
