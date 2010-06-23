@@ -13,10 +13,6 @@ module ApplicationHelper
     end
   end
   
-  def is_messageable?(person)
-    return current_user && (current_user.person.is_a?(SchoolarlyAdmin) || (person.school && (person.school == current_user.person.school unless current_user.person.is_a?(SchoolarlyAdmin))))
-  end
-  
   def active_controller
     contexts = ['schools', 'users', 'teachers', 'students', 'klasses', 'events', 'exams']
     contexts.each do |context|
@@ -43,13 +39,6 @@ module ApplicationHelper
        page.replace_html 'add-exam-' + exam.id.to_s, :text => ''
     end
   end
-
-#  def remove_exam_link(id)
-#    css_id = id.to_s
-#    link_to_function 'Remove', {:title => 'Remove', :class => "ui-icon ui-icon-circle-minus"} do |page|
-#       page.remove "#{css_id}"
-#    end
-#  end
   
   def render_tabs    
     tabbifier = Object.new  
@@ -116,7 +105,7 @@ module ApplicationHelper
       end
       
       def profile_tab(args={})
-        new_args = {:title => 'Profile', :partial => 'user_profiles/profile', :object => @user_profile} 
+        new_args = {:title => 'Profile', :partial => 'user_profiles/profile' } 
         tab new_args.merge(args)
       end
       
@@ -143,7 +132,7 @@ module ApplicationHelper
     selected_user_ids = users.collect{|u| u.id}
     title = 'Post Message to ' + person.name
     args = {:partial => 'mails/new_form', :locals => {:users => users, :selected_users => selected_user_ids} }
-    link_to_function(title, {:title => title, :class => "ui-icon ui-icon-mail-closed"} ) { |page|  page.open_dialog(title, args) } if is_messageable?(person)
+      link_to_function(title, {:title => title, :class => "ui-icon ui-icon-mail-closed"} ) { |page|  page.open_dialog(title, args) } if (permitted_to? :contact, person)
   end
   
   def render_breadcrumbs(&block)
