@@ -46,10 +46,10 @@ class UserProfilesController < ApplicationController
     end
   end  
   
-  def show
-    session[:redirect] = request.request_uri
-    @user_profile=@user.user_profile
-  end
+#  def show
+#    session[:redirect] = request.request_uri
+#    @user_profile=@user.user_profile
+#  end
 
   def update
     @user.password = params[:user][:password]  

@@ -49,6 +49,7 @@ class TeachersController < ApplicationController
 
   def show
     set_up
+    @user_profile = @user.user_profile
     if @teacher.school
       @papers=@teacher.school.unallotted_papers + @teacher.papers
       @teacher_allotments = @teacher.papers.group_by{|p| Subject.find(p.subject_id)}

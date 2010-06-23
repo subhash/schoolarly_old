@@ -32,6 +32,7 @@ class StudentsController < ApplicationController
       end
     end
     @user=@student.user
+    @user_profile = @user.user_profile
   end
   
   def new
@@ -70,10 +71,6 @@ class StudentsController < ApplicationController
       if(session[:redirect]) and session[:redirect] == student_path(@student)
         render :update do |page|
           page.open_dialog("Add/Remove Subjects",:partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @student.klass.papers})
-          page.redirect_to session[:redirect]
-        end
-      elsif session[:redirect] == user_profile_path(@student.user)
-        render :update do |page|
           page.redirect_to session[:redirect]
         end
       else

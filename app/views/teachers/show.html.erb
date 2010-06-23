@@ -1,10 +1,9 @@
 <% render_actions do |add| %>
- <% permitted_to? :update, @teacher do %>
+	<% permitted_to? :update, @teacher do %>
 		<% add.dialog 'Add/Remove Papers', :partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @papers} if @school and (permitted_to? :add, :papers)%>
 		<% add.dialog 'Add to school', :partial =>'schools/add_to_school_form', :locals => {:entity => @teacher, :schools => School.all} if !@school %>
- <% end %>
-<% add.link 'Profile', {:controller => :user_profiles, :action => :show , :id => @teacher.user} if permitted_to? :read, @teacher %>
-<% add.dialog 'Post Message to ' + @teacher.name, :partial => 'mails/new_form', :locals => {:users => [@teacher.user], :selected_users => [@teacher.user.id]} if permitted_to? :contact, @teacher %>
+ 	<% end %>
+	<% add.dialog 'Post Message to ' + @teacher.name, :partial => 'mails/new_form', :locals => {:users => [@teacher.user], :selected_users => [@teacher.user.id]} if permitted_to? :contact, @teacher %>
 <% end %>
 
 <% render_breadcrumbs do |add| %>
@@ -16,4 +15,5 @@
 <% add.messages_tab if current_user == @teacher.user %>
 <% add.events_tab if current_user == @teacher.user %>
 <% add.papers_tab :partial => 'teachers/papers', :object => @teacher_allotments if @school %>
+<% add.profile_tab :object => @user_profile%>
 <% end %>

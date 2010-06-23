@@ -4,8 +4,7 @@
 		<% add.dialog 'Assign Class',:partial => 'students/add_to_klass_form', :locals => {:student => @student} if @school and not @klass and (permitted_to? :update, :klasses)%>
 		<% add.dialog 'Add to School',:partial =>'schools/add_to_school_form', :locals => {:entity => @student, :schools => School.find(:all)} if !@school %>
 	<% end %>
-<% add.link 'Profile', {:controller => :user_profiles, :action => :show , :id => @student.user} if permitted_to? :read, @student %>
-<% add.dialog 'Post Message to ' + @student.name, :partial => 'mails/new_form', :locals => {:users => [@student.user], :selected_users => [@student.user.id]} if (permitted_to? :contact, @student) %>
+	<% add.dialog 'Post Message to ' + @student.name, :partial => 'mails/new_form', :locals => {:users => [@student.user], :selected_users => [@student.user.id]} if (permitted_to? :contact, @student) %>
 <% end %>
 
 <% render_breadcrumbs do |add| %>
@@ -20,4 +19,5 @@
 <% add.papers_tab :object => @student.papers if @klass %>
 <% add.scores_tab :object => @scores if @klass %>
 <% add.sep_tab :locals => {:scores => @scores } if @klass %>
+<% add.profile_tab :object => @user_profile%>
 <% end %>

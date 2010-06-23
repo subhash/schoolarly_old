@@ -37,6 +37,7 @@ class SchoolsController < ApplicationController
     @klasses = @school.klasses.group_by{|klass|klass.level_id}
     @students = @school.students
     @teachers = @school.teachers
+    @user_profile = @user.user_profile
     @school_user_ids = @school.users.collect{|u| u.id}
     session[:redirect] = request.request_uri
     respond_to do |format|
