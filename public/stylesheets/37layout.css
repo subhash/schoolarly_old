@@ -369,8 +369,8 @@ table.exams td.right * {
     margin-bottom: 4px;
 }
 
-table.exams td.icons span{
-	display:inline-block;
+table.exams td.icons{
+	width: 10%;
 }
 
 table.exams td.icons span.blank{
@@ -401,9 +401,9 @@ table.papers tr {
 }
 
 table.papers td div{
-	margin-bottom:8px;
+	margin-bottom: 8px;
+	margin-top: 8px;
 }
-
 
 table.papers td.left {
     font-size: 20px;
@@ -427,11 +427,6 @@ table.papers td.left .detail {
     padding-left: 20px;
     background-color: #E5E5E5;
 }
-
-table.papers td span.icon{
-	display:inline-block;
-}
-
 
 table.papers .klasses a {
     text-decoration: none;
@@ -636,7 +631,11 @@ table.sep .sub-heading {
 }
 
 .icons{
-  width: 10%;
+  font-size:18px;
+}
+
+.icons span{
+	display:inline-block;
 }
 
 .tooltip { position:relative; z-index:24; }
