@@ -407,7 +407,7 @@ table.papers td div{
 
 table.papers td.left {
     font-size: 20px;
-    width: 50%;
+    width: 30%;
 }
 
 table.papers td.right, table.papers td.left {
@@ -434,12 +434,15 @@ table.papers .klasses a {
     padding: 2px 4px;
 }
 
-table.papers .papers-odd .klasses a {
-    background-color: black;
+table.papers .klasses{
+	background-color: grey;
 }
 
-table.papers .papers-even .klasses a {
-    background-color: grey;
+table.papers td.right .students{
+    background-color: black;
+	color: white;
+	font-size: 11px;
+	padding: 2px;
 }
 
 table.klass-exams tr {
