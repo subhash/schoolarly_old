@@ -445,6 +445,11 @@ table.papers td.right .students{
 	padding: 2px;
 }
 
+table.papers td span.icon{
+	display:inline-block;
+}
+
+
 table.klass-exams tr {
     border-bottom: solid 1px;
 }
