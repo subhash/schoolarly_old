@@ -3,4 +3,5 @@ page.open_tab(@teacher)
 page.insert_object @teacher, :position => :top, :partial => 'teachers/teacher'
 if active_controller == 'schools'
   page.open_dialog("Subjects handled by #{@teacher.name}", :partial =>'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @school.unallotted_papers})
+  page.replace_action 'Post Message to ' + @school.name, :partial =>'mails/new_form',:locals => {:users => @school.users, :selected_users => @school.users.collect{|u| u.id}, :message => Message.new}
 end

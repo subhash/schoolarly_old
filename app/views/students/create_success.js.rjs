@@ -3,4 +3,5 @@ page.open_tab(@student)
 page.insert_object @student, :partial => 'students/student'
 if active_controller == 'schools'
   page.open_dialog("Assign class for #{@student.name}", :partial =>'students/add_to_klass_form', :locals => {:student => @student})
+  page.replace_action 'Post Message to ' + @school.name, :partial =>'mails/new_form',:locals => {:users => @school.users, :selected_users => @school.users.collect{|u| u.id}, :message => Message.new}
 end
