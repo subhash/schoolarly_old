@@ -1,7 +1,7 @@
 page.close_dialog
 if active_controller == 'students'
   page.replace_action 'Add/Remove Subjects', :partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @student.klass.papers}
-  page.replace_tab Score, :object => @student.scores.for_exams(@student.klass.current_exams)
+  page.replace_tab Score, :partial => 'scores/scores', :object => @student.scores.for_exams(@student.klass.current_exams)
   page.replace_tab Paper, :partial => 'papers/papers', :object => @student.papers
 else
   page.replace_object @student, :partial => 'students/student'
