@@ -40,7 +40,7 @@ class StudentsController < ApplicationController
     @user = User.new
   end 
   
-
+  
   def create
     #    TODO - if the user already exists, with school not assigned, we should let that be added to school after enough warnings    
     @student = Student.new(params[:student])
@@ -70,7 +70,7 @@ class StudentsController < ApplicationController
       #    TODO redesign this when we do wizard flows for right-bar actions
       if(session[:redirect]) and session[:redirect] == student_path(@student)
         render :update do |page|
-          page.open_dialog("Add/Remove Subjects",:partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @student.klass.papers})
+#          TODO wizard for adding subjects or render breadcrumbs thru ajax
           page.redirect_to session[:redirect]
         end
       else
@@ -88,7 +88,7 @@ class StudentsController < ApplicationController
   
   def update_papers
     @student = Student.find(params[:id])
-#   remove from all first
+    #   remove from all first
     @student.subjects.each do |subject|
       @student.klass.exams.future_for(subject.id).each do |exam|
         exam.event.event_series.users.delete(@student.user)
@@ -96,7 +96,7 @@ class StudentsController < ApplicationController
     end
     @student.paper_ids = params[:paper_ids]
     @student.save
-#     add again
+    #     add again
     @student.subjects.each do |subject|
       @student.klass.exams.future_for(subject.id).each do |exam|
         exam.event.event_series.users << @student.user
