@@ -30,7 +30,7 @@ authorization do
   role :teacher do
     includes :student
     has_permission_on :teachers, :to => :read_write, &same_user
-    has_permission_on :students, :to => :manage, :join_by => :and, &same_school
+    has_permission_on :students, :to => :read_write, :join_by => :and, &same_school
     has_permission_on :klasses, :to => :manage, :join_by => :and, &same_school
     has_permission_on :exams, :to => :manage do
       if_permitted_to :manage, :klass
@@ -46,7 +46,7 @@ authorization do
   
   role :school do
     includes :teacher
-    has_permission_on :teachers, :to => :manage, :join_by => :and, &same_school
+    has_permission_on [:teachers,:students], :to => :manage, :join_by => :and, &same_school
     has_permission_on :schools, :to => :read_write, &same_user
     has_permission_on :user_profiles, :to => :read_write, &same_user
     has_permission_on [:schools, :teachers, :students], :to => :alter, :join_by => :and, &same_school
