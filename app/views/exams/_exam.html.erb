@@ -31,7 +31,7 @@
         <%end %>
         <span><%=link_to exam.teacher.name, exam.teacher if !exam.teacher.nil? %></span>
         <% permitted_to? :edit, exam do %>
-        <span><%=link_to 'Scores',  edit_scores_exams_path(:ids => [exam.id]) %></span>
+        <span><%=button_to 'Scores',  edit_scores_exams_path(:ids => [exam.id]) %></span>
         <% end %>
     </td>
 </tr>

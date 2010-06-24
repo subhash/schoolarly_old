@@ -371,7 +371,7 @@ table.exams .subject {
 
 table.exams td.right * {
     font-size: 11px;
-    margin-bottom: 4px;
+	display: inline-block;
 }
 
 table.exams td.icons {
@@ -392,8 +392,9 @@ table.exams .date {
 table.exams .time {
     background-color: black;
     color: white;
-    padding: 2px 4px;
+    padding: 2px 0px 2px 4px;
     margin-left: 4px;
+	margin-bottom: 0px;
 }
 
 table.papers {
