@@ -12,6 +12,6 @@
     </td>
     <td class="right">
         <span class="teacher"><%= link_to paper.teacher.name, teacher_path(paper.teacher) if paper.teacher %></span>
-        <%= button_to_remote (paper.teacher ? 'Change' : 'Allot Teacher' ), :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper}, :html => {:class => "editor_ok_button"} if (permitted_to? :manage, paper and permitted_to? :update, :teachers) %>
+        <%= button_to_remote (paper.teacher ? 'Change' : 'Allot Teacher' ), :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper} if (permitted_to? :manage, paper and permitted_to? :update, :teachers) %>
     </td>
 </tr>
