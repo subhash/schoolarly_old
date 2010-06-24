@@ -220,8 +220,13 @@ table.students th {
 table.students th h2 {
     display: block;
     padding: 0px;
-    font-size: 11px;
+    font-size: 20px;
     margin: 0px;
+}
+
+table.students th h2 a {
+    text-decoration: none;
+    color: black;
 }
 
 table.teachers {
@@ -369,12 +374,12 @@ table.exams td.right * {
     margin-bottom: 4px;
 }
 
-table.exams td.icons{
-	width: 10%;
+table.exams td.icons {
+    width: 10%;
 }
 
-table.exams td.icons span.blank{
-	background-image: none;
+table.exams td.icons span.blank {
+    background-image: none;
 }
 
 table.exams .date {
@@ -400,9 +405,9 @@ table.papers tr {
     padding-bottom: 4px;
 }
 
-table.papers td div{
-	margin-bottom: 8px;
-	margin-top: 8px;
+table.papers td div {
+    margin-bottom: 8px;
+    margin-top: 8px;
 }
 
 table.papers td.left {
@@ -417,7 +422,7 @@ table.papers td.right, table.papers td.left {
 }
 
 table.papers td.right * {
-    font-size: 13px;
+    font-size: 18px;
     margin-bottom: 4px;
 }
 
@@ -434,21 +439,20 @@ table.papers .klasses a {
     padding: 2px 4px;
 }
 
-table.papers .klasses{
-	background-color: grey;
+table.papers .klasses {
+    background-color: grey;
 }
 
-table.papers td.right .students{
+table.papers td.right .students {
     background-color: black;
-	color: white;
-	font-size: 11px;
-	padding: 2px;
+    color: white;
+    font-size: 11px;
+    padding: 2px;
 }
 
-table.papers td span.icon{
-	display:inline-block;
+table.papers td span.icon {
+    display: inline-block;
 }
-
 
 table.klass-exams tr {
     border-bottom: solid 1px;
@@ -627,41 +631,51 @@ table.sep .sub-heading {
     text-align: center;
 }
 
-#spinner{
-  position: absolute; 
-  right: 36px; 
-  top: 9px; 
-  background-color: grey; 
+#spinner {
+    position: absolute;
+    right: 36px;
+    top: 9px;
+    background-color: grey;
 }
 
-.inline-block{
-  display: inline-block;
+.inline-block {
+    display: inline-block;
 }
 
-.icons{
-  font-size:18px;
+.icons {
+    font-size: 18px;
 }
 
-.icons span{
-	display:inline-block;
+.icons span {
+    display: inline-block;
 }
 
-.tooltip { position:relative; z-index:24; }
-.tooltip span { display:none;}
-.tooltip:hover {z-index:25;}
+.tooltip {
+    position: relative;
+    z-index: 24;
+}
+
+.tooltip span {
+    display: none;
+}
+
+.tooltip:hover {
+    z-index: 25;
+}
+
 .tooltip:hover span {
-display: block;
-position: absolute;
-width: 180px;
-top: 25px;
-left: 20px;
-background-color: #FCFBDC;
-border: 1px solid #333333;
-padding: 5px;
-font-size: 11px;
-color: #333333;
-text-decoration: none;
-font-family: Verdana, Arial, Helvetica, sans-serif;
+    display: block;
+    position: absolute;
+    width: 180px;
+    top: 25px;
+    left: 20px;
+    background-color: #FCFBDC;
+    border: 1px solid #333333;
+    padding: 5px;
+    font-size: 11px;
+    color: #333333;
+    text-decoration: none;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
 .inputs li {
