@@ -7,7 +7,7 @@
         <span class="ui-icon blank"></span>
         <% end %>
         <% end %>
-        <% permitted_to? :edit, exam do %>
+        <% permitted_to? :update, exam do %>
         <span><%= link_to_remote 'Edit exam', :url =>  {:controller => :exams, :action => 'edit', :id => exam }, :method => :get, :html => {:title => "Edit #{exam.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-pencil"} %></span>
         <% end %>
         <% permitted_to? :delete, exam do %>
@@ -17,7 +17,7 @@
         <% end %>
     </td>
     <td class="left">
-        <%= link_to_if (permitted_to? :read, exam), (exam.assessment_type == "SA" ? exam.subject.name : exam.activity_name), view_scores_exams_path(:ids => [exam.id]) %>
+        <%= exam.assessment_type == "SA" ? exam.subject.name : exam.activity_name %>
     </td>
     <td>
 		<%if !exam.description.blank?%>
@@ -30,8 +30,10 @@
             <span class="time"><%= exam.duration %> hours</span></span>
         <%end %>
         <span><%=link_to exam.teacher.name, exam.teacher if !exam.teacher.nil? %></span>
-        <% permitted_to? :edit, exam do %>
+        <% if (permitted_to? :update, exam) %>
         <span><%=link_to 'Scores',  edit_scores_exams_path(:ids => [exam.id]) %></span>
-        <% end %>
+        <% elsif (permitted_to? :read, exam) %>
+		<span><%=link_to 'Scores',  view_scores_exams_path(:ids => [exam.id]) %></span>
+		<% end %>
     </td>
 </tr>

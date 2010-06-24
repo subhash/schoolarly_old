@@ -7,19 +7,23 @@
         </th>
     </tr>
     <% if ex.first.assessment_type == "SA" %>
-        <% ex.each do |e| %>
-        <%= render :partial => 'exams/exam',:locals => {:exam => e} %>
-        <% end %>
+    <% ex.each do |e| %>
+    <%= render :partial => 'exams/exam',:locals => {:exam => e} %>
+    <% end %>
     <%else %>
     <% ex.group_by {|e| e.subject.name}.each do |subject, s_exams| %>
-        <tr>
-            <th colspan="3">
-                <h2><%= link_to_if (permitted_to? :manage, s_exams.first), subject, edit_scores_exams_path(:ids => s_exams.collect(&:id)) %></h2>
-            </th>
-        </tr>
-            <% s_exams.each do |e| %>
-            <%= render :partial => 'exams/exam',:locals => {:exam => e} %>
+    <tr>
+        <th colspan="3">
+            <% if permitted_to? :manage, s_exams.first %>
+            <h2><%= link_to subject, edit_scores_exams_path(:ids => s_exams.collect(&:id)) %></h2>
+            <% else %>
+            <h2><%= link_to_if (permitted_to? :read, s_exams.first), subject, view_scores_exams_path(:ids => s_exams.collect(&:id)) %></h2>
             <% end %>
+        </th>
+    </tr>
+    <% s_exams.each do |e| %>
+    <%= render :partial => 'exams/exam',:locals => {:exam => e} %>
+    <% end %>
     <% end %>
     <% end %>
 </table>

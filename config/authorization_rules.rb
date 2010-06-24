@@ -9,14 +9,17 @@ authorization do
     if_attribute :school => is_not {nil}
   end
   
+  same_klass = proc do
+    if_attribute :klass => is {user.person.klass} 
+    if_attribute :klass => is_not {nil}
+  end
+  
   role :guest do
   end
   
   role :student do
     has_permission_on [:schools, :klasses, :teachers, :students], :to => :read, :join_by => :and, &same_school
-    has_permission_on :exams, :to => :read do
-      if_attribute :students => contains {user.person}
-    end
+    has_permission_on :exams, :to => :read , &same_klass
     has_permission_on :scores, :to => :read do
       if_permitted_to :read, :exam
     end
