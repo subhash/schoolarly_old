@@ -45,11 +45,10 @@
                     <ul id="right-bar">
                         <%= yield :actions %>
                     </ul>
-					<% if flash[:notice]%>
-						<div id="notice">
-							<%= flash[:notice]%>
-						</div>
-					<%end%>
+					<div id="notice">
+						<%= flash[:notice]%>
+					</div>
+
                 </div>
             </div>
             <!--
