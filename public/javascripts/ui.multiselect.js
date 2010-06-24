@@ -311,7 +311,7 @@ $.extend($.ui.multiselect, {
 	locale: {
 		addAll:'Add all',
 		removeAll:'Remove all',
-		itemsCount:'selected'
+		itemsCount:'items selected'
 	}
 });
 

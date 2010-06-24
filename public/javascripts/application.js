@@ -160,18 +160,19 @@ function openModalbox(html, t, height){
 function refreshModalbox(html, t, height){
     if (height && t) {
         Modalbox.show(html, {
-			title: t,
+            title: t,
             height: height
         });
     }
-    else if (height){
-        Modalbox.show(html, {
-            height: height
-        });
-    }
-	else{
-        Modalbox.show(html);
-    }
+    else 
+        if (height) {
+            Modalbox.show(html, {
+                height: height
+            });
+        }
+        else {
+            Modalbox.show(html);
+        }
 }
 
 function closeModalbox(){
@@ -205,4 +206,15 @@ function hideShowDivs(hide_id, show_id){
     jQuery(hide_id).hide();
     jQuery(show_id).show();
 }
+
+(function($){
+    $.extend($.ui.multiselect, {
+        locale: {
+            addAll: 'Add all',
+            removeAll: 'Remove all',
+            itemsCount: 'selected'
+        }
+    });
+})(jQuery);
+
 
