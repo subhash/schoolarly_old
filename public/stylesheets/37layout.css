@@ -360,7 +360,7 @@ table.exams .heading * {
 
 table.exams td.left {
     font-size: 18px;
-    width: 30%;
+    width: 20%; 
 }
 
 table.exams .subject {
@@ -375,7 +375,7 @@ table.exams td.right * {
 }
 
 table.exams td.icons {
-    width: 10%;
+    width: 20%;
 }
 
 table.exams td.icons span.blank {
@@ -423,8 +423,9 @@ table.papers td.right, table.papers td.left {
 }
 
 table.papers td.right * {
-    font-size: 18px;
+    font-size: 13px;
     margin-bottom: 4px;
+	display:inline-block;
 }
 
 table.papers td.left .detail {
