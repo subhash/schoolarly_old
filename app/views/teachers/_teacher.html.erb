@@ -11,9 +11,6 @@
 			<%= link_to teacher.user.email, teacher %>
         </div>
         <%if teacher.school %>
-        <div class="detail">
-            <%= link_to teacher.school.name, teacher.school %>
-        </div>
 		<div class="detail">
             <%teacher.owned_klasses.each do |klass| %>
             <%= link_to klass.name, klass %>

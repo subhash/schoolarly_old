@@ -59,32 +59,32 @@ module ApplicationHelper
       end
       
       def students_tab(args={})
-        new_args = {:tab => :students, :title => 'Students', :partial => 'students/students', :object => @students } 
+        new_args = {:tab => :students, :title => 'Students', :partial => 'students/students' } 
         tab new_args.merge(args)
       end
       
       def klasses_tab(args={})
-        new_args = {:tab => :klasses, :title => 'Classes', :partial => 'klasses/klasses', :object => @klasses } 
+        new_args = {:tab => :klasses, :title => 'Classes', :partial => 'klasses/klasses' } 
         tab new_args.merge(args)
       end
       
       def teachers_tab(args={})
-        new_args = {:tab => :teachers, :partial => 'teachers/teachers', :object => @teachers } 
+        new_args = {:tab => :teachers, :partial => 'teachers/teachers'} 
         tab new_args.merge(args)
       end
 
       def papers_tab(args={})
-        new_args = {:tab => :papers, :title => 'Subjects', :partial => 'papers/papers', :object => @papers } 
+        new_args = {:tab => :papers, :title => 'Subjects', :partial => 'papers/papers'} 
         tab new_args.merge(args)
       end     
       
       def exams_tab(args={})
-        new_args = {:tab => :exams, :title => 'Exams', :partial => 'exams/exams', :object => @exams}
+        new_args = {:tab => :exams, :title => 'Exams', :partial => 'exams/exams'}
         tab new_args.merge(args)
       end
       
       def scores_tab(args={})
-        new_args = {:tab => :scores, :title => 'Scores', :partial => 'scores/scores', :object => @scores}
+        new_args = {:tab => :scores, :title => 'Scores', :partial => 'scores/scores'}
         tab new_args.merge(args)
       end
       
