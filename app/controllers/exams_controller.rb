@@ -23,7 +23,7 @@ class ExamsController < ApplicationController
       end
       @exam.event.event_series = @event_series
     end
-    if @exam.save!
+    if @exam.save
       render :template => 'exams/update_success'
     else
       render :template => 'exams/update_failure'

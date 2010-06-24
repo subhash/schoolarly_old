@@ -1,4 +1,5 @@
 <% semantic_remote_form_for exam do |f| %>
+<%= f.error_messages %>
 <table>
     <tr>
         <th>
@@ -8,7 +9,7 @@
             <strong><%=exam.subject.name %></strong>
         </td>
     </tr>
-    <% f.semantic_fields_for :event do |event_form| %>
+    <% f.semantic_fields_for :event do |event_form| %> 
     <tr>
         <th>
             <strong>From</strong>
