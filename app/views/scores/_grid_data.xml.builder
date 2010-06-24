@@ -5,7 +5,7 @@ xml.rows do
   xml.records(@total)
   @students_scores.each do |student, scores|
     xml.row :id => student.id do
-      xml.cell link_to student.email, student
+      xml.cell link_to student.email, student_path(student)+"#scores-tab"
       xml.cell student.name
       scores.each do |score|
         xml.cell score.nil? ? " " :  score.score 
