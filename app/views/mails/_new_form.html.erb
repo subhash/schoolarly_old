@@ -1,30 +1,22 @@
-<% form_remote_tag :url => {:controller => :mails, :action => :create, :mail => local_assigns[:mail] } do  %>
-<%= flash.now[:notice]%>
-		<table>
-			<tr>
-				<th>
-					To
-            	</th>
-	            <td>
-					<%= select_tag  'user_ids', options_from_collection_for_select(users, :id, :name, {:selected => local_assigns[:selected_users]}), :multiple => true, :class => "multiselect" %>
-	        	</td>
-			</tr>
-			<tr>
-				<th>
-					<%= label :subject, 'Subject' %>
-            	</th>
-				<%subject = 'RE:' + mail.message.subject if local_assigns[:mail]%>
-	            <td>
-	                <%= text_field_tag :subject, subject%>
-	            </td>
-			</tr>
-			<tr>
-            	<td colspan=2>
-                	<%= text_area_tag :body, nil, :size => "39x9"%>
-            	</td>
-        	</tr>
-		</table>
-		<div>
-			<%= submit_tag 'Post' %>
-		</div>
-	<%end %>
+<% semantic_remote_form_for message, :url => {:controller => :mails, :action => :create, :mail => local_assigns[:mail] }, :before => "Element.show('spinner');", :complete => "Element.hide('spinner');" do |f| %>
+<%= f.error_messages %>
+	<table>
+		<tr>
+			<td colspan=2>
+				<%= f.input :recipients, :as => :select, :collection => local_assigns[:users], :selected => local_assigns[:selected_users], :label => false, :input_html => {:class => 'multiselect'} %>
+	        </td>
+		</tr>
+       	<tr>
+        	<td>
+			 	<%= f.input :subject, :rows => 1, :label => "Subject" %>
+        	</td>
+    	</tr>
+        <tr>
+        	<td colspan=2>
+				 <%= f.input :body, :rows => 5, :as => :text %>
+        	</td>
+    	</tr>
+</table>
+    <%= f.commit_button :label => 'Post' %>
+	<%= image_tag 'spinner.gif', :id=>'spinner', :style=>"display:none;" %>
+<%end %>

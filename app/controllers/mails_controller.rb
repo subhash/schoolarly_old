@@ -2,23 +2,27 @@ class MailsController < ApplicationController
    
   def create
     sender=current_user
+    @message = Message.new(params[:message])
     @mail = Mail.find(params[:mail]) if params[:mail]
-    receivers = User.find(params[:user_ids])
-    raise if receivers.empty? || params[:body].blank?
-    Mail.transaction do
-      sender.send_message(receivers, params[:body], params[:subject]) unless @mail
-      sender.reply(@mail.conversation, receivers, params[:body], params[:subject]) if @mail
+    receivers = User.find(params[:message][:recipient_ids]) if params[:message][:recipient_ids]
+    template_name = 'mails/create_success'
+    if @message.valid?
+      Mail.transaction do 
+        sender.send_message(receivers, params[:message][:body], params[:message][:subject]) unless @mail
+        sender.reply(@mail.conversation, receivers, params[:message][:body], params[:message][:subject]) if @mail
+        flash[:notice] = 'Message successfully posted'
+      end
+    else
+      template_name = 'mails/create_failure'
     end
-    render :template => 'mails/create_success'
+    render :template => template_name
   rescue Exception => e
-    #flash.now[:notice] = e.message + 'Error occurred during posting. Try again...'
-    selected_users = @mail.conversation.users if @mail
-    @selected_user_ids = selected_users.collect{|u| u.id} if @mail
-    @users = !selected_users.nil? ? selected_users : current_user.person.is_a?(SchoolarlyAdmin) ? User.all : (!current_user.person.school.nil? ? current_user.person.school.users : [])
-    render :template => 'mails/create_failure'  
+    flash[:notice] = 'Error occurred during posting. Please try again...'
+    render :template => 'mails/create_failure'
   end
   
   def new
+    @message=Message.new()
     @mail = Mail.find(params[:id]) if params[:id]
     selected_users = @mail.conversation.users if params[:id]
     @selected_user_ids = selected_users.collect{|u| u.id} if params[:id]

@@ -4,7 +4,7 @@
 		<% add.dialog 'Assign Class',:partial => 'students/add_to_klass_form', :locals => {:student => @student} if @school and not @klass and (permitted_to? :update, :klasses)%>
 		<% add.dialog 'Add to School',:partial =>'schools/add_to_school_form', :locals => {:entity => @student, :schools => School.find(:all)} if !@school %>
 	<% end %>
-	<% add.dialog 'Post Message to ' + @student.name, :partial => 'mails/new_form', :locals => {:users => [@student.user], :selected_users => [@student.user.id]} if (permitted_to? :contact, @student) %>
+	<% add.dialog 'Post Message to ' + @student.name, :partial => 'mails/new_form', :locals => {:users => [@student.user], :selected_users => [@student.user.id], :message => Message.new } if (permitted_to? :contact, @student) %>
 <% end %>
 
 <% render_breadcrumbs do |add| %>
