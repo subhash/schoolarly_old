@@ -13,7 +13,7 @@
 <% end %>
 
 <% render_tabs do |t| %>
-<% t.students_tab :object => @klass.students %>
+<% t.students_tab :object => @klass.students, :locals => {:hide_header => true} %>
 <% t.papers_tab :object => @klass.papers %>
 <% t.exams_tab :object => @exams %>
 <% end %>
