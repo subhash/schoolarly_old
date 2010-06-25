@@ -9,11 +9,11 @@
 <table class="students">
     <tbody id="students" class="students">
     	<% unless local_assigns[:hide_header] %>
-        <tr>
+        <tr id="<%='student-klass-' + (klass.nil? ? 'unassigned' : klass.id.to_s)%>">
             <th colspan="2">
                 <h2><%= if klass then link_to(klass.name, klass_path(klass)) else 'Unassigned' end %></h2>
             </th>
-        </tr>
+        
 		<% end %>
         <% s.each do |student| %>
         <%= render :partial => 'students/student', :object => student %>

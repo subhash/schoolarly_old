@@ -1,5 +1,18 @@
 page.open_tab(@student)
-page.replace_object @student, :partial => 'students/student'
+page.remove_object @student
+page.insert_object(@student, :insert_id => 'students', :partial => 'students/student' )
+
+#Since the class is not shown, atleast a flash has to be displayed
+page.replace_html('notice', :text => @student.name + ' has been successfully admitted to ' + @student.klass.name)
+
+page.select('#student-klass-' + @student.klass.id.to_s).each{|e| 
+page.remove_object @student
+page.insert_object(@student, :position => :after, :insert_id => 'student-klass-' + @student.klass.id.to_s, :partial => 'students/student' )
+}
+
+#To replace the klass in klass tab so that the post message to the klass will include the recently assigned student
+page.replace_object @student.klass, :partial => 'klasses/klass'
+
 if @student.klass.papers.blank?
   page.close_dialog
 else
