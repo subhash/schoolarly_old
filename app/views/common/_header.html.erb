@@ -1,5 +1,5 @@
 <ul id="header">    
-    <li>
+    <li class="tab-item">
         <% if current_user %>
 		<%= link_to 'My Messages', polymorphic_url(current_user.person, :anchor => 'messages-tab') unless current_page?(current_user.person)  %>
 		<%= link_to 'My Events', polymorphic_url(current_user.person, :anchor => 'events-tab')  unless current_page?(current_user.person) %>
@@ -8,7 +8,7 @@
         <%= link_to_remote  'Login', :url => new_user_session_path, :method => :get %>
         <% end %>
     </li>
-    <li>
+    <li class="tab-item">
         <a href="">About</a>
     </li>
 </ul>

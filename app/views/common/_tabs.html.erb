@@ -1,7 +1,7 @@
 <% content_for :tab_links do %>
 <ul class="tab-bar">
     <% tabs.each do |t| %>
-    <li>
+    <li class="tab-item">
         <% tab = t[:tab] %>
         <% title = t[:title] %>
         <% title ||= tab.to_s.humanize %>

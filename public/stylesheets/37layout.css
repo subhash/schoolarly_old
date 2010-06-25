@@ -43,24 +43,6 @@ div#Header h1 {
     text-align: left;
 }
 
-div#Header .crumbs {
-    margin: 0px 30px;
-    display: inline;
-}
-
-div#Header .crumb {
-    margin-right: 20px;
-    display: inline;
-    font-size: 14px;
-    color: #EFEFEF;
-}
-
-div#Header .crumb a {
-    color: white;
-    font-weight: bolder;
-    text-decoration: none;
-}
-
 div.wrapper {
     background: #e5e5e5;
     padding: 12px 23px 0 30px;
@@ -125,12 +107,7 @@ a.pane-link.active {
     height: 24px;
 }
 
-#Tabs ul {
-    margin: 0;
-    padding: 0;
-}
-
-#Tabs li {
+#Tabs li.crumb {
     margin: 0;
     padding: 0;
     display: inline;
@@ -138,7 +115,48 @@ a.pane-link.active {
     border: none;
 }
 
-#Tabs a:link, #Tabs a:visited {
+#Tabs .crumbs {
+	width: 20%;
+	display: inline;
+}
+
+#Tabs ul.crumbs {
+	margin-left: 30px;
+}
+
+#Tabs li.crumb {
+    margin-right: 20px;
+    display: inline;
+    font-size: 14px;
+    color: #EFEFEF;
+}
+
+#Tabs li.crumb a {
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+#Tabs ul {
+    margin: 0;
+    padding: 0;
+	display: inline;
+}
+
+
+#Tabs ul#header {
+    float: right;
+}
+
+#Tabs li.tab-item {
+    margin: 0;
+    padding: 0;
+    display: inline;
+    list-style: none;
+    border: none;
+}
+
+#Tabs li.tab-item a:link, #Tabs li.tab-item a:visited {
     text-decoration: none;
     border: 1px solid #036;
     color: #fff;
@@ -151,11 +169,8 @@ a.pane-link.active {
     margin: 0;
 }
 
-#Tabs ul#header {
-    float: right;
-}
 
-#Tabs li a.current {
+#Tabs li.tab-item a.current {
     border: 1px solid #036;
     border-bottom: 1px solid #1A4F85;
     font-size: 12px;
@@ -168,7 +183,7 @@ a.pane-link.active {
     margin: 0;
 }
 
-#Tabs a:hover {
+#Tabs li.tab-item a:hover {
     color: #fff;
     background: #010a4b;
     border-bottom: 1px solid #010a4b;
