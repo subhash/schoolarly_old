@@ -6,14 +6,16 @@
 				<%= f.input :recipients, :as => :select, :collection => local_assigns[:users], :selected => local_assigns[:selected_users], :label => false, :input_html => {:class => 'multiselect'} %>
 	        </td>
 		</tr>
+		<%message.subject = 'RE:' + mail.message.subject if local_assigns[:mail]%>
        	<tr>
+       		<th>Subject</th>
         	<td>
-			 	<%= f.input :subject, :rows => 1, :label => "Subject" %>
+			 	<%= f.input :subject, :rows => 1, :label => false %>
         	</td>
     	</tr>
         <tr>
         	<td colspan=2>
-				 <%= f.input :body, :rows => 5, :as => :text %>
+				 <%= f.input :body, :rows => 5, :as => :text, :label => false %>
         	</td>
     	</tr>
 </table>
