@@ -105,7 +105,7 @@ module ApplicationHelper
       end
       
       def profile_tab(args={})
-        new_args = {:title => 'Profile', :partial => 'user_profiles/profile' } 
+        new_args = {:title => 'Details', :partial => 'user_profiles/profile' } 
         tab new_args.merge(args)
       end
       

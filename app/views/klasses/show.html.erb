@@ -16,4 +16,5 @@
 <% t.students_tab :object => @klass.students, :locals => {:hide_header => true} %>
 <% t.papers_tab :object => @klass.papers %>
 <% t.exams_tab :object => @exams %>
+<% t.tab :tab => :details, :title => 'Details', :partial => 'klasses/details', :locals => {:klass => @klass} %>
 <% end %>
