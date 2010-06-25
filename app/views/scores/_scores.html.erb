@@ -28,10 +28,12 @@
                 </span><% end %>
             </span>
             <% end %>
-            <% unless s_scores.first.exam.assessment_type == "SA" or  Score.aggregate(s_scores).nil? %>
-            <span class="activity emphasis">Average<span class="score emphasis"><%= Score.aggregate(s_scores) %></span></span>
-            <% end %>
         </td>
+        <% unless s_scores.first.exam.assessment_type == "SA" or  Score.aggregate(s_scores).nil? %>
+        <td class="average">
+            <%= Score.aggregate(s_scores) %>
+        </td>
+        <% end %>
     </tr>
     <%end %>
 </table>
