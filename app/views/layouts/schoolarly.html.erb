@@ -22,7 +22,7 @@
         <!-- Missing: Header with home, logout etc., Footer with about, contact etc,. Flash message box, Breadcrumbs-->
         <div id="main">
             <div id="Header">
-                <h1 class="title">Schoolarly<div class="crumbs"><%= yield :crumbs %></div></h1>
+                <h1 class="title">Schoolarly<div class="crumbs" id="crumbs"><%= yield :crumbs %></div></h1>
                 <div id="Tabs">
                     <%= yield :tab_links %>
                     <%= render :partial => '/common/header' %>

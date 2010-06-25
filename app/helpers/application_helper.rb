@@ -34,9 +34,9 @@ module ApplicationHelper
   def add_exam_link(f, exam)
     css_id = exam.class.name.downcase + '-' + exam.id.to_s
     link_to_function 'Add', {:title => 'Add Once', :class => "ui-icon ui-icon-circle-plus"} do |page|
-    partial = render :partial => 'exams/form', :locals => {:f => f, :teachers => exam.klass.school.teachers, :exam => exam.clone}
-       page.insert_html :after, css_id, partial 
-       page.replace_html 'add-exam-' + exam.id.to_s, :text => ''
+      partial = render :partial => 'exams/form', :locals => {:f => f, :teachers => exam.klass.school.teachers, :exam => exam.clone}
+      page.insert_html :after, css_id, partial 
+      page.replace_html 'add-exam-' + exam.id.to_s, :text => ''
     end
   end
   
@@ -235,6 +235,29 @@ module ActionView
          def replace_header
            replace "header", :partial => '/common/header'
          end
+         
+         def replace_breadcrumbs(&block)
+           collector = self
+           class <<collector
+             def crumb(label, url = nil)
+               insert_html :bottom, 'crumbs', :partial => '/common/crumb', :locals => {:url => url, :label => label}                
+             end
+             
+             def crumb_for(person)
+               case
+                 when person.is_a?(Teacher)
+                  self.crumb(person.school.name, person.school) if person.school
+                  when person.is_a?(Student)
+                   self.crumb(person.school.name, person.school) if person.school
+                   self.crumb(person.klass.name, person.klass)if person.school and person.klass              
+               end
+               self.crumb(person.name, person)
+             end
+
+           end            
+           select('#crumbs *').each {|e| e.remove}
+           block.call(collector)
+         end         
          
          private
          def css_id(obj)
