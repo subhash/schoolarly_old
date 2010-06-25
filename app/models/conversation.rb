@@ -6,11 +6,11 @@ class Conversation < ActiveRecord::Base
   #looks like shit but isnt too bad
   #has_many :users, :through :messages, :source => :recipients, :uniq => true doesnt work due to recipients being a habtm association
   has_many :recipients, :class_name => 'User', :finder_sql => 
-    'SELECT users.* FROM conversations 
+    'SELECT DISTINCT users.* FROM conversations 
     INNER JOIN messages ON conversations.id = messages.conversation_id 
     INNER JOIN messages_recipients ON messages_recipients.message_id = messages.id 
     INNER JOIN users ON messages_recipients.recipient_id = users.id
-    WHERE conversations.id = #{self.id} GROUP BY users.id;'
+    WHERE conversations.id = #{self.id};'
   
   #originator of the conversation.
   def originator()
