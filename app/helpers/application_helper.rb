@@ -135,6 +135,14 @@ module ApplicationHelper
       link_to_function(title, {:title => title, :class => "ui-icon ui-icon-mail-closed"} ) { |page|  page.open_dialog(title, args) } if (permitted_to? :contact, person)
   end
   
+  def link_to_function_if(condition, name, &block)
+    if condition
+      link_to_function name, &block
+    else
+      name
+    end    
+  end
+  
   def render_breadcrumbs(&block)
     collector = self
     class <<collector
