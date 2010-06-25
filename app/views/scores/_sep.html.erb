@@ -1,15 +1,15 @@
 <% term_totals = ActiveSupport::OrderedHash.new %>
 <%terms = [] %>
+<% papers = scores.first.student.papers %>
 <% Activity.all.group_by{|a| a.assessment.term }.each do |term, activities| %>
 <% terms << term %>
 <table class = "sep">
     <tr class="heading">
-        <th  colspan="7">
+        <th colspan="7">
             <h1><%= "Term#{term}" %></h1>
         </th>
     </tr>
-    <!-- creating header row !--><!-- nested hash - FA => FA1 => [] -->
-	<% h = ActiveSupport::OrderedHash.new %>
+    <!-- creating header row !--><!-- nested hash - FA => FA1 => [] --><% h = ActiveSupport::OrderedHash.new %>
     <% activities.each do |a| %>
     <% h[a.assessment.assessment_type] = ActiveSupport::OrderedHash.new unless h.has_key?(a.assessment.assessment_type) %>
     <% h[a.assessment.assessment_type][a.assessment.name] = [] unless h[a.assessment.assessment_type].has_key?(a.assessment.name) %>
@@ -36,15 +36,16 @@
             Total - Term<%=term %>
         </th>
     </tr>
-    <!-- header row end-->
-	<!-- creating subject rows -->
-	
-	<% scores.select{|s|s.exam.term == term }.group_by{|s| s.exam.subject }.each do |subject, s_scores| %>
-    <% term_totals[subject.name] = 0 unless term_totals[subject.name]%>
+    <!-- header row end--><!-- creating subject rows -->
+	<% papers.each do |paper| %>
+    <% subject = paper.subject %>
+    <% s_scores = scores.select{|s|s.exam.term == term and s.exam.subject == subject} %>
     <tr>
         <td colspan="2">
             <%= subject.name %>
         </td>
+        <% unless s_scores.blank? %>
+        <% term_totals[subject.name] = 0 unless term_totals[subject.name] %>
         <% activities.each do |type, t_acts| %>
         <% t_acts.each do |name, n_acts| %>
         <td>
@@ -61,6 +62,7 @@
             <%= (total = Score.total(s_scores)) %>
             <% total ? term_totals[subject.name]+= total : term_totals[subject.name] = nil %>
         </td>
+        <% end %>
     </tr>
     <% end %>
 </table>
@@ -83,13 +85,13 @@
             Grade
         </th>
     </tr>
-    <% term_totals.each do |subject, total| %>
+    <% papers.each do |paper| %>
     <tr>
         <td colspan="2">
-            <%=subject %>
+            <%= paper.name %>
         </td>
         <td>
-            <%= total %>
+            <%= (total = term_totals[paper.subject.name]) %>
         </td>
         <td>
             <%= Score.grade(total) if total %>
@@ -98,5 +100,5 @@
     <% end %>
 </table>
 <div class="print">
-	<%= link_to_function("Print SEP", "javascript:print()")%>
+    <%= link_to_function("Print SEP", "javascript:print()") %>
 </div>
