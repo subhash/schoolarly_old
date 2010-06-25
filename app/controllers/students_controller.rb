@@ -27,6 +27,7 @@ class StudentsController < ApplicationController
       if @klass
         @all_subjects = Subject.find(:all, :order => 'name')
         @scores = @student.scores.for_exams(@klass.current_exams)
+        @exams = @student.current_exams
       else
         @klasses = @school.klasses
       end

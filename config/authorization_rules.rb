@@ -28,7 +28,7 @@ authorization do
   end
   
   role :teacher do
-    includes :student
+    has_permission_on :schools, :to => :read, :join_by => :and, &same_school 
     has_permission_on :teachers, :to => :read_write, &same_user
     has_permission_on :students, :to => :read_write, :join_by => :and, &same_school
     has_permission_on :klasses, :to => :manage, :join_by => :and, &same_school
@@ -42,6 +42,7 @@ authorization do
       if_permitted_to :manage, :klass
     end
     has_permission_on :user_profiles, :to => :read_write, &same_user
+    has_permission_on [:schools, :teachers, :students, :klasses, :papers], :to => :contact, :join_by => :and, &same_school
   end
   
   role :school do

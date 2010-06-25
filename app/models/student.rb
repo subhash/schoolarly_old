@@ -34,4 +34,8 @@ class Student < ActiveRecord::Base
     return user.email
   end
   
+  def current_exams
+    klass.current_exams.select{|e|e.students.include?(self)} if klass
+  end
+  
 end

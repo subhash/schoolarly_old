@@ -38,8 +38,7 @@ class Exam < ActiveRecord::Base
   end
   
   def score_of(student)
-    score = scores.select{|score| score.student == student}.first
-    if score then return score.score end
+    scores.select{|score| score.student == student}.first
   end
   
   def destroyable?

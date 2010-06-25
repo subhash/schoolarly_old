@@ -385,7 +385,6 @@ table.exams .subject {
 }
 
 table.exams td.right * {
-    font-size: 11px;
 	display: inline-block;
 }
 
@@ -410,6 +409,14 @@ table.exams .time {
     padding: 2px 0px 2px 4px;
     margin-left: 4px;
 	margin-bottom: 0px;
+}
+
+table.exams .score {
+    background-color: #F5DFAC;
+    color: black;
+    padding: 2px 0px 2px 4px;
+    margin-left: 4px;
+	font-size: 17px;
 }
 
 table.papers {

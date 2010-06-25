@@ -8,7 +8,7 @@
     </tr>
     <% if ex.first.assessment_type == "SA" %>
     <% ex.each do |e| %>
-    <%= render :partial => 'exams/exam',:locals => {:exam => e} %>
+    <%= render :partial => 'exams/exam',:locals => {:exam => e, :student => (local_assigns[:student] ? student : nil)} %>
     <% end %>
     <%else %>
     <% ex.group_by {|e| e.subject.name}.each do |subject, s_exams| %>
@@ -22,7 +22,7 @@
         </th>
     </tr>
     <% s_exams.each do |e| %>
-    <%= render :partial => 'exams/exam',:locals => {:exam => e} %>
+    <%= render :partial => 'exams/exam',:locals => {:exam => e, :student => (local_assigns[:student] ? student : nil)} %>
     <% end %>
     <% end %>
     <% end %>

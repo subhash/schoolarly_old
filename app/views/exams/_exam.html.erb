@@ -17,23 +17,31 @@
         <% end %>
     </td>
     <td class="left">
-        <%= exam.assessment_type == "SA" ? exam.subject.name : exam.activity_name %>
+        <%= link_to_if (student and permitted_to? :read, exam), (exam.assessment_type == "SA" ? exam.subject.name : exam.activity_name), view_scores_exams_path(:ids => [exam.id]) %>
     </td>
     <td>
-		<%if !exam.description.blank?%>
-			<a href="#" class="tooltip"><em class="inline-block ui-icon ui-icon-comment"></em><span><%= exam.description %></span></a>
-		<%end%>
+        <%if !exam.description.blank? %>
+        <a href="#" class="tooltip"><em class="inline-block ui-icon ui-icon-comment"></em><span><%= exam.description %></span></a>
+        <%end %>
     </td>
     <td class="right">
         <% if exam.event %>
         <span class="date"><%= exam.event.start_time.to_s(:short) %>
-            <span class="time"><%= exam.duration %> hours</span></span>
+            <span class="time"><%= exam.duration %>hours</span></span>
         <%end %>
         <span><%=link_to exam.teacher.name, exam.teacher if !exam.teacher.nil? %></span>
-        <% if (permitted_to? :update, exam) %>
-        <span><%=link_to 'Scores',  edit_scores_exams_path(:ids => [exam.id]) %></span>
-        <% elsif (permitted_to? :read, exam) %>
-		<span><%=link_to 'Scores',  view_scores_exams_path(:ids => [exam.id]) %></span>
-		<% end %>
+        <% if student %>
+       	 	<% if (score =  exam.score_of(student)) %>
+       		 <% if permitted_to? :read, score %>
+        		<span class="score"><%= score.score %></span>
+        	 <% end %>
+        	<% end %>
+        <% else %>
+        	<% if (permitted_to? :update, exam) %>
+        		<span><%=link_to 'Scores',  edit_scores_exams_path(:ids => [exam.id]) %></span>
+        	<% elsif (permitted_to? :read, exam) %>
+        		<span><%=link_to 'Scores',  view_scores_exams_path(:ids => [exam.id]) %></span>
+        	<% end %>
+        <% end %>
     </td>
 </tr>
