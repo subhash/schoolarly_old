@@ -501,22 +501,22 @@ table.klass-exams td.left a {
 }
 
 div.message {
-    margin-bottom: 40px;
+    margin: 20px 0px;
     border-width: 1px;
     border-color: #ccc;
     border-style: solid;
 }
 
-div.message .heading {
+div.message .details {
     font-size: 10px;
     margin: 5px 0px;
     color: #666;
+	float: right;
 }
 
 div.message .subject {
     font-size: 18px;
     margin-bottom: 10px;
-    font-weight: bold;
     background: #e5e5e5;
 }
 

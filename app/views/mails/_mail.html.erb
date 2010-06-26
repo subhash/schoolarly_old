@@ -1,14 +1,17 @@
-<div id="<%='mail-' + mail.id.to_s%>" class="message" >
-    <div class="heading">
-        <span><strong><%= mail.message.sender.name %></strong> sent this message <%= time_ago_in_words(mail.message.created_at) %> ago to <strong><%=mail.message.recipients.collect{|r| r.person.name}.join(', ')%></strong></span>
-    </div>
+<div id="<%='mail-' + mail.id.to_s%>" class="message">
     <div class="subject">
-        <%= mail.message.subject %>
+        <strong><%= mail.message.subject %></strong>
+        <div class="details">
+            <span>sent by <strong><%= mail.message.sender.name %></strong> <%= time_ago_in_words(mail.message.created_at) %> ago </span>
+        </div>
     </div>
     <div class="body">
         <%= mail.message.body %>
     </div>
     <div class="actions">
-        <%= link_to_remote 'View Conversation', :url =>{:controller => 'conversations', :action => 'show', :id => mail}, :html => {:title => 'View Conversation'} if !local_assigns[:dialog_view] %>  <%= link_to_remote 'Reply', :url =>{:controller => 'mails', :action => 'new', :id => mail}, :html => {:title => 'Reply'} %> <%= link_to_remote 'Delete', :url =>{:controller => 'mails', :action => 'destroy', :id => mail, :dialog_view => local_assigns[:dialog_view]}, :html => {:title => mail.trashed ? 'Permanently Remove' : 'Sent to Trash'}, :confirm => 'Are you sure?' %>
+        <span><%= link_to_remote 'View Conversation', :url =>{:controller => 'conversations', :action => 'show', :id => mail}, :html => {:title => 'View Conversation'} if !local_assigns[:dialog_view] %></span>
+		<span><%= link_to_function('View Recipients') {|page| page.open_dialog 'Recipients', {:inline => "<ul>#{mail.message.recipients.inject('') {|s, r| s+="<li>#{r.name}</li>"}}</ul>"}, 500 }%></span>
+		<span><%= link_to_remote 'Reply', :url =>{:controller => 'mails', :action => 'new', :id => mail}, :html => {:title => 'Reply'} %>
+		<%= link_to_remote 'Delete', :url =>{:controller => 'mails', :action => 'destroy', :id => mail, :dialog_view => local_assigns[:dialog_view]}, :html => {:title => mail.trashed ? 'Permanently Remove' : 'Sent to Trash'}, :confirm => 'Are you sure?' %>
     </div>
 </div>
