@@ -1,6 +1,6 @@
 <% term_totals = ActiveSupport::OrderedHash.new %>
 <%terms = [] %>
-<% papers = scores.first.student.papers %>
+<% papers = student.papers %>
 <% Activity.all.group_by{|a| a.assessment.term }.each do |term, activities| %>
 <% terms << term %>
 <table class = "sep">
