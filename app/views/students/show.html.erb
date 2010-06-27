@@ -19,6 +19,6 @@
 <% add.papers_tab :object => @student.papers if @klass %>
 <% add.exams_tab :object => @exams, :locals => {:student => @student } if @klass %>
 <% add.scores_tab :object => @scores if @klass %>
-<% add.sep_tab :locals => {:scores => @scores } if @klass %>
+<% add.sep_tab :locals => {:scores => @scores, :student => @student } if @klass %>
 <% add.profile_tab :object => @user_profile%>
 <% end %>
