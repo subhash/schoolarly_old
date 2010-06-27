@@ -7,7 +7,6 @@ class ExamsController < ApplicationController
   end
   
   def edit
-    session[:redirect] = request.request_uri
     @exam = Exam.find(params[:id])
     @exam.event = Event.new( :start_time => Event.now, :end_time => Event.now.advance(:hours => 1 )) unless @exam.event
     @teachers = @exam.school.teachers
@@ -49,16 +48,13 @@ class ExamsController < ApplicationController
   end  
   
   def edit_scores
-    @exams = Exam.find_all_by_id(params[:ids])
-    @exam = @exams.first
-  end
-  
-  def edit_scores_for_multiple
+    session[:redirect] = request.request_uri
     @exams = Exam.find_all_by_id(params[:ids])
     @exam = @exams.first
   end
   
   def view_scores
+    session[:redirect] = request.request_uri
     @exams = Exam.find_all_by_id(params[:ids])
     @exam = @exams.first
   end

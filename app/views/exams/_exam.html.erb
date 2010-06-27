@@ -19,7 +19,7 @@
     </td>
 	<% end %>
     <td class="left">
-        <%= link_to_if (student and permitted_to? :read, exam), (exam.assessment_type == "SA" ? exam.subject.name : exam.activity_name), view_scores_exams_path(:ids => [exam.id]) %>
+        <%= link_to_if (active_controller == 'students' and permitted_to? :read, exam), (exam.assessment_type == "SA" ? exam.subject.name : exam.activity_name), view_scores_exams_path(:ids => [exam.id]) %>
     </td>
     <td>
         <%if !exam.description.blank? %>
@@ -32,7 +32,7 @@
             <span class="time"><%= exam.duration %>hours</span></span>
         <%end %>
         <span><%=link_to exam.teacher.name, exam.teacher if !exam.teacher.nil? %></span>
-        <% if student %>
+        <% if active_controller == 'students' %>
        	 	<% if (score =  exam.score_of(student)) %>
        		 <% if permitted_to? :read, score %>
         		<span class="score"><%= score.score %></span>
