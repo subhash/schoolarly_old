@@ -1,4 +1,5 @@
 <tr id="exam-<%=exam.id%>">
+	<% if active_controller == 'klasses' %>
     <td class="icons">
         <% permitted_to? :create, exam do %>
         <% if exam.activity.extendable %>
@@ -16,6 +17,7 @@
         <%end %>
         <% end %>
     </td>
+	<% end %>
     <td class="left">
         <%= link_to_if (student and permitted_to? :read, exam), (exam.assessment_type == "SA" ? exam.subject.name : exam.activity_name), view_scores_exams_path(:ids => [exam.id]) %>
     </td>
