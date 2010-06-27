@@ -12,7 +12,7 @@
 <% end %>
 <% content_for :tabs do %>
 <% tabs.each do |t| %>
-<div id="<%= t[:tab] %>-tab" class ="tab" style="display: none;">
+<div id="<%= t[:tab] %>-tab-section" class ="tab" style="display: none;">
     <%= render t[:render] %>
 </div>
 <% end %>
