@@ -27,13 +27,12 @@ class EventsController < ApplicationController
   end
   
   def edit
-    session[:redirect] = request.request_uri
     @event = Event.find_by_id(params[:id])
     @event_series = @event.event_series
     @exam = @event.exam
     if @exam
-       @teachers = @exam.school.teachers
-       render :template => "exams/edit"
+      @teachers = @exam.school.teachers
+      render :template => "exams/edit"
     else
       @users = current_user.person.school ? current_user.person.school.users - [@event_series.owner] : nil
       render :update do |page|
@@ -71,6 +70,7 @@ class EventsController < ApplicationController
   
   
   def index
+    session[:redirect] = request.request_uri
     respond_to do |wants|
       wants.html { render }
       wants.js {
