@@ -57,3 +57,5 @@ Finally, what worked
 	-  sudo gem install formtastic  
 	- And add it to your environment.rb configuration as a gem dependency:
 	 config.gem 'formtastic'
+	 
+3) calendar_date_select - http://code.google.com/p/calendardateselect/
