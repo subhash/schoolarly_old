@@ -1,6 +1,10 @@
 page.open_tab(@student)
 page.remove_object @student
 page.insert_object @student, :partial => 'students/student'
+
+#To replace the klass in klass tab so that the post message to the klass will include the recently assigned student
+page.replace_object @student.klass, :partial => 'klasses/klass'
+
 if @student.klass.papers.blank?
   page.close_dialog
 else
