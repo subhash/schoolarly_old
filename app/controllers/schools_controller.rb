@@ -2,21 +2,14 @@ class SchoolsController < ApplicationController
   skip_before_filter :require_user, :only => [:new, :create]
   #permit "creator of Student", :except => :index
   
-  def self.in_place_loader_for(object, attribute, options = {})
-    define_method("get_#{object}_#{attribute}") do
-      @item = object.to_s.camelize.constantize.find(params[:id])
-      render :text => (@item.send(attribute).blank? ? "[No Name]" : @item.send(attribute))
-    end
-  end  
-  
-  in_place_loader_for :school, :board
   in_place_edit_for :school, :board
   
-  in_place_loader_for :school, :fax
   in_place_edit_for :school, :fax
   
-  in_place_loader_for :school, :website
   in_place_edit_for :school, :website
+  
+  in_place_edit_for :student, :admission_number
+  in_place_edit_for :student, :roll_number
   
   # GET /schools
   # GET /schools.xml

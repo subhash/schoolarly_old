@@ -2,6 +2,9 @@ class KlassesController < ApplicationController
   
   before_filter :find_school , :only => [:new, :create]
   
+  in_place_edit_for :student, :admission_number
+  in_place_edit_for :student, :roll_number
+  
   def index
     @klasses=Klass.all :order => "school_id, level_id, division"
   end

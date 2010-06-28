@@ -3,20 +3,8 @@ class StudentsController < ApplicationController
   
   protect_from_forgery :only => [:create, :update, :destroy] 
   
-  
-  def self.in_place_loader_for(object, attribute, options = {})
-    define_method("get_#{object}_#{attribute}") do
-      @item = object.to_s.camelize.constantize.find(params[:id])
-      render :text => (@item.send(attribute).blank? ? "[No Name]" : @item.send(attribute))
-    end
-  end  
-  
-  in_place_loader_for :student, :admission_number
   in_place_edit_for :student, :admission_number
-  
-  in_place_loader_for :student, :roll_number
   in_place_edit_for :student, :roll_number
-  
   
   def show
     session[:redirect] = request.request_uri
@@ -71,7 +59,7 @@ class StudentsController < ApplicationController
       #    TODO redesign this when we do wizard flows for right-bar actions
       if(session[:redirect]) and session[:redirect] == student_path(@student)
         render :update do |page|
-#          TODO wizard for adding subjects or render breadcrumbs thru ajax
+          #          TODO wizard for adding subjects or render breadcrumbs thru ajax
           page.redirect_to session[:redirect]
         end
       else
