@@ -8,6 +8,11 @@ body {
     text-align: center;
 }
 
+/* Hack to make up for formtastic */
+li {
+	list-style-type: none;
+}
+
 /* Baseline */
 table {
     border-collapse: collapse;
