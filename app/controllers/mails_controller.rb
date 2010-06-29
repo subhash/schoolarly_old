@@ -1,5 +1,5 @@
 class MailsController < ApplicationController
-   
+
   def create
     sender=current_user
     @message = Message.new(params[:message])
@@ -24,9 +24,9 @@ class MailsController < ApplicationController
   def new
     @message=Message.new()
     @mail = Mail.find(params[:id]) if params[:id]
-    selected_users = @mail.conversation.users if params[:id]
+    selected_users = User.with_permissions_to(:contact) & @mail.conversation.users if params[:id]
     @selected_user_ids = selected_users.collect{|u| u.id} if params[:id]
-    @users = !selected_users.nil? ? selected_users : current_user.person.is_a?(SchoolarlyAdmin) ? User.all : (!current_user.person.school.nil? ? current_user.person.school.users : [])
+    @users = !selected_users.nil? ? selected_users : User.with_permissions_to(:contact)
   end
   
   def destroy

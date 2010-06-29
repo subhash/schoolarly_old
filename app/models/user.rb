@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  
+
   acts_as_authentic do |c|
     option = {:if => Proc.new {|user| user.perishable_token.nil? }}
     c.validates_length_of_password_field_options =  validates_length_of_password_field_options.merge(option)
@@ -31,4 +31,10 @@ class User < ActiveRecord::Base
   def role_symbols
     [person.class.name.underscore.to_sym]
   end
+  
+  def self.with_permissions_to(privilege)
+    self.all.select do |object|
+      Authorization::Engine.instance.permit?(privilege, :object => object.person)#, :context => object.person.class.name.underscore.pluralize.to_sym)
+    end
+  end  
 end

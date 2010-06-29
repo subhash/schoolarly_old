@@ -3,7 +3,8 @@ class EventsController < ApplicationController
   def new    
     @event = Event.new(:start_time => Event.now, :end_time => Event.now.advance(:hours => 1))
     @event_series = EventSeries.new( :owner => current_user)
-    @users = current_user.person.school ? current_user.person.school.users - [@event_series.owner] : nil
+    #@users = current_user.person.school ? current_user.person.school.users - [@event_series.owner] : nil
+    @users = User.with_permissions_to(:contact) - [@event_series.owner]
     render :update do |page|      
       page.open_dialog 'New Event', {:partial => 'create_form'}, 500
     end
@@ -34,7 +35,8 @@ class EventsController < ApplicationController
       @teachers = @exam.school.teachers
       render :template => "exams/edit"
     else
-      @users = current_user.person.school ? current_user.person.school.users - [@event_series.owner] : nil
+      #@users = current_user.person.school ? current_user.person.school.users - [@event_series.owner] : nil
+      @users = User.with_permissions_to(:contact) - [@event_series.owner]
       render :update do |page|
         page.open_dialog @event_series.title, {:partial => 'events/edit_form'}, 500
       end
@@ -68,7 +70,6 @@ class EventsController < ApplicationController
     end
   end  
   
-  
   def index
     session[:redirect] = request.request_uri
     respond_to do |wants|
@@ -83,7 +84,6 @@ class EventsController < ApplicationController
     end
   end  
   
-  
   def alter
     @event = Event.find(params[:id])
     @event_series = @event.event_series
@@ -95,7 +95,6 @@ class EventsController < ApplicationController
       @event_series.destroy if @event_series.events.size == 0
     end
   end
-  
   
   def destroy
     @event = Event.find_by_id(params[:id])

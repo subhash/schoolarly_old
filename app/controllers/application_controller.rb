@@ -9,9 +9,8 @@ class ApplicationController < ActionController::Base
   
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
-  
   before_filter :require_user
-  
+ 
   def set_active_user(user_id)
     session[:active_user] = user_id
   end
@@ -27,6 +26,7 @@ class ApplicationController < ActionController::Base
   def current_user
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.user
+    set_auth_current_user
   end
   
   def navigation_tabs
@@ -53,7 +53,10 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  
+  protected
+  def set_auth_current_user
+   Authorization.current_user = current_user
+  end
   
   private
   def current_user_session
