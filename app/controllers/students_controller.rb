@@ -29,7 +29,6 @@ class StudentsController < ApplicationController
     @user = User.new
   end 
   
-  
   def create
     #    TODO - if the user already exists, with school not assigned, we should let that be added to school after enough warnings    
     @student = Student.new(params[:student])
@@ -59,7 +58,7 @@ class StudentsController < ApplicationController
       #    TODO redesign this when we do wizard flows for right-bar actions
       if(session[:redirect]) and session[:redirect] == student_path(@student)
         render :update do |page|
-          #          TODO wizard for adding subjects or render breadcrumbs thru ajax
+#          TODO wizard for adding subjects or render breadcrumbs thru ajax
           page.redirect_to session[:redirect]
         end
       else

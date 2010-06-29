@@ -3,9 +3,7 @@ class SchoolsController < ApplicationController
   #permit "creator of Student", :except => :index
   
   in_place_edit_for :school, :board
-  
   in_place_edit_for :school, :fax
-  
   in_place_edit_for :school, :website
   
   # GET /schools
