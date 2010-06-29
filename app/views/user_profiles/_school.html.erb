@@ -28,4 +28,12 @@
             <%=h school.website %>
         </td>
     </tr>
+	<tr>
+        <td class="left">
+            Current Academic Year:
+        </td>
+        <td class="right">
+            <%=h school.academic_year.start_date.strftime('%B, %Y') + ' - ' + school.academic_year.end_date.strftime('%B, %Y') %>
+        </td>
+    </tr>
 </table>
