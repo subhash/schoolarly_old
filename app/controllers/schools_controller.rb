@@ -8,9 +8,6 @@ class SchoolsController < ApplicationController
   
   in_place_edit_for :school, :website
   
-  in_place_edit_for :student, :admission_number
-  in_place_edit_for :student, :roll_number
-  
   # GET /schools
   # GET /schools.xml
   def index
