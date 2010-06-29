@@ -12,6 +12,6 @@
         <span><%= link_to_remote 'View Conversation', :url =>{:controller => 'conversations', :action => 'show', :id => mail}, :html => {:title => 'View Conversation'} if !local_assigns[:dialog_view] %></span>
 		<span><%= link_to_function('View Recipients') {|page| page.open_dialog 'Recipients', {:inline => "<ul>#{mail.message.recipients.inject('') {|s, r| s+="<li>#{r.name}</li>"}}</ul>"}, 500 }%></span>
 		<span><%= link_to_remote 'Reply', :url =>{:controller => 'mails', :action => 'new', :id => mail}, :html => {:title => 'Reply'} %>
-		<%= link_to_remote 'Delete', :url =>{:controller => 'mails', :action => 'destroy', :id => mail, :dialog_view => local_assigns[:dialog_view]}, :html => {:title => mail.trashed ? 'Permanently Remove' : 'Sent to Trash'}, :confirm => 'Are you sure?' %>
+		<%= link_to_remote 'Delete', :url =>{:controller => 'mails', :action => 'destroy', :id => mail, :dialog_view => local_assigns[:dialog_view]}, :html => {:title => mail.trashed ? 'Permanently Remove' : 'Send to Trash'}, :confirm => 'Are you sure?' %>
     </div>
 </div>
