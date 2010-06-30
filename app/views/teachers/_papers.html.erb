@@ -1,6 +1,6 @@
 <table id="papers" class="papers">
 <% papers.each do |subject, allotments| %>
-	<tr id="<%=subject%>">
+	<tr id="subject-<%= subject.id%>">
 		<td class="left">
 			<div class="subjects"><%=subject.name %></div>
 		</td>
