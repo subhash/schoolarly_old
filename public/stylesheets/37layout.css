@@ -244,6 +244,14 @@ table.students th h2 {
     margin: 0px;
 }
 
+table.students div.icons {
+    font-size: 18px;
+}
+
+table.students div.icons span {
+    display: inline-block;
+}
+
 table.teachers {
     margin-bottom: 30px;
     width: 100%;
@@ -279,6 +287,7 @@ table.teachers .klass {
     color: white;
     padding: 2px 0px 2px 4px;
     margin-right: 2px;
+    display: inline-block;
 }
 
 table.teachers .subject {
@@ -300,6 +309,14 @@ table.teachers th h2 {
     padding: 0px;
     font-size: 11px;
     margin: 0px;
+}
+
+table.teachers div.icons {
+    font-size: 18px;
+}
+
+table.teachers div.icons span {
+    display: inline-block;
 }
 
 table.klasses {
@@ -358,6 +375,14 @@ table.klasses td.right * {
     margin-bottom: 4px;
 }
 
+table.klasses div.icons {
+    font-size: 18px;
+}
+
+table.klasses div.icons span {
+    display: inline-block;
+}
+
 table.exams {
     margin-bottom: 30px;
     width: 100%;
@@ -390,6 +415,10 @@ table.exams td.right * {
 
 table.exams td.icons {
     width: 20%;
+}
+
+table.exams td.icons span, table.exams .comment {
+    display: inline-block;
 }
 
 table.exams td.icons span.blank {
@@ -447,7 +476,7 @@ table.papers td.right, table.papers td.left {
 table.papers td.right * {
     font-size: 13px;
     margin-bottom: 4px;
-	display:inline-block;
+	display: inline-block;
 }
 
 table.papers td.left .detail {
@@ -660,18 +689,6 @@ table.sep .sub-heading {
     right: 36px;
     top: 9px;
     background-color: grey;
-}
-
-.inline-block {
-    display: inline-block;
-}
-
-.icons {
-    font-size: 18px;
-}
-
-.icons span {
-    display: inline-block;
 }
 
 .tooltip {
