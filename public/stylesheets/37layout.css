@@ -228,6 +228,7 @@ table.students .subject {
     background-color: #3C3E47;
     color: white;
     padding: 2px 4px;
+	display: inline-block;
 }
 
 table.students th {
