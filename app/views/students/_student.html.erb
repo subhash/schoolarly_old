@@ -8,11 +8,17 @@
 			<span><%= link_to_remote 'Delete', :url => {:controller => active_controller,:action => 'remove_student',:id => student}, :html => {:title => 'Remove', :class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' if permitted_to? :delete, student%></span>
 		</div>
         <div class="detail">
-        	<%= link_to student.user.email, student%>
+        	<h4><%= link_to student.user.email, student%></h4>
             <% if student.school %>
-            <h4>Admission no: <span id=<%="admission_number_#{student.id}" %>><%= student.admission_number %></span><% if permitted_to? :manage, student %> <% if student.admission_number.blank? %><a href="#" id="edit_no_<%=student.id%>">Edit</a><% end %><%= in_place_editor "admission_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_admission_number', :id => student},:external_control => "edit_no_#{student.id}"} %><% end %></h4>
+			<div>
+			<span><span id=<%="edit_admission_number_#{student.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></span>
+            <span>Admission no: <span id=<%="admission_number_#{student.id}" %>><%= student.admission_number.blank? ? '(Click to enter)' : student.admission_number %></span><% if permitted_to? :manage, student %><%= in_place_editor "admission_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_admission_number', :id => student},:external_control => "edit_admission_number_#{student.id}"} %><% end %></span>
+			</div>
             <% if student.klass %>
-            <h4>Roll no: <span id=<%="roll_number_#{student.id}" %>><%= student.roll_number %></span> <% if permitted_to? :manage, student %><% if student.roll_number.blank? %><a href="#" id="edit_roll_no_<%=student.id%>">Edit</a><% end %><%= in_place_editor "roll_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_roll_number', :id => student},:external_control => "edit_roll_no_#{student.id}"} %><% end %></h4>
+			<div>
+			<span><span id=<%="edit_roll_number_#{student.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></span>
+            <span>Roll no: <span id=<%="roll_number_#{student.id}" %>><%= student.roll_number.blank? ? '(Click to enter)' : student.roll_number %></span> <% if permitted_to? :manage, student %><%= in_place_editor "roll_number_#{student.id}" ,{:url => {:controller => 'students', :action => 'set_student_roll_number', :id => student}, :external_control => "edit_roll_number_#{student.id}"} %><% end %></span>
+			</div>
             <% else %>
             <% permitted_to? :add, student  do %>
             <h4><%= link_to_remote 'Assign Class', :url => {:controller => 'students', :action => 'show_add_to_klass_form', :id => student}, :html => {:title => 'Assign Class'} %></h4>
