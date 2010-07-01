@@ -224,6 +224,10 @@ table.students td.left .detail h4 {
     font-weight: normal;
 }
 
+table.students td.left .detail span {
+    display: inline-block;
+}
+
 table.students .subject {
     background-color: #3C3E47;
     color: white;
