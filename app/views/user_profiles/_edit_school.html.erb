@@ -40,7 +40,7 @@
 			<%= link_to_remote  academic_year, :url => {:controller => :schools, :action => :edit_academic_year, :id => edit_school}, :html => {:class => "ui-icon ui-icon-pencil", :title => "Edit"}, :method => :get %>
 		</td>
         <td class="right">
-            <%= link_to_remote academic_year, :url => {:controller => :schools, :action => :edit_academic_year, :id => edit_school}, :method => :get %>
+            <%= link_to_remote academic_year, :url => {:controller => :schools, :action => :edit_academic_year, :id => edit_school}, :method => :get, :html => {:title => 'Click to edit'} %>
         </td>
     </tr>
 </table>
