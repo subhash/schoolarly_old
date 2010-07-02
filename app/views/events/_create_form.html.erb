@@ -1,4 +1,4 @@
-<% semantic_remote_form_for @event_series, :url => {:controller => 'events', :action => 'create'} , :before => "jQuery('#creating_events').show();", :complete => "jQuery('#creating_events').hide();" do |f| %>
+<% semantic_remote_form_for @event_series, :url => {:controller => 'events', :action => 'create'}, :before => "Element.show('spinner');", :complete => "Element.hide('spinner');" do |f| %>
 	<%= f.error_messages %>
 	<% semantic_fields_for @event do |e| %>
 		<%= e.calendar_date_select :start_time, :time => true, :popup => 'force', :minute_interval => 5   %>
@@ -9,4 +9,5 @@
 	<%= f.input :description %>
 	Repeats <%= select_tag :recurrence, options_for_select([['Only once', 'once'],['Every day', 'days'],['Every week', 'weeks'],['Every month', 'months']]) %>
 	<%=f.commit_button :label => 'Create' %>
+	<%= image_tag 'spinner.gif', :id=>'spinner', :style=>"display:none;" %>
 <%end %>
