@@ -70,6 +70,21 @@ class SchoolsController < ApplicationController
     end
   end
   
+  def edit_academic_year
+    @school = School.find(params[:id])
+  end
+  
+  def update_academic_year
+    #@active_tab = :Profile
+    @school = School.find(params[:school])
+    academic_year = AcademicYear.new(params[:academic_year])
+    if !(@school.academic_year.eql? (academic_year))
+      new_academic_year = AcademicYear.find_by_start_date_and_end_date(academic_year.start_date, academic_year.end_date)
+      @school.academic_year =  new_academic_year.nil? ? academic_year : new_academic_year
+      @school.save!
+    end
+  end
+  
   # PUT /schools/1
   # PUT /schools/1.xml
   def update

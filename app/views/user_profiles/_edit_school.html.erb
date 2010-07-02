@@ -1,4 +1,4 @@
-<table class="profile">
+<table id="school-profile" class="profile">
     <tr class="heading">
         <th colspan="3">
             <h1>About Me</h1>
@@ -29,6 +29,18 @@
 		<td class="middle"><span id=<%="edit_website_#{edit_school.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
         <td class="right">
         	<span id=<%="website_#{edit_school.id}" %>><%=edit_school.website.blank? ? '(Click to enter)': edit_school.website %></span><%= in_place_editor "website_#{edit_school.id}" ,{:url => {:controller => 'schools', :action => 'set_school_website', :id => edit_school}, :external_control => "edit_website_#{edit_school.id}"} %>
+        </td>
+    </tr>
+	<tr>
+        <td class="left">
+        	Current Academic Year:
+        </td>
+		<td class="middle">
+			<% academic_year = edit_school.academic_year.start_date.strftime('%B %d, %Y') + ' - ' + edit_school.academic_year.end_date.strftime('%B %d, %Y') %>
+			<%= link_to_remote  academic_year, :url => {:controller => :schools, :action => :edit_academic_year, :id => edit_school}, :html => {:class => "ui-icon ui-icon-pencil", :title => "Edit"}, :method => :get %>
+		</td>
+        <td class="right">
+            <%= link_to_remote academic_year, :url => {:controller => :schools, :action => :edit_academic_year, :id => edit_school}, :method => :get %>
         </td>
     </tr>
 </table>

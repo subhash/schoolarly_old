@@ -1,0 +1,16 @@
+<% semantic_remote_form_for academic_year, :url => {:controller => :schools, :action => :update_academic_year, :school => school} do |f| %>
+<%= f.error_messages %>
+	<table>
+		<tr>
+			<td colspan=2>
+				<%= f.input :start_date, :as => :date, :discard_year => true%>
+	        </td>
+		</tr>
+		<tr>
+			<td colspan=2>
+				<%= f.input :end_date, :as => :date, :discard_year => true %>
+	        </td>
+		</tr>
+</table>
+    <%= f.commit_button :label => 'Update' %>
+<%end %>

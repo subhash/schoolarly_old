@@ -1,0 +1,2 @@
+args = {:partial =>'schools/academic_year_form', :locals => {:school => @school, :academic_year => @school.academic_year.clone}}
+page.open_dialog('Academic Year', args)
