@@ -11,6 +11,7 @@ class PapersController < ApplicationController
       paper.destroy
     end
     @klass.subject_ids = params[:subject_ids]
+    # TODO Handle error condition
     @klass.save!
   end
   
