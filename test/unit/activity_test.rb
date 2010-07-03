@@ -1,11 +1,8 @@
 require 'test_helper'
 
 class ActivityTest < ActiveSupport::TestCase
-  
-  def setup
-    @halfYearly = activities(:half_yearly)    
-  end
-  
-  test "sanity" do
+  # Replace this with your real tests.
+  test "the truth" do
+    assert true
   end
 end

@@ -9,7 +9,6 @@ class School < ActiveRecord::Base
     end
   end
   has_many :student_users, :through => :students, :source => :user
-  has_many :exams, :through => :klasses
   has_many :school_subjects
   has_many :subjects, :through => :school_subjects
   has_many :papers, :through => :klasses

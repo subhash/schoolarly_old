@@ -16,13 +16,8 @@ class Teacher < ActiveRecord::Base
 
   has_many :owned_klasses, :class_name => 'Klass'
   has_one :academic_year, :through => :school
-  has_many :exams
-  
-  def current_exams
-    self.exams.find_all_by_academic_year_id(self.academic_year.id) #if self.school
-  end
-  
-  accepts_nested_attributes_for :exams
+  has_many :assessments
+
   
   def name
     user.name

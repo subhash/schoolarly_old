@@ -1,7 +1,17 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+one:
+  assessment_type_id: 1
+  klass_id: 1
+  subject_id: 1
+  weightage: 9.99
+  academic_year_id: 
+  teacher_id: 1
+
+two:
+  assessment_type_id: 1
+  klass_id: 1
+  subject_id: 1
+  weightage: 9.99
+  academic_year_id: 
+  teacher_id: 1

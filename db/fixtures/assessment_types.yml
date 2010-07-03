@@ -1,42 +1,36 @@
 1:
  id: 1
  name: FA1
- assessment_type: FA
  term: 1
  max_score: 20
  weightage: 10
 2:
  id: 2
  name: FA2
- assessment_type: FA
  term: 1
  max_score: 20
  weightage: 10
 3:
  id: 3
  name: SA1
- assessment_type: SA
  term: 1
  max_score: 80
  weightage: 20
 4:
  id: 4
  name: FA3
- assessment_type: FA
  term: 2
  max_score: 20
  weightage: 10
 5:
  id: 5
  name: FA4
- assessment_type: FA
  term: 2
  max_score: 20
  weightage: 10
 6:
  id: 6
  name: SA2
- assessment_type: SA
  term: 2
  max_score: 80
  weightage: 40

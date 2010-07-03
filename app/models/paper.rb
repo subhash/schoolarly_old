@@ -5,13 +5,12 @@ class Paper < ActiveRecord::Base
   
   has_one :school, :through => :klass
   has_and_belongs_to_many :students
-  has_many :exams, :through => :subject
   
   validates_presence_of :klass_id, :subject_id
   validates_uniqueness_of :subject_id, :scope => [:klass_id]
   
-  after_create :create_exams
-  before_destroy :destroy_exams
+  after_create :create_assessments
+  before_destroy :destroy_assessments
   
   def name
     subject.name
@@ -27,17 +26,16 @@ class Paper < ActiveRecord::Base
     return u
   end
   
-  def create_exams
-    Activity.all.each do |at|
-      klass.exams << Exam.new(:activity => at, :academic_year => klass.academic_year, :description => "", :subject => subject) 
+  def create_assessments
+    AssessmentType.all.each do |at|
+      klass.assessments << Assessment.new(:academic_year => klass.academic_year, :weightage => at.weightage, :subject => subject) 
     end
   end
   
-  def destroy_exams
-    subject.exams.find_all_by_klass_id(klass.id).each do |exam|
-      if exam.destroyable? 
-          exam.destroy 
-          exam.event.event_series.destroy if exam.event
+  def destroy_assessments
+    klass.assessments.current.find_all_by_subject_id(subject.id).each do |assessment|
+      if assessment.destroyable? 
+          assessment.destroy 
         end
       end
     end

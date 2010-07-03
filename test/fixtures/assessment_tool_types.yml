@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  school_subject_id: 
+  assessment_type_id: 
+
+two:
+  name: MyString
+  school_subject_id: 
+  assessment_type_id: 

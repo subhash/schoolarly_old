@@ -14,13 +14,12 @@ class Student < ActiveRecord::Base
   has_many :subjects, :through => :papers
   has_one :parent
   has_many :scores   do
-    def for_exams(exam_ids) 
-      find :all, :conditions => {:exam_id => exam_ids}
+    def for_activities(activity_ids) 
+      find :all, :conditions => {:activity_id => activity_ids}
     end     
   end
   has_one :academic_year, :through => :school
-  has_many :exams, :through => :scores
-  accepts_nested_attributes_for :exams
+  has_many :activities, :through => :scores
   
   def subjects
     return self.papers.collect{|paper| paper.subject}  
@@ -34,8 +33,8 @@ class Student < ActiveRecord::Base
     return user.email
   end
   
-  def current_exams
-    klass.current_exams.select{|e|e.students.include?(self)} if klass
+  def current_assessments
+    klass.assessments.current.select{|e|e.students.include?(self)} if klass
   end
   
 end

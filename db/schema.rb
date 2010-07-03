@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100426035317) do
+ActiveRecord::Schema.define(:version => 20100702162810) do
 
   create_table "academic_years", :force => true do |t|
     t.date     "start_date"
@@ -19,24 +19,65 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   end
 
   create_table "activities", :force => true do |t|
-    t.string   "activity"
-    t.boolean  "extendable"
-    t.integer  "assessment_id"
+    t.integer  "assessment_tool_id"
+    t.string   "description"
+    t.integer  "max_score",          :limit => 10, :precision => 10, :scale => 0
+    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "activities", ["assessment_id"], :name => "assessment_id"
+  add_index "activities", ["assessment_tool_id"], :name => "assessment_tool_id"
+  add_index "activities", ["event_id"], :name => "event_id"
+
+  create_table "assessment_tool_types", :force => true do |t|
+    t.string   "name"
+    t.integer  "school_subject_id"
+    t.integer  "assessment_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assessment_tool_types", ["school_subject_id"], :name => "school_subject_id"
+  add_index "assessment_tool_types", ["assessment_type_id"], :name => "assessment_type_id"
+
+  create_table "assessment_tools", :force => true do |t|
+    t.integer  "assessment_tool_type_id"
+    t.integer  "assessment_id"
+    t.integer  "ignore_worst"
+    t.integer  "weightage",               :limit => 10, :precision => 10, :scale => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assessment_tools", ["assessment_tool_type_id"], :name => "assessment_tool_type_id"
+  add_index "assessment_tools", ["assessment_id"], :name => "assessment_id"
+
+  create_table "assessment_types", :force => true do |t|
+    t.string   "name"
+    t.integer  "term"
+    t.integer  "max_score",  :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "weightage",                :precision => 5,  :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "assessments", :force => true do |t|
-    t.string   "assessment_type"
-    t.string   "name"
-    t.string   "term"
-    t.integer  "max_score"
-    t.decimal  "weightage",       :precision => 5, :scale => 2, :default => 100.0
+    t.integer  "assessment_type_id"
+    t.integer  "klass_id"
+    t.integer  "subject_id"
+    t.integer  "weightage",          :limit => 10, :precision => 10, :scale => 0
+    t.integer  "academic_year_id"
+    t.integer  "teacher_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "assessments", ["assessment_type_id"], :name => "assessment_type_id"
+  add_index "assessments", ["klass_id"], :name => "klass_id"
+  add_index "assessments", ["subject_id"], :name => "subject_id"
+  add_index "assessments", ["academic_year_id"], :name => "academic_year_id"
+  add_index "assessments", ["teacher_id"], :name => "teacher_id"
 
   create_table "conversations", :force => true do |t|
     t.string   "subject",    :default => ""
@@ -74,25 +115,6 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   end
 
   add_index "events", ["event_series_id"], :name => "event_series_id"
-
-  create_table "exams", :force => true do |t|
-    t.string   "description"
-    t.integer  "activity_id",      :null => false
-    t.integer  "subject_id",       :null => false
-    t.integer  "event_id"
-    t.integer  "klass_id",         :null => false
-    t.integer  "teacher_id"
-    t.integer  "academic_year_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "exams", ["activity_id"], :name => "activity_id"
-  add_index "exams", ["subject_id"], :name => "subject_id"
-  add_index "exams", ["event_id"], :name => "event_id"
-  add_index "exams", ["klass_id"], :name => "klass_id"
-  add_index "exams", ["teacher_id"], :name => "teacher_id"
-  add_index "exams", ["academic_year_id"], :name => "academic_year_id"
 
   create_table "klasses", :force => true do |t|
     t.integer  "level_id",   :null => false
@@ -191,6 +213,14 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
 
   add_index "parents", ["student_id"], :name => "student_id"
 
+  create_table "school_subjects", :force => true do |t|
+    t.integer "school_id",  :null => false
+    t.integer "subject_id", :null => false
+  end
+
+  add_index "school_subjects", ["school_id"], :name => "school_id"
+  add_index "school_subjects", ["subject_id"], :name => "subject_id"
+
   create_table "schoolarly_admins", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -207,23 +237,15 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
 
   add_index "schools", ["academic_year_id"], :name => "academic_year_id"
 
-  create_table "schools_subjects", :id => false, :force => true do |t|
-    t.integer "school_id",  :null => false
-    t.integer "subject_id", :null => false
-  end
-
-  add_index "schools_subjects", ["school_id", "subject_id"], :name => "index_schools_subjects_on_school_id_and_subject_id", :unique => true
-  add_index "schools_subjects", ["subject_id"], :name => "subject_id"
-
   create_table "scores", :force => true do |t|
-    t.integer  "student_id",                               :null => false
-    t.integer  "exam_id",                                  :null => false
-    t.decimal  "score",      :precision => 5, :scale => 2
+    t.integer  "activity_id"
+    t.integer  "student_id"
+    t.integer  "score",       :limit => 10, :precision => 10, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "scores", ["exam_id"], :name => "exam_id"
+  add_index "scores", ["activity_id"], :name => "activity_id"
   add_index "scores", ["student_id"], :name => "student_id"
 
   create_table "students", :force => true do |t|
@@ -290,7 +312,20 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
     t.datetime "updated_at"
   end
 
-  add_foreign_key "activities", ["assessment_id"], "assessments", ["id"], :name => "activities_ibfk_1"
+  add_foreign_key "activities", ["assessment_tool_id"], "assessment_tools", ["id"], :name => "activities_ibfk_1"
+  add_foreign_key "activities", ["event_id"], "events", ["id"], :name => "activities_ibfk_2"
+
+  add_foreign_key "assessment_tool_types", ["school_subject_id"], "school_subjects", ["id"], :name => "assessment_tool_types_ibfk_1"
+  add_foreign_key "assessment_tool_types", ["assessment_type_id"], "assessment_types", ["id"], :name => "assessment_tool_types_ibfk_2"
+
+  add_foreign_key "assessment_tools", ["assessment_tool_type_id"], "assessment_tool_types", ["id"], :name => "assessment_tools_ibfk_1"
+  add_foreign_key "assessment_tools", ["assessment_id"], "assessments", ["id"], :name => "assessment_tools_ibfk_2"
+
+  add_foreign_key "assessments", ["assessment_type_id"], "assessment_types", ["id"], :name => "assessments_ibfk_1"
+  add_foreign_key "assessments", ["klass_id"], "klasses", ["id"], :name => "assessments_ibfk_2"
+  add_foreign_key "assessments", ["subject_id"], "subjects", ["id"], :name => "assessments_ibfk_3"
+  add_foreign_key "assessments", ["academic_year_id"], "academic_years", ["id"], :name => "assessments_ibfk_4"
+  add_foreign_key "assessments", ["teacher_id"], "teachers", ["id"], :name => "assessments_ibfk_5"
 
   add_foreign_key "event_series", ["user_id"], "users", ["id"], :name => "event_series_ibfk_1"
 
@@ -298,13 +333,6 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
   add_foreign_key "event_series_users", ["user_id"], "users", ["id"], :name => "event_series_users_ibfk_2"
 
   add_foreign_key "events", ["event_series_id"], "event_series", ["id"], :name => "events_ibfk_1"
-
-  add_foreign_key "exams", ["activity_id"], "activities", ["id"], :name => "exams_ibfk_1"
-  add_foreign_key "exams", ["subject_id"], "subjects", ["id"], :name => "exams_ibfk_2"
-  add_foreign_key "exams", ["event_id"], "events", ["id"], :name => "exams_ibfk_3"
-  add_foreign_key "exams", ["klass_id"], "klasses", ["id"], :name => "exams_ibfk_4"
-  add_foreign_key "exams", ["teacher_id"], "teachers", ["id"], :name => "exams_ibfk_5"
-  add_foreign_key "exams", ["academic_year_id"], "academic_years", ["id"], :name => "exams_ibfk_6"
 
   add_foreign_key "klasses", ["school_id"], "schools", ["id"], :name => "klasses_ibfk_1"
   add_foreign_key "klasses", ["teacher_id"], "teachers", ["id"], :name => "klasses_ibfk_2"
@@ -331,12 +359,12 @@ ActiveRecord::Schema.define(:version => 20100426035317) do
 
   add_foreign_key "parents", ["student_id"], "students", ["id"], :name => "parents_ibfk_1"
 
+  add_foreign_key "school_subjects", ["school_id"], "schools", ["id"], :name => "school_subjects_ibfk_1"
+  add_foreign_key "school_subjects", ["subject_id"], "subjects", ["id"], :name => "school_subjects_ibfk_2"
+
   add_foreign_key "schools", ["academic_year_id"], "academic_years", ["id"], :name => "schools_ibfk_1"
 
-  add_foreign_key "schools_subjects", ["school_id"], "schools", ["id"], :name => "schools_subjects_ibfk_1"
-  add_foreign_key "schools_subjects", ["subject_id"], "subjects", ["id"], :name => "schools_subjects_ibfk_2"
-
-  add_foreign_key "scores", ["exam_id"], "exams", ["id"], :name => "scores_ibfk_1"
+  add_foreign_key "scores", ["activity_id"], "activities", ["id"], :name => "scores_ibfk_1"
   add_foreign_key "scores", ["student_id"], "students", ["id"], :name => "scores_ibfk_2"
 
   add_foreign_key "students", ["school_id"], "schools", ["id"], :name => "students_ibfk_1"
