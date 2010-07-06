@@ -4,7 +4,7 @@ class AssessmentToolTypesController < ApplicationController
     @school_subject = SchoolSubject.find(params[:school_subject_id])
     @assessment_tool_type = AssessmentToolType.new(:school_subject => @school_subject)
     render :update do |page|
-      page.open_dialog 'Add Assessment Tools for '+ @school_subject.school.name + ' - ' + @school_subject.name , :partial => 'assessment_tool_types/new', :locals => {:assessment_types => AssessmentType.all}
+      page.open_dialog 'Add Assessment Tools for '+ @school_subject.school.name + ' - ' + @school_subject.name , :partial => 'assessment_tool_types/new', :locals => {:assessment_types => AssessmentType.all, :assessment_tool_type => @assessment_tool_type}
     end
   end
   
