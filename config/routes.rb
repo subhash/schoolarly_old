@@ -32,6 +32,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :password_resets
   
+  map.resources :assessment_tool_types
+  
   # The priority is based upon order of creation: first created -> highest priority.
   
   # Sample of regular route:

@@ -29,9 +29,9 @@ class KlassesController < ApplicationController
   def show
     @klass = Klass.find(params[:id])
     @school = @klass.school
-    @subjects=@klass.subjects
-    @exams = @klass.exams.find_all_by_academic_year_id(@klass.academic_year.id)
-    @klass_user_ids=@klass.users.collect{|u| u.id}
+    @subjects = @klass.subjects
+    @assessments = @klass.assessments
+    @klass_user_ids = @klass.users.collect{|u| u.id}
     session[:redirect] = request.request_uri
     respond_to do |format|
       format.html # show.html.erb

@@ -1,11 +1,11 @@
 class CreateAssessments < ActiveRecord::Migration
   def self.up
     create_table :assessments do |t|
-      t.integer :assessment_type_id
-      t.integer :klass_id
-      t.integer :subject_id
+      t.integer :assessment_type_id, :null => false
+      t.integer :klass_id, :null => false
+      t.integer :subject_id, :null => false
       t.decimal :weightage
-      t.integer :academic_year_id
+      t.integer :academic_year_id, :null => false
       t.integer :teacher_id
       
       t.foreign_key :assessment_type_id, :assessment_types, :id

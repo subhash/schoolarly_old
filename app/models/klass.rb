@@ -2,11 +2,8 @@ class Klass < ActiveRecord::Base
   
   has_many :papers, :include => :subject, :order => "subjects.name"
   has_many :subjects, :through => :papers, :order => "name"
-  has_many :assessments do
-    def current
-      find :all, :conditions => ['academic_year_id = ?', academic_year.id]
-    end
-  end
+  has_one :academic_year, :through => :school
+  has_many :assessments, :conditions => {:academic_year_id => '#{self.academic_year.id}'}
   has_many :teachers, :through => :papers, :uniq => true 
   belongs_to :school
   belongs_to :level
@@ -24,7 +21,7 @@ class Klass < ActiveRecord::Base
 #  end
 #  
 #  has_many :activities, :through => :exams, :uniq => true
-  has_one :academic_year, :through => :school
+  
   
   validates_uniqueness_of :division, :scope => [:school_id, :level_id]
   

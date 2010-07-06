@@ -1,0 +1,6 @@
+<% semantic_remote_form_for :assessment_tool_type do |f| %>
+<%= f.input :name %>
+<%= f.input :school_subject_id, :as => :hidden %>
+<%= f.input :assessment_type_id, :as => :select, :collection => assessment_types %>
+<%= f.submit %>
+<% end %>

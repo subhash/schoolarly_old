@@ -6,4 +6,5 @@ class Assessment < ActiveRecord::Base
   belongs_to :academic_year
   belongs_to :teacher
   
+  has_many :assessment_tools
 end

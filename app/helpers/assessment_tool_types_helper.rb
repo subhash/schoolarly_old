@@ -1,0 +1,2 @@
+module AssessmentToolTypesHelper
+end

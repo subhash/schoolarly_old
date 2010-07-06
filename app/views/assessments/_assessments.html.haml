@@ -1,0 +1,5 @@
+- @assessments.group_by{|a|a.subject.name}.each do |subject, ass|
+  %table
+    %tr
+      %td.left= subject 
+      %td.right= ass.size
