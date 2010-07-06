@@ -1,0 +1,17 @@
+%tr(id="paper-<%= paper.id%>")
+  %td.left
+    %span.icon= message_to(paper)
+    - if active_controller == 'klasses'
+      %span.icon
+        = link_to_remote 'Delete', :url => paper_url(paper), :method => :delete, :html => {:title => "Remove #{paper.name}", :class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' if permitted_to? :delete, paper
+    %span= paper.subject.name
+    .detail
+      %span= pluralize(paper.students.size, 'students')
+      = link_to_remote  '(Edit)', :url => {:controller => 'papers', :action => 'edit_students', :id => paper} if (permitted_to? :manage, paper and permitted_to? :update, :students)
+      %div
+        = link_to paper.teacher.name, teacher_path(paper.teacher) if paper.teacher
+        - if (permitted_to? :manage, paper and permitted_to? :update, :teachers)
+          - html =  {:title => "Change teacher", :class => "ui-state-default ui-corner-all ui-icon ui-icon-pencil"} if paper.teacher 
+          = link_to_remote (paper.teacher ? 'Change' : 'Allot Teacher' ), :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper} , :html => html 
+  %td.right
+        
