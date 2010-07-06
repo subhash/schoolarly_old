@@ -28,16 +28,30 @@ class Paper < ActiveRecord::Base
   
   def create_assessments
     AssessmentType.all.each do |at|
-      klass.assessments << Assessment.new(:academic_year => klass.academic_year, :weightage => at.weightage, :subject => subject) 
+      klass.assessments << Assessment.new(:assessment_type => at, :academic_year => klass.academic_year, :weightage => at.weightage, :subject => subject) 
     end
   end
   
   def destroy_assessments
-    klass.assessments.current.find_all_by_subject_id(subject.id).each do |assessment|
+    klass.assessments.find_all_by_subject_id(subject.id).each do |assessment|
       if assessment.destroyable? 
-          assessment.destroy 
-        end
+        assessment.destroy 
       end
     end
-    
   end
+  
+  def assessments
+    klass.all_assessments.find_all_by_academic_year_id_and_subject_id(klass.academic_year.id, subject.id)
+  end
+  
+  
+  def formative_assessments
+    assessments.select {|a| a.assessment_type.name.starts_with? 'FA'}
+  end
+  
+  def summative_assessments
+    assessments.select {|a| a.assessment_type.name.starts_with? 'SA'}
+  end
+  
+  
+end

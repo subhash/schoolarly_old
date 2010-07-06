@@ -3,7 +3,12 @@ class Klass < ActiveRecord::Base
   has_many :papers, :include => :subject, :order => "subjects.name"
   has_many :subjects, :through => :papers, :order => "name"
   has_one :academic_year, :through => :school
-  has_many :assessments, :conditions => {:academic_year_id => '#{self.academic_year.id}'}
+  has_many :all_assessments, :class_name => 'Assessment'
+  
+  def assessments
+    all_assessments.find_all_by_academic_year_id(academic_year.id)
+  end
+  
   has_many :teachers, :through => :papers, :uniq => true 
   belongs_to :school
   belongs_to :level

@@ -7,4 +7,8 @@ class Assessment < ActiveRecord::Base
   belongs_to :teacher
   
   has_many :assessment_tools
+  
+  def name
+    assessment_type.name 
+  end
 end

@@ -445,7 +445,6 @@ table.papers td.right, table.papers td.left {
 table.papers td.right * {
     font-size: 13px;
     margin-bottom: 4px;
-    display: inline-block;
 }
 
 table.papers td.left .detail {
