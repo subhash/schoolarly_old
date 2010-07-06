@@ -8,13 +8,15 @@
         <div class="detail">
             <span><%=pluralize(paper.students.size, 'students') %></span>
             <%= link_to_remote  '(Edit)', :url => {:controller => 'papers', :action => 'edit_students', :id => paper} if (permitted_to? :manage, paper and permitted_to? :update, :students) %>
+            <div>
+                <%= link_to paper.teacher.name, teacher_path(paper.teacher) if paper.teacher %>
+                <% if (permitted_to? :manage, paper and permitted_to? :update, :teachers) %>
+                <% html =  {:title => "Change teacher", :class => "ui-state-default ui-corner-all ui-icon ui-icon-pencil"} if paper.teacher %>
+                <%= link_to_remote (paper.teacher ? 'Change' : 'Allot Teacher' ), :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper} , :html => html %>
+                <% end %>
+            </div>
         </div>
     </td>
     <td class="right">
-        <span><%= link_to paper.teacher.name, teacher_path(paper.teacher) if paper.teacher %></span>
-        <% if (permitted_to? :manage, paper and permitted_to? :update, :teachers) %>
-        <% html =  {:title => "Change teacher", :class => "ui-state-default ui-corner-all ui-icon ui-icon-pencil"} if paper.teacher %>
-        <span><%= link_to_remote (paper.teacher ? 'Change' : 'Allot Teacher' ), :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper} , :html => html %></span>
-        <% end %>
     </td>
 </tr>

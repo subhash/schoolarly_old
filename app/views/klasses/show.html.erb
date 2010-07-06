@@ -15,6 +15,5 @@
 <% render_tabs do |t| %>
 <% t.students_tab :object => @klass.students, :locals => {:hide_header => true} %>
 <% t.papers_tab :object => @klass.papers %>
-<% t.assessments_tab :object => @assessments %>
 <% t.tab :tab => :details, :title => 'Details', :partial => 'klasses/details', :locals => {:klass => @klass} %>
 <% end %>
