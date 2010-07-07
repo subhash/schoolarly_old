@@ -567,6 +567,10 @@ table.profile td.middle {
     width: 0;
 }
 
+table#school-profile td.right a{
+	text-decoration: none;	
+}
+
 table.scores {
     width: 100%;
 }
