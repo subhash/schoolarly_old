@@ -9,14 +9,13 @@ class AssessmentToolTypesController < ApplicationController
   end
   
   def create
-    @assessment_tool_type = AssessmentToolType.new(params[:assessment_tool_type])
-    render :update do |page|
-      if @assessment_tool_type.save
+    @assessment_tool_name = AssessmentToolName.new(params[:assessment_tool_name]) 
+    @assessment_tool_name.school_subject.assessment_tool_name_ids = params[:tool_ids]
+    @assessment_tool_name.school_subject.save
+    @assessment_tool_name.save unless @assessment_tool_name.name.blank?
+    render :update do |page|      
         page.close_dialog
-        page.replace_object @assessment_tool_type.school_subject, :partial => 'school_subjects/school_subject'
-      else
-        page.refresh_dialog :partial => 'assessment_tool_types/new', :locals => {:assessment_types => AssessmentType.all}
-      end
+        page.replace_object @assessment_tool_name.school_subject, :partial => 'school_subjects/school_subject'
     end
   end
   

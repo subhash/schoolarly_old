@@ -3,7 +3,7 @@
 		<% add.dialog 'Add Class',:partial => 'klasses/new_klass_form', :locals => {:klass => Klass.new, :school => @school, :levels => Level.all} if permitted_to? :create, :klasses %>
 		<% add.dialog 'Invite Student',:partial => 'students/invite_student_form', :locals => {:student => Student.new, :user_profile => UserProfile.new, :school => @school} if permitted_to? :create, :students %>
 		<% add.dialog 'Invite Teacher',:partial => 'teachers/invite_teacher_form', :locals => {:teacher => Teacher.new, :user_profile => UserProfile.new, :school => @school} if permitted_to? :create, :teachers %>
-		<% add.dialog 'Add Subjects', :partial => 'schools/add_subjects', :locals => {:school => @school, :subjects => @school.subjects} %>
+		<% add.dialog 'Add Subjects', :partial => 'school_subjects/new', :locals => {:school => @school, :subjects => Subject.all} %>
   	<%end%>
 	<% permitted_to? :contact, @school do %>
 		<% add.dialog 'Post Message to ' + @school.name + ' Admin', :partial => 'mails/new_form', :locals => {:users => [@school.user], :selected_users => [@school.user.id], :message => Message.new} %>

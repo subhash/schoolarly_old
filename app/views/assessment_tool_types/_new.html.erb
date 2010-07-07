@@ -1,6 +1,6 @@
-<% semantic_remote_form_for assessment_tool_type do |f| %>
+<% semantic_remote_form_for assessment_tool_name do |f| %>
+<%= select_tag  'tool_ids', options_from_collection_for_select(assessment_tool_names, :id, :name, assessment_tool_name.school_subject.assessment_tool_names), :multiple => true, :class => "multiselect" %>
 <%= f.input :name %>
 <%= f.input :school_subject_id, :as => :hidden %>
-<%= f.input :assessment_type_id, :as => :select, :collection => assessment_types %>
 <%= f.submit %>
 <% end %>

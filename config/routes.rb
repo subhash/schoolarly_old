@@ -16,6 +16,8 @@ ActionController::Routing::Routes.draw do |map|
     school.resources :klasses
   end
   
+  map.resources :school_subjects
+  
   map.resources :papers
   
   map.resources :schoolarly_admins

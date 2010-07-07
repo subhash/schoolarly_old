@@ -1,6 +1,6 @@
 %tr(id="schoolsubject-#{school_subject.id}")
   %td= school_subject.name
   %td
-    - school_subject.assessment_tool_types.each do |ass|
+    - school_subject.assessment_tool_names.FA.each do |ass|
       = ass.name+" "
   %td= link_to_remote 'Add Assessment Tools', :url => {:controller => 'assessment_tool_types', :action => :new, :school_subject_id => school_subject}, :method => :get,  :html => {:title => 'Add assessment tools'} if permitted_to? :update, school_subject.school 

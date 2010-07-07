@@ -10,6 +10,7 @@ class School < ActiveRecord::Base
   end
   has_many :student_users, :through => :students, :source => :user
   has_many :school_subjects
+  has_many :assessment_tool_types, :through => :school_subjects
   has_many :subjects, :through => :school_subjects
   has_many :papers, :through => :klasses
   has_many :unallotted_papers, :source => :papers, :through => :klasses, :conditions => ['papers.teacher_id IS NULL']
