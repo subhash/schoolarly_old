@@ -1,7 +1,7 @@
 <% render_actions do |add| %>
 	<%  permitted_to? :update, @klass do %>
 		<% add.dialog 'Add Students', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled} if permitted_to? :add, :students %>
-		<% add.dialog 'Add Subjects', :partial => 'papers/create_papers_form', :locals => {:klass => @klass, :subjects => @school.subjects} if permitted_to? :add, :papers %>
+		<% add.dialog 'Add Subjects', :partial => 'papers/create_papers_form', :locals => {:klass => @klass, :school_subjects => @school.school_subjects} if permitted_to? :add, :papers %>
 		<% add.dialog 'Assign New Class Teacher', :partial =>'klasses/klass_teacher_form', :locals => {:klass => @klass, :teachers => @school.teachers} %>
 	<% end %>
 	<% add.dialog 'Post Message to ' + @klass.name, :partial => 'mails/new_form', :locals => {:users => @klass.users, :selected_users => @klass_user_ids, :message => Message.new} if permitted_to? :contact, @klass%>

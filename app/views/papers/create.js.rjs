@@ -1,5 +1,5 @@
 if active_controller == 'klasses'
-  page.replace_action 'Add Subjects', :partial => 'papers/create_papers_form', :locals => {:klass => @klass, :subjects => @klass.school.subjects}
+  page.replace_action 'Add Subjects', :partial => 'papers/create_papers_form', :locals => {:klass => @klass, :school_subjects => @klass.school.school_subjects}
   page.replace_tab Paper, :partial => 'papers/papers', :object => @klass.papers
 else
   page.replace_object @klass, :partial => 'klasses/klass'

@@ -1,7 +1,7 @@
 class Klass < ActiveRecord::Base
   
-  has_many :papers, :include => :subject, :order => "subjects.name"
-  has_many :subjects, :through => :papers, :order => "name"
+  has_many :papers
+  has_many :school_subjects, :through => :papers, :include => :subject, :order => "subjects.name"
   has_one :academic_year, :through => :school
   has_many :all_assessments, :class_name => 'Assessment'
   

@@ -15,8 +15,8 @@
     </td>
     <td class="right">
         <p>
-            <% klass.subjects.each do |subject| %>
-            <span class="subject"><%= subject.name %></span>
+            <% klass.school_subjects.each do |school_subject| %>
+            <span class="subject"><%= school_subject.name %></span>
             <% end %>
             <span><%= link_to_remote 'Add Subjects', :url =>{:controller => 'klasses', :action => 'add_subjects', :id => klass} if permitted_to? :update, klass %></span>
         </p>

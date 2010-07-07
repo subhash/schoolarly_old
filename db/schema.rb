@@ -183,14 +183,14 @@ ActiveRecord::Schema.define(:version => 20100702162810) do
 
   create_table "papers", :force => true do |t|
     t.integer  "klass_id"
-    t.integer  "subject_id"
+    t.integer  "school_subject_id"
     t.integer  "teacher_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "papers", ["klass_id"], :name => "klass_id"
-  add_index "papers", ["subject_id"], :name => "subject_id"
+  add_index "papers", ["school_subject_id"], :name => "school_subject_id"
   add_index "papers", ["teacher_id"], :name => "teacher_id"
 
   create_table "papers_students", :id => false, :force => true do |t|
@@ -347,7 +347,7 @@ ActiveRecord::Schema.define(:version => 20100702162810) do
   add_foreign_key "messages_recipients", ["recipient_id"], "users", ["id"], :name => "messages_recipients_ibfk_2"
 
   add_foreign_key "papers", ["klass_id"], "klasses", ["id"], :name => "papers_ibfk_1"
-  add_foreign_key "papers", ["subject_id"], "subjects", ["id"], :name => "papers_ibfk_2"
+  add_foreign_key "papers", ["school_subject_id"], "school_subjects", ["id"], :name => "papers_ibfk_2"
   add_foreign_key "papers", ["teacher_id"], "teachers", ["id"], :name => "papers_ibfk_3"
 
   add_foreign_key "papers_students", ["student_id"], "students", ["id"], :name => "papers_students_ibfk_1"

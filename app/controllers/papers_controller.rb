@@ -1,16 +1,16 @@
 class PapersController < ApplicationController
   def create
     @klass = Klass.find(params[:id])
-    params[:subject_ids] ||= []
-    removed_subjects = @klass.subject_ids - params[:subject_ids].collect{|s|s.to_i}
+    params[:school_subject_ids] ||= []
+    removed_subjects = @klass.school_subject_ids - params[:school_subject_ids].collect{|s|s.to_i}
     @students = []
     removed_subjects.each do |id|
-      paper = @klass.papers.find_by_subject_id(id)
+      paper = @klass.papers.find_by_school_subject_id(id)
       @students += paper.students
       paper.students.clear
       paper.destroy
     end
-    @klass.subject_ids = params[:subject_ids]
+    @klass.school_subject_ids = params[:school_subject_ids]
     # TODO Handle error condition
     @klass.save!
   end
