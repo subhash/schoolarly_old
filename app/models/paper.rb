@@ -53,11 +53,11 @@ class Paper < ActiveRecord::Base
   end
   
   def formative_assessments
-    assessments.select{|a|a.assessment_type.name.starts_with? "FA"}
+    assessments.select{|a|a.name.starts_with? "FA"}
   end
   
   def summative_assessments
-    assessments.select{|a|a.assessment_type.name.starts_with? "SA"}
+    assessments.select{|a|a.name.starts_with? "SA"}
   end
   
   

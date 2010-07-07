@@ -11,4 +11,9 @@ class Assessment < ActiveRecord::Base
   def name
     assessment_type.name 
   end
+  
+  def sa?
+    name.starts_with? "SA"
+  end
+  
 end
