@@ -1,6 +1,8 @@
 %div[assessment]
   %span= assessment.name
   - assessment.assessment_tools.each do |tool|
-    = render :partial => 'assessment_tools/assessment_tool', :object => tool
-  = link_to 'Add Tools', '' unless assessment.sa?
+    %div[tool]
+    - tool.activities.each do |activity|
+      = render :partial => 'activities/activity', :object => activity
+  = link_to 'Add Activity', '' unless assessment.sa?
 		

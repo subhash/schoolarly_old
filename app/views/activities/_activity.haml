@@ -1,0 +1,8 @@
+%span[activity]
+  = activity.name
+  - unless activity.description.blank?
+    %a{:href => "#", :class => "tooltip"}
+      %em{:class => "comment ui-icon ui-icon-comment"}
+        %span
+          = activity.description
+
