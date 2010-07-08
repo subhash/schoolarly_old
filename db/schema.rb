@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100702162810) do
+ActiveRecord::Schema.define(:version => 20100708082021) do
 
   create_table "academic_years", :force => true do |t|
     t.date     "start_date"
@@ -32,13 +32,21 @@ ActiveRecord::Schema.define(:version => 20100702162810) do
 
   create_table "assessment_tool_names", :force => true do |t|
     t.string   "name",                                   :null => false
-    t.integer  "school_subject_id",                      :null => false
     t.string   "assessment_type_name", :default => "FA"
+    t.integer  "school_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "assessment_tool_names", ["school_subject_id"], :name => "school_subject_id"
+  add_index "assessment_tool_names", ["school_id"], :name => "school_id"
+
+  create_table "assessment_tool_names_school_subjects", :id => false, :force => true do |t|
+    t.integer "assessment_tool_name_id", :null => false
+    t.integer "school_subject_id",       :null => false
+  end
+
+  add_index "assessment_tool_names_school_subjects", ["assessment_tool_name_id"], :name => "assessment_tool_name_id"
+  add_index "assessment_tool_names_school_subjects", ["school_subject_id"], :name => "school_subject_id"
 
   create_table "assessment_tools", :force => true do |t|
     t.string   "name"
@@ -313,7 +321,10 @@ ActiveRecord::Schema.define(:version => 20100702162810) do
   add_foreign_key "activities", ["assessment_tool_id"], "assessment_tools", ["id"], :name => "activities_ibfk_1"
   add_foreign_key "activities", ["event_id"], "events", ["id"], :name => "activities_ibfk_2"
 
-  add_foreign_key "assessment_tool_names", ["school_subject_id"], "school_subjects", ["id"], :name => "assessment_tool_names_ibfk_1"
+  add_foreign_key "assessment_tool_names", ["school_id"], "schools", ["id"], :name => "assessment_tool_names_ibfk_1"
+
+  add_foreign_key "assessment_tool_names_school_subjects", ["assessment_tool_name_id"], "assessment_tool_names", ["id"], :name => "assessment_tool_names_school_subjects_ibfk_1"
+  add_foreign_key "assessment_tool_names_school_subjects", ["school_subject_id"], "school_subjects", ["id"], :name => "assessment_tool_names_school_subjects_ibfk_2"
 
   add_foreign_key "assessment_tools", ["assessment_id"], "assessments", ["id"], :name => "assessment_tools_ibfk_1"
 

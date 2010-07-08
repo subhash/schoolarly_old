@@ -2,10 +2,10 @@ class CreateAssessmentToolNames < ActiveRecord::Migration
   def self.up
     create_table :assessment_tool_names do |t|
       t.string :name, :null => false
-      t.integer :school_subject_id, :null => false
       t.string :assessment_type_name, :default => "FA"
+      t.integer :school_id
       
-      t.foreign_key :school_subject_id, :school_subjects, :id
+      t.foreign_key :school_id, :schools, :id
       t.timestamps
     end
   end

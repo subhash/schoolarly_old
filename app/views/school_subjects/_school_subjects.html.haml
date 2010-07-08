@@ -1,3 +1,2 @@
 %table#school_subjects.school_subjects
-  - school_subjects.each do |school_subject|
-    = render :partial => 'school_subjects/school_subject', :object => school_subject 
+  = render :partial => 'school_subjects/school_subject', :collection => school_subjects

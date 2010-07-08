@@ -1,0 +1,6 @@
+<% semantic_remote_form_for assessment_tool_name , :url => {:controller => 'assessment_tool_names', :action => :create, :school_subject_id => school_subject } do |f| %>
+<%= select_tag  'tool_name_ids', options_from_collection_for_select(assessment_tool_names, :id, :name, school_subject.assessment_tool_name_ids), :multiple => true, :class => "multiselect" %>
+<%= f.input :name , :label => "Add new tool" %>
+<%= f.input :school_id, :as => :hidden %>
+<%= f.submit %>
+<% end %>

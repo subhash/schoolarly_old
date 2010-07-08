@@ -1,8 +1,6 @@
 class AssessmentToolName < ActiveRecord::Base
-  
-  belongs_to :school_subject
-  has_one :subject, :through => :school_subject
-  has_one :school, :through => :school_subject
+  belongs_to :school
+  has_and_belongs_to_many :school_subjects
     
   named_scope :SA, lambda { 
     {:conditions => {:assessment_type_name => "SA"}}
@@ -11,5 +9,7 @@ class AssessmentToolName < ActiveRecord::Base
   named_scope :FA, lambda { 
     {:conditions => {:assessment_type_name => "FA"}}
   }
+  
+  validates_uniqueness_of :name
   
 end
