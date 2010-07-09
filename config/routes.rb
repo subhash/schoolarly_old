@@ -36,6 +36,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :assessment_tool_names
   
+  map.resources :activities
+  
   # The priority is based upon order of creation: first created -> highest priority.
   
   # Sample of regular route:

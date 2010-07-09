@@ -4,7 +4,7 @@ class Klass < ActiveRecord::Base
   has_many :school_subjects, :through => :papers, :include => :subject, :order => "subjects.name"
   has_one :academic_year, :through => :school
   has_many :all_assessments, :class_name => 'Assessment'
-  
+  has_many :all_assessment_tools, :class_name => 'AssessmentTool', :through => :all_assessments
   def assessments
     all_assessments.find_all_by_academic_year_id(academic_year.id)
   end

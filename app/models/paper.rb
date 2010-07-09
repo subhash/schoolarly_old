@@ -37,7 +37,7 @@ class Paper < ActiveRecord::Base
       assessment_tool =  AssessmentTool.new(:name => "Exam", :weightage => 100)
       assessment_tool.activities << Activity.new(:description => "#{at.name} #{assessment_tool.name} - #{name}", :max_score => at.max_score)
       assessment.assessment_tools << assessment_tool
-     assessment.save!
+      assessment.save!
     end
   end
   
@@ -52,6 +52,11 @@ class Paper < ActiveRecord::Base
   def assessments
     klass.all_assessments.find_all_by_academic_year_id_and_subject_id(klass.academic_year.id, subject.id)
   end
+  
+  def assessment_tools
+    klass.all_assessment_tools.find_all_by_academic_year_id_and_subject_id(klass.academic_year.id, subject.id)
+  end
+  
   
   def formative_assessments
     assessments.select{|a|a.name.starts_with? "FA"}

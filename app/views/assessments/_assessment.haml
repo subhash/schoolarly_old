@@ -3,5 +3,5 @@
   - assessment.assessment_tools.each do |tool|
     %div[tool]
       = render :partial => 'activities/activity', :collection => tool.activities
-  = link_to 'Add Activity', '' unless assessment.sa?
+  = link_to_remote 'Add Activity', :url => {:controller => 'activities', :action => 'new', :assessment_id => assessment}  unless assessment.sa?
 		
