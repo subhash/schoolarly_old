@@ -14,8 +14,8 @@ class StudentsController < ApplicationController
     if @school    
       if @klass
         @all_subjects = Subject.find(:all, :order => 'name')
-        @scores = @student.scores.for_exams(@klass.current_exams)
-        @exams = @student.current_exams
+        #@scores = @student.scores.for_exams(@klass.current_exams)
+        #@exams = @student.current_exams
       else
         @klasses = @school.klasses
       end
@@ -77,19 +77,21 @@ class StudentsController < ApplicationController
   def update_papers
     @student = Student.find(params[:id])
     #   remove from all first
-    @student.subjects.each do |subject|
-      @student.klass.exams.future_for(subject.id).each do |exam|
-        exam.event.event_series.users.delete(@student.user)
-      end
-    end
+#TODO correct the following after the exam module is done.
+#    @student.subjects.each do |subject|
+#      @student.klass.exams.future_for(subject.id).each do |exam|
+#        exam.event.event_series.users.delete(@student.user)
+#      end
+#    end
     @student.paper_ids = params[:paper_ids]
     @student.save
     #     add again
-    @student.subjects.each do |subject|
-      @student.klass.exams.future_for(subject.id).each do |exam|
-        exam.event.event_series.users << @student.user
-      end
-    end
+#TODO correct the following after the exam module is done.
+#    @student.subjects.each do |subject|
+#      @student.klass.exams.future_for(subject.id).each do |exam|
+#        exam.event.event_series.users << @student.user
+#      end
+#    end
     @student.save!
   end
   

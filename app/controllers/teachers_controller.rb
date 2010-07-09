@@ -45,7 +45,7 @@ class TeachersController < ApplicationController
     if @teacher.school
       @papers=@teacher.school.unallotted_papers + @teacher.papers
       @teacher_allotments = @teacher.papers.group_by{|p| Subject.find(p.subject_id)}
-      @exams = @teacher.current_exams	#TODO .select{|e| e.klass.school == @teacher.school}
+      #@exams = @teacher.current_exams	#TODO .select{|e| e.klass.school == @teacher.school}
     end
   end
   
