@@ -1,7 +1,9 @@
 %div[assessment]
-  %span= assessment.name
-  - assessment.assessment_tools.each do |tool|
-    %div[tool]
-      = render :partial => 'activities/activity', :collection => tool.activities
-  = link_to_remote 'Add Activity', :url => {:controller => 'activities', :action => 'new', :assessment_id => assessment}  unless assessment.sa?
-		
+  %div
+    %span{:class => "assessment"}
+      = assessment.name
+    %span
+      = link_to_remote 'Add Activity', :url => {:controller => 'activities', :action => 'new', :assessment_id => assessment}  unless assessment.sa?
+- assessment.assessment_tools.each do |tool|
+  %div[tool]
+    = render :partial => 'activities/activity', :collection => tool.activities
