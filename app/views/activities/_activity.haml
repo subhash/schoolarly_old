@@ -5,9 +5,9 @@
       %em{:class => "comment ui-icon ui-icon-comment"}
       %span
         = activity.description
-          - if activity.event
-            %span{:class => "date"}
-              = activity.event.start_time.to_s(:short)
-              %span{:class => "time"}
-                = activity.duration hours
+        - if activity.event
+          %span{:class => "date"}
+            = activity.event.start_time.to_s(:short)
+            %span{:class => "time"}
+              = "#{activity.duration} hours"
 
