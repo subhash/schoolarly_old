@@ -72,16 +72,23 @@ class SchoolsController < ApplicationController
   
   def edit_academic_year
     @school = School.find(params[:id])
+    @academic_year = @school.academic_year.clone
   end
   
   def update_academic_year
-    #@active_tab = :Profile
-    @school = School.find(params[:school])
-    academic_year = AcademicYear.new(params[:academic_year])
-    if !(@school.academic_year.eql? (academic_year))
-      new_academic_year = AcademicYear.find_by_start_date_and_end_date(academic_year.start_date, academic_year.end_date)
-      @school.academic_year =  new_academic_year.nil? ? academic_year : new_academic_year
-      @school.save!
+    @school = School.find(params[:id])
+    @academic_year = AcademicYear.new(params[:academic_year])
+    if test_date(:academic_year, 'start_date') && test_date(:academic_year, 'end_date')
+        new_academic_year = AcademicYear.find_by_start_date_and_end_date(@academic_year.start_date, @academic_year.end_date)
+        @school.academic_year =  new_academic_year.nil? ? @academic_year : new_academic_year
+        if @school.save
+          render :template => 'schools/update_academic_year_success'
+        else
+          render :template => 'schools/update_academic_year_failure'
+        end
+    else
+      @academic_year.errors.add(:academic_year, ': Invalid date selected' )
+      render :template => 'schools/update_academic_year_failure'
     end
   end
   

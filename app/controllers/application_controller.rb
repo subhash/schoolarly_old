@@ -53,6 +53,12 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def test_date(object,attribute)
+    Date.valid_civil?(params[object][attribute + '(1i)'].to_i,
+                      params[object][attribute + '(2i)'].to_i,
+                      params[object][attribute + '(3i)'].to_i)
+  end
+  
   protected
   def set_auth_current_user
    Authorization.current_user = current_user

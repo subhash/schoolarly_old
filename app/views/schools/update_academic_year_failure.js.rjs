@@ -1,0 +1,1 @@
+page.refresh_dialog :partial => 'schools/academic_year_form', :locals => {:school => @school, :academic_year => @academic_year}
