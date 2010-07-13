@@ -31,15 +31,6 @@ module ApplicationHelper
     end
   end
   
-  def add_exam_link(f, exam)
-    css_id = exam.class.name.downcase + '-' + exam.id.to_s
-    link_to_function 'Add', {:title => 'Add Once', :class => "ui-icon ui-icon-circle-plus"} do |page|
-      partial = render :partial => 'exams/form', :locals => {:f => f, :teachers => exam.klass.school.teachers, :exam => exam.clone}
-      page.insert_html :after, css_id, partial 
-      page.replace_html 'add-exam-' + exam.id.to_s, :text => ''
-    end
-  end
-  
   def render_tabs    
     tabbifier = Object.new  
     
@@ -265,7 +256,7 @@ module ActionView
          private
          def css_id(obj)
            return obj.to_s if obj.is_a? Symbol
-           "#{obj.class.name.downcase}-#{obj.id}"
+           "#{obj.class.name.underscore}_#{obj.id}"
          end
          
          def css_class_id(class_obj)

@@ -1,4 +1,4 @@
-<div id="paper-<%= paper.id%>">
+<div id="paper_<%= paper.id%>">
 	<span class="klasses"><%= link_to paper.klass.name, klass_path(paper.klass) %>
 		<span class="students detail"><%= pluralize(paper.students.size, 'student')%></span>
 	</span>

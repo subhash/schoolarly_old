@@ -1,4 +1,4 @@
-%tr(id="schoolsubject-#{school_subject.id}")
+%tr[school_subject]
   %td= school_subject.name
   %td
     - school_subject.assessment_tool_names.FA.each do |ass|

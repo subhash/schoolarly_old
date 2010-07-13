@@ -5,5 +5,7 @@ class AssessmentTool < ActiveRecord::Base
   has_one :klass, :through => :assessment
   
   has_many :activities
+  
+  validates_presence_of :name
 
 end
