@@ -447,6 +447,10 @@ table.papers td.right * {
     margin-bottom: 4px;
 }
 
+table.papers td.right a {
+    font-size: 11px;
+}
+
 table.papers td.left .detail {
     font-size: 10px;
     margin-bottom: 4px;

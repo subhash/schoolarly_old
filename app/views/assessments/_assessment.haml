@@ -1,5 +1,5 @@
 %tr[assessment]
-  %td
+  %td.middle
     %span{:class => "assessment"}
       = assessment.name
   %td.right     
@@ -7,4 +7,4 @@
       %div[tool]
         = render :partial => 'activities/activity', :collection => tool.activities
     %span
-      = link_to_remote 'Add Activity', :url => {:controller => 'activities', :action => 'new', :assessment_id => assessment}  unless assessment.sa?
+      = link_to_remote 'Add Activity', :url => {:controller => 'activities', :action => 'new', :assessment_id => assessment} unless assessment.sa?
