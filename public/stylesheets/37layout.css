@@ -288,6 +288,23 @@ table.teachers div.icons span {
     display: inline-block;
 }
 
+table.school_subjects td.left {
+    font-size: 20px;
+    width: 40%;
+}
+
+table.school_subjects td.right * {
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
+table.school_subjects td.right .assessments {
+    background-color: #3C3E47;
+    color: white;
+    padding: 2px 4px;
+    display: inline-block;
+}
+
 table.klasses {
     margin-bottom: 30px;
     width: 100%;

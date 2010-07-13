@@ -1,6 +1,6 @@
 %tr[school_subject]
-  %td= school_subject.name
-  %td
+  %td.left= school_subject.name
+  %td.right
     - school_subject.assessment_tool_names.FA.each do |ass|
-      = ass.name+" "
-  %td= link_to_remote 'Add Assessment Tools', :url => {:controller => 'assessment_tool_names', :action => :new, :school_subject_id => school_subject}, :method => :get,  :html => {:title => 'Add assessment tools'} if permitted_to? :update, school_subject.school 
+      %span.assessments= ass.name+" "
+    %span= link_to_remote 'Add Assessment Tools', :url => {:controller => 'assessment_tool_names', :action => :new, :school_subject_id => school_subject}, :method => :get,  :html => {:title => 'Add assessment tools'} if permitted_to? :update, school_subject.school 
