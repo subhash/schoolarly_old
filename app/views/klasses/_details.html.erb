@@ -9,7 +9,7 @@
             Class teacher:
         </td>
         <td class="right" colspan="2">
-            <%=h klass.class_teacher.name if klass.class_teacher%>
+            <%= link_to klass.class_teacher.name, teacher_path(klass.class_teacher) if klass.class_teacher%>
         </td>
     </tr>
     <tr>
