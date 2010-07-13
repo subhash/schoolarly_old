@@ -1,5 +1,5 @@
 %tr(id="paper-#{paper.id}")
-  %td.left
+  %td.left(rowspan="#{paper.assessments.uniq.size + 1}")
     %span.icon= message_to(paper)
     - if active_controller == 'klasses'
       %span.icon
@@ -13,8 +13,7 @@
         - if (permitted_to? :manage, paper and permitted_to? :update, :teachers)
           - html =  {:title => "Change teacher", :class => "ui-state-default ui-corner-all ui-icon ui-icon-pencil"} if paper.teacher 
           = link_to_remote (paper.teacher ? 'Change' : 'Allot Teacher' ), :url => {:controller => 'papers', :action => 'edit_teacher', :id => paper} , :html => html 
-  %td.right
-    - paper.formative_assessments.each do |assessment|
-      = render :partial => 'assessments/assessment', :object => assessment
-    - paper.summative_assessments.each do |assessment|      
-      = render :partial => 'assessments/assessment', :object => assessment       
+  - paper.formative_assessments.each do |assessment|
+    = render :partial => 'assessments/assessment', :object => assessment
+  - paper.summative_assessments.each do |assessment|      
+    = render :partial => 'assessments/assessment', :object => assessment       

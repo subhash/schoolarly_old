@@ -433,10 +433,10 @@ table.papers td div {
 
 table.papers td.left {
     font-size: 20px;
-    width: 30%;
+    width: 25%;
 }
 
-table.papers td.right, table.papers td.left {
+table.papers td {
     border-width: 1px;
     border-style: dotted;
     border-color: #E5E5E5;
@@ -479,27 +479,15 @@ table.papers td span.icon {
     display: inline-block;
 }
 
-table.papers td .comment {
-    display: inline-block;
-	min-width: 18px;
-}
-
-table.papers td.right div.assessment div{
-	background-color:#E5E5E5; 
-	display: block; 
-	padding: 5px;
-}
-
-table.papers td.right div.assessment span{
+table.papers td span.assessment{
+	font-size: 13px;
+	font-weight: bolder;
 	padding: 9px;
 }
 
-table.papers td.right div.assessment span.assessment {
-	padding: 1px;
-	background-color: black;
-    color: white;
-	display: inline;
-	font-weight: bolder;
+table.papers td .comment {
+    display: inline-block;
+	min-width: 18px;
 }
 
 table.papers td.right span.activity{
