@@ -2,7 +2,7 @@ class CreateAssessmentTools < ActiveRecord::Migration
   def self.up
     create_table :assessment_tools do |t|
       t.string :name
-      t.integer :assessment_id
+      t.integer :assessment_id, :null => false
       t.integer :ignore_worst, :default => 0 
       t.decimal :weightage
                  

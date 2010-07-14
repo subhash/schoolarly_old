@@ -10,5 +10,10 @@
   - if activity.event
     %span{:class => "date"}
       = activity.event.start_time.to_s(:short)
-      %span{:class => "time"}
-        = "#{activity.duration} hours"
+    %span{:class => "time"}
+      = "#{activity.duration} hours"
+  %span
+    = link_to_remote 'Edit activity', :url =>  {:controller => 'activities', :action => 'edit', :id => activity }, :method => :get, :html => {:title => "Edit #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-pencil"}
+    
+     
+   

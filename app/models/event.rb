@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
   
   belongs_to :event_series
   
+  validates_presence_of :start_time, :end_time
   validate :validate_start_time_before_end_time
   before_save :validate_event_series
   
@@ -14,7 +15,7 @@ class Event < ActiveRecord::Base
   end
   
   def start_time_before_end_time
-    self.start_time < self.end_time
+    self.start_time < self.end_time if (start_time and end_time)
   end
   
   # TODO Need to change to academic year 
