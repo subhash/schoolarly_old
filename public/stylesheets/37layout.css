@@ -510,7 +510,7 @@ table.papers td span.assessment{
 	padding: 9px;
 }
 
-table.papers td .comment {
+table.papers td .action {
     display: inline-block;
 	min-width: 18px;
 }

@@ -5,6 +5,13 @@ class EventSeries < ActiveRecord::Base
   has_and_belongs_to_many :users 
   
   validates_presence_of :title
+  after_save :send_message
+  
+  def send_message
+    body = self.description + self.events.first.start_time.strftime(" scheduled on %B %d, %Y at %I:%M%p ") + ((self.period == 'once') ? '' :  self.period)
+    subject = 'Event Announcement: ' + self.title
+    self.owner.send_message(self.users, body, subject) if !self.users.empty?
+  end  
   
   validates_each :events do |event_series, attr, events|
     events.each do |event|
@@ -14,7 +21,6 @@ class EventSeries < ActiveRecord::Base
       end      
     end
   end
-  
   
   def create_events(start_time, end_time, recurrence = 'once')
     if (start_time < Event.last_day) 
