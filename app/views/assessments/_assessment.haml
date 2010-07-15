@@ -5,6 +5,6 @@
   %td.right     
     - assessment.assessment_tools.each do |tool|
       %div[tool]
-        = render :partial => 'activities/activity', :collection => tool.activities, :locals => { :delete => true }
+        = render :partial => 'activities/activity', :collection => tool.activities
     %span
       = link_to_remote 'Add Activity', :url => {:controller => 'activities', :action => 'new', :assessment_id => assessment} unless assessment.sa?

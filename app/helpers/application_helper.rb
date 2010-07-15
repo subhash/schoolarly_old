@@ -262,7 +262,7 @@ module ActionView
          def css_class_id(class_obj)
            return class_obj.to_s if class_obj.is_a? Symbol
            class_obj = class_obj.class unless class_obj.kind_of? Class
-           class_obj.name.downcase.pluralize
+           class_obj.name.underscore.pluralize
          end
        
         end
