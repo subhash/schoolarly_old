@@ -44,5 +44,9 @@ class Activity < ActiveRecord::Base
     event ? ((event.end_time.to_time - event.start_time.to_time)/1.hour): 0
   end
   
+  def destroyable?
+    self.scores.empty? and assessment.fa?
+  end
+  
   
 end

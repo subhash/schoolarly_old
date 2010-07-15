@@ -25,6 +25,11 @@ class Assessment < ActiveRecord::Base
     name.starts_with? "SA"
   end
   
+    
+  def fa?
+    name.starts_with? "FA"
+  end
+  
   def long_name
     name + " - "+subject.name
   end

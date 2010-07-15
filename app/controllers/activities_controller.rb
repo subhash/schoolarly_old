@@ -63,4 +63,17 @@ class ActivitiesController < ApplicationController
       end
     end
   end
+  
+  def destroy
+    @activity = Activity.find(params[:id])
+    render :update do |page|
+      if  @activity.destroy
+        @activity.event.event_series.destroy if @activity.event
+        page.remove_object(@activity)
+      else
+        page.error_dialog('Error occurred while removing the activity.')
+      end
+    end
+  end  
+  
 end
