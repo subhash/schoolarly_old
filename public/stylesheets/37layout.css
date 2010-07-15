@@ -512,7 +512,7 @@ table.papers td span.assessment{
 
 table.papers td .action {
     display: inline-block;
-	min-width: 18px;
+	min-width: 16px;
 }
 
 table.papers td.right span.activity{
