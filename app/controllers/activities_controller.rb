@@ -27,6 +27,8 @@ class ActivitiesController < ApplicationController
         page.close_dialog
         page.replace_object @activity.assessment, :partial => 'assessments/assessment'
       else
+        @assessment = @assessment_tool.assessment
+        @assessment_tool_names = @assessment.school_subject.assessment_tool_names
         page.refresh_dialog  :partial => 'activities/new', :locals => {:activity => @activity}
       end
     end
