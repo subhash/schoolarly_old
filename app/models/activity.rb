@@ -16,23 +16,15 @@ class Activity < ActiveRecord::Base
   end
   
   def students
-    students_with_scores | klass.students.for_paper(klass.papers.find_by_school_subject_id(SchoolSubject.find_by_school_id_and_subject_id(klass.school.id, subject.id).id))
+    students_with_scores | assessment.students
   end
   
   def participants
-    teacher ? (students + [teacher]) : students
-  end
-  
-  def klass
-    assessment.klass
+    students_with_scores | assessment.participants
   end
   
   def subject
     assessment.subject
-  end
-  
-  def teacher
-    assessment.teacher
   end
   
   def title

@@ -5,7 +5,7 @@
     = tool_form.input :assessment_id , :as => :hidden
   = f.input :description, :as => :text, :input_html => {:rows => 5} 
   = f.input :max_score 
-  - semantic_fields_for @event do |event_form|
+  - f.semantic_fields_for :event do |event_form|
     %strong From
     = event_form.calendar_date_select :start_time, :time => true, :popup => 'force', :minute_interval => 5
     %br

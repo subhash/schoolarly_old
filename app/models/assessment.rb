@@ -14,7 +14,7 @@ class Assessment < ActiveRecord::Base
   end
   
   def paper
-    Paper.find_by_klass_id_and_subject_id(klass.id, subject_id)
+    klass.papers.find_by_school_subject_id(school.school_subjects.find_by_subject_id(subject.id).id)
   end
   
   def name
@@ -25,13 +25,21 @@ class Assessment < ActiveRecord::Base
     name.starts_with? "SA"
   end
   
-    
+  
   def fa?
     name.starts_with? "FA"
   end
   
   def long_name
     name + " - "+subject.name
+  end
+  
+  def students
+    klass.students.for_paper(paper.id)
+  end
+  
+  def participants
+    teacher ? (students + [teacher]) : students
   end
   
 end
