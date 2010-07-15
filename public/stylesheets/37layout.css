@@ -253,10 +253,14 @@ table.teachers td.right * {
 
 table.teachers .klass {
     background-color: black;
-    color: white;
     padding: 2px 0px 2px 4px;
     margin-right: 2px;
     display: inline-block;
+}
+
+table.teachers .klass a{
+	text-decoration: none;
+	color: white;
 }
 
 table.teachers .subject {

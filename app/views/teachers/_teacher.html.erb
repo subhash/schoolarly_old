@@ -22,7 +22,7 @@
         <%if teacher.school %>
         <div>
             <%teacher.papers.each do |paper| %>
-            	<span class="klass"><%= paper.klass.name %>
+            	<span class="klass"><%= link_to paper.klass.name, klass_path(paper.klass) %>
 					<span class="subject"><%= paper.name %></span>
 				</span>
             <%end %>
