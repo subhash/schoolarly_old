@@ -1,18 +1,18 @@
-%span[activity]
-  %span{:class=> "action"}
-    - unless activity.description.blank?
-      %a{:href => "#", :class => "tooltip"}
-        %em{:class => "ui-icon ui-icon-comment"}
-        %span
-          = activity.description
-  %span{:class=> "action"}= link_to_remote 'Edit activity', :url =>  {:controller => 'activities', :action => 'edit', :id => activity }, :method => :get, :html => {:title => "Edit #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-pencil"}
+%div[activity]
+  %span.icon= link_to_remote 'Edit activity', :url =>  {:controller => 'activities', :action => 'edit', :id => activity }, :method => :get, :html => {:title => "Edit #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-pencil"}
   - if activity.destroyable?
-    %span{:class=> "action"}= link_to_remote 'Delete', :url => {:controller => 'activities', :action => 'destroy', :id => activity }, :method => :delete, :html => {:title => "Delete #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-trash"}, :confirm => 'Are you sure?'
-  %span{:class => "name"}
-    = link_to activity.name, edit_scores_activities_path(:ids => [activity.id])
+    %span.icon= link_to_remote 'Delete', :url => {:controller => 'activities', :action => 'destroy', :id => activity }, :method => :delete, :html => {:title => "Delete #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-trash"}, :confirm => 'Are you sure?'
+  - else
+    %span.icon.ui-icon.blank
+  = link_to activity.name, edit_scores_activities_path(:ids => [activity.id])
+  - if activity.description.blank?
+    %span.icon.ui-icon.blank
+  - else
+    %a.tooltip{:href => "#"}
+      %em.icon.ui-icon.ui-icon-comment
+      %span= activity.description
   - if activity.event
-    %span{:class => "date"}
+    %span.date
       = activity.event.start_time.to_s(:short)
-    %span{:class => "time"}
-      = "#{activity.duration} hours"
+      %span.time= "#{activity.duration} hours"
    

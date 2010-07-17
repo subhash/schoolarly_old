@@ -460,16 +460,12 @@ table.paper td.left {
 table.paper td {
     border-width: 1px;
     border-style: dotted;
-    border-color: #E5E5E5;
+    border-color: grey;
 }
 
 table.paper td.right * {
     font-size: 13px;
     margin-bottom: 4px;
-}
-
-table.paper td.right a {
-    font-size: 11px;
 }
 
 table.paper td.left .detail {
@@ -500,36 +496,28 @@ table.paper td.right .students {
     padding: 2px;
 }
 
-table.paper td span.icon {
-    display: inline-block;
-}
-
-table.paper td span.assessment{
-	font-size: 13px;
-	font-weight: bolder;
-	padding: 9px;
-}
-
-table.paper td .action {
+table.paper td .icon {
     display: inline-block;
 	min-width: 16px;
 }
 
-table.paper td.right span.activity{
+table.paper td .blank {
+    background-image: none;
+}
+
+table.paper td.right div.activity{
     color: white;
-	display: inline-block;
+	margin-right: 15px;
 }
 
-table.paper td.right span.activity .name{
-	background-color: grey;
-}
-
-table.paper td.right span.activity .date{
+table.paper td.right div.activity .date{
 	background-color: black;
+	padding: 2px 0px 2px 4px;
 }
 
-table.paper td.right span.activity .time{
+table.paper td.right div.activity .time{
 	background-color: grey;
+	padding: 2px 0px 2px 0px;
 }
 
 table.klass-exams tr {
