@@ -3,17 +3,17 @@ class Score < ActiveRecord::Base
   belongs_to :activity
   
   after_create :send_message
-#  
-#  def max_score
-#    exam.activity.assessment.max_score
-#  end
+  
+  def max_score
+   activity.max_score
+  end
 #  
 #  def weightage
 #    exam.activity.assessment.weightage
 #  end
   
   def send_message
-    str = "Score in #{exam.title} - #{score}/#{max_score} "
+    str = "Score in #{activity.title} - #{score}/#{max_score} "
     student.school.user.send_message(student.user, str, str)
   end  
   

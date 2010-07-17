@@ -12,7 +12,7 @@ class ScoresController < ApplicationController
     
     @students = @students.paginate  :page => params[:page].to_i, :per_page => params[:rows].to_i  
     @students_scores = @students.each_with_object(ActiveSupport::OrderedHash.new) {|student, hash|
-      hash[student] = @exams.collect{|e|e.scores.find_by_student_id(student.id)}
+      hash[student] = @activities.collect{|e|e.scores.find_by_student_id(student.id)}
     } 
     respond_to do |format|
       format.xml {render :partial => 'grid_data.xml.builder', :layout => false }
@@ -21,7 +21,7 @@ class ScoresController < ApplicationController
   
   def row_edit
     @student = Student.find_by_id(params[:id])
-    @activities = Activity.find_all_by_id(params[:exams])
+    @activities = Activity.find_all_by_id(params[:activities])
     @activities.each do |activity|
       score =  activity.scores.find_by_student_id(@student.id)
       if(score)
