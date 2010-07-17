@@ -23,6 +23,10 @@ class Activity < ActiveRecord::Base
     students_with_scores | assessment.participants
   end
   
+  def klass
+    assessment.klass
+  end
+  
   def subject
     assessment.subject
   end
@@ -39,6 +43,5 @@ class Activity < ActiveRecord::Base
   def destroyable?
     self.scores.empty? and assessment.fa?
   end
-  
   
 end

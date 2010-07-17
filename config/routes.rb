@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   
   #map.resources :messages
   
-  map.resources :exams,  :collection => {:edit_scores => :get, :view_scores => :get}
+  map.resources :activities,  :collection => {:edit_scores => :get, :view_scores => :get}
   
   map.resources :teachers
   
@@ -35,8 +35,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :password_resets
   
   map.resources :assessment_tool_names
-  
-  map.resources :activities
   
   # The priority is based upon order of creation: first created -> highest priority.
   

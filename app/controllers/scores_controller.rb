@@ -1,9 +1,9 @@
 class ScoresController < ApplicationController
   
   def grid_data
-    @exams = Exam.find(params[:exams])
-    @total = @exams.first.students.length
-    @students = @exams.first.students
+    @activities = Activity.find(params[:activities])
+    @total = @activities.first.students.length
+    @students = @activities.first.students
     if(params[:sord] == 'asc')
       @students = @students.sort_by(&params[:sidx].to_sym)
     else
@@ -21,17 +21,17 @@ class ScoresController < ApplicationController
   
   def row_edit
     @student = Student.find_by_id(params[:id])
-    @exams = Exam.find_all_by_id(params[:exams])
-    @exams.each do |exam|
-      score =  exam.scores.find_by_student_id(@student.id)
+    @activities = Activity.find_all_by_id(params[:exams])
+    @activities.each do |activity|
+      score =  activity.scores.find_by_student_id(@student.id)
       if(score)
-        params[exam.id.to_s].blank? ? score.destroy :  score.score = params[exam.id.to_s].to_i      
+        params[activity.id.to_s].blank? ? activity.destroy :  score.score = params[activity.id.to_s].to_i      
       else
         score = Score.new do |s|
-          s.score = params[exam.id.to_s].to_i
+          s.score = params[activity.id.to_s].to_i
           s.student = @student
-          s.exam = exam
-        end unless params[exam.id.to_s].blank?
+          s.activity = activity
+        end unless params[activity.id.to_s].blank?
       end  
       score.save! if score
     end

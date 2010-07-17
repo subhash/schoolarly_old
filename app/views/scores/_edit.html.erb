@@ -1,4 +1,4 @@
-<% colNames = ["Student email", "Name"]+ exams.collect(&:activity_name) %>
+<% colNames = ["Student email", "Name"]+ activities.collect(&:name) %>
 <% colModel = [{:width => 250,
 :index => 'email',
 :name => 'email',
@@ -7,13 +7,13 @@
 :index => 'name',
 :name => 'name',
 :editable =>  false}] %>
-<% exams.each do |exam| %>
-<% colModel << {:width => 100, :index => exam.id, :name => exam.id, :sortable => false, :editable => edit,:editrules => {:number => true, :minValue => 0, :maxValue => exam.max_score}} %>
+<% activities.each do |activity| %>
+<% colModel << {:width => 100, :index => activity.id, :name => activity.id, :sortable => false, :editable => edit,:editrules => {:number => true, :minValue => 0, :maxValue => activity.max_score}} %>
 <% end %>
-<%= jquery_grid :scores, {:colNames => colNames, :colModel => colModel, :url => grid_data_scores_url(:exams => exams.collect(&:id)), :editurl => row_edit_scores_url(:exams => exams.collect(&:id)) } %>
+<%= jquery_grid :scores, {:colNames => colNames, :colModel => colModel, :url => grid_data_scores_url(:activities => activities.collect(&:id)), :editurl => row_edit_scores_url(:activities => activities.collect(&:id)) } %>
 <center>
     <div style="background :black; color:white;">
-        Scores for <%= exams.first.name %> - <%=exams.first.subject.name%>
+        Scores for <%= activities.first.name %> - <%=activities.first.subject.name%>
     </div>
     <%= jquery_grid_table %>
     <%= jquery_grid_pager %>

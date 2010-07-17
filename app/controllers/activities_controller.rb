@@ -82,4 +82,16 @@ class ActivitiesController < ApplicationController
     end
   end  
   
+  def edit_scores
+    session[:redirect] = request.request_uri
+    @activities = Activity.find_all_by_id(params[:ids])
+    @activity = @activities.first
+  end
+  
+  def view_scores
+    session[:redirect] = request.request_uri
+    @activities = Activity.find_all_by_id(params[:ids])
+    @activity = @activities.first
+  end
+  
 end
