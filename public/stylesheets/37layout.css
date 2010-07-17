@@ -438,97 +438,97 @@ table.exams .score {
     font-size: 17px;
 }
 
-table.papers {
+table.paper {
     margin-bottom: 30px;
     width: 100%;
 }
 
-table.papers tr {
+table.paper tr {
     padding-bottom: 4px;
 }
 
-table.papers td div {
+table.paper td div {
     margin-bottom: 8px;
     margin-top: 8px;
 }
 
-table.papers td.left {
+table.paper td.left {
     font-size: 20px;
     width: 25%;
 }
 
-table.papers td {
+table.paper td {
     border-width: 1px;
     border-style: dotted;
     border-color: #E5E5E5;
 }
 
-table.papers td.right * {
+table.paper td.right * {
     font-size: 13px;
     margin-bottom: 4px;
 }
 
-table.papers td.right a {
+table.paper td.right a {
     font-size: 11px;
 }
 
-table.papers td.left .detail {
+table.paper td.left .detail {
     font-size: 10px;
     margin-bottom: 4px;
     padding-left: 20px;
     background-color: #E5E5E5;
 }
 
-table.papers td.left .detail a {
+table.paper td.left .detail a {
     display: inline-block;
 }
 
-table.papers .klasses a {
+table.paper .klasses a {
     text-decoration: none;
     color: white;
     padding: 2px 4px;
 }
 
-table.papers .klasses {
+table.paper .klasses {
     background-color: grey;
 }
 
-table.papers td.right .students {
+table.paper td.right .students {
     background-color: black;
     color: white;
     font-size: 11px;
     padding: 2px;
 }
 
-table.papers td span.icon {
+table.paper td span.icon {
     display: inline-block;
 }
 
-table.papers td span.assessment{
+table.paper td span.assessment{
 	font-size: 13px;
 	font-weight: bolder;
 	padding: 9px;
 }
 
-table.papers td .action {
+table.paper td .action {
     display: inline-block;
 	min-width: 16px;
 }
 
-table.papers td.right span.activity{
+table.paper td.right span.activity{
     color: white;
 	display: inline-block;
 }
 
-table.papers td.right span.activity .name{
+table.paper td.right span.activity .name{
 	background-color: grey;
 }
 
-table.papers td.right span.activity .date{
+table.paper td.right span.activity .date{
 	background-color: black;
 }
 
-table.papers td.right span.activity .time{
+table.paper td.right span.activity .time{
 	background-color: grey;
 }
 
