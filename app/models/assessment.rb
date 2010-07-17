@@ -9,6 +9,8 @@ class Assessment < ActiveRecord::Base
   
   has_many :assessment_tools
   
+  has_many :activities, :through => :assessment_tools
+  
   def school_subject
     SchoolSubject.find_by_school_id_and_subject_id(school.id, subject_id)
   end

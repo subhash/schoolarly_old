@@ -1,7 +1,7 @@
 %tr[assessment]
   %td.middle
     %span{:class => "assessment"}
-      = assessment.name
+      = link_to assessment.name, edit_scores_activities_path(:ids => assessment.activities.collect(&:id))
   %td.right     
     - assessment.assessment_tools.each do |tool|
       %div[tool]
