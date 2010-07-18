@@ -11,6 +11,18 @@ class Assessment < ActiveRecord::Base
   
   has_many :activities, :through => :assessment_tools
   
+  validates_numericality_of :weightage, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100 
+  
+  validate :weightage_summation
+  
+  def weightage_summation   
+    if assessment_tools.size > 0 
+      unless (assessment_tools.collect(&:weightage).sum == 100)
+        errors.add(:weightage, "should addup to 100%")
+      end
+    end
+  end
+  
   def school_subject
     SchoolSubject.find_by_school_id_and_subject_id(school.id, subject_id)
   end

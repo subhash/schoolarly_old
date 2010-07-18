@@ -2,7 +2,7 @@ class ActivitiesController < ApplicationController
   
   def new
     @assessment = Assessment.find_by_id(params[:assessment_id])
-    @assessment_tool = AssessmentTool.new(:assessment => @assessment)
+    @assessment_tool = AssessmentTool.new(:assessment => @assessment, :weightage => AssessmentTool.default_weightage)
     @activity = Activity.new(:max_score =>@assessment.assessment_type.max_score)
     @event = Event.new( :start_time => Event.now, :end_time => Event.now.advance(:hours => 1 ))
     @assessment_tool_names = @assessment.school_subject.assessment_tool_names
