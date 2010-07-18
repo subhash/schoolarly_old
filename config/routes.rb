@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-
+  
   map.resources :scores, :collection => {:grid_data => :get, :row_edit => :post}
-
+  
   map.resources :leave_requests
   
   #map.resources :messages
@@ -35,6 +35,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :password_resets
   
   map.resources :assessment_tool_names
+  
+  map.resources :assessments
   
   # The priority is based upon order of creation: first created -> highest priority.
   

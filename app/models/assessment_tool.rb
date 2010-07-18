@@ -22,7 +22,4 @@ class AssessmentTool < ActiveRecord::Base
     activities.size - ignore_worst
   end
   
-  def self.default_weightage
-    assessment.assessment_tools.size == 0 ? 100 : 0
-  end
 end

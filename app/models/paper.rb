@@ -41,13 +41,16 @@ class Paper < ActiveRecord::Base
     end
   end
   
-    def destroy_assessments
-      assessments.each do |assessment|
-        if assessment.destroyable? 
-          assessment.destroy 
+  def destroy_assessments
+    assessments.each do |assessment|
+      if assessment.destroyable? 
+        assessment.destroy 
+        assessment.activities.each do |activity|
+          activity.event.event_series.destroy if activity.event
         end
       end
     end
+  end
   
   def assessments
     klass.all_assessments.find_all_by_academic_year_id_and_subject_id(klass.academic_year.id, subject.id)
