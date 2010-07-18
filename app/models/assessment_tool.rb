@@ -22,4 +22,7 @@ class AssessmentTool < ActiveRecord::Base
     activities.size - ignore_worst
   end
   
+  def best_of=(x)
+    ignore_worst = activities.size - x
+  end
 end

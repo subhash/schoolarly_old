@@ -13,4 +13,15 @@ class AssessmentsController < ApplicationController
       end
     end
   end
+  
+  def edit
+    @assessment = Assessment.find_by_id(params[:id])
+    render :update do |page|
+      page.open_dialog "Calculations for "+@assessment.long_name, :partial => 'assessments/edit'
+    end
+  end
+  
+  def update
+    
+  end
 end

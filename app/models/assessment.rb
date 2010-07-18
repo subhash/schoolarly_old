@@ -15,6 +15,8 @@ class Assessment < ActiveRecord::Base
   
   validate :weightage_summation
   
+  accepts_nested_attributes_for :assessment_tools
+  
   def weightage_summation   
     if assessment_tools.size > 0 
       unless (assessment_tools.collect(&:weightage).sum == 100)

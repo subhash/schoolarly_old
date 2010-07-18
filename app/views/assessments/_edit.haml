@@ -1,0 +1,10 @@
+- semantic_remote_form_for @assessment do |f|
+  - @assessment.assessment_tools.each do |tool|
+    - f.semantic_fields_for tool do |tool_form|
+      = tool.name
+      = tool_form.input :weightage
+      %span
+        = tool_form.input :best_of, :as => :select, :collection => (1..@assessment.activities.size).to_a , :label => "Best"
+        = tool_form.label " out of #{@assessment.activities.size}"
+  = f.submit
+    
