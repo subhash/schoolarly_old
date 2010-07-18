@@ -2,8 +2,9 @@ class ScoresController < ApplicationController
   
   def grid_data
     @activities = Activity.find(params[:activities])
-    @total = @activities.first.students.length
-    @students = @activities.first.students
+    @students = []
+    @activities.each{|a| @students |= a.students}
+    @total = @students.length
     if(params[:sord] == 'asc')
       @students = @students.sort_by(&params[:sidx].to_sym)
     else
@@ -12,7 +13,7 @@ class ScoresController < ApplicationController
     
     @students = @students.paginate  :page => params[:page].to_i, :per_page => params[:rows].to_i  
     @students_scores = @students.each_with_object(ActiveSupport::OrderedHash.new) {|student, hash|
-      hash[student] = @activities.collect{|e|e.scores.find_by_student_id(student.id)}
+      hash[student] = @activities.collect{|a|a.scores.find_by_student_id(student.id)}
     } 
     respond_to do |format|
       format.xml {render :partial => 'grid_data.xml.builder', :layout => false }

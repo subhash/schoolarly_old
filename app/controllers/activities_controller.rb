@@ -19,7 +19,7 @@ class ActivitiesController < ApplicationController
     unless(params[:event][:start_time].blank? and params[:event][:end_time].blank?)
       @event = Event.new(params[:event])
       event_series = EventSeries.new(:title => "#{@assessment_tool.assessment.long_name} : #{@activity.name}", :description => @activity.description, :owner => current_user)
-      event_series.users = @activity.assessment_tool.assessment.participants.collect(&:user)
+      event_series.users = @activity.assessment_tool.assessment.current_participants.collect(&:user)
       @event.event_series = event_series
       event_series.events << @event
       @activity.event  = @event

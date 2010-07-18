@@ -48,12 +48,12 @@ class Assessment < ActiveRecord::Base
     name + " - "+subject.name
   end
   
-  def students
+  def current_students
     klass.students.for_paper(paper.id)
   end
   
-  def participants
-    teacher ? (students + [teacher]) : students
+  def current_participants
+    teacher ? (current_students + [teacher]) : current_students
   end
   
   def destroyable?
