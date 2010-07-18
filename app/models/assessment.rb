@@ -7,7 +7,7 @@ class Assessment < ActiveRecord::Base
   belongs_to :academic_year
   belongs_to :teacher
   
-  has_many :assessment_tools
+  has_many :assessment_tools, :dependent => :destroy
   
   has_many :activities, :through => :assessment_tools
   
@@ -54,6 +54,10 @@ class Assessment < ActiveRecord::Base
   
   def participants
     teacher ? (students + [teacher]) : students
+  end
+  
+  def destroyable?
+    activities.select{|a|!a.destroyable?}.blank?
   end
   
 end

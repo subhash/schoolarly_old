@@ -1,7 +1,7 @@
 %tr[assessment]
   %td
     %span
-      = link_to assessment.name, edit_scores_activities_path(:ids => assessment.activities.collect(&:id))
+      = link_to_unless assessment.activities.blank?, assessment.name, edit_scores_activities_path(:ids => assessment.activities.collect(&:id))
       %span.icon= link_to_remote 'Add Activity', :url => {:controller => 'activities', :action => 'new', :assessment_id => assessment}, :html => {:title => "Add activity to #{assessment.long_name}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-plusthick"} unless assessment.sa?
   %td.right     
     - assessment.assessment_tools.each do |tool|

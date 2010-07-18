@@ -4,7 +4,7 @@ class AssessmentTool < ActiveRecord::Base
   
   has_one :klass, :through => :assessment
   
-  has_many :activities
+  has_many :activities, :dependent => :destroy
   
   validates_presence_of :name
   

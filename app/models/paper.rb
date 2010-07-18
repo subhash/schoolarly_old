@@ -12,7 +12,7 @@ class Paper < ActiveRecord::Base
   validates_uniqueness_of :school_subject_id, :scope => [:klass_id]
   
   after_create :create_assessments
-  #  before_destroy :destroy_assessments
+  before_destroy :destroy_assessments
   
   def name
     subject.name
@@ -41,13 +41,13 @@ class Paper < ActiveRecord::Base
     end
   end
   
-  #  def destroy_assessments
-  #    klass.assessments.find_all_by_subject_id(subject.id).each do |assessment|
-  #      if assessment.destroyable? 
-  #        assessment.destroy 
-  #      end
-  #    end
-  #  end
+    def destroy_assessments
+      assessments.each do |assessment|
+        if assessment.destroyable? 
+          assessment.destroy 
+        end
+      end
+    end
   
   def assessments
     klass.all_assessments.find_all_by_academic_year_id_and_subject_id(klass.academic_year.id, subject.id)

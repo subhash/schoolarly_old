@@ -1,6 +1,6 @@
 %div[activity]
   %span.icon= link_to_remote 'Edit activity', :url =>  {:controller => 'activities', :action => 'edit', :id => activity }, :method => :get, :html => {:title => "Edit #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-pencil"}
-  - if activity.destroyable?
+  - if activity.destroyable?  and activity.assessment.fa?
     %span.icon= link_to_remote 'Delete', :url => {:controller => 'activities', :action => 'destroy', :id => activity }, :method => :delete, :html => {:title => "Delete #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-trash"}, :confirm => 'Are you sure?'
   - else
     %span.icon.ui-icon.blank
