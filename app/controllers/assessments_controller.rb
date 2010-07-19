@@ -22,6 +22,14 @@ class AssessmentsController < ApplicationController
   end
   
   def update
-    
+    @assessment = Assessment.find_by_id(params[:id])
+    @assessment.update_attributes(params[:assessment])
+    render :update do |page|
+      if @assessment.save 
+        page.close_dialog
+      else
+        page.refresh_dialog :partial => 'assessments/edit'
+      end
+    end
   end
 end

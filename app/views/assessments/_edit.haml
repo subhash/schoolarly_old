@@ -1,10 +1,14 @@
 - semantic_remote_form_for @assessment do |f|
-  - @assessment.assessment_tools.each do |tool|
-    - f.semantic_fields_for tool do |tool_form|
-      = tool.name
-      = tool_form.input :weightage
-      %span
-        = tool_form.input :best_of, :as => :select, :collection => (1..@assessment.activities.size).to_a , :label => "Best"
-        = tool_form.label " out of #{@assessment.activities.size}"
+  = f.error_messages
+  %table
+    - @assessment.assessment_tools.each do |tool|
+      - f.semantic_fields_for :assessment_tools, tool do |tool_form|
+        %tr
+          %td= tool_form.input :id, :as => :hidden
+          %td= tool.name
+          %td= tool_form.input :weightage, :label => "Weightage (%)"
+          %td
+            = tool_form.input :ignore_worst, :as => :select, :collection => (0..tool.activities.size-1).to_a , :label => "Best"
+            = tool_form.label " out of #{tool.activities.size}"
   = f.submit
     
