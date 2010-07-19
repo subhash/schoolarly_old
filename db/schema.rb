@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(:version => 20100708082021) do
 
   create_table "assessment_tools", :force => true do |t|
     t.string   "name"
-    t.integer  "assessment_id"
-    t.integer  "ignore_worst",                                               :default => 0
+    t.integer  "assessment_id",                                                             :null => false
+    t.integer  "best_of",                                                    :default => 1
     t.integer  "weightage",     :limit => 10, :precision => 10, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"

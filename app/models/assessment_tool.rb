@@ -17,12 +17,4 @@ class AssessmentTool < ActiveRecord::Base
        errors.add("Best of should be in 0.."+activities.size)
     end
   end
-  
-  def best_of
-    activities.size - ignore_worst
-  end
-  
-  def best_of=(x)
-    ignore_worst = activities.size - x
-  end
 end
