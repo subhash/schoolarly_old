@@ -7,8 +7,6 @@ class Activity < ActiveRecord::Base
   has_many :scores
   has_many :students_with_scores, :through => :scores, :source => :student
   
-  accepts_nested_attributes_for :event
-  
   validates_numericality_of :max_score
   
   def name
@@ -16,7 +14,7 @@ class Activity < ActiveRecord::Base
   end
   
   def students
-    students_with_scores | assessment.students
+    students_with_scores | assessment.current_students
   end
   
   def participants
