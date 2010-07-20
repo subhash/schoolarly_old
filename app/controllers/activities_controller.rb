@@ -25,7 +25,7 @@ class ActivitiesController < ApplicationController
       @activity.event  = @event
     end
     render :update do |page|
-      if @activity.save 
+      if @activity.save
         page.close_dialog
         page.replace_object @activity.assessment, :partial => 'assessments/assessment'
       else

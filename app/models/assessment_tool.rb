@@ -10,11 +10,12 @@ class AssessmentTool < ActiveRecord::Base
   
   validates_numericality_of :weightage, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
   
-  validate :ignore_worst_valid
+  validate_on_update :best_of_valid
   
-  def ignore_worst_valid
-    unless (0..activities.size).include?(ignore_worst)
-       errors.add("Best of should be in 0.."+activities.size)
+  def best_of_valid
+    puts "activities.size = "+activities.size.inspect
+    unless (1..activities.size).include?(best_of)
+       errors.add("Best of should be in 1..#{activities.size}")
     end
   end
 end
