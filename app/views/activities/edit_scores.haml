@@ -4,3 +4,4 @@
   - add.crumb @activity.title
 - render_tabs do |t|
   - t.tab :title => 'Scores', :partial => 'scores/edit', :locals => {:activities => @activities, :edit => true}
+  - t.tab :title => 'Details', :partial => 'activities/activity', :collection => @activities

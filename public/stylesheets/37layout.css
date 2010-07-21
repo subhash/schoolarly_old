@@ -682,10 +682,33 @@ table.sep .heading {
 
 table.sep .sub-heading {
     background-color: #F5DFAC;
-} .print {
+} 
+
+#details-tab-section div.activity {
+	padding: 12px 12px;
+	color: white;
+	font-size: large;
+}
+#details-tab-section div.activity .icon {
+    display: inline-block;
+}
+#details-tab-section div.activity .name{
+	text-decoration: none;
+    display: inline-block;
+	width: 250px;
+}
+#details-tab-section div.activity .date{
+	background-color: black;
+}
+#details-tab-section div.activity .time{
+	background-color: grey;
+}
+
+.print {
     padding: 10px 10px;
     text-align: right;
-} #notice {
+} 
+#notice {
     position: fixed;
     bottom: 0;
     right: 0;
