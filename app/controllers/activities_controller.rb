@@ -49,6 +49,7 @@ class ActivitiesController < ApplicationController
     @activity.update_attributes(params[:activity])
     if @activity.event
       @activity.event.update_attributes(params[:event])
+      @activity.event.send_message
     else
       unless(params[:event][:start_time].blank? and params[:event][:end_time].blank?)
         @event = Event.new(params[:event])

@@ -6,6 +6,12 @@ class Event < ActiveRecord::Base
   validate :validate_start_time_before_end_time
   before_save :validate_event_series
   
+  def send_message
+    body = event_series.description + start_time.strftime(" re-scheduled to %B %d, %Y at %I:%M%p ")
+    subject = 'Event Announcement: ' + event_series.title + ' re-scheduled'
+    event_series.owner.send_message(event_series.users, body, subject) if !event_series.users.empty?
+  end 
+  
   def validate_start_time_before_end_time
     errors.add(:start_time, "start time should precede end time") unless start_time_before_end_time
   end

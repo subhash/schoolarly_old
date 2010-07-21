@@ -5,7 +5,7 @@ class EventSeries < ActiveRecord::Base
   has_and_belongs_to_many :users 
   
   validates_presence_of :title
-  after_save :send_message
+  after_create :send_message
   
   def send_message
     body = self.description + self.events.first.start_time.strftime(" scheduled on %B %d, %Y at %I:%M%p ") + ((self.period == 'once') ? '' :  self.period)
