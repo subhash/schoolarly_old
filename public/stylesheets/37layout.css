@@ -703,6 +703,9 @@ table.sep .sub-heading {
 #details-tab-section div.activity .time{
 	background-color: grey;
 }
+#details-tab-section div.activity .blank {
+    background-image: none;
+}
 
 .print {
     padding: 10px 10px;
