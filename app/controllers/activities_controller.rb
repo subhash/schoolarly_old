@@ -60,15 +60,12 @@ class ActivitiesController < ApplicationController
         notifiers << event_series
       end
     end
-    render :update do |page|
-      if @activity.save
-        notify(notifiers)
-        page.close_dialog
-        page.replace_object @activity, :partial => 'activities/activity'
-      else
-        @event = @activity.event ? @activity.event : Event.new
-        page.refresh_dialog  :partial => 'activities/edit'
-      end
+    if @activity.save
+      notify(notifiers)
+      render :template => 'activities/update_success'
+    else
+      @event = @activity.event ? @activity.event : Event.new
+      render :template => 'activities/update_failure'
     end
   end
   
