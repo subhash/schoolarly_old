@@ -25,16 +25,13 @@ class ActivitiesController < ApplicationController
       notifiers << event_series
       @activity.event  = @event
     end
-    render :update do |page|
-      if @activity.save
-        page.close_dialog
-        notify(notifiers)
-        page.replace_object @activity.assessment, :partial => 'assessments/assessment'
-      else
-        @assessment = @assessment_tool.assessment
-        @assessment_tool_names = @assessment.school_subject.assessment_tool_names
-        page.refresh_dialog  :partial => 'activities/new', :locals => {:activity => @activity}
-      end
+    if @activity.save
+      notify(notifiers)
+      render :template => 'activities/create_success'
+    else
+      @assessment = @assessment_tool.assessment
+      @assessment_tool_names = @assessment.school_subject.assessment_tool_names
+      render :template => 'activities/create_failure'
     end
   end
   
