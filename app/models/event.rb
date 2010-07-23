@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base 
-  
+  include MyHelpers
   belongs_to :event_series
   
   validates_presence_of :start_time, :end_time
@@ -7,9 +7,7 @@ class Event < ActiveRecord::Base
   before_save :validate_event_series
   
   def send_message
-    hours, mins, ignore_secs, ignore_fractions = Date::day_fraction_to_time((self.end_time.to_time - self.start_time.to_time)/1.day)
-    duration = ActionController::Base.helpers.pluralize(hours, 'hr') + ((mins > 0) ? ' ' + ActionController::Base.helpers.pluralize(mins, 'min') : '')
-    body = event_series.description + start_time.strftime(" re-scheduled to %B %d, %Y at %I:%M%p for " + duration)
+    body = event_series.description + start_time.strftime(" re-scheduled to %B %d, %Y at %I:%M%p for " + interval(start_time, end_time))
     subject = 'Event Announcement: ' + event_series.title + ' re-scheduled'
     event_series.owner.send_message(event_series.users, body, subject) if !event_series.users.empty?
   end 

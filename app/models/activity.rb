@@ -1,4 +1,5 @@
 class Activity < ActiveRecord::Base
+  include MyHelpers
   belongs_to :assessment_tool
   belongs_to :event
   
@@ -33,9 +34,8 @@ class Activity < ActiveRecord::Base
     assessment.name + " "+ name+" - "+ subject.name
   end
   
-  
   def duration
-    event ? ((event.end_time.to_time - event.start_time.to_time)/1.hour): 0
+    event ? (interval(event.start_time, event.end_time)): 0
   end
 
   def destroyable?

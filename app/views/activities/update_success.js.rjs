@@ -1,0 +1,2 @@
+page.close_dialog
+page.replace_object @activity, :partial => 'activities/activity'
