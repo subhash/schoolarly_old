@@ -517,7 +517,7 @@ table.paper td.right div.activity .date{
 
 table.paper td.right div.activity .time{
 	background-color: grey;
-	padding: 2px 0px 2px 0px;
+	padding: 2px;
 }
 
 table.klass-exams tr {
