@@ -2,7 +2,7 @@
 	<%= f.error_messages %>
 	<% semantic_fields_for @event do |e| %>
 		<%= e.calendar_date_select :start_time, :time => true, :popup => 'force', :minute_interval => 5   %>
-		<%= e.input  :end_time, :as => :string, :input_html => {:class => 'datetimepicker'} %>
+		<%= e.calendar_date_select :end_time, :time => true, :popup => 'force', :minute_interval => 5   %>
 		<% end %>
 	<%= f.input :users, :as => :select, :collection => @users, :input_html => {:class => 'multiselect'} %>
 	<%= f.input :title %>

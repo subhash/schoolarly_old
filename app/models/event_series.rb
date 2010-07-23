@@ -5,10 +5,13 @@ class EventSeries < ActiveRecord::Base
   has_and_belongs_to_many :users 
   
   validates_presence_of :title
-  after_create :send_message
+  #after_create :send_message
   
   def send_message
-    body = self.description + self.events.first.start_time.strftime(" scheduled on %B %d, %Y at %I:%M%p ") + ((self.period == 'once') ? '' :  self.period)
+    event = self.events.first
+    hours, mins, ignore_secs, ignore_fractions = Date::day_fraction_to_time((event.end_time.to_time - event.start_time.to_time)/1.day)
+    duration = ActionController::Base.helpers.pluralize(hours, 'hr') + ((mins > 0) ? ' ' + ActionController::Base.helpers.pluralize(mins, 'min') : '')
+    body = self.description + event.start_time.strftime(" scheduled on %B %d, %Y at %I:%M%p ") + ((self.period == 'once') ? '' :  self.period) + ' for ' + duration
     subject = 'Event Announcement: ' + self.title
     self.owner.send_message(self.users, body, subject) if !self.users.empty?
   end  
