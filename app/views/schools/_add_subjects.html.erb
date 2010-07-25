@@ -1,5 +1,4 @@
 <% form_remote_tag  :url => {:controller => 'schools', :action => 'add_subjects', :id => school}, :before => "Element.show('spinner');", :complete => "Element.hide('spinner');" do |f| %>
-<%= f.error_messages %>
 <%= select_tag  'subject_ids', options_from_collection_for_select(subjects, :id, :name, {:selected => school.subject_ids, :disabled => school.subject_ids}), :multiple => true, :class => "multiselect" %>
 <%= submit_tag "Save" %><%= image_tag 'spinner.gif', :id=>'spinner', :style=>"display:none;" %>
 <%end %>
