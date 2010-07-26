@@ -59,10 +59,6 @@ class ApplicationController < ActionController::Base
                       params[object][attribute + '(3i)'].to_i)
   end
   
-  def notify(collection)
-    collection.each{|object| object.send_message}
-  end
-  
   protected
   def set_auth_current_user
    Authorization.current_user = current_user

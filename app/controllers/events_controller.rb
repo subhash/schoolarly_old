@@ -11,14 +11,11 @@ class EventsController < ApplicationController
   end
   
   def create
-    notifiers = []
-    @event_series = EventSeries.new(params[:event_series])    
+    @event_series = EventSeries.new(params[:event_series])
     @event_series.owner = current_user
     @event = Event.new(params[:event])
     @event_series.create_events(@event.start_time, @event.end_time, params[:recurrence])
-    notifiers << @event_series
     if @event_series.save
-      notify(notifiers)
       render :template => 'events/create'
     else
       render :update do |page|
@@ -48,7 +45,6 @@ class EventsController < ApplicationController
   
   def update    
     @event = Event.find(params[:id])
-    notifiers = []
     if @event.event_series.events.size > 1
       old_event_series = @event.event_series
       event_series = old_event_series.clone
@@ -64,15 +60,12 @@ class EventsController < ApplicationController
           event_series.add_event(event, st, et)
         end
       end
-      notifiers << event_series
     else
       event_series = @event.event_series
       @event.attributes = params[:event]
-      notifiers << @event if @event.changed?
       event_series.attributes = params[:event_series]
     end
     if event_series.save 
-      notify(notifiers)
       render :template => 'events/update'
     else
       @event_series = @event.event_series
@@ -100,17 +93,14 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event_series = @event.event_series
     if @event
-      notifiers = []
       @event.start_time = @event.start_time.advance(:minutes => params[:minute_delta].to_i, :days => params[:day_delta].to_i)
       @event.end_time = @event.end_time.advance(:minutes => params[:minute_delta].to_i, :days => params[:day_delta].to_i)
       if @event_series.events.size > 1
         event_series = EventSeries.new(:title => @event_series.title, :description => @event_series.description, :owner => @event_series.owner, :users => @event_series.users)
         event_series.events << @event
-        notifiers << event_series if event_series.save
       else
-        notifiers << @event if @event.save
+        @event.save
       end
-      notify(notifiers)
     end
   end
   
