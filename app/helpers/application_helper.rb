@@ -31,6 +31,11 @@ module ApplicationHelper
     end
   end
   
+  def duration(start_time, end_time)
+    hours, mins, ignore_secs, ignore_fractions = Date::day_fraction_to_time((end_time.to_time - start_time.to_time)/1.day)
+    duration = pluralize(hours, 'hr') + ((mins > 0) ? ' ' + pluralize(mins, 'min') : '')
+  end
+  
   def render_tabs    
     tabbifier = Object.new  
     

@@ -34,10 +34,6 @@ class Activity < ActiveRecord::Base
     assessment.name + " "+ name+" - "+ subject.name
   end
   
-  def duration
-    event ? (interval(event.start_time, event.end_time)): 0
-  end
-
   def destroyable?
     self.scores.empty?
   end

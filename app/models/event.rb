@@ -1,13 +1,12 @@
 class Event < ActiveRecord::Base 
-  include MyHelpers
   belongs_to :event_series
   
   validates_presence_of :start_time, :end_time
   validate :validate_start_time_before_end_time
   before_save :validate_event_series
   
-  def send_message
-    body = event_series.description + start_time.strftime(" re-scheduled to %B %d, %Y at %I:%M%p for " + interval(start_time, end_time))
+  def send_message(path)
+    body = event_series.description + start_time.strftime(" re-scheduled to %B %d, %Y at %I:%M%p")#TODO  for " + interval(start_time, end_time))
     subject = 'Event Announcement: ' + event_series.title + ' re-scheduled'
     event_series.owner.send_message(event_series.users, body, subject) if !event_series.users.empty?
   end 
