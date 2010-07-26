@@ -3,9 +3,14 @@ class StudentsController < ApplicationController
   
   protect_from_forgery :only => [:create, :update, :destroy] 
   
+  in_place_edit_for :student, :dob
+  in_place_edit_for :student, :father_name
+  in_place_edit_for :student, :mother_name
+  in_place_edit_for :student, :board_reg_number
   in_place_edit_for :student, :admission_number
   in_place_edit_for :student, :roll_number
-  
+  in_place_edit_for :student, :house
+
   def show
     session[:redirect] = request.request_uri
     @student = Student.find(params[:id])
@@ -66,6 +71,20 @@ class StudentsController < ApplicationController
       end
     else
       render :template => 'students/update_failure'
+    end
+  end
+  
+  def edit_dob
+    @student = Student.find(params[:id])
+  end
+  
+  def update_dob
+    @student = Student.find(params[:id])
+    @student.attributes = params[:student]
+    if @student.save
+      render :template => 'students/update_dob_success'
+    else
+      render :template => 'students/update_dob_failure'
     end
   end
   

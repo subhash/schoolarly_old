@@ -1,0 +1,1 @@
+page.open_dialog('Date of Birth',:partial => 'students/edit_dob_form', :locals => {:student => @student})

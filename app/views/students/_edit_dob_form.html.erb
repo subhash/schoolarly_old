@@ -1,0 +1,11 @@
+<% semantic_remote_form_for student, :url => {:controller => :students, :action => :update_dob, :id => student} do |f| %>
+<%= f.error_messages %>
+	<table>
+		<tr>
+			<td>
+				<%= f.calendar_date_select :dob%>
+	        </td>
+		</tr>
+</table>
+    <%= f.commit_button :label => 'Update' %>
+<%end %>

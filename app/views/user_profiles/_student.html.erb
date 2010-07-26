@@ -4,6 +4,30 @@
             <h1>About Me</h1>
         </th>
     </tr>
+	<tr>
+	    <td class="left">
+	        Date of Birth:
+	    </td>
+	    <td class="right">
+	        <%=h student.dob %>
+	    </td>
+	</tr>
+	<tr>
+	    <td class="left">
+	        Father's Name:
+	    </td>
+	    <td class="right">
+	        <%=h student.father_name %>
+	    </td>
+	</tr>
+	<tr>
+	    <td class="left">
+	        Mother's Name:
+	    </td>
+	    <td class="right">
+	        <%=h student.mother_name %>
+	    </td>
+	</tr>
 	<%if student.school %>
     <tr>
         <td class="left">
@@ -11,14 +35,6 @@
         </td>
         <td class="right">
             <%=link_to student.school.name, school_path(student.school) %>
-        </td>
-    </tr>
-    <tr>
-        <td class="left">
-            Admission Number:
-        </td>
-        <td class="right">
-            <%=h student.admission_number %>
         </td>
     </tr>
 	<tr>
@@ -31,6 +47,42 @@
 			<%else%>
 				Not yet enrolled to any class
 			<%end %>
+        </td>
+    </tr>
+	<tr>
+        <td class="left">
+            Board Registration Number:
+        </td>
+        <td class="right">
+            <%=h student.board_reg_number%>
+        </td>
+    </tr>
+    <tr>
+        <td class="left">
+            Admission Number:
+        </td>
+        <td class="right">
+            <%=h student.admission_number %>
+        </td>
+    </tr>
+	<tr>
+        <td class="left">
+            Roll Number:
+        </td>
+        <td class="right">
+        	<%if student.klass %>
+            	<%=h student.roll_number %>
+			<%else%>
+				Not yet enrolled to any class
+			<%end %>
+        </td>
+    </tr>
+	<tr>
+        <td class="left">
+            House:
+        </td>
+        <td class="right">
+            <%=h student.house %>
         </td>
     </tr>
 <%else%>
