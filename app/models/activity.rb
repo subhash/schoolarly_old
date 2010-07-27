@@ -1,5 +1,5 @@
 class Activity < ActiveRecord::Base
-  include MyHelpers
+  
   belongs_to :assessment_tool
   belongs_to :event
   
