@@ -9,7 +9,7 @@
 	        Date of Birth:
 	    </td>
 	    <td class="right">
-	        <%=h student.dob %>
+	        <%=h student.date_of_birth.strftime('%B %d, %Y') if student.date_of_birth %>
 	    </td>
 	</tr>
 	<tr>
@@ -17,7 +17,7 @@
 	        Father's Name:
 	    </td>
 	    <td class="right">
-	        <%=h student.father_name %>
+	        <%=h student.fathers_name %>
 	    </td>
 	</tr>
 	<tr>
@@ -25,7 +25,7 @@
 	        Mother's Name:
 	    </td>
 	    <td class="right">
-	        <%=h student.mother_name %>
+	        <%=h student.mothers_name %>
 	    </td>
 	</tr>
 	<%if student.school %>
@@ -54,7 +54,7 @@
             Board Registration Number:
         </td>
         <td class="right">
-            <%=h student.board_reg_number%>
+            <%=h student.board_registration_number%>
         </td>
     </tr>
     <tr>

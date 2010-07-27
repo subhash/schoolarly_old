@@ -3,10 +3,10 @@ class StudentsController < ApplicationController
   
   protect_from_forgery :only => [:create, :update, :destroy] 
   
-  in_place_edit_for :student, :dob
-  in_place_edit_for :student, :father_name
-  in_place_edit_for :student, :mother_name
-  in_place_edit_for :student, :board_reg_number
+  in_place_edit_for :student, :date_of_birth
+  in_place_edit_for :student, :fathers_name
+  in_place_edit_for :student, :mothers_name
+  in_place_edit_for :student, :board_registration_number
   in_place_edit_for :student, :admission_number
   in_place_edit_for :student, :roll_number
   in_place_edit_for :student, :house
@@ -44,6 +44,7 @@ class StudentsController < ApplicationController
     @user = User.new(params[:user])
     @user.person = @student
     @user.user_profile = UserProfile.new(params[:user_profile])
+    @student.health_profile = HealthProfile.new()
     if @user.deliver_invitation!
       render :template => 'students/create_success'
     else  

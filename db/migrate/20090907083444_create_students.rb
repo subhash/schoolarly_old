@@ -4,11 +4,11 @@ class CreateStudents < ActiveRecord::Migration
       t.integer :school_id
       t.string :admission_number
       t.string :roll_number
-      t.string :board_reg_number
+      t.string :board_registration_number
       t.string :house
-      t.date :dob
-      t.string :mother_name
-      t.string :father_name
+      t.date :date_of_birth
+      t.string :mothers_name
+      t.string :fathers_name
       t.integer :klass_id
       t.timestamps
       

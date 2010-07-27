@@ -8,12 +8,12 @@
         <td class="left">
         	Date of Birth:
         </td>
-		<%dob = !edit_student.dob.nil? ? edit_student.dob.strftime('%B %d, %Y') : '(Click to enter)'%>
+		<% date_of_birth = !edit_student.date_of_birth.nil? ? edit_student.date_of_birth.strftime('%B %d, %Y') : '(Click to enter)' %>
 		<td class="middle">
-			<%= link_to_remote dob, :url => {:controller => :students, :action => :edit_dob, :id => edit_student}, :html => {:class => "ui-icon ui-icon-pencil", :title => "Edit"}, :method => :get %>
+			<%= link_to_remote date_of_birth, :url => {:controller => :students, :action => :edit_dob, :id => edit_student}, :html => {:class => "ui-icon ui-icon-pencil", :title => "Edit"}, :method => :get %>
 		</td>
         <td class="right">
-            <%= link_to_remote dob, :url => {:controller => :students, :action => :edit_dob, :id => edit_student}, :method => :get, :html => {:title => 'Click to edit'} %>
+            <%= link_to_remote date_of_birth, :url => {:controller => :students, :action => :edit_dob, :id => edit_student}, :method => :get, :html => {:title => 'Click to edit'} %>
         </td>
     </tr>
 	<tr>
@@ -22,7 +22,7 @@
 	    </td>
 		<td class="middle"><span id=<%="edit_fname_#{edit_student.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
 	    <td class="right">
-			<span id=<%="fname_#{edit_student.id}" %>><%=edit_student.father_name.blank? ? '(Click to enter)': edit_student.father_name %></span><%= in_place_editor "fname_#{edit_student.id}" ,{:url => {:controller => 'students', :action => 'set_student_father_name', :id => edit_student},:external_control => "edit_fname_#{edit_student.id}"}%>
+			<span id=<%="fname_#{edit_student.id}" %>><%=edit_student.fathers_name.blank? ? '(Click to enter)': edit_student.fathers_name %></span><%= in_place_editor "fname_#{edit_student.id}" ,{:url => {:controller => 'students', :action => 'set_student_fathers_name', :id => edit_student},:external_control => "edit_fname_#{edit_student.id}"}%>
 	    </td>
 	</tr>
 	<tr>
@@ -31,7 +31,7 @@
 	    </td>
 		<td class="middle"><span id=<%="edit_mname_#{edit_student.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
 	    <td class="right">
-			<span id=<%="mname_#{edit_student.id}" %>><%=edit_student.mother_name.blank? ? '(Click to enter)': edit_student.mother_name %></span><%= in_place_editor "mname_#{edit_student.id}" ,{:url => {:controller => 'students', :action => 'set_student_mother_name', :id => edit_student},:external_control => "edit_mname_#{edit_student.id}"}%>
+			<span id=<%="mname_#{edit_student.id}" %>><%=edit_student.mothers_name.blank? ? '(Click to enter)': edit_student.mothers_name %></span><%= in_place_editor "mname_#{edit_student.id}" ,{:url => {:controller => 'students', :action => 'set_student_mothers_name', :id => edit_student},:external_control => "edit_mname_#{edit_student.id}"}%>
 	    </td>
 	</tr>
 	<%if edit_student.school %>
@@ -62,7 +62,7 @@
 	        </td>
 			<td class="middle"><span id=<%="edit_brno_#{edit_student.id}"%> class="ui-icon ui-icon-pencil" title="Edit"></span></td>
 	        <td class="right">
-				<span id=<%="board_reg_number_#{edit_student.id}" %>><%=edit_student.board_reg_number.blank? ? '(Click to enter)': edit_student.board_reg_number %></span><%= in_place_editor "board_reg_number_#{edit_student.id}" ,{:url => {:controller => 'students', :action => 'set_student_board_reg_number', :id => edit_student},:external_control => "edit_brno_#{edit_student.id}"}%>
+				<span id=<%="board_reg_number_#{edit_student.id}" %>><%=edit_student.board_registration_number.blank? ? '(Click to enter)': edit_student.board_registration_number %></span><%= in_place_editor "board_reg_number_#{edit_student.id}" ,{:url => {:controller => 'students', :action => 'set_student_board_registration_number', :id => edit_student},:external_control => "edit_brno_#{edit_student.id}"}%>
 	        </td>
 	    </tr>
 	    <tr>
