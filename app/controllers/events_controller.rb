@@ -42,34 +42,29 @@ class EventsController < ApplicationController
       end
     end
   end
+
   
   def update    
     @event = Event.find(params[:id])
-    if @event.event_series.events.size > 1
-      old_event_series = @event.event_series
-      event_series = old_event_series.clone
-      event_series.attributes = params[:event_series]    
-      event_input = Event.new(params[:event])
-      st = event_input.start_time - @event.start_time
-      et = event_input.end_time - @event.end_time    
-      
-      event_series.add_event(@event, st, et)    
-      if (params[:update_scope] == "future")
-        @events = old_event_series.events.find(:all, :conditions => ["start_time > '#{@event.start_time.to_formatted_s(:db)}' "])
-        @events.each do |event|
-          event_series.add_event(event, st, et)
-        end
+    old_event_series = @event.event_series
+    new_event_series = old_event_series.clone
+    new_event_series.attributes = params[:event_series]    
+    event_input = Event.new(params[:event])
+    st = event_input.start_time - @event.start_time
+    et = event_input.end_time - @event.end_time    
+    
+    new_event_series.add_event(@event, st, et)    
+    if (params[:update_scope] == "future")
+      @events = old_event_series.events.find(:all, :conditions => ["start_time > '#{@event.start_time.to_formatted_s(:db)}' "])
+      @events.each do |event|
+        new_event_series.add_event(event, st, et)
       end
-    else
-      event_series = @event.event_series
-      @event.attributes = params[:event]
-      event_series.attributes = params[:event_series]
     end
-    if event_series.save
+    
+    if new_event_series.save
       old_event_series.destroy if old_event_series.events.size == 0
       render :template => 'events/update'
     else
-      @event_series = @event.event_series
       render :update do |page|
         page.refresh_dialog :partial => 'edit_form'
       end
