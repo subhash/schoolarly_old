@@ -1,4 +1,4 @@
-<% colNames = ["Student email", "Name"]+ activities.collect(&:name) %>
+<% colNames = ["Student email", "Name"]+ activities.collect{|a| "#{a.name}(#{a.max_score})"} %>
 <% colModel = [{:width => 250,
 :index => 'email',
 :name => 'email',
@@ -13,7 +13,7 @@
 <%= jquery_grid :scores, {:colNames => colNames, :colModel => colModel, :url => grid_data_scores_url(:activities => activities.collect(&:id)), :editurl => row_edit_scores_url(:activities => activities.collect(&:id)) } %>
 <center>
     <div style="background :black; color:white;">
-        Scores for <%= activities.first.name %> - <%=activities.first.subject.name%>
+       Scores for <%= activities.many? ? " #{activities.first.assessment.long_name}" : " #{activities.first.title}"%>
     </div>
     <%= jquery_grid_table %>
     <%= jquery_grid_pager %>
