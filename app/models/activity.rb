@@ -12,6 +12,8 @@ class Activity < ActiveRecord::Base
   
   after_destroy :adjust_best_of
   
+  accepts_nested_attributes_for :event
+  
   def name
     assessment_tool.name
   end

@@ -35,7 +35,7 @@ class ActivitiesController < ApplicationController
   
   def edit
     @activity = Activity.find_by_id(params[:id])
-    @event = @activity.event ? @activity.event : Event.new
+    @activity.event = Event.new unless @activity.event
     render :update do |page|
       page.open_dialog "Change activity - #{@activity.title}", :partial => 'activities/edit'
     end
@@ -44,22 +44,22 @@ class ActivitiesController < ApplicationController
   def update
     @activity = Activity.find_by_id(params[:id])
     @activity.attributes = params[:activity]
-    if @activity.event
-      @activity.event.attributes = params[:event]
-    else
-      unless(params[:event][:start_time].blank? and params[:event][:end_time].blank?)
-        @event = Event.new(params[:event])
+    if @activity.event.new_record?
+      if (@activity.event.start_time.blank? and @activity.event.end_time.blank?)
+        @activity.event = nil
+      else
         event_series = EventSeries.new(:title => @activity.title, :description => @activity.description, :owner => current_user)
         event_series.users = @activity.participants.collect(&:user)
-        @event.event_series = event_series
-        @activity.event = @event
+        @activity.event.event_series = event_series
       end
     end
-    if @activity.save
-      render :template => 'activities/update_success'
-    else
-      @event = @activity.event ? @activity.event : Event.new
-      render :template => 'activities/update_failure'
+    render :update do |page|
+      if @activity.save
+        page.close_dialog
+        page.replace_object @activity, :partial => 'activities/activity'
+      else
+        page.refresh_dialog  :partial => 'activities/edit'
+      end
     end
   end
   
