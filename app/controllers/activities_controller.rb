@@ -4,7 +4,7 @@ class ActivitiesController < ApplicationController
     @assessment = Assessment.find_by_id(params[:assessment_id])
     @assessment_tool = AssessmentTool.new(:assessment => @assessment, :weightage => @assessment.assessment_tools.size == 0 ? 100 : 0)
     @activity = Activity.new(:max_score =>@assessment.assessment_type.max_score)
-    @event = Event.new( :start_time => Event.now, :end_time => Event.now.advance(:hours => 1 ))
+    @event = Event.new
     @assessment_tool_names = @assessment.school_subject.assessment_tool_names
     render :update do |page|
       page.open_dialog "New activity for #{@assessment.long_name}", :partial => 'activities/new', :locals => {:activity => @activity}
@@ -24,6 +24,7 @@ class ActivitiesController < ApplicationController
       @activity.event  = @event
     end
     if @activity.save
+      @assessment = @activity.assessment
       render :template => 'activities/create_success'
     else
       @assessment = @assessment_tool.assessment
@@ -64,10 +65,13 @@ class ActivitiesController < ApplicationController
   
   def destroy
     @activity = Activity.find(params[:id])
+    @assessment = @activity.assessment
     render :update do |page|
       if  @activity.destroy
         @activity.event.event_series.destroy if @activity.event
+        @activity.assessment_tool.destroy if @activity.assessment_tool.activities.size == 0 
         page.remove_object(@activity)
+        page.open_dialog "Adjust calculations for "+@assessment.long_name, :partial => 'assessments/edit'
       else
         page.error_dialog('Error occurred while removing the activity.')
       end

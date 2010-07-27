@@ -13,9 +13,9 @@ class AssessmentTool < ActiveRecord::Base
   validate_on_update :best_of_valid
   
   def best_of_valid
-    puts "activities.size = "+activities.size.inspect
     unless (1..activities.size).include?(best_of)
        errors.add("Best of should be in 1..#{activities.size}")
     end
   end
+    
 end

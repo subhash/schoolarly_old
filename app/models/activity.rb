@@ -10,6 +10,8 @@ class Activity < ActiveRecord::Base
   
   validates_numericality_of :max_score
   
+  after_destroy :adjust_best_of
+  
   def name
     assessment_tool.name
   end
@@ -36,6 +38,13 @@ class Activity < ActiveRecord::Base
   
   def destroyable?
     self.scores.empty?
+  end
+  
+  def adjust_best_of
+    if assessment_tool.best_of > assessment_tool.activities.size
+      assessment_tool.best_of =  assessment_tool.activities.size
+      assessment_tool.save!
+    end
   end
   
 end
