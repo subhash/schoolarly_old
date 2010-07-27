@@ -65,7 +65,8 @@ class EventsController < ApplicationController
       @event.attributes = params[:event]
       event_series.attributes = params[:event_series]
     end
-    if event_series.save 
+    if event_series.save
+      old_event_series.destroy if old_event_series.events.size == 0
       render :template => 'events/update'
     else
       @event_series = @event.event_series
