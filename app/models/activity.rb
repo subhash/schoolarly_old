@@ -21,7 +21,7 @@ class Activity < ActiveRecord::Base
   end
   
   def participants
-    students_with_scores | assessment.participants
+    students_with_scores | assessment.current_participants
   end
   
   def klass
@@ -45,6 +45,10 @@ class Activity < ActiveRecord::Base
       assessment_tool.best_of =  assessment_tool.activities.size
       assessment_tool.save!
     end
+  end 
+    
+  def duration
+    event ? ((event.end_time.to_time - event.start_time.to_time)/1.hour): 0
   end
   
 end
