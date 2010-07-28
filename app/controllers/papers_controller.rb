@@ -39,7 +39,7 @@ class PapersController < ApplicationController
     @paper = Paper.find(params[:id])
     @paper.update_attributes(params[:paper])
     if @paper.teacher
-      assessments = @paper.unscored_assessments + @paper.orphan_assessments 
+      assessments = @paper.orphan_assessments 
       @paper.teacher.assessments << assessments
       @paper.teacher.save!
     end

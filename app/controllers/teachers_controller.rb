@@ -70,7 +70,7 @@ class TeachersController < ApplicationController
     new_paper_ids = params[:paper_ids] - @teacher.paper_ids
     @teacher.paper_ids = params[:paper_ids]
     new_papers = Paper.find(new_paper_ids) unless new_paper_ids.empty?
-    assessments = new_papers.collect{|p| p.unscored_assessments + p.orphan_assessments} 
+    assessments = new_papers.collect(&:orphan_assessments) 
     @teacher.assessments << assessments
     @teacher.save!
   end
