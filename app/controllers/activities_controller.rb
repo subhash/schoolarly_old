@@ -71,10 +71,8 @@ class ActivitiesController < ApplicationController
     @assessment = @activity.assessment
     render :update do |page|
       if  @activity.destroy
-        @activity.event.event_series.destroy if @activity.event
-        @activity.assessment_tool.destroy if @activity.assessment_tool.activities.size == 0 
         page.remove_object(@activity)
-        page.open_dialog "Adjust calculations for "+@assessment.long_name, :partial => 'assessments/edit'
+        page.open_dialog "Adjust calculations for "+@assessment.long_name, :partial => 'assessments/edit' unless @assessment.assessment_tools.empty?
       else
         page.error_dialog('Error occurred while removing the activity.')
       end

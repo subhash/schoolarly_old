@@ -15,7 +15,9 @@ class Activity < ActiveRecord::Base
   
   validates_numericality_of :max_score
   
-  after_destroy :adjust_best_of
+  after_destroy :adjust_best_of, :unless => :assessment_tool_empty? 
+  after_destroy :destroy_event
+  after_destroy :destroy_empty_assessment_tool
   
   accepts_nested_attributes_for :event
   
@@ -54,6 +56,18 @@ class Activity < ActiveRecord::Base
     end
   end 
     
+  def destroy_event
+     event.event_series.destroy if event
+  end
+  
+  def destroy_empty_assessment_tool
+    assessment_tool.destroy if assessment_tool_empty?
+  end
+  
+  def assessment_tool_empty?
+    return assessment_tool.activities.size == 0
+  end
+  
   def duration
     event ? ((event.end_time.to_time - event.start_time.to_time)/1.hour): 0
   end
