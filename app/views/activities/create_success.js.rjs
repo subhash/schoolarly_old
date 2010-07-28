@@ -1,2 +1,0 @@
-page.replace_object @activity.assessment, :partial => 'assessments/assessment'
-page.open_dialog "Adjust calculations for "+@assessment.long_name, :partial => 'assessments/edit'
