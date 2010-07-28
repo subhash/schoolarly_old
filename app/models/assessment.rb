@@ -25,6 +25,10 @@ class Assessment < ActiveRecord::Base
     end
   end
   
+  def unscored?
+    activities.select{|a| !a.scores.empty?}.empty?    
+  end
+  
   def school_subject
     SchoolSubject.find_by_school_id_and_subject_id(school.id, subject_id)
   end
@@ -40,7 +44,6 @@ class Assessment < ActiveRecord::Base
   def sa?
     name.starts_with? "SA"
   end
-  
   
   def fa?
     name.starts_with? "FA"

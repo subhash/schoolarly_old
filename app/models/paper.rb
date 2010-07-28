@@ -53,6 +53,11 @@ class Paper < ActiveRecord::Base
     end
   end
   
+  def orphan_assessments
+    klass.all_assessments.find_all_by_academic_year_id_and_subject_id_and_teacher_id(klass.academic_year.id, subject.id, nil)
+  	#assessments.select{|a| a.teacher.nil?}  
+  end
+  
   def assessments
     klass.all_assessments.find_all_by_academic_year_id_and_subject_id(klass.academic_year.id, subject.id)
   end
@@ -61,6 +66,9 @@ class Paper < ActiveRecord::Base
     klass.all_assessment_tools.find_all_by_academic_year_id_and_subject_id(klass.academic_year.id, subject.id)
   end
   
+  def unscored_assessments
+    assessments.select{|a| a.unscored?}
+  end
   
   def formative_assessments
     assessments.select{|a|a.name.starts_with? "FA"}
@@ -71,8 +79,8 @@ class Paper < ActiveRecord::Base
   end
   
   def assign_participants_for_future_activities
-    klass.future_activities_for_subject(subject).each do |activity|
-      activity.event.event_series.users = (teacher and activity.event.event_series.owner == teacher) ? (users - [teacher.user]) : users      
+    klass.future_activities_for(subject).each do |activity|
+      activity.event.event_series.users = (teacher and activity.event.event_series.owner == teacher) ? (users - [teacher.user]) : users
     end
   end
   
