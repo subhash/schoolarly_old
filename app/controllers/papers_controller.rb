@@ -20,6 +20,7 @@ class PapersController < ApplicationController
     @klass = @paper.klass
   end
   
+#  TODO add/remove students from future events for the paper
   def add_students
     @paper = Paper.find(params[:id])
     @old_students = Array.new(@paper.students)
@@ -33,6 +34,7 @@ class PapersController < ApplicationController
     @paper = Paper.find(params[:id])
   end
   
+#  TODO add/remove teacher user to future events of paper
   def update
     @paper = Paper.find(params[:id])
     @paper.update_attributes(params[:paper])

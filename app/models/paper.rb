@@ -13,6 +13,7 @@ class Paper < ActiveRecord::Base
   
   after_create :create_assessments
   before_destroy :destroy_assessments
+  after_save :assign_participants_for_future_activities
   
   def name
     subject.name
@@ -69,5 +70,10 @@ class Paper < ActiveRecord::Base
     assessments.select{|a|a.name.starts_with? "SA"}
   end
   
+  def assign_participants_for_future_activities
+    klass.future_activities_for_subject(subject).each do |activity|
+      activity.event.event_series.users = (teacher and activity.event.event_series.owner == teacher) ? (users - [teacher.user]) : users      
+    end
+  end
   
 end

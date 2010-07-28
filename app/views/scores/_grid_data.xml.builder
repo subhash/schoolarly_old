@@ -8,7 +8,7 @@ xml.rows do
       xml.cell link_to student.email, student_path(student)+"#scores-tab"
       xml.cell student.name
       scores.each do |score|
-        xml.cell score.nil? ? " " :  score.score 
+        xml.cell score.nil? ? "" :  score.score 
       end
     end
   end

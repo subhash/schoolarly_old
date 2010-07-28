@@ -32,8 +32,10 @@ class EventsController < ApplicationController
     @event_series = @event.event_series
     @activity = @event.activity #TODO changed @exam to activity to avoid error for the time-being.
     if @activity
-      @teachers = @activity.school.teachers
-      render :template => "activities/edit"
+      @teachers = @activity.assessment.school.teachers
+      render :update do |page|
+        page.open_dialog "Change activity - #{@activity.title}", :partial => 'activities/edit'
+      end
     else
       #@users = current_user.person.school ? current_user.person.school.users - [@event_series.owner] : nil
       @users = User.with_permissions_to(:contact) - [@event_series.owner]
@@ -42,7 +44,7 @@ class EventsController < ApplicationController
       end
     end
   end
-
+  
   
   def update    
     @event = Event.find(params[:id])

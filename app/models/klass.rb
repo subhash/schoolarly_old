@@ -5,6 +5,7 @@ class Klass < ActiveRecord::Base
   has_one :academic_year, :through => :school
   has_many :all_assessments, :class_name => 'Assessment'
   has_many :all_assessment_tools, :class_name => 'AssessmentTool', :through => :all_assessments
+
   def assessments
     all_assessments.find_all_by_academic_year_id(academic_year.id)
   end
@@ -25,7 +26,7 @@ class Klass < ActiveRecord::Base
 #    end
 #  end
 #  
-#  has_many :activities, :through => :exams, :uniq => true
+
   
   
   validates_uniqueness_of :division, :scope => [:school_id, :level_id]
@@ -39,9 +40,10 @@ class Klass < ActiveRecord::Base
   def can_be_destroyed
     students.empty? and papers.empty? and assessments.empty?    
   end
-  
-  def current_exams_for(assessment, subject)
-     exams.find_all_by_academic_year_id_and_subject_id(academic_year.id, subject.id).select{|e|e.assessment == assessment}
+
+  def future_activities_for(subject)
+    assessment_tool_ids = all_assessments.find_all_by_academic_year_id_and_subject_id(academic_year.id, subject.id).collect(&:assessment_tool_ids).flatten
+    Activity.find(:all, :include => [:event], :conditions => ["assessment_tool_id IN (?) AND event_id IS NOT NULL AND events.start_time > ? ", assessment_tool_ids, Time.zone.now])
   end
   
   def teacher_users

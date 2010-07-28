@@ -5,7 +5,12 @@ class Activity < ActiveRecord::Base
   
   has_one :assessment, :through => :assessment_tool
   
-  has_many :scores
+  has_many :scores do
+    def of_student(id)
+      find :first, :conditions => {:student_id => id}
+    end
+  end
+  
   has_many :students_with_scores, :through => :scores, :source => :student
   
   validates_numericality_of :max_score

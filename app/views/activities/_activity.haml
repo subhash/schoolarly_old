@@ -16,4 +16,8 @@
     %span.date
       = activity.event.start_time.to_s(:short)
       %span.time= "#{duration(activity.event.start_time, activity.event.end_time)}"
+  - if active_controller == 'students' and @student
+    - if (score =  activity.scores.of_student(@student.id)) 
+      %span.score= "#{score.score}/#{activity.max_score}"   
+   
    

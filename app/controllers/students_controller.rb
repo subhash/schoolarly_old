@@ -97,19 +97,17 @@ class StudentsController < ApplicationController
   def update_papers
     @student = Student.find(params[:id])
     #   remove from all first
-#TODO correct the following after the exam module is done.
 #    @student.subjects.each do |subject|
-#      @student.klass.exams.future_for(subject.id).each do |exam|
-#        exam.event.event_series.users.delete(@student.user)
+#      @student.klass.future_activities_for(subject.id).each do |activity|
+#        activity.event.event_series.users.delete(@student.user)
 #      end
 #    end
     @student.paper_ids = params[:paper_ids]
     @student.save
     #     add again
-#TODO correct the following after the exam module is done.
 #    @student.subjects.each do |subject|
-#      @student.klass.exams.future_for(subject.id).each do |exam|
-#        exam.event.event_series.users << @student.user
+#      @student.klass.future_activities_for(subject.id).each do |activity|
+#        activity.event.event_series.users << @student.user
 #      end
 #    end
     @student.save!
