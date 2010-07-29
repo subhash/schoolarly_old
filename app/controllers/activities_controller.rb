@@ -81,13 +81,13 @@ class ActivitiesController < ApplicationController
   
   def edit_scores
     session[:redirect] = request.request_uri
-    @activities = Activity.find_all_by_id(params[:ids])
+    @activities = Activity.find_all_by_id(params[:ids],:include => [:assessment_tool],  :order => "assessment_tools.name")
     @activity = @activities.first
   end
   
   def view_scores
     session[:redirect] = request.request_uri
-    @activities = Activity.find_all_by_id(params[:ids])
+    @activities = Activity.find_all_by_id(params[:ids],:include => [:assessment_tool],  :order => "assessment_tools.name")
     @activity = @activities.first
   end
   
