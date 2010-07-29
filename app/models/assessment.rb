@@ -60,4 +60,15 @@ class Assessment < ActiveRecord::Base
     activities.select{|a|!a.destroyable?}.blank?
   end
   
+  def weighted_average_for(student)
+    averages = assessment_tools.collect{|t|t.weighted_average_for(student)}
+    averages.compact.size == assessment_tools.size ? averages.sum : nil
+  end
+  
+    
+  def max_score
+    assessment_type.max_score   
+  end
+  
+  
 end

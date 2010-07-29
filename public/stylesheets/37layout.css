@@ -326,58 +326,6 @@ table.teachers div.icons span {
     display: inline-block;
 }
 
-table.papers {
-    margin-bottom: 30px;
-    width: 100%;
-}
-
-table.papers tr {
-    padding-bottom: 4px;
-}
-
-table.papers td div {
-    margin-bottom: 8px;
-    margin-top: 8px;
-}
-
-table.papers td.left {
-    font-size: 20px;
-    width: 25%;
-}
-
-table.papers td {
-    border-width: 1px;
-    border-style: dotted;
-    border-color: grey;
-}
-
-table.papers td.right * {
-    font-size: 13px;
-    margin-bottom: 4px;
-}
-
-table.papers .klasses a {
-    text-decoration: none;
-    color: white;
-    padding: 2px 4px;
-}
-
-table.papers .klasses {
-    background-color: grey;
-}
-
-table.papers td.right .students {
-    background-color: black;
-    color: white;
-    font-size: 11px;
-    padding: 2px;
-}
-
-table.papers td .icon {
-    display: inline-block;
-    min-width: 16px;
-}
-
 table.school_subjects td.left {
     font-size: 20px;
     width: 40%;
@@ -607,18 +555,21 @@ table.paper td.right div.activity .time {
 }
 
 table.paper td.right div.activity .score {
-	float: right;
-	font-size: 17px;
-	font-weight: bold;
+    float: right;
+    font-size: 17px;
+    font-weight: bold;
 }
 
 table.paper td.right div.assessment_tool .average {
-	background-color: lightgrey;
-	font-weight: bold;
-	font-size: 20px;
-	text-align: right;
+    background-color: lightgrey;
+    font-size: 17px;
 }
 
+table.paper td.right div.assessment_tool .average span.score {
+    font-weight: bold;
+	font-size: 17px;
+    float: right;
+}
 
 table.klass-exams tr {
     border-bottom: solid 1px;
@@ -710,61 +661,6 @@ table.profile td.middle {
 
 table#school-profile td.right a {
     text-decoration: none;
-}
-
-table.scores {
-    width: 100%;
-}
-
-table.scores tr {
-    border-bottom-style: solid;
-    border-bottom-width: thin;
-}
-
-table.scores .heading * {
-    font-size: 14px;
-    background: #3C3E47;
-    color: white;
-}
-
-table.scores td.left {
-    font-size: 14px;
-    width: 20%;
-}
-
-table.scores .subject {
-    background-color: grey;
-    color: white;
-}
-
-table.scores td.right * {
-    font-size: 14px;
-}
-
-table.scores .activity {
-    background-color: darkgrey;
-    color: white;
-    padding: 2px 0px 2px 4px;
-    margin-right: 20px;
-    display: inline-block;
-}
-
-table.scores .score {
-    background-color: #F5DFAC;
-    color: black;
-    padding: 2px 0px 2px 4px;
-    margin-left: 4px;
-}
-
-table.scores .average {
-    background-color: grey;
-    color: white;
-    padding: 2px 4px;
-    margin-left: 4px;
-}
-
-table.scores .emphasis {
-    font-weight: bolder;
 }
 
 table.sep {
