@@ -1,5 +1,5 @@
 %div[assessment_tool]
   = render :partial => 'activities/activity', :collection => assessment_tool.activities
   - if @student
-    - if (score =  assessment_tool.scores.of_student(@student.id)) 
-      %span.score= "#{assessment_tool.average_score_for(@student)}/#{assessment_tool.max_score}" if assessment_tool.average_score_for(@student)
+    - if (score =  assessment_tool.scores.of_student(@student.id) and assessment_tool.assessment.fa?) 
+      %div.average= "#{assessment_tool.average_score_for(@student)}/#{assessment_tool.max_score}" if assessment_tool.average_score_for(@student)

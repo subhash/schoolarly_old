@@ -556,10 +556,16 @@ table.paper td.right div.activity .time {
 
 table.paper td.right div.activity .score {
 	float: right;
-	font-size: 20px;
+	font-size: 17px;
 	font-weight: bold;
 }
 
+table.paper td.right div.assessment_tool .average {
+	background-color: lightgrey;
+	font-weight: bold;
+	font-size: 20px;
+	text-align: right;
+}
 
 
 table.klass-exams tr {

@@ -2,7 +2,8 @@
   %td
     %span
       = link_to_unless assessment.activities.blank?, assessment.name, edit_scores_activities_path(:ids => assessment.activities.collect(&:id))
-      %span.icon= link_to_remote 'Add Activity', :url => {:controller => 'activities', :action => 'new', :assessment_id => assessment}, :html => {:title => "Add activity to #{assessment.long_name}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-plusthick"} unless assessment.sa?
-      = link_to_remote 'Calculate', :url => {:controller => 'assessments', :action => 'edit', :id => assessment}, :method => :get unless (assessment.activities.blank? or assessment.sa?)    
+      - unless @student
+        %span.icon= link_to_remote 'Add Activity', :url => {:controller => 'activities', :action => 'new', :assessment_id => assessment}, :html => {:title => "Add activity to #{assessment.long_name}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-plusthick"} unless assessment.sa?
+      = link_to_remote 'Calculate', :url => {:controller => 'assessments', :action => 'edit', :id => assessment, :student_id => @student}, :method => :get unless (assessment.activities.blank? or assessment.sa?)    
   %td.right   
     = render :partial => 'assessment_tools/assessment_tool', :collection => assessment.assessment_tools

@@ -1,9 +1,10 @@
 %div[activity]
-  %span.icon= link_to_remote 'Edit activity', :url =>  {:controller => 'activities', :action => 'edit', :id => activity }, :method => :get, :html => {:title => "Edit #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-pencil"}
-  - if activity.destroyable?  and activity.assessment.fa?
-    %span.icon= link_to_remote 'Delete', :url => {:controller => 'activities', :action => 'destroy', :id => activity }, :method => :delete, :html => {:title => "Delete #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-trash"}, :confirm => 'Are you sure?'
-  - else
-    %span.icon.ui-icon.blank
+  - unless @student
+    %span.icon= link_to_remote 'Edit activity', :url =>  {:controller => 'activities', :action => 'edit', :id => activity }, :method => :get, :html => {:title => "Edit #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-pencil"}
+    - if activity.destroyable?  and activity.assessment.fa?
+      %span.icon= link_to_remote 'Delete', :url => {:controller => 'activities', :action => 'destroy', :id => activity }, :method => :delete, :html => {:title => "Delete #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-trash"}, :confirm => 'Are you sure?'
+    - else
+      %span.icon.ui-icon.blank
   %span.name
     = link_to activity.name, edit_scores_activities_path(:ids => [activity.id]), :class => "name"
   - if activity.description.blank?
@@ -16,7 +17,7 @@
     %span.date
       = activity.event.start_time.to_s(:short)
       %span.time= "#{duration(activity.event.start_time, activity.event.end_time)}"
-  - if active_controller == 'students' and @student
+  - if @student
     - if (score =  activity.scores.of_student(@student.id)) 
       %span.score= "#{score.score}/#{activity.max_score}"   
    
