@@ -1,0 +1,45 @@
+1:
+ id: 1
+ name: ClassTest
+ assessment_type_name: FA
+ school_id: 1
+2:
+ id: 2
+ name: Dictation
+ assessment_type_name: FA
+ school_id: 1
+3:
+ id: 3
+ name: Project
+ assessment_type_name: FA
+ school_id: 1
+4:
+ id: 4
+ name: Puzzles
+ assessment_type_name: FA
+ school_id: 1
+5:
+ id: 5
+ name: Quiz
+ assessment_type_name: FA
+ school_id: 1
+6:
+ id: 6
+ name: Reading
+ assessment_type_name: FA
+ school_id: 1
+7:
+ id: 7
+ name: Recitation
+ assessment_type_name: FA
+ school_id: 1
+8:
+ id: 8
+ name: Seminar
+ assessment_type_name: FA
+ school_id: 1
+9:
+ id: 9
+ name: Writing
+ assessment_type_name: FA
+ school_id: 1
