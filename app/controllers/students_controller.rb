@@ -97,19 +97,19 @@ class StudentsController < ApplicationController
   def update_papers
     @student = Student.find(params[:id])
     #   remove from all first
-#    @student.subjects.each do |subject|
-#      @student.klass.future_activities_for(subject.id).each do |activity|
-#        activity.event.event_series.users.delete(@student.user)
-#      end
-#    end
+    @student.subjects.each do |subject|
+      @student.klass.future_activities_for(subject.id).each do |activity|
+        activity.event.event_series.users.delete(@student.user)
+      end
+    end
     @student.paper_ids = params[:paper_ids]
     @student.save
     #     add again
-#    @student.subjects.each do |subject|
-#      @student.klass.future_activities_for(subject.id).each do |activity|
-#        activity.event.event_series.users << @student.user
-#      end
-#    end
+    @student.subjects.each do |subject|
+      @student.klass.future_activities_for(subject.id).each do |activity|
+        activity.event.event_series.users << @student.user
+      end
+    end
     @student.save!
   end
   
