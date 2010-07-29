@@ -68,6 +68,7 @@ class TeachersController < ApplicationController
   
   def update_papers
     @teacher.paper_ids = params[:paper_ids]
+    @teacher.save!
   end
   
   def remove_teacher_allotment
