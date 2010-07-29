@@ -1,4 +1,4 @@
-- semantic_remote_form_for @assessment, :url => {:controller => 'assessments', :action => 'update', :student_id => @student} do |f|
+- semantic_remote_form_for @assessment, :url => {:controller => 'assessments', :action => 'update', :id => @assessment, :student_id => @student} do |f|
   = f.error_messages
   %table
     - @assessment.assessment_tools.each do |tool|
