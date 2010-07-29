@@ -1,6 +1,8 @@
 <ul id="header">    
     <li class="tab-item">
         <% if current_user %>
+		<%= link_to 'Home', polymorphic_url(current_user.person) unless current_page?(current_user.person) %>
+		<%= link_to 'My Details', polymorphic_url(current_user.person, :anchor => 'details-tab') unless current_page?(current_user.person) %>
 		<%= link_to 'My Messages', polymorphic_url(current_user.person, :anchor => 'messages-tab') unless current_page?(current_user.person)  %>
 		<%= link_to 'My Events', polymorphic_url(current_user.person, :anchor => 'events-tab')  unless current_page?(current_user.person) %>
         <%= link_to_remote "Logout, #{current_user.email}", :url => user_session_path,  :method => :delete, :confirm => 'Are you sure you want to logout?' %>
