@@ -3,7 +3,7 @@ class CreateActivities < ActiveRecord::Migration
     create_table :activities do |t|
       t.integer :assessment_tool_id
       t.string :description
-      t.decimal :max_score, :scale => 2
+      t.decimal :max_score, :precision => 6, :scale => 2
       t.integer :event_id
       
       t.foreign_key :assessment_tool_id, :assessment_tools, :id

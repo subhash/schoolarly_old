@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20100708082021) do
   create_table "activities", :force => true do |t|
     t.integer  "assessment_tool_id"
     t.string   "description"
-    t.integer  "max_score",          :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "max_score",          :precision => 6, :scale => 2
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(:version => 20100708082021) do
 
   create_table "assessment_tools", :force => true do |t|
     t.string   "name"
-    t.integer  "assessment_id",                                                             :null => false
-    t.integer  "best_of",                                                    :default => 1
-    t.integer  "weightage",     :limit => 10, :precision => 10, :scale => 0
+    t.integer  "assessment_id",                                              :null => false
+    t.integer  "best_of",                                     :default => 1
+    t.decimal  "weightage",     :precision => 5, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -60,20 +60,20 @@ ActiveRecord::Schema.define(:version => 20100708082021) do
   add_index "assessment_tools", ["assessment_id"], :name => "assessment_id"
 
   create_table "assessment_types", :force => true do |t|
-    t.string   "name",                                                    :null => false
-    t.integer  "term",                                                    :null => false
-    t.integer  "max_score",  :limit => 10, :precision => 10, :scale => 0
-    t.decimal  "weightage",                :precision => 5,  :scale => 2
+    t.string   "name",                                     :null => false
+    t.integer  "term",                                     :null => false
+    t.decimal  "max_score",  :precision => 6, :scale => 2
+    t.decimal  "weightage",  :precision => 5, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "assessments", :force => true do |t|
-    t.integer  "assessment_type_id",                                              :null => false
-    t.integer  "klass_id",                                                        :null => false
-    t.integer  "subject_id",                                                      :null => false
-    t.integer  "weightage",          :limit => 10, :precision => 10, :scale => 0
-    t.integer  "academic_year_id",                                                :null => false
+    t.integer  "assessment_type_id",                               :null => false
+    t.integer  "klass_id",                                         :null => false
+    t.integer  "subject_id",                                       :null => false
+    t.decimal  "weightage",          :precision => 5, :scale => 2
+    t.integer  "academic_year_id",                                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -244,7 +244,7 @@ ActiveRecord::Schema.define(:version => 20100708082021) do
   create_table "scores", :force => true do |t|
     t.integer  "activity_id"
     t.integer  "student_id"
-    t.integer  "score",       :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "score",       :precision => 6, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end

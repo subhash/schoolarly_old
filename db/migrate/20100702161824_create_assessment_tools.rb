@@ -4,7 +4,7 @@ class CreateAssessmentTools < ActiveRecord::Migration
       t.string :name
       t.integer :assessment_id, :null => false
       t.integer :best_of, :default => 1 
-      t.decimal :weightage, :scale => 2
+      t.decimal :weightage, :precision => 5, :scale => 2
                  
       t.foreign_key :assessment_id, :assessments, :id
 

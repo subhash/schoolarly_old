@@ -4,7 +4,7 @@ class CreateAssessments < ActiveRecord::Migration
       t.integer :assessment_type_id, :null => false
       t.integer :klass_id, :null => false
       t.integer :subject_id, :null => false
-      t.decimal :weightage, :scale => 2
+      t.decimal :weightage, :precision => 5, :scale => 2
       t.integer :academic_year_id, :null => false
       
       t.foreign_key :assessment_type_id, :assessment_types, :id
