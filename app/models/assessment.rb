@@ -53,7 +53,7 @@ class Assessment < ActiveRecord::Base
   end
   
   def current_participants
-    teacher ? (current_students + [teacher]) : current_students
+    (paper and paper.teacher) ? (current_students + [paper.teacher]) : current_students
   end
   
   def destroyable?
