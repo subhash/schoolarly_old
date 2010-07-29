@@ -53,10 +53,6 @@ class Paper < ActiveRecord::Base
     end
   end
   
-  def orphan_assessments
-    klass.all_assessments.find_all_by_academic_year_id_and_subject_id_and_teacher_id(klass.academic_year.id, subject.id, nil)
-  end
-  
   def assessments
     klass.all_assessments.find_all_by_academic_year_id_and_subject_id(klass.academic_year.id, subject.id)
   end

@@ -67,12 +67,7 @@ class TeachersController < ApplicationController
   end
   
   def update_papers
-    new_paper_ids = params[:paper_ids] - @teacher.paper_ids
     @teacher.paper_ids = params[:paper_ids]
-    new_papers = Paper.find(new_paper_ids) unless new_paper_ids.empty?
-    assessments = new_papers.collect(&:orphan_assessments) 
-    @teacher.assessments << assessments
-    @teacher.save!
   end
   
   def remove_teacher_allotment

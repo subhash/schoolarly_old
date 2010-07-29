@@ -6,13 +6,11 @@ class CreateAssessments < ActiveRecord::Migration
       t.integer :subject_id, :null => false
       t.decimal :weightage, :scale => 2
       t.integer :academic_year_id, :null => false
-      t.integer :teacher_id
       
       t.foreign_key :assessment_type_id, :assessment_types, :id
       t.foreign_key :klass_id, :klasses, :id
       t.foreign_key :subject_id, :subjects, :id
       t.foreign_key :academic_year_id, :academic_years, :id
-      t.foreign_key :teacher_id, :teachers, :id
 
       t.timestamps
     end
