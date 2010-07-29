@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(:version => 20100708082021) do
     t.integer  "subject_id",                                                      :null => false
     t.integer  "weightage",          :limit => 10, :precision => 10, :scale => 0
     t.integer  "academic_year_id",                                                :null => false
-    t.integer  "teacher_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -83,7 +82,6 @@ ActiveRecord::Schema.define(:version => 20100708082021) do
   add_index "assessments", ["klass_id"], :name => "klass_id"
   add_index "assessments", ["subject_id"], :name => "subject_id"
   add_index "assessments", ["academic_year_id"], :name => "academic_year_id"
-  add_index "assessments", ["teacher_id"], :name => "teacher_id"
 
   create_table "conversations", :force => true do |t|
     t.string   "subject",    :default => ""
@@ -337,7 +335,6 @@ ActiveRecord::Schema.define(:version => 20100708082021) do
   add_foreign_key "assessments", ["klass_id"], "klasses", ["id"], :name => "assessments_ibfk_2"
   add_foreign_key "assessments", ["subject_id"], "subjects", ["id"], :name => "assessments_ibfk_3"
   add_foreign_key "assessments", ["academic_year_id"], "academic_years", ["id"], :name => "assessments_ibfk_4"
-  add_foreign_key "assessments", ["teacher_id"], "teachers", ["id"], :name => "assessments_ibfk_5"
 
   add_foreign_key "event_series", ["user_id"], "users", ["id"], :name => "event_series_ibfk_1"
 
