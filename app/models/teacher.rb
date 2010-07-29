@@ -16,7 +16,6 @@ class Teacher < ActiveRecord::Base
 
   has_many :owned_klasses, :class_name => 'Klass'
   has_one :academic_year, :through => :school
-  has_many :assessments
 
   
   def name
