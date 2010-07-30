@@ -31,14 +31,18 @@ class Paper < ActiveRecord::Base
   
   def create_assessments
     AssessmentType.FA.each do |at|
-      Assessment.create(:assessment_type => at, :academic_year => klass.academic_year, :weightage => at.weightage, :subject => subject, :klass => klass) 
+      assessment_group = klass.all_assessment_groups.for_year(klass.academic_year).for_type(at)
+      assessment_group = assessment_group ? assessment_group : AssessmentGroup.create(:assessment_type => at, :academic_year => klass.academic_year, :weightage => at.weightage, :klass => klass) 
+      Assessment.create(:assessment_group => assessment_group, :subject => subject) 
     end
     AssessmentType.SA.each do |at|
-      assessment = Assessment.new(:assessment_type => at, :academic_year => klass.academic_year, :weightage => at.weightage, :subject => subject, :klass => klass) 
+      assessment_group = klass.all_assessment_groups.for_year(klass.academic_year).for_type(at)
+      assessment_group = assessment_group ? assessment_group : AssessmentGroup.new(:assessment_type => at, :academic_year => klass.academic_year, :weightage => at.weightage, :klass => klass) 
+      assessment = Assessment.new(:assessment_group => assessment_group, :subject => subject) 
       assessment_tool =  AssessmentTool.new(:name => "Exam", :weightage => 100)
       assessment_tool.activities << Activity.new(:description => "#{at.name} #{assessment_tool.name} - #{name}", :max_score => at.max_score)
       assessment.assessment_tools << assessment_tool
-      assessment.save!
+      assessment_group.save!
     end
   end
   
