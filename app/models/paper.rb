@@ -4,8 +4,7 @@ class Paper < ActiveRecord::Base
   belongs_to :school_subject
   has_one :subject, :through => :school_subject
   belongs_to :teacher
-  
-  has_one :school, :through => :klass
+
   has_and_belongs_to_many :students
   
   validates_presence_of :klass_id, :school_subject_id
@@ -58,7 +57,7 @@ class Paper < ActiveRecord::Base
   end
   
   def assessments
-    klass.all_assessments.find_all_by_academic_year_id_and_subject_id(klass.academic_year.id, subject.id)
+    klass.all_assessments.for_academic_year(academic_year).for_subject(subject)
   end
   
   def formative_assessments
