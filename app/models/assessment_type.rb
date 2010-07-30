@@ -1,6 +1,6 @@
 class AssessmentType < ActiveRecord::Base
   
-  has_many :assessments do
+  has_many :assessment_groups do
     def current_for_klass(klass)
       find :all, :conditions => {:klass_id => klass.id, :academic_year_id => klass.academic_year.id}
     end
@@ -17,7 +17,6 @@ class AssessmentType < ActiveRecord::Base
   named_scope :for_term, lambda {|term|
     {:conditions => ["term = ? ", term]}
   }
-  
     
   def self.terms
     find(:all, :select => "DISTINCT term").map(&:term)

@@ -30,6 +30,19 @@ ActiveRecord::Schema.define(:version => 20100708082021) do
   add_index "activities", ["assessment_tool_id"], :name => "assessment_tool_id"
   add_index "activities", ["event_id"], :name => "event_id"
 
+  create_table "assessment_groups", :force => true do |t|
+    t.integer  "assessment_type_id",                               :null => false
+    t.integer  "klass_id",                                         :null => false
+    t.decimal  "weightage",          :precision => 5, :scale => 2
+    t.integer  "academic_year_id",                                 :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assessment_groups", ["assessment_type_id"], :name => "assessment_type_id"
+  add_index "assessment_groups", ["klass_id"], :name => "klass_id"
+  add_index "assessment_groups", ["academic_year_id"], :name => "academic_year_id"
+
   create_table "assessment_tool_names", :force => true do |t|
     t.string   "name",                                   :null => false
     t.string   "assessment_type_name", :default => "FA"
@@ -69,19 +82,14 @@ ActiveRecord::Schema.define(:version => 20100708082021) do
   end
 
   create_table "assessments", :force => true do |t|
-    t.integer  "assessment_type_id",                               :null => false
-    t.integer  "klass_id",                                         :null => false
-    t.integer  "subject_id",                                       :null => false
-    t.decimal  "weightage",          :precision => 5, :scale => 2
-    t.integer  "academic_year_id",                                 :null => false
+    t.integer  "subject_id",          :null => false
+    t.integer  "assessment_group_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "assessments", ["assessment_type_id"], :name => "assessment_type_id"
-  add_index "assessments", ["klass_id"], :name => "klass_id"
   add_index "assessments", ["subject_id"], :name => "subject_id"
-  add_index "assessments", ["academic_year_id"], :name => "academic_year_id"
+  add_index "assessments", ["assessment_group_id"], :name => "assessment_group_id"
 
   create_table "conversations", :force => true do |t|
     t.string   "subject",    :default => ""
@@ -324,6 +332,10 @@ ActiveRecord::Schema.define(:version => 20100708082021) do
   add_foreign_key "activities", ["assessment_tool_id"], "assessment_tools", ["id"], :name => "activities_ibfk_1"
   add_foreign_key "activities", ["event_id"], "events", ["id"], :name => "activities_ibfk_2"
 
+  add_foreign_key "assessment_groups", ["assessment_type_id"], "assessment_types", ["id"], :name => "assessment_groups_ibfk_1"
+  add_foreign_key "assessment_groups", ["klass_id"], "klasses", ["id"], :name => "assessment_groups_ibfk_2"
+  add_foreign_key "assessment_groups", ["academic_year_id"], "academic_years", ["id"], :name => "assessment_groups_ibfk_3"
+
   add_foreign_key "assessment_tool_names", ["school_id"], "schools", ["id"], :name => "assessment_tool_names_ibfk_1"
 
   add_foreign_key "assessment_tool_names_school_subjects", ["assessment_tool_name_id"], "assessment_tool_names", ["id"], :name => "assessment_tool_names_school_subjects_ibfk_1"
@@ -331,10 +343,8 @@ ActiveRecord::Schema.define(:version => 20100708082021) do
 
   add_foreign_key "assessment_tools", ["assessment_id"], "assessments", ["id"], :name => "assessment_tools_ibfk_1"
 
-  add_foreign_key "assessments", ["assessment_type_id"], "assessment_types", ["id"], :name => "assessments_ibfk_1"
-  add_foreign_key "assessments", ["klass_id"], "klasses", ["id"], :name => "assessments_ibfk_2"
-  add_foreign_key "assessments", ["subject_id"], "subjects", ["id"], :name => "assessments_ibfk_3"
-  add_foreign_key "assessments", ["academic_year_id"], "academic_years", ["id"], :name => "assessments_ibfk_4"
+  add_foreign_key "assessments", ["subject_id"], "subjects", ["id"], :name => "assessments_ibfk_1"
+  add_foreign_key "assessments", ["assessment_group_id"], "assessment_groups", ["id"], :name => "assessments_ibfk_2"
 
   add_foreign_key "event_series", ["user_id"], "users", ["id"], :name => "event_series_ibfk_1"
 
