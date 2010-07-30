@@ -57,14 +57,6 @@ class Paper < ActiveRecord::Base
     klass.all_assessments.find_all_by_academic_year_id_and_subject_id(klass.academic_year.id, subject.id)
   end
   
-  def assessment_tools
-    klass.all_assessment_tools.find_all_by_academic_year_id_and_subject_id(klass.academic_year.id, subject.id)
-  end
-
-#  def unscored_assessments
-#    assessments.select{|a| a.unscored?}
-#  end
-  
   def formative_assessments
     assessments.select{|a|a.name.starts_with? "FA"}
   end

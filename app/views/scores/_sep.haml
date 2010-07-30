@@ -1,0 +1,10 @@
+- AssessmentType.terms.each do |term|
+  %table.sep
+    %tr.heading
+      %th{:colspan => 7}="Term#{term}"
+    %tr.sub-heading
+      %th=Subject
+      -AssessmentType.for_term(term).FA.each do |type|
+        %th="#{type.name}(#{})"
+      
+

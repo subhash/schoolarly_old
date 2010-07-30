@@ -18,6 +18,6 @@
 <% add.events_tab if current_user == @student.user %>
 <% add.papers_tab :object => @student.papers if @klass %>
 <%# add.scores_tab :object => @scores if @klass %>
-<%# add.sep_tab :locals => {:scores => @scores, :student => @student } if @klass %>
+<% add.sep_tab if @klass %>
 <% add.profile_tab :object => @user_profile%>
 <% end %>
