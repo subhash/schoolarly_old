@@ -3,6 +3,7 @@ class Assessment < ActiveRecord::Base
   belongs_to :subject
   belongs_to :assessment_group
   has_one :klass, :through => :assessment_group
+  has_one :assessment_type, :through => :assessment_group
   has_many :assessment_tools, :dependent => :destroy
   
   has_many :activities, :through => :assessment_tools
@@ -28,7 +29,7 @@ class Assessment < ActiveRecord::Base
   end
   
   def name
-    assessment_group.assessment_type.name 
+    assessment_type.name 
   end
   
   def sa?
@@ -40,7 +41,7 @@ class Assessment < ActiveRecord::Base
   end
   
   def long_name
-    name + " - "+subject.name
+    name + " - " + subject.name
   end
   
   def current_students
@@ -59,11 +60,9 @@ class Assessment < ActiveRecord::Base
     averages = assessment_tools.collect{|t|t.weighted_average_for(student)}
     averages.compact.size == assessment_tools.size ? averages.sum : nil
   end
-  
     
   def max_score
     assessment_type.max_score   
   end
-  
   
 end

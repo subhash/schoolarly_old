@@ -13,14 +13,14 @@ class Klass < ActiveRecord::Base
     end
   end
   
-  has_many :all_assessments, :include => [:assessment_group],:source => 'Assessment', :through => :all_assessments do
+  has_many :all_assessments, :include => [:assessment_group], :source => :assessments, :through => :all_assessment_groups do
     
     def for_year(academic_year)
       find :all, :conditions => ["assessment_groups.academic_year_id = ?", academic_year.id]
     end
     
     def for_type(assessment_type)
-      find :all, :conditions => {"assessment_groups.assessment_type_id = ?"=> assessment_type.id}
+      find :all, :conditions => ["assessment_groups.assessment_type_id = ?", assessment_type.id]
     end
     
     def for_subject(subject)
@@ -46,7 +46,7 @@ class Klass < ActiveRecord::Base
   end
   
   def can_be_destroyed
-    students.empty? and papers.empty? and assessments.empty?    
+    students.empty? and papers.empty? and all_assessments.empty?    
   end
   
   def future_activities_for(subject)
