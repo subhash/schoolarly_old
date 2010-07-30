@@ -4,9 +4,10 @@
       %th{:colspan => 7}="TERM#{term}"
     %tr.sub-heading
       %th SUBJECT
-      -AssessmentType.for_term(term).FA.each do |type|
-        %th="#{type.name}(#{@student.klass.weightage_of(type)}%)" 
-      %th="TOTAL(FA) #{@student.klass.FA_weightage(term)}%"
-      -AssessmentType.for_term(term).SA.each do |type|
-        %th="#{type.name}(#{@student.klass.weightage_of(type)}%)" 
-      %th="TOTAL1(FA+SA) #{@student.klass.total_weightage(term)}%"
+      /
+        -AssessmentType.for_term(term).FA.each do |type|
+          %th="#{type.name}(#{@student.klass.weightage_of(type)}%)" 
+         %th="TOTAL(FA) #{@student.klass.FA_weightage(term)}%"
+        -AssessmentType.for_term(term).SA.each do |type|
+          %th="#{type.name}(#{@student.klass.weightage_of(type)}%)" 
+        %th="TOTAL1(FA+SA) #{@student.klass.total_weightage(term)}%"

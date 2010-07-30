@@ -9,16 +9,16 @@ class AssessmentGroup < ActiveRecord::Base
   
   validates_numericality_of :weightage, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100 
   
-  def name
-    assessment_type.name 
-  end
+    
+  named_scope :SA, :joins => :assessment_type, :conditions => ["assessment_types.name like ? ", "SA%"]
+  named_scope :FA, :joins => :assessment_type, :conditions => ["assessment_types.name like ? ", "FA%"]
   
-  def sa?
-    name.starts_with? "SA"
-  end
+  named_scope :for_year, lambda {|year|
+    {:conditions =>{:academic_year_id => year.id}}
+  }
   
-  def fa?
-    name.starts_with? "FA"
+  def destroyable?
+    assessments.blank?
   end
   
 end

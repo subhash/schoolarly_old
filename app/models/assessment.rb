@@ -12,6 +12,18 @@ class Assessment < ActiveRecord::Base
   
   accepts_nested_attributes_for :assessment_tools
   
+  named_scope :for_subject, lambda {|subject|
+    {:conditions =>{:subject_id => subject.id}}
+  }
+  
+  named_scope :for_year, lambda {|year|
+    {:joins => :assessment_group, :conditions => ["assessment_groups.academic_year_id = ?", year.id]}
+  }
+  
+  named_scope :for_type, lambda {|type|
+    {:joins => :assessment_group, :conditions => ["assessment_groups.assessment_type_id = ?",type.id]}
+  }
+  
   def weightage_summation   
     if assessment_tools.size > 0 
       unless (assessment_tools.collect(&:weightage).sum == 100)
@@ -49,7 +61,7 @@ class Assessment < ActiveRecord::Base
   end
   
   def current_participants
-    (paper and paper.teacher) ? (current_students + [paper.teacher]) : current_students
+   (paper and paper.teacher) ? (current_students + [paper.teacher]) : current_students
   end
   
   def destroyable?
@@ -60,7 +72,7 @@ class Assessment < ActiveRecord::Base
     averages = assessment_tools.collect{|t|t.weighted_average_for(student)}
     averages.compact.size == assessment_tools.size ? averages.sum : nil
   end
-    
+  
   def max_score
     assessment_type.max_score   
   end

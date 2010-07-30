@@ -29,19 +29,15 @@ class Paper < ActiveRecord::Base
   end
   
   def create_assessments
-    AssessmentType.FA.each do |at|
-      assessment_group = klass.all_assessment_groups.for_year(klass.academic_year).for_type(at)
-      assessment_group = assessment_group ? assessment_group : AssessmentGroup.create(:assessment_type => at, :academic_year => klass.academic_year, :weightage => at.weightage, :klass => klass) 
+    klass.all_assessment_groups.for_year(klass.academic_year).FA.each do |assessment_group| 
       Assessment.create(:assessment_group => assessment_group, :subject => subject) 
     end
-    AssessmentType.SA.each do |at|
-      assessment_group = klass.all_assessment_groups.for_year(klass.academic_year).for_type(at)
-      assessment_group = assessment_group ? assessment_group : AssessmentGroup.new(:assessment_type => at, :academic_year => klass.academic_year, :weightage => at.weightage, :klass => klass) 
+   klass.all_assessment_groups.for_year(klass.academic_year).SA.each do |assessment_group| 
       assessment = Assessment.new(:assessment_group => assessment_group, :subject => subject) 
       assessment_tool =  AssessmentTool.new(:name => "Exam", :weightage => 100)
       assessment_tool.activities << Activity.new(:description => "#{at.name} #{assessment_tool.name} - #{name}", :max_score => at.max_score)
       assessment.assessment_tools << assessment_tool
-      assessment_group.save!
+      assessment.save!
     end
   end
   
@@ -57,7 +53,7 @@ class Paper < ActiveRecord::Base
   end
   
   def assessments
-    klass.assessments.for_subject(subject)
+    klass.assessment_groups.collect{|ag|ag.assessments.for_subject(subject)}.flatten
   end
   
   def formative_assessments
