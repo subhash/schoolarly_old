@@ -28,6 +28,10 @@ class Klass < ActiveRecord::Base
     end
   end
   
+  def assessments
+    all_assessments.for_year(academic_year)
+  end
+  
   has_many :teachers, :through => :papers, :uniq => true 
   belongs_to :school
   belongs_to :level

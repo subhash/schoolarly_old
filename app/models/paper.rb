@@ -57,7 +57,7 @@ class Paper < ActiveRecord::Base
   end
   
   def assessments
-    klass.all_assessments.for_year(academic_year).for_subject(subject)
+    klass.assessments.for_subject(subject)
   end
   
   def formative_assessments
