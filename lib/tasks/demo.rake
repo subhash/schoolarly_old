@@ -9,20 +9,17 @@ namespace :demo do
   
   #TODO Will generalise it
   #desc "Load other data through tasks"
-  task :populate_papers => :environment do
-#    puts "Loading paper for klass (1A) and adding them to students"
-#    Subject.find_all_by_id([1, 7, 8, 9, 10]).each{|s| Paper.create(:subject => s, :klass_id => 1)}
-#    Student.find_all_by_klass_id(1).each{|s| s.paper_ids = Paper.find_all_by_klass_id(1).collect{|p| p.id};  
-#                                              s.save; 
-#                                              s.subjects.each {|sub| s.klass.exams.future_for(sub.id).each do |exam|
-#                                                        exam.event.event_series.users << s.user
-#                                                    end
-#                                                    }
-#                                                    s.save!
-#                                        }
+  
+  task :create_assessment_groups => :environment do
+    puts "Creating assessment groups for all the klasses"
+    Klass.all.each{|k| k.create_assessment_groups}
   end
   
-  desc "Call all subtasks to set up demo"
-  task :setup => [:seed, :populate_papers]
+  task :populate_papers => :environment do
+    puts "Loading paper for klass (1A) and adding them to students"
+  end
+  
+  desc "Call all the subtasks to set up demo"
+  task :setup => [:seed, :create_assessment_groups, :populate_papers]
   
 end
