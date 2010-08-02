@@ -663,6 +663,26 @@ table#school-profile td.right a {
     text-decoration: none;
 }
 
+table.calculation {
+    background-color: #F6EFE1;
+	margin-bottom: 10px;
+	border-style: solid;
+}
+
+table.calculation tr:even {
+    background-color: white;
+}
+
+table.calculation .heading {
+    background-color: gray;
+    color: black;
+}
+
+table.calculation td {
+	border-style: solid;
+	border-width: thin;
+}
+
 table.sep {
     background-color: #F6EFE1;
 	margin-bottom: 10px;

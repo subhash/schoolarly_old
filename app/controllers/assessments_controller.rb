@@ -35,4 +35,12 @@ class AssessmentsController < ApplicationController
       end
     end
   end
+  
+  def score_calculation
+    @assessment = Assessment.find_by_id(params[:id])
+    @student = Student.find_by_id(params[:student_id])
+    render :update do |page|
+      page.open_dialog "Score calculation for #{@assessment.long_name} - #{@student.name}", :partial => 'scores/calculation'
+    end
+  end
 end

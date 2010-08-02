@@ -1,0 +1,18 @@
+%table.calculation
+  %tr.heading
+    %th Tool
+    %th Chosen best scores
+    %th="Average /#{@assessment.assessment_group.max_score}"
+    %th Weightage
+    %th Weighted average
+  -@assessment.assessment_tools.each do |tool|
+    %tr
+      %td= tool.name
+      %td= "#{tool.best_of} out of #{tool.activities.size}"
+      %td= "#{tool.average_score_for(@student)}"
+      %td="#{tool.weightage}%"
+      %td= "#{tool.weighted_average_for(@student)}"
+  %tr.total
+    %th{:colspan => 4}="Aggregate for #{@assessment.long_name}(/ #{@assessment.assessment_group.max_score})"
+    %th=@assessment.calculated_score_for(@student)
+		
