@@ -19,6 +19,9 @@
       %span.time= "#{duration(activity.event.start_time, activity.event.end_time)}"
   - if @student
     - if (score =  activity.scores.of_student(@student.id)) 
-      %span.score= "#{score.score}/#{activity.max_score}"   
+      - if activity.assessment_tool.best_scores_for(@student).include?(score)
+        %span.score= "#{score.score}/#{activity.max_score}"  
+      - else
+        %span.score.ignore= "#{score.score}/#{activity.max_score}" 
    
    

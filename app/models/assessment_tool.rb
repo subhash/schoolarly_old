@@ -35,6 +35,10 @@ class AssessmentTool < ActiveRecord::Base
     end
   end
   
+ def best_scores_for(student)
+    student_scores = scores.of_student(student.id).each_with_object({}){|score, hash| hash[score] = (score.score/score.max_score)}
+    student_scores.sort{|a,b| b[1]<=>a[1]}.slice(0,best_of).collect{|x|x[0]}
+ end
     
   def weighted_average_for(student)
       (average_score_for(student) * weightage/100) if average_score_for(student)

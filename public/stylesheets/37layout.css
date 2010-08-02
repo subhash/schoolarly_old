@@ -560,6 +560,11 @@ table.paper td.right div.activity .score {
     font-weight: bold;
 }
 
+table.paper td.right div.activity .score.ignore {
+    color: darkgrey;
+}
+
+
 table.paper td.right div.assessment_tool .average {
     background-color: lightgrey;
     font-size: 17px;
@@ -669,8 +674,8 @@ table.calculation {
 	border-style: solid;
 }
 
-table.calculation tr:even {
-    background-color: white;
+table.calculation tr:nth-child(even) {
+    background-color: #F5DFAC;
 }
 
 table.calculation .heading {
@@ -689,8 +694,8 @@ table.sep {
 	border-style: solid;
 }
 
-table.sep tr:even {
-    background-color: white;
+table.sep tr:nth-child(even) {
+    background-color: #F5DFAC;
 }
 
 table.sep .heading {
@@ -698,8 +703,8 @@ table.sep .heading {
     color: black;
 }
 
-table.sep .sub-heading {
-    background-color: #F5DFAC;
+table.sep tr.sub-heading {
+    background-color: #BAA16E;
 }
 
 #details-tab-section div.activity {
