@@ -21,7 +21,7 @@
             <span><%= link_to_remote 'Add Subjects', :url =>{:controller => 'klasses', :action => 'add_subjects', :id => klass} if permitted_to? :update, klass %></span>
         </p>
 		<div>
-			<%= link_to_function_if permitted_to?(:add, :students), pluralize(klass.students.size, 'student') do |page|  page.open_dialog('Add/Remove Students', :partial =>'students/add_students_form',:locals => {:entity => klass, :students => klass.school.students.not_enrolled}) end %>
+			<%= link_to_function_if permitted_to?(:add, :students), pluralize(klass.students.size, 'student') do |page|  page.open_dialog('Add Students', :partial =>'students/add_students_form',:locals => {:entity => klass, :students => klass.school.students.not_enrolled}) end %>
 		</div>
     </td>
 </tr>

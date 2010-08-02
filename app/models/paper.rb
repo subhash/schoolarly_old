@@ -4,7 +4,7 @@ class Paper < ActiveRecord::Base
   belongs_to :school_subject
   has_one :subject, :through => :school_subject
   belongs_to :teacher
-
+  
   has_and_belongs_to_many :students
   
   validates_presence_of :klass_id, :school_subject_id
@@ -32,7 +32,7 @@ class Paper < ActiveRecord::Base
     klass.all_assessment_groups.for_year(klass.academic_year).FA.each do |assessment_group| 
       Assessment.create(:assessment_group => assessment_group, :subject => subject) 
     end
-   klass.all_assessment_groups.for_year(klass.academic_year).SA.each do |assessment_group| 
+    klass.all_assessment_groups.for_year(klass.academic_year).SA.each do |assessment_group| 
       assessment = Assessment.new(:assessment_group => assessment_group, :subject => subject) 
       assessment_tool =  AssessmentTool.new(:name => "Exam", :weightage => 100)
       assessment_tool.activities << Activity.new(:description => "#{assessment_group.name} #{assessment_tool.name} - #{name}", :max_score => assessment_group.max_score)
@@ -68,6 +68,11 @@ class Paper < ActiveRecord::Base
     klass.future_activities_for(subject).each do |activity|
       activity.event.event_series.users = (teacher and activity.event.event_series.owner == teacher) ? (users - [teacher.user]) : users
     end
+  end
+  
+  def total_score_for(student)
+    weighted_scores = assessments.collect{|a| a.weighted_score_for(student)}
+    weighted_scores.sum if weighted_scores.compact.size == assessments.size
   end
   
 end

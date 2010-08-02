@@ -5,7 +5,7 @@
       -if assessment_tool.average_score_for(@student)
         %div.average 
           Average :
-          %span.score="#{assessment_tool.average_score_for(@student)}/#{assessment_tool.max_score}" 
+          %span.score="#{assessment_tool.average_score_for(@student)}/#{assessment_tool.assessment_group.max_score}" 
         %div.average
           ="Weighted Average(#{assessment_tool.weightage}%)"
           %span.score=assessment_tool.weighted_average_for(@student)

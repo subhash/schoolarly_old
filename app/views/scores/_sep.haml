@@ -1,13 +1,38 @@
 - AssessmentType.terms.each do |term|
   %table.sep
     %tr.heading
-      %th{:colspan => 7}="TERM#{term}"
+      %th.term{:colspan => 7}="TERM#{term}"
     %tr.sub-heading
       %th SUBJECT
-      /
-        -AssessmentType.for_term(term).FA.each do |type|
-          %th="#{type.name}(#{@student.klass.weightage_of(type)}%)" 
-         %th="TOTAL(FA) #{@student.klass.FA_weightage(term)}%"
-        -AssessmentType.for_term(term).SA.each do |type|
-          %th="#{type.name}(#{@student.klass.weightage_of(type)}%)" 
-        %th="TOTAL1(FA+SA) #{@student.klass.total_weightage(term)}%"
+      -AssessmentType.for_term(term).FA.each do |type|
+        %th="#{type.name}(#{weightage_for_type_in_klass(type,@student.klass)}%)" 
+      %th="TOTAL(FA)"
+      -AssessmentType.for_term(term).SA.each do |type|
+        %th="#{type.name}(#{weightage_for_type_in_klass(type,@student.klass)}%)" 
+      %th="TOTAL#{term}(FA+SA)"
+    - @student.papers.each do |paper|
+      %tr
+        %td=paper.name
+        - total = 0
+        - AssessmentType.for_term(term).FA.each do |type|
+          %td
+            = weighted_score = paper.assessments.select{|a|a.name == type.name}.first.weighted_score_for(@student)
+            - total+= weighted_score if weighted_score
+        %td=total
+        - AssessmentType.for_term(term).SA.each do |type|
+          %td
+            = weighted_score = paper.assessments.select{|a|a.name == type.name}.first.weighted_score_for(@student)
+            - total+= weighted_score if weighted_score
+        %td=total
+%table.sep
+  %tr.heading
+    %th.term{:colspan => 7}="TERM 1 + 2"
+  %tr.sub-heading
+    %th SUBJECT
+    %th GRAND TOTAL (Term 1 + Term 2)
+    %th GRADE
+  - @student.papers.each do |paper|
+    %tr
+      %td=paper.name
+      %td=paper.total_score_for(@student)
+      %td=Score.grade(paper.total_score_for(@student))

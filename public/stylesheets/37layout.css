@@ -665,6 +665,8 @@ table#school-profile td.right a {
 
 table.sep {
     background-color: #F6EFE1;
+	margin-bottom: 10px;
+	border-style: solid;
 }
 
 table.sep tr:even {

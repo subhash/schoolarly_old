@@ -5,7 +5,7 @@
       - unless @student
         %span.icon= link_to_remote 'Add Activity', :url => {:controller => 'activities', :action => 'new', :assessment_id => assessment}, :html => {:title => "Add activity to #{assessment.long_name}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-plusthick"} unless assessment.sa?
       - unless assessment.activities.blank?
-        = "#{assessment.calculated_score_for(@student)}/#{assessment.max_score}" if @student and assessment.calculated_score_for(@student)
+        = "#{assessment.calculated_score_for(@student)}/#{assessment.assessment_group.max_score}" if @student and assessment.calculated_score_for(@student)
         = link_to_remote 'Calculate', :url => {:controller => 'assessments', :action => 'edit', :id => assessment, :student_id => @student}, :method => :get if assessment.fa?  
   %td.right   
     = render :partial => 'assessment_tools/assessment_tool', :collection => assessment.assessment_tools

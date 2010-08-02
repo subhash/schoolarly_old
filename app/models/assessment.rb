@@ -73,4 +73,8 @@ class Assessment < ActiveRecord::Base
     averages.compact.size == assessment_tools.size ? averages.sum : nil
   end
   
+  def weighted_score_for(student)
+    (calculated_score_for(student)/assessment_group.max_score) * assessment_group.weightage if calculated_score_for(student)
+  end
+  
 end

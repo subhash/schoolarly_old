@@ -1,6 +1,7 @@
 class AssessmentTool < ActiveRecord::Base
   
   belongs_to :assessment
+  has_one :assessment_group, :through => :assessment
   
   has_one :klass, :through => :assessment
   
@@ -28,7 +29,7 @@ class AssessmentTool < ActiveRecord::Base
     student_scores = scores.of_student(student.id).collect{|s|(s.score/s.max_score)}
     if student_scores.size >= best_of
       student_scores = student_scores.sort.reverse.slice(0,best_of)
-      avg = (student_scores.sum/student_scores.size) * max_score
+      avg = (student_scores.sum/student_scores.size) * assessment_group.max_score
     else
       nil
     end

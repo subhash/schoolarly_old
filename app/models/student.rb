@@ -33,8 +33,4 @@ class Student < ActiveRecord::Base
     return user.email
   end
   
-  def current_assessments
-    klass.assessments.current.select{|e|e.students.include?(self)} if klass
-  end
-  
 end
