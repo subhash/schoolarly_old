@@ -32,7 +32,7 @@ class EventsController < ApplicationController
     @event_series = @event.event_series
     @activity = @event.activity #TODO changed @exam to activity to avoid error for the time-being.
     if @activity
-      @teachers = @activity.assessment.school.teachers
+      @teachers = @activity.assessment.assessment_group.school.teachers
       render :update do |page|
         page.open_dialog "Change activity - #{@activity.title}", :partial => 'activities/edit'
       end

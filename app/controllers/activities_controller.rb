@@ -56,11 +56,10 @@ class ActivitiesController < ApplicationController
         @activity.event.event_series = event_series
       end
     end
-    render :update do |page|
-      if @activity.save
-        page.close_dialog
-        page.replace_object @activity, :partial => 'activities/activity'
-      else
+    if @activity.save
+      render :template => 'activities/update_success'
+    else
+      render :update do |page|
         page.refresh_dialog  :partial => 'activities/edit'
       end
     end
