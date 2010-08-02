@@ -1,0 +1,26 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+1:
+  id: 1
+  klass_id: 1
+  school_subject_id: 1
+  
+2:
+  id: 2
+  klass_id: 1
+  school_subject_id: 2
+
+3:
+  id: 3
+  klass_id: 1
+  school_subject_id: 3
+  
+4:
+  id: 4
+  klass_id: 1
+  school_subject_id: 4
+  
+5:
+  id: 5
+  klass_id: 1
+  school_subject_id: 5

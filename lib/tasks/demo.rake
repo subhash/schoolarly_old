@@ -15,11 +15,12 @@ namespace :demo do
     Klass.all.each{|k| k.create_assessment_groups}
   end
   
-  task :populate_papers => :environment do
-    puts "Loading paper for klass (1A) and adding them to students"
+  task :create_assessments => :environment do
+    puts "Creating assessments for all the papers"
+    Paper.all.each{|p| p.create_assessments}
   end
   
-  desc "Call all the subtasks to set up demo"
-  task :setup => [:seed, :create_assessment_groups, :populate_papers]
+  desc "Call all the subtasks to set up the demo"
+  task :setup => [:seed, :create_assessment_groups, :create_assessments]
   
 end
