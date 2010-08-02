@@ -4,26 +4,31 @@
       %th.term{:colspan => 7}="TERM#{term}"
     %tr.sub-heading
       %th SUBJECT
+      - weightage_total = 0
       -AssessmentType.for_term(term).FA.each do |type|
-        %th="#{type.name}(#{weightage_for_type_in_klass(type,@student.klass)}%)" 
-      %th="TOTAL(FA)"
+        %th
+          ="#{type.name}(#{trim(weightage_for_type_in_klass(type,@student.klass))}%)" 
+          -weightage_total += weightage_for_type_in_klass(type,@student.klass)
+      %th="TOTAL(FA) #{trim(weightage_total)}%"
       -AssessmentType.for_term(term).SA.each do |type|
-        %th="#{type.name}(#{weightage_for_type_in_klass(type,@student.klass)}%)" 
-      %th="TOTAL#{term}(FA+SA)"
+        %th
+          ="#{type.name}(#{trim(weightage_for_type_in_klass(type,@student.klass))}%)" 
+          - weightage_total += weightage_for_type_in_klass(type,@student.klass)
+      %th="TOTAL#{term}(FA+SA) #{trim(weightage_total)} %"
     - @student.papers.each do |paper|
       %tr
         %td=paper.name
         - total = 0
         - AssessmentType.for_term(term).FA.each do |type|
           %td
-            = weighted_score = paper.assessments.select{|a|a.name == type.name}.first.weighted_score_for(@student)
+            = trim(weighted_score = paper.assessments.select{|a|a.name == type.name}.first.weighted_score_for(@student))
             - total+= weighted_score if weighted_score
-        %td=total
+        %td=trim(total)
         - AssessmentType.for_term(term).SA.each do |type|
           %td
-            = weighted_score = paper.assessments.select{|a|a.name == type.name}.first.weighted_score_for(@student)
+            = trim(weighted_score = paper.assessments.select{|a|a.name == type.name}.first.weighted_score_for(@student))
             - total+= weighted_score if weighted_score
-        %td=total
+        %td=trim(total)
 %table.sep
   %tr.heading
     %th.term{:colspan => 7}="TERM 1 + 2"
@@ -34,5 +39,8 @@
   - @student.papers.each do |paper|
     %tr
       %td=paper.name
-      %td=paper.total_score_for(@student)
+      %td=trim(paper.total_score_for(@student))
       %td=Score.grade(paper.total_score_for(@student))
+      
+%div.print
+  = link_to_function("Print SEP", "javascript:print()")

@@ -43,6 +43,5 @@ class AssessmentTool < ActiveRecord::Base
   def weighted_average_for(student)
       (average_score_for(student) * weightage/100) if average_score_for(student)
   end
-
   
 end
