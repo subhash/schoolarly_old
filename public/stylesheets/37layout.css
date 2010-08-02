@@ -497,12 +497,24 @@ table.paper td {
     border-color: grey;
 }
 
+table.paper td.center {
+    font-size: 15px;
+	font-weight:bold;
+}
+
+table.paper td.center .score {
+    font-size: 13px;
+	font-weight: normal;
+	text-align: right;
+}
+
+
 table.paper td.right * {
     font-size: 13px;
     margin-bottom: 4px;
 }
 
-table.paper td.left .detail {
+table.paper td .detail {
     font-size: 10px;
     margin-bottom: 4px;
     padding-left: 20px;
@@ -562,18 +574,6 @@ table.paper td.right div.activity .score {
 
 table.paper td.right div.activity .score.ignore {
     color: darkgrey;
-}
-
-
-table.paper td.right div.assessment_tool .average {
-    background-color: lightgrey;
-    font-size: 17px;
-}
-
-table.paper td.right div.assessment_tool .average span.score {
-    font-weight: bold;
-	font-size: 17px;
-    float: right;
 }
 
 table.klass-exams tr {
