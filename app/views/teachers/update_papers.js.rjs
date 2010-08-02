@@ -1,8 +1,7 @@
 page.close_dialog
-if active_controller == 'teachers'
-  page.replace_tab(Paper, :partial => 'teachers/papers', :object => @teacher.papers.group_by{|paper| paper.subject})
-  args = {:partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @teacher.school.unallotted_papers + @teacher.papers}}
-  page.replace_action('Add/Remove Papers', args)
+if active_controller == 'teachers'  
+  page.replace_tab(Paper, :partial => 'teachers/papers', :object => @teacher.papers)
+  page.replace_action('Add/Remove Papers', :partial => 'papers/edit_papers_form', :locals => {:entity => @teacher, :papers => @teacher.school.unallotted_papers + @teacher.papers})
 else
   page.replace_object(@teacher, :partial => 'teachers/teacher')
 end

@@ -407,69 +407,16 @@ table.klasses div.icons span {
     display: inline-block;
 }
 
-table.exams {
-    margin-bottom: 30px;
-    width: 100%;
+div.klass_papers div.header {
+	background-color: grey;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	color: white;
 }
 
-table.exams tr {
-    padding-bottom: 4px;
-}
-
-table.exams .heading * {
-    font-size: 11px;
-    background: grey;
-    color: white;
-}
-
-table.exams td.left {
-    font-size: 18px;
-    width: 20%;
-}
-
-table.exams .subject {
-    background-color: grey;
-    color: white;
-    padding: 2px 4px;
-}
-
-table.exams td.right * {
-    display: inline-block;
-}
-
-table.exams td.icons {
-    width: 20%;
-}
-
-table.exams td.icons span, table.exams .comment {
-    display: inline-block;
-}
-
-table.exams td.icons span.blank {
-    background-image: none;
-}
-
-table.exams .date {
-    background-color: grey;
-    color: white;
-    padding: 2px 0px 2px 4px;
-    margin-right: 2px;
-}
-
-table.exams .time {
-    background-color: black;
-    color: white;
-    padding: 2px 0px 2px 4px;
-    margin-left: 4px;
-    margin-bottom: 0px;
-}
-
-table.exams .score {
-    background-color: #F5DFAC;
-    color: black;
-    padding: 2px 0px 2px 4px;
-    margin-left: 4px;
-    font-size: 17px;
+div.klass_papers:nth-child(even) {
+    background-color: #EDF3FE;
 }
 
 table.paper {
@@ -574,28 +521,6 @@ table.paper td.right div.activity .score {
 
 table.paper td.right div.activity .score.ignore {
     color: darkgrey;
-}
-
-table.klass-exams tr {
-    border-bottom: solid 1px;
-}
-
-table.klass-exams .level {
-    background-color: black;
-    color: white;
-    padding: 2px 0px 2px 4px;
-    margin-right: 2px;
-}
-
-table.klass-exams .division {
-    background-color: grey;
-    color: white;
-    padding: 2px 4px;
-    margin-left: 4px;
-}
-
-table.klass-exams td.left a {
-    text-decoration: none;
 }
 
 div.message {

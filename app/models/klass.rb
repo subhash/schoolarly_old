@@ -16,21 +16,6 @@ class Klass < ActiveRecord::Base
   def assessments
     all_assessments.for_year(academic_year)
   end
-
-  #  
-  #  def weightage_of(assessment_type)
-  #    all_assessment_groups.for_type(assessment_type).first.weightage if all_assessment_groups.for_type(assessment_type).first
-  #  end
-  #  
-  #  def FA_weightage(term)
-  #    assessment_groups.collect{|g| (g.assessment_type.term == term and g.fa?) ? g.weightage : nil}.compact.sum
-  ##    assessment_type_ids = assessment_groups.collect{|g| (g.assessment_type.term == term and g.fa?) ? g.assessment_type_id : nil}.compact
-  ##    AssessmentGroup.sum(:weightage, :conditions => "klass_id = ? AND assessment_type_id IN (?)", id, assessment_type_ids)
-  #	end
-  #
-  #  def total_weightage(term)
-  #    assessment_groups.collect{|g| (g.assessment_type.term == term) ? g.weightage : nil}.compact.sum
-  #	end
   
   has_many :teachers, :through => :papers, :uniq => true 
   belongs_to :school

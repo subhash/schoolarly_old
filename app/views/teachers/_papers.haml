@@ -1,0 +1,4 @@
+-papers.group_by(&:klass).each do |klass, klass_papers|
+  %div.klass_papers
+    %div.header=klass.name
+    = render :partial => 'papers/paper', :collection => klass_papers
