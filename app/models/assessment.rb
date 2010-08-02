@@ -73,8 +73,4 @@ class Assessment < ActiveRecord::Base
     averages.compact.size == assessment_tools.size ? averages.sum : nil
   end
   
-  def max_score
-    assessment_type.max_score   
-  end
-  
 end

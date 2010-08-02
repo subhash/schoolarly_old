@@ -21,4 +21,12 @@ class AssessmentGroup < ActiveRecord::Base
     assessments.blank?
   end
   
+  def name
+    assessment_type.name
+  end 
+    
+  def max_score
+    assessment_type.max_score   
+  end
+  
 end
