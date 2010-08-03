@@ -1,14 +1,17 @@
 - semantic_remote_form_for @assessment, :url => {:controller => 'assessments', :action => 'update', :id => @assessment, :student_id => @student} do |f|
   = f.error_messages
-  %table
+  %table.calculation
+    %tr.heading
+      %th Activity
+      %th Weightage (%)
+      %th Choose best
     - @assessment.assessment_tools.each do |tool|
       - f.semantic_fields_for :assessment_tools, tool do |tool_form|
         %tr
-          %td= tool_form.input :id, :as => :hidden
           %td= tool.name
-          %td= tool_form.input :weightage, :label => "Weightage (%)"
+          %td= tool_form.input :weightage, :label => false
           %td
-            = tool_form.input :best_of, :as => :select, :collection => (1..tool.activities.size).to_a , :label => "Best"
+            = tool_form.input :best_of, :as => :select, :collection => (1..tool.activities.size).to_a , :label => false
             = tool_form.label " out of #{tool.activities.size}"
   = f.submit
     
