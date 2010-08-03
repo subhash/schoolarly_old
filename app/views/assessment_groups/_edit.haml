@@ -1,11 +1,14 @@
 - semantic_remote_form_for @klass, :url => {:controller => 'assessment_groups', :action => 'update', :klass_id => @klass} do |f|
   = f.error_messages
-  %table
+  %table.calculation
+    %tr.heading
+      %th Name
+      %th Weightage (%)
+      %th Maximum score
     - @klass.assessment_groups.each do |group|
       - f.semantic_fields_for :assessment_groups, group do |group_form|
         %tr
-          %td= group_form.input :id, :as => :hidden
           %td= group.name
-          %td= group_form.input :weightage, :label => "Weightage (%)"
-          %td= group_form.input :max_score
+          %td= group_form.input :weightage, :label => "Weightage (%)", :input_html => { :size => 10} , :label => false
+          %td= group_form.input :max_score, :input_html => { :size => 10},  :label => false
   = f.submit

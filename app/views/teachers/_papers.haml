@@ -1,4 +1,4 @@
 -papers.group_by(&:klass).each do |klass, klass_papers|
   %div.klass_papers
-    %div.header=klass.name
+    %div.header=link_to klass.name, klass_path(klass, :anchor => 'papers-tab')
     = render :partial => 'papers/paper', :collection => klass_papers

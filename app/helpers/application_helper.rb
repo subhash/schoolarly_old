@@ -135,6 +135,9 @@ end
       def dialog(title, args)
         concat(render :partial => '/common/action', :locals => {:title => title, :args => args})
       end
+      def action(title, args)
+        concat(render :partial => '/common/action_ajax', :locals => {:title => title, :args => args})
+      end
     end
     concat(render :partial => '/common/actions', :locals => {:block => block, :collector => collector })
   end
