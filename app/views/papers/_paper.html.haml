@@ -5,8 +5,10 @@
       %span.icon
         = link_to_remote 'Delete', :url => paper_url(paper), :method => :delete, :html => {:title => "Remove #{paper.name}", :class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' if permitted_to? :delete, paper
     %span= @teacher ? paper.klass.name+ " - " + paper.subject.name : paper.subject.name
-    - if active_controller == 'klasses'
-      %span.icon= link_to_remote 'Settings for assessments', :url => {:controller => 'assessment_groups', :action => 'edit', :klass_id => paper.klass}, :method => :get, :html => {:title => "Settings for assessments for #{paper.klass.name}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-wrench"}
+    - if @student and paper.total_score_for(@student)
+      %div.detail.score
+        = link_to_remote "#{trim(paper.total_score_for(@student))}", :url => {:controller => 'scores', :action => 'total_calculation', :id => paper, :student_id => @student} 
+        %span.out_of (out of 100)
     - unless @student
       .detail
         %span= pluralize(paper.students.size, 'students')

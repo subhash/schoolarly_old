@@ -6,6 +6,9 @@
         %span.icon= link_to_remote 'Add Activity', :url => {:controller => 'activities', :action => 'new', :assessment_id => assessment}, :html => {:title => "Add activity to #{assessment.long_name}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-plusthick"} unless assessment.sa?
       - unless assessment.activities.blank?
         %span.icon= link_to_remote 'Score Calculations', :url => {:controller => 'assessments', :action => 'edit', :id => assessment, :student_id => @student}, :method => :get,:html => {:title => "Score calculations for #{assessment.long_name}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-wrench"} if assessment.fa?
-        %div.detail.score= link_to_remote "#{trim(assessment.calculated_score_for(@student))}/#{trim(assessment.assessment_group.max_score)}", :url => {:controller => 'assessments', :action => 'score_calculation', :id => assessment, :student_id => @student} if @student and assessment.calculated_score_for(@student)  
+        - if @student and assessment.calculated_score_for(@student)  
+          %div.detail.score
+            = link_to_remote "#{trim(assessment.calculated_score_for(@student))}", :url => {:controller => 'assessments', :action => 'score_calculation', :id => assessment, :student_id => @student} 
+            %span.out_of="(out of #{trim(assessment.assessment_group.max_score)}"
   %td.right   
     = render :partial => 'assessment_tools/assessment_tool', :collection => assessment.assessment_tools

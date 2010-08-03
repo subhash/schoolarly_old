@@ -40,5 +40,13 @@ class ScoresController < ApplicationController
       format.js
     end  
   end
+    
+  def total_calculation
+    @paper = Paper.find_by_id(params[:id])
+    @student = Student.find_by_id(params[:student_id])
+    render :update do |page|
+      page.open_dialog "Score calculation for #{@paper.name} - #{@student.name}", :partial => 'scores/total_calculation'
+    end
+  end
   
 end

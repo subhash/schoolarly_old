@@ -449,13 +449,6 @@ table.paper td.center {
 	font-weight:bold;
 }
 
-table.paper td.center .score {
-    font-size: 13px;
-	font-weight: normal;
-	text-align: right;
-}
-
-
 table.paper td.right * {
     font-size: 13px;
     margin-bottom: 4px;
@@ -466,6 +459,17 @@ table.paper td .detail {
     margin-bottom: 4px;
     padding-left: 20px;
     background-color: #E5E5E5;
+}
+
+
+table.paper td .score {
+    font-size: 16px;
+	font-weight: bold;
+	text-align: right;
+}
+table.paper td .score .out_of {
+    font-size: 10px;
+	font-weight: normal;
 }
 
 table.paper td.left .detail a {

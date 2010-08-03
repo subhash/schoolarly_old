@@ -1,0 +1,21 @@
+%table.calculation
+  %tr.heading
+    %th Assessment
+    %th TotalScore
+    %th Out of
+    %th Weightage
+    %th Weighted score
+  -@paper.assessments.each do |assessment|
+    %tr
+      %td= assessment.name
+      %td= trim(assessment.calculated_score_for(@student))
+      %td= trim(assessment.assessment_group.max_score)
+      %td= "#{trim(assessment.assessment_group.weightage)}%"
+      %td= trim(assessment.weighted_score_for(@student))
+  %tr.total
+    %th{:colspan => 4}="Total for #{@paper.name}(out of 100)"
+    %th=@paper.total_score_for(@student)
+  %tr.grade
+    %th{:colspan => 4}="Grade for #{@paper.name}"
+    %th=Score.grade(@paper.total_score_for(@student))
+		

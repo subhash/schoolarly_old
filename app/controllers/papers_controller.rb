@@ -20,7 +20,7 @@ class PapersController < ApplicationController
     @klass = @paper.klass
   end
   
-#  TODO add/remove students from future events for the paper
+  #  TODO add/remove students from future events for the paper
   def add_students
     @paper = Paper.find(params[:id])
     @old_students = Array.new(@paper.students)
@@ -46,4 +46,5 @@ class PapersController < ApplicationController
     @paper.students.clear
     @paper.destroy
   end
+  
 end
