@@ -4,7 +4,7 @@
     - if active_controller == 'klasses'
       %span.icon
         = link_to_remote 'Delete', :url => paper_url(paper), :method => :delete, :html => {:title => "Remove #{paper.name}", :class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' if permitted_to? :delete, paper
-    %span= paper.subject.name
+    %span= @teacher ? paper.klass.name+ " - " + paper.subject.name : paper.subject.name
     - unless @student
       .detail
         %span= pluralize(paper.students.size, 'students')
