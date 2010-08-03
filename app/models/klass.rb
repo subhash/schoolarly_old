@@ -6,16 +6,25 @@ class Klass < ActiveRecord::Base
   after_create :create_assessment_groups
   
   has_many :all_assessment_groups, :class_name => 'AssessmentGroup' 
-  
   has_many :all_assessments, :source => :assessments, :through => :all_assessment_groups 
+#  TODO how to do this correctly
+  has_many :assessment_groups, :conditions => 'academic_year_id = #{self.academic_year.id}'
   
-  def assessment_groups
-    all_assessment_groups.for_year(academic_year)
+  has_many :assessments, :through => :assessment_groups 
+  
+  validate :weightage_summation
+  
+  accepts_nested_attributes_for :assessment_groups
+  
+  def weightage_summation  
+    puts "in validation "+assessment_groups.collect(&:weightage).sum.to_s
+    if assessment_groups.size > 0 
+      unless (assessment_groups.collect(&:weightage).sum == 100)
+        errors.add(:weightage, "should addup to 100%")
+      end
+    end
   end
   
-  def assessments
-    all_assessments.for_year(academic_year)
-  end
   
   has_many :teachers, :through => :papers, :uniq => true 
   belongs_to :school
@@ -55,7 +64,7 @@ class Klass < ActiveRecord::Base
   
   def create_assessment_groups
     AssessmentType.all.each do |at|
-      AssessmentGroup.create(:assessment_type => at, :academic_year => academic_year, :weightage => at.weightage, :klass => self)
+      AssessmentGroup.create(:assessment_type => at, :academic_year => academic_year, :weightage => at.weightage, :max_score => at.max_score, :klass => self)
     end    
   end
   

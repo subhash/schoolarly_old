@@ -5,6 +5,7 @@
       %span.icon
         = link_to_remote 'Delete', :url => paper_url(paper), :method => :delete, :html => {:title => "Remove #{paper.name}", :class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' if permitted_to? :delete, paper
     %span= @teacher ? paper.klass.name+ " - " + paper.subject.name : paper.subject.name
+    %span.icon= link_to_remote 'Weightages for assessments', :url => {:controller => 'assessment_groups', :action => 'edit', :klass_id => paper.klass}, :method => :get, :html => {:title => "Weightages for assessments for #{paper.klass.name}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-wrench"}
     - unless @student
       .detail
         %span= pluralize(paper.students.size, 'students')

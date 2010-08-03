@@ -3,6 +3,7 @@ class CreateAssessmentGroups < ActiveRecord::Migration
     create_table :assessment_groups do |t|
       t.integer :assessment_type_id, :null => false
       t.integer :klass_id, :null => false
+      t.decimal :max_score, :precision => 6, :scale => 2
       t.decimal :weightage, :precision => 5, :scale => 2
       t.integer :academic_year_id, :null => false
       

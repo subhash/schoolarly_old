@@ -25,7 +25,7 @@ class Assessment < ActiveRecord::Base
   }
   
   def weightage_summation   
-    if assessment_tools.size > 0 
+    if assessment_tools.size > 0
       unless (assessment_tools.collect(&:weightage).sum == 100)
         errors.add(:weightage, "should addup to 100%")
       end

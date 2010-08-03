@@ -29,10 +29,10 @@ class Paper < ActiveRecord::Base
   end
   
   def create_assessments
-    klass.all_assessment_groups.for_year(klass.academic_year).FA.each do |assessment_group| 
+    klass.assessment_groups.FA.each do |assessment_group| 
       Assessment.create(:assessment_group => assessment_group, :subject => subject) 
     end
-    klass.all_assessment_groups.for_year(klass.academic_year).SA.each do |assessment_group| 
+    klass.assessment_groups.SA.each do |assessment_group| 
       assessment = Assessment.new(:assessment_group => assessment_group, :subject => subject) 
       assessment_tool =  AssessmentTool.new(:name => "Exam", :weightage => 100)
       assessment_tool.activities << Activity.new(:description => "#{assessment_group.name} #{assessment_tool.name} - #{name}", :max_score => assessment_group.max_score)
