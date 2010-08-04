@@ -10,7 +10,7 @@ class StudentsController < ApplicationController
   in_place_edit_for :student, :admission_number
   in_place_edit_for :student, :roll_number
   in_place_edit_for :student, :house
-
+  
   def show
     session[:redirect] = request.request_uri
     @student = Student.find(params[:id])
@@ -27,6 +27,10 @@ class StudentsController < ApplicationController
     end
     @user=@student.user
     @user_profile = @user.user_profile
+    respond_to do |format|
+      format.html # show.html.erb
+      format.pdf { render :layout => false }
+    end
   end
   
   def new
@@ -63,7 +67,7 @@ class StudentsController < ApplicationController
       #    TODO redesign this when we do wizard flows for right-bar actions
       if(session[:redirect]) and session[:redirect] == student_path(@student)
         render :update do |page|
-#          TODO wizard for adding subjects or render breadcrumbs thru ajax
+          #          TODO wizard for adding subjects or render breadcrumbs thru ajax
           page.redirect_to session[:redirect]
         end
       else
