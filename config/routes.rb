@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   
-  map.resources :scores, :collection => {:grid_data => :get, :row_edit => :post}
+  map.resources :scores, :collection => {:grid_data => :get, :row_edit => :post, :export => :get}
   
   map.resources :leave_requests
   

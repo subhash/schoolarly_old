@@ -40,7 +40,7 @@ class ScoresController < ApplicationController
       format.js
     end  
   end
-    
+  
   def total_calculation
     @paper = Paper.find_by_id(params[:id])
     @student = Student.find_by_id(params[:student_id])
@@ -49,4 +49,16 @@ class ScoresController < ApplicationController
     end
   end
   
+  def export
+    @activities = Activity.find(params[:activities])
+    @assessment = @activities.first.assessment
+    @students = []
+    @activities.each{|a| @students |= a.students} 
+    @students_scores = @students.each_with_object(ActiveSupport::OrderedHash.new) {|student, hash|
+      hash[student] = @activities.collect{|a|a.scores.find_by_student_id(student.id)}
+    } 
+    respond_to do |format|
+      format.xls if params[:format] == 'xls'
+    end  
+  end
 end
