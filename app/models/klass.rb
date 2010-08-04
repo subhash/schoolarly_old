@@ -4,7 +4,7 @@ class Klass < ActiveRecord::Base
   has_many :school_subjects, :through => :papers, :include => :subject, :order => "subjects.name"
   has_one :academic_year, :through => :school 
   after_create :create_assessment_groups
-  
+  before_destroy :destroy_assessment_groups
   has_many :all_assessment_groups, :class_name => 'AssessmentGroup' 
   has_many :all_assessments, :source => :assessments, :through => :all_assessment_groups 
 #  TODO how to do this correctly
@@ -17,7 +17,6 @@ class Klass < ActiveRecord::Base
   accepts_nested_attributes_for :assessment_groups
   
   def weightage_summation  
-    puts "in validation "+assessment_groups.collect(&:weightage).sum.to_s
     if assessment_groups.size > 0 
       unless (assessment_groups.collect(&:weightage).sum == 100)
         errors.add(:weightage, "should addup to 100%")
