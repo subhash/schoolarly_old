@@ -9,6 +9,6 @@
         - if @student and assessment.calculated_score_for(@student)  
           %div.detail.score
             = link_to_remote "#{trim(assessment.calculated_score_for(@student))}", :url => {:controller => 'assessments', :action => 'score_calculation', :id => assessment, :student_id => @student} 
-            %span.out_of="(out of #{trim(assessment.assessment_group.max_score)}"
+            %span.out_of="(out of #{trim(assessment.assessment_group.max_score)})"
   %td.right   
     = render :partial => 'assessment_tools/assessment_tool', :collection => assessment.assessment_tools
