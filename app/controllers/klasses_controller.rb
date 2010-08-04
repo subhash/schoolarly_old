@@ -19,7 +19,6 @@ class KlassesController < ApplicationController
     @klass= Klass.find(params[:id])
     if(current_user.person.is_a?(SchoolarlyAdmin))
       @klass.papers.destroy_all
-      @klass.exams.destroy_all
       @klass.destroy
     else
       @klass.destroy
