@@ -408,11 +408,11 @@ table.klasses div.icons span {
 }
 
 div.klass_papers div.header {
-	background-color: grey;
-	font-size: 20px;
-	font-weight: bold;
-	text-align: center;
-	color: white;
+    background-color: grey;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
 }
 
 div.klass_papers:nth-child(even) {
@@ -664,11 +664,14 @@ table.sep tr.sub-heading {
     background-image: none;
 }
 
-.print {
-    padding: 10px 10px;
-    text-align: right;
+.pdf {
+    float: right;
 }
 
+
+.print{
+    text-align: left;
+}
 #notice {
     position: fixed;
     bottom: 0;
