@@ -44,7 +44,6 @@ class StudentsController < ApplicationController
     @user = User.new(params[:user])
     @user.person = @student
     @user.user_profile = UserProfile.new(params[:user_profile])
-    @student.health_profile = HealthProfile.new()
     if @user.deliver_invitation!
       render :template => 'students/create_success'
     else  
