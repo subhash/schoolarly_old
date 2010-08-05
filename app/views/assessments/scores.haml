@@ -4,7 +4,7 @@
   - add.crumb @assessment.long_name
 - render_actions do |add|
   - add.link "Export as excel", export_scores_path(:assessment => @assessment, :format => :xls)  
-  - add.link "Export as pdf", {export_scores_path(:assessment => @assessment, :format => :pdf), :popup => ['new_window','height=800,width=800']}
+  - add.link "Export as pdf", export_scores_path(:assessment => @assessment, :format => :pdf), :popup => ['new_window','height=800,width=800']
 - render_tabs do |t|
   - t.tab :title => 'Scores', :partial => 'scores/edit', :locals => {:activities => @assessment.activities, :edit => @edit}
   - t.tab :title => 'Details', :partial => 'activities/activity', :collection => @assessment.activities
