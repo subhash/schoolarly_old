@@ -13,11 +13,12 @@
 <%= jquery_grid :scores, {:colNames => colNames, :colModel => colModel, :url => grid_data_scores_url(:activities => activities.collect(&:id)), :editurl => row_edit_scores_url(:activities => activities.collect(&:id)) } %>
 <center>
     <div style="background :black; color:white;">
-       Scores for <%= activities.many? ? " #{activities.first.assessment.long_name}" : " #{activities.first.title}"%>
+       Scores for <%= activities.many? ? " #{activities.first.assessment.long_name}(#{activities.first.assessment.klass.name})" : " #{activities.first.title}(#{activities.first.assessment.klass.name})"%>
     </div>
     <%= jquery_grid_table %>
     <%= jquery_grid_pager %>
 </center>
 <div>
-<%= link_to "Export", export_scores_url(:activities => activities.collect(&:id), :format => :xls)  %>
+<span><%= link_to "Export as excel", export_scores_url(:activities => activities.collect(&:id), :format => :xls)  %></span>
+<span class = "pdf"><%= link_to "Export as pdf", export_scores_url(:activities => activities.collect(&:id), :format => :pdf)  %></span>
 </div>

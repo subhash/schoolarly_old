@@ -59,6 +59,7 @@ class ScoresController < ApplicationController
     } 
     respond_to do |format|
       format.xls if params[:format] == 'xls'
+      format.pdf { render :layout => false }
     end  
   end
 end
