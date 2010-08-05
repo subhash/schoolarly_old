@@ -22,7 +22,6 @@ class SchoolsController < ApplicationController
   def show    
     @school=School.find(params[:id])
     @user=@school.user
-    puts @school.academic_year.inspect
     @klasses = @school.klasses.group_by{|klass|klass.level_id}
     @students = @school.students
     @teachers = @school.teachers
