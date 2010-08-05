@@ -14,9 +14,12 @@ ActiveRecord::Schema.define(:version => 20100708082021) do
   create_table "academic_years", :force => true do |t|
     t.date     "start_date"
     t.date     "end_date"
+    t.integer  "school_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "academic_years", ["school_id"], :name => "school_id"
 
   create_table "activities", :force => true do |t|
     t.integer  "assessment_tool_id"
@@ -240,15 +243,12 @@ ActiveRecord::Schema.define(:version => 20100708082021) do
   end
 
   create_table "schools", :force => true do |t|
-    t.string   "board",            :default => "CBSE"
+    t.string   "board",      :default => "CBSE"
     t.string   "fax"
     t.string   "website"
-    t.integer  "academic_year_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "schools", ["academic_year_id"], :name => "academic_year_id"
 
   create_table "scores", :force => true do |t|
     t.integer  "activity_id"
@@ -330,6 +330,8 @@ ActiveRecord::Schema.define(:version => 20100708082021) do
     t.datetime "updated_at"
   end
 
+  add_foreign_key "academic_years", ["school_id"], "schools", ["id"], :name => "academic_years_ibfk_1"
+
   add_foreign_key "activities", ["assessment_tool_id"], "assessment_tools", ["id"], :name => "activities_ibfk_1"
   add_foreign_key "activities", ["event_id"], "events", ["id"], :name => "activities_ibfk_2"
 
@@ -381,8 +383,6 @@ ActiveRecord::Schema.define(:version => 20100708082021) do
 
   add_foreign_key "school_subjects", ["school_id"], "schools", ["id"], :name => "school_subjects_ibfk_1"
   add_foreign_key "school_subjects", ["subject_id"], "subjects", ["id"], :name => "school_subjects_ibfk_2"
-
-  add_foreign_key "schools", ["academic_year_id"], "academic_years", ["id"], :name => "schools_ibfk_1"
 
   add_foreign_key "scores", ["activity_id"], "activities", ["id"], :name => "scores_ibfk_1"
   add_foreign_key "scores", ["student_id"], "students", ["id"], :name => "scores_ibfk_2"
