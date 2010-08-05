@@ -129,7 +129,7 @@ end
   def render_actions(&block)
     collector = self
     class <<collector
-      def link(title, args)
+      def link(title, *args)
         concat(render :partial => "/common/action_link", :locals => {:title => title, :args => args})
       end
       def dialog(title, args)

@@ -50,8 +50,10 @@ class ScoresController < ApplicationController
   end
   
   def export
-    @activities = Activity.find(params[:activities])
-    @assessment = @activities.first.assessment
+    @activity = Activity.find(params[:activity]) if params[:activity]
+    @assessment = Assessment.find(params[:assessment]) if params[:assessment]
+    @activities = @activity ? [@activity] : @assessment.activities
+    @title = @assessment ? " #{@assessment.long_name}(#{@assessment.klass.name})" : " #{@activity.title}(#{@activity.assessment.klass.name})"
     @students = []
     @activities.each{|a| @students |= a.students} 
     @students_scores = @students.each_with_object(ActiveSupport::OrderedHash.new) {|student, hash|

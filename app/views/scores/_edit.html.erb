@@ -18,7 +18,4 @@
     <%= jquery_grid_table %>
     <%= jquery_grid_pager %>
 </center>
-<div>
-    <span><%= link_to "Export as excel", export_scores_url(:activities => activities.collect(&:id), :format => :xls) %></span>
-    <span class = "pdf"><%= link_to "Export as pdf", export_scores_url(:activities => activities.collect(&:id), :format => :pdf), :popup => ['new_window','height=800,width=800'] %></span>
-</div>
+

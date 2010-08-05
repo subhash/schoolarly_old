@@ -1,4 +1,4 @@
-pdf.text "Scoresheet for #{@assessment.long_name}(#{@assessment.klass.name})"
+pdf.text "Scoresheet for #{@title}"
 pdf.move_down(10) 
 headers = ["Student email", "Name"] + @activities.collect{|a| "#{a.name}(#{a.max_score})"}
 body = []

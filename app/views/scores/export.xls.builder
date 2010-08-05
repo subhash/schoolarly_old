@@ -7,7 +7,7 @@ xml.Workbook({
   'xmlns:html' => "http://www.w3.org/TR/REC-html40",
   'xmlns:ss'   => "urn:schemas-microsoft-com:office:Spreadsheet" 
 }) do
-  xml.Worksheet 'ss:Name' => "Scores for #{@assessment.long_name}" do
+  xml.Worksheet 'ss:Name' => "Scores for #{@title}" do
     xml.Table do
       # Header
       xml.Row do
