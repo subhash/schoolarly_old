@@ -4,10 +4,8 @@ class CreateSchools < ActiveRecord::Migration
       t.string :board, :default => 'CBSE'
       t.string :fax
       t.string :website
-      t.integer :academic_year_id
       
       t.timestamps
-      t.foreign_key :academic_year_id, :academic_years, :id
     end
   end
   

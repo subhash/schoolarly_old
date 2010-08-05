@@ -18,8 +18,11 @@ class Student < ActiveRecord::Base
       find :all, :conditions => {:activity_id => activity_ids}
     end     
   end
-  has_one :academic_year, :through => :school
   has_many :activities, :through => :scores
+  
+  def academic_year
+    school.academic_year if school  
+  end
   
   def subjects
     return self.papers.collect{|paper| paper.subject}  

@@ -1,4 +1,45 @@
 1:
   id: 1
+  school_id: 1
+  start_date: 2010-05-01
+  end_date: 2011-04-30
+2:
+  id: 2
+  school_id: 2
+  start_date: 2010-05-01
+  end_date: 2011-04-30
+3:
+  id: 3
+  school_id: 3
+  start_date: 2010-05-01
+  end_date: 2011-04-30
+4:
+  id: 4
+  school_id: 4
+  start_date: 2010-05-01
+  end_date: 2011-04-30
+5:
+  id: 5
+  school_id: 5
+  start_date: 2010-05-01
+  end_date: 2011-04-30
+6:
+  id: 6
+  school_id: 6
+  start_date: 2010-05-01
+  end_date: 2011-04-30
+7:
+  id: 7
+  school_id: 7
+  start_date: 2010-05-01
+  end_date: 2011-04-30
+8:
+  id: 8
+  school_id: 8
+  start_date: 2010-05-01
+  end_date: 2011-04-30
+9:
+  id: 9
+  school_id: 9
   start_date: 2010-05-01
   end_date: 2011-04-30

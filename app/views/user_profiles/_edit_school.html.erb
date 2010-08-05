@@ -37,7 +37,7 @@
         </td>
 		<td class="middle">
 			<% academic_year = edit_school.academic_year.start_date.strftime('%B %d, %Y') + ' - ' + edit_school.academic_year.end_date.strftime('%B %d, %Y') %>
-			<%= link_to_remote  academic_year, :url => {:controller => :schools, :action => :edit_academic_year, :id => edit_school}, :html => {:class => "ui-icon ui-icon-pencil", :title => "Edit"}, :method => :get %>
+			<%= link_to_remote academic_year, :url => {:controller => :schools, :action => :edit_academic_year, :id => edit_school}, :html => {:class => "ui-icon ui-icon-pencil", :title => "Edit"}, :method => :get %>
 		</td>
         <td class="right">
             <%= link_to_remote academic_year, :url => {:controller => :schools, :action => :edit_academic_year, :id => edit_school}, :method => :get, :html => {:title => 'Click to edit'} %>

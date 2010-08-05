@@ -2,7 +2,6 @@ class Klass < ActiveRecord::Base
   
   has_many :papers
   has_many :school_subjects, :through => :papers, :include => :subject, :order => "subjects.name"
-  has_one :academic_year, :through => :school 
   after_create :create_assessment_groups
   before_destroy :destroy_assessment_groups
   has_many :all_assessment_groups, :class_name => 'AssessmentGroup' 
@@ -16,6 +15,10 @@ class Klass < ActiveRecord::Base
   
   accepts_nested_attributes_for :assessment_groups
   
+  def academic_year
+    school.academic_year  
+  end
+  
   def weightage_summation  
     if assessment_groups.size > 0 
       unless (assessment_groups.collect(&:weightage).sum == 100)
@@ -23,7 +26,6 @@ class Klass < ActiveRecord::Base
       end
     end
   end
-  
   
   has_many :teachers, :through => :papers, :uniq => true 
   belongs_to :school

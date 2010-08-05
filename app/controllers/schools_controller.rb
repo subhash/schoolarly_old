@@ -22,6 +22,7 @@ class SchoolsController < ApplicationController
   def show    
     @school=School.find(params[:id])
     @user=@school.user
+    puts @school.academic_year.inspect
     @klasses = @school.klasses.group_by{|klass|klass.level_id}
     @students = @school.students
     @teachers = @school.teachers
@@ -58,6 +59,7 @@ class SchoolsController < ApplicationController
     @school = School.new(params[:school])
     @user = User.new(params[:user])
     @user.person = @school
+    @school.set_academic_year
     respond_to do |format|
       if @user.invite!
         flash[:notice] = 'School was successfully created.'
@@ -72,23 +74,22 @@ class SchoolsController < ApplicationController
   
   def edit_academic_year
     @school = School.find(params[:id])
-    @academic_year = @school.academic_year.clone
+    @academic_year = @school.academic_year
   end
   
   def update_academic_year
-    @school = School.find(params[:id])
-    @academic_year = AcademicYear.new(params[:academic_year])
+    @school = School.find(params[:school_id])
+    @academic_year = @school.academic_year
+    @academic_year.attributes = params[:academic_year]
     if test_date(:academic_year, 'start_date') && test_date(:academic_year, 'end_date')
-        new_academic_year = AcademicYear.find_by_start_date_and_end_date(@academic_year.start_date, @academic_year.end_date)
-        @school.academic_year =  new_academic_year.nil? ? @academic_year : new_academic_year
-        if @school.save
-          render :template => 'schools/update_academic_year_success'
-        else
-          render :template => 'schools/update_academic_year_failure'
-        end
+      if @academic_year.save
+        render :template => 'schools/update_academic_year_success'
+      else
+        render :template => 'schools/update_academic_year_failure'
+      end
     else
       @academic_year.errors.add(:academic_year, ': Invalid date selected' )
-      render :template => 'schools/update_academic_year_failure'
+      render :template => 'schools/update_academic_year_failure'  
     end
   end
   

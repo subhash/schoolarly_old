@@ -1,0 +1,5 @@
+- semantic_remote_form_for @academic_year, :url => {:contoller => :schools, :action => :update_academic_year, :id => @academic_year, :school_id => @school} do |f|
+  = f.error_messages
+  = f.input :start_date, :as => :date, :discard_year => true
+  = f.input :end_date, :as => :date, :discard_year => true
+  = f.commit_button :label => 'Update'

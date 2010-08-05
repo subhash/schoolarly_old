@@ -1,7 +1,6 @@
 class Teacher < ActiveRecord::Base
   has_one :user, :as => :person
   belongs_to :school
-  
   has_many :papers
   has_many :klasses, :through => :papers, :uniq => true do
     def for_subject(subject_id)
@@ -15,8 +14,10 @@ class Teacher < ActiveRecord::Base
   end
 
   has_many :owned_klasses, :class_name => 'Klass'
-  has_one :academic_year, :through => :school
 
+  def academic_year
+    school.academic_year if school  
+  end
   
   def name
     user.name
