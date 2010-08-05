@@ -24,7 +24,7 @@ xml.Workbook({
           xml.Cell {xml.Data  student.email, 'ss:Type' => 'String'}
           xml.Cell {xml.Data  student.name, 'ss:Type' => 'String'}
           scores.each do |score|
-            xml.Cell {xml.Data score ? score.score : "", 'ss:Type' => 'Number'}
+            xml.Cell {xml.Data score ? score.score : nil, 'ss:Type' => 'Number'}
           end
         end
       end
