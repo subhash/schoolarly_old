@@ -16,6 +16,9 @@ Installed plugins
 		script/generate messageable 
 		rake db:migrate
 		Model - user.rb: acts_as_messageable
+7) prawn and prawnto - http://railstips.org/blog/archives/2008/10/13/how-to-generate-pdfs-in-rails-with-prawn/
+		sudo gem install prawn
+		script/plugin install git://github.com/thorny-sun/prawnto.git
 				
 jquery plugins/widgets used
 ---------------------------
