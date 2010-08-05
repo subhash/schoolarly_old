@@ -43,5 +43,5 @@
       %td=Score.grade(paper.total_score_for(@student))
 
 %div
-  %span.pdf=link_to "Export as PDF", student_path(@student, :format => :pdf) 
+  %span.pdf=link_to "Export as PDF", student_path(@student, :format => :pdf), :popup => ['new_window','height=1000,width=800'] 
   %span.print= link_to_function("Print SEP", "javascript:print()")
