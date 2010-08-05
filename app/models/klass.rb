@@ -11,7 +11,7 @@ class Klass < ActiveRecord::Base
 #  TODO how to do this correctly
   has_many :assessment_groups, :conditions => 'academic_year_id = #{self.academic_year.id}'
   has_many :assessments, :through => :assessment_groups 
-  has_one :academic_year, :through => :school
+  has_one :academic_year, :through => :school, :order => "start_date DESC"
 
   validate :weightage_summation
   

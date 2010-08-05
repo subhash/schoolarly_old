@@ -15,7 +15,7 @@ class School < ActiveRecord::Base
   has_many :papers, :through => :klasses
   has_many :unallotted_papers, :source => :papers, :through => :klasses, :conditions => ['papers.teacher_id IS NULL']
   has_many :academic_years
-  has_one :academic_year, :order => 'start_date DESC'
+  has_one :academic_year, :order => "start_date DESC"
   
   def subjects_for_klass(klass_id)
     self.papers.select{|paper| (paper.klass.id==klass_id) }.collect{|p| p.subject}

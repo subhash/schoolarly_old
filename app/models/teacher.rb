@@ -14,7 +14,7 @@ class Teacher < ActiveRecord::Base
   end
 
   has_many :owned_klasses, :class_name => 'Klass'
-  has_one :academic_year, :through => :school
+  has_one :academic_year, :through => :school, :order => "start_date DESC"
   
   def name
     user.name
