@@ -19,10 +19,7 @@ class Student < ActiveRecord::Base
     end     
   end
   has_many :activities, :through => :scores
-  
-  def academic_year
-    school.academic_year if school  
-  end
+  has_one :academic_year, :through => :school  
   
   def subjects
     return self.papers.collect{|paper| paper.subject}  

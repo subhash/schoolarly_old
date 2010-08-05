@@ -2,22 +2,20 @@ class Klass < ActiveRecord::Base
   
   has_many :papers
   has_many :school_subjects, :through => :papers, :include => :subject, :order => "subjects.name"
+  
   after_create :create_assessment_groups
   before_destroy :destroy_assessment_groups
+  
   has_many :all_assessment_groups, :class_name => 'AssessmentGroup' 
   has_many :all_assessments, :source => :assessments, :through => :all_assessment_groups 
 #  TODO how to do this correctly
   has_many :assessment_groups, :conditions => 'academic_year_id = #{self.academic_year.id}'
-  
   has_many :assessments, :through => :assessment_groups 
-  
+  has_one :academic_year, :through => :school
+
   validate :weightage_summation
   
   accepts_nested_attributes_for :assessment_groups
-  
-  def academic_year
-    school.academic_year  
-  end
   
   def weightage_summation  
     if assessment_groups.size > 0 
