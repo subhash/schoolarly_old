@@ -6,7 +6,9 @@ ActionController::Routing::Routes.draw do |map|
   
   #map.resources :messages
   
-  map.resources :activities,  :collection => {:edit_scores => :get, :view_scores => :get}
+  map.resources :activities,  :member => {:scores => :get}
+    
+  map.resources :assessments,  :member => {:scores => :get}
   
   map.resources :teachers
   
@@ -35,8 +37,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :password_resets
   
   map.resources :assessment_tool_names
-  
-  map.resources :assessments
   
   map.resources :assessment_groups
   

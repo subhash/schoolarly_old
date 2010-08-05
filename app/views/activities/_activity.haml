@@ -6,7 +6,7 @@
     - else
       %span.icon.ui-icon.blank
   %span.name
-    = link_to activity.name, edit_scores_activities_path(:ids => [activity.id]), :class => "name"
+    = link_to activity.name, scores_activity_path(:id => activity.id, :edit => true), :class => "name"
   - if activity.description.blank?
     %span.icon.ui-icon.blank
   - else

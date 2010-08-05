@@ -29,4 +29,11 @@ class AssessmentsController < ApplicationController
       page.open_dialog "Score calculation for #{@assessment.long_name} - #{@student.name}", :partial => 'scores/calculation'
     end
   end
+  
+  def scores
+    session[:redirect] = request.request_uri
+    @assessment = Assessment.find(params[:id])
+    @edit = (params[:edit] and params[:edit] == "true") ? true : false
+  end
+  
 end

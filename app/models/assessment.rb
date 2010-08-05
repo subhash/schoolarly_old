@@ -4,9 +4,9 @@ class Assessment < ActiveRecord::Base
   belongs_to :assessment_group
   has_one :klass, :through => :assessment_group
   has_one :assessment_type, :through => :assessment_group
-  has_many :assessment_tools, :dependent => :destroy
+  has_many :assessment_tools, :dependent => :destroy, :order => "name"
   
-  has_many :activities, :through => :assessment_tools
+  has_many :activities, :through => :assessment_tools, :order => "assessment_tools.name"
   
   validate :weightage_summation
   

@@ -1,0 +1,7 @@
+- render_breadcrumbs do |add|
+  - add.crumb @assessment.klass.school.name, @assessment.klass.school
+  - add.crumb @assessment.klass.name, @assessment.klass
+  - add.crumb @assessment.long_name
+- render_tabs do |t|
+  - t.tab :title => 'Scores', :partial => 'scores/edit', :locals => {:activities => @assessment.activities, :edit => @edit}
+  - t.tab :title => 'Details', :partial => 'activities/activity', :collection => @assessment.activities

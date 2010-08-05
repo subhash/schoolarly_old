@@ -78,16 +78,9 @@ class ActivitiesController < ApplicationController
     end
   end  
   
-  def edit_scores
+  def scores
     session[:redirect] = request.request_uri
-    @activities = Activity.find_all_by_id(params[:ids],:include => [:assessment_tool],  :order => "assessment_tools.name")
-    @activity = @activities.first
+    @activity = Activity.find(params[:id])
+    @edit = (params[:edit] and params[:edit] == "true") ? true : false
   end
-  
-  def view_scores
-    session[:redirect] = request.request_uri
-    @activities = Activity.find_all_by_id(params[:ids],:include => [:assessment_tool],  :order => "assessment_tools.name")
-    @activity = @activities.first
-  end
-  
 end
