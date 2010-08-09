@@ -1,0 +1,19 @@
+%div.event
+  - semantic_remote_form_for @event_series, :url => {:controller => 'events', :action => 'create'}, :before => "Element.show('spinner');", :complete => "Element.hide('spinner');" do |f| 
+    = f.error_messages
+    = f.input :title 
+    = f.input :description, :input_html => {:rows => 5}, :label => 'Notes'
+    - semantic_fields_for @event do |e| 
+      %li 
+        = e.label 'From'
+        = e.calendar_date_select :start_time, :time => true, :popup => 'force', :minute_interval => 5
+      %li
+        = e.label 'To'
+        = e.calendar_date_select :end_time, :time => true, :popup => 'force', :minute_interval => 5 
+    %li
+      = f.label 'Repeats' 
+      = select_tag :recurrence, options_for_select([['Only once', 'once'],['Every day', 'days'],['Every week', 'weeks'],['Every month', 'months']])
+    Participants
+    = f.input :users, :as => :select, :collection => @users, :input_html => {:class => 'multiselect'}, :label => false
+    = f.commit_button :label => 'Create' 
+    = image_tag 'spinner.gif', :id=>'spinner', :style=>"display:none;"

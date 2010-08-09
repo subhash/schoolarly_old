@@ -617,6 +617,32 @@ table.calculation td {
 	border-width: thin;
 }
 
+
+.event {
+    background-color: #F6EFE1;
+	border-style: solid;
+}
+
+.event li{
+	display:table-row;
+}
+
+.event li label{
+	display:table-cell;
+}
+
+.event li input {
+	display:table-cell;
+}
+
+.event .ui-multiselect li{
+	display:block;
+}
+
+.event li.commit {
+	float: right;
+}
+
 table.sep {
     background-color: #F6EFE1;
 	margin-bottom: 10px;

@@ -1,20 +1,26 @@
-<% semantic_remote_form_for @event_series, :url => {:controller => 'events', :action => 'update', :id => @event}, :before => "Element.show('spinner');", :complete => "Element.hide('spinner');" do |f| %>
-<%= f.error_messages %>
-<%= f.input :title %>
-<%= f.input :description %>
-<%= f.input :users, :as => :select, :collection => @users, :input_html => {:class => 'multiselect'} %>
-<% semantic_fields_for @event do |e| %>
-<%= e.calendar_date_select :start_time, :time => true %>
-<%= e.calendar_date_select :end_time, :time => true %>
-<% end %>
-<% if @event_series.events.size > 1 %>
-Update this event <%= select_tag 'update_scope', options_for_select([['only', 'instance'],['and future occurences', 'future']], :selected => 'only') %>
-<% end %>
-<%= f.commit_button :label => 'Update' %><%= image_tag 'spinner.gif', :id=>'spinner', :style=>"display:none;" %>
-<% if @event_series.events.size > 1 %>
-<%= link_to_remote 'Delete only this event', :url => {:action => 'destroy', :id => @event} %>
-<%= link_to_remote 'Delete this event and all future occurences', :url => {:action => 'destroy', :id => @event, :delete_all => 'future'} %>
-<% else %>
-<%= link_to_remote 'Delete this event', :url => {:action => 'destroy', :id => @event} %>
-<% end %>
-<%end %>
+<div class="event">
+    <% semantic_remote_form_for @event_series, :url => {:controller => 'events', :action => 'update', :id => @event}, :before => "Element.show('spinner');", :complete => "Element.hide('spinner');" do |f| %>
+    <%= f.error_messages %>
+    <%= f.input :title %>
+    <%= f.input :description, :input_html => {:rows => 5}, :label => "Notes" %>
+    <% semantic_fields_for @event do |e| %>
+    <li>
+        <%= e.label 'From' %><%= e.calendar_date_select :start_time, :time => true %>
+    </li>
+    <li>
+        <%= e.label 'To' %><%= e.calendar_date_select :end_time, :time => true %>
+    </li>
+    <% end %>
+    Participants<%= f.input :users, :as => :select, :collection => @users, :input_html => {:class => 'multiselect'}, :label => false %>
+    <% if @event_series.events.size > 1 %>
+    Update this event <%= select_tag 'update_scope', options_for_select([['only', 'instance'],['and future occurences', 'future']], :selected => 'only') %>
+    <% end %>
+    <% if @event_series.events.size > 1 %>
+    <%= link_to_remote 'Delete only this event', :url => {:action => 'destroy', :id => @event} %>
+    <%= link_to_remote 'Delete this event and all future occurences', :url => {:action => 'destroy', :id => @event, :delete_all => 'future'} %>
+    <% else %>
+    <%= link_to_remote 'Delete this event', :url => {:action => 'destroy', :id => @event} %>
+    <% end %>
+	<%= f.commit_button :label => 'Update' %><%= image_tag 'spinner.gif', :id=>'spinner', :style=>"display:none;" %>
+    <%end %>
+</div>
