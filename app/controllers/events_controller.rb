@@ -6,7 +6,7 @@ class EventsController < ApplicationController
     #@users = current_user.person.school ? current_user.person.school.users - [@event_series.owner] : nil
     @users = User.with_permissions_to(:contact) - [@event_series.owner]
     render :update do |page|      
-      page.open_dialog "New Event created by #{@event_series.owner.name}", {:partial => 'create_form'}, 500
+      page.open_dialog "New Event created by #{@event_series.owner.name}", {:partial => 'create_form'}
     end
   end
   
@@ -18,6 +18,7 @@ class EventsController < ApplicationController
     if @event_series.save
       render :template => 'events/create'
     else
+      @users = User.with_permissions_to(:contact) - [@event_series.owner]
       render :update do |page|
         page.refresh_dialog :partial => 'create_form'
       end
