@@ -13,7 +13,8 @@
     %li
       = f.label 'Repeats' 
       = select_tag :recurrence, options_for_select([['Only once', 'once'],['Every day', 'days'],['Every week', 'weeks'],['Every month', 'months']])
-    Participants
+    %br
+    = f.label 'Participants'
     = f.input :users, :as => :select, :collection => @users, :input_html => {:class => 'multiselect'}, :label => false
     = f.commit_button :label => 'Create' 
     = image_tag 'spinner.gif', :id=>'spinner', :style=>"display:none;"

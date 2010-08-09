@@ -625,14 +625,17 @@ table.calculation td {
 
 .event li{
 	display:table-row;
+	padding-left: 5px;
 }
 
 .event li label{
 	display:table-cell;
+	padding-left: 5px;
 }
 
 .event li input {
 	display:table-cell;
+	padding-left: 5px;
 }
 
 .event .ui-multiselect li{
@@ -641,6 +644,7 @@ table.calculation td {
 
 .event li.commit {
 	float: right;
+	padding: 5px;
 }
 
 table.sep {

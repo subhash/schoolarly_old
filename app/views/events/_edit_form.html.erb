@@ -11,6 +11,7 @@
         <%= e.label 'To' %><%= e.calendar_date_select :end_time, :time => true %>
     </li>
     <% end %>
+	<br />
     Participants<%= f.input :users, :as => :select, :collection => @users, :input_html => {:class => 'multiselect'}, :label => false %>
     <% if @event_series.events.size > 1 %>
     Update this event <%= select_tag 'update_scope', options_for_select([['only', 'instance'],['and future occurences', 'future']], :selected => 'only') %>
