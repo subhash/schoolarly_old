@@ -5,6 +5,9 @@ class MailsController < ApplicationController
     @message = Message.new(params[:message])
     @mail = Mail.find(params[:mail]) if params[:mail]
     receivers = User.find(params[:message][:recipient_ids]) if params[:message][:recipient_ids]
+    @selected_user_ids = params[:message][:recipient_ids] if params[:message][:recipient_ids]
+    selected_users = User.with_permissions_to(:contact) & @mail.conversation.users if params[:mail]
+    @users = !selected_users.nil? ? selected_users : User.with_permissions_to(:contact)
     template_name = 'mails/create_success'
     if @message.valid?
       Mail.transaction do 
