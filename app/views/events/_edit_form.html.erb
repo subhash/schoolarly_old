@@ -1,4 +1,4 @@
-<div class="event">
+<div class="semantic">
     <% semantic_remote_form_for @event_series, :url => {:controller => 'events', :action => 'update', :id => @event}, :before => "Element.show('spinner');", :complete => "Element.hide('spinner');" do |f| %>
     <%= f.error_messages %>
     <%= f.input :title %>

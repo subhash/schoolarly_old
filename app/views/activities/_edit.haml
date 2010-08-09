@@ -1,11 +1,13 @@
-- semantic_remote_form_for @activity do |f|
-  = f.error_messages
-  = f.input :description, :as => :text, :input_html => {:rows => 5} 
-  = f.input :max_score 
-  - f.semantic_fields_for :event do |event_form|
-    %strong From
-    = event_form.calendar_date_select :start_time, :time => true, :popup => 'force', :minute_interval => 5
-    %br
-    %strong To
-    = event_form.calendar_date_select :end_time, :time => true, :popup => 'force', :minute_interval => 5 
-  = f.submit
+.semantic
+  - semantic_remote_form_for @activity do |f|
+    = f.error_messages
+    = f.input :description, :as => :text, :input_html => {:rows => 5}, :label => 'Notes'
+    = f.input :max_score 
+    - f.semantic_fields_for :event do |event_form|
+      %li
+        = event_form.label 'From'
+        = event_form.calendar_date_select :start_time, :time => true, :popup => 'force', :minute_interval => 5
+      %li
+        = event_form.label 'To'
+        = event_form.calendar_date_select :end_time, :time => true, :popup => 'force', :minute_interval => 5 
+    = f.commit_button

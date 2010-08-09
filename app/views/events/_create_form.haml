@@ -1,4 +1,4 @@
-%div.event
+.semantic
   - semantic_remote_form_for @event_series, :url => {:controller => 'events', :action => 'create'}, :before => "Element.show('spinner');", :complete => "Element.hide('spinner');" do |f| 
     = f.error_messages
     = f.input :title 

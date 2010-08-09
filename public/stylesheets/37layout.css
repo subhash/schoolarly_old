@@ -618,31 +618,31 @@ table.calculation td {
 }
 
 
-.event {
+.semantic {
     background-color: #F6EFE1;
 	border-style: solid;
 }
 
-.event li{
+.semantic li{
 	display:table-row;
 	padding-left: 5px;
 }
 
-.event li label{
+.semantic li label{
 	display:table-cell;
 	padding-left: 5px;
 }
 
-.event li input {
+.semantic li input {
 	display:table-cell;
 	padding-left: 5px;
 }
 
-.event .ui-multiselect li{
+.semantic .ui-multiselect li{
 	display:block;
 }
 
-.event li.commit {
+.semantic li.commit {
 	float: right;
 	padding: 5px;
 }
