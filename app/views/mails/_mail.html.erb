@@ -2,7 +2,7 @@
     <div class="subject">
         <strong><%= mail.message.subject %></strong>
         <div class="details">
-            <span>sent by <strong><%= mail.message.sender.name %></strong> <%= time_ago_in_words(mail.message.created_at) %> ago </span>
+            <span>sent by <strong><%= link_to mail.message.sender.name, mail.message.sender.person %></strong> <%= time_ago_in_words(mail.message.created_at) %> ago </span>
         </div>
     </div>
     <div class="body">
@@ -10,7 +10,7 @@
     </div>
     <div class="actions">
         <span><%= link_to_remote 'View Conversation', :url =>{:controller => 'conversations', :action => 'show', :id => mail}, :html => {:title => 'View Conversation'} if !local_assigns[:dialog_view] %></span>
-		<span><%= link_to_function('View Recipients') {|page| page.open_dialog 'Recipients', {:inline => "<ul>#{mail.message.recipients.inject('') {|s, r| s+="<li>#{r.name}</li>"}}</ul>"}}%></span>
+		<span><%= link_to_function('View Recipients') {|page| page.open_dialog 'Recipients', {:inline => "<ul class='recipients'>#{mail.message.recipients.inject('') {|s, r| s+="<li>#{link_to r.name, r.person}</li>"}}</ul>"}}%></span>
 		<span><%= link_to_remote 'Reply', :url =>{:controller => 'mails', :action => 'new', :id => mail}, :html => {:title => 'Reply'} %>
 		<%= link_to_remote 'Delete', :url =>{:controller => 'mails', :action => 'destroy', :id => mail, :dialog_view => local_assigns[:dialog_view]}, :html => {:title => mail.trashed ? 'Permanently Remove' : 'Send to Trash'}, :confirm => 'Are you sure?' %>
     </div>
