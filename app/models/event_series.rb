@@ -4,6 +4,7 @@ class EventSeries < ActiveRecord::Base
   has_and_belongs_to_many :users 
   
   validates_presence_of :title
+  validates_presence_of :events, :message => "Dates are not valid"
   
   def send_message
     event = self.reload.events.first
@@ -22,7 +23,7 @@ class EventSeries < ActiveRecord::Base
   end
   
   def create_events(start_time, end_time, recurrence = 'once')
-    if (start_time < Event.last_day) 
+    if (start_time and start_time < Event.last_day) 
       event = Event.new
       event.start_time = start_time
       event.end_time = end_time
