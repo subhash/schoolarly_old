@@ -1,7 +1,7 @@
 class ScoresController < ApplicationController
   
   def grid_data
-    @activities = Activity.find(params[:activities])
+    @activities = params[:activities].collect{|id| Activity.find(id)}
     @students = []
     @activities.each{|a| @students |= a.students}
     @total = @students.length
