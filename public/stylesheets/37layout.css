@@ -61,10 +61,14 @@ div.page_header {
     margin: 0px 0px 5px;
 }
 
+.pane {
+	padding-top: 25px;
+}
+
 a.pane-link {
-    font-size: 18px;
+    font-size: 15px;
     white-space: nowrap;
-	padding-right: 10px;
+    padding-right: 10px;
 }
 
 a.pane-link.active {
@@ -201,6 +205,7 @@ table.students tr {
 }
 
 table.students tr:nth-child(even){
+
 	background-color: #EDF3FE;
 }
 
@@ -553,6 +558,18 @@ table.paper td.right div.activity .score {
 
 table.paper td.right div.activity .score.ignore {
     color: darkgrey;
+}
+span.compose {
+	padding: 5px;
+	float: right;
+	border: solid;
+	border-width:thin;
+	background: lightgrey;
+}
+
+span.compose * {
+	text-decoration: none;
+	color: black;
 }
 
 div.message {
