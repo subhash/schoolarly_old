@@ -28,7 +28,11 @@ class ActivitiesController < ApplicationController
       if @activity.save
         @assessment = @activity.assessment
         page.replace_object @activity.assessment, :partial => 'assessments/assessment'
-        page.open_dialog "Adjust calculations for "+@assessment.long_name, :partial => 'assessments/edit'
+        if @assessment.activities.size > 1
+          page.open_dialog "Adjust calculations for "+@assessment.long_name, :partial => 'assessments/edit'
+        else
+          page.close_dialog
+        end
       else
         @assessment = @assessment_tool.assessment
         @assessment_tool_names = @assessment.school_subject.assessment_tool_names

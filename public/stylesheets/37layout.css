@@ -517,6 +517,16 @@ table.paper td .icon {
     min-width: 16px;
 }
 
+table.paper td .weightage {
+    display: inline-block;
+    font-size: 11px;	
+}
+
+table.paper td .weightage * {
+    padding: 3px;
+	text-decoration: none;
+}
+
 table.paper td .blank {
     background-image: none;
 }
