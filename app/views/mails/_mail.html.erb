@@ -1,6 +1,6 @@
 <div id="<%='mail_' + mail.id.to_s%>" class="message">
     <div class="subject">
-        <strong><%= mail.message.subject %></strong>
+       <%= mail.message.subject %>
         <div class="details">
             <span>sent by <strong><%= link_to mail.message.sender.name, mail.message.sender.person %></strong> <%= time_ago_in_words(mail.message.created_at) %> ago </span>
         </div>

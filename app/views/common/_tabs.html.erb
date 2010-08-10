@@ -13,14 +13,12 @@
 <% content_for :tabs do %>
 <% tabs.each do |t| %>
 <div id="<%= t[:tab] %>-tab-section" class ="tab" style="display: none;">
-    <%= render t[:render] %>
-</div>
-<% end %>
-<% end %>
-<% content_for :tab_headers do %>
-<% tabs.each do |t| %>
-<div id="<%= t[:tab] %>-tab-header" class ="tab-header">
-    <%= render t[:header] if t[:header]%>
+    <div id="<%= t[:tab] %>-tab-header" class="page_header">
+        <%= render t[:header] if t[:header] %>
+    </div>
+    <div id="<%= t[:tab] %>-tab-content" class="innercol">
+        <%= render t[:render] %>
+    </div>
 </div>
 <% end %>
 <% end %>

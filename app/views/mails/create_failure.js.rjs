@@ -1,2 +1,1 @@
 page.refresh_dialog :partial => 'mails/new_form', :locals => {:mail => @mail, :selected_users => @selected_user_ids, :users => @users, :message => @message}
-#page.call 'initMultiSelect'

@@ -2,4 +2,3 @@ mails = @mail.conversation.mails.select{|mail| mail.user == @mail.user && (@mail
 page.close_dialog if params[:dialog_view] && mails.empty?
 page.refresh_dialog(:partial =>'conversations/conversation', :locals => { :mails => mails}) if params[:dialog_view] && !mails.empty?#@mail.reload
 page.replace_tab Message, :partial => 'mails/mailboxes', :object => ['inbox', 'sentbox', 'trash']
-page.call 'initPanes'

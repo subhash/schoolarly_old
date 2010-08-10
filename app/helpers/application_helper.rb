@@ -221,7 +221,7 @@ module ActionView
          
          def replace_tab(obj, args)
            show = args.delete(:show)
-           replace_html css_class_id(obj) + "-tab-section", args
+           replace_html css_class_id(obj) + "-tab-content", args
            open_tab(obj) unless (show || (show == false))
          end
          

@@ -62,10 +62,9 @@ div.page_header {
 }
 
 a.pane-link {
-    font-size: 11px;
-    line-height: 20px;
-    margin-top: 0px;
+    font-size: 18px;
     white-space: nowrap;
+	padding-right: 10px;
 }
 
 a.pane-link.active {
@@ -582,7 +581,7 @@ div.message .subject {
 }
 
 div.message .body {
-    font-size: 15px;
+    font-size: 13px;
     margin-bottom: 5px;
 }
 
