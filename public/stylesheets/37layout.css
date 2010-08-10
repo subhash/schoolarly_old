@@ -326,19 +326,13 @@ table.teachers div.icons span {
     display: inline-block;
 }
 
-table.school_subjects tr{
-	border-bottom: dotted;
-	border-bottom-color: darkgrey;
-	border-bottom-width: thin;
-}
-
 table.school_subjects td.left {
     font-size: 20px;
-    width: 40%;
+    width: 30%;
 }
 
 table.school_subjects td.right * {
-    font-size: 11px;
+    font-size: 13px;
     margin-bottom: 4px;
 }
 
@@ -347,6 +341,17 @@ table.school_subjects td.right .assessments {
     color: white;
     padding: 2px 4px;
     display: inline-block;
+}
+
+table.school_subjects tr{
+	border-bottom: dotted;
+	border-bottom-color: darkgrey;
+	border-bottom-width: thin;
+	height: 4em;
+}
+
+table.school_subjects tr:nth-child(even){
+	background-color: lightgrey;
 }
 
 table.klasses {
