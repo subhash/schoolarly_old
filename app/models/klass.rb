@@ -13,7 +13,7 @@ class Klass < ActiveRecord::Base
   has_many :assessments, :through => :assessment_groups 
   has_one :academic_year, :through => :school, :order => "start_date DESC"
 
-  validate :weightage_summation
+  validate_on_update :weightage_summation
   
   accepts_nested_attributes_for :assessment_groups
   
