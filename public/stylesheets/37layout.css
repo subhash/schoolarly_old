@@ -201,13 +201,17 @@ table.students tr {
     padding-bottom: 5px;
 }
 
+table.students tr:nth-child(even){
+	background-color: #EDF3FE;
+}
+
 table.students td.left {
     font-size: 20px;
     width: 40%;
 }
 
 table.students td.right * {
-    font-size: 11px;
+    font-size: 14px;
     margin-bottom: 4px;
 }
 
@@ -264,6 +268,10 @@ table.teachers tr {
     padding-bottom: 5px;
 }
 
+table.teachers tr:nth-child(even){
+	background-color: #EDF3FE;
+}
+
 table.teachers td.left {
     font-size: 18px;
     width: 30%;
@@ -281,7 +289,7 @@ table.teachers td.left .detail h4 {
 }
 
 table.teachers td.right * {
-    font-size: 11px;
+    font-size: 14px;
     margin-bottom: 4px;
 }
 
@@ -332,7 +340,7 @@ table.school_subjects td.left {
 }
 
 table.school_subjects td.right * {
-    font-size: 13px;
+    font-size: 14px;
     margin-bottom: 4px;
 }
 
@@ -351,7 +359,7 @@ table.school_subjects tr{
 }
 
 table.school_subjects tr:nth-child(even){
-	background-color: lightgrey;
+	background-color: #EDF3FE;
 }
 
 table.klasses {
