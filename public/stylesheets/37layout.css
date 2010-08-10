@@ -326,6 +326,12 @@ table.teachers div.icons span {
     display: inline-block;
 }
 
+table.school_subjects tr{
+	border-bottom: dotted;
+	border-bottom-color: darkgrey;
+	border-bottom-width: thin;
+}
+
 table.school_subjects td.left {
     font-size: 20px;
     width: 40%;

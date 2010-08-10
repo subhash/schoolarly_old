@@ -10,6 +10,6 @@ class AssessmentToolName < ActiveRecord::Base
     {:conditions => {:assessment_type_name => "FA"}}
   }
   
-  validates_uniqueness_of :name, :scope => [:school_id]
+  validates_uniqueness_of :name, :scope => [:school_id], :message => "has already been added for school"
   
 end
