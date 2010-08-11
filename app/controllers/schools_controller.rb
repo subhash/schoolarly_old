@@ -150,18 +150,4 @@ class SchoolsController < ApplicationController
     end 
   end
   
-  def add_subjects
-    @school = School.find(params[:id])
-    @school.subject_ids = params[:subject_ids]    
-    render :update do |page|
-      if @school.save
-        page.replace_tab :subjects, :partial => 'subjects/subjects', :object => @school.subjects
-        page.replace_action 'Add Subjects', :partial => 'schools/add_subjects', :locals => {:school => @school, :subjects => Subject.all}
-        page.close_dialog        
-      else
-        page.refresh_dialog :partial => 'schools/add_subjects', :locals => {:school => @school, :subjects => Subject.all}
-      end
-    end    
-  end
-  
 end
