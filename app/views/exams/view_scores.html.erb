@@ -1,9 +1,0 @@
-<% render_breadcrumbs do |add| %>
-<% add.crumb @exam.klass.school.name, @exam.klass.school %>
-<% add.crumb @exam.klass.name, @exam.klass %>
-<% add.crumb "#{@exam.name} - #{@exam.subject.name}" %>
-<% end %>
-
-<% render_tabs do |t| %>
-<% t.tab :title => 'Scores', :partial => 'scores/edit', :locals => {:exams => @exams, :edit => false}  %>
-<% end %>

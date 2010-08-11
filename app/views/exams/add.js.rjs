@@ -1,1 +1,0 @@
-page.insert_after(@exam, @old_exam, :partial => 'exams/exam' )

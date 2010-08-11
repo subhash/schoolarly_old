@@ -1,2 +1,0 @@
-
-page.open_dialog 'Modify '+ @exam.title, :partial =>'exams/edit', :locals => {:exam => @exam, :teachers => @teachers}

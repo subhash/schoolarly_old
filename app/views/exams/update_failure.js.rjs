@@ -1,1 +1,0 @@
- page.refresh_dialog  :partial =>'exams/edit', :locals => {:exam => @exam, :teachers => @exam.school.teachers}

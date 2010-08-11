@@ -3,3 +3,6 @@ calendar_date_select
 formtastic --ignore-dependencies
 declarative_authorization --ignore-dependencies
 will_paginate --version '~> 2.3.11'
+haml
+prawn
+ryanb-acts-as-list --source http://gems.github.com 
