@@ -1,6 +1,7 @@
 class CreateActivities < ActiveRecord::Migration
   def self.up
     create_table :activities do |t|
+      t.integer :position
       t.integer :assessment_tool_id
       t.string :description
       t.decimal :max_score, :precision => 6, :scale => 2

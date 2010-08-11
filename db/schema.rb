@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20100708082021) do
   add_index "academic_years", ["school_id"], :name => "school_id"
 
   create_table "activities", :force => true do |t|
+    t.integer  "position"
     t.integer  "assessment_tool_id"
     t.string   "description"
     t.decimal  "max_score",          :precision => 6, :scale => 2

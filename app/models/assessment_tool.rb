@@ -5,7 +5,7 @@ class AssessmentTool < ActiveRecord::Base
   
   has_one :klass, :through => :assessment
   
-  has_many :activities, :dependent => :destroy
+  has_many :activities, :dependent => :destroy, :order => :position
   
   has_many :scores, :through => :activities do
     def of_student(student_id)

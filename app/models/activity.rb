@@ -21,8 +21,10 @@ class Activity < ActiveRecord::Base
   
   accepts_nested_attributes_for :event
   
+  acts_as_list :scope => :assessment_tool
+  
   def name
-    assessment_tool.name
+    (assessment_tool.activities.size > 1) ? "#{assessment_tool.name} #{position}" : assessment_tool.name
   end
   
   def students

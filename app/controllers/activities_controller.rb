@@ -59,6 +59,7 @@ class ActivitiesController < ApplicationController
         event_series = EventSeries.new(:title => @activity.title, :description => @activity.description, :owner => current_user)
         event_series.users = @activity.participants.collect(&:user)
         @activity.event.event_series = event_series
+        event_series.events << @activity.event
       end
     end
     if @activity.save
