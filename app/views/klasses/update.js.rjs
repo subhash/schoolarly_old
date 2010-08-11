@@ -4,6 +4,5 @@ if active_controller == 'schools'
   page.replace_object(@teacher, :partial => 'teachers/teacher')
   page.replace_object(@old_teacher, :partial => 'teachers/teacher') if @old_teacher
 else
-  page.replace_action 'Assign New Class Teacher', :partial =>'klasses/klass_teacher_form', :locals => {:klass => @klass, :teachers => @klass.school.teachers}
-  page.replace_html 'details-tab-section', :partial => 'klasses/details', :locals => {:klass => @klass} 
+  page.replace_tab :details, :partial => 'klasses/details', :locals => {:klass => @klass} 
 end

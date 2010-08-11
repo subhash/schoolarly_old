@@ -63,6 +63,9 @@ class StudentsController < ApplicationController
   # Called from students/show and klass/student. Need to update breadcrumbs for the first
   def update
     @student = Student.find(params[:id])
+    if @student.klass and @student.klass.id != params[:student][:klass_id].to_i
+      @student.papers.delete_all
+    end
     if(@student.update_attributes(params[:student]))    
       #    TODO redesign this when we do wizard flows for right-bar actions
       if(session[:redirect]) and session[:redirect] == student_path(@student)

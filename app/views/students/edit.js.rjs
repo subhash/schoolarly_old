@@ -1,1 +1,1 @@
-page.open_dialog "Add #{@student.name} to class", :partial => 'students/add_to_klass_form', :locals => {:student => @student}
+page.open_dialog @student.klass ? "Change class for #{@student.name}" : "Assign class for #{@student.name}",  :partial => 'students/add_to_klass_form', :locals => {:student => @student}
