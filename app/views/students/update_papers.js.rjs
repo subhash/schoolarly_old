@@ -1,6 +1,6 @@
 page.close_dialog
+puts "active controller == "+active_controller.inspect
 if active_controller == 'students'
-  page.replace_action 'Add/Remove Subjects', :partial => 'papers/edit_papers_form', :locals => {:entity => @student, :papers => @student.klass.papers}
   page.replace_tab Paper, :partial => 'papers/papers', :object => @student.papers
 else
   page.replace_object @student, :partial => 'students/student'
