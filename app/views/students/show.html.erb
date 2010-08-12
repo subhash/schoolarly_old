@@ -1,7 +1,7 @@
 <% render_actions do |add| %>
 	<% permitted_to? :update , @student do %>
 		<% add.action 'Add/Remove Subjects', :url => {:controller => 'students', :action => 'edit_papers', :id => @student}  if @school and @klass and (permitted_to? :add, :papers)%>
-		<% add.action @student.klass ? "Change class(#{@student.klass.name})" : 'Assign Class', :url => {:controller => 'students', :action => 'edit'}, :method => :get if @school and (permitted_to? :update, :klasses)%>
+		<% add.action @student.klass ? "Change class" : 'Assign Class', :url => {:controller => 'students', :action => 'edit'}, :method => :get if @school and (permitted_to? :update, :klasses)%>
 		<% add.dialog 'Add to School',:partial =>'schools/add_to_school_form', :locals => {:entity => @student, :schools => School.find(:all)} if !@school %>
 	<% end %>
 	<% add.dialog 'Post Message to ' + @student.name, :partial => 'mails/new_form', :locals => {:users => [@student.user], :selected_users => [@student.user.id], :message => Message.new } if (permitted_to? :contact, @student) %>
