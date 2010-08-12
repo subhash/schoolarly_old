@@ -1,4 +1,4 @@
-- semantic_remote_form_for @activity :html => {:class => "semantic"} do |f|
+- semantic_remote_form_for @activity, :html => {:class => "semantic"} do |f|
   = f.error_messages
   - semantic_fields_for @assessment_tool do |tool_form|
     = tool_form.input :name, :as => :select, :collection => @assessment_tool_names, :value_method => :name
