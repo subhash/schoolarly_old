@@ -86,6 +86,12 @@ function initPanes(){
     jQuery('a.pane-link:first').click();
 }
 
+function refreshPanes(){
+	jQuery('div.pane').hide();
+	var currentPane = jQuery('a.pane-link.active').attr('href');
+	jQuery(currentPane).show();
+}
+
 function showTab(id){
     jQuery('#myhack ul li').removeClass('active');
     jQuery(this).parent().addClass('active');
