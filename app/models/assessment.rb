@@ -6,7 +6,7 @@ class Assessment < ActiveRecord::Base
   has_one :assessment_type, :through => :assessment_group
   has_many :assessment_tools, :dependent => :destroy, :order => "name"
   
-  has_many :activities, :through => :assessment_tools, :order => "assessment_tools.name"
+  has_many :activities, :through => :assessment_tools, :order => "assessment_tools.name, activities.position" 
   
   validate :weightage_summation
   
