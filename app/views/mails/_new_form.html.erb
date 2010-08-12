@@ -12,12 +12,12 @@
             Subject
         </th>
         <td>
-            <%= f.input :subject, :rows => 1, :label => false %>
+            <%= f.input :subject, :label => false %>
         </td>
     </tr>
     <tr>
         <td colspan=2>
-            <%= f.input :body, :rows => 5, :as => :text, :label => false %>
+            <%= f.input :body, :input_html => {:rows => 10}, :label => false %>
         </td>
     </tr>
 </table>

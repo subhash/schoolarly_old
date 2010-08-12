@@ -1,3 +1,3 @@
 page.close_dialog
 page.replace_tab(Message, :partial => 'mails/mailboxes', :object => ['inbox', 'sentbox', 'trash'])
-page.call 'initPanes'
+page.call 'refreshPanes'
