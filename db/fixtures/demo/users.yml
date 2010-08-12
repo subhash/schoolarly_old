@@ -100,7 +100,7 @@
  person_type: School
 11:
  id: 11
- email: marykkutty@schoolarly.com
+ email: mary@schoolarly.com
  password_salt: 5vYihJdkH6UG-Vimw8lh
  crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
  persistence_token: <%= Authlogic::Random.hex_token %>

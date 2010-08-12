@@ -25,13 +25,13 @@
 4:
  id: 4
  name: Global Public School 
- address_line_1: 
- address_line_2:
- city: Bangalore
- state: Karnataka
+ address_line_1: OEN Jn
+ address_line_2: Chottanikkara Road
+ city: Kochi
+ state: Kerala
  country: India
- pincode:
- phone_landline: 
+ pincode: 682038
+ phone_landline: 0484-2713745
  phone_mobile: 
  user_id: 4
 5:
@@ -68,7 +68,7 @@
  user_id: 10
 11:
  id: 11
- name: Marykkutty Thomas
+ name: Mary K Thomas
  address_line_1: 
  address_line_2:
  city: Kochi

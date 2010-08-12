@@ -2,25 +2,25 @@
 
 1:
   id: 1
-  klass_id: 1
+  klass_id: 17
   school_subject_id: 1
   
 2:
   id: 2
-  klass_id: 1
+  klass_id: 17
   school_subject_id: 2
 
 3:
   id: 3
-  klass_id: 1
-  school_subject_id: 3
+  klass_id: 17
+  school_subject_id: 6
   
 4:
   id: 4
-  klass_id: 1
-  school_subject_id: 4
+  klass_id: 17
+  school_subject_id: 7
   
 5:
   id: 5
-  klass_id: 1
-  school_subject_id: 5
+  klass_id: 17
+  school_subject_id: 8

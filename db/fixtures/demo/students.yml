@@ -1,94 +1,94 @@
 annie:
   id: 1 
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
   admission_number: 111
   roll_number: 1
 arti:
   id: 2
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
   admission_number: 112
   roll_number: 2
 coonie:
   id: 3
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
   admission_number: 113
   roll_number: 3
 reeny:
   id: 4
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
   admission_number: 114
   roll_number: 4
 shanthi:
   id: 5
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
   admission_number: 115
   roll_number: 5
 sareena:
   id: 6
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
   admission_number: 116
   roll_number: 6
 reshma:
   id: 7
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
   admission_number: 121
   roll_number: 7
 babitha:
   id: 8
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
 sumina:
   id: 9
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
 sheena:
   id: 10
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
 smitha:
   id: 11
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
 christina:
   id: 12
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
 cisy:
   id: 13
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
 teena:
   id: 14
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
 tarana:
   id: 15
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
 madhubala:
   id: 16
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
 priya:
   id: 17
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
 chithra:
   id: 18
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
 nithya:
   id: 19
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
 vidya:
   id: 20
-  school_id: 1
-  klass_id: 1
+  school_id: 3
+  klass_id: 17
