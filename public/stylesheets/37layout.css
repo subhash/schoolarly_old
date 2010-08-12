@@ -680,17 +680,18 @@ table.calculation td {
 	border-style: solid;
 }
 
-.semantic li{
+.semantic > li{
 	display:table-row;
 	padding-left: 5px;
 }
 
-.semantic li label{
+
+.semantic > li label{
 	display:table-cell;
 	padding-left: 5px;
 }
 
-.semantic li input {
+.semantic > li input {
 	display:table-cell;
 	padding-left: 5px;
 }
@@ -698,6 +699,7 @@ table.calculation td {
 .ui-multiselect li{
 	display:block;
 }
+
 
 .semantic li.commit {
 	float: right;
