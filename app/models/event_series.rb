@@ -4,7 +4,7 @@ class EventSeries < ActiveRecord::Base
   has_and_belongs_to_many :users 
   
   validates_presence_of :title
-  validates_presence_of :events, :message => "Dates are not valid"
+  validates_associated :events
   
   def send_message
     event = self.reload.events.first

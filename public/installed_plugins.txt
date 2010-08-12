@@ -9,14 +9,12 @@ Installed plugins
 		Controller: in_place_edit_with_validation_for
 		Views: <%= in_place_editor_field :entity, :attribute, {}, :script => true %>
 		environment.rb: require 'custom_in_place_editing'
-5)     Multiple-select plugin
-		http://ruido-blanco.net/blog/rails-multiple-select-helper-plugin/
-6)     	acts_as_messageable - http://www.philsergi.com/2007/10/actsasmessageable-plugin-released_04.html
+5)     	acts_as_messageable - http://www.philsergi.com/2007/10/actsasmessageable-plugin-released_04.html
 		script/plugin install http://actsasmessageable.googlecode.com/svn/tags/acts_as_messageable-1.0.1 
 		script/generate messageable 
 		rake db:migrate
 		Model - user.rb: acts_as_messageable
-7) prawn and prawnto - http://railstips.org/blog/archives/2008/10/13/how-to-generate-pdfs-in-rails-with-prawn/
+6) prawn and prawnto - http://railstips.org/blog/archives/2008/10/13/how-to-generate-pdfs-in-rails-with-prawn/
 		sudo gem install prawn
 		script/plugin install git://github.com/thorny-sun/prawnto.git
 				

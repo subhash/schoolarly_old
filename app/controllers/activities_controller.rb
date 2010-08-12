@@ -21,72 +21,70 @@ class ActivitiesController < ApplicationController
     else
       event_series = EventSeries.new(:title => "#{@assessment_tool.assessment.long_name} : #{@activity.name}", :description => @activity.description, :owner => current_user)
       event_series.users = @activity.assessment_tool.assessment.current_participants.collect(&:user)
-      @activity.event.event_series = event_series
-      event_series.events << @activity.event
+      @activity.event.event_series = event_series if (event_series.events << @activity.event)
     end
-    render :update do |page|
-      if @activity.save
-        @assessment = @activity.assessment
-        page.replace_object @activity.assessment, :partial => 'assessments/assessment'
-        if @assessment.activities.size > 1
-          page.open_dialog "Adjust calculations for "+@assessment.long_name, :partial => 'assessments/edit'
-        else
-          page.close_dialog
-        end
-      else
-        @assessment = @assessment_tool.assessment
-        @assessment_tool_names = @assessment.school_subject.assessment_tool_names
-        page.refresh_dialog  :partial => 'activities/new', :locals => {:activity => @activity}
-      end
-    end
-  end
-  
-  def edit
-    @activity = Activity.find_by_id(params[:id])
-    @activity.event = Event.new unless @activity.event
-    render :update do |page|
-      page.open_dialog "Change activity - #{@activity.title}", :partial => 'activities/edit'
-    end
-  end
-  
-  def update
-    @activity = Activity.find_by_id(params[:id])
-    @activity.attributes = params[:activity]
-    if @activity.event.new_record?
-      if (@activity.event.start_time.blank? and @activity.event.end_time.blank?)
-        @activity.event = nil
-      else
-        event_series = EventSeries.new(:title => @activity.title, :description => @activity.description, :owner => current_user)
-        event_series.users = @activity.participants.collect(&:user)
-        @activity.event.event_series = event_series
-        event_series.events << @activity.event
-      end
-    end
+  render :update do |page|
     if @activity.save
-      render :template => 'activities/update_success'
-    else
-      render :update do |page|
-        page.refresh_dialog  :partial => 'activities/edit'
-      end
-    end
-  end
-  
-  def destroy
-    @activity = Activity.find(params[:id])
-    @assessment = @activity.assessment
-    render :update do |page|
-      if  @activity.destroy
-        page.remove_object(@activity)
-        page.open_dialog "Adjust calculations for "+@assessment.long_name, :partial => 'assessments/edit' unless @assessment.assessment_tools.empty?
+      @assessment = @activity.assessment
+      page.replace_object @activity.assessment, :partial => 'assessments/assessment'
+      if @assessment.activities.size > 1
+        page.open_dialog "Adjust calculations for "+@assessment.long_name, :partial => 'assessments/edit'
       else
-        page.error_dialog('Error occurred while removing the activity.')
+        page.close_dialog
       end
+    else
+      @assessment = @assessment_tool.assessment
+      @assessment_tool_names = @assessment.school_subject.assessment_tool_names
+      page.refresh_dialog  :partial => 'activities/new', :locals => {:activity => @activity}
     end
-  end  
-  
-  def scores
-    session[:redirect] = request.request_uri
-    @activity = Activity.find(params[:id])
-    @edit = (params[:edit] and params[:edit] == "true") ? true : false
   end
+end
+
+def edit
+  @activity = Activity.find_by_id(params[:id])
+  @activity.event = Event.new unless @activity.event
+  render :update do |page|
+    page.open_dialog "Change activity - #{@activity.title}", :partial => 'activities/edit'
+  end
+end
+
+def update
+  @activity = Activity.find_by_id(params[:id])
+  @activity.attributes = params[:activity]
+  if @activity.event.new_record?
+    if (@activity.event.start_time.blank? and @activity.event.end_time.blank?)
+      @activity.event = nil
+    else
+      event_series = EventSeries.new(:title => @activity.title, :description => @activity.description, :owner => current_user)
+      event_series.users = @activity.participants.collect(&:user)
+      @activity.event.event_series = event_series if (event_series.events << @activity.event)
+    end
+  end
+  if @activity.save
+    render :template => 'activities/update_success'
+  else
+    render :update do |page|
+      page.refresh_dialog  :partial => 'activities/edit'
+    end
+  end
+end
+
+def destroy
+  @activity = Activity.find(params[:id])
+  @assessment = @activity.assessment
+  render :update do |page|
+    if  @activity.destroy
+      page.remove_object(@activity)
+      page.open_dialog "Adjust calculations for "+@assessment.long_name, :partial => 'assessments/edit' unless @assessment.assessment_tools.empty?
+    else
+      page.error_dialog('Error occurred while removing the activity.')
+    end
+  end
+end  
+
+def scores
+  session[:redirect] = request.request_uri
+  @activity = Activity.find(params[:id])
+  @edit = (params[:edit] and params[:edit] == "true") ? true : false
+end
 end
