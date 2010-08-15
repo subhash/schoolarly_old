@@ -1,15 +1,11 @@
 sboa:
-  board: State
+  board: CBSE
   
 st_teresas:
-  board: State
-  fax: 
+  board: CBSE
   website: http://www.stteresas.com
 
 st_antonys:
-  board: State
+  board: CBSE
   fax: 123
   website: http://www.stantonys.com
-  
-paru_school:
-  board: State
