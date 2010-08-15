@@ -1,13 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  assessment_tool_type_id: 1
+  name: MyString1
   assessment_id: 1
-  ignore_worst: 1
   weightage: 9.99
 
 two:
-  assessment_tool_type_id: 1
+  name: MyString2
   assessment_id: 1
-  ignore_worst: 1
   weightage: 9.99

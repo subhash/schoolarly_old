@@ -3,11 +3,11 @@
 one:
   name: MyString
   term: 1
-  weight: 9.99
+  weightage: 9.99
   max_score: 9.99
 
 two:
   name: MyString
   term: 1
-  weight: 9.99
+  weightage: 9.99
   max_score: 9.99

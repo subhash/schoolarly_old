@@ -2,10 +2,8 @@
 
 one:
   name: MyString
-  school_subject_id: 
-  assessment_type_id: 
+  school_id: 
 
 two:
   name: MyString
-  school_subject_id: 
-  assessment_type_id: 
+  school_id: 

@@ -1,7 +1,15 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+one:
+  klass: one_A
+  weightage: 9.99
+  academic_year: st_teresas_year
+  assessment_type: one
+  max_score: 9.99
+
+two:
+  klass: two_B
+  weightage: 9.99
+  academic_year: st_teresas_year
+  assessment_type: one
+  max_score: 9.99
