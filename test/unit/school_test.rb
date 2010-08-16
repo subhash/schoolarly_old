@@ -20,12 +20,11 @@ class SchoolTest < ActiveSupport::TestCase
   end
   
   test "school can have many klasses" do
-    klass1 = Klass.new(:level => levels(:one), :division => "F")
-    klass2 = Klass.new(:level => levels(:two), :division => "G")
+    klass1 = Klass.new(:level => levels(:one), :division => "F", :school => @school)
+    klass2 = Klass.new(:level => levels(:two), :division => "G", :school => @school)
     assert_difference('@school.klasses.size', 2) do
-      @school.klasses << klass1
-      @school.klasses << klass2
-      @school.save
+      klass1.save
+      klass2.save
     end
     assert_difference('@school.klasses.size', -1) do
       klass1.destroy
