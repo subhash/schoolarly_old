@@ -11,14 +11,14 @@ student2_for_klass_with_students:
   admission_number: 2
   school: st_teresas
   klass: klass_with_students
-
-mary:
-  admission_number: 222
-  
-paru:
-  admission_number: 1
-  school: st_teresas
-  klass: one_A
+#
+#mary:
+#  admission_number: 222
+#  
+#paru:
+#  admission_number: 1
+#  school: st_teresas
+#  klass: one_A
   
 sboa_student:
   admission_number: 1
@@ -29,26 +29,25 @@ shenu:
   school: st_teresas
   roll_number: 52
   klass: one_A
-  #current_enrollment: shenu_one
-  
-reeny:
-  admission_number: 3
-  klass: two_B
-  school: st_teresas
-  papers: two_B_sanskrit
-  
-subhash:
-  admission_number: 2
-  school: st_antonys
-  
-admitted_with_profile:
-  school: paru_school
-  
-enrolled_with_profile:
-  school: paru_school
-  klass: paru_school_2B
-  #current_enrollment: enrolled_with_profile
-  
-student_without_school:
-  school: 
-
+ 
+#reeny:
+#  admission_number: 3
+#  klass: two_B
+#  school: st_teresas
+#  papers: two_B_sanskrit
+#  
+#subhash:
+#  admission_number: 2
+#  school: st_antonys
+#  
+#admitted_with_profile:
+#  school: paru_school
+#  
+#enrolled_with_profile:
+#  school: paru_school
+#  klass: paru_school_2B
+#  #current_enrollment: enrolled_with_profile
+#  
+#student_without_school:
+#  school: 
+#

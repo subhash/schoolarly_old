@@ -6,38 +6,38 @@ paper_for_klass_with_papers:
   school_subject: english
   teacher: sunil
   
-one_A_english_sunil:
-  klass: one_A
-  school_subject: english
-  teacher: sunil
-  
-one_A_malayalam_sunil:
-  klass: one_A
-  school_subject: malayalam
-  teacher: sunil
-
-four_D_malayalam_antony:
-  klass: four_D
-  school_subject: malayalam
-  teacher: teacher_antony
-  
-four_D_english_antony:
-  klass: four_D
-  school_subject: english
-  teacher: teacher_antony
-  
-unallotted_paper:
-  klass: one_A_of_sboa
-  school_subject: english
-
-one_A_tamil:
-  klass: one_A
-  school_subject: tamil
-  
-two_B_sanskrit:
-  klass: two_B
-  school_subject: sanskrit
-  teacher: treasa
+#one_A_english_sunil:
+#  klass: one_A
+#  school_subject: english
+#  teacher: sunil
+#  
+#one_A_malayalam_sunil:
+#  klass: one_A
+#  school_subject: malayalam
+#  teacher: sunil
+#
+#four_D_malayalam_antony:
+#  klass: four_D
+#  school_subject: malayalam
+#  teacher: teacher_antony
+#  
+#four_D_english_antony:
+#  klass: four_D
+#  school_subject: english
+#  teacher: teacher_antony
+#  
+#unallotted_paper:
+#  klass: one_A_of_sboa
+#  school_subject: english
+#
+#one_A_tamil:
+#  klass: one_A
+#  school_subject: tamil
+#  
+#two_B_sanskrit:
+#  klass: two_B
+#  school_subject: sanskrit
+#  teacher: treasa
   
 #two_B_malayalam:
 #  klass: two_B

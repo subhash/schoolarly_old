@@ -12,19 +12,19 @@ stTeresas:
   phone_landline: 123
   phone_mobile: 123
 
-teacher_antony:
-  user: teacher_antony
-  name: Antony
-  
-admitted_with_profile:
-  user: admitted_with_profile
-  name: Admitted
-  
-enrolled_with_profile:
-  user: enrolled_with_profile
-  name: Enrolled
-  
-student_without_school:
-  user: student_without_school
-  name: NoSchool
+#teacher_antony:
+#  user: teacher_antony
+#  name: Antony
+#  
+#admitted_with_profile:
+#  user: admitted_with_profile
+#  name: Admitted
+#  
+#enrolled_with_profile:
+#  user: enrolled_with_profile
+#  name: Enrolled
+#  
+#student_without_school:
+#  user: student_without_school
+#  name: NoSchool
  
