@@ -15,4 +15,7 @@ teacher_antony:
   
 no_school_teacher:
   qualifications: 'MA in English from my Uty'
+  
+no_school_teacher2:
+  qualifications: 'MSc in Physics from my Uty'
 

@@ -32,7 +32,17 @@ class SchoolTest < ActiveSupport::TestCase
   end
   
   test "school can have many teachers" do
-    
+    teacher1 = teachers(:no_school_teacher)
+    teacher2 = teachers(:no_school_teacher2)
+    teacher1.school = @school
+    teacher2.school = @school
+    assert_difference('@school.teachers.size', 2) do
+      teacher1.save
+      teacher2.save
+    end
+    assert_difference('@school.teachers.size', -1) do
+      @school.teachers.delete(teacher1)
+    end
   end
   
   test "school can have many subjects" do
@@ -41,7 +51,7 @@ class SchoolTest < ActiveSupport::TestCase
   
   # academic year done in academic_year_test
   
-  test "school-students association" do
+  test "school can have many students" do
     
   end
   
