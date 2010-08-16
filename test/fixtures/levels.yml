@@ -1,13 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: I
+  name: 1
   description: One
 
 two:
-    name: II
+    name: 2
     description: Two
     
 three:
-    name: III
+    name: 3
     description: Three

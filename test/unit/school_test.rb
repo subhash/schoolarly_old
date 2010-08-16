@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class SchoolTest < ActiveSupport::TestCase
-
+  
   def setup
     @user = users(:admin_st_teresas)
     @school = schools(:st_teresas)
@@ -18,5 +18,29 @@ class SchoolTest < ActiveSupport::TestCase
     assert @school.save
     assert_equal @user.person, @school
   end
-
+  
+  test "school can have many klasses" do
+    klass1 = Klass.new(:level => levels(:one), :division => "F")
+    klass2 = Klass.new(:level => levels(:two), :division => "G")
+    assert_difference('@school.klasses.size', 2) do
+      @school.klasses << klass1
+      @school.klasses << klass2
+    end
+  end
+  
+  test "school can have many teachers" do
+    
+  end
+  
+  test "school can have many subjects" do
+    
+  end
+  
+  # academic year done in academic_year_test
+  
+  test "school-students association" do
+    
+  end
+  
+  # assessment tool names in assessment_tool_name_test
 end
