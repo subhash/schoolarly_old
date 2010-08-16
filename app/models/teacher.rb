@@ -8,11 +8,6 @@ class Teacher < ActiveRecord::Base
     end
   end
   has_many :subjects, :through => :papers, :uniq => true, :order => 'name'
-  
-  def subjects_for_klass(klass_id)
-    self.papers.select{|paper| (paper.klass.id==klass_id) }.collect{|p| p.subject}
-  end
-
   has_many :owned_klasses, :class_name => 'Klass'
   has_one :academic_year, :through => :school, :order => "start_date DESC"
   
