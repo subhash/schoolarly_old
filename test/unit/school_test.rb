@@ -25,6 +25,10 @@ class SchoolTest < ActiveSupport::TestCase
     assert_difference('@school.klasses.size', 2) do
       @school.klasses << klass1
       @school.klasses << klass2
+      @school.save
+    end
+    assert_difference('@school.klasses.size', -1) do
+      klass1.destroy
     end
   end
   
