@@ -11,7 +11,10 @@ class AcademicYearTest < ActiveSupport::TestCase
   end
   
   test "school can have many academic years" do
-    assert_equal @stteresas.academic_years.size, 3
+    assert_difference('@stteresas.academic_years.size', 2) do
+      academic_year_1 = AcademicYear.create(:start_date => '2008-05-01', :end_date => '2009-04-30', :school => @stteresas)
+      academic_year_2 = AcademicYear.create(:start_date => '2009-05-01', :end_date => '2010-04-30', :school => @stteresas)
+    end
   end
   
   test "current academic year is the one with the latest start_date for the school" do

@@ -1,9 +1,4 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-st_teresas_year_1:
-  start_date: 2008-05-01
-  end_date: 2009-04-30
-  school: st_teresas
    
 sboa_year:
   start_date: 2010-05-01
@@ -19,8 +14,3 @@ st_antonys_year:
   start_date: 2010-05-01
   end_date: 2011-04-30
   school: st_antonys
-
-st_teresas_year_2:
-  start_date: 2009-05-01
-  end_date: 2010-04-30
-  school: st_teresas
