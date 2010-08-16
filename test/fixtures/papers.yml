@@ -1,5 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
+#To test "klass can be destroyed"
+paper_for_klass_with_papers:
+  klass: klass_with_papers
+  school_subject: english
+  teacher: sunil
+  
 one_A_english_sunil:
   klass: one_A
   school_subject: english

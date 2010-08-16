@@ -1,5 +1,16 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
+#To test "klass can be destroyed" & "klass-student relationship"
+student1_for_klass_with_students:
+  admission_number: 1
+  school: st_teresas
+  klass: klass_with_students
+
+#To test "klass can be destroyed" & "klass-student relationship"
+student2_for_klass_with_students:
+  admission_number: 2
+  school: st_teresas
+  klass: klass_with_students
 
 mary:
   admission_number: 222
