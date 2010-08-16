@@ -52,4 +52,8 @@ student_without_school:
   school: 
 student_without_school2:
   school:
+student_not_enrolled:
+  school: st_teresas
+  klass:
+  admission_number: 12345
 #

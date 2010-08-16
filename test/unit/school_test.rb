@@ -53,12 +53,17 @@ class SchoolTest < ActiveSupport::TestCase
   test "school can have many subjects" do
     school_subject1 = SchoolSubject.new(:subject => subjects(:maths), :school => @school)
     school_subject2 = SchoolSubject.new(:subject => subjects(:hindi), :school => @school)
-    assert_difference('@school.subjects.size', 2) do
-      school_subject1.save
-      school_subject2.save
+    assert_difference('@school.school_subjects.size', 2) do
+      assert_difference('@school.subjects.size', 2) do
+        school_subject1.save
+        school_subject2.save
+      end
     end
-    assert_difference('@school.subjects.size', -1) do
-      @school.subjects.delete(school_subject1.subject)
+    assert_difference('@school.school_subjects.size', -1) do
+      assert_difference('@school.subjects.size', -1) do
+        @school.subjects.delete(school_subject1.subject)
+        @school.save
+      end
     end
   end
   
@@ -81,6 +86,16 @@ class SchoolTest < ActiveSupport::TestCase
         @school.save
       end
     end 
+  end
+  
+  test "school students not enrolled" do
+    student1 = students(:student_not_enrolled)
+    school = student1.school
+    assert(school.students.not_enrolled.size > 0)
+    assert_difference('school.students.not_enrolled.size', -1) do
+      student1.klass = klasses(:one_A)
+      student1.save
+    end
   end
   
   # assessment tool names in assessment_tool_name_test
