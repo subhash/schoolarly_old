@@ -1,34 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 
-malayalam:
+st_teresas_malayalam:
   subject: malayalam
   school: st_teresas
 
-english:
+st_teresas_english:
   subject: english 
   school: st_teresas
-  
-maths:
-  subject: maths
-  school: st_teresas
-  
-hindi:
-  subject: hindi
-  school: st_teresas
-  
-physics:
-  subject: physics
-  school: st_teresas
-  
-chemistry:
-  subject: chemistry
-  school: st_teresas
-
-tamil:
-  subject: tamil
-  school: st_teresas
-  
-sanskrit:
-  subject: sanskrit
-  school: st_teresas
+ 
