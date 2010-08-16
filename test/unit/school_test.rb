@@ -37,12 +37,17 @@ class SchoolTest < ActiveSupport::TestCase
     teacher1.school = @school
     teacher2.school = @school
     assert_difference('@school.teachers.size', 2) do
-      teacher1.save
-      teacher2.save
+      assert_difference('@school.teacher_users.size', 2) do
+        teacher1.save
+        teacher2.save
+      end
     end
     assert_difference('@school.teachers.size', -1) do
-      @school.teachers.delete(teacher1)
-    end
+      assert_difference('@school.teacher_users.size', -1) do
+        @school.teachers.delete(teacher1)
+        @school.save
+      end
+    end 
   end
   
   test "school can have many subjects" do
