@@ -65,7 +65,22 @@ class SchoolTest < ActiveSupport::TestCase
   # academic year done in academic_year_test
   
   test "school can have many students" do
-    
+    student1 = students(:student_without_school)
+    student2 = students(:student_without_school2)
+    student1.school = @school
+    student2.school = @school
+    assert_difference('@school.students.size', 2) do
+      assert_difference('@school.student_users.size', 2) do
+        student1.save
+        student2.save
+      end
+    end
+    assert_difference('@school.students.size', -1) do
+      assert_difference('@school.student_users.size', -1) do
+        @school.students.delete(student1)
+        @school.save
+      end
+    end 
   end
   
   # assessment tool names in assessment_tool_name_test
