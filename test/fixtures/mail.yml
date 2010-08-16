@@ -1,13 +1,13 @@
-view_my_conv_mail:
-  user: sboa
-  message: sboa_message
-  conversation: sboa_mail_conv
-  trashed: 0
-  mailbox: sentbox
-  
-trashed_mail:
-  user: sboa
-  message: sboa_message
-  conversation: sboa_mail_conv
-  trashed: 1
-  mailbox: inbox
+#view_my_conv_mail:
+#  user: sboa
+#  message: sboa_message
+#  conversation: sboa_mail_conv
+#  trashed: 0
+#  mailbox: sentbox
+#  
+#trashed_mail:
+#  user: sboa
+#  message: sboa_message
+#  conversation: sboa_mail_conv
+#  trashed: 1
+#  mailbox: inbox
