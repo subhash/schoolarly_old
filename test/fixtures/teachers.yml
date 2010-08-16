@@ -1,17 +1,17 @@
 marykkutty:
   school: sboa
   
-v_subramaniam:
-  school: sboa    
+#v_subramaniam:
+#  school: sboa    
 
 sunil:
   school: st_teresas
  
-treasa:
-  school: st_teresas
+#treasa:
+#  school: st_teresas
 
-teacher_antony:
-  school: st_antonys
+#teacher_antony:
+#  school: st_antonys
   
 no_school_teacher:
   qualifications: 'MA in English from my Uty'

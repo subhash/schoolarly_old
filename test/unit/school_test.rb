@@ -46,7 +46,15 @@ class SchoolTest < ActiveSupport::TestCase
   end
   
   test "school can have many subjects" do
-    
+    school_subject1 = SchoolSubject.new(:subject => subjects(:maths), :school => @school)
+    school_subject2 = SchoolSubject.new(:subject => subjects(:hindi), :school => @school)
+    assert_difference('@school.subjects.size', 2) do
+      school_subject1.save
+      school_subject2.save
+    end
+    assert_difference('@school.subjects.size', -1) do
+      @school.subjects.delete(school_subject1.subject)
+    end
   end
   
   # academic year done in academic_year_test

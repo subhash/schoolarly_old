@@ -8,15 +8,15 @@ class UserTest < ActiveSupport::TestCase
     @shenu = users(:shenu)    
   end
   
-  test "shenu logs in" do    
-    assert_nil controller.session["user_credentials"]
-    assert UserSession.create(@shenu)
-    assert_equal controller.session["user_credentials"], @shenu.persistence_token
-  end
+#  test "shenu logs in" do    
+#    assert_nil controller.session["user_credentials"]
+#    assert UserSession.create(@shenu)
+#    assert_equal controller.session["user_credentials"], @shenu.persistence_token
+#  end
   
-  test "shenu is a student" do
+  test "user person test" do
     assert_equal @shenu.person, students(:shenu)
-    assert_equal users(:mary_kutty).person, teachers(:mary_kutty)
+    assert_equal users(:marykkutty).person, teachers(:marykkutty)
     assert_equal users(:sboa).person, schools(:sboa)
   end
   

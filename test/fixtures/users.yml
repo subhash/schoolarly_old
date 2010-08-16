@@ -26,14 +26,14 @@ sboa_student:
   perishable_token: <%= Authlogic::Random.friendly_token %>
   person: sboa_student (Student)  
   
-reeny:
-  email: reeny@schoolarly.com
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("reeny" + salt) %>
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-  person: reeny (Student)  
+#reeny:
+#  email: reeny@schoolarly.com
+#  password_salt: <%= salt = Authlogic::Random.hex_token %>
+#  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("reeny" + salt) %>
+#  persistence_token: <%= Authlogic::Random.hex_token %>
+#  single_access_token: <%= Authlogic::Random.friendly_token %>
+#  perishable_token: <%= Authlogic::Random.friendly_token %>
+#  person: reeny (Student)  
   
 sboa:
   email: sboa@schoolarly.com
@@ -44,14 +44,14 @@ sboa:
   perishable_token: <%= Authlogic::Random.friendly_token %>
   person: sboa (School)
 
-mary_kutty:
+marykkutty:
   email: mary_kutty@schoolarly.com
   password_salt: <%= salt = Authlogic::Random.hex_token %>
   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("marykutty" + salt) %>
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
   perishable_token: <%= Authlogic::Random.friendly_token %>
-  person: mary_kutty (Teacher)
+  person: marykkutty (Teacher)
   
 sunil:
   email: sunil@schoolarly.com
@@ -61,33 +61,33 @@ sunil:
   single_access_token: <%= Authlogic::Random.friendly_token %>
   perishable_token: <%= Authlogic::Random.friendly_token %>
   person: sunil (Teacher)
+#  
+#v_subramaniam:
+#  email: mary_kutty@schoolarly.com
+#  password_salt: <%= salt = Authlogic::Random.hex_token %>
+#  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("marykutty" + salt) %>
+#  persistence_token: <%= Authlogic::Random.hex_token %>
+#  single_access_token: <%= Authlogic::Random.friendly_token %>
+#  perishable_token: <%= Authlogic::Random.friendly_token %>
+#  person: v_subramaniam (Teacher)  
   
-v_subramaniam:
-  email: mary_kutty@schoolarly.com
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("marykutty" + salt) %>
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-  person: v_subramaniam (Teacher)  
-  
-treasa:
-  email: mary_kutty@schoolarly.com
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("marykutty" + salt) %>
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-  person: treasa (Teacher)  
-    
-parent_shenu:
-  email: shenus_parent@schoolarly.com
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("shenusparent" + salt) %>
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-  person: father_shenu (Parent)
+#treasa:
+#  email: mary_kutty@schoolarly.com
+#  password_salt: <%= salt = Authlogic::Random.hex_token %>
+#  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("marykutty" + salt) %>
+#  persistence_token: <%= Authlogic::Random.hex_token %>
+#  single_access_token: <%= Authlogic::Random.friendly_token %>
+#  perishable_token: <%= Authlogic::Random.friendly_token %>
+#  person: treasa (Teacher)  
+#    
+#parent_shenu:
+#  email: shenus_parent@schoolarly.com
+#  password_salt: <%= salt = Authlogic::Random.hex_token %>
+#  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("shenusparent" + salt) %>
+#  persistence_token: <%= Authlogic::Random.hex_token %>
+#  single_access_token: <%= Authlogic::Random.friendly_token %>
+#  perishable_token: <%= Authlogic::Random.friendly_token %>
+#  person: father_shenu (Parent)
 
 admin_st_teresas:
   email: admin_st_teresas@schoolarly.com
@@ -98,77 +98,77 @@ admin_st_teresas:
   perishable_token: <%= Authlogic::Random.friendly_token %>
   person: st_teresas (School)
   
-mary:
-  email: mary@schoolarly.com
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("mary" + salt) %>
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-  person: mary (Student)
-  
-teacher_antony:
-  email: antony@schoolarly.com
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("antony" + salt) %>
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-  person: teacher_antony (Teacher)  
-  
-paru_school:
-  email: paru_school@schoolarly.com
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("paru_school" + salt) %>
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-  person: paru_school (School)
-  
-admitted_with_profile:
-  email: admitted_with_profile@schoolarly.com
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("admitted_with_profile" + salt) %>
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-  person: admitted_with_profile (Student)
-  
-enrolled_with_profile:
-  email: enrolled_with_profile@schoolarly.com
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("enrolled_with_profile" + salt) %>
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-  person: enrolled_with_profile (Student)
-  
-student_without_school:
-  email: student_without_school@schoolarly.com
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("student_without_school" + salt) %>
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-  person: student_without_school (Student)
-  
-subhash:
-  email: subhash@schoolarly.com
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("antony" + salt) %>
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-  person: subhash (Student)
-  
-st_antonys:
-  email: admin_st_antonys@schoolarly.com
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("adminstantonys" + salt) %>
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-  person: st_antonys (School)
+#mary:
+#  email: mary@schoolarly.com
+#  password_salt: <%= salt = Authlogic::Random.hex_token %>
+#  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("mary" + salt) %>
+#  persistence_token: <%= Authlogic::Random.hex_token %>
+#  single_access_token: <%= Authlogic::Random.friendly_token %>
+#  perishable_token: <%= Authlogic::Random.friendly_token %>
+#  person: mary (Student)
+#  
+#teacher_antony:
+#  email: antony@schoolarly.com
+#  password_salt: <%= salt = Authlogic::Random.hex_token %>
+#  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("antony" + salt) %>
+#  persistence_token: <%= Authlogic::Random.hex_token %>
+#  single_access_token: <%= Authlogic::Random.friendly_token %>
+#  perishable_token: <%= Authlogic::Random.friendly_token %>
+#  person: teacher_antony (Teacher)  
+#  
+#paru_school:
+#  email: paru_school@schoolarly.com
+#  password_salt: <%= salt = Authlogic::Random.hex_token %>
+#  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("paru_school" + salt) %>
+#  persistence_token: <%= Authlogic::Random.hex_token %>
+#  single_access_token: <%= Authlogic::Random.friendly_token %>
+#  perishable_token: <%= Authlogic::Random.friendly_token %>
+#  person: paru_school (School)
+#  
+#admitted_with_profile:
+#  email: admitted_with_profile@schoolarly.com
+#  password_salt: <%= salt = Authlogic::Random.hex_token %>
+#  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("admitted_with_profile" + salt) %>
+#  persistence_token: <%= Authlogic::Random.hex_token %>
+#  single_access_token: <%= Authlogic::Random.friendly_token %>
+#  perishable_token: <%= Authlogic::Random.friendly_token %>
+#  person: admitted_with_profile (Student)
+#  
+#enrolled_with_profile:
+#  email: enrolled_with_profile@schoolarly.com
+#  password_salt: <%= salt = Authlogic::Random.hex_token %>
+#  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("enrolled_with_profile" + salt) %>
+#  persistence_token: <%= Authlogic::Random.hex_token %>
+#  single_access_token: <%= Authlogic::Random.friendly_token %>
+#  perishable_token: <%= Authlogic::Random.friendly_token %>
+#  person: enrolled_with_profile (Student)
+#  
+#student_without_school:
+#  email: student_without_school@schoolarly.com
+#  password_salt: <%= salt = Authlogic::Random.hex_token %>
+#  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("student_without_school" + salt) %>
+#  persistence_token: <%= Authlogic::Random.hex_token %>
+#  single_access_token: <%= Authlogic::Random.friendly_token %>
+#  perishable_token: <%= Authlogic::Random.friendly_token %>
+#  person: student_without_school (Student)
+#  
+#subhash:
+#  email: subhash@schoolarly.com
+#  password_salt: <%= salt = Authlogic::Random.hex_token %>
+#  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("antony" + salt) %>
+#  persistence_token: <%= Authlogic::Random.hex_token %>
+#  single_access_token: <%= Authlogic::Random.friendly_token %>
+#  perishable_token: <%= Authlogic::Random.friendly_token %>
+#  person: subhash (Student)
+#  
+#st_antonys:
+#  email: admin_st_antonys@schoolarly.com
+#  password_salt: <%= salt = Authlogic::Random.hex_token %>
+#  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("adminstantonys" + salt) %>
+#  persistence_token: <%= Authlogic::Random.hex_token %>
+#  single_access_token: <%= Authlogic::Random.friendly_token %>
+#  perishable_token: <%= Authlogic::Random.friendly_token %>
+#  person: st_antonys (School)
   
 no_school_teacher:
   email: no_school_teacher@schoolarly.com
