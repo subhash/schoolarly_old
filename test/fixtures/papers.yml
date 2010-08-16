@@ -26,9 +26,9 @@ paper_for_klass_with_papers:
 #  school_subject: english
 #  teacher: teacher_antony
 #  
-#unallotted_paper:
-#  klass: one_A_of_sboa
-#  school_subject: english
+unallotted_paper:
+  klass: one_A
+  school_subject: st_teresas_english
 #
 #one_A_tamil:
 #  klass: one_A

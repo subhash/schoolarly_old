@@ -11,6 +11,11 @@ klass_with_papers:
  level: one
  division: P
  school: st_teresas
+
+klass_without_papers:
+  level: one
+  division: G
+  school: st_teresas
  
 one_A:
   level: one

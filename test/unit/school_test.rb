@@ -98,5 +98,33 @@ class SchoolTest < ActiveSupport::TestCase
     end
   end
   
-  # assessment tool names in assessment_tool_name_test
+  test "school assessment_tool_names" do
+    atn_1 = AssessmentToolName.new(:name => "atn_1", :school => @school)
+    atn_2 = AssessmentToolName.new(:name => "atn_2", :school => @school)
+    assert_difference('@school.assessment_tool_names.size', 2) do
+      atn_1.save
+      atn_2.save
+    end
+    assert_difference('@school.assessment_tool_names.size', -1) do
+      atn_1.destroy
+    end
+  end
+  
+  test "school papers" do
+    assert_equal(@school.klasses.collect{|k|k.papers.size}.sum, @school.papers.size)
+    @klass = klasses(:klass_without_papers)
+    @paper = Paper.new(:school_subject => school_subjects(:st_teresas_english))
+    assert_difference('@school.unallotted_papers.size', 1) do
+      assert_difference('@school.papers.size', 1) do
+        @klass.papers << @paper
+      end
+    end
+    assert_difference('@school.unallotted_papers.size', -1) do
+      assert_difference('@school.papers.size', -1) do
+        @paper.destroy
+        @klass.save
+      end
+    end
+  end
+  
 end
