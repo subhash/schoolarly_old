@@ -9,10 +9,6 @@ class StudentTest < ActiveSupport::TestCase
     @mal = school_subjects(:st_teresas_malayalam) 
     @eng = school_subjects(:st_teresas_english)
     @three_c = Klass.create(:level => levels(:three), :division =>'C', :school => @stteresas)
-#    @paru = students(:paru)
-#    @shenu = students :shenu
-#    @mal = papers(:one_A_malayalam_sunil)
-#    @eng = papers(:one_A_english_sunil)
   end 
 
   test "user-student association" do
@@ -69,17 +65,22 @@ class StudentTest < ActiveSupport::TestCase
     end
   end
   
-#  test "student-subjects association" do
-#    @one_A =  klasses(:one_A)
-#    @shenu.klass = @one_A
-#    assert_difference('@shenu.papers.size', 2) do
-#      @shenu.papers << @eng
-#      @shenu.papers << @mal
-#      @shenu.save!
-#    end
-#    assert_difference('@shenu.reload.papers.size', -1) do
-#      @one_A.papers.destroy(@eng)
-#      @one_A.save!
-#    end
-#  end
+  test "named_scope - not_enrolled" do
+    student = Student.new(:school => @stteresas)
+    assert_difference('@stteresas.students.not_enrolled.size', 0) do
+      assert_difference('@stteresas.students.not_enrolled.size', 1) do
+        student.save! 
+      end
+      @three_c.students << student
+    end
+  end
+  
+  test "has many activities" do
+    
+  end
+  
+  test "has many scores through scores" do
+    
+  end
+  
 end
