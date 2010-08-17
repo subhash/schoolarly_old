@@ -19,6 +19,17 @@ class SchoolTest < ActiveSupport::TestCase
     assert_equal @user.person, @school
   end
   
+  test "school CRUD" do
+    user = users(:user_without_person)
+    school = School.new(:user => user)
+    assert_difference ('School.count') do
+      school.save
+    end  
+    assert_difference ('School.count', -1) do
+      school.destroy
+    end  
+  end
+  
   test "school can have many klasses" do
     klass1 = Klass.new(:level => levels(:one), :division => "F", :school => @school)
     klass2 = Klass.new(:level => levels(:two), :division => "G", :school => @school)

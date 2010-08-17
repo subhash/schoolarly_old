@@ -225,3 +225,13 @@ student2:
   perishable_token: <%= Authlogic::Random.friendly_token %>
   person: student2_for_klass_with_students (Student)
   person: no_school_teacher2 (Student)
+
+user_without_person:
+  email: user_without_person@schoolarly.com
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("student2" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  person: student2_for_klass_with_students (Student)
+  person:
