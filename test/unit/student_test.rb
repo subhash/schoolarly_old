@@ -6,11 +6,11 @@ class StudentTest < ActiveSupport::TestCase
     @stteresas = schools(:st_teresas)
     @mary = students(:mary)
     @student = students(:student_not_enrolled)
+    @mal = school_subjects(:st_teresas_malayalam) 
+    @eng = school_subjects(:st_teresas_english)
     @three_c = Klass.create(:level => levels(:three), :division =>'C', :school => @stteresas)
-#    @school = schools(:st_teresas)
 #    @paru = students(:paru)
 #    @shenu = students :shenu
-#    @klass = klasses(:two_B)
 #    @mal = papers(:one_A_malayalam_sunil)
 #    @eng = papers(:one_A_english_sunil)
   end 
@@ -55,19 +55,20 @@ class StudentTest < ActiveSupport::TestCase
     end
     assert_nil @student.reload.klass
   end
+
+  test "student has many papers & student has many subjects through papers" do
+    @student.klass = @three_c
+    @student.save!
+    assert_difference('@student.reload.subjects.size', 2) do
+      assert_difference('@student.reload.papers.size', 2) do
+        paper1 = Paper.create(:klass => @three_c, :school_subject  => @mal)
+        paper2 = Paper.create(:klass => @three_c, :school_subject  => @eng)
+        paper1.students << @student
+        paper2.students << @student
+      end      
+    end
+  end
   
-#  
-#  test "student-school association" do 
-#    assert_equal @paru.school, @school
-#    assert_difference('@school.students.size', -1) do 
-#      @school.students.delete(@paru)
-#      @school.save!
-#    end
-#    # TODO revisit the reload - why doesnt it work otherwise?
-#    @paru.reload
-#    assert_nil @paru.school
-#  end
-#  
 #  test "student-subjects association" do
 #    @one_A =  klasses(:one_A)
 #    @shenu.klass = @one_A
