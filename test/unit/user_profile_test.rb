@@ -3,16 +3,16 @@ require 'test_helper'
 class UserProfileTest < ActiveSupport::TestCase
   
   def setup
-    @paru = users(:paru)
+    @user = users(:user_without_profile)
     @stteresas = user_profiles(:stTeresas)
   end 
   
   test "profile belongs to user" do
-    assert_nil @paru.user_profile
+    assert_nil @user.user_profile
     assert_difference('UserProfile.count', 1) do
-      paru_profile = UserProfile.create(:name => 'Paru', :user => @paru)
-      @paru.user_profile = paru_profile
-      paru_profile.user = @paru
+      user_profile = UserProfile.create(:name => 'Paru', :user => @user)
+      @user.user_profile = user_profile
+      user_profile.user = @user
     end
   end
   

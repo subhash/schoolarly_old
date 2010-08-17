@@ -30,7 +30,10 @@ shenu:
   school: st_teresas
   roll_number: 52
   klass: one_A
- 
+
+student_without_profile:
+   school:
+   
 #reeny:
 #  admission_number: 3
 #  klass: two_B
