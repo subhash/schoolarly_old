@@ -1,12 +1,26 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  assessment_group_id: 1
-  subject_id: 1
+FA1_english:
+  assessment_group_id: FA1
+  subject: english
 
-
-two:
-  assessment_group_id: 1
-  subject_id: 1
-
+FA2_english:
+  assessment_group_id: FA2
+  subject: english
+  
+FA3_english:
+  assessment_group_id: FA3
+  subject: english
+  
+FA4_english:
+  assessment_group_id: FA4
+  subject: english
+  
+SA1_english:
+  assessment_group_id: SA1
+  subject: english
+  
+SA2_english:
+  assessment_group_id: SA2
+  subject: english
 

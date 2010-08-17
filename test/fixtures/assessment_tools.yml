@@ -1,11 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString1
+reading1:
+  name: Reading
   assessment_id: 1
   weightage: 9.99
 
-two:
+reading2:
   name: MyString2
   assessment_id: 1
   weightage: 9.99

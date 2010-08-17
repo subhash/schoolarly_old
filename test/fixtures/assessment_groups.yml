@@ -1,15 +1,37 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
+FA1:
   klass: one_A
-  weightage: 9.99
+  weightage: 10
   academic_year: st_teresas_year
-  assessment_type: one
-  max_score: 9.99
-
-two:
-  klass: two_B
-  weightage: 9.99
+  assessment_type: FA1
+  max_score: 20
+FA2:
+  klass: one_A
+  weightage: 10
   academic_year: st_teresas_year
-  assessment_type: one
-  max_score: 9.99
+  assessment_type: FA2
+  max_score: 20
+SA1:
+  klass: one_A
+  weightage: 20
+  academic_year: st_teresas_year
+  assessment_type: SA1
+  max_score: 80
+FA3:
+  klass: one_A
+  weightage: 10
+  academic_year: st_teresas_year
+  assessment_type: FA3
+  max_score: 20
+FA4:
+  klass: one_A
+  weightage: 10
+  academic_year: st_teresas_year
+  assessment_type: FA4
+  max_score: 20
+SA2:
+  klass: one_A
+  weightage: 40
+  academic_year: st_teresas_year
+  assessment_type: SA2
+  max_score: 80

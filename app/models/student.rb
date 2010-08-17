@@ -11,7 +11,6 @@ class Student < ActiveRecord::Base
   belongs_to :school
   belongs_to :klass
   has_and_belongs_to_many :papers
-  has_many :subjects, :through => :papers
   has_one :parent
   has_many :scores   do
     def for_activities(activity_ids) 
@@ -20,6 +19,11 @@ class Student < ActiveRecord::Base
   end
   has_many :activities, :through => :scores
   has_one :academic_year, :through => :school , :order => "start_date DESC"
+    
+  def subjects
+    return self.papers.collect(&:subject) 
+  end
+  
   def name
     user.name
   end
