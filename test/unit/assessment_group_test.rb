@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class AssessmentGroupTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
+
   def setup
     @one_A = klasses(:one_A)
     @level = levels(:one)

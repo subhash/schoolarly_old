@@ -20,11 +20,6 @@ class Student < ActiveRecord::Base
   end
   has_many :activities, :through => :scores
   has_one :academic_year, :through => :school , :order => "start_date DESC"
-  
-  def subjects
-    return self.papers.collect{|paper| paper.subject}  
-  end
-  
   def name
     user.name
   end
