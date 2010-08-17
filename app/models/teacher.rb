@@ -8,7 +8,7 @@ class Teacher < ActiveRecord::Base
 #      find :all , :conditions => ['papers.subject_id = ?', subject_id]
 #    end
 #  end
-  #has_many :subjects, :through => :papers, :uniq => true, :order => 'name'
+  has_many :subjects, :through => :papers, :uniq => true, :order => 'name'
   has_many :owned_klasses, :class_name => 'Klass'
   has_one :academic_year, :through => :school, :order => "start_date DESC"
   
