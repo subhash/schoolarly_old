@@ -241,4 +241,5 @@ user_without_person:
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
   perishable_token: <%= Authlogic::Random.friendly_token %>
-  person:
+  person_id: 0
+  person_type: ''
