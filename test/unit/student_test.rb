@@ -4,6 +4,9 @@ class StudentTest < ActiveSupport::TestCase
   def setup
     @user = users(:user_without_person)
     @stteresas = schools(:st_teresas)
+    @mary = students(:mary)
+    @student = students(:student_not_enrolled)
+    @three_c = Klass.create(:level => levels(:three), :division =>'C', :school => @stteresas)
 #    @school = schools(:st_teresas)
 #    @paru = students(:paru)
 #    @shenu = students :shenu
@@ -32,21 +35,27 @@ class StudentTest < ActiveSupport::TestCase
     student.save!
     assert_equal student.school, @stteresas
     assert @stteresas.students.include?(student)
+    assert_difference('@stteresas.students.size', -1) do 
+      @stteresas.students.delete(student)
+      @stteresas.save!
+    end
+    assert_nil student.reload.school
   end
 
-#  test "student belongs to klass" do
-#    assert_difference('@klass.reload.students.size', 2) do
-#      @shenu.klass = @klass
-#      @shenu.save!
-#      @klass.students << @paru
-#      @klass.save!
-#    end
-#    assert_difference('@klass.reload.students.size', -1) do
-#      @shenu.klass = nil
-#      @shenu.save!
-#    end
-#  end
-
+  test "student belongs to klass" do
+    assert_difference('@three_c.reload.students.size', 1) do
+      @student.klass = @three_c
+      @student.save!
+    end
+    @three_c.students << @mary
+    assert_equal @three_c, @mary.klass
+    assert_difference('@three_c.students.size', -1) do 
+      @three_c.students.delete(@student)
+      @three_c.save!
+    end
+    assert_nil @student.reload.klass
+  end
+  
 #  
 #  test "student-school association" do 
 #    assert_equal @paru.school, @school

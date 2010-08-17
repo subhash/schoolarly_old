@@ -3,11 +3,12 @@ class School < ActiveRecord::Base
   has_many :klasses , :order => ["level_id, division"]
   has_many :teachers 
   has_many :teacher_users, :through => :teachers, :source => :user
-  has_many :students do
-    def not_enrolled
-      find :all, :conditions => {:klass_id => nil}
-    end
-  end
+  has_many :students 
+#  do
+#    def not_enrolled
+#      find :all, :conditions => {:klass_id => nil}
+#    end
+#  end
   has_many :student_users, :through => :students, :source => :user
   has_many :school_subjects
   has_many :assessment_tool_names
