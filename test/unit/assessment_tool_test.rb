@@ -8,8 +8,8 @@ class AssessmentToolTest < ActiveSupport::TestCase
   end
   
   test "CRUD" do
-#    @klass.papers << Paper.create(:school_subject => @eng)
-#    assert_equal 6, @klass.assessments
+    @klass.papers << Paper.create(:school_subject => @eng)
+    assert_equal 6, @klass.reload.assessments.size
   end
   
 end
