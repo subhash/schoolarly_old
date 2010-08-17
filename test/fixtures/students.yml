@@ -11,10 +11,11 @@ student2_for_klass_with_students:
   admission_number: 2
   school: st_teresas
   klass: klass_with_students
-#
-#mary:
-#  admission_number: 222
-#  
+
+mary:
+  admission_number: 222
+  school: st_teresas
+   
 #paru:
 #  admission_number: 1
 #  school: st_teresas
