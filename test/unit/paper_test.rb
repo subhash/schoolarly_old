@@ -8,10 +8,14 @@ class PaperTest < ActiveSupport::TestCase
     @klass = Klass.create(:level => levels(:two), :division => 'G', :school => @school)
   end
   
-  test "klass-paper-relationship" do
+  test "klass-paper-assessments" do
+    paper =  Paper.new(:school_subject => @mal, :klass => @klass)
     assert_difference '@klass.reload.papers.size' do
-      Paper.create(:school_subject => @mal, :klass => @klass)
+      paper.save
     end
+    assert_equal paper.assessments.size, @klass.assessment_groups.size 
+    assert_equal paper.formative_assessments.size, @klass.assessment_groups.FA.size 
+    assert_equal paper.summative_assessments.size, @klass.assessment_groups.SA.size 
     @klass.school_subject_ids = [@mal.id, @eng.id]
     @klass.save!
     assert_equal @klass.assessments.size, (@klass.assessment_groups.size * 2)

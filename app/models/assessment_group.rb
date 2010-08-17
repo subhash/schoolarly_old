@@ -12,7 +12,7 @@ class AssessmentGroup < ActiveRecord::Base
   
   named_scope :SA, :joins => :assessment_type, :conditions => ["assessment_types.name like ? ", "SA%"]
   named_scope :FA, :joins => :assessment_type, :conditions => ["assessment_types.name like ? ", "FA%"]
-#  
+
 #  named_scope :for_year, lambda {|year|
 #    {:conditions =>{:academic_year_id => year.id}}
 #  }
