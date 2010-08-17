@@ -15,5 +15,7 @@ class AssessmentTest < ActiveSupport::TestCase
       assert_not_nil @klass.assessments.select{|a|a.subject == s.subject}
     end
     assert_equal @klass.assessments.size, (@klass.assessment_groups.size * 2)
+    assert_equal @klass.assessment_groups.size, @klass.assessments.for_subject(@mal.subject)
+    assert_equal (@klass.assessment_groups.size * 2), @klass.assessments.for_year(@klass.academic_year)
   end
 end
