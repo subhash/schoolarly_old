@@ -25,6 +25,7 @@ class KlassTest < ActiveSupport::TestCase
       three_c.school = @stteresas
       three_c.save!
     end
+    assert_equal AssessmentType.count, three_c.assessment_groups.size
     assert_difference('@stteresas.klasses.size', -1) do
       three_c.destroy
     end
