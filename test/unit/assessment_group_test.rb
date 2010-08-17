@@ -15,6 +15,8 @@ class AssessmentGroupTest < ActiveSupport::TestCase
       assert_not_nil ag.assessment_type
       assert ag.valid?
     end
+    three_c.destroy
+    assert_equal [], AssessmentGroup.find(:all , :conditions =>{:klass_id => three_c.id, :academic_year_id => three_c.academic_year.id})
   end
   
   test "validations" do
