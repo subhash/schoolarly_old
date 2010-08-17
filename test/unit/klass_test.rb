@@ -106,9 +106,9 @@ class KlassTest < ActiveSupport::TestCase
   end
   
   test "division should be unique for school-level combination" do
-  klass1 = Klass.create(:school => @stteresas, :level => @level, :division => 'A')
-  klass2 = Klass.new(:school => @stteresas, :level => @level, :division => 'A')
-  assert !klass2.valid?
-end
+    klass1 = Klass.create(:school => @stteresas, :level => @level, :division => 'A')
+    klass2 = Klass.new(:school => @stteresas, :level => @level, :division => 'A')
+    assert !klass2.valid?
+  end
 
 end
