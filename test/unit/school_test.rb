@@ -3,25 +3,26 @@ require 'test_helper'
 class SchoolTest < ActiveSupport::TestCase
   
   def setup
-    @user = users(:admin_st_teresas)
+    @user = users(:user_without_person)
     @school = schools(:st_teresas)
   end
   
-  test "school-user association" do        
-    @school.user = @user
-    assert @user.save!
-    assert_equal @user.person, @school
+  test "user-school association" do        
+    school = School.new
+    school.user = @user
+    assert school.save!
+    assert_equal @user.person, school
   end
   
-  test "user-school association" do    
-    @user.person = @school
-    assert @school.save
-    assert_equal @user.person, @school
+  test "school-user association" do  
+    school = School.new
+    @user.person = school
+    assert @user.save
+    assert_equal school.user, @user
   end
   
   test "school CRUD" do
-    user = users(:user_without_person)
-    school = School.new(:user => user)
+    school = School.new(:user => @user)
     assert_difference ('School.count') do
       school.save
     end  

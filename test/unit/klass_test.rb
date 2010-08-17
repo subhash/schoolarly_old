@@ -53,7 +53,7 @@ class KlassTest < ActiveSupport::TestCase
     assert_equal @klass_with_students, @student1.klass
     assert_equal @klass_with_students, @student2.klass
   end
- 
+  
   test "klass has many papers" do
     assert_equal 2, @klass_with_papers.papers.size    
     assert_equal @klass_with_papers, @paper1.klass
@@ -106,9 +106,9 @@ class KlassTest < ActiveSupport::TestCase
   end
   
   test "division should be unique for school-level combination" do
-    klass1 = Klass.create(:school => @stteresas, :level => @level, :division => 'A')
-    klass2 = Klass.new(:school => @stteresas, :level => @level, :division => 'A')
-    assert !klass2.valid?
-  end
-  
+  klass1 = Klass.create(:school => @stteresas, :level => @level, :division => 'A')
+  klass2 = Klass.new(:school => @stteresas, :level => @level, :division => 'A')
+  assert !klass2.valid?
+end
+
 end
