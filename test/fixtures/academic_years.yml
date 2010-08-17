@@ -10,6 +10,11 @@ st_teresas_year:
   end_date: 2011-04-30
   school: st_teresas
   
+st_teresas_year_old:
+  start_date: 2009-05-01
+  end_date: 2010-04-30
+  school: st_teresas
+  
 st_antonys_year:
   start_date: 2010-05-01
   end_date: 2011-04-30
