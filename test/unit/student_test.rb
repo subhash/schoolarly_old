@@ -14,7 +14,6 @@ class StudentTest < ActiveSupport::TestCase
     @reading_FA1_english1 = activities(:reading_FA1_english1)
     @reading_FA1_english2 = activities(:reading_FA1_english2)
     @classtest_FA1_english1 = activities(:classtest_FA1_english1)
-    @classtest_FA1_english2 = activities(:classtest_FA1_english2)
   end 
 
   test "user-student association" do
