@@ -55,6 +55,11 @@ class AssessmentTest < ActiveSupport::TestCase
     score3 = Score.create(:student => oneAstudent, :activity => activities(:classtest_FA1_english1), :score => 12)
     score4 = Score.create(:student => oneAstudent, :activity => activities(:classtest_FA1_english2), :score => 12)
     
+    reading_average = (score1.score/score1.max_score + score2.score/score2.max_score)/2 * @assessment.assessment_group.max_score
+    assert_equal reading_average, reading.average_score_for(oneAstudent)
+    classtest_average = (score3.score/score3.max_score + score4.score/score4.max_score)/2 * @assessment.assessment_group.max_score
+    assert_equal classtest_average, classtest.average_score_for(oneAstudent)
+    
     calculated_score = reading.average_score_for(oneAstudent)* reading.weightage/100 + classtest.average_score_for(oneAstudent)* classtest.weightage/100
     assert_not_nil calculated_score
     assert_equal calculated_score, @assessment.calculated_score_for(oneAstudent)
