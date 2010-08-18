@@ -32,7 +32,13 @@ class ActivityTest < ActiveSupport::TestCase
   end
   
   test "call backs" do
-    
+    at1 = assessment_tools(:reading_FA1_english)
+    at1.activities.each do |a|
+      a.destroy
+    end
+    assert_raise ActiveRecord::RecordNotFound do
+      at1.reload
+    end
   end
   
 end
