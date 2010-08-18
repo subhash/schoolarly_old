@@ -1,11 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-reading1:
+reading_FA1_english:
   name: Reading
-  assessment_id: 1
+  assessment: FA1_english
   weightage: 9.99
 
-reading2:
-  name: MyString2
-  assessment_id: 1
+classtest_FA1_english:
+  name: ClassTest
+  assessment: FA1_english
   weightage: 9.99

@@ -1,13 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  assessment_tool_id: 1
-  description: MyString
-  max_score: 9.99
-  event_id: 1
+reading_FA1_english1:
+  assessment_tool: reading_FA1_english
 
-two:
-  assessment_tool_id: 1
-  description: MyString
-  max_score: 9.99
-  event_id: 1
+reading_FA1_english2:
+  assessment_tool: reading_FA1_english
+  
+classtest_FA1_english1:
+  assessment_tool: classtest_FA1_english
+
+classtest_FA1_english2:
+  assessment_tool: classtest_FA1_english

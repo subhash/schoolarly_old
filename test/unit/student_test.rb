@@ -5,10 +5,16 @@ class StudentTest < ActiveSupport::TestCase
     @user = users(:user_without_person)
     @stteresas = schools(:st_teresas)
     @mary = students(:mary)
+    @oneAstudent = students(:oneA_student)
     @student = students(:student_not_enrolled)
     @mal = school_subjects(:st_teresas_malayalam) 
     @eng = school_subjects(:st_teresas_english)
     @three_c = Klass.create(:level => levels(:three), :division =>'C', :school => @stteresas)
+    @klass = klasses(:one_A)
+    @reading_FA1_english1 = activities(:reading_FA1_english1)
+    @reading_FA1_english2 = activities(:reading_FA1_english2)
+    @classtest_FA1_english1 = activities(:classtest_FA1_english1)
+    @classtest_FA1_english2 = activities(:classtest_FA1_english2)
   end 
 
   test "user-student association" do
@@ -75,11 +81,17 @@ class StudentTest < ActiveSupport::TestCase
     end
   end
   
-  test "has many activities" do
-    
-  end
+#  test "has many scores" do
+#    assert_difference('@oneAstudent.reload.scores.size', 3) do
+#      assert_difference('@oneAstudent.reload.scores.for_activities([@reading_FA1_english1.id, @reading_FA1_english2.id]).size', 2) do
+#        score1 = Score.create(:student => @oneAstudent, :activity => @reading_FA1_english1, :score => 10)
+#        score2 = Score.create(:student => @oneAstudent, :activity => @reading_FA1_english2, :score => 11)
+#        score3 = Score.create(:student => @oneAstudent, :activity => @classtest_FA1_english1, :score => 12)
+#      end
+#    end
+#  end
   
-  test "has many scores through scores" do
+  test "has many activities through scores" do
     
   end
   
