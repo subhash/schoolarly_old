@@ -15,14 +15,14 @@ class Assessment < ActiveRecord::Base
   named_scope :for_subject, lambda {|subject|
     {:conditions =>{:subject_id => subject.id}}
   }
+#  
+#  named_scope :for_year, lambda {|year|
+#    {:joins => :assessment_group, :conditions => ["assessment_groups.academic_year_id = ?", year.id]}
+#  }
   
-  named_scope :for_year, lambda {|year|
-    {:joins => :assessment_group, :conditions => ["assessment_groups.academic_year_id = ?", year.id]}
-  }
-  
-  named_scope :for_type, lambda {|type|
-    {:joins => :assessment_group, :conditions => ["assessment_groups.assessment_type_id = ?",type.id]}
-  }
+#  named_scope :for_type, lambda {|type|
+#    {:joins => :assessment_group, :conditions => ["assessment_groups.assessment_type_id = ?",type.id]}
+#  }
   
   def weightage_summation   
     if assessment_tools.size > 0

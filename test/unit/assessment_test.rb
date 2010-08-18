@@ -16,6 +16,5 @@ class AssessmentTest < ActiveSupport::TestCase
     end
     assert_equal @klass.assessments.size, (@klass.assessment_groups.size * 2)
     assert_equal @klass.assessment_groups.size, @klass.assessments.for_subject(@mal.subject).size
-#    assert_equal (@klass.assessment_groups.size * 2), @klass.assessments.for_year(@klass.academic_year).size
   end
 end
