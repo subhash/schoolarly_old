@@ -21,7 +21,7 @@ class ActivitiesController < ApplicationController
     else
       event_series = EventSeries.new(:title => "#{@assessment_tool.assessment.long_name} : #{@activity.name}", :description => @activity.description, :owner => current_user)
       event_series.users = @activity.assessment_tool.assessment.current_participants.collect(&:user)
-      @activity.event.event_series = event_series if (event_series.events << @activity.event)
+      @activity.event.event_series = event_series 
     end
   render :update do |page|
     if @activity.save
@@ -57,7 +57,7 @@ def update
     else
       event_series = EventSeries.new(:title => @activity.title, :description => @activity.description, :owner => current_user)
       event_series.users = @activity.participants.collect(&:user)
-      @activity.event.event_series = event_series if (event_series.events << @activity.event)
+      @activity.event.event_series = event_series
     end
   end
   if @activity.save
