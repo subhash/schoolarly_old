@@ -17,4 +17,19 @@ class AssessmentTest < ActiveSupport::TestCase
     assert_equal @klass.assessments.size, (@klass.assessment_groups.size * 2)
     assert_equal @klass.assessment_groups.size, @klass.assessments.for_subject(@mal.subject).size
   end
+  
+  test "weightage validations" do
+    a = assessments(:FA1_english)
+    at1 = a.assessment_tools.first
+    at2 = a.assessment_tools.second
+    at1.weightage += 10
+    assert_raise ActiveRecord::RecordInvalid do
+      a.update_attributes :assessment_tools_attributes => {0 => {:id => at1.id, :weightage => at1.weightage} }
+      a.save!
+    end
+    at2.weightage -= 10
+    a.update_attributes :assessment_tools_attributes => {0 => {:id => at1.id, :weightage => at1.weightage}, 1 => {:id => at2.id, :weightage => at2.weightage} }
+    assert a.save!
+  end
+  
 end

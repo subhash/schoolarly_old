@@ -12,7 +12,7 @@ class AssessmentToolTest < ActiveSupport::TestCase
     assert_equal 6, @klass.reload.assessments.size
     @klass.assessments.each do |a|
       assert_difference 'a.reload.assessment_tools.size' do
-        AssessmentTool.create(:assessment => a, :name => "Reading", :weightage => 100, :best_of => 1)
+        tool = AssessmentTool.create(:assessment => a, :name => "Reading", :weightage => 100, :best_of => 1)
       end
     end
     @klass.assessments.each do |a|
@@ -20,6 +20,14 @@ class AssessmentToolTest < ActiveSupport::TestCase
         a.assessment_tools.first.destroy
       end
     end
+  end
+  
+  test "validations" do
+    at = assessment_tools(:reading_FA1_english)
+    at.weightage = 110
+    assert_raise ActiveRecord::RecordInvalid do
+      at.save!
+    end    
   end
   
 end

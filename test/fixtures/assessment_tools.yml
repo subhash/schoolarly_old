@@ -3,9 +3,9 @@
 reading_FA1_english:
   name: Reading
   assessment: FA1_english
-  weightage: 9.99
+  weightage: 50
 
 classtest_FA1_english:
   name: ClassTest
   assessment: FA1_english
-  weightage: 9.99
+  weightage: 50
