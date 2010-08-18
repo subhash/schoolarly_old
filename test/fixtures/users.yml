@@ -1,4 +1,12 @@
-
+oneA_student_user:
+  email: shenuja@schoolarly.com
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("shenu" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  person: oneA_student (Student)
+  
 shenu:
   email: shenuja@schoolarly.com
   password_salt: <%= salt = Authlogic::Random.hex_token %>

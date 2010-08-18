@@ -1,35 +1,29 @@
 FA1:
- id: 1
  name: FA1
  term: 1
  max_score: 20
  weightage: 10
 FA2:
- id: 2
  name: FA2
  term: 1
  max_score: 20
  weightage: 10
 SA1:
- id: 3
  name: SA1
  term: 1
  max_score: 80
  weightage: 20
 FA3:
- id: 4
  name: FA3
  term: 2
  max_score: 20
  weightage: 10
 FA4:
- id: 5
  name: FA4
  term: 2
  max_score: 20
  weightage: 10
 SA2:
- id: 6
  name: SA2
  term: 2
  max_score: 80

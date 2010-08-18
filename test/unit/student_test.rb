@@ -81,15 +81,15 @@ class StudentTest < ActiveSupport::TestCase
     end
   end
   
-#  test "has many scores" do
-#    assert_difference('@oneAstudent.reload.scores.size', 3) do
-#      assert_difference('@oneAstudent.reload.scores.for_activities([@reading_FA1_english1.id, @reading_FA1_english2.id]).size', 2) do
-#        score1 = Score.create(:student => @oneAstudent, :activity => @reading_FA1_english1, :score => 10)
-#        score2 = Score.create(:student => @oneAstudent, :activity => @reading_FA1_english2, :score => 11)
-#        score3 = Score.create(:student => @oneAstudent, :activity => @classtest_FA1_english1, :score => 12)
-#      end
-#    end
-#  end
+  test "has many scores" do
+    assert_difference('@oneAstudent.reload.scores.size', 3) do
+      assert_difference('@oneAstudent.reload.scores.for_activities([@reading_FA1_english1.id, @reading_FA1_english2.id]).size', 2) do
+        score1 = Score.create(:student => @oneAstudent, :activity => @reading_FA1_english1, :score => 10)
+        score2 = Score.create(:student => @oneAstudent, :activity => @reading_FA1_english2, :score => 11)
+        score3 = Score.create(:student => @oneAstudent, :activity => @classtest_FA1_english1, :score => 12)
+      end
+    end
+  end
   
   test "has many activities through scores" do
     
