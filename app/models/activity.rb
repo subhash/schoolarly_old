@@ -13,7 +13,7 @@ class Activity < ActiveRecord::Base
   
   has_many :students_with_scores, :through => :scores, :source => :student
   
-  validates_numericality_of :max_score
+  validates_numericality_of :max_score, :greater_than_or_equal_to => 0
   
   after_destroy :adjust_best_of, :unless => :assessment_tool_empty? 
   after_destroy :destroy_event

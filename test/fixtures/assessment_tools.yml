@@ -4,8 +4,10 @@ reading_FA1_english:
   name: Reading
   assessment: FA1_english
   weightage: 50
+  best_of: 2
 
 classtest_FA1_english:
   name: ClassTest
   assessment: FA1_english
   weightage: 50
+  best_of: 2
