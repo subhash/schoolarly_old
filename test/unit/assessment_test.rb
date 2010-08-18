@@ -16,6 +16,9 @@ class AssessmentTest < ActiveSupport::TestCase
     end
     assert_equal @klass.assessments.size, (@klass.assessment_groups.size * 2)
     assert_equal @klass.assessment_groups.size, @klass.assessments.for_subject(@mal.subject).size
+    @klass.assessment_groups.each do |a|
+      assert !a.destroyable?
+    end
   end
   
   test "weightage validations" do
@@ -32,4 +35,12 @@ class AssessmentTest < ActiveSupport::TestCase
     assert a.save!
   end
   
+  
+  test "named scopes" do
+    a = assessments(:FA1_english)
+    klass = a.klass
+    assert klass.assessments.for_subject(subjects(:english)).include?(a)
+    assert a.fa?
+    assert !a.sa?
+  end
 end
