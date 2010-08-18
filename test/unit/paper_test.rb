@@ -26,6 +26,18 @@ class PaperTest < ActiveSupport::TestCase
     end
   end
   
+  test "destroy" do
+    @klass.papers <<  Paper.create(:school_subject => @mal)
+    @klass.save
+        @klass.papers.each do |paper|
+          paper.destroy
+        end
+    @klass.save
+    @klass.reload.assessment_groups.each do |a|
+      assert_equal 0, a.assessments.size
+    end
+  end
+  
   test "invalid papers" do
     assert_raise ActiveRecord::RecordInvalid do
       Paper.new.save!

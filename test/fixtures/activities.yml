@@ -6,9 +6,12 @@ reading_FA1_english1:
 
 reading_FA1_english2:
   assessment_tool: reading_FA1_english
+  max_score: 20
   
 classtest_FA1_english1:
   assessment_tool: classtest_FA1_english
+  max_score: 20
 
 classtest_FA1_english2:
   assessment_tool: classtest_FA1_english
+  max_score: 20
