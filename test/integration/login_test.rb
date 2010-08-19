@@ -4,8 +4,8 @@ class LoginTest < ActionController::IntegrationTest
   
   def setup
     @school = schools(:st_teresas)
-    @school2 = schools(:gps)
   end
+  
   def login(email, password)
     visit root_path
     click_link 'Login'
