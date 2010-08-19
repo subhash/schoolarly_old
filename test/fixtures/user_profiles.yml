@@ -15,7 +15,6 @@ stTeresas:
 oneA_student_user:
   user: oneA_student_user
   name: oneA_student_user
-
   
 shenu:
   user: shenu
@@ -24,10 +23,6 @@ shenu:
 paru:
   user: paru
   name: paru
-  
-user_without_profile:
-  user: user_without_profile
-  name: user_without_profile
   
 sboa_student:
   user: sboa_student
@@ -52,7 +47,6 @@ treasa:
 rose:
   user: rose
   name: St. Teresas
-
 
 st_teresas:
   user: st_teresas
