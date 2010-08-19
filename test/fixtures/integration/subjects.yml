@@ -1,0 +1,34 @@
+social: 
+  name: Social Science
+chemistry: 
+  name: Chemistry
+it: 
+  name: IT
+biology: 
+  name: Biology
+history: 
+  name: History
+english: 
+  name: English
+literature: 
+  name: Literature
+malayalam: 
+  name: Malayalam
+economics: 
+  name: Economics
+hindi: 
+  name: Hindi
+commerce: 
+  name: Commerce
+french: 
+  name: French
+computer: 
+  name: Computer Science
+sanskrit: 
+  name: Sanskrit
+physics: 
+  name: Physics
+maths: 
+  name: Mathematics
+science: 
+  name: Science

@@ -1,0 +1,187 @@
+stteresas:
+ name: St Teresas 
+ address_line_1: 
+ address_line_2:
+ city: Kochi
+ state: Kerala
+ country: India
+ pincode: 682011
+ phone_landline: 
+ phone_mobile: 
+ user: stteresas
+stantonys:
+ name: St Antonys
+ address_line_1: 
+ address_line_2:
+ city: Kochi
+ state: Kerala
+ country: India
+ pincode:
+ phone_landline: 
+ phone_mobile: 
+ user: stantonys
+gps:
+ name: Global Public School 
+ address_line_1: OEN Jn
+ address_line_2: Chottanikkara Road
+ city: Kochi
+ state: Kerala
+ country: India
+ pincode: 682038
+ phone_landline: 0484-2713745
+ phone_mobile: 
+ user: gps
+choice:
+ name: Choice International 
+ address_line_1: 
+ address_line_2:
+ city: Kochi
+ state: Kerala
+ country: India
+ pincode:
+ phone_landline: 
+ phone_mobile: 
+ user: choice
+vibgyor:
+ name: VIBGYOR
+ user: vibgyor
+nhps:
+ name: New Horizon Public School 
+ user: nhps
+ryan:
+ name: Ryan International
+ user: ryan
+gear:
+ name: Gear International
+ user: gear
+bvm:
+ name: Bhavans Vidya Mandir
+ user: bvm
+mary:
+ name: Mary K Thomas
+ address_line_1: 
+ address_line_2:
+ city: Kochi
+ state: Kerala
+ country: India
+ pincode: 682011
+ phone_landline: 
+ phone_mobile: 
+ user: mary
+subramaniam:
+ name: Subramaniam
+ user: subramaniam
+sunil:
+ name: P. Sunil
+ user: sunil
+treasa:
+ name: Treasa David
+ user: treasa
+antony:
+ name: Antony Mathew
+ user: antony
+anitha:
+ name: Anitha S
+ user: anitha
+christabelle:
+ name: Christabelle
+ user: christabelle
+catherine:
+ name: Catherine
+ user: catherine
+anju:
+ name: Anju
+ user: anju
+anna:
+ name: Anna
+ user: anna
+alice:
+ name: Alice
+ user: alice
+sudha:
+ name: Sudha
+ user: sudha
+betty:
+ name: Betty B
+ user: betty
+shilpa:
+ name: Shilpa David
+ user: shilpa
+helen:
+ name: Helen Mathew
+ user: helen
+usha:
+ name: Usha S
+ user: usha
+divya:
+ name: Divya P
+ user: divya
+raechal:
+ name: Raechal Mathew
+ user: raechal
+roselin:
+ name: Roselin Joseph
+ user: roselin
+preethi:
+ name: Preethi M
+ user: preethi
+annie:
+ name: Annie Abraham
+ user: annie
+arti:
+ name: Arti Rajiv
+ user: arti
+coonie:
+ name: Coonie Dsilva
+ user: coonie
+reeny:
+ name: Reeny George
+ user: reeny
+shanthi:
+ name: Shanthi Mathew
+ user: shanthi
+sareena:
+ name: Sareena Sara Jacob
+ user: sareena
+reshma:
+ name: Reshma Moses
+ user: reshma
+babitha:
+ name: Babitha J
+ user: babitha
+sumina:
+ name: Sumina Mary John
+ user: sumina
+sheena:
+ name: Sheena Jacob
+ user: sheena
+smitha:
+ name: Smitha Varma
+ user: smitha
+christina:
+ name: Christina Baby
+ user: christina
+cisy:
+ name: Cisy Sebastian
+ user: cisy
+teena:
+ name: Teena M
+ user: teena
+tarana:
+ name: Tarana Salim
+ user: tarana
+madhubala:
+ name: Madhubala F
+ user: madhubala
+priya:
+ name: Priya N
+ user: priya
+chithra:
+ name: Chithra K
+ user: chithra
+nithya:
+ name: Nithya Raman
+ user: nithya
+vidya:
+ name: Vidya Praveen
+ user: vidya

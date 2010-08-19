@@ -1,0 +1,81 @@
+--- 
+assessment_tools_007: 
+  best_of: "1"
+  name: Exam
+  updated_at: 2010-08-19 09:50:33
+  id: "7"
+  assessment_id: "23"
+  weightage: "100.00"
+  created_at: 2010-08-19 09:50:33
+assessment_tools_008: 
+  best_of: "1"
+  name: Exam
+  updated_at: 2010-08-19 09:50:33
+  id: "8"
+  assessment_id: "24"
+  weightage: "100.00"
+  created_at: 2010-08-19 09:50:33
+assessment_tools_009: 
+  best_of: "1"
+  name: Exam
+  updated_at: 2010-08-19 09:50:34
+  id: "9"
+  assessment_id: "29"
+  weightage: "100.00"
+  created_at: 2010-08-19 09:50:34
+assessment_tools_010: 
+  best_of: "1"
+  name: Exam
+  updated_at: 2010-08-19 09:50:34
+  id: "10"
+  assessment_id: "30"
+  weightage: "100.00"
+  created_at: 2010-08-19 09:50:34
+assessment_tools_001: 
+  best_of: "1"
+  name: Exam
+  updated_at: 2010-08-19 09:50:31
+  id: "1"
+  assessment_id: "5"
+  weightage: "100.00"
+  created_at: 2010-08-19 09:50:31
+assessment_tools_002: 
+  best_of: "1"
+  name: Exam
+  updated_at: 2010-08-19 09:50:32
+  id: "2"
+  assessment_id: "6"
+  weightage: "100.00"
+  created_at: 2010-08-19 09:50:32
+assessment_tools_003: 
+  best_of: "1"
+  name: Exam
+  updated_at: 2010-08-19 09:50:32
+  id: "3"
+  assessment_id: "11"
+  weightage: "100.00"
+  created_at: 2010-08-19 09:50:32
+assessment_tools_004: 
+  best_of: "1"
+  name: Exam
+  updated_at: 2010-08-19 09:50:32
+  id: "4"
+  assessment_id: "12"
+  weightage: "100.00"
+  created_at: 2010-08-19 09:50:32
+assessment_tools_005: 
+  best_of: "1"
+  name: Exam
+  updated_at: 2010-08-19 09:50:33
+  id: "5"
+  assessment_id: "17"
+  weightage: "100.00"
+  created_at: 2010-08-19 09:50:33
+assessment_tools_006: 
+  best_of: "1"
+  name: Exam
+  updated_at: 2010-08-19 09:50:33
+  id: "6"
+  assessment_id: "18"
+  weightage: "100.00"
+  created_at: 2010-08-19 09:50:33

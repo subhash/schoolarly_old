@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+gps_9A_english:
+  klass: 9A
+  school_subject: gps_english
+  
+gps_9A_malayalam:
+  klass: 9A
+  school_subject: gps_malayalam
+
+gps_9A_maths:
+  klass: 9A
+  school_subject: gps_maths
+  
+gps_9A_science:
+  klass: 9A
+  school_subject: gps_science
+  
+gps_9A_social:
+  klass: 9A
+  school_subject: gps_social

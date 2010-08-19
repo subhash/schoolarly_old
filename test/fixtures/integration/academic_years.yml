@@ -1,0 +1,36 @@
+stteresas:
+  school: stteresas
+  start_date: 2010-05-01
+  end_date: 2011-04-30
+stantonys:
+  school: stantonys
+  start_date: 2010-05-01
+  end_date: 2011-04-30
+gps:
+  school: gps
+  start_date: 2010-05-01
+  end_date: 2011-04-30
+choice:
+  school: choice
+  start_date: 2010-05-01
+  end_date: 2011-04-30
+vibgyor:
+  school: vibgyor
+  start_date: 2010-05-01
+  end_date: 2011-04-30
+nhps:
+  school: nhps
+  start_date: 2010-05-01
+  end_date: 2011-04-30
+ryan:
+  school: ryan
+  start_date: 2010-05-01
+  end_date: 2011-04-30
+gear:
+  school: gear
+  start_date: 2010-05-01
+  end_date: 2011-04-30
+bvm:
+  school: bvm
+  start_date: 2010-05-01
+  end_date: 2011-04-30

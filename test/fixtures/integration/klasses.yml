@@ -1,0 +1,143 @@
+1A:
+  id: 1
+  level_id: 1
+  division: A
+  school_id: 3
+  teacher_id: 1
+1B:
+  id: 2
+  level_id: 1
+  division: B
+  school_id: 3
+  teacher_id: 2
+1C:
+  id: 3
+  level_id: 1
+  division: C
+  school_id: 3
+  teacher_id: 3
+2A:
+  id: 4
+  level_id: 2
+  division: A
+  school_id: 3
+2B:
+  id: 5
+  level_id: 2
+  division: B
+  school_id: 3
+2C:
+  id: 6
+  level_id: 2
+  division: C
+  school_id: 3
+3A:
+  id: 7
+  level_id: 3
+  division: A
+  school_id: 3
+3B:
+  id: 8
+  level_id: 3
+  division: B
+  school_id: 3
+3C:
+  id: 9
+  level_id: 3
+  division: C
+  school_id: 3
+4A:
+  id: 10
+  level_id: 4
+  division: A
+  school_id: 3
+4B:
+  id: 11
+  level_id: 4
+  division: B
+  school_id: 3
+5A:
+  id: 12
+  level_id: 5
+  division: A
+  school_id: 3
+5B:
+  id: 13
+  level_id: 5
+  division: B
+  school_id: 3
+6A:
+  id: 14
+  level_id: 6
+  division: A
+  school_id: 3
+7A:
+  id: 15
+  level_id: 7
+  division: A
+  school_id: 3
+8A:
+  id: 16
+  level_id: 8
+  division: A
+  school_id: 3
+9A:
+  id: 17
+  level_id: 9
+  division: A
+  school_id: 3
+9B:
+  id: 18
+  level_id: 9
+  division: B
+  school_id: 3
+9C:
+  id: 19
+  level_id: 9
+  division: C
+  school_id: 3
+9D:
+  id: 20
+  level_id: 9
+  division: D
+  school_id: 3
+9E:
+  id: 21
+  level_id: 9
+  division: E
+  school_id: 3
+10A:
+  id: 22
+  level_id: 10
+  division: A
+  school_id: 3
+10B:
+  id: 23
+  level_id: 10
+  division: B
+  school_id: 3
+10C:
+  id: 24
+  level_id: 10
+  division: C
+  school_id: 3
+10D:
+  id: 25
+  level_id: 10
+  division: D
+  school_id: 3
+10E:
+  id: 26
+  level_id: 10
+  division: E
+  school_id: 3
+11A:
+  id: 27
+  level_id: 11
+  division: A
+  school_id: 3
+12A:
+  id: 28
+  level_id: 12
+  division: A
+  school_id: 3

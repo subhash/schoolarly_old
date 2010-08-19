@@ -1,0 +1,48 @@
+1:
+ assessment_tool_name_id: 1
+ school_subject_id: 1
+2:
+ assessment_tool_name_id: 5
+ school_subject_id: 1
+3:
+ assessment_tool_name_id: 3
+ school_subject_id: 1
+4:
+ assessment_tool_name_id: 6
+ school_subject_id: 2
+5:
+ assessment_tool_name_id: 10
+ school_subject_id: 2
+6:
+ assessment_tool_name_id: 11
+ school_subject_id: 3
+7:
+ assessment_tool_name_id: 6
+ school_subject_id: 4
+8:
+ assessment_tool_name_id: 7
+ school_subject_id: 6
+9:
+ assessment_tool_name_id: 9
+ school_subject_id: 6
+10:
+ assessment_tool_name_id: 2
+ school_subject_id: 7
+11:
+ assessment_tool_name_id: 7
+ school_subject_id: 7
+12:
+ assessment_tool_name_id: 4
+ school_subject_id: 7
+13:
+ assessment_tool_name_id: 4
+ school_subject_id: 8
+14:
+ assessment_tool_name_id: 7
+ school_subject_id: 8
+15:
+ assessment_tool_name_id: 8
+ school_subject_id: 9
+16:
+ assessment_tool_name_id: 9
+ school_subject_id: 9

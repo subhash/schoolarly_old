@@ -1,0 +1,27 @@
+gps_english:
+ school: gps
+ subject: english
+gps_malayalam:
+ school: gps
+ subject: malayalam
+gps_hindi:
+ school: gps
+ subject: hindi
+gps_french:
+ school: gps
+ subject: french
+gps_sanskrit:
+ school: gps
+ subject: sanskrit
+gps_maths:
+ school: gps
+ subject: maths
+gps_science:
+ school: gps
+ subject: science
+gps_social:
+ school: gps
+ subject: social
+gps_it:
+ school: gps
+ subject: it
