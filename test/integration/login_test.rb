@@ -2,6 +2,9 @@ require 'integration_test_helper'
 
 class LoginTest < ActionController::IntegrationTest
   
+  def setup
+    @school = schools(:st_teresas)
+  end
   def login(email, password)
     visit root_path
     click_link 'Login'
@@ -10,9 +13,21 @@ class LoginTest < ActionController::IntegrationTest
     click_button 'Login'
   end
   
-  def test_valid_login
-    login("stteresas@schoolarly.com", "password")
-#    assert page.has_content?('There were problems with the following fields:')
+  def test_school_login
+    login(@school.email, @school.password)
+    assert_equal current_path, school_path(@school)
+  end
+  
+  def test_student_login
+    
+  end
+  
+  def test_teacher_login
+    
+  end
+  
+  def test schoolarly_admin_login
+    
   end
   
   

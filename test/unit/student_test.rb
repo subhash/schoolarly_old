@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class StudentTest < ActiveSupport::TestCase
+  
+  should belong_to :school
+  
   def setup
     @user = users(:user_without_person)
     @stteresas = schools(:st_teresas)

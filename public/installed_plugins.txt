@@ -66,3 +66,5 @@ Finally, what worked
    - article - http://techiferous.com/2010/04/using-capybara-in-rails-3/
    - sudo gem install capybara
    - sudo gem install launchy
+7) shoulda - http://github.com/thoughtbot/shoulda
+	- sudo gem install shoulda

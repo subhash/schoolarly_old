@@ -51,5 +51,5 @@ Rails::Initializer.run do |config|
   require 'custom_in_place_editing'
 end
 
-  require 'my_active_record_extensions'
-  ActiveRecord::Base.send(:include, MyActiveRecordExtensions)
+require 'my_active_record_extensions'
+ActiveRecord::Base.send(:include, MyActiveRecordExtensions)
