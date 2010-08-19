@@ -1,181 +1,90 @@
---- 
 assessments_020: 
-  updated_at: 2010-08-19 09:50:33
-  id: "20"
-  assessment_group_id: "98"
-  subject_id: "7"
-  created_at: 2010-08-19 09:50:33
+  assessment_group_id: 98
+  subject: science
 assessments_009: 
-  updated_at: 2010-08-19 09:50:32
-  id: "9"
-  assessment_group_id: "100"
-  subject_id: "2"
-  created_at: 2010-08-19 09:50:32
+  assessment_group_id: 100
+  subject: malayalam
 assessments_021: 
-  updated_at: 2010-08-19 09:50:33
-  id: "21"
-  assessment_group_id: "100"
-  subject_id: "7"
-  created_at: 2010-08-19 09:50:33
+  assessment_group_id: 100
+  subject: science
 assessments_010: 
-  updated_at: 2010-08-19 09:50:32
-  id: "10"
-  assessment_group_id: "101"
-  subject_id: "2"
-  created_at: 2010-08-19 09:50:32
+  assessment_group_id: 101
+  subject: malayalam
 assessments_022: 
-  updated_at: 2010-08-19 09:50:33
-  id: "22"
-  assessment_group_id: "101"
-  subject_id: "7"
-  created_at: 2010-08-19 09:50:33
+  assessment_group_id: 101
+  subject: science
 assessments_011: 
-  updated_at: 2010-08-19 09:50:32
-  id: "11"
-  assessment_group_id: "99"
-  subject_id: "2"
-  created_at: 2010-08-19 09:50:32
+  assessment_group_id: 99
+  subject: malayalam
 assessments_023: 
-  updated_at: 2010-08-19 09:50:33
-  id: "23"
-  assessment_group_id: "99"
-  subject_id: "7"
-  created_at: 2010-08-19 09:50:33
+  assessment_group_id: 99
+  subject: science
 assessments_012: 
-  updated_at: 2010-08-19 09:50:32
-  id: "12"
-  assessment_group_id: "102"
-  subject_id: "2"
-  created_at: 2010-08-19 09:50:32
+  assessment_group_id: 102
+  subject: malayalam
 assessments_001: 
-  updated_at: 2010-08-19 09:50:31
-  id: "1"
-  assessment_group_id: "97"
-  subject_id: "1"
-  created_at: 2010-08-19 09:50:31
+  assessment_group_id: 97
+  subject: english
 assessments_024: 
-  updated_at: 2010-08-19 09:50:33
-  id: "24"
-  assessment_group_id: "102"
-  subject_id: "7"
-  created_at: 2010-08-19 09:50:33
+  assessment_group_id: 102
+  subject: science
 assessments_013: 
-  updated_at: 2010-08-19 09:50:33
-  id: "13"
-  assessment_group_id: "97"
-  subject_id: "6"
-  created_at: 2010-08-19 09:50:33
+  assessment_group_id: 97
+  subject: maths
 assessments_002: 
-  updated_at: 2010-08-19 09:50:31
-  id: "2"
-  assessment_group_id: "98"
-  subject_id: "1"
-  created_at: 2010-08-19 09:50:31
+  assessment_group_id: 98
+  subject: english
 assessments_025: 
-  updated_at: 2010-08-19 09:50:33
-  id: "25"
-  assessment_group_id: "97"
-  subject_id: "8"
-  created_at: 2010-08-19 09:50:33
+  assessment_group_id: 97
+  subject: social
 assessments_014: 
-  updated_at: 2010-08-19 09:50:33
-  id: "14"
-  assessment_group_id: "98"
-  subject_id: "6"
-  created_at: 2010-08-19 09:50:33
+  assessment_group_id: 98
+  subject: maths
 assessments_003: 
-  updated_at: 2010-08-19 09:50:31
-  id: "3"
-  assessment_group_id: "100"
-  subject_id: "1"
-  created_at: 2010-08-19 09:50:31
+  assessment_group_id: 100
+  subject: english
 assessments_026: 
-  updated_at: 2010-08-19 09:50:34
-  id: "26"
-  assessment_group_id: "98"
-  subject_id: "8"
-  created_at: 2010-08-19 09:50:34
+  assessment_group_id: 98
+  subject: social
 assessments_015: 
-  updated_at: 2010-08-19 09:50:33
-  id: "15"
-  assessment_group_id: "100"
-  subject_id: "6"
-  created_at: 2010-08-19 09:50:33
+  assessment_group_id: 100
+  subject: maths
 assessments_004: 
-  updated_at: 2010-08-19 09:50:31
-  id: "4"
-  assessment_group_id: "101"
-  subject_id: "1"
-  created_at: 2010-08-19 09:50:31
+  assessment_group_id: 101
+  subject: english
 assessments_027: 
-  updated_at: 2010-08-19 09:50:34
-  id: "27"
-  assessment_group_id: "100"
-  subject_id: "8"
-  created_at: 2010-08-19 09:50:34
+  assessment_group_id: 100
+  subject: social
 assessments_016: 
-  updated_at: 2010-08-19 09:50:33
-  id: "16"
-  assessment_group_id: "101"
-  subject_id: "6"
-  created_at: 2010-08-19 09:50:33
+  assessment_group_id: 101
+  subject: maths
 assessments_005: 
-  updated_at: 2010-08-19 09:50:31
-  id: "5"
-  assessment_group_id: "99"
-  subject_id: "1"
-  created_at: 2010-08-19 09:50:31
+  assessment_group_id: 99
+  subject: english
 assessments_028: 
-  updated_at: 2010-08-19 09:50:34
-  id: "28"
-  assessment_group_id: "101"
-  subject_id: "8"
-  created_at: 2010-08-19 09:50:34
+  assessment_group_id: 101
+  subject: social
 assessments_017: 
-  updated_at: 2010-08-19 09:50:33
-  id: "17"
-  assessment_group_id: "99"
-  subject_id: "6"
-  created_at: 2010-08-19 09:50:33
+  assessment_group_id: 99
+  subject: maths
 assessments_006: 
-  updated_at: 2010-08-19 09:50:32
-  id: "6"
-  assessment_group_id: "102"
-  subject_id: "1"
-  created_at: 2010-08-19 09:50:32
+  assessment_group_id: 102
+  subject: english
 assessments_030: 
-  updated_at: 2010-08-19 09:50:34
-  id: "30"
-  assessment_group_id: "102"
-  subject_id: "8"
-  created_at: 2010-08-19 09:50:34
+  assessment_group_id: 102
+  subject: social
 assessments_029: 
-  updated_at: 2010-08-19 09:50:34
-  id: "29"
-  assessment_group_id: "99"
-  subject_id: "8"
-  created_at: 2010-08-19 09:50:34
+  assessment_group_id: 99
+  subject: social
 assessments_018: 
-  updated_at: 2010-08-19 09:50:33
-  id: "18"
-  assessment_group_id: "102"
-  subject_id: "6"
-  created_at: 2010-08-19 09:50:33
+  assessment_group_id: 102
+  subject: maths
 assessments_007: 
-  updated_at: 2010-08-19 09:50:32
-  id: "7"
-  assessment_group_id: "97"
-  subject_id: "2"
-  created_at: 2010-08-19 09:50:32
+  assessment_group_id: 97
+  subject: malayalam
 assessments_019: 
-  updated_at: 2010-08-19 09:50:33
-  id: "19"
-  assessment_group_id: "97"
-  subject_id: "7"
-  created_at: 2010-08-19 09:50:33
+  assessment_group_id: 97
+  subject: science
 assessments_008: 
-  updated_at: 2010-08-19 09:50:32
-  id: "8"
-  assessment_group_id: "98"
-  subject_id: "2"
-  created_at: 2010-08-19 09:50:32
+  assessment_group_id: 98
+  subject: malayalam

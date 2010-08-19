@@ -1,143 +1,115 @@
 1A:
-  id: 1
-  level_id: 1
+  level: 1
   division: A
-  school_id: 3
-  teacher_id: 1
+  school: gps
+  teacher: 1
 1B:
-  id: 2
-  level_id: 1
+  level: 1
   division: B
-  school_id: 3
-  teacher_id: 2
+  school: gps
+  teacher: 2
 1C:
-  id: 3
-  level_id: 1
+  level: 1
   division: C
-  school_id: 3
-  teacher_id: 3
+  school: gps
+  teacher: 3
 2A:
-  id: 4
-  level_id: 2
+  level: 2
   division: A
-  school_id: 3
+  school: gps
 2B:
-  id: 5
-  level_id: 2
+  level: 2
   division: B
-  school_id: 3
+  school: gps
 2C:
-  id: 6
-  level_id: 2
+  level: 2
   division: C
-  school_id: 3
+  school: gps
 3A:
-  id: 7
-  level_id: 3
+  level: 3
   division: A
-  school_id: 3
+  school: gps
 3B:
-  id: 8
-  level_id: 3
+  level: 3
   division: B
-  school_id: 3
+  school: gps
 3C:
-  id: 9
-  level_id: 3
+  level: 3
   division: C
-  school_id: 3
+  school: gps
 4A:
-  id: 10
-  level_id: 4
+  level: 4
   division: A
-  school_id: 3
+  school: gps
 4B:
-  id: 11
-  level_id: 4
+  level: 4
   division: B
-  school_id: 3
+  school: gps
 5A:
-  id: 12
-  level_id: 5
+  level: 5
   division: A
-  school_id: 3
+  school: gps
 5B:
-  id: 13
-  level_id: 5
+  level: 5
   division: B
-  school_id: 3
+  school: gps
 6A:
-  id: 14
-  level_id: 6
+  level: 6
   division: A
-  school_id: 3
+  school: gps
 7A:
-  id: 15
-  level_id: 7
+  level: 7
   division: A
-  school_id: 3
+  school: gps
 8A:
-  id: 16
-  level_id: 8
+  level: 8
   division: A
-  school_id: 3
+  school: gps
 9A:
-  id: 17
-  level_id: 9
+  level: 9
   division: A
-  school_id: 3
+  school: gps
 9B:
-  id: 18
-  level_id: 9
+  level: 9
   division: B
-  school_id: 3
+  school: gps
 9C:
-  id: 19
-  level_id: 9
+  level: 9
   division: C
-  school_id: 3
+  school: gps
 9D:
-  id: 20
-  level_id: 9
+  level: 9
   division: D
-  school_id: 3
+  school: gps
 9E:
-  id: 21
-  level_id: 9
+  level: 9
   division: E
-  school_id: 3
+  school: gps
 10A:
-  id: 22
-  level_id: 10
+  level: 10
   division: A
-  school_id: 3
+  school: gps
 10B:
-  id: 23
-  level_id: 10
+  level: 10
   division: B
-  school_id: 3
+  school: gps
 10C:
-  id: 24
-  level_id: 10
+  level: 10
   division: C
-  school_id: 3
+  school: gps
 10D:
-  id: 25
-  level_id: 10
+  level: 10
   division: D
-  school_id: 3
+  school: gps
 10E:
-  id: 26
-  level_id: 10
+  level: 10
   division: E
-  school_id: 3
+  school: gps
 11A:
-  id: 27
-  level_id: 11
+  level: 11
   division: A
-  school_id: 3
+  school: gps
 12A:
-  id: 28
-  level_id: 12
+  level: 12
   division: A
-  school_id: 3
+  school: gps

@@ -1,48 +1,48 @@
-1:
- assessment_tool_name_id: 1
- school_subject_id: 1
-2:
- assessment_tool_name_id: 5
- school_subject_id: 1
-3:
- assessment_tool_name_id: 3
- school_subject_id: 1
-4:
- assessment_tool_name_id: 6
- school_subject_id: 2
-5:
- assessment_tool_name_id: 10
- school_subject_id: 2
-6:
- assessment_tool_name_id: 11
- school_subject_id: 3
-7:
- assessment_tool_name_id: 6
- school_subject_id: 4
-8:
- assessment_tool_name_id: 7
- school_subject_id: 6
-9:
- assessment_tool_name_id: 9
- school_subject_id: 6
-10:
- assessment_tool_name_id: 2
- school_subject_id: 7
-11:
- assessment_tool_name_id: 7
- school_subject_id: 7
-12:
- assessment_tool_name_id: 4
- school_subject_id: 7
-13:
- assessment_tool_name_id: 4
- school_subject_id: 8
-14:
- assessment_tool_name_id: 7
- school_subject_id: 8
-15:
- assessment_tool_name_id: 8
- school_subject_id: 9
-16:
- assessment_tool_name_id: 9
- school_subject_id: 9
+gps_english_test:
+ assessment_tool_name: gps_test
+ school_subject: gps_english
+gps_english_jam:
+ assessment_tool_name: gps_jam
+ school_subject: gps_english
+gps_english_gd:
+ assessment_tool_name: gps_gd
+ school_subject: gps_english
+gps_malayalam_listening:
+ assessment_tool_name: gps_listening
+ school_subject: gps_malayalam
+gps_malayalam_reading:
+ assessment_tool_name: gps_reading
+ school_subject: gps_malayalam
+gps_hindi_recitation:
+ assessment_tool_name: gps_recitation
+ school_subject: gps_hindi
+gps_french_listening:
+ assessment_tool_name: gps_listening
+ school_subject: gps_french
+gps_maths_model:
+ assessment_tool_name: gps_model
+ school_subject: gps_maths
+gps_maths_quiz:
+ assessment_tool_name: gps_quiz
+ school_subject: gps_maths
+gps_science_discovery:
+ assessment_tool_name: gps_discovery
+ school_subject: gps_science
+gps_science_model:
+ assessment_tool_name: gps_model
+ school_subject: gps_science
+gps_science_gp:
+ assessment_tool_name: gps_gp
+ school_subject: gps_science
+gps_social_gp:
+ assessment_tool_name: gps_gp
+ school_subject: gps_social
+gps_social_model:
+ assessment_tool_name: gps_model
+ school_subject: gps_social
+gps_it_practical:
+ assessment_tool_name: gps_practical
+ school_subject: gps_it
+gps_it_quiz:
+ assessment_tool_name: gps_quiz
+ school_subject: gps_it
