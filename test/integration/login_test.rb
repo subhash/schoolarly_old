@@ -14,8 +14,9 @@ class LoginTest < ActionController::IntegrationTest
   end
   
   def test_school_login
-    login(@school.email, @school.password)
+    login(@school.email, "password")
     assert_equal current_path, school_path(@school)
+    save_and_open_page
   end
   
   def test_student_login
@@ -32,7 +33,7 @@ class LoginTest < ActionController::IntegrationTest
   
   
   def test_invalid_login
-    login("stteresas@schoolarly.com", "wrong_password")
+    login(@school.email, "wrong_password")
     assert page.has_content?('There were problems with the following fields:')
   end
   

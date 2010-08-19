@@ -1,7 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 stTeresas:
-  user: admin_st_teresas
+  user: st_teresas
   name: St. Teresas
   address_line_1: St Teresas Convent
   address_line_2: Convent Junction
@@ -12,19 +12,89 @@ stTeresas:
   phone_landline: 123
   phone_mobile: 123
 
-#teacher_antony:
-#  user: teacher_antony
-#  name: Antony
-#  
-#admitted_with_profile:
-#  user: admitted_with_profile
-#  name: Admitted
-#  
-#enrolled_with_profile:
-#  user: enrolled_with_profile
-#  name: Enrolled
-#  
-#student_without_school:
-#  user: student_without_school
-#  name: NoSchool
+oneA_student_user:
+  user: oneA_student_user
+  name: oneA_student_user
+
+  
+shenu:
+  user: shenu
+  name: shenu
+
+paru:
+  user: paru
+  name: paru
+  
+user_without_profile:
+  user: user_without_profile
+  name: user_without_profile
+  
+sboa_student:
+  user: sboa_student
+  name: St. Teresas
+  
+sboa:
+  user: sboa
+  name: St. Teresas
+
+marykkutty:
+  user: marykkutty
+  name: St. Teresas
+  
+sunil:
+  user: sunil
+  name: St. Teresas 
+  
+treasa:
+  user: treasa
+  name: St. Teresas
+
+rose:
+  user: rose
+  name: St. Teresas
+
+
+st_teresas:
+  user: st_teresas
+  name: St. Teresas
+  
+mary:
+  user: mary
+  name: St. Teresas
+  
+sboa_student:
+  user: sboa_student
+  name: St. Teresas
+  
+student_without_school:
+  user: student_without_school
+  name: St. Teresas
+  
+student_without_school2:
+  user: student_without_school2
+  name: St. Teresas
+
+no_school_teacher:
+  user: no_school_teacher
+  name: St. Teresas
+  
+no_school_teacher2:
+  user: no_school_teacher2
+  name: St. Teresas
+  
+student1:
+  user: student1
+  name: St. Teresas
+
+student2:
+  user: student2
+  name: St. Teresas
+  
+student_not_enrolled:
+  user: student_not_enrolled
+  name: St. Teresas
+
+user_without_person:
+  user: user_without_person
+  name: user_without_person
  

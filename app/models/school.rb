@@ -22,6 +22,10 @@ class School < ActiveRecord::Base
     user.name
   end
   
+  def email
+    user.email
+  end
+  
   def school
     return self
   end
