@@ -62,3 +62,7 @@ Finally, what worked
 3) calendar_date_select - http://code.google.com/p/calendardateselect/
 4) prawn - http://railstips.org/blog/archives/2008/10/13/how-to-generate-pdfs-in-rails-with-prawn/
 5) acts_as_list - http://github.com/ryanb/acts-as-list 
+6) capybara - http://github.com/jnicklas/capybara
+   - article - http://techiferous.com/2010/04/using-capybara-in-rails-3/
+   - sudo gem install capybara
+   - sudo gem install launchy

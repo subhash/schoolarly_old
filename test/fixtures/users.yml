@@ -115,10 +115,10 @@ rose:
 #  perishable_token: <%= Authlogic::Random.friendly_token %>
 #  person: father_shenu (Parent)
 
-admin_st_teresas:
-  email: admin_st_teresas@schoolarly.com
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("adminstteresas" + salt) %>
+st_teresas:
+  email: stteresas@schoolarly.com
+  password_salt: 5vYihJdkH6UG-Vimw8lh
+  crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
   perishable_token: <%= Authlogic::Random.friendly_token %>
