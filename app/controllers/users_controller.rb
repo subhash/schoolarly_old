@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   end
   
   def create
-    puts "in create"
     @user = User.new(params[:user])
     @person_type = params[:person_type]
     person_class = Object.const_get(@person_type)
@@ -16,7 +15,6 @@ class UsersController < ApplicationController
     @user.user_profile = UserProfile.new(params[:user_profile])
     if @user.save
       render :update do |page|
-        puts "in update"
         page.close_dialog
         page.open_tab @user.person
         page.insert_object @user.person, :partial => "#{@person_type.underscore.pluralize}/#{@person_type.underscore}"
