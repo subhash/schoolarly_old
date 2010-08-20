@@ -2,17 +2,17 @@
   level: 1
   division: A
   school: gps
-  teacher: marykkutty
+  class_teacher: marykkutty
 1B:
   level: 1
   division: B
   school: gps
-  teacher: subramaniam
+  class_teacher: subramaniam
 1C:
   level: 1
   division: C
   school: gps
-  teacher: sunil
+  class_teacher: sunil
 2A:
   level: 2
   division: A

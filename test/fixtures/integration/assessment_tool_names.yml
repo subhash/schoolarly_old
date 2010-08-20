@@ -2,30 +2,37 @@ gps_test:
  name: Class Test
  assessment_type_name: FA
  school: gps
+ school_subjects: gps_english
 gps_discovery:
  name: Exploration and Discovery
  assessment_type_name: FA
  school: gps
+ school_subjects: gps_science
 gps_gd:
  name: Group Discussion
  assessment_type_name: FA
  school: gps
+ school_subjects: gps_english
 gps_project:
  name: Group Project
  assessment_type_name: FA
  school: gps
+ school_subjects: gps_science, gps_social
 gps_jam:
  name: Just a Minute
  assessment_type_name: FA
  school: gps
+ school_subjects: gps_english
 gps_listening:
  name: Listening Comprehension
  assessment_type_name: FA
  school: gps
+ school_subjects: gps_malayalam, gps_french
 gps_model:
  name: Model Making
  assessment_type_name: FA
  school: gps
+ school_subjects: gps_maths, gps_science, gps_social
 gps_practical:
  name: Practical
  assessment_type_name: FA
@@ -34,14 +41,17 @@ gps_quiz:
  name: Quiz
  assessment_type_name: FA
  school: gps
+ school_subjects: gps_maths, gps_it
 gps_reading:
  name: Reading Comprehension
  assessment_type_name: FA
  school: gps
+ school_subjects: gps_malayalam
 gps_recitation:
  name: Recitation
  assessment_type_name: FA
  school: gps
+ school_subjects: gps_hindi
 gps_samples:
  name: Samples
  assessment_type_name: FA
@@ -62,3 +72,8 @@ gps_writing:
  name: Written Assignment
  assessment_type_name: FA
  school: gps
+gps_it:
+ name: Information Technology
+ assessment_type_name: FA
+ school: gps
+ school_subjects: gps_it

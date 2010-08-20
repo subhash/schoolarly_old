@@ -3,51 +3,63 @@ annie:
   klass: 9A
   admission_number: 111
   roll_number: 1
+  papers: gps_9A_english, gps_9A_malayalam, gps_9A_maths, gps_9A_science, gps_9A_social
 arti:
   school: gps
   klass: 9A
   admission_number: 112
   roll_number: 2
+  papers: gps_9A_english, gps_9A_malayalam, gps_9A_maths, gps_9A_science, gps_9A_social
 coonie:
   school: gps
   klass: 9A
   admission_number: 113
   roll_number: 3
+  papers: gps_9A_english, gps_9A_malayalam, gps_9A_maths, gps_9A_science, gps_9A_social
 reeny:
   school: gps
   klass: 9A
   admission_number: 114
   roll_number: 4
+  papers: gps_9A_english, gps_9A_malayalam, gps_9A_maths, gps_9A_science, gps_9A_social
 shanthi:
   school: gps
   klass: 9A
   admission_number: 115
   roll_number: 5
+  papers: gps_9A_english, gps_9A_malayalam, gps_9A_maths, gps_9A_science, gps_9A_social
 sareena:
   school: gps
   klass: 9A
   admission_number: 116
   roll_number: 6
+  papers: gps_9A_english, gps_9A_malayalam, gps_9A_maths, gps_9A_science, gps_9A_social
 reshma:
   school: gps
   klass: 9A
   admission_number: 121
   roll_number: 7
+  papers: gps_9A_english, gps_9A_malayalam, gps_9A_maths, gps_9A_science, gps_9A_social
 babitha:
   school: gps
   klass: 9A
+  papers: gps_9A_english, gps_9A_malayalam, gps_9A_maths, gps_9A_science, gps_9A_social
 sumina:
   school: gps
   klass: 9A
+  papers: gps_9A_english, gps_9A_malayalam, gps_9A_maths, gps_9A_science, gps_9A_social
 sheena:
   school: gps
   klass: 9A
+  papers: gps_9A_english, gps_9A_malayalam, gps_9A_maths, gps_9A_science, gps_9A_social
 smitha:
   school: gps
   klass: 9A
+  papers: gps_9A_english, gps_9A_malayalam, gps_9A_maths, gps_9A_science, gps_9A_social
 christina:
   school: gps
   klass: 9A
+  papers: gps_9A_english, gps_9A_malayalam, gps_9A_maths, gps_9A_science, gps_9A_social
 cisy:
   school: gps
   klass: 9A
