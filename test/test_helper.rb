@@ -34,7 +34,7 @@ class ActiveSupport::TestCase
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
   fixtures :all
-
+  
   def assert_breadcrumb(label,url = nil, index = nil)
     assert_select 'div#breadcrumbs ul#crumbs li' , :text => label 
     if url
@@ -108,28 +108,37 @@ class ActiveSupport::TestCase
         assert_tab_id 'teachers', position
       end
       
-      def assert_papers_tab(position = nil)
-        assert_tab_id 'papers', position
+      def assert_subjects_tab(position = nil)
+        assert_tab_id 'subjects', position
       end
       
-      def assert_exams_tab(position = nil)
-        assert_tab_id 'exams', position
-      end
+      def assert_klasses_tab(position = nil)
+        assert_tab_id 'klasses', position
+      end    
       
       def assert_messages_tab(position = nil)
+        puts "in messages tab "
         assert_tab_id 'messages', position
+      end
+      
+      def assert_events_tab(position = nil)
+        assert_tab_id 'events', position
+      end
+
+      def assert_details_tab(position = nil)
+        assert_tab_id 'details', position
       end
       
       private
       def assert_tab_id(id, position)
         if(position)
-          assert_select "div##{id}-tab:nth-child(#{position})"
+          assert_select "div.tab##{id}-tab-section:nth-child(#{position})"
         else
-          assert_select "div##{id}-tab"
+          assert_select "div.tab##{id}-tab-section"
         end
       end
     end
-    assert_select 'div.innercol' do
+    assert_select 'div.col' do
       yield tab_tester
     end
   end
