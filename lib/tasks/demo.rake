@@ -1,6 +1,6 @@
 #Tasks for setting up the demo environment
 namespace :demo do
-  #desc "Load demo seed fixtures (from db/fixtures/demo) into the current environment's database." 
+  desc "Load demo seed fixtures (from db/fixtures/demo) into the current environment's database." 
   require 'active_record/fixtures'
   task :seed => :environment do
     puts "Loading demo fixture files..."

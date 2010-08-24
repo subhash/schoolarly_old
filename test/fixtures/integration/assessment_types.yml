@@ -1,30 +1,30 @@
-assessment_types_005: 
-  name: FA4
-  max_score: 20.00
-  term: 2
-  weightage: 10.00
-assessment_types_006: 
-  name: SA2
-  max_score: 80.00
-  term: 2
-  weightage: 40.00
-assessment_types_001: 
+FA1: 
   name: FA1
   max_score: 20.00
   term: 1
   weightage: 10.00
-assessment_types_002: 
+FA2: 
   name: FA2
   max_score: 20.00
   term: 1
   weightage: 10.00
-assessment_types_003: 
+SA1: 
   name: SA1
   max_score: 80.00
   term: 1
   weightage: 20.00
-assessment_types_004: 
+FA3: 
   name: FA3
   max_score: 20.00
   term: 2
   weightage: 10.00
+FA4: 
+  name: FA4
+  max_score: 20.00
+  term: 2
+  weightage: 10.00
+SA2: 
+  name: SA2
+  max_score: 80.00
+  term: 2
+  weightage: 40.00

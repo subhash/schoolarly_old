@@ -1,9 +1,9 @@
 require 'integration_test_helper' 
 
-class LoginTest < ActionController::IntegrationTest
+class SchoolTest < ActionController::IntegrationTest
   
   def setup
-    @school = schools(:st_teresas)
+    @school = schools(:gps)
   end
   
   def login(email, password)
@@ -14,24 +14,10 @@ class LoginTest < ActionController::IntegrationTest
     click_button 'Login'
   end
   
-  def test_school_login
+  def test_valid_login
     login(@school.email, "password")
     assert_equal current_path, school_path(@school)
-    save_and_open_page
   end
-  
-  def test_student_login
-    
-  end
-  
-  def test_teacher_login
-    
-  end
-  
-  def test schoolarly_admin_login
-    
-  end
-  
   
   def test_invalid_login
     login(@school.email, "wrong_password")

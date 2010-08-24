@@ -57,7 +57,7 @@ gear:
 bvm:
  name: Bhavans Vidya Mandir
  user: bvm
-mary:
+marykkutty:
  name: Mary K Thomas
  address_line_1: 
  address_line_2:
@@ -67,7 +67,7 @@ mary:
  pincode: 682011
  phone_landline: 
  phone_mobile: 
- user: mary
+ user: marykkutty
 subramaniam:
  name: Subramaniam
  user: subramaniam
