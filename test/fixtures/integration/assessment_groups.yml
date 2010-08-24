@@ -1,1507 +1,1175 @@
-assessment_groups_164: 
-  max_score: 20.00
-  id: 164
+1A_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 1A
   weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 28
-  academic_year_id: 3
-  
-assessment_groups_136: 
-  updated_at: 2010-08-19 09:50:29
-  max_score: 20.00
-  id: 136
+  max_score: 20.00  
+
+1A_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 1A
   weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 23
-  academic_year_id: 3
-  
-assessment_groups_051: 
-  updated_at: 2010-08-19 09:50:23
-  max_score: 80.00
-  id: 51
+  max_score: 20.00  
+
+1A_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 1A
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 9
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_022: 
-  updated_at: 2010-08-19 09:50:22
-  max_score: 20.00
-  id: 22
+  max_score: 80.00  
+
+1A_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 1A
   weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 4
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:22
-assessment_groups_108: 
-  updated_at: 2010-08-19 09:50:27
-  max_score: 80.00
-  id: 108
+  max_score: 20.00  
+
+1A_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 1A
+  weightage: 10.00
+  max_score: 20.00  
+
+1A_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 1A
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 18
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:27
-assessment_groups_165: 
-  
-  max_score: 80.00
-  id: 165
+  max_score: 80.00  
+
+1B_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 2
+  weightage: 10.00
+  max_score: 20.00  
+
+1B_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 2
+  weightage: 10.00
+  max_score: 20.00  
+
+1B_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 2
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 28
-  academic_year_id: 3
-  
-assessment_groups_137: 
-  updated_at: 2010-08-19 09:50:29
-  max_score: 20.00
-  id: 137
+  max_score: 80.00  
+
+1B_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 2
   weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 23
-  academic_year_id: 3
-  
-assessment_groups_052: 
-  updated_at: 2010-08-19 09:50:23
-  max_score: 20.00
-  id: 52
+  max_score: 20.00  
+
+1B_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 2
   weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 9
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_023: 
-  updated_at: 2010-08-19 09:50:22
-  max_score: 20.00
-  id: 23
-  weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 4
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:22
-assessment_groups_080: 
-  updated_at: 2010-08-19 09:50:25
-  max_score: 20.00
-  id: 80
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 14
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:25
-assessment_groups_109: 
-  updated_at: 2010-08-19 09:50:27
-  max_score: 20.00
-  id: 109
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 19
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:27
-assessment_groups_166: 
-  
-  max_score: 20.00
-  id: 166
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 28
-  academic_year_id: 3
-  
-assessment_groups_138: 
-  updated_at: 2010-08-19 09:50:29
-  max_score: 80.00
-  id: 138
+  max_score: 20.00  
+
+1B_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 2
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 23
-  academic_year_id: 3
-  
-assessment_groups_024: 
-  updated_at: 2010-08-19 09:50:22
-  max_score: 80.00
-  id: 24
-  weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 4
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:22
-assessment_groups_081: 
-  updated_at: 2010-08-19 09:50:25
-  max_score: 80.00
-  id: 81
+  max_score: 80.00  
+
+1C_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 3
+  weightage: 10.00
+  max_score: 20.00  
+
+1C_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 3
+  weightage: 10.00
+  max_score: 20.00  
+
+1C_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 3
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 14
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:25
-assessment_groups_167: 
-  
-  max_score: 20.00
-  id: 167
+  max_score: 80.00  
+
+1C_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 3
   weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 28
-  academic_year_id: 3
-  
-assessment_groups_139: 
-  updated_at: 2010-08-19 09:50:29
-  max_score: 20.00
-  id: 139
+  max_score: 20.00  
+
+1C_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 3
   weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 24
-  academic_year_id: 3
-  
-assessment_groups_025: 
-  updated_at: 2010-08-19 09:50:22
-  max_score: 20.00
-  id: 25
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 5
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:22
-assessment_groups_082: 
-  updated_at: 2010-08-19 09:50:25
-  max_score: 20.00
-  id: 82
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 14
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:25
-assessment_groups_053: 
-  updated_at: 2010-08-19 09:50:23
-  max_score: 20.00
-  id: 53
-  weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 9
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_168: 
-  
-  max_score: 80.00
-  id: 168
+  max_score: 20.00  
+
+1C_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 3
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 28
-  academic_year_id: 3
-  
-assessment_groups_026: 
-  updated_at: 2010-08-19 09:50:22
-  max_score: 20.00
-  id: 26
+  max_score: 80.00  
+
+2A_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 4
   weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 5
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:22
-assessment_groups_083: 
-  updated_at: 2010-08-19 09:50:25
-  max_score: 20.00
-  id: 83
+  max_score: 20.00  
+
+2A_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 4
   weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 14
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:25
-assessment_groups_054: 
-  updated_at: 2010-08-19 09:50:23
-  max_score: 80.00
-  id: 54
+  max_score: 20.00  
+
+2A_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 4
+  weightage: 20.00
+  max_score: 80.00  
+
+2A_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 4
+  weightage: 10.00
+  max_score: 20.00  
+
+2A_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 4
+  weightage: 10.00
+  max_score: 20.00  
+
+2A_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 4
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 9
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_027: 
-  updated_at: 2010-08-19 09:50:22
-  max_score: 80.00
-  id: 27
+  max_score: 80.00  
+
+2B_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 5
+  weightage: 10.00
+  max_score: 20.00  
+
+2B_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 5
+  weightage: 10.00
+  max_score: 20.00  
+
+2B_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 5
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 5
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:22
-assessment_groups_084: 
-  updated_at: 2010-08-19 09:50:25
-  max_score: 80.00
-  id: 84
+  max_score: 80.00  
+
+2B_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 5
+  weightage: 10.00
+  max_score: 20.00  
+
+2B_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 5
+  weightage: 10.00
+  max_score: 20.00  
+
+2B_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 5
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 14
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:25
-assessment_groups_055: 
-  updated_at: 2010-08-19 09:50:23
-  max_score: 20.00
-  id: 55
+  max_score: 80.00  
+
+2C_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 6
   weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 10
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_110: 
-  updated_at: 2010-08-19 09:50:27
-  max_score: 20.00
-  id: 110
+  max_score: 20.00  
+
+2C_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 6
   weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 19
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:27
-assessment_groups_140: 
-  updated_at: 2010-08-19 09:50:29
-  max_score: 20.00
-  id: 140
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 24
-  academic_year_id: 3
-  
-assessment_groups_028: 
-  updated_at: 2010-08-19 09:50:22
-  max_score: 20.00
-  id: 28
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 5
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:22
-assessment_groups_085: 
-  updated_at: 2010-08-19 09:50:25
-  max_score: 20.00
-  id: 85
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 15
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:25
-assessment_groups_056: 
-  updated_at: 2010-08-19 09:50:24
-  max_score: 20.00
-  id: 56
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 10
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:24
-assessment_groups_111: 
-  updated_at: 2010-08-19 09:50:27
-  max_score: 80.00
-  id: 111
+  max_score: 20.00  
+
+2C_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 6
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 19
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:27
-assessment_groups_029: 
-  updated_at: 2010-08-19 09:50:22
-  max_score: 20.00
-  id: 29
+  max_score: 80.00  
+
+2C_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 6
   weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 5
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:22
-assessment_groups_057: 
-  updated_at: 2010-08-19 09:50:24
-  max_score: 80.00
-  id: 57
-  weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 10
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:24
-assessment_groups_112: 
-  updated_at: 2010-08-19 09:50:27
-  max_score: 20.00
-  id: 112
+  max_score: 20.00  
+
+2C_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 6
   weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 19
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:27
-assessment_groups_141: 
-  updated_at: 2010-08-19 09:50:29
-  max_score: 80.00
-  id: 141
-  weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 24
-  academic_year_id: 3
-  
-assessment_groups_086: 
-  updated_at: 2010-08-19 09:50:25
-  max_score: 20.00
-  id: 86
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 15
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:25
-assessment_groups_058: 
-  updated_at: 2010-08-19 09:50:24
-  max_score: 20.00
-  id: 58
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 10
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:24
-assessment_groups_113: 
-  updated_at: 2010-08-19 09:50:27
-  max_score: 20.00
-  id: 113
-  weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 19
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:27
-assessment_groups_142: 
-  updated_at: 2010-08-19 09:50:29
-  max_score: 20.00
-  id: 142
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 24
-  academic_year_id: 3
-  
-assessment_groups_087: 
-  updated_at: 2010-08-19 09:50:26
-  max_score: 80.00
-  id: 87
-  weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 15
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:26
-assessment_groups_059: 
-  updated_at: 2010-08-19 09:50:24
-  max_score: 20.00
-  id: 59
-  weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 10
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:24
-assessment_groups_114: 
-  updated_at: 2010-08-19 09:50:27
-  max_score: 80.00
-  id: 114
+  max_score: 20.00  
+
+2C_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 6
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 19
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:27
-assessment_groups_143: 
-  updated_at: 2010-08-19 09:50:29
-  max_score: 20.00
-  id: 143
+  max_score: 80.00  
+
+3A_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 7
   weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 24
-  academic_year_id: 3
-  
-assessment_groups_115: 
-  updated_at: 2010-08-19 09:50:28
-  max_score: 20.00
-  id: 115
+  max_score: 20.00  
+
+3A_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 7
   weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 20
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:28
-assessment_groups_030: 
-  updated_at: 2010-08-19 09:50:22
-  max_score: 80.00
-  id: 30
-  weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 5
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:22
-assessment_groups_088: 
-  updated_at: 2010-08-19 09:50:26
-  max_score: 20.00
-  id: 88
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 15
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:26
-assessment_groups_001: 
-  updated_at: 2010-08-19 09:50:20
-  max_score: 20.00
-  id: 1
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 1
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:20
-assessment_groups_144: 
-  updated_at: 2010-08-19 09:50:29
-  max_score: 80.00
-  id: 144
-  weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 24
-  academic_year_id: 3
-  
-assessment_groups_116: 
-  updated_at: 2010-08-19 09:50:28
-  max_score: 20.00
-  id: 116
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 20
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:28
-assessment_groups_089: 
-  updated_at: 2010-08-19 09:50:26
-  max_score: 20.00
-  id: 89
-  weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 15
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:26
-assessment_groups_002: 
-  updated_at: 2010-08-19 09:50:20
-  max_score: 20.00
-  id: 2
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 1
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:20
-assessment_groups_145: 
-  updated_at: 2010-08-19 09:50:29
-  max_score: 20.00
-  id: 145
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 25
-  academic_year_id: 3
-  
-assessment_groups_117: 
-  updated_at: 2010-08-19 09:50:28
-  max_score: 80.00
-  id: 117
+  max_score: 20.00  
+
+3A_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 7
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 20
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:28
-assessment_groups_003: 
-  updated_at: 2010-08-19 09:50:20
-  max_score: 80.00
-  id: 3
-  weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 1
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:20
-assessment_groups_060: 
-  updated_at: 2010-08-19 09:50:24
-  max_score: 80.00
-  id: 60
+  max_score: 80.00  
+
+3A_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 7
+  weightage: 10.00
+  max_score: 20.00  
+
+3A_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 7
+  weightage: 10.00
+  max_score: 20.00  
+
+3A_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 7
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 10
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:24
-assessment_groups_031: 
-  updated_at: 2010-08-19 09:50:22
-  max_score: 20.00
-  id: 31
+  max_score: 80.00  
+
+3B_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 8
   weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 6
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:22
-assessment_groups_146: 
-  updated_at: 2010-08-19 09:50:29
-  max_score: 20.00
-  id: 146
+  max_score: 20.00  
+
+3B_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 8
   weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 25
-  academic_year_id: 3
-  
-assessment_groups_118: 
-  updated_at: 2010-08-19 09:50:28
-  max_score: 20.00
-  id: 118
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 20
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:28
-assessment_groups_004: 
-  updated_at: 2010-08-19 09:50:20
-  max_score: 20.00
-  id: 4
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 1
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:20
-assessment_groups_061: 
-  updated_at: 2010-08-19 09:50:24
-  max_score: 20.00
-  id: 61
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 11
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:24
-assessment_groups_032: 
-  updated_at: 2010-08-19 09:50:22
-  max_score: 20.00
-  id: 32
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 6
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:22
-assessment_groups_147: 
-  updated_at: 2010-08-19 09:50:29
-  max_score: 80.00
-  id: 147
+  max_score: 20.00  
+
+3B_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 8
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 25
-  academic_year_id: 3
-  
-assessment_groups_119: 
-  updated_at: 2010-08-19 09:50:28
-  max_score: 20.00
-  id: 119
+  max_score: 80.00  
+
+3B_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 8
   weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 20
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:28
-assessment_groups_005: 
-  updated_at: 2010-08-19 09:50:21
-  max_score: 20.00
-  id: 5
+  max_score: 20.00  
+
+3B_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 8
   weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 1
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:21
-assessment_groups_090: 
-  updated_at: 2010-08-19 09:50:26
-  max_score: 80.00
-  id: 90
+  max_score: 20.00  
+
+3B_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 8
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 15
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:26
-assessment_groups_062: 
-  updated_at: 2010-08-19 09:50:24
-  max_score: 20.00
-  id: 62
+  max_score: 80.00  
+
+3C_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 9
   weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 11
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:24
-assessment_groups_033: 
-  updated_at: 2010-08-19 09:50:22
-  max_score: 80.00
-  id: 33
+  max_score: 20.00  
+
+3C_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 9
+  weightage: 10.00
+  max_score: 20.00  
+
+3C_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 9
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 6
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:22
-assessment_groups_148: 
-  updated_at: 2010-08-19 09:50:30
-  max_score: 20.00
-  id: 148
+  max_score: 80.00  
+
+3C_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 9
   weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 25
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:30
-assessment_groups_006: 
-  updated_at: 2010-08-19 09:50:21
-  max_score: 80.00
-  id: 6
+  max_score: 20.00  
+
+3C_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 9
+  weightage: 10.00
+  max_score: 20.00  
+
+3C_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 9
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 1
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:21
-assessment_groups_091: 
-  updated_at: 2010-08-19 09:50:26
-  max_score: 20.00
-  id: 91
+  max_score: 80.00  
+
+4A_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 10
   weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 16
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:26
-assessment_groups_063: 
-  updated_at: 2010-08-19 09:50:24
-  max_score: 80.00
-  id: 63
+  max_score: 20.00
+
+4A_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 10
+  weightage: 10.00
+  max_score: 20.00
+
+4A_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 10
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 11
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:24
-assessment_groups_034: 
-  updated_at: 2010-08-19 09:50:22
-  max_score: 20.00
-  id: 34
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 6
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:22
-assessment_groups_149: 
-  updated_at: 2010-08-19 09:50:30
-  max_score: 20.00
-  id: 149
-  weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 25
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:30
-assessment_groups_007: 
-  updated_at: 2010-08-19 09:50:21
-  max_score: 20.00
-  id: 7
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 2
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:21
-assessment_groups_092: 
-  updated_at: 2010-08-19 09:50:26
-  max_score: 20.00
-  id: 92
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 16
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:26
-assessment_groups_035: 
-  updated_at: 2010-08-19 09:50:22
-  max_score: 20.00
-  id: 35
-  weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 6
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:22
-assessment_groups_008: 
-  updated_at: 2010-08-19 09:50:21
-  max_score: 20.00
-  id: 8
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 2
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:21
-assessment_groups_093: 
-  updated_at: 2010-08-19 09:50:26
   max_score: 80.00
-  id: 93
+
+4A_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 10
+  weightage: 10.00
+  max_score: 20.00
+
+4A_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 10
+  weightage: 10.00
+  max_score: 20.00
+
+4A_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 10
+  weightage: 40.00
+  max_score: 80.00
+
+4B_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 11
+  weightage: 10.00
+  max_score: 20.00
+
+4B_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 11
+  weightage: 10.00
+  max_score: 20.00
+
+4B_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 11
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 16
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:26
-assessment_groups_064: 
-  updated_at: 2010-08-19 09:50:24
-  max_score: 20.00
-  id: 64
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 11
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:24
-assessment_groups_036: 
-  updated_at: 2010-08-19 09:50:22
   max_score: 80.00
-  id: 36
+
+4B_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 11
+  weightage: 10.00
+  max_score: 20.00
+
+4B_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 11
+  weightage: 10.00
+  max_score: 20.00
+
+4B_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 11
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 6
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:22
-assessment_groups_120: 
-  updated_at: 2010-08-19 09:50:28
   max_score: 80.00
-  id: 120
-  weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 20
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:28
-assessment_groups_094: 
-  updated_at: 2010-08-19 09:50:26
-  max_score: 20.00
-  id: 94
+
+5A_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 5A
   weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 16
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:26
-assessment_groups_065: 
-  updated_at: 2010-08-19 09:50:24
   max_score: 20.00
-  id: 65
+
+5A_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 5A
   weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 11
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:24
-assessment_groups_037: 
-  updated_at: 2010-08-19 09:50:22
   max_score: 20.00
-  id: 37
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 7
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:22
-assessment_groups_009: 
-  updated_at: 2010-08-19 09:50:21
-  max_score: 80.00
-  id: 9
+
+5A_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 5A
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 2
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:21
-assessment_groups_150: 
-  updated_at: 2010-08-19 09:50:30
   max_score: 80.00
-  id: 150
+
+5A_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 5A
+  weightage: 10.00
+  max_score: 20.00
+
+5A_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 5A
+  weightage: 10.00
+  max_score: 20.00
+
+5A_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 5A
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 25
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:30
-assessment_groups_121: 
-  updated_at: 2010-08-19 09:50:28
-  max_score: 20.00
-  id: 121
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 21
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:28
-assessment_groups_066: 
-  updated_at: 2010-08-19 09:50:24
   max_score: 80.00
-  id: 66
-  weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 11
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:24
-assessment_groups_038: 
-  updated_at: 2010-08-19 09:50:23
-  max_score: 20.00
-  id: 38
+
+5B_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 5B
   weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 7
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_095: 
-  updated_at: 2010-08-19 09:50:26
   max_score: 20.00
-  id: 95
+
+5B_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 5B
   weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 16
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:26
-assessment_groups_151: 
-  updated_at: 2010-08-19 09:50:30
   max_score: 20.00
-  id: 151
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 26
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:30
-assessment_groups_122: 
-  updated_at: 2010-08-19 09:50:28
-  max_score: 20.00
-  id: 122
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 21
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:28
-assessment_groups_067: 
-  updated_at: 2010-08-19 09:50:24
-  max_score: 20.00
-  id: 67
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 12
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:24
-assessment_groups_039: 
-  updated_at: 2010-08-19 09:50:23
-  max_score: 80.00
-  id: 39
+
+5B_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 5B
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 7
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_096: 
-  updated_at: 2010-08-19 09:50:26
   max_score: 80.00
-  id: 96
+
+5B_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 5B
+  weightage: 10.00
+  max_score: 20.00
+
+5B_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 5B
+  weightage: 10.00
+  max_score: 20.00
+
+5B_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 5B
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 16
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:26
-assessment_groups_123: 
-  updated_at: 2010-08-19 09:50:28
   max_score: 80.00
-  id: 123
+
+6A_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 6A
+  weightage: 10.00
+  max_score: 20.00
+
+6A_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 6A
+  weightage: 10.00
+  max_score: 20.00
+
+6A_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 6A
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 21
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:28
-assessment_groups_068: 
-  updated_at: 2010-08-19 09:50:24
-  max_score: 20.00
-  id: 68
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 12
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:24
-assessment_groups_152: 
-  updated_at: 2010-08-19 09:50:30
-  max_score: 20.00
-  id: 152
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 26
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:30
-assessment_groups_124: 
-  updated_at: 2010-08-19 09:50:28
-  max_score: 20.00
-  id: 124
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 21
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:28
-assessment_groups_069: 
-  updated_at: 2010-08-19 09:50:24
   max_score: 80.00
-  id: 69
-  weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 12
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:24
-assessment_groups_097: 
-  updated_at: 2010-08-19 09:50:26
-  max_score: 20.00
-  id: 97
+
+6A_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 6A
   weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 17
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:26
-assessment_groups_010: 
-  updated_at: 2010-08-19 09:50:21
   max_score: 20.00
-  id: 10
+
+6A_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 6A
   weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 2
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:21
-assessment_groups_153: 
-  updated_at: 2010-08-19 09:50:30
-  max_score: 80.00
-  id: 153
-  weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 26
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:30
-assessment_groups_125: 
-  updated_at: 2010-08-19 09:50:28
   max_score: 20.00
-  id: 125
-  weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 21
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:28
-assessment_groups_040: 
-  updated_at: 2010-08-19 09:50:23
-  max_score: 20.00
-  id: 40
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 7
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_098: 
-  updated_at: 2010-08-19 09:50:26
-  max_score: 20.00
-  id: 98
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 17
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:26
-assessment_groups_011: 
-  updated_at: 2010-08-19 09:50:21
-  max_score: 20.00
-  id: 11
-  weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 2
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:21
-assessment_groups_154: 
-  updated_at: 2010-08-19 09:50:30
-  max_score: 20.00
-  id: 154
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 26
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:30
-assessment_groups_126: 
-  updated_at: 2010-08-19 09:50:28
-  max_score: 80.00
-  id: 126
+
+6A_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 6A
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 21
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:28
-assessment_groups_041: 
-  updated_at: 2010-08-19 09:50:23
-  max_score: 20.00
-  id: 41
-  weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 7
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_099: 
-  updated_at: 2010-08-19 09:50:26
   max_score: 80.00
-  id: 99
+
+7A_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 7A
+  weightage: 10.00
+  max_score: 20.00
+
+7A_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 7A
+  weightage: 10.00
+  max_score: 20.00
+
+7A_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 7A
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 17
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:26
-assessment_groups_012: 
-  updated_at: 2010-08-19 09:50:21
   max_score: 80.00
-  id: 12
+
+7A_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 7A
+  weightage: 10.00
+  max_score: 20.00
+
+7A_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 7A
+  weightage: 10.00
+  max_score: 20.00
+
+7A_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 7A
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 2
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:21
-assessment_groups_155: 
-  updated_at: 2010-08-19 09:50:30
-  max_score: 20.00
-  id: 155
-  weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 26
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:30
-assessment_groups_127: 
-  updated_at: 2010-08-19 09:50:28
-  max_score: 20.00
-  id: 127
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 22
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:28
-assessment_groups_070: 
-  updated_at: 2010-08-19 09:50:25
-  max_score: 20.00
-  id: 70
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 12
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:25
-assessment_groups_013: 
-  updated_at: 2010-08-19 09:50:21
-  max_score: 20.00
-  id: 13
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 3
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:21
-assessment_groups_156: 
-  updated_at: 2010-08-19 09:50:30
   max_score: 80.00
-  id: 156
-  weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 26
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:30
-assessment_groups_128: 
-  updated_at: 2010-08-19 09:50:28
-  max_score: 20.00
-  id: 128
+
+8A_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 8A
   weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 22
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:28
-assessment_groups_071: 
-  updated_at: 2010-08-19 09:50:25
   max_score: 20.00
-  id: 71
+
+8A_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 8A
   weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 12
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:25
-assessment_groups_042: 
-  updated_at: 2010-08-19 09:50:23
-  max_score: 80.00
-  id: 42
-  weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 7
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_014: 
-  updated_at: 2010-08-19 09:50:21
   max_score: 20.00
-  id: 14
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 3
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:21
-assessment_groups_157: 
-  updated_at: 2010-08-19 09:50:30
-  max_score: 20.00
-  id: 157
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 27
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:30
-assessment_groups_129: 
-  updated_at: 2010-08-19 09:50:28
-  max_score: 80.00
-  id: 129
+
+8A_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 8A
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 22
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:28
-assessment_groups_072: 
-  updated_at: 2010-08-19 09:50:25
   max_score: 80.00
-  id: 72
+
+8A_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 8A
+  weightage: 10.00
+  max_score: 20.00
+
+8A_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 8A
+  weightage: 10.00
+  max_score: 20.00
+
+8A_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 8A
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 12
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:25
-assessment_groups_043: 
-  updated_at: 2010-08-19 09:50:23
-  max_score: 20.00
-  id: 43
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 8
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_015: 
-  updated_at: 2010-08-19 09:50:21
   max_score: 80.00
-  id: 15
+
+9A_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 9A
+  weightage: 10.00
+  max_score: 20.00
+
+9A_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 9A
+  weightage: 10.00
+  max_score: 20.00
+
+9A_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 9A
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 3
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:21
-assessment_groups_158: 
-  updated_at: 2010-08-19 09:50:30
-  max_score: 20.00
-  id: 158
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 27
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:30
-assessment_groups_073: 
-  updated_at: 2010-08-19 09:50:25
-  max_score: 20.00
-  id: 73
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 13
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:25
-assessment_groups_044: 
-  updated_at: 2010-08-19 09:50:23
-  max_score: 20.00
-  id: 44
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 8
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_016: 
-  updated_at: 2010-08-19 09:50:21
-  max_score: 20.00
-  id: 16
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 3
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:21
-assessment_groups_159: 
-  updated_at: 2010-08-19 09:50:30
   max_score: 80.00
-  id: 159
-  weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 27
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:30
-assessment_groups_045: 
-  updated_at: 2010-08-19 09:50:23
-  max_score: 80.00
-  id: 45
-  weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 8
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_100: 
-  updated_at: 2010-08-19 09:50:26
-  max_score: 20.00
-  id: 100
+
+9A_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 9A
   weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 17
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:26
-assessment_groups_017: 
-  updated_at: 2010-08-19 09:50:21
   max_score: 20.00
-  id: 17
+
+9A_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 9A
   weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 3
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:21
-assessment_groups_074: 
-  updated_at: 2010-08-19 09:50:25
   max_score: 20.00
-  id: 74
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 13
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:25
-assessment_groups_046: 
-  updated_at: 2010-08-19 09:50:23
-  max_score: 20.00
-  id: 46
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 8
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_101: 
-  updated_at: 2010-08-19 09:50:26
-  max_score: 20.00
-  id: 101
-  weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 17
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:26
-assessment_groups_018: 
-  updated_at: 2010-08-19 09:50:21
-  max_score: 80.00
-  id: 18
+
+9A_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 9A
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 3
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:21
-assessment_groups_130: 
-  updated_at: 2010-08-19 09:50:28
-  max_score: 20.00
-  id: 130
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 22
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:28
-assessment_groups_047: 
-  updated_at: 2010-08-19 09:50:23
-  max_score: 20.00
-  id: 47
-  weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 8
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_102: 
-  updated_at: 2010-08-19 09:50:27
   max_score: 80.00
-  id: 102
-  weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 17
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:27
-assessment_groups_019: 
-  updated_at: 2010-08-19 09:50:21
-  max_score: 20.00
-  id: 19
+
+9B_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 9B
   weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 4
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:21
-assessment_groups_075: 
-  updated_at: 2010-08-19 09:50:25
-  max_score: 80.00
-  id: 75
+  max_score: 20.00
+
+9B_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 9B
+  weightage: 10.00
+  max_score: 20.00
+
+9B_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 9B
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 13
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:25
-assessment_groups_160: 
-  updated_at: 2010-08-19 09:50:30
-  max_score: 20.00
-  id: 160
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 27
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:30
-assessment_groups_131: 
-  updated_at: 2010-08-19 09:50:29
-  max_score: 20.00
-  id: 131
-  weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 22
-  academic_year_id: 3
-  
-assessment_groups_048: 
-  updated_at: 2010-08-19 09:50:23
   max_score: 80.00
-  id: 48
+
+9B_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 9B
+  weightage: 10.00
+  max_score: 20.00
+
+9B_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 9B
+  weightage: 10.00
+  max_score: 20.00
+
+9B_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 9B
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 8
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_103: 
-  updated_at: 2010-08-19 09:50:27
-  max_score: 20.00
-  id: 103
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 18
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:27
-assessment_groups_076: 
-  updated_at: 2010-08-19 09:50:25
-  max_score: 20.00
-  id: 76
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 13
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:25
-assessment_groups_161: 
-  updated_at: 2010-08-19 09:50:30
-  max_score: 20.00
-  id: 161
-  weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 27
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:30
-assessment_groups_132: 
-  updated_at: 2010-08-19 09:50:29
   max_score: 80.00
-  id: 132
-  weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 22
-  academic_year_id: 3
-  
-assessment_groups_049: 
-  updated_at: 2010-08-19 09:50:23
-  max_score: 20.00
-  id: 49
+
+9C_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 9C
   weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 9
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_104: 
-  updated_at: 2010-08-19 09:50:27
   max_score: 20.00
-  id: 104
+
+9C_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 9C
   weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 18
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:27
-assessment_groups_077: 
-  updated_at: 2010-08-19 09:50:25
   max_score: 20.00
-  id: 77
-  weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 13
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:25
-assessment_groups_162: 
-  
-  max_score: 80.00
-  id: 162
-  weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 27
-  academic_year_id: 3
-  
-assessment_groups_133: 
-  updated_at: 2010-08-19 09:50:29
-  max_score: 20.00
-  id: 133
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 23
-  academic_year_id: 3
-  
-assessment_groups_105: 
-  updated_at: 2010-08-19 09:50:27
-  max_score: 80.00
-  id: 105
+
+9C_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 9C
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 18
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:27
-assessment_groups_078: 
-  updated_at: 2010-08-19 09:50:25
   max_score: 80.00
-  id: 78
+
+9C_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 9C
+  weightage: 10.00
+  max_score: 20.00
+
+9C_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 9C
+  weightage: 10.00
+  max_score: 20.00
+
+9C_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 9C
   weightage: 40.00
-  assessment_type_id: 6
-  klass_id: 13
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:25
-assessment_groups_134: 
-  updated_at: 2010-08-19 09:50:29
-  max_score: 20.00
-  id: 134
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 23
-  academic_year_id: 3
-  
-assessment_groups_106: 
-  updated_at: 2010-08-19 09:50:27
-  max_score: 20.00
-  id: 106
-  weightage: 10.00
-  assessment_type_id: 4
-  klass_id: 18
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:27
-assessment_groups_020: 
-  updated_at: 2010-08-19 09:50:21
-  max_score: 20.00
-  id: 20
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 4
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:21
-assessment_groups_079: 
-  updated_at: 2010-08-19 09:50:25
-  max_score: 20.00
-  id: 79
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 14
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:25
-assessment_groups_163: 
-  
-  max_score: 20.00
-  id: 163
-  weightage: 10.00
-  assessment_type_id: 1
-  klass_id: 28
-  academic_year_id: 3
-  
-assessment_groups_135: 
-  updated_at: 2010-08-19 09:50:29
   max_score: 80.00
-  id: 135
+
+9D_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 9D
+  weightage: 10.00
+  max_score: 20.00
+
+9D_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 9D
+  weightage: 10.00
+  max_score: 20.00
+
+9D_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 9D
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 23
-  academic_year_id: 3
-  
-assessment_groups_107: 
-  updated_at: 2010-08-19 09:50:27
-  max_score: 20.00
-  id: 107
-  weightage: 10.00
-  assessment_type_id: 5
-  klass_id: 18
-  academic_year_id: 3
-assessment_groups_050: 
-  max_score: 20.00
-  weightage: 10.00
-  assessment_type_id: 2
-  klass_id: 9
-  academic_year_id: 3
-  created_at: 2010-08-19 09:50:23
-assessment_groups_021: 
-  updated_at: 2010-08-19 09:50:22
   max_score: 80.00
-  id: 21
+
+9D_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 9D
+  weightage: 10.00
+  max_score: 20.00
+
+9D_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 9D
+  weightage: 10.00
+  max_score: 20.00
+
+9D_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 9D
+  weightage: 40.00
+  max_score: 80.00
+
+9E_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 9E
+  weightage: 10.00
+  max_score: 20.00
+
+9E_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 9E
+  weightage: 10.00
+  max_score: 20.00
+
+9E_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 9E
   weightage: 20.00
-  assessment_type_id: 3
-  klass_id: 4
-  academic_year_id: 3
+  max_score: 80.00
+
+9E_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 9E
+  weightage: 10.00
+  max_score: 20.00
+
+9E_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 9E
+  weightage: 10.00
+  max_score: 20.00
+
+9E_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 9E
+  weightage: 40.00
+  max_score: 80.00
+
+10A_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 10A
+  weightage: 10.00
+  max_score: 20.00
+
+10A_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 10A
+  weightage: 10.00
+  max_score: 20.00
+
+10A_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 10A
+  weightage: 20.00
+  max_score: 80.00
+
+10A_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 10A
+  weightage: 10.00
+  max_score: 20.00
+
+10A_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 10A
+  weightage: 10.00
+  max_score: 20.00
+
+10A_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 10A
+  weightage: 40.00
+  max_score: 80.00
+
+10B_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 10B
+  weightage: 10.00
+  max_score: 20.00
+
+10B_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 10B
+  weightage: 10.00
+  max_score: 20.00
+
+10B_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 10B
+  weightage: 20.00
+  max_score: 80.00
+
+10B_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 10B
+  weightage: 10.00
+  max_score: 20.00
+
+10B_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 10B
+  weightage: 10.00
+  max_score: 20.00
+
+10B_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 10B
+  weightage: 40.00
+  max_score: 80.00
+
+10C_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 10C
+  weightage: 10.00
+  max_score: 20.00
+
+10C_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 10C
+  weightage: 10.00
+  max_score: 20.00
+
+10C_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 10C
+  weightage: 20.00
+  max_score: 80.00
+
+10C_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 10C
+  weightage: 10.00
+  max_score: 20.00
+
+10C_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 10C
+  weightage: 10.00
+  max_score: 20.00
+
+10C_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 10C
+  weightage: 40.00
+  max_score: 80.00
+
+10D_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 10D
+  weightage: 10.00
+  max_score: 20.00
+
+10D_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 10D
+  weightage: 10.00
+  max_score: 20.00
+
+10D_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 10D
+  weightage: 20.00
+  max_score: 80.00
+
+10D_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 10D
+  weightage: 10.00
+  max_score: 20.00
+
+10D_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 10D
+  weightage: 10.00
+  max_score: 20.00
+
+10D_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 10D
+  weightage: 40.00
+  max_score: 80.00
+
+10E_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 10E
+  weightage: 10.00
+  max_score: 20.00
+
+10E_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 10E
+  weightage: 10.00
+  max_score: 20.00
+
+10E_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 10E
+  weightage: 20.00
+  max_score: 80.00
+
+10E_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 10E
+  weightage: 10.00
+  max_score: 20.00
+
+10E_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 10E
+  weightage: 10.00
+  max_score: 20.00
+
+10E_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 10E
+  weightage: 40.00
+  max_score: 80.00
+
+11A_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 11A
+  weightage: 10.00
+  max_score: 20.00
+
+11A_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 11A
+  weightage: 10.00
+  max_score: 20.00
+
+11A_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 11A
+  weightage: 20.00
+  max_score: 80.00
+
+11A_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 11A
+  weightage: 10.00
+  max_score: 20.00
+
+11A_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 11A
+  weightage: 10.00
+  max_score: 20.00
+
+11A_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 11A
+  weightage: 40.00
+  max_score: 80.00
+
+12A_FA1:
+  academic_year: gps
+  assessment_type: FA1
+  klass: 12A
+  weightage: 10.00
+  max_score: 20.00
+
+12A_FA2:
+  academic_year: gps
+  assessment_type: FA2
+  klass: 12A
+  weightage: 10.00
+  max_score: 20.00
+
+12A_SA1:
+  academic_year: gps
+  assessment_type: SA1
+  klass: 12A
+  weightage: 20.00
+  max_score: 80.00
+
+12A_FA3:
+  academic_year: gps
+  assessment_type: FA3
+  klass: 12A
+  weightage: 10.00
+  max_score: 20.00
+
+12A_FA4:
+  academic_year: gps
+  assessment_type: FA4
+  klass: 12A
+  weightage: 10.00
+  max_score: 20.00
+
+12A_SA2:
+  academic_year: gps
+  assessment_type: SA2
+  klass: 12A
+  weightage: 40.00
+  max_score: 80.00

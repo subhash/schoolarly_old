@@ -8,9 +8,9 @@ gps_9A_malayalam:
   klass: 9A
   school_subject: gps_malayalam
 
-gps_9A_maths:
+gps_9A_mathematics:
   klass: 9A
-  school_subject: gps_maths
+  school_subject: gps_mathematics
   
 gps_9A_science:
   klass: 9A

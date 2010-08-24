@@ -32,7 +32,7 @@ gps_model:
  name: Model Making
  assessment_type_name: FA
  school: gps
- school_subjects: gps_maths, gps_science, gps_social
+ school_subjects: gps_mathematics, gps_science, gps_social
 gps_practical:
  name: Practical
  assessment_type_name: FA
@@ -41,7 +41,7 @@ gps_quiz:
  name: Quiz
  assessment_type_name: FA
  school: gps
- school_subjects: gps_maths, gps_it
+ school_subjects: gps_mathematics, gps_it
 gps_reading:
  name: Reading Comprehension
  assessment_type_name: FA

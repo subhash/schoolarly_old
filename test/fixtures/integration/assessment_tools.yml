@@ -1,50 +1,59 @@
-assessment_tools_007: 
+9A_exam_SA1_english:
   best_of: 1
   name: Exam
-  assessment_id: 23
-  weightage: 100.00
-assessment_tools_008: 
+  assessment: 9A_SA1_english
+  weightage: 100.00          
+
+9A_exam_SA2_english:
   best_of: 1
   name: Exam
-  assessment_id: 24
-  weightage: 100.00
-assessment_tools_009: 
+  assessment: 9A_SA2_english
+  weightage: 100.00          
+
+9A_exam_SA1_malayalam:
   best_of: 1
   name: Exam
-  assessment_id: 29
-  weightage: 100.00
-assessment_tools_010: 
+  assessment: 9A_SA1_malayalam
+  weightage: 100.00      
+
+9A_exam_SA2_malayalam:
   best_of: 1
   name: Exam
-  assessment_id: 30
-  weightage: 100.00
-assessment_tools_001: 
+  assessment: 9A_SA2_malayalam
+  weightage: 100.00  
+
+9A_exam_SA1_mathematics:
   best_of: 1
   name: Exam
-  assessment_id: 5
-  weightage: 100.00
-assessment_tools_002: 
+  assessment: 9A_SA1_mathematics
+  weightage: 100.00  
+
+9A_exam_SA2_mathematics:
   best_of: 1
   name: Exam
-  assessment_id: 6
-  weightage: 100.00
-assessment_tools_003: 
+  assessment: 9A_SA2_mathematics
+  weightage: 100.00  
+
+9A_exam_SA1_science:
   best_of: 1
   name: Exam
-  assessment_id: 11
-  weightage: 100.00
-assessment_tools_004: 
+  assessment: 9A_SA1_science
+  weightage: 100.00          
+
+9A_exam_SA2_science:
   best_of: 1
   name: Exam
-  assessment_id: 12
-  weightage: 100.00
-assessment_tools_005: 
+  assessment: 9A_SA2_science
+  weightage: 100.00          
+
+9A_exam_SA1_social:
   best_of: 1
   name: Exam
-  assessment_id: 17
-  weightage: 100.00
-assessment_tools_006: 
+  assessment: 9A_SA1_social
+  weightage: 100.00                
+
+9A_exam_SA2_social:
   best_of: 1
   name: Exam
-  assessment_id: 18
+  assessment: 9A_SA2_social
   weightage: 100.00

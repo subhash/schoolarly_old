@@ -149,6 +149,7 @@ module ApplicationHelper
   
   def message_to(person)
     users = person.respond_to?(:user) ? [person.user] : person.users
+    puts "users = "+users.inspect +  "- person" + person.inspect
     selected_user_ids = users.collect{|u| u.id}
     title = 'Post Message to ' + person.name
     args = {:partial => 'mails/new_form', :locals => {:users => users, :selected_users => selected_user_ids, :message => Message.new} }

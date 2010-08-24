@@ -13,9 +13,9 @@ gps_french:
 gps_sanskrit:
  school: gps
  subject: sanskrit
-gps_maths:
+gps_mathematics:
  school: gps
- subject: maths
+ subject: mathematics
 gps_science:
  school: gps
  subject: science

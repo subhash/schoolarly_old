@@ -1,91 +1,59 @@
---- 
-activities_002: 
-  event_id: 
-  updated_at: 2010-08-19 09:50:32
-  max_score: "80.00"
-  id: "2"
-  description: SA2 Exam - English
-  assessment_tool_id: "2"
-  position: "1"
-  created_at: 2010-08-19 09:50:32
-activities_003: 
-  event_id: 
-  updated_at: 2010-08-19 09:50:32
-  max_score: "80.00"
-  id: "3"
-  description: SA1 Exam - Malayalam
-  assessment_tool_id: "3"
-  position: "1"
-  created_at: 2010-08-19 09:50:32
-activities_004: 
-  event_id: 
-  updated_at: 2010-08-19 09:50:33
-  max_score: "80.00"
-  id: "4"
-  description: SA2 Exam - Malayalam
-  assessment_tool_id: "4"
-  position: "1"
-  created_at: 2010-08-19 09:50:33
-activities_005: 
-  event_id: 
-  updated_at: 2010-08-19 09:50:33
-  max_score: "80.00"
-  id: "5"
-  description: SA1 Exam - Mathematics
-  assessment_tool_id: "5"
-  position: "1"
-  created_at: 2010-08-19 09:50:33
-activities_006: 
-  event_id: 
-  updated_at: 2010-08-19 09:50:33
-  max_score: "80.00"
-  id: "6"
-  description: SA2 Exam - Mathematics
-  assessment_tool_id: "6"
-  position: "1"
-  created_at: 2010-08-19 09:50:33
-activities_007: 
-  event_id: 
-  updated_at: 2010-08-19 09:50:33
-  max_score: "80.00"
-  id: "7"
-  description: SA1 Exam - Science
-  assessment_tool_id: "7"
-  position: "1"
-  created_at: 2010-08-19 09:50:33
-activities_008: 
-  event_id: 
-  updated_at: 2010-08-19 09:50:33
-  max_score: "80.00"
-  id: "8"
-  description: SA2 Exam - Science
-  assessment_tool_id: "8"
-  position: "1"
-  created_at: 2010-08-19 09:50:33
-activities_010: 
-  event_id: 
-  updated_at: 2010-08-19 09:50:34
-  max_score: "80.00"
-  id: "10"
-  description: SA2 Exam - Social Science
-  assessment_tool_id: "10"
-  position: "1"
-  created_at: 2010-08-19 09:50:34
-activities_009: 
-  event_id: 
-  updated_at: 2010-08-19 09:50:34
-  max_score: "80.00"
-  id: "9"
-  description: SA1 Exam - Social Science
-  assessment_tool_id: "9"
-  position: "1"
-  created_at: 2010-08-19 09:50:34
-activities_001: 
-  event_id: 
-  updated_at: 2010-08-19 09:50:31
-  max_score: "80.00"
-  id: "1"
+9A_exam1_SA1_english:
+  max_score: 80.00
   description: SA1 Exam - English
-  assessment_tool_id: "1"
-  position: "1"
-  created_at: 2010-08-19 09:50:31
+  assessment_tool: 9A_exam_SA1_english
+  position: 1
+
+9A_exam1_SA2_english:
+  max_score: 80.00
+  description: SA2 Exam - English
+  assessment_tool: 9A_exam_SA2_english
+  position: 1
+
+9A_exam1_SA1_malayalam:
+  max_score: 80.00
+  description: SA1 Exam - Malayalam
+  assessment_tool: 9A_exam_SA1_malayalam
+  position: 1
+
+9A_exam1_SA2_malayalam:
+  max_score: 80.00
+  description: SA2 Exam - Malayalam
+  assessment_tool: 9A_exam_SA2_malayalam
+  position: 1
+
+9A_exam1_SA1_mathematics:
+  max_score: 80.00
+  description: SA1 Exam - Mathematics
+  assessment_tool: 9A_exam_SA1_mathematics
+  position: 1
+
+9A_exam1_SA2_mathematics:
+  max_score: 80.00
+  description: SA2 Exam - Mathematics
+  assessment_tool: 9A_exam_SA2_mathematics
+  position: 1
+
+9A_exam1_SA1_science:
+  max_score: 80.00
+  description: SA1 Exam - Science
+  assessment_tool: 9A_exam_SA1_science
+  position: 1
+
+9A_exam1_SA2_science:
+  max_score: 80.00
+  description: SA2 Exam - Science
+  assessment_tool: 9A_exam_SA2_science
+  position: 1
+
+9A_exam1_SA1_social:
+  max_score: 80.00
+  description: SA1 Exam - social
+  assessment_tool: 9A_exam_SA1_social
+  position: 1
+
+9A_exam1_SA2_social:
+  max_score: 80.00
+  description: SA2 Exam - social
+  assessment_tool: 9A_exam_SA2_social
+  position: 1
