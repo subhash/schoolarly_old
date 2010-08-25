@@ -33,14 +33,25 @@ class SchoolTest < ActionController::IntegrationTest
     assert page.has_content?('There were problems with the following fields:')
   end
   
+  def add_subjects
+    click_link "Add Subjects to #{@school.name}"
+    assert page.has_css?('#subject_ids.multiselect')
+    page.execute_script("jQuery('#subject_ids').removeClass('multiselect');")
+    select 'Biology', :from => 'subject_ids'
+    select 'English', :from => 'subject_ids'
+    select 'Science' , :from => 'subject_ids'
+    click_button 'Save'
+    assert(within_table('school_subjects') {
+      page.has_content? ('Biology')
+      page.has_content? ('English')
+      page.has_content? ('Science')
+      page.has_no_content?('Malayalam')
+    })
+  end
   
   def test_school_setup
     valid_login
-    click_link "Add Subjects to #{@school.name}"
-    select 'Biology', :from => 'subject_ids'
-    
-    click_button 'Save'
-    assert page.has_table? 'school_subjects', :with_row => 'English'
+    add_subjects
   end
   
   
