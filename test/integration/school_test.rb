@@ -33,14 +33,15 @@ class SchoolTest < ActionController::IntegrationTest
     assert page.has_content?('There were problems with the following fields:')
   end
   
+  
+  def test_school_setup
+    valid_login
+    click_link "Add Subjects to #{@school.name}"
+    select 'Biology', :from => 'subject_ids'
     
-    def test_school_setup
-      valid_login
-      click_link 'Add Subjects'
-      select 'Biology', :from => 'subject_ids'
-      click_button 'Save'
-      assert page.has_table? 'school_subjects', :with_row => 'English'
-    end
+    click_button 'Save'
+    assert page.has_table? 'school_subjects', :with_row => 'English'
+  end
   
   
 end
