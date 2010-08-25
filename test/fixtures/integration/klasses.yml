@@ -1,115 +1,115 @@
 1A:
-  level: 1
+  level: one
   division: A
   school: gps
   class_teacher: marykkutty
 1B:
-  level: 1
+  level: one
   division: B
   school: gps
   class_teacher: subramaniam
 1C:
-  level: 1
+  level: one
   division: C
   school: gps
   class_teacher: sunil
 2A:
-  level: 2
+  level: two
   division: A
   school: gps
 2B:
-  level: 2
+  level: two
   division: B
   school: gps
 2C:
-  level: 2
+  level: two
   division: C
   school: gps
 3A:
-  level: 3
+  level: three
   division: A
   school: gps
 3B:
-  level: 3
+  level: three
   division: B
   school: gps
 3C:
-  level: 3
+  level: three
   division: C
   school: gps
 4A:
-  level: 4
+  level: four
   division: A
   school: gps
 4B:
-  level: 4
+  level: four
   division: B
   school: gps
 5A:
-  level: 5
+  level: five
   division: A
   school: gps
 5B:
-  level: 5
+  level: five
   division: B
   school: gps
 6A:
-  level: 6
+  level: six
   division: A
   school: gps
 7A:
-  level: 7
+  level: seven
   division: A
   school: gps
 8A:
-  level: 8
+  level: eight
   division: A
   school: gps
 9A:
-  level: 9
+  level: nine
   division: A
   school: gps
 9B:
-  level: 9
+  level: nine
   division: B
   school: gps
 9C:
-  level: 9
+  level: nine
   division: C
   school: gps
 9D:
-  level: 9
+  level: nine
   division: D
   school: gps
 9E:
-  level: 9
+  level: nine
   division: E
   school: gps
 10A:
-  level: 10
+  level: ten
   division: A
   school: gps
 10B:
-  level: 10
+  level: ten
   division: B
   school: gps
 10C:
-  level: 10
+  level: ten
   division: C
   school: gps
 10D:
-  level: 10
+  level: ten
   division: D
   school: gps
 10E:
-  level: 10
+  level: ten
   division: E
   school: gps
 11A:
-  level: 11
+  level: eleven
   division: A
   school: gps
 12A:
-  level: 12
+  level: twelve
   division: A
   school: gps

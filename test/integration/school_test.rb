@@ -35,23 +35,49 @@ class SchoolTest < ActionController::IntegrationTest
   
   def add_subjects
     click_link "Add Subjects to #{@school.name}"
-    assert page.has_css?('#subject_ids.multiselect')
-    page.execute_script("jQuery('#subject_ids').removeClass('multiselect');")
+    initialize_select('subject_ids')
     select 'Biology', :from => 'subject_ids'
     select 'English', :from => 'subject_ids'
     select 'Science' , :from => 'subject_ids'
     click_button 'Save'
     assert(within_table('school_subjects') {
-      page.has_content? ('Biology')
-      page.has_content? ('English')
-      page.has_content? ('Science')
+      page.has_content?('Biology')
+      page.has_content?('English')
+      page.has_content?('Science')
       page.has_no_content?('Malayalam')
+    })
+  end
+  
+  def initialize_select(element_id)
+    assert page.has_css?("##{element_id}.multiselect")
+    page.execute_script("jQuery('##{element_id}').removeClass('multiselect');")
+  end
+  
+  def add_class(level, division)
+    click_link "Add Class"
+    select level.name, :from => 'klass_level_id'
+    fill_in 'Division', :with => division
+    click_button 'Create'
+    klass = Klass.find_by_level_id_and_division(level.id, division)
+    assert_not_nil klass
+    assert page.has_content?("Add subjects to #{klass.name}")
+    initialize_select('school_subject_ids')
+    select 'Biology', :from => 'school_subject_ids'
+    select 'English', :from => 'school_subject_ids'
+    click_button 'Save'
+    assert(within_table('klasses') {
+      page.has_link?(klass_path(klass))
+      page.has_content?('Biology')
+      page.has_content?('English')
+      page.has_no_content?('Science')
     })
   end
   
   def test_school_setup
     valid_login
     add_subjects
+    add_class(levels(:one), "A")
+    add_class(levels(:two), "B")
   end
   
   

@@ -1,36 +1,36 @@
-1: 
+one: 
   name: 1
   description: 1
-2: 
+two: 
   name: 2
   description: 2
-3: 
+three: 
   name: 3
   description: 3
-4: 
+four: 
   name: 4
   description: 4
-5: 
+five: 
   name: 5
   description: 5
-6: 
+six: 
   name: 6
   description: 6
-7: 
+seven: 
   name: 7
   description: 7
-8: 
+eight: 
   name: 8
   description: 8
-9: 
+nine: 
   name: 9
   description: 9
-10: 
+ten: 
   name: 10
   description: 10
-11: 
+eleven: 
   name: 11
   description: 11
-12: 
+twelve: 
   name: 12
   description: 12
