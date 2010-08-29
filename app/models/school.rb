@@ -1,6 +1,6 @@
 class School < ActiveRecord::Base
   has_one :user, :as => :person
-  has_many :klasses , :order => ["level_id, division"]
+  has_many :klasses , :include => [:level], :order => ["cast(levels.name as decimal), division"]
   has_many :teachers 
   has_many :teacher_users, :through => :teachers, :source => :user
   has_many :students 

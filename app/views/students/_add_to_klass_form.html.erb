@@ -6,7 +6,7 @@
     <%= f.text_field :roll_number %>
 </p>
 <p>
-    <%= f.label :klass %>
+    <%= f.label 'Class' %>
     <br/>
     <%= f.select :klass_id, student.school.klasses.collect {|k| [ k.name, k.id ] } %>
 </p>

@@ -3,7 +3,7 @@ require 'integration_test_helper'
 class SchoolTest < ActionController::IntegrationTest
   
   def setup
-    @school = schools(:stteresas)
+    @school =  schools(:stteresas)
   end
   
   def login(email, password)
@@ -12,10 +12,6 @@ class SchoolTest < ActionController::IntegrationTest
     fill_in 'Email', :with => email
     fill_in 'Password', :with => password
     click_button 'Login'
-  end
-  
-  def valid_login
-    login(@school.email, "password")
     assert_equal current_path, school_path(@school)
     assert_i_tabs do |t|
       t.assert_messages_tab 1
@@ -28,56 +24,95 @@ class SchoolTest < ActionController::IntegrationTest
     end 
   end
   
-  def test_invalid_login
-    login(@school.email, "wrong_password")
-    assert page.has_content?('There were problems with the following fields:')
-  end
+  #  def test_invalid_login
+  #    login(@school.email, "wrong_password")
+  #    assert page.has_content?('There were problems with the following fields:')
+  #  end
   
-  def add_subjects
+  def add_subjects_to_school(subjects, no_subjects)
     click_link "Add Subjects to #{@school.name}"
     initialize_select('subject_ids')
-    select 'Biology', :from => 'subject_ids'
-    select 'English', :from => 'subject_ids'
-    select 'Science' , :from => 'subject_ids'
+    subjects.each do |s|
+      select s, :from => 'subject_ids'
+    end
     click_button 'Save'
     assert(within_table('school_subjects') {
-      page.has_content?('Biology')
-      page.has_content?('English')
-      page.has_content?('Science')
-      page.has_no_content?('Malayalam')
+      subjects.each do |s|
+        page.has_content?(s)
+      end
+      no_subjects.each do |s|
+        page.has_no_content?(s)
+      end
     })
   end
   
   def initialize_select(element_id)
     assert page.has_css?("##{element_id}.multiselect")
     page.execute_script("jQuery('##{element_id}').removeClass('multiselect');")
+    @javascript
   end
   
-  def add_class(level, division)
+  def add_class(level, division, subjects, no_subjects)
     click_link "Add Class"
+    @javascript
     select level.name, :from => 'klass_level_id'
     fill_in 'Division', :with => division
     click_button 'Create'
     klass = Klass.find_by_level_id_and_division(level.id, division)
     assert_not_nil klass
     assert page.has_content?("Add subjects to #{klass.name}")
-    initialize_select('school_subject_ids')
-    select 'Biology', :from => 'school_subject_ids'
-    select 'English', :from => 'school_subject_ids'
-    click_button 'Save'
+    add_subjects(subjects, 'school_subject_ids')
     assert(within_table('klasses') {
       page.has_link?(klass_path(klass))
-      page.has_content?('Biology')
-      page.has_content?('English')
-      page.has_no_content?('Science')
+      subjects.each do |s|
+        page.has_content?(s)
+      end
+      no_subjects.each do |s|
+        page.has_no_content?(s)
+      end
+    })
+    return klass
+  end
+  
+  def add_subjects(subjects, element_id)
+    initialize_select(element_id)
+    subjects.each do |s|
+      wait_until{select s, :from => element_id}
+    end
+    click_button 'Save'
+  end
+  
+  def invite_student(email, name, admission_no, klass, roll_no, subjects)
+    click_link "Invite Student"
+    assert page.has_content?("Invite Student")
+    fill_in 'Email', :with => email
+    fill_in 'Name', :with => name
+    fill_in 'Admission number', :with => admission_no
+    click_button 'Invite'
+    assert page.has_content?("Assign class for #{name}")
+    fill_in 'Roll number', :with => roll_no
+    select klass, :from => 'student_klass_id'
+    click_button 'Assign'
+    assert page.has_content?("Subjects taken by #{name}")
+    add_subjects(subjects, 'paper_ids')
+    student = Student.find(User.find_by_email(email).person_id)
+    assert_not_nil(student)
+    assert(within_table('students') {
+      page.has_link?(student_path(student))
+      page.has_content?("Admission no: #{admission_no}")
+      page.has_content?("Roll no: #{roll_no}")
+      subjects.each do |s|
+        page.has_content?(s)
+      end
     })
   end
   
   def test_school_setup
-    valid_login
-    add_subjects
-    add_class(levels(:one), "A")
-    add_class(levels(:two), "B")
+    login(@school.email, "password")
+    add_subjects_to_school ['Biology', 'English','Science'],['Malayalam']
+    klass1 = add_class(levels(:one), "A", ['Biology', 'English'], ['Science'])
+    klass2 = add_class(levels(:two), "B", ['English','Science'], ['Biology'])
+#    invite_student('student1@schoolarly.com', 'Student1', 1 , '1 A', '', ['Biology', 'English'])
   end
   
   
