@@ -1,9 +1,9 @@
 require "test_helper"
 require "capybara/rails"
 require "selenium-webdriver"
-require 'selenium/webdriver/remote/http/curb'
+#require 'selenium/webdriver/remote/http/curb'
 
-include Selenium
+#include Selenium
 
 module ActionController
   class IntegrationTest
@@ -66,4 +66,4 @@ end
 Capybara.default_driver = :selenium
 Capybara.javascript_driver = :selenium
 Capybara.default_wait_time = 15
-Selenium::WebDriver.for :firefox, :http_client => Selenium::WebDriver::Remote::Http::Curb 
+#Selenium::WebDriver.for :firefox, :http_client => Selenium::WebDriver::Remote::Http::Curb 
