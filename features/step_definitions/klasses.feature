@@ -1,13 +1,15 @@
 Feature: Manage classes
   In order to manage students
-  As a school
-  I want to create and manage classes
+  School should be able to
+  Create and manage classes
   
   @javascript
-  Scenario: Creating a class
-    Given I go to the home page 
-    When I follow "Login"
-    And I fill in "Email" with "stteresas@schoolarly.com"
-    And I fill in "Password" with "password"
-    And I press "Login"
-    Then I should be on school_path("stteresas@schoolarly.com") page
+  Scenario: Add a class
+    Given that I have logged in as "stteresas"
+    When I follow "Add Class"
+    And I select "1" from "klass_level_id" within "#new_klass"
+    And I fill in "Division" with "A"
+    And I press "Create"
+    Then I should see "Add subjects to 1 A"
+    
+    
