@@ -2,17 +2,17 @@
  id: 1
  name: Class Test
  assessment_type_name: FA
- school_id: 1
+ school_id: 3
 2:
  id: 2
  name: Exploration and Discovery
  assessment_type_name: FA
- school_id: 1
+ school_id: 3
 3:
  id: 3
  name: Group Discussion
  assessment_type_name: FA
- school_id: 1
+ school_id: 3
 4:
  id: 4
  name: Group Project
