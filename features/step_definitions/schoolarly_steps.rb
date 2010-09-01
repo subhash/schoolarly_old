@@ -27,4 +27,8 @@ Given /I am logged in as (school|student|teacher) "(.*)"$/ do |role, user|
 #  end 
 end
 
+Given /I am on "(.+)" tab/ do |tab|
+  click_tab tab
+end
+
 

@@ -3,6 +3,14 @@
     page.execute_script("jQuery('##{element_id}').removeClass('multiselect');")
   end
   
+  def click_tab(name)
+    click_link "name-#{tabs}"
+  end
+  
+  def symbol(s, delimiter=nil)
+    s.split(delimiter).first.downcase
+  end
+  
   def assert_i_tabs
     tab_tester = self
     
