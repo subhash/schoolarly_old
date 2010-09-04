@@ -26,7 +26,7 @@ class ScoresController < ApplicationController
     @activities.each do |activity|
       score =  activity.scores.find_by_student_id(@student.id)
       if(score)
-        params[activity.id.to_s].blank? ? score.destroy :  score.score = params[activity.id.to_s].to_i      
+        params[activity.id.to_s].blank? ? score.destroy :  score.score = params[activity.id.to_s]    
       else
         score = Score.new do |s|
           s.score = params[activity.id.to_s].to_i

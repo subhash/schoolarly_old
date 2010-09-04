@@ -87,9 +87,9 @@ function initPanes(){
 }
 
 function refreshPanes(){
-	jQuery('div.pane').hide();
-	var currentPane = jQuery('a.pane-link.active').attr('href');
-	jQuery(currentPane).show();
+    jQuery('div.pane').hide();
+    var currentPane = jQuery('a.pane-link.active').attr('href');
+    jQuery(currentPane).show();
 }
 
 function showTab(id){
@@ -215,6 +215,23 @@ function collectSelectedIndices(selectable, field){
         });
     });
 }
+
+function scoreCheck(value, colname){
+    switch (value) {
+        case 'N':
+		case 'n':
+        case 'A':
+		case 'a':
+            return [true, ""];		
+    }
+    maxValue = colname.substring(colname.indexOf('(') + 1, colname.indexOf(')'));
+	value = parseFloat(value);
+    if (value >= 0 && value <= maxValue) 
+        return [true, ""];
+    else 
+        return [false, "Please enter value between 0 and "+maxValue];
+}
+
 
 function hideShowDivs(hide_id, show_id){
     jQuery(hide_id).hide();

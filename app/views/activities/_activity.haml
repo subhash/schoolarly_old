@@ -20,6 +20,6 @@
   - if @student
     - if (score =  activity.scores.of_student(@student.id)) 
       - score_class = activity.assessment_tool.best_scores_for(@student).include?(score) ? "score" : "score ignore"
-      %span{:class => score_class}= "#{trim(score.score)}/#{trim(activity.max_score)}" 
+      %span{:class => score_class}= "#{score_display(score)}" 
    
    

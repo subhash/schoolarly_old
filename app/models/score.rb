@@ -7,10 +7,40 @@ class Score < ActiveRecord::Base
   def max_score
     activity.max_score
   end
-  #  
-  #  def weightage
-  #    exam.activity.assessment.weightage
-  #  end
+  
+  def unit_score
+    case score
+      when 'N'
+      -2
+      when 'A'
+      0
+    else
+      score/max_score
+    end
+  end
+  
+  def score=(value)
+    case value
+      when 'N', 'n'
+      self[:score] = -2
+      when 'A', 'a'
+      self[:score] = -1
+    else
+      self[:score] = value  
+    end
+  end
+  
+  def score
+    case self[:score]
+      when -2 
+       'N'
+      when -1
+       'A'
+    else
+      self[:score]
+    end
+  end
+  
   
   def send_message
     str = "Score in #{activity.title} - #{score}/#{max_score} "

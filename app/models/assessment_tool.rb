@@ -27,18 +27,19 @@ class AssessmentTool < ActiveRecord::Base
   end
   
   def average_score_for(student)
-    student_scores = scores.of_student(student.id).collect{|s|(s.score/s.max_score)}
+    student_scores = scores.of_student(student.id).collect{|s|(s.unit_score)}
     if student_scores.size >= best_of
       student_scores = student_scores.sort.reverse.slice(0,best_of)
-      avg = (student_scores.sum/student_scores.size) * assessment_group.max_score
+      student_scores.delete(-2)
+      avg = student_scores.size > 0 ? ((student_scores.sum/student_scores.size) * assessment_group.max_score) : nil
     else
       nil
     end
   end
   
  def best_scores_for(student)
-    student_scores = scores.of_student(student.id).each_with_object({}){|score, hash| hash[score] = (score.score/score.max_score)}
-    student_scores.sort{|a,b| b[1]<=>a[1]}.slice(0,best_of).collect{|x|x[0]}
+    student_scores = scores.of_student(student.id).each_with_object({}){|score, hash| hash[score] = score.unit_score}
+    student_scores.sort{|a,b| b[1]<=>a[1]}.slice(0,best_of).collect{|x|x[0]}.delete_if{|x| x.score == 'N'}
  end
     
   def weighted_average_for(student)
