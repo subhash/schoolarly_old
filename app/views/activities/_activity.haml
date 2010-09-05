@@ -1,12 +1,13 @@
 %div[activity]
   - unless @student
-    %span.icon= link_to_remote 'Edit activity', :url =>  {:controller => 'activities', :action => 'edit', :id => activity }, :method => :get, :html => {:title => "Edit #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-pencil"}
+    %span.icon= link_to_remote 'Edit activity', :url =>  {:controller => 'activities', :action => 'edit', :id => activity }, :method => :get, :html => {:title => "Edit #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-pencil"}  if permitted_to? :edit, activity
     - if activity.destroyable?  and activity.assessment.fa?
-      %span.icon= link_to_remote 'Delete', :url => {:controller => 'activities', :action => 'destroy', :id => activity }, :method => :delete, :html => {:title => "Delete #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-trash"}, :confirm => 'Are you sure?'
+      %span.icon= link_to_remote 'Delete', :url => {:controller => 'activities', :action => 'destroy', :id => activity }, :method => :delete, :html => {:title => "Delete #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' if permitted_to? :delete, activity
     - else
       %span.icon.ui-icon.blank
   %span.name
-    = link_to activity.name, scores_activity_path(:id => activity.id, :edit => true), :class => "name"
+    - edit = true if permitted_to? :manage, activity
+    = link_to_if (permitted_to? :read, activity), activity.name, scores_activity_path(:id => activity.id, :edit => edit | false), :class => "name"
   - if activity.description.blank?
     %span.icon.ui-icon.blank
   - else
@@ -20,6 +21,6 @@
   - if @student
     - if (score =  activity.scores.of_student(@student.id)) 
       - score_class = activity.assessment_tool.best_scores_for(@student).include?(score) ? "score" : "score ignore"
-      %span{:class => score_class}= "#{score_display(score)}" 
+      %span{:class => score_class}= "#{score_display(score)}" if permitted_to? :read, score
    
    
