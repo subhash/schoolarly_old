@@ -19,9 +19,9 @@ authorization do
   
   role :student do
     has_permission_on [:schools, :klasses, :teachers, :students], :to => :read, :join_by => :and, &same_school
-    has_permission_on :exams, :to => :read , &same_klass
+    has_permission_on :activities, :to => :read, :join_by => :and, &same_klass
     has_permission_on :scores, :to => :read do
-      if_permitted_to :read, :exam
+      if_permitted_to :read, :activity
     end
     has_permission_on :user_profiles, :to => :read_write, &same_user
     has_permission_on [:schools, :teachers, :students, :klasses, :papers], :to => :contact, :join_by => :and, &same_school
@@ -32,11 +32,20 @@ authorization do
     has_permission_on :teachers, :to => :read_write, &same_user
     has_permission_on :students, :to => :read_write, :join_by => :and, &same_school
     has_permission_on :klasses, :to => :manage, :join_by => :and, &same_school
-    has_permission_on :exams, :to => :manage do
+    has_permission_on :assessment_groups, :to => :manage, :join_by => :and do
       if_permitted_to :manage, :klass
     end
-    has_permission_on :scores, :to => :manage do
-      if_permitted_to :manage, :exam
+    has_permission_on :assessments, :to => :manage, :join_by => :and do
+      if_permitted_to :manage, :assessment_group
+    end
+    has_permission_on :assessment_tools, :to => :manage, :join_by => :and do
+      if_permitted_to :manage, :assessment
+    end
+    has_permission_on :activities, :to => :manage, :join_by => :and do
+      if_permitted_to :manage, :assessment_tool
+    end
+    has_permission_on :scores, :to => :manage, :join_by => :and do
+      if_permitted_to :manage, :activity
     end
     has_permission_on :papers, :to => :manage do
       if_permitted_to :manage, :klass

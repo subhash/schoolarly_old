@@ -1,0 +1,10 @@
+%table.calculation
+  %tr.heading
+    %th Activity
+    %th Weightage (%)
+    %th Choose best
+  - @assessment.assessment_tools.each do |tool|
+    %tr
+      %td= tool.name
+      %td= tool.weightage
+      %td= tool.best_of.to_s + " out of #{tool.activities.size}"      
