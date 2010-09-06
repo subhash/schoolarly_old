@@ -68,6 +68,7 @@ authorization do
     has_permission_on :schools, :to => :read_write, &same_user
     has_permission_on :user_profiles, :to => :read_write, &same_user
     has_permission_on [:schools, :teachers, :students], :to => :alter, :join_by => :and, &same_school
+    has_permission_on :assessments, :to => :manage, :join_by => :and, &same_school
   end
   
   role :schoolarly_admin do

@@ -44,6 +44,10 @@ class Assessment < ActiveRecord::Base
     paper.teacher if paper
   end
   
+  def school
+    klass.school
+  end
+  
   def name
     assessment_type.name 
   end
