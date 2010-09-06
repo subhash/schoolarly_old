@@ -25,8 +25,8 @@ class ActivitiesController < ApplicationController
     end
   render :update do |page|
     if @activity.save
-      @assessment = @activity.assessment
-      page.replace_object @activity.assessment, :partial => 'assessments/assessment'
+      @assessment = @assessment_tool.assessment
+      page.replace_object @assessment, :partial => 'assessments/assessment'
       if @assessment.activities.size > 1
         page.open_dialog "Adjust calculations for "+@assessment.long_name, :partial => 'assessments/edit'
       else

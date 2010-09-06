@@ -1,9 +1,7 @@
 %tr[assessment]
   %td.center
     %span
-      - unless assessment.activities.blank? 
-        - edit = (permitted_to? :manage, assessment) ? true : false
-      = link_to_if (not assessment.activities.blank? and (permitted_to? :read, assessment)), assessment.name, scores_assessment_path(:id => assessment, :edit => edit)
+      = link_to_if (not assessment.activities.blank? and (permitted_to? :read, assessment)), assessment.name, scores_assessment_path(:id => assessment, :edit => (permitted_to? :manage, assessment))
       - unless @student
         %span.icon= link_to_remote 'Add Activity', :url => {:controller => 'activities', :action => 'new', :assessment_id => assessment}, :html => {:title => "Add activity to #{assessment.long_name}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-plusthick"} if (assessment.fa? and permitted_to? (:manage, assessment))
       - unless assessment.activities.blank?
