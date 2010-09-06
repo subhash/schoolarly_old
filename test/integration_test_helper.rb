@@ -1,6 +1,6 @@
 require "test_helper"
 require "capybara/rails"
-#require "selenium-webdriver"
+require "selenium-webdriver"
 require 'capybara/envjs'
 #require 'selenium/webdriver/remote/http/curb'
 
@@ -64,7 +64,7 @@ module ActionController
   end
 end
 
-#Capybara.default_driver = :envjs
-Capybara.javascript_driver = :envjs
+Capybara.default_driver = :selenium
+Capybara.javascript_driver = :selenium
 Capybara.default_wait_time = 15
 #Selenium::WebDriver.for :firefox, :http_client => Selenium::WebDriver::Remote::Http::Curb 

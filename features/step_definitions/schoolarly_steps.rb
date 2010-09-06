@@ -27,6 +27,15 @@ Given /I am logged in as (school|student|teacher) "(.*)"$/ do |role, user|
 #  end 
 end
 
+Given /I login with "(.*)"$/ do |email|
+  visit root_path
+  click_link 'Login'
+  fill_in 'Email', :with => email
+  fill_in 'Password', :with => "password"
+  click_button 'Login'
+#  assert_equal current_path, path
+end
+
 Given /I am on "(.+)" tab/ do |tab|
   click_tab tab
 end

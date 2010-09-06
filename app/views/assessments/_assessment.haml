@@ -1,13 +1,13 @@
 %tr[assessment]
   %td.center
     %span
-      = link_to_if (not assessment.activities.blank? and (permitted_to? :read, assessment)), assessment.name, scores_assessment_path(:id => assessment, :edit => permitted_to?(:manage, assessment))
+      = link_to_if((!assessment.activities.blank? and permitted_to?(:read, assessment)), assessment.name, scores_assessment_path(:id => assessment, :edit => permitted_to?(:manage, assessment)))
       - unless @student
-        %span.icon= link_to_remote 'Add Activity', :url => {:controller => 'activities', :action => 'new', :assessment_id => assessment}, :html => {:title => "Add activity to #{assessment.long_name}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-plusthick"} if (assessment.fa? and permitted_to? (:manage, assessment))
+        %span.icon= link_to_remote 'Add Activity', :url => {:controller => 'activities', :action => 'new', :assessment_id => assessment}, :html => {:title => "Add activity to #{assessment.long_name}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-plusthick"} if (assessment.fa? and permitted_to?(:manage, assessment))
       - unless assessment.activities.blank?
-        %span.weightage= link_to_remote 'Weightage', :url => {:controller => 'assessments', :action => 'weightage', :id => assessment}, :method => :get,:html => {:title => "Weightage calculations for #{assessment.long_name}", :class => "ui-state-default ui-corner-all"} if (assessment.fa? and assessment.activities.size > 1) unless permitted_to? :manage, assessment
-        %span.weightage= link_to_remote 'Weightage', :url => {:controller => 'assessments', :action => 'edit', :id => assessment, :student_id => @student}, :method => :get,:html => {:title => "Weightage calculations for #{assessment.long_name}", :class => "ui-state-default ui-corner-all"} if (assessment.fa? and assessment.activities.size > 1) if permitted_to? :manage, assessment
-        - if @student and assessment.calculated_score_for(@student) and permitted_to? :read, @student.scores.first
+        %span.weightage= link_to_remote 'Weightage', :url => {:controller => 'assessments', :action => 'weightage', :id => assessment}, :method => :get,:html => {:title => "Weightage calculations for #{assessment.long_name}", :class => "ui-state-default ui-corner-all"} if (assessment.fa? and assessment.activities.size > 1) unless permitted_to?(:manage, assessment)
+        %span.weightage= link_to_remote 'Weightage', :url => {:controller => 'assessments', :action => 'edit', :id => assessment, :student_id => @student}, :method => :get,:html => {:title => "Weightage calculations for #{assessment.long_name}", :class => "ui-state-default ui-corner-all"} if (assessment.fa? and assessment.activities.size > 1) if permitted_to?(:manage, assessment)
+        - if @student and assessment.calculated_score_for(@student) and permitted_to?(:read, @student.scores.first)
           %div.detail.score
             = link_to_remote "#{trim(assessment.calculated_score_for(@student))}", :url => {:controller => 'assessments', :action => 'score_calculation', :id => assessment, :student_id => @student} 
             %span.out_of="(out of #{trim(assessment.assessment_group.max_score)})"

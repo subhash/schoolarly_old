@@ -69,7 +69,7 @@ end
 
 When /^(?:|I )select "([^"]*)" from "([^"]*)"(?: within "([^"]*)")?$/ do |value, field, selector|
   with_scope(selector) do
-    wait_until(5) {select(value, :from => field)}
+    select(value, :from => field)
   end
 end
 

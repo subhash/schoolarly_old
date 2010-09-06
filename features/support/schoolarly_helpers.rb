@@ -4,7 +4,7 @@
   end
   
   def click_tab(name)
-    click_link "name-#{tabs}"
+    click_link "#{name}-tab-link"
   end
   
   def symbol(s, delimiter=nil)
@@ -59,3 +59,18 @@
     end
       yield tab_tester
   end
+
+require 'selenium-webdriver'
+
+class Capybara::Driver::Selenium < Capybara::Driver::Base
+  class Node < Capybara::Node
+    def select(option)
+      # option_node = node.find_element(:xpath, ".//option[normalize-space(text())=#{Capybara::XPath.escape(option)}]") || node.find_element(:xpath, ".//option[contains(.,#{Capybara::XPath.escape(option)})]")
+      option_node = node.find_element(:xpath, ".//option[text()=#{Capybara::XPath.escape(option)}]")
+      option_node.select
+    rescue 
+      options = node.find_elements(:xpath, "//option").map { |o| "'#{o.text}'" }.join(', ')
+      raise Capybara::OptionNotFound, "No such option '#{option}' in this select box. Available options: #{options}"
+    end
+end
+end
