@@ -40,6 +40,10 @@ class Assessment < ActiveRecord::Base
     klass.papers.find_by_school_subject_id(klass.school.school_subjects.find_by_subject_id(subject.id).id)
   end
   
+  def teacher
+    paper.teacher if paper
+  end
+  
   def name
     assessment_type.name 
   end

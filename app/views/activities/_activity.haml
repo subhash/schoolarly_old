@@ -1,13 +1,13 @@
 %div[activity]
   - unless @student
-    %span.icon= link_to_remote 'Edit activity', :url =>  {:controller => 'activities', :action => 'edit', :id => activity }, :method => :get, :html => {:title => "Edit #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-pencil"}  if permitted_to? :edit, activity
+    %span.icon= link_to_remote 'Edit activity', :url =>  {:controller => 'activities', :action => 'edit', :id => activity }, :method => :get, :html => {:title => "Edit #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-pencil"}  if permitted_to? :update, activity
     - if activity.destroyable?  and activity.assessment.fa?
       %span.icon= link_to_remote 'Delete', :url => {:controller => 'activities', :action => 'destroy', :id => activity }, :method => :delete, :html => {:title => "Delete #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' if permitted_to? :delete, activity
     - else
       %span.icon.ui-icon.blank
   %span.name
-    - edit = true if permitted_to? :manage, activity
-    = link_to_if (permitted_to? :read, activity), activity.name, scores_activity_path(:id => activity.id, :edit => edit | false), :class => "name"
+    - edit = (permitted_to? :manage, activity) ? true : false
+    = link_to_if (permitted_to? :read, activity), activity.name, scores_activity_path(:id => activity.id, :edit => edit), :class => "name"
   - if activity.description.blank?
     %span.icon.ui-icon.blank
   - else
