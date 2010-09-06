@@ -1,5 +1,7 @@
 <% render_tabs do |add| %>
-<% add.tab :title => 'Home', :text => 'Welcome to Schoolarly. Click on Login to get started ..'%>
+<% add.tab :title => 'Schools', :partial => '/publicity/schools'%>
+<% add.tab :title => 'Teachers', :partial => '/publicity/teachers'%>
+<% add.tab :title => 'Parents', :partial => '/publicity/parents'%>
 <% add.tab :title => 'Terms of Service', :partial => '/layouts/tos'%>
 <% add.tab :title => 'Privacy Policy', :partial => '/layouts/priv'%>
 <% end %>
