@@ -16,15 +16,13 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
     @school = @student.school
     @klass = @student.klass
-    if @school    
-      if @klass
-        @all_subjects = Subject.find(:all, :order => 'name')
-        #@scores = @student.scores.for_exams(@klass.current_exams)
-        #@exams = @student.current_exams
-      else
-        @klasses = @school.klasses
-      end
-    end
+#    if @school    
+#      if @klass
+#        @all_subjects = Subject.find(:all, :order => 'name')
+#      else
+#        @klasses = @school.klasses
+#      end
+#    end
     @user=@student.user
     @user_profile = @user.user_profile
     respond_to do |format|

@@ -222,6 +222,7 @@ function scoreCheck(value, colname){
 		case 'n':
         case 'A':
 		case 'a':
+		case '':
             return [true, ""];		
     }
     maxValue = colname.substring(colname.indexOf('(') + 1, colname.indexOf(')'));
