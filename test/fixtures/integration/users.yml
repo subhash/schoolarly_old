@@ -125,7 +125,7 @@ anitha:
  persistence_token: <%= Authlogic::Random.hex_token %>
  single_access_token: <%= Authlogic::Random.friendly_token %>
  perishable_token: <%= Authlogic::Random.friendly_token %>
- person: antony (Teacher)
+ person: anitha (Teacher)
 christabelle:
  email: christabelle@schoolarly.com
  password_salt: 5vYihJdkH6UG-Vimw8lh
