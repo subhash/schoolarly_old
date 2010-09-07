@@ -10,6 +10,6 @@ Feature: Manage assessments
     Then I should see "New activity for FA1 - Social Science" 
 	When I select "Group Project" from "assessment_tool_name"
 	And I press "Create Activity"
-	Then I should see link "FA1 Group Project - Social Science"
+	Then I should see link with title "Scores for FA1 Group Project - Social Science"
   
  

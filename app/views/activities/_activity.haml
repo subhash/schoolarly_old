@@ -6,7 +6,7 @@
     - else
       %span.icon.ui-icon.blank
   %span.name
-    = link_to_if(permitted_to?(:read, activity), activity.name, scores_activity_path(:id => activity.id, :edit => permitted_to?(:manage, activity)), :class => "name", :title => activity.title)
+    = link_to_if(permitted_to?(:read, activity), activity.name, scores_activity_path(:id => activity.id, :edit => permitted_to?(:manage, activity)), :class => "name", :title => "Scores for "+activity.title)
   - if activity.description.blank?
     %span.icon.ui-icon.blank
   - else

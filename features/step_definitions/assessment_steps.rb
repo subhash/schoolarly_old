@@ -4,9 +4,6 @@ When /^I follow "(.+)" of class "(.+)"$/ do |tab, klass|
   click_tab(tab)
 end
 
-Then /^I should see link "(.+)"$/ do |content|
-  assert page.has_link? content
-end
 
 #Given /school "(.+)" has the following klasses:$/ do |school, klasses|
 #  klasses.hashes.each do |k|

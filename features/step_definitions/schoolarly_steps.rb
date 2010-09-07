@@ -41,3 +41,8 @@ Given /I am on "(.+)" tab/ do |tab|
 end
 
 
+Then /^I should see link with title "(.+)"$/ do |title|
+  assert page.has_css? "a[title='#{title}']"
+end
+
+

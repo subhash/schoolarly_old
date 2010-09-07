@@ -67,6 +67,7 @@ class Capybara::Driver::Selenium < Capybara::Driver::Base
     def select(option)
       # option_node = node.find_element(:xpath, ".//option[normalize-space(text())=#{Capybara::XPath.escape(option)}]") || node.find_element(:xpath, ".//option[contains(.,#{Capybara::XPath.escape(option)})]")
       option_node = node.find_element(:xpath, ".//option[text()=#{Capybara::XPath.escape(option)}]")
+      puts "option node = "+option_node.inspect
       option_node.select
     rescue 
       options = node.find_elements(:xpath, "//option").map { |o| "'#{o.text}'" }.join(', ')
