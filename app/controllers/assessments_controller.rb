@@ -30,13 +30,6 @@ class AssessmentsController < ApplicationController
     end
   end
   
-  def weightage
-    @assessment = Assessment.find_by_id(params[:id])
-    render :update do |page|
-      page.open_dialog "Calculations for #{@assessment.long_name}", :partial => 'assessments/weightage'
-    end
-  end
-  
   def scores
     session[:redirect] = request.request_uri
     @assessment = Assessment.find(params[:id])

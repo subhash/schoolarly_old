@@ -72,6 +72,10 @@ class Assessment < ActiveRecord::Base
    (paper and paper.teacher) ? (current_students + [paper.teacher]) : current_students
   end
   
+  def students
+    activities.collect(&:students).uniq
+  end
+  
   def destroyable?
     activities.select{|a|!a.destroyable?}.blank?
   end
@@ -83,6 +87,10 @@ class Assessment < ActiveRecord::Base
   
   def weighted_score_for(student)
     (calculated_score_for(student)/assessment_group.max_score) * assessment_group.weightage if calculated_score_for(student)
+  end
+  
+  def class_teacher
+    klass.class_teacher if klass.class_teacher
   end
   
 end

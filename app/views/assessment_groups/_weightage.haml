@@ -1,0 +1,10 @@
+%table.calculation
+  %tr.heading
+    %th Name
+    %th Weightage (%)
+    %th Maximum score
+  - assessment_groups.each do |group|
+    %tr
+      %td= group.name
+      %td= group.weightage
+      %td= group.max_score      

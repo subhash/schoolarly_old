@@ -3,7 +3,7 @@
     %th Activity
     %th Weightage (%)
     %th Choose best
-  - @assessment.assessment_tools.each do |tool|
+  - assessment_tools.each do |tool|
     %tr
       %td= tool.name
       %td= tool.weightage
