@@ -19,8 +19,18 @@ When /^(?:|I )select the following from multiselect "(.+)":$/ do |element, selec
   end
 end
 
+When /^(?:|I )select "(.+)" from multiselect "(.+)"$/ do |text, element|
+  initialize_select(element)
+    When %{I select "#{text}" from "#{element}"}
+end
 
-Then /^(?:|I )should see(?: within "([^"]*)")? the following:$/ do |selector, elements|
+When /^(?:|I )unselect "([^"]*)" from "([^"]*)"(?: within "([^"]*)")?$/ do |value, field, selector|
+  with_scope(selector) do
+    unselect(value, :from => field)
+  end
+end
+
+Then /^(?:|I )should see the following(?: within "([^"]*)")?:$/ do |selector, elements|
   with_scope(selector) do
     elements.hashes.each do |h|
       text = h[:name]

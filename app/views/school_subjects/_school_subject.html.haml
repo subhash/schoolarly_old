@@ -1,4 +1,4 @@
-%tr[school_subject]
+%tr[school_subject]{:title => school_subject.name}
   %td.left= school_subject.name
   %td.right
     - school_subject.assessment_tool_names.FA.each do |ass|
