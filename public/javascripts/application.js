@@ -87,6 +87,8 @@ function initPanes(){
 }
 
 function refreshPanes(){
+	if (jQuery('div.pane').length == 0)
+		return;
     jQuery('div.pane').hide();
     var currentPane = jQuery('a.pane-link.active').attr('href');
     jQuery(currentPane).show();
