@@ -1,5 +1,4 @@
 Feature: Manage school_subjects
-  In order to manage classes
   School should be able to
   Create and manage subjects
   

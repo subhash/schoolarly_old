@@ -23,7 +23,7 @@ Feature: Manage classes
     
     
   @javascript
-  Scenario: View Class
+  Scenario: View class
   	Given I login with "gps@schoolarly.com"
   	When I follow "papers" of class "9 A"
  	Then I should see the following:
@@ -33,3 +33,6 @@ Feature: Manage classes
  		| Science |
  		| Social Science |
  		| Mathematics | 
+ 		
+  Scenario: Remove class without subjects
+  Scenario: Remove class with subjects
