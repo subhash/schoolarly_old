@@ -1,7 +1,12 @@
 page.close_dialog
-page.open_tab(@new_students.first)
-@new_students.each do |student|
-  page.insert_object student, :partial => 'students/student'
+if active_controller == 'schools'
+  page.replace_object @klass, :partial => 'klasses/klass'
+else
+  page.open_tab(@new_students.first)
+  @new_students.each do |student|
+    page.insert_object student, :partial => 'students/student'
+  end
+  page.replace_action 'Add Students', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @klass.school.students.not_enrolled}
 end
-page.replace_action 'Add Students', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @klass.school.students.not_enrolled}
+
 

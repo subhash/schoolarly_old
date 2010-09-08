@@ -416,6 +416,13 @@ table.klasses .subject {
     padding: 2px 4px;
 }
 
+table.klasses .students a{
+    color: #000000;
+    padding: 2px 4px;
+	text-decoration: none;
+	font-weight: bold;
+}
+
 table.klasses td.right * {
     font-size: 11px;
     margin-bottom: 4px;
