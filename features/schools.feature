@@ -1,9 +1,9 @@
-Feature: Manage school_subjects
-  School should be able to
+Feature: Manage schools
+  Schoolarly should be able to
   Create and manage subjects
   
   @javascript
-  Scenario: Create new school_subjects
+  Scenario: Add subjects to school
     Given I login with "stteresas@schoolarly.com"
     When I follow "Add Subjects to St Teresas"
     And I select the following from multiselect "subject_ids":

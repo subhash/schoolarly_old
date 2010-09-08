@@ -12,4 +12,6 @@ Feature: Manage assessments
 	And I press "Create Activity"
 	Then I should see link with title "Scores for FA1 Group Project - Social Science"
   
- 
+  Scenario: Add an activity with event
+  Scenario: Remove activity
+  Scenario: Edit activity
