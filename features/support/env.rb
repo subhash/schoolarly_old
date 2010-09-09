@@ -71,6 +71,17 @@ module FixtureAccess
   def self.extended(base)
     
     Fixtures.reset_cache
+    
+    Dir.glob(RAILS_ROOT + "/db/fixtures/*.{yml,rb}").each do |file|
+      if File.extname(file) == '.yml'
+        puts "Running yml data fixture #{file}"
+        Fixtures.create_fixtures('db/fixtures', File.basename(file, '.*'))
+      else
+        puts "Running ruby data fixture #{file}" 
+        load file
+      end
+    end
+    
     fixtures_folder = File.join(RAILS_ROOT, 'test', 'fixtures', 'integration')
     fixtures = Dir[File.join(fixtures_folder, '*.yml')].map {|f| File.basename(f, '.yml') }
     fixtures += Dir[File.join(fixtures_folder, '*.csv')].map {|f| File.basename(f, '.csv') }
