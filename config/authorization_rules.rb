@@ -45,7 +45,7 @@ authorization do
   
   role :teacher do
     has_permission_on :teachers, :to => :read_write, &same_user
-    has_permission_on :students, :to => [:manage, :assess], :join_by => :and, &same_school
+    has_permission_on :students, :to => [:read_write, :assess], :join_by => :and, &same_school
     has_permission_on [:assessments, :activities, :schools], :to => :read, :join_by => :and, &same_school
     has_permission_on :assessments, :to => :read_write, :join_by => :and, &same_teacher
     has_permission_on :activities, :to => :manage, :join_by => :and, &same_teacher

@@ -10,7 +10,7 @@
 		</div>
         <div class="detail">
             <%=link_to klass.class_teacher.name, klass.class_teacher if klass.class_teacher %>
-            <%= link_to_remote (klass.class_teacher ? '(Change)' : 'Assign Class Teacher' ), :url => {:controller => 'klasses', :action => 'edit', :id => klass}, :method => :get if permitted_to? :edit, klass %>
+            <%= link_to_remote (klass.class_teacher ? '(Change)' : 'Assign Class Teacher' ), :url => {:controller => 'klasses', :action => 'edit', :id => klass}, :method => :get if permitted_to? :update, klass %>
         </div>
     </td>
     <td class="right">
@@ -18,11 +18,11 @@
             <% klass.school_subjects.each do |school_subject| %>
             <span class="subject"><%= school_subject.name %></span>
             <% end %>
-            <span><%= link_to_remote 'Add Subjects', :url =>{:controller => 'klasses', :action => 'add_subjects', :id => klass}, :html => {:title => "Add Subjects to #{klass.name}"} if permitted_to? :update, klass %></span>
+            <span><%= link_to_remote 'Add Subjects', :url =>{:controller => 'klasses', :action => 'add_subjects', :id => klass}, :html => {:title => "Add Subjects to #{klass.name}"} if permitted_to? :manage, klass %></span>
         </p>
 		<div>
 			<span class="students"><%= link_to pluralize(klass.students.size, 'student'), klass_path(klass, :anchor => 'events-tab') %></span>
-			<%= link_to_function_if permitted_to?(:add, :students), '<< Add more' do |page|  page.open_dialog('Add Students', :partial =>'students/add_students_form',:locals => {:entity => klass, :students => klass.school.students.not_enrolled}) end %>
+			<%= link_to_function 'Add more' do |page| page.open_dialog('Add Students', :partial =>'students/add_students_form',:locals => {:entity => klass, :students => klass.school.students.not_enrolled}) end if (permitted_to?(:add, :students) and permitted_to?(:update, klass))%>
 		</div>
     </td>
 </tr>
