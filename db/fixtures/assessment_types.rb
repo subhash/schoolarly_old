@@ -1,0 +1,6 @@
+AssessmentType.create_or_update(:id => 1, :name => 'FA1', :max_score => 20.00, :term => 1, :weightage => 10.00)
+AssessmentType.create_or_update(:id => 2, :name => 'FA2', :max_score => 20.00, :term => 1, :weightage => 10.00)
+AssessmentType.create_or_update(:id => 3, :name => 'SA1', :max_score => 80.00, :term => 1, :weightage => 20.00)
+AssessmentType.create_or_update(:id => 4, :name => 'FA3', :max_score => 20.00, :term => 2, :weightage => 10.00)
+AssessmentType.create_or_update(:id => 5, :name => 'FA4', :max_score => 20.00, :term => 2, :weightage => 10.00)
+AssessmentType.create_or_update(:id => 6, :name => 'SA2', :max_score => 80.00, :term => 2, :weightage => 40.00)

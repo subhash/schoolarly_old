@@ -1,27 +1,27 @@
 gps_english:
  school: gps
- subject: english
+ subject_id: <%= Subject.find_by_name('English').id %>
 gps_malayalam:
  school: gps
- subject: malayalam
+ subject_id: <%= Subject.find_by_name('Malayalam').id %>
 gps_hindi:
  school: gps
- subject: hindi
+ subject_id: <%= Subject.find_by_name('Hindi').id %>
 gps_french:
  school: gps
- subject: french
+ subject_id: <%= Subject.find_by_name('French').id %>
 gps_sanskrit:
  school: gps
- subject: sanskrit
+ subject_id: <%= Subject.find_by_name('Sanskrit').id %>
 gps_mathematics:
  school: gps
- subject: mathematics
+ subject_id: <%= Subject.find_by_name('Mathematics').id %>
 gps_science:
  school: gps
- subject: science
+ subject_id: <%= Subject.find_by_name('Science').id %>
 gps_social:
  school: gps
- subject: social
+ subject_id: <%= Subject.find_by_name('Social Science').id %>
 gps_it:
  school: gps
- subject: it
+ subject_id: <%= Subject.find_by_name('IT').id %>

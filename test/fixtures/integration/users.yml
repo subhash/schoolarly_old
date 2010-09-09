@@ -405,7 +405,7 @@ swetha:
  persistence_token: <%= Authlogic::Random.hex_token %>
  single_access_token: <%= Authlogic::Random.friendly_token %>
  perishable_token: <%= Authlogic::Random.friendly_token %>
- person_type: swetha (Student)
+ person: swetha (Student)
 shyama:
  email: shyama@schoolarly.com
  password_salt: 5vYihJdkH6UG-Vimw8lh
@@ -413,7 +413,7 @@ shyama:
  persistence_token: <%= Authlogic::Random.hex_token %>
  single_access_token: <%= Authlogic::Random.friendly_token %>
  perishable_token: <%= Authlogic::Random.friendly_token %>
- person_type: shyama (Student)
+ person: shyama (Student)
 haritha:
  email: haritha@schoolarly.com
  password_salt: 5vYihJdkH6UG-Vimw8lh
@@ -421,7 +421,7 @@ haritha:
  persistence_token: <%= Authlogic::Random.hex_token %>
  single_access_token: <%= Authlogic::Random.friendly_token %>
  perishable_token: <%= Authlogic::Random.friendly_token %>
- person_type: haritha (Student)
+ person: haritha (Student)
 manju:
  email: manju@schoolarly.com
  password_salt: 5vYihJdkH6UG-Vimw8lh
@@ -429,4 +429,4 @@ manju:
  persistence_token: <%= Authlogic::Random.hex_token %>
  single_access_token: <%= Authlogic::Random.friendly_token %>
  perishable_token: <%= Authlogic::Random.friendly_token %>
- person_type: manju (Student)
+ person: manju (Student)

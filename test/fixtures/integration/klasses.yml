@@ -1,115 +1,115 @@
 1A:
-  level: one
+  level_id: <%= Level.find_by_name('1').id %>
   division: A
   school: gps
   class_teacher: marykkutty
 1B:
-  level: one
+  level_id: <%= Level.find_by_name('1').id %>
   division: B
   school: gps
   class_teacher: subramaniam
 1C:
-  level: one
+  level_id: <%= Level.find_by_name('1').id %>
   division: C
   school: gps
   class_teacher: sunil
 2A:
-  level: two
+  level_id: <%= Level.find_by_name('2').id %>
   division: A
   school: gps
 2B:
-  level: two
+  level_id: <%= Level.find_by_name('2').id %>
   division: B
   school: gps
 2C:
-  level: two
+  level_id: <%= Level.find_by_name('2').id %>
   division: C
   school: gps
 3A:
-  level: three
+  level_id: <%= Level.find_by_name('3').id %>
   division: A
   school: gps
 3B:
-  level: three
+  level_id: <%= Level.find_by_name('3').id %>
   division: B
   school: gps
 3C:
-  level: three
+  level_id: <%= Level.find_by_name('3').id %>
   division: C
   school: gps
 4A:
-  level: four
+  level_id: <%= Level.find_by_name('4').id %>
   division: A
   school: gps
 4B:
-  level: four
+  level_id: <%= Level.find_by_name('4').id %>
   division: B
   school: gps
 5A:
-  level: five
+  level_id: <%= Level.find_by_name('5').id %>
   division: A
   school: gps
 5B:
-  level: five
+  level_id: <%= Level.find_by_name('5').id %>
   division: B
   school: gps
 6A:
-  level: six
+  level_id: <%= Level.find_by_name('6').id %>
   division: A
   school: gps
 7A:
-  level: seven
+  level_id: <%= Level.find_by_name('7').id %>
   division: A
   school: gps
 8A:
-  level: eight
+  level_id: <%= Level.find_by_name('8').id %>
   division: A
   school: gps
 9A:
-  level: nine
+  level_id: <%= Level.find_by_name('9').id %>
   division: A
   school: gps
 9B:
-  level: nine
+  level_id: <%= Level.find_by_name('9').id %>
   division: B
   school: gps
 9C:
-  level: nine
+  level_id: <%= Level.find_by_name('9').id %>
   division: C
   school: gps
 9D:
-  level: nine
+  level_id: <%= Level.find_by_name('9').id %>
   division: D
   school: gps
 9E:
-  level: nine
+  level_id: <%= Level.find_by_name('9').id %>
   division: E
   school: gps
 10A:
-  level: ten
+  level_id: <%= Level.find_by_name('10').id %>
   division: A
   school: gps
 10B:
-  level: ten
+  level_id: <%= Level.find_by_name('10').id %>
   division: B
   school: gps
 10C:
-  level: ten
+  level_id: <%= Level.find_by_name('10').id %>
   division: C
   school: gps
 10D:
-  level: ten
+  level_id: <%= Level.find_by_name('10').id %>
   division: D
   school: gps
 10E:
-  level: ten
+  level_id: <%= Level.find_by_name('10').id %>
   division: E
   school: gps
 11A:
-  level: eleven
+  level_id: <%= Level.find_by_name('11').id %>
   division: A
   school: gps
 12A:
-  level: twelve
+  level_id: <%= Level.find_by_name('12').id %>
   division: A
   school: gps
