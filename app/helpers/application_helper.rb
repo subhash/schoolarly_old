@@ -152,7 +152,7 @@ module ApplicationHelper
     selected_user_ids = users.collect{|u| u.id}
     title = 'Post Message to ' + person.name
     args = {:partial => 'mails/new_form', :locals => {:users => users, :selected_users => selected_user_ids, :message => Message.new} }
-      link_to_function(title, {:title => title, :class => "ui-icon ui-icon-mail-closed"} ) { |page|  page.open_dialog(title, args) } if (permitted_to? :contact, person)
+    link_to_function(title, {:title => title, :class => "ui-icon ui-icon-mail-closed"} ) { |page|  page.open_dialog(title, args) } if (permitted_to? :contact, person)
   end
   
   def link_to_function_if(condition, name, &block)
