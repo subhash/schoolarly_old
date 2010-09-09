@@ -2,6 +2,9 @@ Feature: Manage schools
   Schoolarly should be able to
   Create and manage subjects
   
+  Scenario: Add a school as schoolarly admin
+  Scenario: School login (what to see, what not to see)  
+  
   @javascript
   Scenario: Add subjects to school
     Given I login with "stteresas@schoolarly.com"
@@ -36,3 +39,7 @@ Feature: Manage schools
     And I select "Creativity" from multiselect "tool_name_ids"
     	And I press "Save changes"
     	Then I should see "Creativity" within "tr[title='Hindi']"
+    	
+   Scenario: Edit profile
+   Scenario: View school
+   Scenario: Send message to school(by student, teachers)
