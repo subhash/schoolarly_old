@@ -398,3 +398,35 @@ vidya:
  single_access_token: <%= Authlogic::Random.friendly_token %>
  perishable_token: <%= Authlogic::Random.friendly_token %>
  person: vidya (Student)
+swetha:
+ email: swetha@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_type: swetha (Student)
+shyama:
+ email: shyama@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_type: shyama (Student)
+haritha:
+ email: haritha@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_type: haritha (Student)
+manju:
+ email: manju@schoolarly.com
+ password_salt: 5vYihJdkH6UG-Vimw8lh
+ crypted_password: 860a382f6353bbda805f943d4eb8597176c895dfcc210f99146037a24df65c406114a69c6539343a6aa53e9d21c497d9bf02f0fe9190e20a3bd32d125b1638ff
+ persistence_token: <%= Authlogic::Random.hex_token %>
+ single_access_token: <%= Authlogic::Random.friendly_token %>
+ perishable_token: <%= Authlogic::Random.friendly_token %>
+ person_type: manju (Student)
