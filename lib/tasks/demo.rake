@@ -20,7 +20,6 @@ namespace :demo do
     Paper.all.each{|p| p.create_assessments}
   end
   
-  desc "Call all the subtasks to set up the demo"
   task :setup => [:seed, :create_assessment_groups, :create_assessments]
   
 end
