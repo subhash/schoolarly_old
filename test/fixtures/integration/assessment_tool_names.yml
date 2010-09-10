@@ -2,7 +2,7 @@ gps_test:
  name: Class Test
  assessment_type_name: FA
  school: gps
- school_subjects: gps_english
+ school_subjects: gps_english, gps_malayalam, gps_hindi, gps_french, gps_sanskrit, gps_mathematics, gps_science, gps_it, gps_social
 gps_discovery:
  name: Exploration and Discovery
  assessment_type_name: FA
@@ -60,6 +60,7 @@ gps_seminar:
  name: Seminar
  assessment_type_name: FA
  school: gps
+ school_subjects: gps_science
 gps_survey:
  name: Survey
  assessment_type_name: FA
@@ -72,8 +73,3 @@ gps_writing:
  name: Written Assignment
  assessment_type_name: FA
  school: gps
-gps_it:
- name: Information Technology
- assessment_type_name: FA
- school: gps
- school_subjects: gps_it
