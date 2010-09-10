@@ -1,0 +1,26 @@
+FA1_test_1_social: 
+  period: once
+  title: FA1 Class Test 1 - Social Science
+  description: Chapters 1-3
+  owner: gps
+  frequency: 0
+  users: sumina, sareena, christina, arti, coonie, shanthi, reeny, sheena, smitha, babitha, annie, reshma
+FA1_test_2_social: 
+  period: once
+  title: FA1 Class Test 2 - Social Science
+  description: Chapters 3-5
+  owner: gps
+  frequency: 0
+  users: sumina, sareena, christina, arti, coonie, shanthi, reeny, sheena, smitha, babitha, annie, reshma
+FA2_test_1_social: 
+  period: once
+  title: FA2 Class Test 1 - Social Science
+  owner: gps
+  frequency: 0
+  users: sumina, sareena, christina, arti, coonie, shanthi, reeny, sheena, smitha, babitha, annie, reshma
+FA2_test_2_social: 
+  period: once
+  title: FA2 Class Test 2 - Social Science
+  owner: gps
+  frequency: 0
+  users: sumina, sareena, christina, arti, coonie, shanthi, reeny, sheena, smitha, babitha, annie, reshma

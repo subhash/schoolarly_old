@@ -1,57 +1,133 @@
+9A_gd_FA1_english:
+  best_of: 1
+  name: Group Discussion
+  assessment: 9A_FA1_english
+  weightage: 100.00
+9A_jam_FA2_english:
+  best_of: 1
+  name: Just a Minute
+  assessment: 9A_FA2_english
+  weightage: 100.00
+9A_test_FA3_english:
+  best_of: 1
+  name: Class Test
+  assessment: 9A_FA3_english
+  weightage: 100.00
 9A_exam_SA1_english:
   best_of: 1
   name: Exam
   assessment: 9A_SA1_english
-  weightage: 100.00          
-
+  weightage: 100.00
 9A_exam_SA2_english:
   best_of: 1
   name: Exam
   assessment: 9A_SA2_english
-  weightage: 100.00          
-
+  weightage: 100.00
+9A_test_FA1_malayalam:
+  best_of: 1
+  name: Class Test
+  assessment: 9A_FA1_malayalam
+  weightage: 80.00
+9A_reading_FA1_malayalam:
+  best_of: 1
+  name: Reading Comprehension
+  assessment: 9A_FA1_malayalam
+  weightage: 20.00
+9A_listening_FA2_malayalam:
+  best_of: 1
+  name: Listening Comprehension
+  assessment: 9A_FA2_malayalam
+  weightage: 100.00
+9A_test_FA3_malayalam:
+  best_of: 1
+  name: Class Test
+  assessment: 9A_FA3_malayalam
+  weightage: 100.00
+9A_test_FA4_malayalam:
+  best_of: 1
+  name: Class Test
+  assessment: 9A_FA4_malayalam
+  weightage: 100.00
 9A_exam_SA1_malayalam:
   best_of: 1
   name: Exam
   assessment: 9A_SA1_malayalam
-  weightage: 100.00      
-
+  weightage: 100.00
 9A_exam_SA2_malayalam:
   best_of: 1
   name: Exam
   assessment: 9A_SA2_malayalam
-  weightage: 100.00  
-
+  weightage: 100.00
+9A_test_FA1_mathematics:
+  best_of: 1
+  name: Class Test
+  assessment: 9A_FA1_mathematics
+  weightage: 100.00
+9A_test_FA2_mathematics:
+  best_of: 1
+  name: Class Test
+  assessment: 9A_FA2_mathematics
+  weightage: 100.00
 9A_exam_SA1_mathematics:
   best_of: 1
   name: Exam
   assessment: 9A_SA1_mathematics
-  weightage: 100.00  
-
+  weightage: 100.00
 9A_exam_SA2_mathematics:
   best_of: 1
   name: Exam
   assessment: 9A_SA2_mathematics
-  weightage: 100.00  
-
+  weightage: 100.00
+9A_test_FA1_science:
+  best_of: 1
+  name: Class Test
+  assessment: 9A_FA1_science
+  weightage: 60.00
+9A_quiz_FA1_science:
+  best_of: 1
+  name: Quiz
+  assessment: 9A_FA1_science
+  weightage: 40.00
+9A_test_FA2_science:
+  best_of: 1
+  name: Class Test
+  assessment: 9A_FA2_science
+  weightage: 100.00
+9A_test_FA3_science:
+  best_of: 1
+  name: Class Test
+  assessment: 9A_FA3_science
+  weightage: 100.00
 9A_exam_SA1_science:
   best_of: 1
   name: Exam
   assessment: 9A_SA1_science
-  weightage: 100.00          
-
+  weightage: 100.00
 9A_exam_SA2_science:
   best_of: 1
   name: Exam
   assessment: 9A_SA2_science
-  weightage: 100.00          
-
+  weightage: 100.00
+9A_test_FA1_social:
+  best_of: 1
+  name: Class Test
+  assessment: 9A_FA1_social
+  weightage: 80.00
+9A_project_FA1_social:
+  best_of: 1
+  name: Group Project
+  assessment: 9A_FA1_social
+  weightage: 20.00
+9A_test_FA2_social:
+  best_of: 1
+  name: Class Test
+  assessment: 9A_FA2_social
+  weightage: 100.00
 9A_exam_SA1_social:
   best_of: 1
   name: Exam
   assessment: 9A_SA1_social
-  weightage: 100.00                
-
+  weightage: 100.00
 9A_exam_SA2_social:
   best_of: 1
   name: Exam
