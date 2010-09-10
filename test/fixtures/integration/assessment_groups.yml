@@ -1173,3 +1173,423 @@
   klass: 12A
   weightage: 40.00
   max_score: 80.00
+
+1F_FA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
+  klass: 1F
+  weightage: 10.00
+  max_score: 20.00  
+
+1F_FA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
+  klass: 1F
+  weightage: 10.00
+  max_score: 20.00  
+
+1F_SA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
+  klass: 1F
+  weightage: 20.00
+  max_score: 80.00  
+
+1F_FA3:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
+  klass: 1F
+  weightage: 10.00
+  max_score: 20.00  
+
+1F_FA4:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
+  klass: 1F
+  weightage: 10.00
+  max_score: 20.00  
+
+1F_SA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
+  klass: 1F
+  weightage: 40.00
+  max_score: 80.00  
+
+2F_FA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
+  klass: 2F
+  weightage: 10.00
+  max_score: 20.00  
+
+2F_FA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
+  klass: 2F
+  weightage: 10.00
+  max_score: 20.00  
+
+2F_SA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
+  klass: 2F
+  weightage: 20.00
+  max_score: 80.00  
+
+2F_FA3:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
+  klass: 2F
+  weightage: 10.00
+  max_score: 20.00  
+
+2F_FA4:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
+  klass: 2F
+  weightage: 10.00
+  max_score: 20.00  
+
+2F_SA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
+  klass: 2F
+  weightage: 40.00
+  max_score: 80.00  
+
+3F_FA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
+  klass: 3F
+  weightage: 10.00
+  max_score: 20.00  
+
+3F_FA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
+  klass: 3F
+  weightage: 10.00
+  max_score: 20.00  
+
+3F_SA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
+  klass: 3F
+  weightage: 20.00
+  max_score: 80.00  
+
+3F_FA3:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
+  klass: 3F
+  weightage: 10.00
+  max_score: 20.00  
+
+3F_FA4:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
+  klass: 3F
+  weightage: 10.00
+  max_score: 20.00  
+
+3F_SA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
+  klass: 3F
+  weightage: 40.00
+  max_score: 80.00  
+
+4F_FA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
+  klass: 4F
+  weightage: 10.00
+  max_score: 20.00  
+
+4F_FA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
+  klass: 4F
+  weightage: 10.00
+  max_score: 20.00  
+
+4F_SA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
+  klass: 4F
+  weightage: 20.00
+  max_score: 80.00  
+
+4F_FA3:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
+  klass: 4F
+  weightage: 10.00
+  max_score: 20.00  
+
+4F_FA4:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
+  klass: 4F
+  weightage: 10.00
+  max_score: 20.00  
+
+4F_SA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
+  klass: 4F
+  weightage: 40.00
+  max_score: 80.00  
+
+5F_FA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
+  klass: 5F
+  weightage: 10.00
+  max_score: 20.00  
+
+5F_FA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
+  klass: 5F
+  weightage: 10.00
+  max_score: 20.00  
+
+5F_SA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
+  klass: 5F
+  weightage: 20.00
+  max_score: 80.00  
+
+5F_FA3:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
+  klass: 5F
+  weightage: 10.00
+  max_score: 20.00  
+
+5F_FA4:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
+  klass: 5F
+  weightage: 10.00
+  max_score: 20.00  
+
+5F_SA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
+  klass: 5F
+  weightage: 40.00
+  max_score: 80.00  
+
+6F_FA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
+  klass: 6F
+  weightage: 10.00
+  max_score: 20.00  
+
+6F_FA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
+  klass: 6F
+  weightage: 10.00
+  max_score: 20.00  
+
+6F_SA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
+  klass: 6F
+  weightage: 20.00
+  max_score: 80.00  
+
+6F_FA3:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
+  klass: 6F
+  weightage: 10.00
+  max_score: 20.00  
+
+6F_FA4:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
+  klass: 6F
+  weightage: 10.00
+  max_score: 20.00  
+
+6F_SA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
+  klass: 6F
+  weightage: 40.00
+  max_score: 80.00  
+
+7F_FA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
+  klass: 7F
+  weightage: 10.00
+  max_score: 20.00  
+
+7F_FA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
+  klass: 7F
+  weightage: 10.00
+  max_score: 20.00  
+
+7F_SA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
+  klass: 7F
+  weightage: 20.00
+  max_score: 80.00  
+
+7F_FA3:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
+  klass: 7F
+  weightage: 10.00
+  max_score: 20.00  
+
+7F_FA4:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
+  klass: 7F
+  weightage: 10.00
+  max_score: 20.00  
+
+7F_SA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
+  klass: 7F
+  weightage: 40.00
+  max_score: 80.00  
+
+8F_FA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
+  klass: 8F
+  weightage: 10.00
+  max_score: 20.00  
+
+8F_FA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
+  klass: 8F
+  weightage: 10.00
+  max_score: 20.00  
+
+8F_SA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
+  klass: 8F
+  weightage: 20.00
+  max_score: 80.00  
+
+8F_FA3:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
+  klass: 8F
+  weightage: 10.00
+  max_score: 20.00  
+
+8F_FA4:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
+  klass: 8F
+  weightage: 10.00
+  max_score: 20.00  
+
+8F_SA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
+  klass: 8F
+  weightage: 40.00
+  max_score: 80.00  
+
+9F_FA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
+  klass: 9F
+  weightage: 10.00
+  max_score: 20.00  
+
+9F_FA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
+  klass: 9F
+  weightage: 10.00
+  max_score: 20.00  
+
+9F_SA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
+  klass: 9F
+  weightage: 20.00
+  max_score: 80.00  
+
+9F_FA3:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
+  klass: 9F
+  weightage: 10.00
+  max_score: 20.00  
+
+9F_FA4:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
+  klass: 9F
+  weightage: 10.00
+  max_score: 20.00  
+
+9F_SA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
+  klass: 9F
+  weightage: 40.00
+  max_score: 80.00  
+
+10F_FA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
+  klass: 10F
+  weightage: 10.00
+  max_score: 20.00  
+
+10F_FA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
+  klass: 10F
+  weightage: 10.00
+  max_score: 20.00  
+
+10F_SA1:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
+  klass: 10F
+  weightage: 20.00
+  max_score: 80.00  
+
+10F_FA3:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
+  klass: 10F
+  weightage: 10.00
+  max_score: 20.00  
+
+10F_FA4:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
+  klass: 10F
+  weightage: 10.00
+  max_score: 20.00  
+
+10F_SA2:
+  academic_year: stteresas
+  assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
+  klass: 10F
+  weightage: 40.00
+  max_score: 80.00

@@ -113,3 +113,45 @@
   level_id: <%= Level.find_by_name('12').id %>
   division: A
   school: gps
+1F:
+  level_id: <%= Level.find_by_name('1').id %>
+  division: F
+  school: stteresas
+  class_teacher: daisy
+2F:
+  level_id: <%= Level.find_by_name('2').id %>
+  division: F
+  school: stteresas
+  class_teacher: smini
+3F:
+  level_id: <%= Level.find_by_name('3').id %>
+  division: F
+  school: stteresas
+4F:
+  level_id: <%= Level.find_by_name('4').id %>
+  division: F
+  school: stteresas
+5F:
+  level_id: <%= Level.find_by_name('5').id %>
+  division: F
+  school: stteresas
+6F:
+  level_id: <%= Level.find_by_name('6').id %>
+  division: F
+  school: stteresas
+7F:
+  level_id: <%= Level.find_by_name('7').id %>
+  division: F
+  school: stteresas
+8F:
+  level_id: <%= Level.find_by_name('8').id %>
+  division: F
+  school: stteresas
+9F:
+  level_id: <%= Level.find_by_name('9').id %>
+  division: F
+  school: stteresas
+10F:
+  level_id: <%= Level.find_by_name('10').id %>
+  division: F
+  school: stteresas
