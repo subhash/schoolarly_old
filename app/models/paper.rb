@@ -57,11 +57,13 @@ class Paper < ActiveRecord::Base
   end
   
   def formative_assessments
-    assessments.select{|a|a.name.starts_with? "FA"}
+    # Naturally it will be in the order of assessment types. But for demo data load from yml, the sort has to be explicitly given. 
+    assessments.select{|a|a.name.starts_with? "FA"}.sort{ |m,n| m.assessment_type.id <=> n.assessment_type.id }
   end
   
   def summative_assessments
-    assessments.select{|a|a.name.starts_with? "SA"}
+    # Naturally it will be in the order of assessment types. But for demo data load from yml, the sort has to be explicitly given.
+    assessments.select{|a|a.name.starts_with? "SA"}.sort{ |m,n| m.assessment_type.id <=> n.assessment_type.id }
   end
   
   def assign_participants_for_future_activities
