@@ -1,119 +1,119 @@
 9A_FA1_english:
   assessment_group: 9A_FA1
-  subject_id: <%= Subject.find_by_name('English').id %>                      
+  subject_id: <%= Subject.find_by_name('English').id %>
 
 9A_FA2_english:
   assessment_group: 9A_FA2
-  subject_id: <%= Subject.find_by_name('English').id %>                      
+  subject_id: <%= Subject.find_by_name('English').id %>
 
 9A_FA3_english:
   assessment_group: 9A_FA3
-  subject_id: <%= Subject.find_by_name('English').id %>                      
+  subject_id: <%= Subject.find_by_name('English').id %>
 
 9A_FA4_english:
   assessment_group: 9A_FA4
-  subject_id: <%= Subject.find_by_name('English').id %>                      
+  subject_id: <%= Subject.find_by_name('English').id %>
 
 9A_SA1_english:
   assessment_group: 9A_SA1
-  subject_id: <%= Subject.find_by_name('English').id %>                      
+  subject_id: <%= Subject.find_by_name('English').id %>
 
 9A_SA2_english:
   assessment_group: 9A_SA2
-  subject_id: <%= Subject.find_by_name('English').id %>                      
+  subject_id: <%= Subject.find_by_name('English').id %>
 
 9A_FA1_malayalam:
   assessment_group: 9A_FA1
-  subject_id: <%= Subject.find_by_name('Malayalam').id %>                  
+  subject_id: <%= Subject.find_by_name('Malayalam').id %>
 
 9A_FA2_malayalam:
   assessment_group: 9A_FA2
-  subject_id: <%= Subject.find_by_name('Malayalam').id %>                  
+  subject_id: <%= Subject.find_by_name('Malayalam').id %>
 
 9A_FA3_malayalam:
   assessment_group: 9A_FA3
-  subject_id: <%= Subject.find_by_name('Malayalam').id %>                  
+  subject_id: <%= Subject.find_by_name('Malayalam').id %>
 
 9A_FA4_malayalam:
   assessment_group: 9A_FA4
-  subject_id: <%= Subject.find_by_name('Malayalam').id %>                  
+  subject_id: <%= Subject.find_by_name('Malayalam').id %>
 
 9A_SA1_malayalam:
   assessment_group: 9A_SA1
-  subject_id: <%= Subject.find_by_name('Malayalam').id %>                  
+  subject_id: <%= Subject.find_by_name('Malayalam').id %>
 
 9A_SA2_malayalam:
   assessment_group: 9A_SA2
-  subject_id: <%= Subject.find_by_name('Malayalam').id %>                  
+  subject_id: <%= Subject.find_by_name('Malayalam').id %>
 
 9A_FA1_mathematics:
   assessment_group: 9A_FA1
-  subject_id: <%= Subject.find_by_name('Mathematics').id %>              
+  subject_id: <%= Subject.find_by_name('Mathematics').id %>
 
 9A_FA2_mathematics:
   assessment_group: 9A_FA2
-  subject_id: <%= Subject.find_by_name('Mathematics').id %>              
+  subject_id: <%= Subject.find_by_name('Mathematics').id %>
 
 9A_FA3_mathematics:
   assessment_group: 9A_FA3
-  subject_id: <%= Subject.find_by_name('Mathematics').id %>              
+  subject_id: <%= Subject.find_by_name('Mathematics').id %>
 
 9A_FA4_mathematics:
   assessment_group: 9A_FA4
-  subject_id: <%= Subject.find_by_name('Mathematics').id %>              
+  subject_id: <%= Subject.find_by_name('Mathematics').id %>
 
 9A_SA1_mathematics:
   assessment_group: 9A_SA1
-  subject_id: <%= Subject.find_by_name('Mathematics').id %>              
+  subject_id: <%= Subject.find_by_name('Mathematics').id %>
 
 9A_SA2_mathematics:
   assessment_group: 9A_SA2
-  subject_id: <%= Subject.find_by_name('Mathematics').id %>              
+  subject_id: <%= Subject.find_by_name('Mathematics').id %>
 
 9A_FA1_science:
   assessment_group: 9A_FA1
-  subject_id: <%= Subject.find_by_name('Science').id %>                      
+  subject_id: <%= Subject.find_by_name('Science').id %>
 
 9A_FA2_science:
   assessment_group: 9A_FA2
-  subject_id: <%= Subject.find_by_name('Science').id %>                      
+  subject_id: <%= Subject.find_by_name('Science').id %>
 
 9A_FA3_science:
   assessment_group: 9A_FA3
-  subject_id: <%= Subject.find_by_name('Science').id %>                      
+  subject_id: <%= Subject.find_by_name('Science').id %>
 
 9A_FA4_science:
   assessment_group: 9A_FA4
-  subject_id: <%= Subject.find_by_name('Science').id %>                      
+  subject_id: <%= Subject.find_by_name('Science').id %>
 
 9A_SA1_science:
   assessment_group: 9A_SA1
-  subject_id: <%= Subject.find_by_name('Science').id %>                      
+  subject_id: <%= Subject.find_by_name('Science').id %>
 
 9A_SA2_science:
   assessment_group: 9A_SA2
-  subject_id: <%= Subject.find_by_name('Science').id %>                      
+  subject_id: <%= Subject.find_by_name('Science').id %>
 
 9A_FA1_social:
   assessment_group: 9A_FA1
-  subject_id: <%= Subject.find_by_name('Social Science').id %>        
+  subject_id: <%= Subject.find_by_name('Social Science').id %>
 
 9A_FA2_social:
   assessment_group: 9A_FA2
-  subject_id: <%= Subject.find_by_name('Social Science').id %>        
+  subject_id: <%= Subject.find_by_name('Social Science').id %>
 
 9A_FA3_social:
   assessment_group: 9A_FA3
-  subject_id: <%= Subject.find_by_name('Social Science').id %>        
+  subject_id: <%= Subject.find_by_name('Social Science').id %>
 
 9A_FA4_social:
   assessment_group: 9A_FA4
-  subject_id: <%= Subject.find_by_name('Social Science').id %>        
+  subject_id: <%= Subject.find_by_name('Social Science').id %>
 
 9A_SA1_social:
   assessment_group: 9A_SA1
-  subject_id: <%= Subject.find_by_name('Social Science').id %>        
+  subject_id: <%= Subject.find_by_name('Social Science').id %>
 
 9A_SA2_social:
   assessment_group: 9A_SA2
-  subject_id: <%= Subject.find_by_name('Social Science').id %>        
+  subject_id: <%= Subject.find_by_name('Social Science').id %>
