@@ -1230,3 +1230,19 @@ FA1_test_2_malayalam_coonie_sentbox:
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:44:35
+reminder_from_stteresas_to_daisy_inbox:
+  read: 0
+  message: reminder_from_stteresas_to_daisy
+  trashed: 0
+  conversation: reminder_from_stteresas_to_daisy
+  mailbox: inbox
+  user: daisy
+  created_at: 2010-09-10 21:32:08
+reminder_from_stteresas_to_daisy_sentbox:
+  read: 1
+  message: reminder_from_stteresas_to_daisy
+  trashed: 0
+  conversation: reminder_from_stteresas_to_daisy
+  mailbox: sentbox
+  user: stteresas
+  created_at: 2010-09-10 21:32:08

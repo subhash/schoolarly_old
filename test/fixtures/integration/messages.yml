@@ -614,3 +614,11 @@ FA1_test_2_malayalam_coonie:
   sent: 0
   created_at: 2010-09-10 13:44:35
   recipients: coonie
+reminder_from_stteresas_to_daisy:
+  subject: Reminder 
+  body: Schedule a class meeting for 1F 
+  conversation: reminder_from_stteresas_to_daisy
+  sender: stteresas
+  sent: 0
+  created_at: 2010-09-10 21:32:08
+  recipients: daisy  
