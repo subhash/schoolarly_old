@@ -61,6 +61,7 @@
   end
 
 require 'selenium-webdriver'
+#require 'capybara/xpath'
 
 class Capybara::Driver::Selenium < Capybara::Driver::Base
   class Node < Capybara::Node
@@ -70,6 +71,8 @@ class Capybara::Driver::Selenium < Capybara::Driver::Base
       puts "option node = "+option_node.inspect
       option_node.select
     rescue 
+      puts node.find_element(:xpath, ".//option[text()=#{option}]").inspect
+      puts node.find_element(:xpath, ".//option[contains()=#{option}]").inspect
       options = node.find_elements(:xpath, "//option").map { |o| "'#{o.text}'" }.join(', ')
       raise Capybara::OptionNotFound, "No such option '#{option}' in this select box. Available options: #{options}"
   end
@@ -78,15 +81,24 @@ class Capybara::Driver::Selenium < Capybara::Driver::Base
 #  if node['multiple'] != 'multiple'
 #    raise Capybara::UnselectNotAllowed, "Cannot unselect option '#{option}' from single select box."
 #  end
-  begin
+    begin
 #    option_node = node.find_element(:xpath, ".//option[normalize-space(text())=#{Capybara::XPath.escape(option)}]") || node.find_element(:xpath, ".//option[contains(.,#{Capybara::XPath.escape(option)})]")
     option_node = node.find_element(:xpath, ".//option[text()=#{Capybara::XPath.escape(option)}]") || node.find_element(:xpath, ".//option[contains(.,#{Capybara::XPath.escape(option)})]")
     option_node.clear
-  rescue
-    options = node.find_elements(:xpath, "//option").map { |o| "'#{o.text}'" }.join(', ')
-    raise Capybara::OptionNotFound, "No such option '#{option}' in this select box. Available options: #{options}"
+    rescue
+      options = node.find_elements(:xpath, "//option").map { |o| "'#{o.text}'" }.join(', ')
+      raise Capybara::OptionNotFound, "No such option '#{option}' in this select box. Available options: #{options}"
+    end
+  end
+
   end
 end
 
-end
-end
+#class Capybara::Session
+#  def click_link(locator)
+#    msg = "no link with title, id or text '#{locator}' found"
+#    puts "locator = "+locator.inspect
+#    puts "xpath - locator = "+Capybara::XPath.link(locator).inspect
+#    locate(:xpath, Capybara::XPath.link(locator), msg).click
+#  end
+#end
