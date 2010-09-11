@@ -16,10 +16,8 @@ module NavigationHelpers
       #
       #   when /^(.*)'s profile page$/i
       #     user_profile_path(User.find_by_login($1))
-    when /school_path\(\"(.*)\"\) page/i
-      school_path(School.find_by_id(User.find_by_email($1).person_id))
-    when /klass_path\(\"(.*) (.*)\" of \"(.*)\"\) page/i
-      klass_path(Klass.find_by_level_id_and_division_and_school_id(levels($1.to_sym).id, $2, schoolsUser.find_by_email($1).person_id))
+    when /school page "(.+)"$/i
+      school_path($1)
     else
       begin
         page_name =~ /the (.*) page/

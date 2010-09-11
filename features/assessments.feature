@@ -10,13 +10,15 @@ Feature: Manage assessments
     Then I should see "New activity for FA1 - Social Science" 
 	When I select "Group Project" from "assessment_tool_name"
 	And I press "Create Activity"
-	Then I should see link with title "Scores for FA1 Group Project - Social Science"
+	Then I should see "Adjust calculations for FA1 - Social Science"
+	When I press "Save changes"
+	Then I should see link with title "Scores for FA1 Group Project 2 - Social Science"
   
   Scenario: Add an activity with event(check that the event shows up for participants)
   Scenario: Remove activity
   Scenario: Edit activity
   Scenario: View assessments & activities(Same school should, others shouldnt)
-  Scenario: Check permissions to add/edit activities(classteacher, teacher, school)
+  Scenario: *Check permissions to add/edit activities(classteacher, teacher, school)
   Scenario: View assessment settings for class
   Scenario: Edit assessment settings for class
   Scenario: View weightage settings for assessment

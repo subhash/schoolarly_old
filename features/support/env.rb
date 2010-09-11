@@ -74,10 +74,8 @@ module FixtureAccess
     
     Dir.glob(RAILS_ROOT + "/db/fixtures/*.{yml,rb}").each do |file|
       if File.extname(file) == '.yml'
-        puts "Running yml data fixture #{file}"
         Fixtures.create_fixtures('db/fixtures', File.basename(file, '.*'))
       else
-        puts "Running ruby data fixture #{file}" 
         load file
       end
     end
