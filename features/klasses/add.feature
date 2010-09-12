@@ -9,6 +9,7 @@ Feature: Add classes
       And I select "1" from "klass_level_id" within "#new_klass"
       And I fill in "Division" with "D"
       And I press "Create"
+      And I wait until "Add Subjects to 1 D"
       And I follow "Close window"
     Then I should see link with title "1 D"
     
@@ -19,6 +20,7 @@ Feature: Add classes
       And I select "2" from "klass_level_id" within "#new_klass"
       And I fill in "Division" with "D"
       And I press "Create"
+      And I wait until "Add Subjects to 2 D"
       And I select the following from multiselect "school_subject_ids":
     		| English |
  		| Malayalam |

@@ -24,6 +24,12 @@ When /^(?:|I )select "(.+)" from multiselect "(.+)"$/ do |text, element|
     When %{I select "#{text}" from "#{element}"}
 end
 
+When /^(?:|I )wait until "(.+)"$/ do |content|
+  page.wait_until do
+    page.has_content?(content)
+  end
+end
+
 When /^(?:|I )unselect "([^"]*)" from "([^"]*)"(?: within "([^"]*)")?$/ do |value, field, selector|
   with_scope(selector) do
     unselect(value, :from => field)
