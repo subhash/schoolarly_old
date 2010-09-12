@@ -1,4 +1,4 @@
-%div[activity]
+%div[activity]{:title => activity.name}
   - unless @student
     %span.icon= link_to_remote 'Edit activity', :url =>  {:controller => 'activities', :action => 'edit', :id => activity }, :method => :get, :html => {:title => "Edit #{activity.title}", :class => "ui-state-default ui-corner-all ui-icon ui-icon-pencil"}  if permitted_to? :update, activity
     - if activity.destroyable?  and activity.assessment.fa?

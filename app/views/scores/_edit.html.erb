@@ -1,4 +1,4 @@
-<% colNames = ["Student email", "Name"]+ activities.collect{|a| "#{a.name}(#{a.max_score})"} %>
+<% colNames = ["Student email", "Name"]+ activities.collect{|a| "#{a.name} (#{trim(a.max_score)})"} %>
 <% colModel = [{:width => 250,
 :index => 'email',
 :name => 'email',
@@ -18,4 +18,3 @@
     <%= jquery_grid_table %>
     <%= jquery_grid_pager %>
 </center>
-

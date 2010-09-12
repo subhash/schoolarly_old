@@ -19,3 +19,4 @@ gps_9A_science:
 gps_9A_social:
   klass: 9A
   school_subject: gps_social
+  teacher: sudha

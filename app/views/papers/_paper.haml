@@ -1,4 +1,4 @@
-%table[paper]
+%table[paper]{:title => paper.name}
   %td.left(rowspan="#{paper.assessments.uniq.size + 1}")
     %span.icon= message_to(paper)
     - if active_controller == 'klasses'
