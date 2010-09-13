@@ -37,7 +37,7 @@ class EventsController < ApplicationController
       if permitted_to? :update, @activity
         @teachers = @activity.assessment.assessment_group.school.teachers
         render :update do |page|
-          page.open_dialog "Change activity - #{@activity.title}", :partial => 'activities/edit'
+          page.open_dialog "Change Activity - #{@activity.title}", :partial => 'activities/edit'
         end
       else
           render :update do |page|
@@ -49,7 +49,7 @@ class EventsController < ApplicationController
       @users = User.with_permissions_to(:contact) - [@event_series.owner]
       if permitted_to? :update, @event_series
         render :update do |page|
-          page.open_dialog @event_series.title, {:partial => 'events/edit_form'}, 500
+          page.open_dialog "Change Event - "+@event_series.title, {:partial => 'events/edit_form'}, 500
         end
       else
         render :update do |page|
