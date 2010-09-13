@@ -620,7 +620,11 @@ div.message .actions a {
 ul.recipients li a{
 	font-size: 11px;
 	text-decoration: none;
-	font-weight: bold;
+	color: inherit;
+}
+
+table.events td a{
+	text-decoration: none;
 	color: inherit;
 }
 

@@ -15,6 +15,7 @@ class EventsController < ApplicationController
     @event_series.owner = current_user
     @event = Event.new(params[:event])
     @event_series.create_events(@event.start_time, @event.end_time, params[:recurrence])
+    @event_series.period = 'Every ' + params[:recurrence].singularize unless params[:recurrence] == 'once'
     if @event_series.save
       render :template => 'events/create'
     else
@@ -31,18 +32,30 @@ class EventsController < ApplicationController
   def edit
     @event = Event.find_by_id(params[:id])
     @event_series = @event.event_series
-    @activity = @event.activity #TODO changed @exam to activity to avoid error for the time-being.
+    @activity = @event.activity
     if @activity
-      @teachers = @activity.assessment.assessment_group.school.teachers
-      render :update do |page|
-        page.open_dialog "Change activity - #{@activity.title}", :partial => 'activities/edit'
+      if permitted_to? :update, @activity
+        @teachers = @activity.assessment.assessment_group.school.teachers
+        render :update do |page|
+          page.open_dialog "Change activity - #{@activity.title}", :partial => 'activities/edit'
+        end
+      else
+          render :update do |page|
+          page.open_dialog @activity.title, {:partial => 'events/event'}
+        end  
       end
     else
       #@users = current_user.person.school ? current_user.person.school.users - [@event_series.owner] : nil
       @users = User.with_permissions_to(:contact) - [@event_series.owner]
-      render :update do |page|
-        page.open_dialog @event_series.title, {:partial => 'events/edit_form'}, 500
-      end
+      if permitted_to? :update, @event_series
+        render :update do |page|
+          page.open_dialog @event_series.title, {:partial => 'events/edit_form'}, 500
+        end
+      else
+        render :update do |page|
+          page.open_dialog @event_series.title, {:partial => 'events/event'}
+        end          
+      end 
     end
   end
   

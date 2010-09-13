@@ -19,6 +19,10 @@ authorization do
     if_attribute :teacher => is_not {nil}
   end
   
+  same_owner = proc do
+    if_attribute :owner => is {user} 
+  end
+  
   participant = proc do
     if_attribute :students => contains {user.person} 
   end
@@ -32,6 +36,7 @@ authorization do
   end
   
   role :student do
+    has_permission_on :event_series, :to => :manage, &same_owner
     has_permission_on [:schools, :klasses, :teachers, :students], :to => :read, :join_by => :and, &same_school
     has_permission_on :students, :to => :assess, :join_by => :and, &same_klass
     has_permission_on :assessments, :to => :read, &participant
@@ -44,6 +49,7 @@ authorization do
   end
   
   role :teacher do
+    has_permission_on :event_series, :to => :manage, &same_owner
     has_permission_on :teachers, :to => :read_write, &same_user
     has_permission_on :students, :to => [:read_write, :assess], :join_by => :and, &same_school
     has_permission_on [:assessments, :activities, :schools], :to => :read, :join_by => :and, &same_school
@@ -65,6 +71,7 @@ authorization do
   end
   
   role :school do
+    has_permission_on :event_series, :to => :manage, &same_owner
     has_permission_on [:klasses, :papers, :teachers, :students, :activities], :to => :manage, :join_by => :and, &same_school
     has_permission_on :students, :to => :assess, :join_by => :and, &same_school
     has_permission_on :assessments, :to => :read_write, :join_by => :and, &same_school
@@ -77,7 +84,7 @@ authorization do
   end
   
   role :schoolarly_admin do
-    has_permission_on [:schools, :teachers, :students, :schoolarly_admins, :klasses, :exams, :scores, :papers, :users, :user_profiles], :to => :manage
+    has_permission_on [:schools, :teachers, :students, :schoolarly_admins, :klasses, :exams, :scores, :papers, :users, :user_profiles, :event_series], :to => :manage
     has_permission_on [:schools, :teachers, :students], :to => :alter
     has_permission_on [:schools, :teachers, :students, :klasses, :papers], :to => :contact
     has_permission_on :students, :to => :assess

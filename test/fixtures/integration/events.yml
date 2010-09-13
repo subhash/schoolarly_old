@@ -1,11 +1,11 @@
 FA1_test_1_social: 
   event_series: FA1_test_1_social
-  end_time: 2010-09-02 05:30:00
-  start_time: 2010-09-02 04:30:00
+  end_time: 2010-08-02 05:30:00
+  start_time: 2010-08-02 04:30:00
 FA1_test_2_social: 
   event_series: FA1_test_2_social
-  end_time: 2010-09-09 04:30:00
-  start_time: 2010-09-09 03:30:00
+  end_time: 2010-08-09 04:30:00
+  start_time: 2010-08-09 03:30:00
 FA2_test_1_social: 
   event_series: FA2_test_1_social
   end_time: 2010-09-01 04:30:00
