@@ -633,11 +633,6 @@ table.events tr:nth-child(even) {
     background-color: #F5DFAC;
 }
 
-table.calculation td {
-	border-style: solid;
-	border-width: thin;
-}
-
 table.events td a{
 	text-decoration: none;
 	color: inherit;
