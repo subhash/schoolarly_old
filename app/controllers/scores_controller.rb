@@ -29,7 +29,7 @@ class ScoresController < ApplicationController
         params[activity.id.to_s].blank? ? score.destroy :  score.score = params[activity.id.to_s]    
       else
         score = Score.new do |s|
-          s.score = params[activity.id.to_s].to_i
+          s.score = params[activity.id.to_s]
           s.student = @student
           s.activity = activity
         end unless params[activity.id.to_s].blank?
