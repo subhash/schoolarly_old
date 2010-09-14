@@ -5,7 +5,7 @@ Feature: Add classes
   @javascript
   Scenario: Add a class
     Given "gps@schoolarly.com" logs in
-    When I follow "Add Class to Global Public School" within "#right-bar"
+    When I follow "Add Class to Global Public School"
       And I select "1" from "klass_level_id"
       And I fill in "Division" with "D"
       And I press "Create"
@@ -16,7 +16,7 @@ Feature: Add classes
   @javascript
   Scenario: Add a class with subjects
     Given "gps@schoolarly.com" logs in
-    When I follow "Add Class to Global Public School" within "#right-bar"
+    When I follow "Add Class to Global Public School"
       And I select "2" from "klass_level_id"
       And I fill in "Division" with "D"
       And I press "Create"
