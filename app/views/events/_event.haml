@@ -7,14 +7,14 @@
     %td= @event_series.description
   %tr
     %th From
-    %td= @event_series.events.first.start_time
+    %td= @event.start_time
   %tr
     %th To
-    %td= @event_series.events.first.end_time
-  - if @event_series.events.first.activity
+    %td= @event.end_time
+  - if @event.activity
     %tr
       %th Max Score
-      %td= @event_series.events.first.activity.max_score
+      %td= @event.activity.max_score
   %tr
     %th Occurs
     %td= @event_series.period
