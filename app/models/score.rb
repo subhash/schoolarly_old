@@ -41,10 +41,22 @@ class Score < ActiveRecord::Base
     end
   end
   
+  def to_sentence
+    case score
+      when 'N' 
+       'Not Applicable'
+      when 'A'
+       'Absent'
+    else
+      "#{score}/#{max_score}"
+    end
+  end
   
   def send_message
-    str = "Score in #{activity.title} - #{score}/#{max_score} "
-    student.school.user.send_message(student.user, str, str)
+    unless score == 'N'
+      str = "Score in #{activity.title} - #{self.to_sentence} "
+      student.school.user.send_message(student.user, str, str)
+    end
   end  
   
   #  score as a number
