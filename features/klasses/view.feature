@@ -4,7 +4,7 @@ Feature: View class
    
   @javascript
   Scenario: View class
-  	Given I login with "gps@schoolarly.com"
+  	Given "gps@schoolarly.com" logs in
   	When I follow "papers" of class "9 A"
  	Then I should see the following:
     		| English |

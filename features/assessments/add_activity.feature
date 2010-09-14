@@ -4,7 +4,7 @@ Feature: Add activities
   
   @javascript
   Scenario: Add an activity
-    Given I login with "gps@schoolarly.com"
+    Given "gps@schoolarly.com" logs in
     When I follow "papers" of class "9 A"
     And I follow "Add activity to FA1 - Social Science"
     Then I should see "New activity for FA1 - Social Science" 

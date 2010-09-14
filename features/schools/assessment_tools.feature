@@ -4,7 +4,7 @@ Feature: Manage assessment tools
 
   @javascript  
   Scenario: Add assessment tools to school
-    Given I login with "gps@schoolarly.com"
+    Given "gps@schoolarly.com" logs in
     When I follow "Subjects"
     And I follow "Add Assessment Tools" within "tr[title='French']"
     And I select the following from multiselect "tool_name_ids":

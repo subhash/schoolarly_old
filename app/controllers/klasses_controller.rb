@@ -1,14 +1,21 @@
 class KlassesController < ApplicationController
   
-  before_filter :find_school , :only => [:new, :create]
+#  before_filter :find_school , :only => [:new, :create]
   
   def index
     @klasses=Klass.all :order => "school_id, level_id, division"
   end
   
+  def new
+    @klass = Klass.new(:school_id => params[:school_id])
+    render :update do |page|
+      page.open_dialog "Add Class", :partial => 'klasses/new_klass_form', :locals => {:klass => @klass, :levels => Level.all(:order => ["cast(name as decimal)"])}
+    end
+  end
+  
   def create
     @klass = Klass.new(params[:klass])
-    if (@school.klasses << @klass)
+    if (@klass.save)
       render :template => 'klasses/create_success'
     else
       render :template => 'klasses/create_error'  

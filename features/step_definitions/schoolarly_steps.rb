@@ -1,5 +1,5 @@
 
-Given /I login with "(.*)"$/ do |email|
+Given /"(.*)" logs in$/ do |email|
   visit root_path
   click_link 'Login'
   fill_in 'Email', :with => email
@@ -28,6 +28,11 @@ When /^(?:|I )wait until "(.+)"$/ do |content|
   page.wait_until do
     page.has_content?(content)
   end
+end
+
+When /"(.*)" logs out$/ do |email|
+  page.evaluate_script('window.confirm = function() { return true; }')
+  When %{I follow "Logout, #{email}"} 
 end
 
 When /^(?:|I )unselect "([^"]*)" from "([^"]*)"(?: within "([^"]*)")?$/ do |value, field, selector|

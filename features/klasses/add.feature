@@ -4,9 +4,9 @@ Feature: Add classes
   
   @javascript
   Scenario: Add a class
-    Given I login with "gps@schoolarly.com"
-    When I follow "Add Class"
-      And I select "1" from "klass_level_id" within "#new_klass"
+    Given "gps@schoolarly.com" logs in
+    When I follow "Add Class to Global Public School" within "#right-bar"
+      And I select "1" from "klass_level_id"
       And I fill in "Division" with "D"
       And I press "Create"
       And I wait until "Add Subjects to 1 D"
@@ -15,9 +15,9 @@ Feature: Add classes
     
   @javascript
   Scenario: Add a class with subjects
-    Given I login with "gps@schoolarly.com"
-    When I follow "Add Class"
-      And I select "2" from "klass_level_id" within "#new_klass"
+    Given "gps@schoolarly.com" logs in
+    When I follow "Add Class to Global Public School" within "#right-bar"
+      And I select "2" from "klass_level_id"
       And I fill in "Division" with "D"
       And I press "Create"
       And I wait until "Add Subjects to 2 D"

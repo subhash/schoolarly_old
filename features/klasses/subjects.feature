@@ -4,7 +4,7 @@ Feature: Manage subjects
   	
   @javascript
   Scenario: Add subjects to school
-    Given I login with "stteresas@schoolarly.com"
+    Given "stteresas@schoolarly.com" logs in
     When I follow "Add Subjects to St Teresas"
 	    	And I select the following from multiselect "subject_ids":
 	      | English |

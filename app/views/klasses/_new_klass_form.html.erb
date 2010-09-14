@@ -1,7 +1,8 @@
-<% semantic_remote_form_for klass, :url => {:controller => :klasses, :action => 'create', :school_id => school} do |f| %>
+<% semantic_remote_form_for klass, :url => {:controller => :klasses, :action => 'create'} do |f| %>
 <%= f.error_messages %>
 	<%= f.input :level, :as => :select, :collection => levels %>
-	<%= f.input :division%>
+	<%= f.input :division %>
+	<%= f.input :school_id, :as => :hidden %>
 	<%= f.commit_button :label => 'Create' %>
 <% end %>
 

@@ -5,7 +5,7 @@ Feature: View schools
   
   @javascript 
   Scenario: Login and view home page
-    Given I login with "gps@schoolarly.com"
+    Given "gps@schoolarly.com" logs in
   	Then I should see the following links within "ul.tab-bar":
   	    | Messages |
   	    | Events   |
@@ -24,7 +24,7 @@ Feature: View schools
   
   @javascript  
   Scenario: Login and view a school by another school
-  	Given I login with "stteresas@schoolarly.com"
+  	Given "stteresas@schoolarly.com" logs in
   	And I go to school page "350903752"
   	Then I should see the following links within "ul.tab-bar":
   	    | Classes  |
@@ -42,7 +42,7 @@ Feature: View schools
   	    
   @javascript  
   Scenario Outline: Login and view a school by its members
-  	Given I login with "<email>"
+  	Given "<email>" logs in
   	And I follow "Global Public School" within "ul#crumbs"
   	Then I should see the following links within "ul.tab-bar":
   	    | Classes  |

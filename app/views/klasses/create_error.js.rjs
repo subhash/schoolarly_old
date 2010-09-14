@@ -1,1 +1,1 @@
- page.refresh_dialog :partial => 'new_klass_form', :locals => {:klass => @klass, :school => @school, :levels => Level.all}
+ page.refresh_dialog :partial => 'new_klass_form', :locals => {:klass => @klass, :levels => Level.all(:order => ["cast(name as decimal)"])}
