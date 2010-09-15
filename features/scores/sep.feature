@@ -15,17 +15,25 @@ Feature: SEP calculation
       And I follow "papers-tab-link" 
       And I follow "Scores for FA2 - Malayalam"
       And I enter the following scores for "<student_email>":
-      	| 9A_listening1_FA2_malayalam | 9.5 |   
+        | 9A_test1_FA2_malayalam     | 15  |
+      	| 9A_test2_FA2_malayalam     | 18  |
+      	| 9A_test3_FA2_malayalam     | N   |
+      	| 9A_listening1_FA2_malayalam| 9.5 |   
       And I follow "9 A" within "#crumbs"
       And I follow "papers-tab-link" 
       And I follow "Scores for FA3 - Malayalam"
       And I enter the following scores for "<student_email>":
-      	| 9A_test1_FA3_malayalam | 15 | 
+      	| 9A_test1_FA3_malayalam     | 15 | 
+      	| 9A_reading1_FA3_malayalam  | 9  |
+      	| 9A_reading2_FA3_malayalam  | 16 |
+      	| 9A_reading3_FA3_malayalam  | A  | 
       And I follow "9 A" within "#crumbs"
       And I follow "papers-tab-link" 
       And I follow "Scores for FA4 - Malayalam"
       And I enter the following scores for "<student_email>":
-      	| 9A_test1_FA4_malayalam | 17 |       	      
+      	| 9A_test1_FA4_malayalam | 17 |  
+      	| 9A_test2_FA4_malayalam  | A  |
+      	| 9A_test3_FA4_malayalam  | 16 |      	      
       And I follow "9 A" within "#crumbs"
       And I follow "papers-tab-link" 
       And I follow "Scores for SA1 - Malayalam"
@@ -48,6 +56,6 @@ Feature: SEP calculation
        And I should see "89.25" within "table[title='Malayalam'] td.left div[class='detail score']"  
     Examples:
        | student_email        |
-       | reeny@schoolarly.com |
+       | reshma@schoolarly.com |
       
    
