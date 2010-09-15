@@ -750,163 +750,163 @@ FA2_test_science_coonie_sentbox:
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:34:00
-FA1_group_discussion_english_annie_inbox:
+FA1_gd_english_annie_inbox:
   read: 0
-  message: FA1_group_discussion_english_annie
+  message: FA1_gd_english_annie
   trashed: 0
-  conversation: FA1_group_discussion_english_annie
+  conversation: FA1_gd_english_annie
   mailbox: inbox
   user: annie
   created_at: 2010-09-10 13:34:31
-FA1_group_discussion_english_annie_sentbox:
+FA1_gd_english_annie_sentbox:
   read: 1
-  message: FA1_group_discussion_english_annie
+  message: FA1_gd_english_annie
   trashed: 0
-  conversation: FA1_group_discussion_english_annie
+  conversation: FA1_gd_english_annie
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:34:31
-FA1_group_discussion_english_arti_inbox:
+FA1_gd_english_arti_inbox:
   read: 0
-  message: FA1_group_discussion_english_arti
+  message: FA1_gd_english_arti
   trashed: 0
-  conversation: FA1_group_discussion_english_arti
+  conversation: FA1_gd_english_arti
   mailbox: inbox
   user: arti
   created_at: 2010-09-10 13:34:33
-FA1_group_discussion_english_arti_sentbox:
+FA1_gd_english_arti_sentbox:
   read: 1
-  message: FA1_group_discussion_english_arti
+  message: FA1_gd_english_arti
   trashed: 0
-  conversation: FA1_group_discussion_english_arti
+  conversation: FA1_gd_english_arti
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:34:33
-FA1_group_discussion_english_babitha_inbox:
+FA1_gd_english_babitha_inbox:
   read: 0
-  message: FA1_group_discussion_english_babitha
+  message: FA1_gd_english_babitha
   trashed: 0
-  conversation: FA1_group_discussion_english_babitha
+  conversation: FA1_gd_english_babitha
   mailbox: inbox
   user: babitha
   created_at: 2010-09-10 13:34:35
-FA1_group_discussion_english_babitha_sentbox:
+FA1_gd_english_babitha_sentbox:
   read: 1
-  message: FA1_group_discussion_english_babitha
+  message: FA1_gd_english_babitha
   trashed: 0
-  conversation: FA1_group_discussion_english_babitha
+  conversation: FA1_gd_english_babitha
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:34:35
-FA1_group_discussion_english_christina_sentbox:
+FA1_gd_english_christina_sentbox:
   read: 1
-  message: FA1_group_discussion_english_christina
+  message: FA1_gd_english_christina
   trashed: 0
-  conversation: FA1_group_discussion_english_christina
+  conversation: FA1_gd_english_christina
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:34:38
-FA1_group_discussion_english_christina_inbox:
+FA1_gd_english_christina_inbox:
   read: 0
-  message: FA1_group_discussion_english_christina
+  message: FA1_gd_english_christina
   trashed: 0
-  conversation: FA1_group_discussion_english_christina
+  conversation: FA1_gd_english_christina
   mailbox: inbox
   user: christina
   created_at: 2010-09-10 13:34:38
-FA1_group_discussion_english_coonie_inbox:
+FA1_gd_english_coonie_inbox:
   read: 0
-  message: FA1_group_discussion_english_coonie
+  message: FA1_gd_english_coonie
   trashed: 0
-  conversation: FA1_group_discussion_english_coonie
+  conversation: FA1_gd_english_coonie
   mailbox: inbox
   user: coonie
   created_at: 2010-09-10 13:34:41
-FA1_group_discussion_english_coonie_sentbox:
+FA1_gd_english_coonie_sentbox:
   read: 1
-  message: FA1_group_discussion_english_coonie
+  message: FA1_gd_english_coonie
   trashed: 0
-  conversation: FA1_group_discussion_english_coonie
+  conversation: FA1_gd_english_coonie
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:34:41
-FA2_just_a_minute_english_annie_sentbox:
+FA2_jam_english_annie_sentbox:
   read: 1
-  message: FA2_just_a_minute_english_annie
+  message: FA2_jam_english_annie
   trashed: 0
-  conversation: FA2_just_a_minute_english_annie
+  conversation: FA2_jam_english_annie
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:35:22
-FA2_just_a_minute_english_annie_inbox:
+FA2_jam_english_annie_inbox:
   read: 0
-  message: FA2_just_a_minute_english_annie
+  message: FA2_jam_english_annie
   trashed: 0
-  conversation: FA2_just_a_minute_english_annie
+  conversation: FA2_jam_english_annie
   mailbox: inbox
   user: annie
   created_at: 2010-09-10 13:35:22
-FA2_just_a_minute_english_arti_sentbox:
+FA2_jam_english_arti_sentbox:
   read: 1
-  message: FA2_just_a_minute_english_arti
+  message: FA2_jam_english_arti
   trashed: 0
-  conversation: FA2_just_a_minute_english_arti
+  conversation: FA2_jam_english_arti
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:35:25
-FA2_just_a_minute_english_arti_inbox:
+FA2_jam_english_arti_inbox:
   read: 0
-  message: FA2_just_a_minute_english_arti
+  message: FA2_jam_english_arti
   trashed: 0
-  conversation: FA2_just_a_minute_english_arti
+  conversation: FA2_jam_english_arti
   mailbox: inbox
   user: arti
   created_at: 2010-09-10 13:35:25
-FA2_just_a_minute_english_babitha_sentbox:
+FA2_jam_english_babitha_sentbox:
   read: 1
-  message: FA2_just_a_minute_english_babitha
+  message: FA2_jam_english_babitha
   trashed: 0
-  conversation: FA2_just_a_minute_english_babitha
+  conversation: FA2_jam_english_babitha
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:35:27
-FA2_just_a_minute_english_babitha_inbox:
+FA2_jam_english_babitha_inbox:
   read: 0
-  message: FA2_just_a_minute_english_babitha
+  message: FA2_jam_english_babitha
   trashed: 0
-  conversation: FA2_just_a_minute_english_babitha
+  conversation: FA2_jam_english_babitha
   mailbox: inbox
   user: babitha
   created_at: 2010-09-10 13:35:27
-FA2_just_a_minute_english_christina_inbox:
+FA2_jam_english_christina_inbox:
   read: 0
-  message: FA2_just_a_minute_english_christina
+  message: FA2_jam_english_christina
   trashed: 0
-  conversation: FA2_just_a_minute_english_christina
+  conversation: FA2_jam_english_christina
   mailbox: inbox
   user: christina
   created_at: 2010-09-10 13:35:30
-FA2_just_a_minute_english_christina_sentbox:
+FA2_jam_english_christina_sentbox:
   read: 1
-  message: FA2_just_a_minute_english_christina
+  message: FA2_jam_english_christina
   trashed: 0
-  conversation: FA2_just_a_minute_english_christina
+  conversation: FA2_jam_english_christina
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:35:30
-FA2_just_a_minute_english_coonie_inbox:
+FA2_jam_english_coonie_inbox:
   read: 0
-  message: FA2_just_a_minute_english_coonie
+  message: FA2_jam_english_coonie
   trashed: 0
-  conversation: FA2_just_a_minute_english_coonie
+  conversation: FA2_jam_english_coonie
   mailbox: inbox
   user: coonie
   created_at: 2010-09-10 13:35:31
-FA2_just_a_minute_english_coonie_sentbox:
+FA2_jam_english_coonie_sentbox:
   read: 1
-  message: FA2_just_a_minute_english_coonie
+  message: FA2_jam_english_coonie
   trashed: 0
-  conversation: FA2_just_a_minute_english_coonie
+  conversation: FA2_jam_english_coonie
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:35:31
