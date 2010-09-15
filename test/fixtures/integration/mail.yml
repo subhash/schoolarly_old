@@ -1230,7 +1230,7 @@ FA1_test_1_malayalam_coonie_inbox:
   mailbox: inbox
   user: coonie
   created_at: 2010-09-10 13:44:35
-_daisy_inbox:
+reminder_from_stteresas_to_daisy_inbox:
   read: 0
   message: _daisy
   trashed: 0
@@ -1238,11 +1238,11 @@ _daisy_inbox:
   mailbox: inbox
   user: daisy
   created_at: 2010-09-10 21:32:08
-_daisy_sentbox:
+reminder_from_stteresas_to_daisy_sentbox:
   read: 1
-  message: _daisy
+  message: reminder_from_stteresas_to_daisy
   trashed: 0
-  conversation: _daisy
+  conversation: reminder_from_stteresas_to_daisy
   mailbox: sentbox
   user: stteresas
   created_at: 2010-09-10 21:32:08
