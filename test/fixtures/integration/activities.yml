@@ -1,17 +1,17 @@
-9A_group discussion1_FA1_english:
+9A_gd1_FA1_english:
   max_score: 10.00
   description: 
-  assessment_tool: 9A_group discussion_FA1_english
+  assessment_tool: 9A_gd_FA1_english
   position: 1
-9A_just a minute1_FA2_english:
+9A_jam1_FA2_english:
   max_score: 10.00
   description: 
-  assessment_tool: 9A_just a minute_FA2_english
+  assessment_tool: 9A_jam_FA2_english
   position: 1
-9A_class test1_FA3_english:
+9A_test1_FA3_english:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_class test_FA3_english
+  assessment_tool: 9A_test_FA3_english
   position: 1
 9A_exam1_SA1_english:
   max_score: 80.00
@@ -23,75 +23,75 @@
   description: SA2 Exam - English
   assessment_tool: 9A_exam_SA2_english
   position: 1
-9A_class test1_FA1_malayalam:
+9A_test1_FA1_malayalam:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_class test_FA1_malayalam
+  assessment_tool: 9A_test_FA1_malayalam
   position: 1
-9A_class test2_FA1_malayalam:
+9A_test2_FA1_malayalam:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_class test_FA1_malayalam
+  assessment_tool: 9A_test_FA1_malayalam
   position: 2
-9A_reading comprehension1_FA1_malayalam:
+9A_reading1_FA1_malayalam:
   max_score: 10.00
   description: 
-  assessment_tool: 9A_reading comprehension_FA1_malayalam
+  assessment_tool: 9A_reading_FA1_malayalam
   position: 1
-9A_class test1_FA2_malayalam:
+9A_test1_FA2_malayalam:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_class test_FA2_malayalam
+  assessment_tool: 9A_test_FA2_malayalam
   position: 1
-9A_class test2_FA2_malayalam:
+9A_test2_FA2_malayalam:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_class test_FA2_malayalam
+  assessment_tool: 9A_test_FA2_malayalam
   position: 2
-9A_class test3_FA2_malayalam:
+9A_test3_FA2_malayalam:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_class test_FA2_malayalam
+  assessment_tool: 9A_test_FA2_malayalam
   position: 3
-9A_listening comprehension1_FA2_malayalam:
+9A_listening1_FA2_malayalam:
   max_score: 10.00
   description: 
-  assessment_tool: 9A_listening comprehension_FA2_malayalam
+  assessment_tool: 9A_listening_FA2_malayalam
   position: 1
-9A_class test1_FA3_malayalam:
+9A_test1_FA3_malayalam:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_class test_FA3_malayalam
+  assessment_tool: 9A_test_FA3_malayalam
   position: 1
-9A_reading comprehension1_FA3_malayalam:
+9A_reading1_FA3_malayalam:
   max_score: 10.00
   description: 
-  assessment_tool: 9A_reading comprehension_FA3_malayalam
+  assessment_tool: 9A_reading_FA3_malayalam
   position: 1
-9A_reading comprehension2_FA3_malayalam:
+9A_reading2_FA3_malayalam:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_reading comprehension_FA3_malayalam
+  assessment_tool: 9A_reading_FA3_malayalam
   position: 2
-9A_reading comprehension3_FA3_malayalam:
+9A_reading3_FA3_malayalam:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_reading comprehension_FA3_malayalam
+  assessment_tool: 9A_reading_FA3_malayalam
   position: 3
-9A_class test1_FA4_malayalam:
+9A_test1_FA4_malayalam:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_class test_FA4_malayalam
+  assessment_tool: 9A_test_FA4_malayalam
   position: 1
-9A_class test2_FA4_malayalam:
+9A_test2_FA4_malayalam:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_class test_FA4_malayalam
+  assessment_tool: 9A_test_FA4_malayalam
   position: 2
-9A_class test3_FA4_malayalam:
+9A_test3_FA4_malayalam:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_class test_FA4_malayalam
+  assessment_tool: 9A_test_FA4_malayalam
   position: 3
 9A_exam1_SA1_malayalam:
   max_score: 80.00
@@ -103,15 +103,15 @@
   description: SA2 Exam - Malayalam
   assessment_tool: 9A_exam_SA2_malayalam
   position: 1
-9A_class test1_FA1_mathematics:
+9A_test1_FA1_mathematics:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_class test_FA1_mathematics
+  assessment_tool: 9A_test_FA1_mathematics
   position: 1
-9A_class test1_FA2_mathematics:
+9A_test1_FA2_mathematics:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_class test_FA2_mathematics
+  assessment_tool: 9A_test_FA2_mathematics
   position: 1
 9A_exam1_SA1_mathematics:
   max_score: 80.00
@@ -123,25 +123,25 @@
   description: SA2 Exam - Mathematics
   assessment_tool: 9A_exam_SA2_mathematics
   position: 1
-9A_class test1_FA1_science:
+9A_test1_FA1_science:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_class test_FA1_science
+  assessment_tool: 9A_test_FA1_science
   position: 1
 9A_quiz1_FA1_science:
   max_score: 20.00
   description: 
   assessment_tool: 9A_quiz_FA1_science
   position: 1
-9A_class test1_FA2_science:
+9A_test1_FA2_science:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_class test_FA2_science
+  assessment_tool: 9A_test_FA2_science
   position: 1
-9A_class test1_FA3_science:
+9A_test1_FA3_science:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_class test_FA3_science
+  assessment_tool: 9A_test_FA3_science
   position: 1
 9A_exam1_SA1_science:
   max_score: 80.00
@@ -153,30 +153,30 @@
   description: SA2 Exam - Science
   assessment_tool: 9A_exam_SA2_science
   position: 1
-9A_class test1_FA1_social:
+9A_test1_FA1_social:
   max_score: 20.00
   description: Chapters 1-3
-  assessment_tool: 9A_class test_FA1_social
+  assessment_tool: 9A_test_FA1_social
   position: 1
-9A_class test2_FA1_social:
+9A_test2_FA1_social:
   max_score: 20.00
   description: Chapters 3-5
-  assessment_tool: 9A_class test_FA1_social
+  assessment_tool: 9A_test_FA1_social
   position: 2
-9A_group project1_FA1_social:
+9A_project1_FA1_social:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_group project_FA1_social
+  assessment_tool: 9A_project_FA1_social
   position: 1
-9A_class test1_FA2_social:
+9A_test1_FA2_social:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_class test_FA2_social
+  assessment_tool: 9A_test_FA2_social
   position: 1
-9A_class test2_FA2_social:
+9A_test2_FA2_social:
   max_score: 20.00
   description: 
-  assessment_tool: 9A_class test_FA2_social
+  assessment_tool: 9A_test_FA2_social
   position: 2
 9A_exam1_SA1_social:
   max_score: 80.00
