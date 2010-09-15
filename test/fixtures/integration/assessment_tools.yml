@@ -33,18 +33,28 @@
   name: Reading Comprehension
   assessment: 9A_FA1_malayalam
   weightage: 20.00
+9A_test_FA2_malayalam:
+  best_of: 2
+  name: Class Test
+  assessment: 9A_FA2_malayalam
+  weightage: 90.00
 9A_listening_FA2_malayalam:
   best_of: 1
   name: Listening Comprehension
   assessment: 9A_FA2_malayalam
-  weightage: 100.00
+  weightage: 10.00
 9A_test_FA3_malayalam:
   best_of: 1
   name: Class Test
   assessment: 9A_FA3_malayalam
-  weightage: 100.00
-9A_test_FA4_malayalam:
+  weightage: 90.00
+9A_reading_FA3_malayalam:
   best_of: 1
+  name: Reading Comprehension
+  assessment: 9A_FA3_malayalam
+  weightage: 10.00
+9A_test_FA4_malayalam:
+  best_of: 2
   name: Class Test
   assessment: 9A_FA4_malayalam
   weightage: 100.00
