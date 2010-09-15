@@ -81,7 +81,7 @@ a.pane-link.active {
     margin: 0;
     padding: 0;
     text-align: left;
-    width: 68%;
+    width: 80%;
     float: left;
 }
 
@@ -105,7 +105,7 @@ a.pane-link.active {
     padding: 0;
     text-align: left;
     float: left;
-    width: 32%;
+    width: 20%;
 }
 
 #Tabs {
