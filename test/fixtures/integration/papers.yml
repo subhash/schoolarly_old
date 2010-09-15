@@ -7,6 +7,7 @@ gps_9A_english:
 gps_9A_malayalam:
   klass: 9A
   school_subject: gps_malayalam
+  teacher: anju
 
 gps_9A_mathematics:
   klass: 9A

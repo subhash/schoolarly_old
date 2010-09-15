@@ -11,5 +11,8 @@ When /^(?:|I )enter the following scores for "(.+)":$/ do |email, table|
   page.execute_script("jQuery('#scores').editRow(#{student.id}, true);")
   page.execute_script("jQuery('#scores').saveRow(#{student.id}, function(){}, null, #{params});")
   page.execute_script("jQuery('#scores').trigger('reloadGrid');")
+  page.wait_until do
+    page.has_link?(email)
+  end
 end
 

@@ -9,7 +9,7 @@ class Klass < ActiveRecord::Base
   has_many :all_assessment_groups, :class_name => 'AssessmentGroup' 
   has_many :all_assessments, :source => :assessments, :through => :all_assessment_groups 
 #  TODO how to do this correctly
-  has_many :assessment_groups, :conditions => 'academic_year_id = #{self.academic_year.id}'
+  has_many :assessment_groups, :conditions => 'academic_year_id = #{self.academic_year.id}', :order => "assessment_type_id"
   has_many :assessments, :through => :assessment_groups 
   has_one :academic_year, :through => :school, :order => "start_date DESC"
 

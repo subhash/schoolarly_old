@@ -1,0 +1,52 @@
+Feature: SEP calculation
+  Schoolarly should add up scores 
+  To form SEP of students
+  
+  @javascript
+  Scenario Outline: SEP calculation from scores
+    Given "anju@schoolarly.com" logs in
+    When I follow "Subjects"
+      And I follow "Scores for FA1 - Malayalam"
+      And I enter the following scores for "<student_email>":
+      	| 9A_test1_FA1_malayalam | 15 |
+      	| 9A_test2_FA1_malayalam | 18|
+      	| 9A_reading1_FA1_malayalam | 9 |
+      And I follow "9 A" within "#crumbs"
+      And I follow "papers-tab-link" 
+      And I follow "Scores for FA2 - Malayalam"
+      And I enter the following scores for "<student_email>":
+      	| 9A_listening1_FA2_malayalam | 9.5 |   
+      And I follow "9 A" within "#crumbs"
+      And I follow "papers-tab-link" 
+      And I follow "Scores for FA3 - Malayalam"
+      And I enter the following scores for "<student_email>":
+      	| 9A_test1_FA3_malayalam | 15 | 
+      And I follow "9 A" within "#crumbs"
+      And I follow "papers-tab-link" 
+      And I follow "Scores for FA4 - Malayalam"
+      And I enter the following scores for "<student_email>":
+      	| 9A_test1_FA4_malayalam | 17 |       	      
+      And I follow "9 A" within "#crumbs"
+      And I follow "papers-tab-link" 
+      And I follow "Scores for SA1 - Malayalam"
+      And I enter the following scores for "<student_email>":
+      	| 9A_exam1_SA1_malayalam | 75 | 
+      And I follow "9 A" within "#crumbs"
+      And I follow "papers-tab-link" 
+      And I follow "Scores for SA2 - Malayalam"
+      And I enter the following scores for "<student_email>":
+      	| 9A_exam1_SA2_malayalam | 72 |    
+      And I wait until "<student_email>"
+      And I follow "<student_email>"
+    Then I should see "18" within "table[title='Malayalam'] tr[title='FA1'] div[class='detail score']"
+       And I should see "19" within "table[title='Malayalam'] tr[title='FA2'] div[class='detail score']"
+       And I should see "15" within "table[title='Malayalam'] tr[title='FA3'] div[class='detail score']"
+       And I should see "17" within "table[title='Malayalam'] tr[title='FA4'] div[class='detail score']"
+       And I should see "75" within "table[title='Malayalam'] tr[title='SA1'] div[class='detail score']"
+       And I should see "72" within "table[title='Malayalam'] tr[title='SA2'] div[class='detail score']"
+       And I should see "89.25" within "table[title='Malayalam'] td.left div[class='detail score']"  
+    Examples:
+       | student_email        |
+       | reeny@schoolarly.com |
+      
+   

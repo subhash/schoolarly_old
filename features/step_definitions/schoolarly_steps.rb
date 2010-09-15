@@ -12,6 +12,10 @@ Then /^I should see link with title "(.+)"$/ do |title|
   assert page.has_css? "a[title='#{title}']"
 end
 
+Then /^I should see link "(.+)"$/ do |link|
+  assert page.has_link?(link)
+end
+
 When /^(?:|I )select the following from multiselect "(.+)":$/ do |element, table|
   initialize_select(element)
   table.raw.each do |selection|

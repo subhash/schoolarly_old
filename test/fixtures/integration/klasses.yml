@@ -69,6 +69,7 @@
   level_id: <%= Level.find_by_name('9').id %>
   division: A
   school: gps
+  class_teacher: anna
 9B:
   level_id: <%= Level.find_by_name('9').id %>
   division: B
