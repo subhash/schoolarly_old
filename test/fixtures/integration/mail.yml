@@ -126,83 +126,83 @@ FA2_test_1_social_christina_sentbox:
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:24:07
-FA1_group_project_social_annie_inbox:
+FA1_project_social_annie_inbox:
   read: 0
-  message: FA1_group_project_social_annie
+  message: FA1_project_social_annie
   trashed: 0
-  conversation: FA1_group_project_social_annie
+  conversation: FA1_project_social_annie
   mailbox: inbox
   user: annie
   created_at: 2010-09-10 13:25:57
-FA1_group_project_social_annie_sentbox:
+FA1_project_social_annie_sentbox:
   read: 1
-  message: FA1_group_project_social_annie
+  message: FA1_project_social_annie
   trashed: 0
-  conversation: FA1_group_project_social_annie
+  conversation: FA1_project_social_annie
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:25:57
-FA1_group_project_social_arti_sentbox:
+FA1_project_social_arti_sentbox:
   read: 1
-  message: FA1_group_project_social_arti
+  message: FA1_project_social_arti
   trashed: 0
-  conversation: FA1_group_project_social_arti
+  conversation: FA1_project_social_arti
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:25:58
-FA1_group_project_social_arti_inbox:
+FA1_project_social_arti_inbox:
   read: 0
-  message: FA1_group_project_social_arti
+  message: FA1_project_social_arti
   trashed: 0
-  conversation: FA1_group_project_social_arti
+  conversation: FA1_project_social_arti
   mailbox: inbox
   user: arti
   created_at: 2010-09-10 13:25:58
-FA1_group_project_social_babitha_inbox:
+FA1_project_social_babitha_inbox:
   read: 0
-  message: FA1_group_project_social_babitha
+  message: FA1_project_social_babitha
   trashed: 0
-  conversation: FA1_group_project_social_babitha
+  conversation: FA1_project_social_babitha
   mailbox: inbox
   user: babitha
   created_at: 2010-09-10 13:25:59
-FA1_group_project_social_babitha_sentbox:
+FA1_project_social_babitha_sentbox:
   read: 1
-  message: FA1_group_project_social_babitha
+  message: FA1_project_social_babitha
   trashed: 0
-  conversation: FA1_group_project_social_babitha
+  conversation: FA1_project_social_babitha
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:25:59
-FA1_group_project_social_christina_inbox:
+FA1_project_social_christina_inbox:
   read: 0
-  message: FA1_group_project_social_christina
+  message: FA1_project_social_christina
   trashed: 0
-  conversation: FA1_group_project_social_christina
+  conversation: FA1_project_social_christina
   mailbox: inbox
   user: christina
   created_at: 2010-09-10 13:26:00
-FA1_group_project_social_christina_sentbox:
+FA1_project_social_christina_sentbox:
   read: 1
-  message: FA1_group_project_social_christina
+  message: FA1_project_social_christina
   trashed: 0
-  conversation: FA1_group_project_social_christina
+  conversation: FA1_project_social_christina
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:26:00
-FA1_group_project_social_coonie_inbox:
+FA1_project_social_coonie_inbox:
   read: 0
-  message: FA1_group_project_social_coonie
+  message: FA1_project_social_coonie
   trashed: 0
-  conversation: FA1_group_project_social_coonie
+  conversation: FA1_project_social_coonie
   mailbox: inbox
   user: coonie
   created_at: 2010-09-10 13:26:02
-FA1_group_project_social_coonie_sentbox:
+FA1_project_social_coonie_sentbox:
   read: 1
-  message: FA1_group_project_social_coonie
+  message: FA1_project_social_coonie
   trashed: 0
-  conversation: FA1_group_project_social_coonie
+  conversation: FA1_project_social_coonie
   mailbox: sentbox
   user: gps
   created_at: 2010-09-10 13:26:02
