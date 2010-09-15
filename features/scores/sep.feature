@@ -36,8 +36,9 @@ Feature: SEP calculation
       And I follow "Scores for SA2 - Malayalam"
       And I enter the following scores for "<student_email>":
       	| 9A_exam1_SA2_malayalam | 72 |    
-      And I wait until "<student_email>"
-      And I follow "<student_email>"
+      When "anju@schoolarly.com" logs out
+    	   And "<student_email>" logs in
+    	   And I follow "Subjects"
     Then I should see "18" within "table[title='Malayalam'] tr[title='FA1'] div[class='detail score']"
        And I should see "19" within "table[title='Malayalam'] tr[title='FA2'] div[class='detail score']"
        And I should see "15" within "table[title='Malayalam'] tr[title='FA3'] div[class='detail score']"
