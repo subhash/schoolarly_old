@@ -158,11 +158,13 @@
   description: Chapters 1-3
   assessment_tool: 9A_test_FA1_social
   position: 1
+  event: FA1_test_1_social
 9A_test2_FA1_social:
   max_score: 20.00
   description: Chapters 3-5
   assessment_tool: 9A_test_FA1_social
   position: 2
+  event: FA1_test_2_social
 9A_project1_FA1_social:
   max_score: 20.00
   description: 
@@ -173,11 +175,13 @@
   description: 
   assessment_tool: 9A_test_FA2_social
   position: 1
+  event: FA2_test_1_social
 9A_test2_FA2_social:
   max_score: 20.00
   description: 
   assessment_tool: 9A_test_FA2_social
   position: 2
+  event: FA2_test_2_social
 9A_exam1_SA1_social:
   max_score: 80.00
   description: SA1 Exam - social
