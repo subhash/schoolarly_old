@@ -5,6 +5,9 @@ Given /"(.*)" logs in$/ do |email|
   fill_in 'Email', :with => email
   fill_in 'Password', :with => "password"
   click_button 'Login'
+  wait_until(5) do
+    page.has_link?("Logout, #{email}")
+  end
 end
 
 
@@ -26,6 +29,10 @@ end
 When /^(?:|I )select "(.+)" from multiselect "(.+)"$/ do |text, element|
   initialize_select(element)
     When %{I select "#{text}" from "#{element}"}
+end
+
+When /^(?:|I )follow tab "(.+)"$/ do |tab_name|
+  click_tab(tab_name)
 end
 
 When /^(?:|I )wait until "(.+)"$/ do |content|
