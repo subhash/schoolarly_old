@@ -5,9 +5,9 @@ Given /"(.*)" logs in$/ do |email|
   fill_in 'Email', :with => email
   fill_in 'Password', :with => "password"
   click_button 'Login'
-  wait_until(5) do
-    page.has_link?("Logout, #{email}")
-  end
+#  wait_until(5) do
+#    page.has_link?("Logout, #{email}")
+#  end
 end
 
 
