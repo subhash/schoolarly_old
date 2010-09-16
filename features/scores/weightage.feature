@@ -5,7 +5,7 @@ Feature: Weightage settings for activities
   @javascript
   Scenario Outline: Validation for weightage changes by teacher
     Given "anju@schoolarly.com" logs in
-    And I follow tab "papers"
+      And I follow tab "papers"
       And I follow "Weightage" within "table[title='Malayalam'] tr[title='<assessment>']  span.weightage"
       And I fill in "<tool1>" with "<weightage1>"
       And I press "Save changes"
