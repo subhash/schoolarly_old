@@ -43,350 +43,350 @@
 1B_FA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
-  klass: 2
+  klass: 1B
   weightage: 10.00
   max_score: 20.00  
 
 1B_FA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
-  klass: 2
+  klass: 1B
   weightage: 10.00
   max_score: 20.00  
 
 1B_SA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
-  klass: 2
+  klass: 1B
   weightage: 20.00
   max_score: 80.00  
 
 1B_FA3:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
-  klass: 2
+  klass: 1B
   weightage: 10.00
   max_score: 20.00  
 
 1B_FA4:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
-  klass: 2
+  klass: 1B
   weightage: 10.00
   max_score: 20.00  
 
 1B_SA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
-  klass: 2
+  klass: 1B
   weightage: 40.00
   max_score: 80.00  
 
 1C_FA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
-  klass: 3
+  klass: 1C
   weightage: 10.00
   max_score: 20.00  
 
 1C_FA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
-  klass: 3
+  klass: 1C
   weightage: 10.00
   max_score: 20.00  
 
 1C_SA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
-  klass: 3
+  klass: 1C
   weightage: 20.00
   max_score: 80.00  
 
 1C_FA3:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
-  klass: 3
+  klass: 1C
   weightage: 10.00
   max_score: 20.00  
 
 1C_FA4:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
-  klass: 3
+  klass: 1C
   weightage: 10.00
   max_score: 20.00  
 
 1C_SA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
-  klass: 3
+  klass: 1C
   weightage: 40.00
   max_score: 80.00  
 
 2A_FA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
-  klass: 4
+  klass: 2A
   weightage: 10.00
   max_score: 20.00  
 
 2A_FA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
-  klass: 4
+  klass: 2A
   weightage: 10.00
   max_score: 20.00  
 
 2A_SA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
-  klass: 4
+  klass: 2A
   weightage: 20.00
   max_score: 80.00  
 
 2A_FA3:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
-  klass: 4
+  klass: 2A
   weightage: 10.00
   max_score: 20.00  
 
 2A_FA4:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
-  klass: 4
+  klass: 2A
   weightage: 10.00
   max_score: 20.00  
 
 2A_SA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
-  klass: 4
+  klass: 2A
   weightage: 40.00
   max_score: 80.00  
 
 2B_FA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
-  klass: 5
+  klass: 2B
   weightage: 10.00
   max_score: 20.00  
 
 2B_FA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
-  klass: 5
+  klass: 2B
   weightage: 10.00
   max_score: 20.00  
 
 2B_SA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
-  klass: 5
+  klass: 2B
   weightage: 20.00
   max_score: 80.00  
 
 2B_FA3:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
-  klass: 5
+  klass: 2B
   weightage: 10.00
   max_score: 20.00  
 
 2B_FA4:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
-  klass: 5
+  klass: 2B
   weightage: 10.00
   max_score: 20.00  
 
 2B_SA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
-  klass: 5
+  klass: 2B
   weightage: 40.00
   max_score: 80.00  
 
 2C_FA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
-  klass: 6
+  klass: 2C
   weightage: 10.00
   max_score: 20.00  
 
 2C_FA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
-  klass: 6
+  klass: 2C
   weightage: 10.00
   max_score: 20.00  
 
 2C_SA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
-  klass: 6
+  klass: 2C
   weightage: 20.00
   max_score: 80.00  
 
 2C_FA3:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
-  klass: 6
+  klass: 2C
   weightage: 10.00
   max_score: 20.00  
 
 2C_FA4:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
-  klass: 6
+  klass: 2C
   weightage: 10.00
   max_score: 20.00  
 
 2C_SA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
-  klass: 6
+  klass: 2C
   weightage: 40.00
   max_score: 80.00  
 
 3A_FA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
-  klass: 7
+  klass: 3A
   weightage: 10.00
   max_score: 20.00  
 
 3A_FA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
-  klass: 7
+  klass: 3A
   weightage: 10.00
   max_score: 20.00  
 
 3A_SA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
-  klass: 7
+  klass: 3A
   weightage: 20.00
   max_score: 80.00  
 
 3A_FA3:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
-  klass: 7
+  klass: 3A
   weightage: 10.00
   max_score: 20.00  
 
 3A_FA4:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
-  klass: 7
+  klass: 3A
   weightage: 10.00
   max_score: 20.00  
 
 3A_SA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
-  klass: 7
+  klass: 3A
   weightage: 40.00
   max_score: 80.00  
 
 3B_FA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
-  klass: 8
+  klass: 3B
   weightage: 10.00
   max_score: 20.00  
 
 3B_FA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
-  klass: 8
+  klass: 3B
   weightage: 10.00
   max_score: 20.00  
 
 3B_SA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
-  klass: 8
+  klass: 3B
   weightage: 20.00
   max_score: 80.00  
 
 3B_FA3:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
-  klass: 8
+  klass: 3B
   weightage: 10.00
   max_score: 20.00  
 
 3B_FA4:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
-  klass: 8
+  klass: 3B
   weightage: 10.00
   max_score: 20.00  
 
 3B_SA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
-  klass: 8
+  klass: 3B
   weightage: 40.00
   max_score: 80.00  
 
 3C_FA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
-  klass: 9
+  klass: 3C
   weightage: 10.00
   max_score: 20.00  
 
 3C_FA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
-  klass: 9
+  klass: 3C
   weightage: 10.00
   max_score: 20.00  
 
 3C_SA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
-  klass: 9
+  klass: 3C
   weightage: 20.00
   max_score: 80.00  
 
 3C_FA3:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
-  klass: 9
+  klass: 3C
   weightage: 10.00
   max_score: 20.00  
 
 3C_FA4:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
-  klass: 9
+  klass: 3C
   weightage: 10.00
   max_score: 20.00  
 
 3C_SA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
-  klass: 9
+  klass: 3C
   weightage: 40.00
   max_score: 80.00  
 
 4A_FA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
-  klass: 10
+  klass: 4A
   weightage: 10.00
   max_score: 20.00
 
 4A_FA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
-  klass: 10
+  klass: 4A
   weightage: 10.00
   max_score: 20.00
 
@@ -414,49 +414,49 @@
 4A_SA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
-  klass: 10
+  klass: 4A
   weightage: 40.00
   max_score: 80.00
 
 4B_FA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA1').id %>
-  klass: 11
+  klass: 4B
   weightage: 10.00
   max_score: 20.00
 
 4B_FA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA2').id %>
-  klass: 11
+  klass: 4B
   weightage: 10.00
   max_score: 20.00
 
 4B_SA1:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA1').id %>
-  klass: 11
+  klass: 4B
   weightage: 20.00
   max_score: 80.00
 
 4B_FA3:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA3').id %>
-  klass: 11
+  klass: 4B
   weightage: 10.00
   max_score: 20.00
 
 4B_FA4:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('FA4').id %>
-  klass: 11
+  klass: 4B
   weightage: 10.00
   max_score: 20.00
 
 4B_SA2:
   academic_year: gps
   assessment_type_id: <%= AssessmentType.find_by_name('SA2').id %>
-  klass: 11
+  klass: 4B
   weightage: 40.00
   max_score: 80.00
 
