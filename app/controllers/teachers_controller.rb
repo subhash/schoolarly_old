@@ -27,6 +27,7 @@ class TeachersController < ApplicationController
     @user=@teacher.user
     @user_profile = @user.user_profile
     @papers= @teacher.papers
+    @owned_klasses = @teacher.owned_klasses.group_by{|klass|klass.level_id}
     if @teacher.school
       @school=@teacher.school
       @users=@school.users

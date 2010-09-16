@@ -15,5 +15,6 @@
 <% add.messages_tab if current_user == @teacher.user %>
 <% add.events_tab if current_user == @teacher.user %>
 <% add.papers_tab :partial => 'teachers/papers', :object => @papers if @school %>
+<% add.klasses_tab :object => @owned_klasses unless @owned_klasses.empty?%>
 <% add.profile_tab :object => @user_profile if permitted_to? :read, @teacher %>
 <% end %>

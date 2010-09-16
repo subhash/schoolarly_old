@@ -10,7 +10,7 @@
 		</div>
         <div class="detail">
             <%=link_to klass.class_teacher.name, klass.class_teacher if klass.class_teacher %>
-            <%= link_to_remote (klass.class_teacher ? '(Change)' : 'Assign Class Teacher' ), :url => {:controller => 'klasses', :action => 'edit', :id => klass}, :method => :get if permitted_to? :update, klass %>
+            <%= link_to_remote (klass.class_teacher ? '(Change)' : 'Assign Class Teacher' ), :url => {:controller => 'klasses', :action => 'edit', :id => klass}, :method => :get if active_controller != 'teachers' and permitted_to? :update, klass %>
         </div>
     </td>
     <td class="right">
