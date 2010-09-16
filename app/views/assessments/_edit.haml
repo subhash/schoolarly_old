@@ -9,7 +9,7 @@
       - f.semantic_fields_for :assessment_tools, tool do |tool_form|
         %tr
           %td= tool.name
-          %td= tool_form.input :weightage, :label => false
+          %td= tool_form.input :weightage, :label => false, :input_html => {:id => tool.name}
           %td
             = tool_form.input :best_of, :as => :select, :collection => (1..tool.activities.size).to_a , :label => false
             = tool_form.label " out of #{tool.activities.size}"
