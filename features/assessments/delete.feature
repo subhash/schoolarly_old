@@ -1,24 +1,21 @@
-Feature: Add scores
+Feature: Delete activities
   School, ClassTeacher, School and Teacher should be able to
-  Remove scores of students
+  Remove activities without scores
   
   @javascript
-  Scenario Outline: Teacher deletes scores for students for his subject
+  Scenario: Delete an activity without scores
     Given "sudha@schoolarly.com" logs in
+      And I wait until "Subjects"
     When I follow tab "papers"
-      And I follow "Scores for FA1 - Social Science"
-      And I enter the following scores for "<student_email>":
-      	| 9A_test1_FA1_social |  |
-      	| 9A_test2_FA1_social |  |
-      	| 9A_project1_FA1_social | 18 |
-      And "sudha@schoolarly.com" logs out
-    	  And "<student_email>" logs in
-    	  And I follow tab "papers"
-    Then I should not see /span[@class='score']/ within "table[title='Social Science'] tr[title='FA1']  div[title='Class Test 1']"
-       And I should not see /span[@class='score']/ within "table[title='Social Science'] tr[title='FA1']  div[title='Class Test 2']"
-       And I should see "18/20" within "table[title='Social Science'] tr[title='FA1']  div[title='Group Project']"
-       And I should not see /div[@class='detail score']/ within "table[title='Social Science'] tr[title='FA1']"
-      
-    Examples:
-       | student_email        |
-       | annie@schoolarly.com |
+      And I follow "Add activity to FA1 - Social Science"
+    Then I should see "New activity for FA1 - Social Science" 
+	When I select "Group Project" from "assessment_tool_name"
+	  And I press "Create Activity"
+	Then I should see "Adjust calculations for FA1 - Social Science"
+	When I press "Save changes"
+	Then I should see link with title "Scores for FA1 Group Project 2 - Social Science"
+	  And I should see link with title "Delete FA1 Group Project 2 - Social Science"
+	When I delete "Delete FA1 Group Project 2 - Social Science"
+    Then I should not see the following links:
+    | Scores for FA1 Group Project 2 - Social Science |
+    |  Delete FA1 Group Project 2 - Social Science    |

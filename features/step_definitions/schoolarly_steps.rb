@@ -54,14 +54,21 @@ Then /^(?:|I )should see field "([^"]*)" with "([^"]*)"(?: within "([^"]*)")?$/ 
 end
 
 When /"(.*)" logs out$/ do |email|
-page.evaluate_script('window.confirm = function() { return true; }')
-When %{I follow "Logout, #{email}"} 
+  page.evaluate_script('window.confirm = function() { return true; }')
+  When %{I follow "Logout, #{email}"} 
 end
 
 When /^(?:|I )unselect "([^"]*)" from "([^"]*)"(?: within "([^"]*)")?$/ do |value, field, selector|
 with_scope(selector) do
   unselect(value, :from => field)
 end
+end
+
+When /^(?:|I )delete "([^"]*)"(?: within "([^"]*)")?$/ do |link, selector|
+  with_scope(selector) do
+    page.evaluate_script('window.confirm = function() { return true; }')
+    click_link(link)
+  end
 end
 
 Then /^(?:|I )should see the following(?: within "([^"]*)")?:$/ do |selector, table|
