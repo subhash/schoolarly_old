@@ -3,6 +3,7 @@ class Score < ActiveRecord::Base
   belongs_to :activity
   
   after_create :send_message
+  after_update :send_update_message
   
   def max_score
     activity.max_score
@@ -52,10 +53,33 @@ class Score < ActiveRecord::Base
     end
   end
   
+  def old_score
+    case self.score_was
+      when -2 
+       'Not Applicable'
+      when -1
+       'Absent'
+    else
+      "#{score_was}/#{max_score}"
+    end
+  end
+  
   def send_message
     unless score == 'N'
       str = "Score in #{activity.title} - #{self.to_sentence} "
       student.school.user.send_message(student.user, str, str)
+    end
+  end  
+  
+  def send_update_message
+    unless self.score == self.score_was 
+      if self.old_score == 'Not Applicable'
+        send_message
+      else
+        subject = "Changed score in #{activity.title} - #{self.to_sentence} "
+        body = "Score in #{activity.title} is changed from #{self.old_score} to #{self.to_sentence}"
+        student.school.user.send_message(student.user, body, subject)
+      end
     end
   end  
   
