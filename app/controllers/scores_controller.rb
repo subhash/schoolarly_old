@@ -26,15 +26,15 @@ class ScoresController < ApplicationController
     @activities.each do |activity|
       score =  activity.scores.find_by_student_id(@student.id)
       if(score)
-        params[activity.id.to_s].blank? ? score.destroy :  score.score = params[activity.id.to_s]    
+        params[activity.id.to_s].blank? ? score.destroy : score.update_attributes(:score =>  params[activity.id.to_s])  
       else
-        score = Score.new do |s|
+        score = Score.create do |s|
           s.score = params[activity.id.to_s]
           s.student = @student
           s.activity = activity
         end unless params[activity.id.to_s].blank?
       end  
-      score.save! if score
+#      score.save! if score
     end
     respond_to do |format|
       format.js
