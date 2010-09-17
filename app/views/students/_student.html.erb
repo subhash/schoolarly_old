@@ -5,7 +5,7 @@
         </div>
 		<div class="icons">
 	        <span><%=message_to(student)%></span>
-			<span><%= link_to_remote 'Delete', :url => {:controller => active_controller,:action => 'remove_student',:id => student}, :html => {:title => 'Remove', :class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' if permitted_to? :delete, student%></span>
+			<span><%= link_to_remote 'Delete', :url => {:controller => active_controller,:action => 'remove_student',:id => student}, :html => {:title => student.klass ? "Remove #{student.name} from #{student.klass.name}": "Remove #{student.name}", :class => "ui-icon ui-icon-trash"}, :confirm => 'Are you sure?' if permitted_to? :delete, student%></span>
 		</div>
         <div class="detail">
         	<%= link_to student.user.email, student%>

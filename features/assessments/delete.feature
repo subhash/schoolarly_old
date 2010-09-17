@@ -35,11 +35,9 @@ Feature: Delete activities
   @javascript
   Scenario: Score for student should show after the student is deleted from class
     Given "gps@schoolarly.com" logs in
-    When I follow "papers" of class "9 A"
-    Then I should see link with title "Delete FA3 Class Test - English"
-	When I follow "Scores for FA3 Class Test - English"
-	  And I enter the following scores for "annie@schoolarly.com":
-      	| 9A_test1_FA3_english | 18 |
-      And I follow "9 A" within "#crumbs"
+    And I wait until "Classes"
+    When I follow "students" of class "9 A"
+      And I delete "Remove Reeny George from 9 A"
       And I follow tab "papers"
-	Then I should not see link with title "Delete FA3 Class Test - English"
+      And I follow "Scores for FA1 - Malayalam"
+    Then I should see link "reeny@schoolarly.com"
