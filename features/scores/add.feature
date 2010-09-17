@@ -26,6 +26,7 @@ Feature: Add scores
   @javascript
   Scenario Outline: School adds and edits valid scores for its students
     Given "gps@schoolarly.com" logs in
+    And I wait until "Classes"
     When I follow "papers" of class "9 A"
       And I follow "Scores for FA1 - Social Science"
       And I enter the following scores for "<student_email>":
