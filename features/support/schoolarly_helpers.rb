@@ -94,11 +94,13 @@ class Capybara::Driver::Selenium < Capybara::Driver::Base
   end
 end
 
-#class Capybara::Session
-#  def click_link(locator)
-#    msg = "no link with title, id or text '#{locator}' found"
-#    puts "locator = "+locator.inspect
-#    puts "xpath - locator = "+Capybara::XPath.link(locator).inspect
-#    locate(:xpath, Capybara::XPath.link(locator), msg).click
-#  end
+#class Capybara::XPath
+#    def link(locator)
+##      xpath = append("//a[@href][@id=#{s(locator)} or contains(.,#{s(locator)}) or contains(@title,#{s(locator)}) or img[contains(@alt,#{s(locator)})]]")
+##      xpath.prepend("//a[@href][text()=#{s(locator)} or @title=#{s(locator)} or img[@alt=#{s(locator)}]]")
+#      xpath = append("//a[@href][@title=#{s(locator)} or text()=#{s(locator)}]")
+#      puts "xath = "+xpath.inspect
+#      return xpath
+##      xpath.prepend("//a[@href][text()=#{s(locator)} or @title=#{s(locator)} or img[@alt=#{s(locator)}]]")
+#    end
 #end
