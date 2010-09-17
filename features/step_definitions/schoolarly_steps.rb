@@ -15,6 +15,10 @@ Then /^I should see link with title "(.+)"$/ do |title|
   assert page.has_css? "a[title='#{title}']"
 end
 
+Then /^I should not see link with title "(.+)"$/ do |title|
+  assert page.has_no_css? "a[title='#{title}']"
+end
+
 Then /^I should see link "(.+)"$/ do |link|
   assert page.has_link?(link)
 end
