@@ -28,6 +28,7 @@ Feature: SEP calculation
       	| 9A_reading2_FA3_malayalam  | 16 |
       	| 9A_reading3_FA3_malayalam  | A  | 
       And I follow "9 A" within "#crumbs"
+      And I wait until "Subjects"
       And I follow tab "papers" 
       And I follow "Scores for FA4 - Malayalam"
       And I enter the following scores for "<student_email>":
