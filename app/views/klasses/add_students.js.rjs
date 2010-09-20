@@ -6,7 +6,6 @@ else
   @new_students.each do |student|
     page.insert_object student, :partial => 'students/student'
   end
-  page.replace_action 'Add Students', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @klass.school.students.not_enrolled}
 end
 
 

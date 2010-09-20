@@ -50,6 +50,13 @@ class KlassesController < ApplicationController
     end
   end   
   
+  def edit_students
+    @klass = Klass.find(params[:id]) 
+    render :update do |page|
+      page.open_dialog("Add Students to #{@klass.name}", :partial => 'students/add_students_form', :locals => {:entity => @klass, :students => @klass.school.students.not_enrolled})
+    end
+  end
+  
   def add_students
     @klass = Klass.find(params[:id])  
     @new_students = Student.find(params[:student_ids])

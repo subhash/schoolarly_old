@@ -1,6 +1,6 @@
 <% render_actions do |add| %>
 	<% permitted_to? :manage, @klass do %>
-		<% add.dialog 'Add Students', :partial =>'students/add_students_form',:locals => {:entity => @klass, :students => @school.students.not_enrolled} if permitted_to? :add, :students %>
+		<% add.action 'Add Students', :url =>{:controller => 'klasses', :action => 'edit_students', :id => @klass} if permitted_to? :add, :students %>
 		<% add.action 'Add Subjects', :url =>{:controller => 'klasses', :action => 'add_subjects', :id => @klass} if permitted_to? :add, :papers %>
 		<% add.action @klass.class_teacher ? "Change ClassTeacher" : 'Assign ClassTeacher', :url => {:controller => 'klasses', :action => 'edit', :id => @klass}, :method => :get %>
 		<% add.action 'Assessment Settings', :url => {:controller => 'assessment_groups', :action => 'edit', :klass_id => @klass}, :method => :get %>
