@@ -1,0 +1,9 @@
+- semantic_remote_form_for user, :url => account_path, :html => {:class => "semantic"} do |f|
+  = f.error_messages
+  = f.input :email
+  - semantic_fields_for :user_profile do |profile|
+    = profile.input :name
+  = f.input :password
+  = f.input :password_confirmation
+  = hidden_field_tag :person_type, person_type
+  = f.commit_button :label => 'Create'
