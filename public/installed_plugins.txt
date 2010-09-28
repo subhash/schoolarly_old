@@ -22,13 +22,11 @@ jquery plugins/widgets used
 ---------------------------
 1) jquery dialog (jquery-ui.com)
 2) jquery selectable (jquery-ui.com)
-3) jquery plugin - tablesorter - http://tablesorter.com/docs/ (uninstalled now)
-
-4) jqGrid plugin for scores - http://www.rubyrailways.com/add-a-powerful-ajax-table-to-your-rails-application-in-5-minutes/
+3) jqGrid plugin for scores - http://www.rubyrailways.com/add-a-powerful-ajax-table-to-your-rails-application-in-5-minutes/
 	- TODO - checkout this as well - http://www.2dconcept.com/jquery-grid-rails-plugin
-5) jQuery multi-select - http://github.com/michael/multiselect/
-6) jQuery DateTimePicker - http://trentrichardson.com/examples/timepicker/
-
+4) jQuery multi-select - http://github.com/michael/multiselect/
+5) jQuery DateTimePicker - http://trentrichardson.com/examples/timepicker/
+6) jQuery FullCalendar - http://arshaw.com/fullcalendar/
 Installed gems
 --------------
 

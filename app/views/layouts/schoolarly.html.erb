@@ -5,6 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <%#= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css",'ui.multiselect' %>
         <%= stylesheet_link_tag 'jquery-ui-1.8.4.custom', 'ui.multiselect' %>
+        <%= stylesheet_link_tag 'style', 'fullcalendar' %>
         <%= stylesheet_link_tag  '37layout', 'modalbox' %>
         <!--[if gte IE 6]>
              <%= stylesheet_link_tag  'iespecific.css' %>
@@ -19,7 +20,6 @@
         <%= include_jquery_grid_css %>
         <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
         <%= javascript_include_tag 'fullcalendar', 'gcal', 'calendar' %>
-        <%= stylesheet_link_tag "style", 'fullcalendar' %>
         <%= calendar_date_select_includes 'default' %>
         <%= stylesheet_link_tag('print', :media => :print) %>
     </head>

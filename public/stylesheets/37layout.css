@@ -847,6 +847,20 @@ li.datetime li {
     display: inline;
 }
 
+/* css for fullCalendar */
+
+.activity-event,
+.fc-agenda .activity-event .fc-event-time,
+.activity-event a {
+    background-color: #008000; /* background color */
+    border-color: #008000;     /* border color */
+    color: #FFFFFF;           /* text color */
+    }
+	
+/* fullCalendar end */	
+	
+	
+
 /* multiselect styles */
 .multiselect {
     width: 460px;
