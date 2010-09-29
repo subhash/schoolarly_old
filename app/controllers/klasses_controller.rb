@@ -1,6 +1,6 @@
 class KlassesController < ApplicationController
   
-#  before_filter :find_school , :only => [:new, :create]
+  #  before_filter :find_school , :only => [:new, :create]
   
   def index
     @klasses=Klass.all :order => "school_id, level_id, division"
@@ -43,6 +43,21 @@ class KlassesController < ApplicationController
       format.xml  { render :xml => @klass }
     end
   end  
+  
+  def events
+    session[:redirect] = request.request_uri
+    @klass = Klass.find(params[:id])
+    event_series = EventSeries.for_users(@klass.student_user_ids, @klass.students.size/2)
+    respond_to do |wants|
+      wants.html { render }
+      wants.js {
+        @events = [] 
+        event_series.each {|es| @events += es.events.find(:all, :conditions => ["start_time >= '#{@klass.academic_year.start_date.to_time.to_formatted_s(:db)}' and end_time <= '#{@klass.academic_year.end_date.to_time.to_formatted_s(:db)}'"] )}
+        events = @events.collect { |e| {:id => e.id, :title => e.event_series.title, :description => e.event_series.description || "Some cool description here...", :allDay => false, :editable => e.editable, :start => "#{e.start_time.iso8601}", :end => "#{e.end_time.iso8601}", :className => e.activity ? 'activity-event' : ''}}
+        render :text => events.to_json
+      }
+    end
+  end 
   
   def find_school    
     if(params[:school_id])

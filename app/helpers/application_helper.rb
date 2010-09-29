@@ -93,8 +93,18 @@ module ApplicationHelper
       def papers_tab(args={})
         new_args = {:tab => :papers, :title => 'Subjects', :partial => 'papers/papers'} 
         tab new_args.merge(args)
-      end     
+      end    
+      
+      def class_events_tab(args={})
+        new_args = {:tab => 'class-events', :title => 'Class Calendar', :partial => 'klasses/events'} 
+        tab new_args.merge(args)
+      end 
 
+      def school_events_tab(args={})
+        new_args = {:tab => 'school-events', :title => 'School Calendar', :partial => 'schools/events'} 
+        tab new_args.merge(args)
+      end
+      
       def scores_tab(args={})
         new_args = {:tab => :scores, :title => 'Scores', :partial => 'scores/scores'}
         tab new_args.merge(args)
@@ -112,7 +122,7 @@ module ApplicationHelper
       end
 
       def events_tab(args={})
-        new_args = {:title => 'Events', :partial => 'events/calendar'} 
+        new_args = {:title => 'Events', :partial => 'events/events'} 
         tab new_args.merge(args)
       end
       

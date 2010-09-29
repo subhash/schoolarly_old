@@ -1,0 +1,6 @@
+
+<p>
+    <%=link_to_remote 'New Event', :url => {:controller => :events, :action => :new} %>
+</p>
+
+<%= render :partial => 'events/calendar', :locals => {:url => '/events/index'} %>

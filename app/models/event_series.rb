@@ -6,6 +6,12 @@ class EventSeries < ActiveRecord::Base
   validates_presence_of :title
   validates_associated :events
   
+  named_scope :for_users, lambda {|user_ids, user_count|
+    { :joins => "LEFT JOIN event_series_users eu ON eu.event_series_id = event_series.id ",
+      :conditions => ["eu.user_id IN (?)", user_ids], :group => "event_series.id", :having => "count(*) > #{user_count}"
+    }
+  }
+  
   def send_message
     event = self.reload.events.first
     body = self.description + event.start_time.strftime(" scheduled on %B %d, %Y at %I:%M %p ") + ((self.period == 'once') ? '' :  self.period) #TODO + ' for ' + interval(event.start_time, event.end_time)

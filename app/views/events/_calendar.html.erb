@@ -1,7 +1,4 @@
 
-<p>
-    <%=link_to_remote 'Create Event', :url => {:controller => :events, :action => :new} %>
-</p>
 <script>
     
     
@@ -14,9 +11,9 @@
                 right: 'month,agendaWeek,agendaDay'
             },
             defaultView: 'agendaWeek',
-            height: 500,
+            height: 800,
             slotMinutes: 15,
-            events: "/events/index",
+            events: "<%=url%>",
             timeFormat: 'h:mm t{ - h:mm t} ',
             dragOpacity: "0.5",
             eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){

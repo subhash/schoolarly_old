@@ -1,10 +1,15 @@
 class EventsController < ApplicationController
   
   def new    
+    klass = Klass.find(params[:klass_id]) if params[:klass_id]
     @event = Event.new(:start_time => Event.now, :end_time => Event.now.advance(:hours => 1))
     @event_series = EventSeries.new( :owner => current_user)
-    #@users = current_user.person.school ? current_user.person.school.users - [@event_series.owner] : nil
-    @users = User.with_permissions_to(:contact) - [@event_series.owner]
+    if klass
+      @users = klass.users - [@event_series.owner]
+      @event_series.users = klass.student_users + [klass.class_teacher.user]
+    else
+      @users = User.with_permissions_to(:contact) - [@event_series.owner]
+    end
     render :update do |page|      
       page.open_dialog "New Event created by #{@event_series.owner.name}", {:partial => 'create_form'}
     end
@@ -40,7 +45,7 @@ class EventsController < ApplicationController
           page.open_dialog "Change Activity - #{@activity.title}", :partial => 'activities/edit'
         end
       else
-          render :update do |page|
+        render :update do |page|
           page.open_dialog @activity.title, {:partial => 'events/event'}
         end  
       end
