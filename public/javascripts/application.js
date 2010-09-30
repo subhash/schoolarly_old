@@ -48,6 +48,8 @@ jQuery(document).ready(function(){
         jQuery(currentTab).show(); // Show div with id equal to variable currentTab
         jQuery(currentTab + '-header').show();
         jQuery('#calendar').fullCalendar('render');
+		jQuery('#class-calendar').fullCalendar('render');
+		jQuery('#school-calendar').fullCalendar('render');
         return true;
     });
     jQuery('a.tab-link:first').click();
@@ -60,6 +62,11 @@ jQuery(document).ready(function(){
     initPanes();
 });
 
+function refetchEvents(){
+	jQuery('#calendar').fullCalendar( 'refetchEvents' );
+	jQuery('#school-calendar').fullCalendar( 'refetchEvents' );
+	jQuery('#class-calendar').fullCalendar( 'refetchEvents' );
+}
 function initMultiSelect(){
     jQuery(".multiselect").multiselect({
         sortable: false

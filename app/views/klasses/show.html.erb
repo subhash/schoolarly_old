@@ -2,12 +2,12 @@
 	<% permitted_to? :manage, @klass do %>
 		<% add.action 'Add Students', :url =>{:controller => 'klasses', :action => 'edit_students', :id => @klass} if permitted_to? :add, :students %>
 		<% add.action 'Add Subjects', :url =>{:controller => 'klasses', :action => 'add_subjects', :id => @klass} if permitted_to? :add, :papers %>
-		<% add.action @klass.class_teacher ? "Change ClassTeacher" : 'Assign ClassTeacher', :url => {:controller => 'klasses', :action => 'edit', :id => @klass} %>
-		<% add.action 'Assessment Settings', :url => {:controller => 'assessment_groups', :action => 'edit', :klass_id => @klass} %>
+		<% add.action @klass.class_teacher ? "Change ClassTeacher" : 'Assign ClassTeacher', :url => {:controller => 'klasses', :action => 'edit', :id => @klass}, :method => :get %>
+		<% add.action 'Assessment Settings', :url => {:controller => 'assessment_groups', :action => 'edit', :klass_id => @klass}, :method => :get %>
 	<% end %>
 	<% add.dialog 'Assessment Settings', :partial => 'assessment_groups/weightage', :locals => {:assessment_groups => @klass.assessment_groups } unless permitted_to? :manage, @klass%>
 	<% add.dialog 'Post Message to ' + @klass.name, :partial => 'mails/new_form', :locals => {:users => @klass.users, :selected_users => @klass_user_ids, :message => Message.new} if permitted_to? :contact, @klass%>
-	<% add.action "New Class Event for #{@klass.name}", :url => {:controller => :events, :action => :new, :klass_id => @klass} if permitted_to? :contact, @klass %>
+	<% add.action "New Event for #{@klass.name}", :url => {:controller => :events, :action => :new, :klass_id => @klass} if permitted_to? :contact, @klass %>
 <% end %>
 
 <% render_breadcrumbs do |add| %>
@@ -19,5 +19,5 @@
 <% t.students_tab :object => @klass.students, :locals => {:hide_header => true} %>
 <% t.papers_tab :object => @klass.papers %>
 <% t.details_tab :partial => 'klasses/details', :locals => {:klass => @klass} %>
-<% t.class_events_tab :locals => {:klass => @klass} if permitted_to? :read, @klass %>
+<% t.class_events_tab :locals => {:widget => 'class-calendar', :url => "/klasses/#{@klass.id}/events"}  if permitted_to? :read, @klass %>
 <% end %>

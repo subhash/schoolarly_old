@@ -1,2 +1,2 @@
 page.close_dialog
-page<<"jQuery('#calendar').fullCalendar( 'refetchEvents' );"
+page.call("refetchEvents")

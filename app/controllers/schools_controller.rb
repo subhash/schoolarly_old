@@ -150,4 +150,19 @@ class SchoolsController < ApplicationController
     end 
   end
   
+  def events
+    session[:redirect] = request.request_uri
+    @school = School.find(params[:id])
+    event_series = EventSeries.for_users(@school.student_user_ids, @school.students.size/2)
+    respond_to do |wants|
+      wants.html { render }
+      wants.js {
+        @events = [] 
+        event_series.each {|es| @events += es.events.find(:all, :conditions => ["start_time >= '#{@school.academic_year.start_date.to_time.to_formatted_s(:db)}' and end_time <= '#{@school.academic_year.end_date.to_time.to_formatted_s(:db)}'"] )}
+        events = @events.collect { |e| {:id => e.id, :title => e.event_series.title, :description => e.event_series.description || "Some cool description here...", :allDay => false, :editable => e.editable, :start => "#{e.start_time.iso8601}", :end => "#{e.end_time.iso8601}", :className => e.activity ? 'activity-event' : ''}}
+        render :text => events.to_json
+      }
+    end
+  end    
+  
 end

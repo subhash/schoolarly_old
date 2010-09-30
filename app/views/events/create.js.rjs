@@ -1,3 +1,2 @@
 page.close_dialog
-page<<"jQuery('#calendar').fullCalendar( 'refetchEvents' );"
-page.open_tab :"class-events" if active_controller == 'klasses'
+page.call("refetchEvents")

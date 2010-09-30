@@ -14,7 +14,7 @@ module ApplicationHelper
   end
   
   def active_controller
-    contexts = ['schools', 'users', 'teachers', 'students', 'klasses', 'events', 'exams']
+    contexts = ['schools', 'users', 'teachers', 'students', 'klasses', 'events']
     contexts.each do |context|
       if session[:redirect].include?(context)
         return context 
@@ -96,12 +96,12 @@ module ApplicationHelper
       end    
       
       def class_events_tab(args={})
-        new_args = {:tab => 'class-events', :title => 'Class Calendar', :partial => 'klasses/events'} 
+        new_args = {:tab => 'class-events', :title => 'Class Calendar', :partial => 'events/calendar'} 
         tab new_args.merge(args)
       end 
 
       def school_events_tab(args={})
-        new_args = {:tab => 'school-events', :title => 'School Calendar', :partial => 'schools/events'} 
+        new_args = {:tab => 'school-events', :title => 'School Calendar', :partial => 'events/calendar'} 
         tab new_args.merge(args)
       end
       

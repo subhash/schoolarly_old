@@ -8,6 +8,7 @@
 	<% permitted_to? :contact, @school do %>
 		<% add.dialog 'Post Message to ' + @school.name + ' Admin', :partial => 'mails/new_form', :locals => {:users => [@school.user], :selected_users => [@school.user.id], :message => Message.new} %>
 		<% add.dialog 'Post Message to ' + @school.name, :partial => 'mails/new_form', :locals => {:users => @school.users, :selected_users => @school_user_ids, :message => Message.new} %>
+		<% add.action "New Event for #{@school.name}", :url => {:controller => :events, :action => :new, :school_id => @school} %>
 	<%end%>
 <% end %>
 
@@ -23,4 +24,5 @@
 <% add.teachers_tab :object => @teachers %>
 <% add.tab :tab => :subjects, :title => 'Subjects', :partial => 'school_subjects/school_subjects', :object => @school.school_subjects %>
 <% add.profile_tab :object => @user_profile %>
+<% add.school_events_tab :locals => {:widget => 'school-calendar', :url => "/schools/#{@school.id}/events"} if permitted_to? :read, @school %>
 <% end %>

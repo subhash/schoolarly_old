@@ -2,15 +2,24 @@ class EventsController < ApplicationController
   
   def new    
     klass = Klass.find(params[:klass_id]) if params[:klass_id]
+    school = School.find(params[:school_id]) if params[:school_id]
     @event = Event.new(:start_time => Event.now, :end_time => Event.now.advance(:hours => 1))
     @event_series = EventSeries.new( :owner => current_user)
     if klass
       @users = klass.users - [@event_series.owner]
       @event_series.users = klass.student_users + [klass.class_teacher.user]
+    elsif school
+      @users = school.users - [@event_series.owner]
+      @event_series.users = school.student_users + [school.user]
     else
       @users = User.with_permissions_to(:contact) - [@event_series.owner]
     end
     render :update do |page|      
+      if klass
+        page.open_tab :"class-events"
+      elsif school
+        page.open_tab :"school-events"
+      end
       page.open_dialog "New Event created by #{@event_series.owner.name}", {:partial => 'create_form'}
     end
   end
@@ -132,7 +141,7 @@ class EventsController < ApplicationController
     
     render :update do |page|
       page.close_dialog
-      page<<"jQuery('#calendar').fullCalendar( 'refetchEvents' )" 
+      page.call("refetchEvents")
     end
     
   end

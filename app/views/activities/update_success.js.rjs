@@ -1,6 +1,6 @@
 page.close_dialog
 if active_controller == 'events'
-  page<<"jQuery('#calendar').fullCalendar( 'refetchEvents' );"
+  page.call("refetchEvents")
 else
   page.replace_object @activity, :partial => 'activities/activity'
 end
